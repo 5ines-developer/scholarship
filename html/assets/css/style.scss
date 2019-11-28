@@ -1,0 +1,236 @@
+// variabels
+$themcolor: #00437d;
+*{
+    font-size: 14px;;
+}
+
+.top-header{
+    padding:5px 0;
+    font-size: 16px;
+    .top-header-title1{
+        margin: 5px 0;
+    }
+    .top-header-title2{
+        color: $themcolor;
+        font-weight: 700;
+        margin: 5px 0;
+    }
+    img{
+        width:100px
+    }
+}
+
+.nav-block{
+    background: $themcolor;
+    li a{
+        font-weight: 600;
+        ;
+    }
+}
+
+.container-wrap1{
+    width: 88%;
+    margin: auto;
+    max-width: 1300px;
+}
+.container-wrap2{
+    width: 75%;
+    margin: auto;
+    max-width: 1200px;
+}
+
+@media(max-width:992px){
+    .container-wrap2{
+        width: 90%;
+    }
+}
+
+
+.p17{
+    padding: 17px 0;
+}
+
+.btn-theme{
+    background: $themcolor !important;
+
+    &:hover{
+        background: #1a237e !important;
+    }
+}
+
+// margin and padding
+$intial: 5;
+.m0{margin: 0px !important;}
+.p0{padding: 0px !important;}
+@for $i from 1 through 7 {
+  .mt#{$intial * $i} {
+    margin-top: #{$intial * $i}px;
+  }
+  .mb#{$intial * $i} {
+    margin-bottom: #{$intial * $i}px;
+  }
+  .ml#{$intial * $i} {
+    margin-left: #{$intial * $i}px;
+  }
+  .mr#{$intial * $i} {
+    margin-right: #{$intial * $i}px;
+  }
+
+  .pt#{$intial * $i} {
+    padding-top: #{$intial * $i}px;
+  }
+  .pb#{$intial * $i} {
+    padding-bottom: #{$intial * $i}px;
+  }
+  .pl#{$intial * $i} {
+    padding-left: #{$intial * $i}px;
+  }
+  .pr#{$intial * $i} {
+    padding-right: #{$intial * $i}px;
+  }
+
+}
+
+// registration form
+.reg-block{
+    background: #000000a6 url(../image/rg-bg.jpg);
+    background-blend-mode: overlay;
+    background-size: cover;
+    padding: 50px 0;
+
+    .reg-block-content {
+        background: $themcolor;;
+
+        &:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        &:before {
+            width: 50%;
+            clip-path: polygon(50% 51%, 1% 100%, 100% 100%);
+            background: #fff;
+            height: 123px;
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .reg-left{
+            
+            height: 100%;
+            color: #fff;
+            height: 500px;
+
+            .reg-left-box{
+                text-align: center;
+                padding: 15px;
+                width: 100%;
+
+                .contents p:nth-child(1){
+                    font-weight: 700;
+                    font-size: 18px;
+                }
+
+                .contents p:nth-child(2){
+                    font-weight: 700;
+                    font-size: 24px;
+                }
+
+                .contents p:nth-child(3){
+                    font-weight: 600;
+                    
+                    a{
+                        color: #fff;
+
+                        &:hover{
+                            opacity: 0.8;
+                        }
+                    }
+                }
+            }
+        }
+
+        .reg-right{
+            padding: 30px 20px;
+            background: #fff;
+            .form-block {
+                border: 1px solid #cecece;
+                padding: 0 15px 20px 15px;
+
+                .card-box{
+
+                    .card-heading{
+                        margin: 0 -15px;
+                        position: relative;
+                        overflow: hidden;
+                        height: 75px;
+                        p{
+                            text-align: center;
+                            padding: 15px 0px;
+                            z-index: 2;
+                            color: #fff;
+                            position: relative;
+                            font-weight: 700;
+                            font-size: 16px
+                            ;
+                        }
+
+                        &:after{
+                            position: absolute;
+                            content: '';
+                            width: 107%;
+                            background: $themcolor;
+                            height: 67px;
+                            left: -9px;
+                            top: -14px;
+                            transform: rotate(-2deg);
+                            z-index: 0;
+                        }   
+                    }
+
+                    .card-body{
+                        margin-top:15px !important;
+                        .input-field{
+                            margin: 6px 0;
+                        }
+                        input{
+                            font-size:13px;
+                        }
+                        label{
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer{
+    background: #000;
+    color:#fff
+}
+
+@media(max-width: 600px){
+    .reg-block 
+    {
+        .reg-left {
+            color: #fff;
+            height: auto !important;
+        }
+
+        .reg-block-content{
+
+            &:before{
+                display: none;
+            }
+        }
+    }
+
+    .frt{
+        text-align: left !important;
+    }
+}
