@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scholarship</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+<div id="app">
+    <header class="">
+        <div class="top-header">
+            <div class="container ">
+                <div class="row m0">
+                    
+                    <div class="col s4 m4 push-m4">
+                        <div class="center">
+                            <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                        </div>
+                    </div>
+                    <div class="col s8 m4 pull-m4">
+                            <div class="center-align p17 frt">
+                                <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
+                                <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
+                            </div>
+                    </div>
+                    <div class="col s4 hide-on-small-only">
+                        <div class="center p17">
+                            <p class="top-header-title1">Government of Karnataka</p>
+                            <p class="top-header-title2">Karnataka Labour Welfare Board</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-block">
+        <div class="nav-wrapper container-wrap1">
+            <!-- <a href="#" class="brand-logo">Logo</a> -->
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile1" class="left hide-on-med-and-down">
+            <li><a href="#!">Home</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a></li>
+            
+            </ul>
+        </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="#!">Home</a></li>
+            <li><a href="#!">Apply Scholarship</a></li>
+            <li><a href="#!">Scholarship Status</a></li>
+            <li><a href="#!">Application Detail</a></li>
+            <li><a href="#!">Account Settings</a></li>
+            <li><a href="#!">Logout</a></li>
+            
+        </ul>
+
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="#!">Account Settings</a></li>
+          <li><a href="#!">Application Status</a></li>
+          <li><a href="#!">Logout</a></li>
+          
+        </ul>
+    </header>
+
+
+    <!-- Banner -->
+    <section class="application-banner">
+        <div class="parallax-container">
+            <div class="parallax"><img src="assets/image/application-bg.jpg"></div>
+        </div>
+    </section>
+    <!-- End Banner -->
+
+    <!-- application form  -->
+    <section class="application-form">
+        <div class="container">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        
+                        <div class="card-header center-align">
+                            <div class="right">
+                                <a href="" class="white-text">
+                                    <span> <i class="material-icons">backspace</i> </span><br />
+                                    <span>Back</span>
+                                </a>
+                            </div>
+                            <p> Online Scholarship Application Form</p>
+                            <p>ಸಂಘಟಿತ ಕಾರ್ಮಿಕ ಮಕ್ಕಳಿಂದ ಶೈಕ್ಷಣಿಕ ಪ್ರೋತ್ಸಾಹ ಧನ ಸಹಾಯಕ್ಕಾಗಿ ಅರ್ಜಿ</p>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row m0">
+                                <form action="">
+
+                                    
+                                    <!-- <div class="divider clearfix" tabindex="-1"></div> -->
+
+                                        <div class="borderd-box">
+                                            <div class="col s12 box-title ">
+                                                <p>Student Details</p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿ ವಿವರಗಳು</p>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="name" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ/ನಿಯ ಹೆಸರು (ಅಂಕಪಟ್ಟಿಯಲ್ಲಿರುವoತೆ)" class="validate">
+                                                <label for="name"> <span class="black-text">Student name</span> </label>
+                                            </div>
+                                            
+                                            <div class="input-field col s12 m5">
+                                                <input id="mobile" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ/ಪೋಷಕರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" class="validate">
+                                                <label for="mobile"> <span class="black-text">Mobile Number</span>  </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="fname" type="text" placeholder="ತಂದೆ ಹೆಸರು" class="validate">
+                                                <label for="fname"> <span class="black-text">Father Name</span>   </label>
+                                            </div>
+                
+                                            <div class="input-field col s12 m5">
+                                                <input id="mname" type="text" placeholder="ತಾಯಿ ಹೆಸರು" class="validate">
+                                                <label for="mname"> <span class="black-text">Mother Name</span></label>
+                                            </div>
+
+
+                                            <div class="input-field col s12 m10">
+                                              <textarea id="address" class="materialize-textarea" placeholder="ಪೂರ್ಣ ಅಂಚೆ ವಿಳಾಸ (ಪಿನ್ ಕೋಡ್ ಸಹಿತ)"></textarea>
+                                              <label for="address"><span class="black-text">Address</span></label>
+                                            </div>
+                                        </div> <!-- End Box-->
+
+                                        <div class="borderd-box ">
+                                            <div class="col s12 box-title ">
+                                                <p>Present Institution Details</p>
+                                                <p>ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆಯ ವಿವರಗಳು</p>
+                                            </div>
+                                            <p class="box-title "></p>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <input id="pclass" type="text" placeholder="ಪ್ರಸ್ತುತ ತರಗತಿ" class="validate">
+                                                <label for="pclass"> <span class="black-text">Present Class</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <select>
+                                                    <option value="" disabled selected>ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆ</option>
+                                                    <option value="1">Option 1</option>
+                                                    <option value="2">Option 2</option>
+                                                    <option value="3">Option 3</option>
+                                                </select>
+                                                <label>Select Present Institution</label>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="input-field col s12 m5">
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate">
+                                                <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ತಾಲ್ಲೂಕು" class="validate">
+                                                <label for="pspin"> <span class="black-text">Taluk</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ಜಿಲ್ಲೆ" class="validate">
+                                                <label for="pspin"> <span class="black-text">District</span>   </label>
+                                            </div>
+
+                                        </div><!-- End Box-->
+
+                                        <div class="borderd-box ">
+                                            <div class="col s12 box-title ">
+                                                <p>Enter Your Previous year Class and Marks</p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಹಿಂದಿನ ಸಾಲಿನಲ್ಲಿ ತೇರ್ಗಡೆಯಾದ ತರಗತಿ ಮತ್ತು ಪರೀಕ್ಷಯಲ್ಲಿ ಪಡೆದಿರುವ ಅಂಕಗಳನ್ನು ನಮೂದಿಸುವುದು. </p>
+                                            </div>
+                                            
+
+                                            <div class="col s12 m5">
+                                                <div class="input-field col s12 ">
+                                                    <input id="pspin" type="number"  placeholder="ಹಿಂದಿನ ತರಗತಿ ಹೆಸರು" class="validate">
+                                                    <label for="pspin"> <span class="black-text">Previous Class Name</span>   </label>
+                                                </div>
+
+                                                <div class="input-field col s12 ">
+                                                    <input id="pspin" type="number"  placeholder="ಅಂಕಗಳು" class="validate">
+                                                    <label for="pspin"> <span class="black-text">Marks</span>   </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col s12 m6">
+                                                <p  class="mb5">Attach Your Marks Card Copy</p>
+                                                <p class="mb20">(ಅಂಕಪಟ್ಟಿಯ  ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸುವುದು)</p>
+
+                                                <div class="file-field input-field">
+                                                    <div class="btn">
+                                                        <span>File</span>
+                                                        <input type="file">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                    </div>
+                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note :</span> <span class="red-text"> File Should be in pdf / jpg / png format. Size should be not more than 512KB </span></p>
+                                                </div>
+                                            </div>
+                                            
+                                        </div><!-- End Box-->
+
+                                        <div class="borderd-box ">
+                                            <div class="col s12 box-title ">
+                                                <p>Industry Details</p>
+                                                <p>ಉದ್ಯಮದ ವಿವರಗಳು</p>
+                                            </div>
+                                            <div class="mt10">
+                                                <div class="col s12 m4 l2">
+                                                    <label>
+                                                        <input class="with-gap" name="group1" type="radio" checked  />
+                                                        <span>Father (ತಂದೆ)</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s12 m4 l2">
+                                                    <label>
+                                                        <input class="with-gap" name="group1" type="radio"  />
+                                                        <span>Mother (ತಾಯಿ)</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s12 m4 l2">
+                                                    <label>
+                                                        <input class="with-gap" name="group1" type="radio"  />
+                                                        <span>Guardian (ರಕ್ಷಕ)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix mb20"></div>
+                                            
+                                            
+                                            <div class="input-field col s12 m5 l5">
+                                                <input id="pclass" type="text" placeholder="ಪೋಷಕ / ರಕ್ಷಕರ ಹೆಸರು" class="validate">
+                                                <label for="pclass"> <span class="black-text">Parent / Guardian Name</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <input id="pclass" type="text" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate">
+                                                <label for="pclass"> <span class="black-text">Monthly Salary</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <input id="pclass" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ ಮತ್ತು ಪೋಷಕರ ನಡುವಿನ ಸಂಬಂಧ" class="validate">
+                                                <label for="pclass"> <span class="black-text">Relation between Student & Parent</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate">
+                                                <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ತಾಲ್ಲೂಕು" class="validate">
+                                                <label for="pspin"> <span class="black-text">Taluk</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ಜಿಲ್ಲೆ" class="validate">
+                                                <label for="pspin"> <span class="black-text">District</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ಪೋಷಕ ಉದ್ಯಮದ ಹೆಸರು" class="validate">
+                                                <label for="pspin"> <span class="black-text">Parent Industry Name</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m7">
+                                              <textarea id="address" class="materialize-textarea" placeholder="ಉದ್ಯಮದ ವಿಳಾಸ"></textarea>
+                                              <label for="address"><span class="black-text">Industry Address</span></label>
+                                            </div>
+                                        </div><!-- End Box-->
+
+                                        <div class="borderd-box ">
+                                            <div class="col s12 box-title mb20">
+                                                <p>Does the student belong to the Scheduled Castes / Scheduled Tribes? If so Xerox copy of the cast certificate obtained from the Tahsildar To be Attached.</p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಪರಿಶಿಷ್ಠ ಜಾತಿ/ಪರಿಶಿಷ್ಠ ಪಂಗಡಗಳಿಗೆ ಸೇರಿದವರೇ ? ಹಾಗಿದ್ದರೆ ತಹಶೀಲ್ದಾರರಿಂದ ಪಡೆದ ಜಾತಿ ಪ್ರಮಾಣ ಪತ್ರದ ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸಬೇಕು. </p>
+                                            </div>
+
+                                            <div class="col s12">
+                                                <div class="col s6 m3 l2">
+                                                    <label>
+                                                        <input class="with-gap" name="group1" type="radio" checked />
+                                                        <span>No (ಇಲ್ಲ)</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s6 m3 l2">
+                                                    <label>
+                                                        <input class="with-gap" name="group1" type="radio"  />
+                                                        <span>Yes (ಹೌದು)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="file-field input-field col s12 m6">
+                                                <div class="btn">
+                                                    <span>File</span>
+                                                    <input type="file">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text" placeholder="Upload cast certificate">
+                                                </div>
+                                                <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span> </p>
+                                            </div>
+                                            
+                                        </div><!-- End Box-->
+
+                                        <div class="borderd-box ">
+                                            <div class="col s12 box-title ">
+                                                <p>Enter Student Aadhar Card Number and Attach the Xerox copy.</p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಆಧಾರ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ  (ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸುವುದು). </p>
+                                            </div>
+                                            
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate">
+                                                <label for="pspin"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+
+                                            <div class="file-field input-field col s12 m6">
+                                                <div class="btn">
+                                                    <span>File</span>
+                                                    <input type="file">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
+                                                </div>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span></span>
+                                            </div>
+                                            
+                                        </div><!-- End Box-->
+
+
+                                        <div class="borderd-box ">
+                                            <div class="col s12 box-title ">
+                                                <p>Student Bank Details.</p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿ ಬ್ಯಾಂಕ್ ವಿವರಗಳು. </p>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="name" type="text" placeholder="ಬ್ಯಾಂಕ್ ಹೆಸರು" class="validate">
+                                                <label for="name"> <span class="black-text">Bank Name</span> </label>
+                                            </div>
+                
+                                            <div class="input-field col s12 m5">
+                                                <input id="fname" type="text" placeholder="ಶಾಖೆಯ ಹೆಸರು" class="validate">
+                                                <label for="fname"> <span class="black-text">Branch Name</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="mname" type="text" placeholder="ಐಎಫ್‌ಎಸ್‌ಸಿ ಸಂಖ್ಯೆ" class="validate">
+                                                <label for="mname"> <span class="black-text">IFSC No.</span></label>
+                                            </div>
+                
+                                            <div class="input-field col s12 m5">
+                                                <input id="mname" type="text" placeholder="ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ" class="validate">
+                                                <label for="mname"> <span class="black-text">Saving Account Number</span></label>
+                                            </div>
+
+                                            <div class="file-field input-field col s12 m6">
+                                                <p >ನಿಮ್ಮ ಪಾಸ್‌ಬುಕ್ ಮುಂದಿನ ಪುಟವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</p>
+                                                <div class="btn">
+                                                    <span>File</span>
+                                                    <input type="file">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text" placeholder="Upload Your Passbook Front page">
+                                                </div>
+                                                <span class="helper-text" data-error="wrong"  data-success="right">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span>
+                                            </div>
+
+                                            <p class="col s12 mb20 mt10">
+                                                <label>
+                                                    <input type="checkbox" />
+                                                    <span>I accept all the <a>Terms & Condition</a></span>
+                                                </label>
+                                            </p>
+                                        </div><!-- End Box-->
+
+                                        <button class="waves-effect waves-light hoverable btn-theme btn">Apply</button>
+                                        <button class="waves-effect waves-light hoverable btn-theme btn">Reset</button>
+                                    
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End application form  -->
+
+
+    <!-- footer -->
+    
+    <footer class="pt20 pb20">  
+        <div class="footer-copyright">
+            <div class="container center">
+                © Copyright 2019. All Rights Reserved
+            </div>
+      </div>
+    </footer>
+</div>
+
+
+<!-- scripts -->
+<script src="assets/js/vue.js"></script>
+<script src="assets/js/materialize.min.js"></script>
+<script src="assets/js/script.js"></script>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems);
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            
+        },
+
+        methods:{
+            
+
+            
+        }
+    })
+</script>
+</body>
+</html>
