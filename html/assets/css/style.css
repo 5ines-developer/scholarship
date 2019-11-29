@@ -4,17 +4,18 @@
 
 .top-header {
   padding: 5px 0;
-  font-size: 16px;
 }
 
 .top-header .top-header-title1 {
   margin: 5px 0;
+  font-size: 16px;
 }
 
 .top-header .top-header-title2 {
   color: #00437d;
   font-weight: 700;
   margin: 5px 0;
+  font-size: 16px;
 }
 
 .top-header img {
@@ -27,6 +28,10 @@
 
 .nav-block li a {
   font-weight: 600;
+}
+
+.nav-block li a .user-nav-btn {
+  font-size: 3rem;
 }
 
 .container-wrap1 {
@@ -53,6 +58,9 @@
 
 .btn-theme {
   background: #00437d !important;
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+  min-width: 100px;
 }
 
 .btn-theme:hover {
@@ -413,6 +421,117 @@
 footer {
   background: #000;
   color: #fff;
+}
+
+.board {
+  padding: 50px;
+}
+
+.board .menu-left {
+  background: #00437d;
+}
+
+.board .menu-left ul {
+  padding: 15px 0;
+}
+
+.board .menu-left ul li a {
+  color: #fff;
+  font-weight: 600;
+  padding: 15px 15px;
+  display: block;
+}
+
+.board .menu-left ul li a:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.board .bord-right .card-title {
+  font-size: 16px;
+  color: #111;
+  font-weight: 600;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+  margin-top: -10px;
+}
+
+.board .bord-right .board-content {
+  padding-top: 20px;
+}
+
+.board .bord-right .board-content .board-profile {
+  border: 1px solid #eaeaea;
+  padding: 5px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 150px;
+  margin: auto;
+  line-height: 0;
+}
+
+.board .bord-right .board-content .board-profile:hover .overlay-button {
+  top: 0px;
+}
+
+.board .bord-right .board-content .board-profile img {
+  max-height: 100px;
+  line-height: 0;
+}
+
+.board .bord-right .board-content .board-profile .overlay-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  left: 0;
+  bottom: -100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.board .bord-right .board-content .board-profile .overlay-button i {
+  color: #fff;
+  cursor: pointer;
+}
+
+.board .bord-right .board-content .board-profile .overlay-button i:hover {
+  color: #00437d;
+}
+
+.board .bord-right .board-content .change-psw {
+  color: #00437d;
+  font-weight: 600;
+  line-height: 35px;
+}
+
+.board .bord-right .board-content .change-psw:hover {
+  opacity: 0.6;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 1200px) {
+  .board {
+    padding: 50px 0;
+  }
 }
 
 @media (max-width: 600px) {
