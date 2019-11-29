@@ -155,9 +155,14 @@
 <!-- scripts -->
 <script src="assets/js/vue.js"></script>
 <script src="assets/js/materialize.min.js"></script>
-<script src="assets/js/script.js"></script>
-
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
+        var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
+            constrainWidth: false,
+            alignment:'right'
+        })
+    });
 
 
     var app = new Vue({
