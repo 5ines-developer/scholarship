@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scholarship</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/materialize.min.css">
+</head>
+<body>
+    <header class="">
+        <div class="top-header">
+            <div class="container ">
+                <div class="row m0">
+                    
+                    <div class="col s4 m4 push-m4">
+                        <div class="center">
+                            <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                        </div>
+                    </div>
+                    <div class="col s8 m4 pull-m4">
+                            <div class="center-align p17 frt">
+                                <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
+                                <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
+                            </div>
+                    </div>
+                    <div class="col s4 hide-on-small-only">
+                        <div class="center p17">
+                            <p class="top-header-title1">Government of Karnataka</p>
+                            <p class="top-header-title2">Karnataka Labour Welfare Board</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-block">
+          <div class="nav-wrapper container-wrap1">
+            <!-- <a href="#" class="brand-logo">Logo</a> -->
+            <ul id="nav-mobile1" class="left hide-on-med-and-down">
+              <li><a href="#!">Home</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="#!">Login</a></li>
+              <li><a href="#!">Registration</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+
+    <!-- Registration form  -->
+    <section class="reg-block row m0" id='app'>
+        <div class="container-wrap2">
+            <div class="col s12 m12 l10 push-l1 p0">
+                    <div class="reg-block-content">
+                    
+                    <div class="col s12 m6 push-m6 push-l6 l6 reg-right">
+                        <div class="form-block">
+                            <div class="card-box">
+                                <div class="card-heading">
+                                    <p class="m0">Student Registration</p>
+                                </div>
+                                <div class="card-body row m0">
+
+                                    <div class="input-field col s12">
+                                        <select required  v-model="industry">
+                                            <option value="" disabled selected>Choose your option</option>
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                        </select>
+                                        <label>Select Industry</label>
+                                    </div>
+
+
+                                    <div class="input-field col s12">
+                                        <input  id="email" @change="emailCheck()" v-model="email" type="email" class="validate" required>
+                                        <label for="email">Email ID</label>
+                                        <span>{{ emailError }}</span>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input  id="phone" @change="mobileCheck()" v-model="mobile" type="text" class="validate" required>
+                                        <label for="phone">Mobile No</label>
+                                        <span>{{mobileError}}</span>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input  id="password" v-model="psw" type="text" class="validate" required>
+                                        <label for="password">Password</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input  id="cpassword"  v-model="cpsw" type="text" class="validate" required>
+                                        <label for="cpassword">Confirm Password</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 pull-m6 pull-l6 m6 l6 reg-left valign-wrapper">
+                        <div class="reg-left-box ">
+                            <div class="contents">
+                                <p>Welcom To</p>
+                                <p>Karnataka Labour Welfare Board</p>
+                                <p>If You Have an Account <a href="#!">Sign In</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- footer -->
+    
+    <footer class="pt20 pb20">  
+        <div class="footer-copyright">
+            <div class="container center">
+                © Copyright 2019. All Rights Reserved
+            </div>
+      </div>
+    </footer>
+              
+
+
+<!-- scripts -->
+<script src="assets/js/vue.js"></script>
+<script src="assets/js/materialize.min.js"></script>
+<script src="assets/js/script.js"></script>
+<script>
+   
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            industry: '',
+            mobile: '',
+            email: '',
+            psw: '',
+            cpsw: '',
+            emailError: '',
+            mobileError: '',
+
+            emailcheck :[
+                {email: 'testing@5ines.com'},
+                {email: 'shahir@5ines.com'}
+            ],
+
+            PhoneCheck:[
+                {phone: '0123456789'},
+                {phone: '9876543210'}
+            ]
+        },
+
+        methods:{
+            emailCheck(){
+                for (let i = 0; i < this.emailcheck.length; i++) {
+                    if(this.email == this.emailcheck[i]){
+                        this.emailError = 'Email id Already exist';
+                    }                    
+                }
+            },
+
+            mobileCheck(){
+                for (let i = 0; i < this.PhoneCheck.length; i++) {
+                    if(this.mobile == this.PhoneCheck[i]){
+                        this.mobileError = 'Email id Already exist';
+                    }                    
+                }
+            },
+
+            
+        }
+    })
+</script>
+</body>
+</html>
