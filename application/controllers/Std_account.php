@@ -21,15 +21,36 @@ class Std_account extends CI_Controller {
     public function index($value='')
     {
     	$data['title']  = 'Student Profile - Scholarship';
-    	$data['result'] = $this->m_stdaccount->getProfile($this->sid);
 		$this->load->view('student/profile', $data, FALSE);
+	}
+	
+	public function getProfile($output = null)
+	{
+		$output = $this->m_stdaccount->getProfile($this->sid);
+        $output['profile'] = base_url().$output['profile_pic'];
+        echo json_encode($output);
+
+	}
+
+    public function addName($output='')
+    {
+        $name = $this->input->post('name');
+        $output = $this->m_stdaccount->addName($name,$this->sid);
+        echo $output;
+    }
+
+    public function addPhone($value='')
+    {
+        $phone = $this->input->post('phone');
+        $output = $this->m_stdaccount->addPhone($phone,$this->sid);
+        echo $output;
     }
 
 
-    public function update_profile($value='')
+    public function addfile($output='')
     {
     		$files = $_FILES;
-	        if (file_exists($_FILES['profile']['tmp_name'])) {
+	        if (file_exists($_FILES['file']['tmp_name'])) {
 	            $config['upload_path'] = 'student-profile/';
 	            $config['allowed_types'] = 'jpg|png|jpeg';
 	            $config['max_width'] = 0;
@@ -39,14 +60,8 @@ class Std_account extends CI_Controller {
 	            if (!is_dir($config['upload_path'])) {
 	                mkdir($config['upload_path'], 0777, true);
 	            }
-
-	            if (!$this->upload->do_upload('profile')) {
-	                $error = array('error' => $this->upload->display_errors());
-	                // print_r($error);exit();
-	                $this->session->set_flashdata('error', $this->upload->display_errors());
-	                redirect('profile');
-	            } else {
-	                // echo "ok";exit();
+                $this->upload->do_upload('file');
+	            
 	                $upload_data = $this->upload->data();
 	                $config['image_library'] = 'gd2';
 	                $config['source_image'] = $upload_data['full_path'];
@@ -60,34 +75,10 @@ class Std_account extends CI_Controller {
 
 	                $file_name = $upload_data['file_name'];
 	                $imgpath = 'student-profile/'.$file_name;
-	            }
 
-	           
+                $output = $this->m_stdaccount->addfile($imgpath,$this->sid);
 	        }
-
-	        $fname 	= $this->input->post('fname');
-		    $lname 	= $this->input->post('lname');
-
-		    $insert =  array(
-		        'fname' 	=> $fname,
-		        'lname' 	=> $lname,
-		        'updated_on' => date('Y-m-d H:i:s')
-	        );
-
-	        if (file_exists($_FILES['profile']['tmp_name'])) {
-	         $insert['profile_pic'] = $imgpath;
-	        }
-
-
-        	if($this->m_stdaccount->updateProfile($insert, $this->sid)){
-                $this->session->set_flashdata('success', 'Profile has been updated Successfully');
-                redirect('student/profile','refresh');
-            }else{
-                $this->session->set_flashdata('error', 'Something went wrong please try again later!');
-                redirect('student/profile','refresh');
-            }	        
-		    
-
+            echo $output;
     }
 
     /**

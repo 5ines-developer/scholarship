@@ -40,7 +40,7 @@ class M_stdaccount extends CI_Model {
     **/
     public function getProfile($stdid='')
     {
-    	return $this->db->select('email,phone,fname,lname')->where('id', $this->session->userdata('stlid'))->get('student')->row();
+    	return $this->db->select('email,phone,name,profile_pic')->where('id', $this->session->userdata('stlid'))->get('student')->row_array();
     }
 
     /**
@@ -48,9 +48,19 @@ class M_stdaccount extends CI_Model {
     * @url      : student/profile
     * @param    : student id, update data, 
     **/
-    public function updateProfile($insert='',$sid='')
+    public function addName($name='',$id='')
     {
-    	return $this->db->where('id', $sid)->update('student',$insert);
+       return $this->db->where('id', $id)->update('student',array('name' => $name));
+    }
+
+    public function addfile($file='',$id='')
+    {
+       return $this->db->where('id', $id)->update('student',array('profile_pic' => $file));
+    }
+
+    public function addPhone($phone='',$id='')
+    {
+        return $this->db->where('id', $id)->update('student',array('phone' => $phone));
     }
 
 	

@@ -128,8 +128,6 @@
 <!-- scripts -->
 <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
 <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
-<script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
     <?php $this->load->view('includes/message'); ?>
 </script>
