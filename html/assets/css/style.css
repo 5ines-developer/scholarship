@@ -721,6 +721,57 @@ input[type=number] {
   border-bottom: 1px dashed #222;
 }
 
+.view {
+  background: #00437d;
+  padding: 2px 6px;
+  border-radius: 3px;
+  line-height: 0;
+}
+
+.view:hover {
+  -webkit-box-shadow: 0px 0px 10px -5px black,0px 0px 15px -8px black;
+          box-shadow: 0px 0px 10px -5px black,0px 0px 15px -8px black;
+  background: #347bb9;
+}
+
+.view i {
+  color: #fff;
+  font-size: 19px;
+  line-height: 20px;
+  margin: 0px;
+}
+
+.sorting {
+  position: relative;
+  cursor: pointer;
+}
+
+.sorting:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #2f2f2f;
+  right: 10%;
+  top: 20px;
+  opacity: 0.5;
+}
+
+.sorting:before {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #2f2f2f;
+  right: 10%;
+  bottom: 20px;
+  opacity: 0.5;
+}
+
 @media (max-width: 1200px) {
   .board {
     padding: 50px 0;
