@@ -20,7 +20,7 @@ class Std_account extends CI_Controller {
     **/
     public function index($value='')
     {
-    	$data['title']  = 'Student Profile - Scholarship';
+    	$data['title']  = 'Student Profile';
 		$this->load->view('student/profile', $data, FALSE);
 	}
 	
@@ -89,8 +89,8 @@ class Std_account extends CI_Controller {
     **/
 	public function changePassword()
 	{
-		$data['title']  = 'Student Change Password - Scholarship';
-		$this->load->view('student/change-psw', $data, FALSE);
+		$data['title']  = 'Student Change Password';
+		$this->load->view('student/change-password', $data, FALSE);
 	}
 
     /**
@@ -102,14 +102,14 @@ class Std_account extends CI_Controller {
 	public function update_pass($value='')
 	{
 		$data['title']  = 'Student Change password - Scholarship';
-		$this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required|callback_checkpsw_check');
+		$this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
         $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
         $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
         if ($this->form_validation->run() == true) {
         	$hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
         	$datas = array('password' => $hash );
         	if ($this->m_stdaccount->changePassword($datas)) {
-               	$this->session->set_flashdata('success', 'Your password has been changed successfully');
+               	$this->session->set_flashdata('success', 'Your password has been updated successfully');
                	redirect('student/change-password', 'refresh');
             } else {
                	$this->session->set_flashdata('error', 'Something went wrong please try again later!');
@@ -119,9 +119,6 @@ class Std_account extends CI_Controller {
         }else{
 
         	$error = validation_errors();
-            echo "<pre>";
-            print_r ($error);
-            echo "</pre>";exit();
             $this->session->set_flashdata('error', $error);
             redirect('student/change-password','refresh');
 
@@ -129,14 +126,10 @@ class Std_account extends CI_Controller {
 	}
 
 	// psw check function
-    public function checkpsw_check($psw)
+    public function checkpsw($psw='')
     {
-        if ($this->m_stdaccount->checkpsw($psw)) {
-            return true;
-        } else {
-            $this->form_validation->set_message('checkpsw_check', 'Invalid {field}');
-            return false;
-        }
+        $output = $this->m_stdaccount->checkpsw($this->input->post('crpass'));
+        echo $output;
     }
 
 

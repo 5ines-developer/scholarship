@@ -5,7 +5,7 @@
                         
                         <div class="col s4 m4 push-m4">
                             <div class="center">
-                                <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                                <img class="responsive-img" src="<?php echo base_url() ?>assets/image/logo.png" alt="Karnataka Labour Welfare Board">
                             </div>
                         </div>
                         <div class="col s8 m4 pull-m4">
@@ -28,29 +28,31 @@
                 <!-- <a href="#" class="brand-logo">Logo</a> -->
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile1" class="left hide-on-med-and-down">
-                <li><a href="#!">Home</a></li>
+                <li><a href="<?php echo base_url()?>">Home</a></li>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a></li>
-                
+                    <?php if ($this->session->userdata('stlid') == '') { ?>
+                        <li><a href="<?php echo base_url('student/login')?>">Login</a></li>
+                        <li><a href="<?php echo base_url('student/register')?>">Registration</a></li>
+                    <?php }else{ ?>
+                        <li><a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a></li>
+                    <?php } ?> 
                 </ul>
             </div>
             </nav>
 
             <ul class="sidenav" id="mobile-demo">
-                <li><a href="#!">Home</a></li>
-                <li><a href="#!">Apply Scholarship</a></li>
+                <li><a href="<?php echo base_url()?>">Home</a></li>
+                <li><a href="<?php echo base_url('student/application')?>">Apply Scholarship</a></li>
                 <li><a href="#!">Scholarship Status</a></li>
                 <li><a href="#!">Application Detail</a></li>
-                <li><a href="#!">Account Settings</a></li>
-                <li><a href="#!">Logout</a></li>
-                
+                <li><a href="<?php echo base_url('student/profile')?>" <?php if($this->uri->segment(2)=='profile'){ echo 'active'; } ?> >Account Settings</a></li>
+                <li><a href="<?php echo base_url('student/logout')?>">Logout</a></li>
             </ul>
 
             <ul id='dropdown1' class='dropdown-content'>
-              <li><a href="#!">Account Settings</a></li>
-              <li><a href="#!">Application Status</a></li>
-              <li><a href="#!">Logout</a></li>
-              
+              <li><a href="<?php echo base_url('student/profile')?>">Account Settings</a></li>
+              <li><a href="<?php echo base_url('student/application')?>">Application Status</a></li>
+              <li><a href="<?php echo base_url('student/logout')?>">Logout</a></li>
             </ul>
         </header>

@@ -3,23 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_student extends CI_Model {
 
-	/**
-    * get school
-    * @data     : schhol data
-    **/
-    public function getSchool($value='')
-    {
-    	return $this->db->order_by('id', 'desc')->select('id as sId,name as sName')->where('status','1')->get('school')->result();
-    }
 
-	/**
-    * get company
-    * @data     : company data,
-    **/
-    public function getCompany($value='')
-    {
-    	return $this->db->order_by('id', 'desc')->select('id as iId,name as iName')->where('status','1')->get('industry')->result();
-    }
 
     /**
     * student registartion

@@ -18,16 +18,7 @@
         <section class="board">
             <div class="container-wrap1">
                 <div class="row m0">
-                    <div class="col s12 m3 hide-on-med-and-down">
-                        <div class="menu-left">
-                            <ul>
-                                <li><a href="">Apply Scholarship</a></li>
-                                <li><a href="">Scholarship Status</a></li>
-                                <li><a href="">Apllication Detail</a></li>
-                                <li><a href="">Account Settings</a></li>
-                            </ul>
-                        </div>
-                    </div> <!-- End menu-->
+                      <?php $this->load->view('includes/student-sidebar.php'); ?> <!-- End menu-->
 
                     <div class="col s12 m8">
                         <div class="card  darken-1">
@@ -43,7 +34,7 @@
                                                 </div>
                                             </div>
                                             <p class="center">
-                                                <a href="#!" class="change-psw"  >Change password</a>
+                                                <a href="<?php echo base_url('student/change-password') ?>" class="change-psw"  >Change password</a>
                                             </p>
                                         </div>
                                         <div class="col s12 m8 l8">
@@ -176,7 +167,6 @@
             getData(){
                 axios.post('<?php echo base_url() ?>std_account/getProfile')
                 .then(response => {
-                    console.log(response)
                     if(response.data != ''){
                         this.student.email      = response.data.email;
                         this.student.name       = response.data.name;

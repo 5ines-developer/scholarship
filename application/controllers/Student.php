@@ -214,7 +214,7 @@ class Student extends CI_Controller {
     **/
     public function dashboard()
     {
-        if ($this->session->userdata('qstn_status') == '') {
+        if ($this->session->userdata('stqstn') != 1) {
             $data['title']      = 'Security Question';
             $this->load->view('student/security-questions', $data, FALSE);
         }else{
@@ -230,7 +230,7 @@ class Student extends CI_Controller {
         if($this->m_student->securityqstn($qstn, $answer, $stdid)){
             redirect('student/profile','refresh');
        }else{
-        $this->session->set_flashdata('error', 'Something error occured please contact our support team');
+        $this->session->set_flashdata('error', 'Something error occured, please try again!');
         redirect('student/dashboard','refresh');
        }
     }
@@ -242,7 +242,7 @@ class Student extends CI_Controller {
     **/
     public function logout($value='')
     {
-        $session_data = array('slmail' => $this->session->userdata('slmail'),'qstn_status'=>$this->session->userdata('qstn_status'), 'stlid'  => $this->session->userdata('stlid') );
+        $session_data = array('slmail' => $this->session->userdata('slmail'),'qstn_status'=>$this->session->userdata('stqstn'), 'stlid'  => $this->session->userdata('stlid') );
         $this->session->unset_userdata($session_data);
         $this->session->sess_destroy();
         $this->session->set_flashdata('success', 'You are Logged Out successfully');
