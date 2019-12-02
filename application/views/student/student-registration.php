@@ -50,7 +50,7 @@
                                     </div>
 
                                     <div class="input-field col s12">
-                                        <div class="g-recaptcha"data-sitekey="6LfMhr0UAAAAAPOaSXvx2hfk0P_ruX4KDruHyu06"></div> 
+                                        <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
                                     </div>
 

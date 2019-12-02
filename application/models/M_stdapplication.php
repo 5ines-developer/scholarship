@@ -36,7 +36,7 @@ class M_stdapplication extends CI_Model {
     **/
     public function getDistrict($value='')
     {
-    	return $this->db->order_by('id', 'asc')->select('id as districtId,district')->get('district')->result();
+    	return $this->db->order_by('id', 'asc')->select('id as districtId,title as district')->get('city')->result();
     }
 
     /**
@@ -56,6 +56,36 @@ class M_stdapplication extends CI_Model {
     public function aplliBasic($insert='')
     {
     	$this->db->where('application_id !=', $insert['application_id'])->insert('applicant_basic_detail',$insert);
+    	if ($this->db->affected_rows() >0) {
+    		return $this->db->insert_id();
+    	}else{
+    		return false;
+    	}
+    }
+
+    public function applicantAccount($insert = null)
+    {
+        $this->db->where('application_id !=', $insert['application_id'])->insert('applicant_account',$insert);
+    	if ($this->db->affected_rows() >0) {
+    		return $this->db->insert_id();
+    	}else{
+    		return false;
+    	}
+    }
+
+    public function applicantCompany($insert = null)
+    {
+        $this->db->where('application_id !=', $insert['application_id'])->insert('applicant_comapny',$insert);
+    	if ($this->db->affected_rows() >0) {
+    		return $this->db->insert_id();
+    	}else{
+    		return false;
+    	}
+    }
+
+    public function applicantSchool($insert = null)
+    {
+        $this->db->where('application_id !=', $insert['application_id'])->insert('applicant_marks',$insert);
     	if ($this->db->affected_rows() >0) {
     		return $this->db->insert_id();
     	}else{

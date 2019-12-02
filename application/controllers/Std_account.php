@@ -32,19 +32,15 @@ class Std_account extends CI_Controller {
 
 	}
 
-    public function addName($output='')
+    public function updateprofile($output='')
     {
         $name = $this->input->post('name');
-        $output = $this->m_stdaccount->addName($name,$this->sid);
-        echo $output;
+        $phone = $this->input->post('mobile');
+        $output = $this->m_stdaccount->updateProfile($name,$phone,$this->sid);
+        echo $output;           
     }
 
-    public function addPhone($value='')
-    {
-        $phone = $this->input->post('phone');
-        $output = $this->m_stdaccount->addPhone($phone,$this->sid);
-        echo $output;
-    }
+
 
 
     public function addfile($output='')
@@ -60,19 +56,8 @@ class Std_account extends CI_Controller {
 	            if (!is_dir($config['upload_path'])) {
 	                mkdir($config['upload_path'], 0777, true);
 	            }
-                $this->upload->do_upload('file');
-	            
+                    $this->upload->do_upload('file');	            
 	                $upload_data = $this->upload->data();
-	                $config['image_library'] = 'gd2';
-	                $config['source_image'] = $upload_data['full_path'];
-	                $config['create_thumb'] = true;
-	                $config['maintain_ratio'] = false;
-	                $config['height'] = 400;
-	                $config['width'] = 400;
-
-	                $this->load->library('image_lib', $config);
-	                $this->image_lib->resize();
-
 	                $file_name = $upload_data['file_name'];
 	                $imgpath = 'student-profile/'.$file_name;
 

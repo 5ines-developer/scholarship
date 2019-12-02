@@ -71,7 +71,7 @@ $route['student/change-password'] 	= 'std_account/changePassword';
 $route['student/update-password'] 	= 'std_account/update_pass';
 //profile settings
 $route['student/profile'] 			= 'std_account/index';
-$route['student/update-profile'] 	= 'std_account/update_profile';
+$route['student/update-profile'] 	= 'std_account/updateprofile';
 // scholarship application
 $route['student/application'] 			= 'Std_application/index';
 $route['student/submit-application'] 	= 'Std_application/insertAppli';

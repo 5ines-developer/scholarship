@@ -42,7 +42,7 @@
 
                         <div class="card-body">
                             <div class="row m0">
-                                <form action="<?php echo base_url('student/submit-application') ?>" method="post" enctype="multipart/form-data" id="s_apply">
+                                <form action="#" method="post" enctype="multipart/form-data" id="s_apply" @submit="formSubmit"> 
 
                                     
                                     <!-- <div class="divider clearfix" tabindex="-1"></div> -->
@@ -54,28 +54,28 @@
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="name" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ/ನಿಯ ಹೆಸರು (ಅಂಕಪಟ್ಟಿಯಲ್ಲಿರುವoತೆ)" class="validate" name="s_name" required="" >
+                                                <input id="name" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ/ನಿಯ ಹೆಸರು (ಅಂಕಪಟ್ಟಿಯಲ್ಲಿರುವoತೆ)" class="validate" v-model="student.name" required="" >
                                                 <label for="name"> <span class="black-text">Student name</span> </label>
                                             </div>
                                             
                                             <div class="input-field col s12 m5">
-                                                <input id="mobile" type="number" placeholder="ವಿದ್ಯಾರ್ಥಿ/ಪೋಷಕರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" class="validate" name="s_phone" required="" >
+                                                <input id="mobile" type="number" placeholder="ವಿದ್ಯಾರ್ಥಿ/ಪೋಷಕರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" class="validate" v-model="student.phone" required="" >
                                                 <label for="mobile"> <span class="black-text">Mobile Number</span>  </label>
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="fname" type="text" placeholder="ತಂದೆ ಹೆಸರು" class="validate" name="s_father" required="" >
+                                                <input id="fname" type="text" placeholder="ತಂದೆ ಹೆಸರು" class="validate" name="s_father" required="" v-model="student.father" >
                                                 <label for="fname"> <span class="black-text">Father Name</span>   </label>
                                             </div>
                 
                                             <div class="input-field col s12 m5">
-                                                <input id="mname" type="text" placeholder="ತಾಯಿ ಹೆಸರು" name="s_mother" class="validate" required="" >
+                                                <input id="mname" type="text" placeholder="ತಾಯಿ ಹೆಸರು" name="s_mother" class="validate" required="" v-model="student.mother">
                                                 <label for="mname"> <span class="black-text">Mother Name</span></label>
                                             </div>
 
 
                                             <div class="input-field col s12 m10">
-                                              <textarea id="address" class="materialize-textarea" name="s_address"  placeholder="ಪೂರ್ಣ ಅಂಚೆ ವಿಳಾಸ (ಪಿನ್ ಕೋಡ್ ಸಹಿತ)" required="" ></textarea>
+                                              <textarea id="address" class="materialize-textarea" name="s_address"  placeholder="ಪೂರ್ಣ ಅಂಚೆ ವಿಳಾಸ (ಪಿನ್ ಕೋಡ್ ಸಹಿತ)" required="" v-model="student.address"></textarea>
                                               <label for="address"><span class="black-text">Address</span></label>
                                             </div>
                                         </div> <!-- End Box-->
@@ -88,12 +88,12 @@
                                             <p class="box-title "></p>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="pclass" type="text" placeholder="ಪ್ರಸ್ತುತ ತರಗತಿ" class="validate" name="pr_class">
+                                                <input id="pclass" type="text" placeholder="ಪ್ರಸ್ತುತ ತರಗತಿ" class="validate" required="" v-model="institute.pclass">
                                                 <label for="pclass"> <span class="black-text">Present Class</span>   </label>
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <select name="pr_insti" required="" >
+                                                <select required="" v-model="institute.name">
                                                     <option value="" selected>ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆ</option>
                                                     <?php if (!empty($school)) {
                                                         foreach ($school as $sch => $schl) { 
@@ -104,11 +104,11 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="input-field col s12 m5">
-                                                <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" >
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" v-model="institute.pin">
                                                 <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
                                             </div>
                                             <div class="input-field col s12 m5 l5">
-                                                <select name="in_talluk" id="in_talluk" required="" >
+                                                <select id="in_talluk" required="" v-model="institute.talluk">
                                                     <option value="" selected>ತಾಲ್ಲೂಕು</option>
                                                     <?php if (!empty($talluk)) {
                                                         foreach ($talluk as $tal => $talk) { 
@@ -118,7 +118,7 @@
                                                 <label for="in_talluk">Taluk</label>
                                             </div>
                                             <div class="input-field col s12 m5 l5">
-                                                <select name="in_district" id="in_district" required="" >
+                                                <select id="in_district" required="" v-model="institute.district">
                                                     <option value="" selected>ಜಿಲ್ಲೆ</option>
                                                     <?php if (!empty($district)) {
                                                         foreach ($district as $dist => $distct) { 
@@ -138,12 +138,12 @@
 
                                             <div class="col s12 m5">
                                                 <div class="input-field col s12 ">
-                                                    <input id="pv_class" type="number"  placeholder="ಹಿಂದಿನ ತರಗತಿ ಹೆಸರು" class="validate" name="pv_class" required="" >
+                                                    <input id="pv_class" type="number"  placeholder="ಹಿಂದಿನ ತರಗತಿ ಹೆಸರು" class="validate" required="" v-model="previous.class" >
                                                     <label for="pv_class"> <span class="black-text">Previous Class Name</span>   </label>
                                                 </div>
 
                                                 <div class="input-field col s12 ">
-                                                    <input id="pv_marks" type="number"  placeholder="ಅಂಕಗಳು" class="validate" name="pv_marks" required="" >
+                                                    <input id="pv_marks" type="number"  placeholder="ಅಂಕಗಳು" class="validate" required="" v-model="previous.marks">
                                                     <label for="pv_marks"> <span class="black-text">Marks</span>   </label>
                                                 </div>
                                             </div>
@@ -155,10 +155,10 @@
                                                 <div class="file-field input-field">
                                                     <div class="btn">
                                                         <span>File</span>
-                                                        <input type="file" name="pv_mrcard">
+                                                        <input type="file" name="pv_mrcard" ref="file" @change="markcard()" required="">
                                                     </div>
                                                     <div class="file-path-wrapper">
-                                                        <input class="file-path validate" type="text" required="" >
+                                                        <input class="file-path validate" type="text" >
                                                     </div>
                                                     <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note :</span> <span class="red-text"> File Should be in pdf / jpg / png format. Size should be not more than 512KB </span></p>
                                                 </div>
@@ -174,19 +174,19 @@
                                             <div class="mt10">
                                                 <div class="col s12 m4 l2">
                                                     <label>
-                                                        <input class="with-gap" name="in_group" type="radio" checked="checked"  />
+                                                        <input class="with-gap" v-model="industry.working" value="father" type="radio" checked="checked"  />
                                                         <span>Father (ತಂದೆ)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s12 m4 l2">
                                                     <label>
-                                                        <input class="with-gap" name="in_group" type="radio"  />
+                                                        <input class="with-gap" v-model="industry.working" value="mother" type="radio"  />
                                                         <span>Mother (ತಾಯಿ)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s12 m4 l2">
                                                     <label>
-                                                        <input class="with-gap" name="in_group" type="radio"  />
+                                                        <input class="with-gap" v-model="industry.working" value="guardian" type="radio"  />
                                                         <span>Guardian (ರಕ್ಷಕ)</span>
                                                     </label>
                                                 </div>
@@ -195,27 +195,27 @@
                                             
                                             
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="id_pname" type="text" placeholder="ಪೋಷಕ / ರಕ್ಷಕರ ಹೆಸರು" class="validate" name="id_pname" required="" >
+                                                <input id="id_pname" type="text" placeholder="ಪೋಷಕ / ರಕ್ಷಕರ ಹೆಸರು" class="validate" v-model="industry.pname"  required="" >
                                                 <label for="id_pname"> <span class="black-text">Parent / Guardian Name</span>   </label>
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="id_msal" type="text" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" >
+                                                <input id="id_msal" type="text" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" v-model="industry.salary">
                                                 <label for="id_msal"> <span class="black-text">Monthly Salary</span>   </label>
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="id_rel" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ ಮತ್ತು ಪೋಷಕರ ನಡುವಿನ ಸಂಬಂಧ" class="validate" name="id_rel" required="" >
+                                                <input id="id_rel" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ ಮತ್ತು ಪೋಷಕರ ನಡುವಿನ ಸಂಬಂಧ" class="validate" v-model="industry.relation" required="" >
                                                 <label for="id_rel"> <span class="black-text">Relation between Student & Parent</span>   </label>
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="id_pin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="id_pin" required="" >
+                                                <input id="id_pin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="id_pin" required="" v-model="industry.pin" >
                                                 <label for="id_pin"> <span class="black-text">Pin Code</span>   </label>
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <select name="id_talluk" id="id_talluk" required="" >
+                                                <select name="id_talluk" id="id_talluk" required="" v-model="industry.talluk" >
                                                     <option value="" disabled selected>ತಾಲ್ಲೂಕು</option>
                                                     <?php if (!empty($talluk)) {
                                                         foreach ($talluk as $tal => $talk) { 
@@ -226,7 +226,7 @@
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <select name="id_district" id="id_district" required="" >
+                                                <select name="id_district" id="id_district" required="" v-model="industry.district" >
                                                     <option value="" selected>ಜಿಲ್ಲೆ</option>
                                                     <?php if (!empty($district)) {
                                                         foreach ($district as $dist => $distct) { 
@@ -237,7 +237,7 @@
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <select name="id_name" id="id_name" required="" >
+                                                <select name="id_name" id="id_name" required=""  v-model="industry.name" >
                                                     <option value="" selected>ಪೋಷಕ ಉದ್ಯಮದ ಹೆಸರು</option>
                                                     <?php if (!empty($company)) {
                                                         foreach ($company as $comp => $compn) { 
@@ -247,7 +247,7 @@
                                                 <label for="id_name">Parent Industry Name</label>
                                             </div>
                                             <div class="input-field col s12 m7">
-                                              <textarea id="id_add" class="materialize-textarea" placeholder="ಉದ್ಯಮದ ವಿಳಾಸ" name="id_add"></textarea>
+                                              <textarea id="id_add" class="materialize-textarea" placeholder="ಉದ್ಯಮದ ವಿಳಾಸ" name="id_add" required=""   v-model="industry.address" ></textarea>
                                               <label for="id_add"><span class="black-text">Industry Address</span></label>
                                             </div>
                                         </div><!-- End Box-->
@@ -261,13 +261,13 @@
                                             <div class="col s12">
                                                 <div class="col s6 m3 l2">
                                                     <label>
-                                                        <input class="with-gap" name="std_cast" type="radio" checked />
+                                                        <input class="with-gap" name="std_cast" type="radio" value="" checked v-model="caste.low"/>
                                                         <span>No (ಇಲ್ಲ)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s6 m3 l2">
                                                     <label>
-                                                        <input class="with-gap" name="std_cast" type="radio"  />
+                                                        <input class="with-gap" name="std_cast" type="radio"  value="1" v-model="caste.low"/>
                                                         <span>Yes (ಹೌದು)</span>
                                                     </label>
                                                 </div>
@@ -276,10 +276,10 @@
                                             <div class="file-field input-field col s12 m6">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="std_castfile" >
+                                                    <input type="file" name="std_castfile" ref="file1"  required="" @change="castecertificate()">
                                                 </div>
                                                 <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload cast certificate" required="" >
+                                                    <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
                                                 </div>
                                                 <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span> </p>
                                             </div>
@@ -294,7 +294,7 @@
                                             
 
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="number" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" name="adhar_no">
+                                                <input id="adhar_no" type="number" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number">
                                                 <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
                                             </div>
 
@@ -303,10 +303,10 @@
                                             <div class="file-field input-field col s12 m6">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="adhar" >
+                                                    <input type="file" name="adhar"  required="" ref="file2" @change="adhaarXerox" >
                                                 </div>
                                                 <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card" required="" >
+                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
                                                 </div>
                                                 <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span></span>
                                             </div>
@@ -321,22 +321,22 @@
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_name" type="text" placeholder="ಬ್ಯಾಂಕ್ ಹೆಸರು" class="validate" name="bn_name" required="">
+                                                <input id="bn_name" type="text" placeholder="ಬ್ಯಾಂಕ್ ಹೆಸರು" class="validate" name="bn_name" required="" v-model="bank.name">
                                                 <label for="bn_name"> <span class="black-text">Bank Name</span> </label>
                                             </div>
                 
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_branch" type="text" placeholder="ಶಾಖೆಯ ಹೆಸರು" class="validate" name="bn_branch" required="" >
+                                                <input id="bn_branch" type="text" placeholder="ಶಾಖೆಯ ಹೆಸರು" class="validate" name="bn_branch" required=""  v-model="bank.branch">
                                                 <label for="bn_branch"> <span class="black-text">Branch Name</span>   </label>
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_ifsc" type="text" placeholder="ಐಎಫ್‌ಎಸ್‌ಸಿ ಸಂಖ್ಯೆ" class="validate" name="bn_ifsc" required="" >
+                                                <input id="bn_ifsc" type="text" placeholder="ಐಎಫ್‌ಎಸ್‌ಸಿ ಸಂಖ್ಯೆ" class="validate" name="bn_ifsc" required="" v-model="bank.ifsc">
                                                 <label for="bn_ifsc"> <span class="black-text">IFSC No.</span></label>
                                             </div>
                 
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_acc" type="text" placeholder="ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ" class="validate" name="bn_acc" required="" >
+                                                <input id="bn_acc" type="text" placeholder="ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ" class="validate" name="bn_acc" required="" v-model="bank.account">
                                                 <label for="bn_acc"> <span class="black-text">Saving Account Number</span></label>
                                             </div>
 
@@ -344,19 +344,19 @@
                                                 <p >ನಿಮ್ಮ ಪಾಸ್‌ಬುಕ್ ಮುಂದಿನ ಪುಟವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</p>
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="bn_passbk" >
+                                                    <input type="file" name="bn_passbk"  required="" ref="file3" @change="bankPassbook">
                                                 </div>
                                                 <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload Your Passbook Front page" required="" >
+                                                    <input class="file-path validate" type="text" placeholder="Upload Your Passbook Front page" >
                                                 </div>
                                                 <span class="helper-text" data-error="wrong"  data-success="right">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span>
                                             </div>
-                                                    <input type="hidden" name="uniq" value="<?php echo random_string('alnum',16); ?>" />
+                                                    <input type="hidden" name="uniq" value="<?php echo random_string('alnum',16); ?>" v-model="uniq"/>
 
 
                                             <p class="col s12 mb20 mt10">
                                                 <label>
-                                                    <input type="checkbox" name="terms" required="" />
+                                                    <input type="checkbox" name="terms" required="" v-model="terms" />
                                                     <span>I accept all the <a>Terms & Condition</a></span>
                                                 </label>
                                             </p>
@@ -388,6 +388,7 @@
 <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
 <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/script.js"></script>
+<script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
 
 <script>
    document.addEventListener('DOMContentLoaded', function() {
@@ -398,13 +399,134 @@
     var app = new Vue({
         el: '#app',
         data: {
-            
+            loader:false,
+            uniq:'',
+            terms:'',
+            file:'',
+            file1:'',
+            file2:'',
+            file3:'',
+            student: {
+                name: '',
+                phone: '',
+                father: '',
+                mother: '',
+                address:'',
+            },
+            institute: {
+                pclass:'',
+                pin:'',
+                name:'',
+                talluk:'',
+                district:'',
+            },
+            previous:{
+                class:'',
+                marks:'',
+                card:'',
+            },
+            industry:{
+                working:'',
+                pname:'',
+                salary:'',
+                relation:'',
+                pin:'',
+                talluk:'',
+                district:'',
+                name:'',
+                address:'',
+            },
+            caste:{
+                low:'',
+                certificate:'',
+
+            },
+            adhaar:{
+                number:'',
+                xerox:'',
+            },
+            bank:{
+                name:'',
+                branch:'',
+                ifsc:'',
+                account:'',
+                passbook:'',
+            }
+
         },
-
         methods:{
-            
+            markcard(){
+                this.file = this.$refs.file.files[0];
+                
+            },
+            castecertificate(){
+                this.file1 = this.$refs.file1.files[0];
+                
+            },
+            adhaarXerox(){
+                this.file2 = this.$refs.file2.files[0];
+                
+            },
+            bankPassbook(){
+                this.file3 = this.$refs.file3.files[0];
+                
+            },
+           formSubmit(e){
+                e.preventDefault();
+                this.loader=true;
+                const formData = new FormData();
+                formData.append('sname', this.student.name);
+                formData.append('sphone', this.student.phone);
+                formData.append('sfather', this.student.father);
+                formData.append('smother', this.student.mother);
+                formData.append('saddress', this.student.address);
+                formData.append('ipclass', this.institute.pclass);
+                formData.append('ipin', this.institute.pin);                
+                formData.append('iname', this.institute.name);
+                formData.append('italluk', this.institute.talluk);
+                formData.append('idistrict', this.institute.district);
+                formData.append('pclass', this.previous.class);
+                formData.append('pmarks', this.previous.marks);
+                formData.append('pcard', this.previous.card);
+                formData.append('incard', this.industry.working);
+                formData.append('inpname', this.industry.pname);
+                formData.append('insalary', this.industry.salary);
+                formData.append('inrelation', this.industry.relation);
+                formData.append('inpin', this.industry.pin);
+                formData.append('intalluk', this.industry.talluk);
+                formData.append('indistrict', this.industry.district);
+                formData.append('inname', this.industry.name);
+                formData.append('inaddress', this.industry.address);
+                formData.append('clow', this.caste.low);
+                formData.append('cfile', this.file1);
+                formData.append('anumber', this.adhaar.number);
+                formData.append('axerox', this.file2);
+                formData.append('bname', this.bank.name);
+                formData.append('branch', this.bank.branch);
+                formData.append('bifsc', this.bank.ifsc);
+                formData.append('baccount', this.bank.account);
+                formData.append('bpassbook', this.file3);                          
+                formData.append('uniq', this.uniq);                          
+                formData.append('terms', this.terms);                          
+                axios.post('<?php echo base_url() ?>student/submit-application', formData,
+                { headers: { 'Content-Type': 'multipart/form-data' } })
+                .then(response => {
+                    this.loader=false;
+                    if(response.data == '1'){
+                        M.toast({html: 'Your application has been submitted successfully, <br> you\'ll get notify once its get approved.', classes: 'green', displayLength : 5000 });
+                    }else{
+                        M.toast({html: 'Something went wrong!, please try again Later', classes: 'red', displayLength : 5000 });
+                    }
+                })
+                .catch(error => {
+                    this.loader=false;
+                    if (error.response) {
+                        this.errormsg = error.response.data.error;
+                    }
+                })
 
-            
+           },
+ 
         }
     })
 </script>

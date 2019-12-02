@@ -63,6 +63,11 @@ class M_stdaccount extends CI_Model {
         return $this->db->where('id', $id)->update('student',array('phone' => $phone));
     }
 
+    public function updateProfile($name = "",$phone="",$id="")
+    {        
+        return $this->db->where('id', $id)->update('student',array('name' =>$name, 'phone' => $phone));        
+    }
+
 	
 
 }
