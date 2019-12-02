@@ -1,5 +1,7 @@
 // variabels
 $themcolor: #00437d;
+$themligth: #347bb9;
+
 *{
     font-size: 14px;;
 }
@@ -71,29 +73,29 @@ $intial: 5;
 .p0{padding: 0px !important;}
 @for $i from 1 through 7 {
   .mt#{$intial * $i} {
-    margin-top: #{$intial * $i}px;
+    margin-top: #{$intial * $i}px !important;
   }
   .mb#{$intial * $i} {
-    margin-bottom: #{$intial * $i}px;
+    margin-bottom: #{$intial * $i}px !important;
   }
   .ml#{$intial * $i} {
-    margin-left: #{$intial * $i}px;
+    margin-left: #{$intial * $i}px !important;
   }
   .mr#{$intial * $i} {
-    margin-right: #{$intial * $i}px;
+    margin-right: #{$intial * $i}px !important;
   }
 
   .pt#{$intial * $i} {
-    padding-top: #{$intial * $i}px;
+    padding-top: #{$intial * $i}px !important;
   }
   .pb#{$intial * $i} {
-    padding-bottom: #{$intial * $i}px;
+    padding-bottom: #{$intial * $i}px !important;
   }
   .pl#{$intial * $i} {
-    padding-left: #{$intial * $i}px;
+    padding-left: #{$intial * $i}px !important;
   }
   .pr#{$intial * $i} {
-    padding-right: #{$intial * $i}px;
+    padding-right: #{$intial * $i}px !important;
   }
 
 }
@@ -314,15 +316,257 @@ input[type=number] {
 
 
 
+// ***** *****  Scholarship application *** ***//
+
+.application-banner{
+    position: relative;
+    &:after{
+        position: absolute;
+        content: '';
+        width:100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,.4);
+    }
+    .parallax-container {
+        max-height: 380px;
+    }
+
+}
+
+.application-form{
+    transform: translateY(-100px);
+    // .input-field > label:not(.label-icon).active {
+    //     -webkit-transform: translateY(-33px) scale(1) !important;
+    //     transform: translateY(-33px) scale(1) !important;
+    //     font-size: 12.5px;
+    // }
+    .input-field{
+        // label{
+        //     font-size: 13px; transform: translateY(-10px);
+        // }
+        input, .materialize-textarea{
+            font-size: 12.5px !important;
+        }
+    }
+    .borderd-box{
+        border: 1px solid #eaeaea;
+        padding: 20px 15px 5px 15px;
+        margin-bottom: 15px;
+        &:after{
+            display: block;
+            clear: both;
+            content: '';
+        }
+
+        .box-title{
+            margin-bottom: 20px;
+            p:nth-child(1){
+                color: #000;
+                font-weight: 700;
+                font-size: 14px;
+            }
+            p:nth-child(2){
+                color: #666;
+            }
+        }
+
+        .file-field{
+            .btn{
+                background: $themcolor;
+                padding:0 25px;
+                height: 40px;
+                line-height: 40px;
+                margin-top: 7px;
+            }
+        }
+        .helper-text span{
+            font-size: 12px !important;
+        }
+    }
+
+    .card-header{
+        background: $themcolor;
+        padding:10px 15px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        text-transform: uppercase;
+        line-height: 30px;
+        margin:-24px -24px 40px;
+    }
+
+}// ***** ***** End  Scholarship application *** ***//
 
 
 
+// ***** ***** Scholarship Status *** ***//
+.status-list{
+    margin: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    white-space: nowrap;
+    
+    .status-item{
+        display: inline-block;
+        width: calc((100% / 4) - 10px);
+        font-size: 14px;
+        font-weight: 600;
+        min-width: 148px;
+
+        .circle{
+            background-color: $themcolor;
+            color:#fff;
+            width:50px;
+            height: 50px;
+            line-height: 50px;
+            margin: 10px auto;
+            position: relative;
+
+            &:after{
+                content: '';
+                position: absolute;
+                width:150%;
+                height: 1px;
+                background: #000;
+                top: 50%;
+                right: -180%;
+            }
+
+            
+        }
+
+        &:last-child .circle:after{
+            display: none;
+        }
+    }
+}
+
+.reason-reject{
+    border: 1px solid #cecece;
+    border-radius: 20px;
+    padding:30px 10px;
+    margin-top: 40px;
+
+    table{
+        width:80%;
+        margin: auto;
+
+        tr {
+            &:hover, &:nth-child(odd){
+                background: #f3f3f3;
+            }
+            td{
+                border: 1px solid #cecece;
+                font-size: 13px;
+                color: #333;
+
+                &:first-child{
+                    width:50px
+                }
+            }
+        }
+    }
+}// ***** ***** End  Scholarship Status *** ***//
 
 
+// ***** ***** Scholarship Application Detail *** ***//
+.app-detail-items{
+    .app-detail-item{
+        border:1px solid #cecece;
+        margin-bottom: 20px
+    }
+    .app-item-heading{
+        background-color: $themcolor;
+        border:1px solid $themcolor;
+        color: #fff;
+        text-align: center;
+        padding: 10px 5px;
+        font-weight: 600;
+        line-height: 30px;
+        margin: -1px;
+    }
+    .app-item-body{
+        padding:20px 5px 5px;
+        min-height: 234px;
+        ul{
+            margin: 0px ;
+            li{
+                line-height: 25px;
+                margin-bottom: 20px;
+                .app-item-content-head{
+                    font-weight: 600;
+                    color:#000;
+                    font-size: 12.5px;
+                }
+                .app-item-content{
+                    font-size: 13px;
+                    color:#666;
 
+                    .pdf-icon{
+                        width:10px;
+                        filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+                    }
+                }
+            }
+        }
+    }
+}
 
+.doted-divider{
+    border-bottom:1px dashed #222
+}
+// ***** ***** End Scholarship Application Detail *** ***//
 
+// Student application request
+.view{
+    background: $themcolor;
+    padding:2px 6px;
+    border-radius: 3px;
+    line-height: 0;
 
+    &:hover{
+        box-shadow: 0px 0px 10px -5px black,0px 0px 15px -8px black;
+        background: $themligth;
+    }
+    i{
+        color: #fff;
+        font-size: 19px;
+        line-height: 20px;
+        margin:0px
+    }
+}
+
+.sorting {
+    position: relative;
+    cursor: pointer;
+    &:after{
+        position: absolute;
+        content: '';
+        width: 0px;
+        height: 0px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #2f2f2f;
+        right:10%;
+        top:20px;
+        opacity: 0.5;
+    }
+    &:before{
+        position: absolute;
+        content: '';
+        width: 0px;
+        height: 0px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #2f2f2f;
+        right:10%;
+        bottom: 20px;
+        opacity: 0.5;
+    }
+}
 
 
 
@@ -357,6 +601,32 @@ input[type=number] {
     .frt{
         text-align: left !important;
     }
+
+    .application-banner{
+        .parallax-container {
+            max-height: 220px;
+        }
+    }
+
+    .container-wrap1 {
+        width: 100%;
+    }
+    
+    .reason-reject table {
+        width: 100%;
+    }
+
+    .board {
+        padding: 25px 0;
+    }
+    .app-item-body{
+        min-height: 150px;
+    }
+
+    .app-detail-items {
+        margin: auto -25px;
+    }
+
 }
 
 .height352{

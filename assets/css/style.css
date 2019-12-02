@@ -604,6 +604,13 @@ input[type=number] {
   margin: -24px -24px 40px;
 }
 
+<<<<<<< HEAD
+=======
+.status-item {
+  display: inline-block;
+}
+
+>>>>>>> 4eb629be39b4458b0274edf2e880777cb839c6f8
 @media (max-width: 1200px) {
   .board {
     padding: 50px 0;

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scholarship</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header class="">
+            <div class="top-header">
+                <div class="container ">
+                    <div class="row m0">
+                        
+                        <div class="col s4 m4 push-m4">
+                            <div class="center">
+                                <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                            </div>
+                        </div>
+                        <div class="col s8 m4 pull-m4">
+                                <div class="center-align p17 frt">
+                                    <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
+                                    <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
+                                </div>
+                        </div>
+                        <div class="col s4 hide-on-small-only">
+                            <div class="center p17">
+                                <p class="top-header-title1">Government of Karnataka</p>
+                                <p class="top-header-title2">Karnataka Labour Welfare Board</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-block">
+            <div class="nav-wrapper container-wrap1">
+                <!-- <a href="#" class="brand-logo">Logo</a> -->
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile1" class="left hide-on-med-and-down">
+                <li><a href="#!">Home</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a></li>
+                
+                </ul>
+            </div>
+            </nav>
+
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="#!">Home</a></li>
+                <li><a href="#!">Apply Scholarship</a></li>
+                <li><a href="#!">Scholarship Status</a></li>
+                <li><a href="#!">Application Detail</a></li>
+                <li><a href="#!">Account Settings</a></li>
+                <li><a href="#!">Logout</a></li>
+                
+            </ul>
+
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><a href="#!">Account Settings</a></li>
+              <li><a href="#!">Application Status</a></li>
+              <li><a href="#!">Logout</a></li>
+              
+            </ul>
+        </header>
+
+    <!-- Body form  -->
+        <section class="board">
+            <div class="container-wrap1">
+                <div class="row m0">
+                    <div class="col s12 m3 hide-on-med-and-down">
+                        <div class="menu-left">
+                            <ul>
+                                <li><a href="">Scholarship  Request</a></li>
+                                <li><a href="">Scholarship  Approved</a></li>
+                                <li><a href="">Scholarship  Rejected</a></li>
+                                <li><a href="">Account Settings</a></li>
+                            </ul>
+                        </div>
+                    </div> <!-- End menu-->
+
+                    <div class="col s12 m9">
+                        <div class="card  darken-1">
+                            <div class="card-content bord-right">
+                                <span class="card-title">Scholarship  Application Request (100)</span>
+                                <div class="board-content">
+                                    <div class="row m0">
+                                        <table class="vue-data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th @click="sorting(i)" v-for="(heading , i) in tableHeading" :class="{'sorting': heading.sorting}">{{heading.title}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(item , k) in tableRow">
+                                                    <td>{{item.id}}</td>
+                                                    <td>{{item.Name}}</td>
+                                                    <td>{{item.Marks}}</td>
+                                                    <td>{{item.class}}</td>
+                                                    <td><a href="" class="view waves-effect waves-light"><i class="material-icons"> remove_red_eye </i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="row m0">
+                                            <div class="col s12 m6">
+                                                <small>Showing 0 to 10 of 15 Entries</small>
+                                            </div>
+                                            <div class="col s12 m6 ">
+                                                <ul class="pagination right">
+                                                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                                                    <li class="active"><a href="#!">1</a></li>
+                                                    <li class="waves-effect"><a href="#!">2</a></li>
+                                                    <li class="waves-effect"><a href="#!">3</a></li>
+                                                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End right board -->
+                </div>
+            </div>
+        </section>
+
+
+    <!-- End Body form  -->
+        <section>
+
+        </section>
+
+    <!-- footer -->
+        
+        <footer class="pt20 pb20">  
+            <div class="footer-copyright">
+                <div class="container center">
+                    © Copyright 2019. All Rights Reserved
+                </div>
+        </div>
+        </footer>
+    <!-- End footer --> 
+    </div>
+             
+
+
+<!-- scripts -->
+<script src="assets/js/vue.js"></script>
+<script src="assets/js/materialize.min.js"></script>
+<script src="assets/js/script.js"></script>
+<script>
+   
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+           
+           tableHeading: [
+               { title :'Sl No.', sorting: true },
+               { title :'Name', sorting: true },
+               { title :'Marks', sorting: true },
+               { title :'Present Class', sorting: true },
+               { title :'Action', sorting: false },
+           ],
+
+           tableRow: [ { "id":"1", "Name":"Denis Lindsay", "Marks":"2", "class":"1" }, { "id":"2", "Name":"Cedrick Skinner", "Marks":"8", "class":"1" }, { "id":"3", "Name":"Adalind Parsons", "Marks":"8", "class":"0" }, { "id":"4", "Name":"Jules Pratt", "Marks":"4", "class":"3" }, { "id":"5", "Name":"Doug Chadwick", "Marks":"1", "class":"3" }, { "id":"6", "Name":"Faith Craig", "Marks":"2", "class":"8" }, { "id":"7", "Name":"Remy Cartwright", "Marks":"6", "class":"6" }, { "id":"8", "Name":"Sebastian Ingram", "Marks":"2", "class":"5" }, { "id":"9", "Name":"Rocco Moran", "Marks":"8", "class":"0" }, { "id":"10", "Name":"Emery Wild", "Marks":"1", "class":"2" }, { "id":"11", "Name":"Catherine Eagle", "Marks":"1", "class":"0" }, { "id":"12", "Name":"Belinda Hilton", "Marks":"8", "class":"3" }, { "id":"13", "Name":"Julius Howard", "Marks":"8", "class":"2" }, { "id":"14", "Name":"Molly Bingham", "Marks":"1", "class":"1" }, { "id":"15", "Name":"Noah Cooper", "Marks":"7", "class":"0" } ]
+
+        },  
+
+        methods:{
+            sorting(key){
+                alert(key)
+            }
+        }
+    })
+</script>
+</body>
+</html>
