@@ -7,72 +7,9 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/materialize.min.css">
-    <style>
-    .reg-block .fog-block-content .reg-right {background: #fff; padding: 0; }
-.reg-block .fog-block-content::after {
-    content: '';
-    display: block;
-    clear: both;
-}
-.reg-block .fog-block-content .reg-right .form-block {
-    padding: 0 15px 20px 15px;
-}
-.reg-block .fog-block-content .reg-right .form-block .card-box .card-heading {
-    margin: 0 -15px;
-    position: relative;
-    overflow: hidden;
-    height: 75px;
-}
-.reg-block .fog-block-content .reg-right .form-block .card-box .card-heading p {
-    text-align: center;
-    padding: 15px 0px;
-    z-index: 2;
-    color: 
-    #fff;
-    position: relative;
-    font-weight: 700;
-    font-size: 16px;
-}
-.reg-block .fog-block-content .reg-right .form-block .card-box .card-heading::after {
-    position: absolute;
-    content: '';
-    width: 107%;
-    background: 
-    #00437d;
-    height: 67px;
-    left: -9px;
-    top: -14px;
-    z-index: 0;
-}
-.reg-block .fog-block-content .reg-right .form-block .card-box .card-body {
-    margin-top: 15px !important;
-}
-.reg-block .fog-block-content .reg-right .form-block .card-box .card-body .input-field {
-    margin: 6px 0;
-}
-.reg-block .fog-block-content .reg-right .form-block .card-box .card-body input {
-    font-size: 13px;
-}
-.reg-block .fog-block-content .reg-right .form-block .card-box .card-body label {
-    font-size: 12px;
-}
-.for-title {
-
-    width: 70%;
-    margin: auto;
-
-}
-#forgotForm {
-    padding: 0 30px;
-}
-    </style>
-
-
-
 </head>
 <body>
-
-     <header class="">
+    <header class="">
         <div class="top-header">
             <div class="container ">
                 <div class="row m0">
@@ -114,34 +51,49 @@
     <!-- Registration form  -->
     <section class="reg-block row m0" id='app'>
         <div class="container-wrap2">
-            <div class="col s12 m12 l10 push-l3 p0">
-                    <div class="fog-block-content">
+            <div class="col s12 m12 l10 push-l1 p0">
+                    <div class="reg-block-content">
                     
-                    <div class="col s12 m8  l8 reg-right">
+                    <div class="col s12 m6 push-m6 push-l6 l6 reg-right">
                         <div class="form-block">
                             <div class="card-box">
                                 <div class="card-heading">
-                                    <p class="m0">Student Forgot Password</p>
+                                    <p class="m0">Institute Login</p>
                                 </div>
-                                <form id="forgotForm">
-                                    <div class="for-title">
-                                        <p class="center-align">Enter your Email ID, and we'll send you instruction on how to reset your password.</p>
-                                    </div>
                                 <div class="card-body row m0 pt15 pb15">
+
+                                    
+
                                     <div class="input-field col s12">
-                                        <input  id="email" type="email" class="validate" required>
+                                        <input  id="email" @change="emailCheck()" v-model="email" type="email" class="validate" required>
                                         <label for="email">Email ID</label>
+                                        <span>{{ emailError }}</span>
                                     </div>
+
+                                   
                                     <div class="input-field col s12">
-                                        <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
+                                        <input  id="password" v-model="psw" type="text" class="validate" required>
+                                        <label for="password">Password</label>
                                     </div>
-                                    <a href="#" class="col mt15 mb15">Never mind, I remember my password</a>
+
+                                     <a href="" class="col mt15 mb15">Forgot Password?</a>
+                                    <div class="input-field col s12">
+                                        <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>
+                                    </div>
                                 </div>
-                            </form>
                             </div>
                         </div>
                     </div>
-                    
+
+                    <div class="col s12 pull-m6 pull-l6 m6 l6 reg-left height352 valign-wrapper">
+                        <div class="reg-left-box ">
+                            <div class="contents">
+                                <p>Welcom To</p>
+                                <p>Karnataka Labour Welfare Board</p>
+                                <p>If You Have an Account <a href="#!">Register</a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -150,13 +102,13 @@
 
     <!-- footer -->
     
-  <footer class="pt20 pb20">  
-            <div class="footer-copyright">
-                <div class="container center">
-                    © Copyright 2019. All Rights Reserved
-                </div>
-        </div>
-        </footer>
+    <footer class="pt20 pb20">  
+        <div class="footer-copyright">
+            <div class="container center">
+                © Copyright 2019. All Rights Reserved
+            </div>
+      </div>
+    </footer>
               
 
 
@@ -169,6 +121,48 @@
     });
 
 
+    var app = new Vue({
+        el: '#app',
+        data: {
+            industry: '',
+            mobile: '',
+            email: '',
+            psw: '',
+            cpsw: '',
+            emailError: '',
+            mobileError: '',
+
+            emailcheck :[
+                {email: 'testing@5ines.com'},
+                {email: 'shahir@5ines.com'}
+            ],
+
+            PhoneCheck:[
+                {phone: '0123456789'},
+                {phone: '9876543210'}
+            ]
+        },
+
+        methods:{
+            emailCheck(){
+                for (let i = 0; i < this.emailcheck.length; i++) {
+                    if(this.email == this.emailcheck[i]){
+                        this.emailError = 'Email id Already exist';
+                    }                    
+                }
+            },
+
+            mobileCheck(){
+                for (let i = 0; i < this.PhoneCheck.length; i++) {
+                    if(this.mobile == this.PhoneCheck[i]){
+                        this.mobileError = 'Email id Already exist';
+                    }                    
+                }
+            },
+
+            
+        }
+    })
 </script>
 </body>
 </html>

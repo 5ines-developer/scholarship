@@ -569,6 +569,24 @@ input[type=number] {
     }
 }
 
+/********************************
+    INSTITUTION REGISTRATION
+********************************/
+form .file-field .btn{ background: #00437d; padding: 0 25px; height: 40px; line-height: 40px; margin-top: 7px; }
+.instreg{
+    .card-outer-heading{
+        background: $themcolor;
+        color:#fff;
+        padding: 20px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        margin: -25px -25px 10px;
+        border:1px solid $themcolor
+    }
+
+    .card-full-divider{ height: 1px; margin: 0 -24px 40px; background: rgba(0, 0, 0, 0.1); position: relative; top: 30px; }
+}
+
 
 
 
