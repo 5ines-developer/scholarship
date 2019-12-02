@@ -604,8 +604,205 @@ input[type=number] {
   margin: -24px -24px 40px;
 }
 
+<<<<<<< HEAD
 .status-item {
+=======
+.status-list {
+  margin: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  white-space: nowrap;
+}
+
+.status-list .status-item {
+>>>>>>> 41285e3987584699fa1606b414933a2ef3e130a4
   display: inline-block;
+  width: calc((100% / 4) - 10px);
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 148px;
+}
+
+.status-list .status-item .circle {
+  background-color: #00437d;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin: 10px auto;
+  position: relative;
+}
+
+.status-list .status-item .circle:after {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 1px;
+  background: #000;
+  top: 50%;
+  right: -180%;
+}
+
+.status-list .status-item:last-child .circle:after {
+  display: none;
+}
+
+.reason-reject {
+  border: 1px solid #cecece;
+  border-radius: 20px;
+  padding: 30px 10px;
+  margin-top: 40px;
+}
+
+.reason-reject table {
+  width: 80%;
+  margin: auto;
+}
+
+.reason-reject table tr:hover, .reason-reject table tr:nth-child(odd) {
+  background: #f3f3f3;
+}
+
+.reason-reject table tr td {
+  border: 1px solid #cecece;
+  font-size: 13px;
+  color: #333;
+}
+
+.reason-reject table tr td:first-child {
+  width: 50px;
+}
+
+.app-detail-items .app-detail-item {
+  border: 1px solid #cecece;
+  margin-bottom: 20px;
+}
+
+.app-detail-items .app-item-heading {
+  background-color: #00437d;
+  border: 1px solid #00437d;
+  color: #fff;
+  text-align: center;
+  padding: 10px 5px;
+  font-weight: 600;
+  line-height: 30px;
+  margin: -1px;
+}
+
+.app-detail-items .app-item-body {
+  padding: 20px 5px 5px;
+  min-height: 234px;
+}
+
+.app-detail-items .app-item-body ul {
+  margin: 0px;
+}
+
+.app-detail-items .app-item-body ul li {
+  line-height: 25px;
+  margin-bottom: 20px;
+}
+
+.app-detail-items .app-item-body ul li .app-item-content-head {
+  font-weight: 600;
+  color: #000;
+  font-size: 12.5px;
+}
+
+.app-detail-items .app-item-body ul li .app-item-content {
+  font-size: 13px;
+  color: #666;
+}
+
+.app-detail-items .app-item-body ul li .app-item-content .pdf-icon {
+  width: 10px;
+  -webkit-filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+          filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+.doted-divider {
+  border-bottom: 1px dashed #222;
+}
+
+.view {
+  background: #00437d;
+  padding: 2px 6px;
+  border-radius: 3px;
+  line-height: 0;
+}
+
+.view:hover {
+  -webkit-box-shadow: 0px 0px 10px -5px black,0px 0px 15px -8px black;
+          box-shadow: 0px 0px 10px -5px black,0px 0px 15px -8px black;
+  background: #347bb9;
+}
+
+.view i {
+  color: #fff;
+  font-size: 19px;
+  line-height: 20px;
+  margin: 0px;
+}
+
+.sorting {
+  position: relative;
+  cursor: pointer;
+}
+
+.sorting:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #2f2f2f;
+  right: 10%;
+  top: 20px;
+  opacity: 0.5;
+}
+
+.sorting:before {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #2f2f2f;
+  right: 10%;
+  bottom: 20px;
+  opacity: 0.5;
+}
+
+/********************************
+    INSTITUTION REGISTRATION
+********************************/
+form .file-field .btn {
+  background: #00437d;
+  padding: 0 25px;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 7px;
+}
+
+.instreg .card-outer-heading {
+  background: #00437d;
+  color: #fff;
+  padding: 20px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: -25px -25px 10px;
+  border: 1px solid #00437d;
+}
+
+.instreg .card-full-divider {
+  height: 1px;
+  margin: 0 -24px 40px;
+  background: rgba(0, 0, 0, 0.1);
+  position: relative;
+  top: 30px;
 }
 
 @media (max-width: 1200px) {
@@ -627,6 +824,21 @@ input[type=number] {
   }
   .application-banner .parallax-container {
     max-height: 220px;
+  }
+  .container-wrap1 {
+    width: 100%;
+  }
+  .reason-reject table {
+    width: 100%;
+  }
+  .board {
+    padding: 25px 0;
+  }
+  .app-item-body {
+    min-height: 150px;
+  }
+  .app-detail-items {
+    margin: auto -25px;
   }
 }
 
