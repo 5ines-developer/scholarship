@@ -88,11 +88,11 @@ class Student extends CI_Controller {
                     $this->session->set_flashdata('success', 'We have sent a activation link to your mail id <br> please verify and activate your account');
                 }else{
                     $this->db->where('ref_id', $insert['ref_id'])->delete('student');
-                    $this->session->set_flashdata('error', 'Some error occured! Please contact our support team');
+                    $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
                 }
                     redirect('student/register','refresh');
             }else{
-                $this->session->set_flashdata('error', 'Some error occured! Please contact our support team');
+                $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
                 redirect('student/register','refresh');
             }
         }
