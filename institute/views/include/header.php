@@ -5,7 +5,7 @@
                     
                     <div class="col s4 m4 push-m4">
                         <div class="center">
-                            <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                            <img class="responsive-img" src="../assets/image/logo.png" alt="Karnataka Labour Welfare Board">
                         </div>
                     </div>
                     <div class="col s8 m4 pull-m4">
