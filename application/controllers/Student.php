@@ -216,6 +216,7 @@ class Student extends CI_Controller {
     {
         if ($this->session->userdata('stqstn') != 1) {
             $data['title']      = 'Security Question';
+            $data['question'] = $this->m_student->getQuestion();
             $this->load->view('student/security-questions', $data, FALSE);
         }else{
             redirect('student/profile','refresh'); 
@@ -278,6 +279,7 @@ class Student extends CI_Controller {
                     redirect('student/forgot-password','refresh');
                 }
             }else{
+                $data['question'] = $this->m_student->getQuestion();
                 $this->load->view('student/student-forgot', $data, FALSE);
             }
         }else{
@@ -314,6 +316,11 @@ class Student extends CI_Controller {
         }
     }
 
+   /**
+    * student forgot password - verify 
+    * @url      : student/forgot-password
+    * @param    : null.
+    **/
     public function forgot_verify()
     {
         if ($this->session->userdata('stlid') == '') {
@@ -334,6 +341,11 @@ class Student extends CI_Controller {
     }
 
 
+   /**
+    * student forgot password - reset password 
+    * @url      : student/forgot-password
+    * @param    : null.
+    **/
     public function reset_password($value='')
     {
         if ($this->session->userdata('stlid') == '') {
@@ -353,7 +365,7 @@ class Student extends CI_Controller {
                     $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
                     redirect('student/login');
                 } else {
-                    $this->session->set_flashdata('error', 'Something went wrong, Please try again Later!');
+                    $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method reset your password');
                     redirect('student/forgot-password');
                 }
             }else{
@@ -364,6 +376,41 @@ class Student extends CI_Controller {
         }else{
             redirect('student/profile','refresh');
         }
+    }
+
+    /**
+    * student forgot password - get question
+    * @url      : student/forgot-password
+    * @param    : null.
+    **/
+    public function forgot_validate(Type $var = null)
+    {
+       $data['qstn']    =  $this->input->post('qstn');
+       $data['ans']     =  $this->input->post('ans');
+       $this->load->view('student/qstn-resetpass', $data, FALSE);
+    }
+
+    public function qst_resetpass($var = null)
+    {
+        $email      = $this->input->post('email');
+        $password   = $this->bcrypt->hash_password($this->input->post('password'));
+        $qstn       = $this->input->post('qstn');
+        $ans        = $this->input->post('ans');
+
+        $output = $this->m_student->verifyQstns($qstn,$email,$ans,$password);
+
+        if (!empty($output)) {
+            $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
+            redirect('student/login');
+        }else{
+            $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another to get a reset link on your mail');
+            redirect('student/forgot-password');
+        }
+
+
+        
+
+      
     }
 
 
