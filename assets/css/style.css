@@ -604,9 +604,6 @@ input[type=number] {
   margin: -24px -24px 40px;
 }
 
-<<<<<<< HEAD
-.status-item {
-=======
 .status-list {
   margin: auto;
   overflow-y: hidden;
@@ -616,7 +613,6 @@ input[type=number] {
 }
 
 .status-list .status-item {
->>>>>>> 41285e3987584699fa1606b414933a2ef3e130a4
   display: inline-block;
   width: calc((100% / 4) - 10px);
   font-size: 14px;

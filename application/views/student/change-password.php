@@ -87,6 +87,7 @@
                 crpError:'',
                 confError:'',
                 samepassError:'',
+                loader:false,
             },
             methods:{
                 currntPass(){

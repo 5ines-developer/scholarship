@@ -93,6 +93,25 @@ class M_stdapplication extends CI_Model {
     	}
     }
 
+    public function getApplication($id = null)
+    {      
+        return $this->db->where('a.Student_id', $id)->where('a.application_year',date('Y'))
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName')
+        ->from('application a')        
+        ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
+        ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
+        ->join('applicant_comapny ac', 'ac.application_id = a.id', 'left')
+        ->join('applicant_marks am', 'am.application_id = a.id', 'left')
+        ->join('school schl', 'schl.id = a.school_id', 'left')
+        ->join('school_address scad', 'scad.school_id = a.school_id', 'left')
+        ->join('industry ind', 'ind.id = a.company_id', 'left')
+        ->join('state st', 'st.id = ind.state', 'left')
+        ->join('city cty', 'cty.id = ac.district', 'left')
+        ->join('taluq tq', 'tq.id = ac.talluk', 'left')
+        ->get()->row();
+
+    }
+
 }
 
 /* End of file m_stdapplication.php */

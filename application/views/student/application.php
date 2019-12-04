@@ -138,7 +138,7 @@
 
                                             <div class="col s12 m5">
                                                 <div class="input-field col s12 ">
-                                                    <input id="pv_class" type="number"  placeholder="ಹಿಂದಿನ ತರಗತಿ ಹೆಸರು" class="validate" required="" v-model="previous.class" >
+                                                    <input id="pv_class" type="text"  placeholder="ಹಿಂದಿನ ತರಗತಿ ಹೆಸರು" class="validate" required="" v-model="previous.class" >
                                                     <label for="pv_class"> <span class="black-text">Previous Class Name</span>   </label>
                                                 </div>
 

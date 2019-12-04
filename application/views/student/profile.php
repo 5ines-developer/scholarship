@@ -107,7 +107,7 @@
             },
             profilePic: '',
             fileInput:'',
-            loader:'',
+            loader:false,
 
         },  
 
