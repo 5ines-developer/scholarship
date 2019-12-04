@@ -638,7 +638,20 @@ form .file-field .btn{ background: #00437d; padding: 0 25px; height: 40px; line-
 .std-side a.active{
     background: rgba(0, 0, 0, 0.3);
 }
-
+.hide-card {
+    opacity: 0;
+    transform: scale(0);
+    display: none;
+}
+.fclk{
+    cursor: pointer;
+}
+.flft{
+    float: left;
+}
+.forg-cgange{
+    line-height: 5px;
+}
 // *************************pre loader****************
 /* Absolute Center Spinner */
 .loading {

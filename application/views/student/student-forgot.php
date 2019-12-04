@@ -78,7 +78,9 @@
     <section class="reg-block row m0" id='app'>
         <div class="container-wrap2">
             <div class="col s12 m12 l10 push-l3 p0">
-                    <div class="fog-block-content">
+                    
+
+                <div class="fog-block-content" v-bind:class="{'hide-card': forgotpassword}">
                     
                     <div class="col s12 m8  l8 reg-right">
                         <div class="form-block">
@@ -86,18 +88,33 @@
                                 <div class="card-heading">
                                     <p class="m0">Student Forgot Password</p>
                                 </div>
-                                <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('student/forgot-password') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
+                                <form action="<?php echo base_url('student/forgot-validate') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
                                     <div class="for-title">
-                                        <p class="center-align">Enter your Email ID, and we'll send you instruction on how to reset your password.</p>
+                                        <p class="center-align">Answer the below security question to reset your password.</p>
                                     </div>
                                 <div class="card-body row m0 pt15 pb15">
                                     <div class="input-field col s12">
-                                        <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate" required>
-                                        <label for="email">Email ID</label>
-                                        <span class="helper-text red-text">{{ emailError }}</span>
+                                        <select id="qstn" name="qstn" required>
+                                        <option value="">Select the question</option>
+                                        <?php if (!empty($question)) {
+                                            foreach ($question as $key => $value) {
+                                                echo '<option value="'.$value->id.'">'.$value->question.'</option>';
+                                            }
+                                        } ?>
+                                        
+                                        </select>
+                                        <label for="qstn">Question</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
+                                            <input  id="ans"  name="ans" type="text" class="validate" required>
+                                            <label for="ans">Answer</label>
+                                        </div>
+                                    <div class="input-field col s12">
+                                        <button class="waves-effect waves-light hoverable btn-theme btn flft">Submit</button>
+                                        <div class="forg-cgange">
+                                            <p class="pl10 flft">OR</p>
+                                            <a  @click="forgotpassword = !forgotpassword" class="flft col mt15 mb15 fclk">Reset with Email</a>
+                                        </div>
                                     </div>
                                     <a href="<?php echo base_url('student/login') ?>" class="col mt15 mb15">Nevermind, I remember my password</a>
                                 </div>
@@ -107,6 +124,44 @@
                     </div>
                     
                 </div>
+                <!-- card end -->
+
+
+
+                <div class="fog-block-content" v-bind:class="{'hide-card': !forgotpassword}">
+                    
+                        <div class="col s12 m8  l8 reg-right">
+                            <div class="form-block">
+                                <div class="card-box">
+                                    <div class="card-heading">
+                                        <p class="m0">Student Forgot Password</p>
+                                    </div>
+                                    <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('student/forgot-password') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
+                                        <div class="for-title">
+                                            <p class="center-align">Enter your Email ID, and we'll send you instruction on how to reset your password.</p>
+                                        </div>
+                                    <div class="card-body row m0 pt15 pb15">
+                                        <div class="input-field col s12">
+                                            <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate" required>
+                                            <label for="email">Email ID</label>
+                                            <span class="helper-text red-text">{{ emailError }}</span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <button class="waves-effect waves-light hoverable btn-theme btn flft">Submit</button>
+                                            <div class="forg-cgange">
+                                                <p class="flft pl10">OR</p>
+                                                <a  @click="forgotpassword = !forgotpassword" class="col mt15 mb15 fclk ">Reset with Security Question</a>
+                                            </div>
+                                        </div>
+                                        <a href="<?php echo base_url('student/login') ?>" class="col mt15 mb15">Nevermind, I remember my password</a>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
             </div>
             
         </div>
@@ -136,11 +191,13 @@
         data: {
             email: '',
             psw: '',
-            emailError: '',
+            forgotpassword: false,
+            qsid:'',
+            emailError:'',
 
             
         },
-
+     
         methods:{
             //check student email already exist
             emailCheck(){
@@ -167,8 +224,10 @@
                     this.$refs.form.submit();
 
                 } else {}
-            }
+            },
+            
         },
+        
     })
 </script>
 </body>
