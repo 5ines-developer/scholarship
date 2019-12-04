@@ -551,7 +551,8 @@ input[type=number] {
           transform: translateY(-100px);
 }
 
-.application-form .input-field input, .application-form .input-field .materialize-textarea {
+.application-form .input-field input,
+.application-form .input-field .materialize-textarea {
   font-size: 12.5px !important;
 }
 
@@ -729,8 +730,8 @@ input[type=number] {
 }
 
 .view:hover {
-  -webkit-box-shadow: 0px 0px 10px -5px black,0px 0px 15px -8px black;
-          box-shadow: 0px 0px 10px -5px black,0px 0px 15px -8px black;
+  -webkit-box-shadow: 0px 0px 10px -5px black, 0px 0px 15px -8px black;
+          box-shadow: 0px 0px 10px -5px black, 0px 0px 15px -8px black;
   background: #347bb9;
 }
 
@@ -918,5 +919,31 @@ form .file-field .btn {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.com-reg {
+  padding-left: 10px;
+}
+
+.com-reg a {
+  color: #00437d;
+  padding: 10px;
+}
+
+.click-com {
+  font-weight: 600;
+}
+
+.click-com a {
+  padding-left: 5px;
+  color: #00437d;
+}
+
+.list-title {
+  font-size: 16px;
+  color: #111;
+  font-weight: 600;
+  padding-bottom: 10px;
+  margin-top: -10px;
 }
 /*# sourceMappingURL=style.css.map */
