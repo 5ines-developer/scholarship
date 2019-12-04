@@ -15,7 +15,43 @@ class auth extends CI_Controller {
 
     public function index()
     {
-        
+        if($this->input->post()){
+            $this->load->library('form_validation');
+            if ($this->session->userdata('sclinst') == '') { 
+                $this->security->xss_clean($_POST);
+                $this->form_validation->set_rules('email', 'Email Id', 'required');
+                $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[6]');
+                if ($this->form_validation->run() == True){
+                    echo $email = $this->input->post('email'); 
+                    echo $password = $this->input->post('pswd');
+                    
+                    if($result = $this->m_auth->can_login($email, $password)) 
+                    {
+                        $session_data = array(
+                            'scmail'    => $email,
+                            'scinst'    => $result['id'],
+                            'scqstn'    => $result['status'],
+                            'school'    => $result['status'],
+                        ); 
+
+                        $this->session->set_userdata($session_data); 
+                        redirect('dashboard'); 
+                    } 
+                    else 
+                    {
+                        $this->session->set_flashdata('error', 'Invalid Username or Password'); 
+                        redirect('/');
+                    }
+
+                }else{
+
+                }
+            }else{
+                echo 'loggd in';
+            }
+        }else{
+            $this->load->view('auth/login');
+        }
     }
 
     public function registration()
@@ -128,13 +164,34 @@ class auth extends CI_Controller {
     public function account_activation($refId = null)
     {
         if($this->m_auth->activateAccount($refId)){
-            $this->session->set_flashdata('success', 'Email verification successfully completed<br> Now you can login.');
-            $this->load->view('auth/set-password');
+            $data['key'] = $refId;
+            $this->load->view('auth/set-password', $data);
         }else{
             $this->session->set_flashdata('error', 'Activation link has been expired');
             redirect('register','refresh');
         }
-        
+    }
+
+    // Set password
+    public function set_password($var = null)
+    {
+       $password = $this->bcrypt->hash_password($this->input->post('psw'));
+       $key = $this->input->post('key');
+       $this->load->helper('string');
+       
+       $data = array(
+           'psw'    => $password, 
+           'ref_id' => random_string('alnum', 30), 
+           'status' => 1, 
+        );
+        if($this->m_auth->set_password($data, $key)){
+            $this->session->set_flashdata('success', 'Email verification successfully completed.<br> Now you can login.');
+            redirect('/','refresh');
+        }
+        else{
+            $this->session->set_flashdata('error', 'Activation link has been expired');
+            redirect('register','refresh');
+        }
     }
     
 }

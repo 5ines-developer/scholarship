@@ -27,27 +27,27 @@
                             <div class="card-body">
                                 <form action="<?php echo base_url() ?>register" method="post" enctype="multipart/form-data">
                                     <div class="input-field col m6">
-                                        <input id="iname" name="iname" type="text" class="validate">
+                                        <input id="iname" name="iname" type="text" required class="validate">
                                         <label for="iname">Institute Name</label>
                                     </div>
 
                                     <div class="input-field col m6">
-                                        <input id="email" name="email" type="email" class="validate">
+                                        <input id="email" name="email" type="email" required class="validate">
                                         <label for="email">Email</label>
                                     </div>
 
                                     <div class="input-field col m6">
-                                        <input id="number" name="number" type="number" class="validate">
+                                        <input id="number" name="number" type="number" required class="validate">
                                         <label for="number">Phone Number</label>
                                     </div>
 
                                     <div class="input-field col m6">
-                                        <input id="prname"    type="text" name="prname" class="validate">
+                                        <input id="prname"    type="text" name="prname" required class="validate">
                                         <label for="prname">Principal Name</label>
                                     </div>
 
                                     <div class="input-field col s12 m6">
-                                        <select name="taluk">
+                                        <select name="taluk" required>
                                             <option value="" disabled selected>Select Taluk</option>
                                             <?php 
                                                 if(!empty($taluk)){
@@ -61,7 +61,7 @@
                                     </div>
 
                                     <div class="input-field col s12 m6">
-                                        <select name="district">
+                                        <select name="district" required>
                                             <option value="" disabled selected>Select District</option>
                                             <?php 
                                                 if(!empty($district)){
@@ -75,26 +75,26 @@
                                     </div>
 
                                     <div class="input-field col m6">
-                                        <input id="pin" name="pin" type="number" class="validate">
+                                        <input id="pin" name="pin" required type="number" class="validate">
                                         <label for="pin">Pin Code</label>
                                     </div>
 
                                     <div class="input-field col s12 m6">
-                                        <textarea id="address" name="address" class="materialize-textarea"></textarea>
+                                        <textarea id="address" required name="address" class="materialize-textarea"></textarea>
                                         <label for="address">Full Address</label>
                                     </div>
 
                                     <!-- <div class="card-full-divider clearfix"></div> -->
                                     
                                     <div class="input-field col m6 ">
-                                        <input id="regno" name="regno" type="text" class="validate">
+                                        <input id="regno" required name="regno" type="text" class="validate">
                                         <label for="regno">Registration Number</label>
                                     </div>
                                     
                                     <div class="file-field input-field col s12 m6">
                                         <div class="btn ">
                                             <span>File</span>
-                                            <input type="file" name="regfile">
+                                            <input type="file" required name="regfile">
                                         </div>
                                         <div class="file-path-wrapper">
                                             <input class="file-path validate" placeholder="Upload Institution Reg file" type="text">
@@ -104,17 +104,17 @@
                                     <div class="file-field input-field col s12 m6">
                                         <div class="btn ">
                                             <span>File</span>
-                                            <input type="file" name="signature">
+                                            <input type="file" required name="signature">
                                         </div>
                                         <div class="file-path-wrapper">
-                                            <input class="file-path validate" placeholder="Upload Principal Signature" type="text">
+                                            <input class="file-path validate" required placeholder="Upload Principal Signature" type="text">
                                         </div>
                                     </div>
 
                                     <div class="file-field input-field col s12 m6">
                                         <div class="btn ">
                                             <span>File</span>
-                                            <input type="file" name="seal">
+                                            <input type="file" required name="seal">
                                         </div>
                                         <div class="file-path-wrapper">
                                             <input class="file-path validate" placeholder="Upload Institution seal" type="text">
@@ -146,6 +146,8 @@
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
+<?php $this->load->view('include/msg'); ?>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var instances = M.FormSelect.init(document.querySelectorAll('select'));
