@@ -216,9 +216,11 @@ class Std_application extends CI_Controller {
     * @param    : null
     * @data     : student application data,
     **/
-    public function viewApplication($value='')
+    public function getApplication($value='')
     {
-        # code...
+		$data['title']  	= 'Student Application';
+	   $data['result'] = $this->m_stdapplication->getApplication($this->sid);
+	   $this->load->view('student/application-detail', $data, FALSE);
     }
 
 }

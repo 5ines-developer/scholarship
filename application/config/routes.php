@@ -75,4 +75,5 @@ $route['student/update-profile'] 	= 'std_account/updateprofile';
 // scholarship application
 $route['student/application'] 			= 'Std_application/index';
 $route['student/submit-application'] 	= 'Std_application/insertAppli';
+$route['student/application-detail'] 	= 'Std_application/getApplication';
 
