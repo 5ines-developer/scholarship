@@ -47,6 +47,7 @@ class Std_application extends CI_Controller {
     		'company_id' 		=> $this->input->post('inname') , 
     		'uniq' 				=> random_string('alnum',10) , 
     		'terms ' 			=>  $terms, 
+    		'application_state ' 			=> '1', 
     	);
 
     	$output = $this->m_stdapplication->insertAppli($apply);
@@ -221,7 +222,25 @@ class Std_application extends CI_Controller {
 		$data['title']  	= 'Student Application';
 	   $data['result'] = $this->m_stdapplication->getApplication($this->sid);
 	   $this->load->view('student/application-detail', $data, FALSE);
-    }
+	}
+	
+	/**
+    * student application - get the status
+    * @url      : student/application-status
+    * @param    : null
+    * @data     : student application data,
+	**/
+	public function getStatus($var = null)
+	{
+		$data['title']  	= 'Student Application';
+		$data['result'] = $this->m_stdapplication->getStatus($this->sid);
+		
+		echo "<pre>";
+		print_r ($data);
+		echo "</pre>";
+		
+		$this->load->view('student/application-status', $data, FALSE);
+	}
 
 }
 

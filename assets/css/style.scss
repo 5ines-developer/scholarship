@@ -226,6 +226,9 @@ footer {
                         background: rgba(0, 0, 0, .3);
                     }
                 }
+                a.active{
+                    background: rgba(0,0,0,.3);
+                }
             }
         }
     }
@@ -507,6 +510,7 @@ input[type=number] {
     cursor: pointer;
     &:after {
         position: absolute;
+<<<<<<< HEAD
         content: '';
         width: 0px;
         height: 0px;
@@ -527,8 +531,16 @@ input[type=number] {
         border-top: 5px solid #2f2f2f;
         right: 10%;
         bottom: 20px;
+=======
+        font-family: 'Material Icons';
+        content: '\e5d7';
+        right:5px;
+        top:50%;
+>>>>>>> b37952ad95e3158020a4721e4323135b19d6462c
         opacity: 0.5;
+        transform: translateY(-50%);
     }
+    
 }
 
 
@@ -613,7 +625,20 @@ form .file-field .btn {
 .std-side a.active {
     background: rgba(0, 0, 0, 0.3);
 }
-
+.hide-card {
+    opacity: 0;
+    transform: scale(0);
+    display: none;
+}
+.fclk{
+    cursor: pointer;
+}
+.flft{
+    float: left;
+}
+.forg-cgange{
+    line-height: 5px;
+}
 // *************************pre loader****************
 
 /* Absolute Center Spinner */
@@ -744,6 +769,7 @@ form .file-field .btn {
         -o-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+<<<<<<< HEAD
 }
 
 // company-registration
@@ -770,4 +796,100 @@ form .file-field .btn {
     font-weight: 600;
     padding-bottom: 10px;
     margin-top: -10px;
+=======
+  }
+
+
+  table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+  table tr:nth-child(odd), table tr:hover  {
+    background-color: #f8f8f8;}
+
+  table td {
+    padding: .625em;
+    text-align: center;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+
+thead tr {
+    background: #e3e3e3  !important;
+}
+
+.row-click{
+    tr{
+        cursor: pointer;
+    }
+>>>>>>> b37952ad95e3158020a4721e4323135b19d6462c
 }

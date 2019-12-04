@@ -62,10 +62,13 @@ $route['student/verification'] 		= 'student/email_verification';
 //login
 $route['student/login'] 			= 'student/login';
 $route['student/login-check'] 		= 'student/login_submit';
-//forgot password
+//forgot password - email
 $route['student/forgot-password'] 	= 'student/forgot_pass';
 $route['student/forgot-verify'] 	= 'student/forgot_verify';
 $route['student/reset-password'] 	= 'student/reset_password';
+//forgot password - security question
+$route['student/forgot-validate'] 	= 'student/forgot_validate';
+$route['student/reset-pass'] 	    = 'student/qst_resetpass';
 //change password
 $route['student/change-password'] 	= 'std_account/changePassword';
 $route['student/update-password'] 	= 'std_account/update_pass';
@@ -76,4 +79,6 @@ $route['student/update-profile'] 	= 'std_account/updateprofile';
 $route['student/application'] 			= 'Std_application/index';
 $route['student/submit-application'] 	= 'Std_application/insertAppli';
 $route['student/application-detail'] 	= 'Std_application/getApplication';
+$route['student/application-status'] 	= 'Std_application/getStatus';
+
 

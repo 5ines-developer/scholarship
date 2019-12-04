@@ -86,28 +86,29 @@
                                 <div class="card-heading">
                                     <p class="m0">Student Forgot Password</p>
                                 </div>
-                                <form action="<?php echo base_url('student/security') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
-                                    <div class="for-title">
-                                        <p class="center-align">Setting a Security Question help us identify you as the owner of this account</p>
-                                    </div>
+                                <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('student/reset-pass') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
                                 <div class="card-body row m0 pt15 pb15">
                                     <div class="input-field col s12">
-                                        <select name="qstn">
-                                          <option value="" disabled selected>Select Your Question</option>
-                                          <?php  if (!empty($question)) {
-                                            foreach ($question as $key => $value) {
-                                                echo '<option value="'.$value->id.'">'.$value->question.'</option>';
-                                            } } ?>
-                                        </select>
-                                      </div>
-                                        <div class="input-field col s12">
-                                        <input  id="answer" name="answer" v-model="answer" type="text" class="validate" required>
-                                        <label for="answer">Answer</label>
+                                            <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate" required>
+                                            <label for="email">Email ID</label>
+                                            <span class="helper-text red-text">{{ emailError }}</span>
                                     </div>
+                                    <div class="input-field col s12">
+                                        <input  id="password" v-model="psw" name="password" type="password" class="validate" required>
+                                        <label for="password">Password</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input  id="cpassword" v-on:keyup="checkCpsw" name="cnpassword" v-model="cpsw" type="password" class="validate" required>
+                                        <label for="cpassword">Confirm Password</label>
+                                        <span class="helper-text red-text">{{confError}}</span>
+                                    </div>
+
+                                    <input type="hidden" name="qstn" value="<?php echo (!empty($qstn))?$qstn:''; ?>">
+                                    <input type="hidden" name="ans" value="<?php echo (!empty($ans))?$ans:''; ?>">
+
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                     </div>
-                                    <a href="<?php echo base_url('student/login') ?>" class="col mt15 mb15">Nevermind, I remember my password</a>
                                 </div>
                             </form>
                             </div>
@@ -129,6 +130,8 @@
 <!-- scripts -->
 <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
 <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
     <?php $this->load->view('includes/message'); ?>
 </script>
@@ -138,7 +141,54 @@
     });
 
 
-   
+    var app = new Vue({
+        el: '#app',
+        data: {
+            psw: '',
+            cpsw:'',
+            confError: '',
+            emailError:'',
+            email:'',            
+        },
+
+        methods:{
+
+            checkCpsw() {
+                if (this.psw != this.cpsw) {
+                    this.confError = 'Password must match with previous entry!';
+
+                } else {
+                    this.confError = '';
+                }
+            },
+            //check student email already exist
+            emailCheck(){
+                this.emailError='';
+                const formData = new FormData();
+                formData.append('email',this.email);
+                axios.post('<?php echo base_url('student/emailcheck') ?>',formData)
+                .then(response =>{
+                    if (response.data == '') {
+                        this.emailError = 'Account does not exist!';
+                    } else {
+                        this.emailError = '';
+                    }
+
+                }).catch(error => {
+                    if (error.response) {
+                        this.errormsg = error.response.data.error;
+                    }
+                })
+            },
+
+            //check student email already exist
+            checkForm() {
+                if ((this.confError == '') && (this.emailError =='')) {
+                    this.$refs.form.submit();
+                } else {}
+            }
+        },
+    })
 </script>
 </body>
 </html>
