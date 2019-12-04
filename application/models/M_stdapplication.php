@@ -109,7 +109,11 @@ class M_stdapplication extends CI_Model {
         ->join('city cty', 'cty.id = ac.district', 'left')
         ->join('taluq tq', 'tq.id = ac.talluk', 'left')
         ->get()->row();
+    }
 
+    public function getStatus($id = null)
+    {   
+       return $this->db->where('Student_id', $id)->where('application_year',date('Y'))->get('application')->row();  
     }
 
 }
