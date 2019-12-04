@@ -446,6 +446,10 @@ footer {
   background: rgba(0, 0, 0, 0.3);
 }
 
+.board .menu-left ul li a.active {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .board .bord-right .card-title {
   font-size: 16px;
   color: #111;
@@ -748,28 +752,13 @@ input[type=number] {
 
 .sorting:after {
   position: absolute;
-  content: '';
-  width: 0px;
-  height: 0px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid #2f2f2f;
-  right: 10%;
-  top: 20px;
+  font-family: 'Material Icons';
+  content: '\e5d7';
+  right: 5px;
+  top: 50%;
   opacity: 0.5;
-}
-
-.sorting:before {
-  position: absolute;
-  content: '';
-  width: 0px;
-  height: 0px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #2f2f2f;
-  right: 10%;
-  bottom: 20px;
-  opacity: 0.5;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 /********************************
@@ -937,5 +926,91 @@ form .file-field .btn {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table tr:nth-child(odd), table tr:hover {
+  background-color: #f8f8f8;
+}
+
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+  table caption {
+    font-size: 1.3em;
+  }
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  table td::before {
+    /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+thead tr {
+  background: #e3e3e3  !important;
+}
+
+.row-click tr {
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
