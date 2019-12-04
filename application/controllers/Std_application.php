@@ -209,6 +209,18 @@ class Std_application extends CI_Controller {
     	} 
 	}
 
+
+    /**
+    * student application - fetch the application detail
+    * @url      : student/application-detail
+    * @param    : null
+    * @data     : student application data,
+    **/
+    public function viewApplication($value='')
+    {
+        # code...
+    }
+
 }
 
 /* End of file Std_application.php */
