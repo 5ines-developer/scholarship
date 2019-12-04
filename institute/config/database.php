@@ -11,6 +11,8 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => '',
 	'database' => 'scholarship',
+		
+
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
