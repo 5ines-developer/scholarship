@@ -90,11 +90,51 @@ class auth extends CI_Controller {
         );
         
         if($this->m_auth->CreateAuth($data)){
+            $this->sendActivation($data);
             $this->load->view('auth/reg-thank', $data);
         }else{
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
             redirect('register');
         }
+    }
+
+
+    // Send activation
+    public function sendActivation($insert = null)
+    {
+        $data['email'] = $insert['auth']['email'];
+        $data['regid'] = $insert['auth']['ref_id'];
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $data['regid'] = $insert['auth']['ref_id'];
+        $msg = $this->load->view('mail/reg-verify', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($data['email']);
+        $this->email->subject('Institute Registration verification'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+    }
+
+    // Account activation
+    public function account_activation($refId = null)
+    {
+        if($this->m_auth->activateAccount($refId)){
+            $this->session->set_flashdata('success', 'Email verification successfully completed<br> Now you can login.');
+            $this->load->view('auth/set-password');
+        }else{
+            $this->session->set_flashdata('error', 'Activation link has been expired');
+            redirect('register','refresh');
+        }
+        
     }
     
 }

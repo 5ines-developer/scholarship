@@ -646,7 +646,6 @@ form .file-field .btn{ background: #00437d; padding: 0 25px; height: 40px; line-
 .height352{
     max-height: 352px;
 }
-<<<<<<< HEAD
 .std-side a.active{
     background: rgba(0, 0, 0, 0.3);
 }
@@ -773,5 +772,80 @@ form .file-field .btn{ background: #00437d; padding: 0 25px; height: 40px; line-
       transform: rotate(360deg);
     }
   }
-=======
->>>>>>> 41285e3987584699fa1606b414933a2ef3e130a4
+
+
+//   institute registration sucess
+.reg-block .fog-block-content .reg-right {background: #fff; padding: 0; }
+.reg-block .fog-block-content::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.reg-block .fog-block-content .reg-right .form-block {
+    padding: 0 15px 20px 15px;
+}
+.reg-block .fog-block-content .reg-right .form-block .card-box .card-heading {
+    margin: 0 -15px;
+    position: relative;
+    overflow: hidden;
+    height: 75px;
+}
+.reg-block .fog-block-content .reg-right .form-block .card-box .card-heading p {
+    text-align: center;
+    padding: 15px 0px;
+    z-index: 2;
+    color: 
+    #fff;
+    position: relative;
+    font-weight: 700;
+    font-size: 16px;
+}
+.reg-block .fog-block-content .reg-right .form-block .card-box .card-heading::after {
+    position: absolute;
+    content: '';
+    width: 107%;
+    background: 
+    #00437d;
+    height: 67px;
+    left: -9px;
+    top: -14px;
+    z-index: 0;
+}
+.reg-block .fog-block-content .reg-right .form-block .card-box .card-body {
+    margin-top: 15px !important;
+}
+.reg-block .fog-block-content .reg-right .form-block .card-box .card-body .input-field {
+    margin: 6px 0;
+}
+.reg-block .fog-block-content .reg-right .form-block .card-box .card-body input {
+    font-size: 13px;
+}
+.reg-block .fog-block-content .reg-right .form-block .card-box .card-body label {
+    font-size: 12px;
+}
+.for-title {
+
+    width: 70%;
+    margin: auto;
+
+}
+#forgotForm {
+    padding: 0 30px;
+}
+
+.regsucess{
+    .h1{
+        font-size:25px
+    }
+    p{
+        font-size: 16px;
+    }
+}
+
+.reg-success{
+    background: #000000a6 url(../image/rg-bg.jpg);
+    background-blend-mode: overlay;
+    background-size: cover;
+    padding: 50px 0;
+    min-height: calc(100vh - 115px - 70px - 55px );
+}
