@@ -800,7 +800,7 @@ form .file-field .btn {
     margin-top: -10px;
   }
 
-}
+
 
 table {
     border: 1px solid #ccc;
@@ -928,9 +928,40 @@ thead tr {
     border-bottom: 1px solid #e1e1e1;
     padding-bottom: 20px;
 }
-
-.sel-hr,
-.dropdown-content {
+.sel-hr, .dropdown-content {
     width: 100% !important;
     left: 0px !important;
+}
+}
+
+.upload-btn {
+    border: 1px dotted 
+    gray;
+    display: block;
+    width: 100%;
+    line-height: 42px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top:15px;
+    &:hover{
+        background: #cecece;
+    }
+    &:focus{
+        background: gray;
+        color:#fff;
+    }
+    i{
+        line-height: 40px;
+        position: relative;
+        top:6px
+    }
+}
+
+.h1{
+    font-size: 26px;
+}
+
+.reg-success, .hiegt-box {
+    height: calc(100vh - 240px);
 }
