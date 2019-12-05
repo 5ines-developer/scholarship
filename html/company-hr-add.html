@@ -89,41 +89,38 @@
                     <div class="col s12 m8">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
-                                <p class="list-title">Hr Adding</p>
-                                <button>Back</button>
+                                <div class="title-list">
+                                    <span class="list-title">Hr Adding</span>
+                                    <a href="#"><button class="back-btn z-depth-1 waves-effect waves-ligh">Back</button></a>
+                                </div>
                                 <div class="board-content">
                                     <div class="row m0">
-                                        <div class="col s12 m3 l3">
-                                            <div class="board-profile">
-                                                <img :src="student.profile" alt="" class="responsive-img">
-                                                <div class="overlay-button">
-                                                    <a @click="$refs.fileInput.click()"><i class="material-icons">edit</i></a>
-                                                </div>
-                                            </div>
-                                            <p class="center">
-                                                <a href="#!" class="change-psw">Change password</a>
-                                            </p>
-                                        </div>
-                                        <div class="col s12 m8 l8">
+                                        <div class="col s12 m12 l12">
                                             <form action="">
-                                                <div class="input-field col s12">
-                                                    <input id="name" v-model="student.name" type="text" class="validate">
-                                                    <label for="name">Name</label>
+                                                <div class="input-field col m6">
+                                                    <input id="phone" name="hr_name" type="text" class="validate">
+                                                    <label for="hr_name">Name</label>
                                                 </div>
-
-                                                <div class="input-field col s12">
-                                                    <input id="email" type="email" v-model="student.email" class="validate">
-                                                    <label for="email">Email Id</label>
+                                                <div class="input-field col m6">
+                                                    <input id="name" name="hr_email" type="email" class="validate">
+                                                    <label for="c_name">Email</label>
                                                 </div>
-
-                                                <div class="input-field col s12">
-                                                    <input id="phone" v-model="student.mobile" type="number" class="validate">
-                                                    <label for="phone">Mobile Number</label>
+                                                <div class="input-field col m6">
+                                                    <input id="phone" name="hr_phone" type="text" class="validate">
+                                                    <label for="hr_phone">Mobile No</label>
                                                 </div>
-
+                                                <div class="input-field col s12 m6">
+                                                    <select name="hr_taluk" class="sel-hr">
+                                                            <option value="" disabled selected>Choose your option</option>
+                                                            <option value="1">Option 1</option>
+                                                            <option value="2">Option 2</option>
+                                                            <option value="3">Option 3</option>
+                                                        </select>
+                                                    <label>Hr Type</label>
+                                                </div>
                                                 <div class="input-field col s12">
                                                     <input type="file" @change="onFileChange" ref="fileInput" class="hide" v-model="profilePic" accept="image/*">
-                                                    <button class="waves-effect waves-light hoverable btn-theme btn">Save</button>
+                                                    <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -161,6 +158,9 @@
     <script src="assets/js/vue.js"></script>
     <script src="assets/js/materialize.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var instances = M.FormSelect.init(document.querySelectorAll('select'));
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
             var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
