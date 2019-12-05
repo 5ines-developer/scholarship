@@ -1091,4 +1091,276 @@ thead tr {
   width: 100% !important;
   left: 0px !important;
 }
+
+.add-icon {
+  font-size: 14px !important;
+  font-weight: 600;
+  position: relative;
+  left: -10px;
+  top: 2px;
+}
+
+#dynamic {
+  border: 1px solid #dbdbdb;
+}
+
+.hr-list .dataTable thead th,
+table.dataTable thead td {
+  padding: 4px 18px;
+}
+
+.hr-list .dataTables_info {
+  clear: both;
+  float: left;
+  font-size: 13px;
+  padding-top: 12px;
+}
+
+#dynamic_previous {
+  font-size: 13px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+#dynamic_next {
+  font-size: 13px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+#dynamic_previous:hover {
+  color: #00437d !important;
+}
+
+#dynamic_next:hover {
+  color: #00437d !important;
+}
+
+#dynamic_next {
+  font-size: 13px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.thead-list tr {
+  background: #fff !important;
+}
+
+.thead-list th {
+  padding: 10px 10px !important;
+  border-bottom: 1px solid #dedede;
+  text-align: left;
+}
+
+.thead-list .sorting::before {
+  position: unset;
+  content: '';
+  width: unset;
+  height: unset;
+  border-left: unset;
+  border-right: unset;
+  border-top: unset;
+  right: 10%;
+  bottom: 20px;
+  font-family: 'Material Icons';
+  content: '';
+  right: 5px;
+  top: 50%;
+  opacity: 0.5;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.hr-list .dt-buttons .dt-button {
+  padding: 3px 15px;
+  border: 1px solid #00437d;
+  background: #00437d;
+  font-size: 14px;
+  color: white;
+}
+
+.hr-list .dt-buttons .dt-button:hover {
+  padding: 3px 15px;
+  border: 1px solid #00437d;
+  background: #fff;
+  color: #00437d;
+  font-size: 14px;
+}
+
+.hr-list .dataTables_filter {
+  margin-bottom: 15px;
+}
+
+.hr-list .dataTables_wrapper .dataTables_filter {
+  float: right;
+  text-align: right;
+}
+
+#dynamic_filter input {
+  width: 75%;
+  height: 26px;
+}
+
+.tbody-list td {
+  text-align: left;
+}
+
+.tbody-list td a {
+  text-align: left;
+  color: black;
+}
+
+.action-btn a {
+  font-size: 13px;
+  float: left;
+  margin: 0 2px;
+  border-radius: 4px;
+  width: 25px;
+  height: 25px;
+  text-align: center !important;
+  line-height: 27px !important;
+}
+
+.action-icon {
+  font-size: 15px !important;
+}
+
+.hr-list .paginate_button.current {
+  background: #00437d !important;
+}
+
+.add-btn {
+  margin-left: 16px;
+}
+
+#import {
+  width: 30%;
+  height: 290px;
+}
+
+.company-mc {
+  padding: 12px 10px !important;
+  margin: 0px;
+  text-align: center;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.company-mc h4 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.cc-close {
+  border-radius: 15px;
+  font-size: 14px !important;
+  color: black;
+  width: 23px;
+  height: 23px;
+  line-height: 20px !important;
+  position: absolute;
+  right: 16px;
+  top: 15px;
+  border: 1px solid gray;
+}
+
+.ff-inp p {
+  text-align: left;
+  padding: 4px 0px;
+  margin: 0px;
+}
+
+.ff-inp b {
+  color: black;
+  margin-right: 10px;
+}
+
+.upload-fil {
+  padding-top: 15px !important;
+  margin: 0px !important;
+}
+
+.company-mf p {
+  text-align: left;
+  margin: 0px;
+  line-height: 25px;
+  color: #f15555;
+}
+
+.company-mf {
+  text-align: left;
+}
+
+.btn-sub {
+  background: #00437d;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  margin-top: 14px;
+}
+
+.btn-sub:focus {
+  background: #00437d;
+}
+
+#short {
+  width: 16%;
+  float: right;
+  position: relative;
+  top: -1px;
+  height: 10%;
+}
+
+@media (max-width: 767px) {
+  .hr-list {
+    overflow-x: auto;
+    float: unset;
+  }
+  .hr-list,
+  .dataTable thead th,
+  table.dataTable thead td {
+    padding: 0px;
+    padding-top: 0px;
+  }
+  .hr-list .dt-buttons {
+    float: left !important;
+    text-align: center;
+  }
+  .hr-list .dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: left;
+  }
+  .thead-list {
+    border: unset;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    position: unset;
+  }
+  .tbody-list td {
+    border-bottom: 1px solid #ddd;
+    display: revert;
+    font-size: .8em;
+    text-align: unset;
+  }
+  .h5-para-p2 {
+    min-width: 75px !important;
+  }
+  #dynamic {
+    table-layout: auto !important;
+  }
+  .thead-list tr {
+    background: #fff !important;
+    padding: 0px;
+    margin: 0;
+    border: none;
+  }
+  .tbody-list tr {
+    margin: 0;
+    border: none;
+    padding: 0px;
+  }
+  #dynamic_paginate {
+    margin-bottom: 20px;
+  }
+}
 /*# sourceMappingURL=style.css.map */
