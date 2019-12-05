@@ -17,7 +17,7 @@ class auth extends CI_Controller {
     {
         if($this->input->post()){
             $this->load->library('form_validation');
-            if ($this->session->userdata('sclinst') == '') { 
+            if ($this->session->userdata('scinst') == '') { 
                 $this->security->xss_clean($_POST);
                 $this->form_validation->set_rules('email', 'Email Id', 'required');
                 $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[6]');
@@ -27,11 +27,12 @@ class auth extends CI_Controller {
                     
                     if($result = $this->m_auth->can_login($email, $password)) 
                     {
+                       
                         $session_data = array(
                             'scmail'    => $email,
                             'scinst'    => $result['id'],
                             'scqstn'    => $result['status'],
-                            'school'    => $result['status'],
+                            'school'    => $result['school_id'],
                         ); 
 
                         $this->session->set_userdata($session_data); 
@@ -44,10 +45,11 @@ class auth extends CI_Controller {
                     }
 
                 }else{
-
+                    $this->session->set_flashdata('error', 'Invalid Username or Password'); 
+                    redirect('/');
                 }
             }else{
-                echo 'loggd in';
+                redirect('dashboard');
             }
         }else{
             $this->load->view('auth/login');
