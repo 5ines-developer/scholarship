@@ -17,14 +17,17 @@
         <section class="board">
             <div class="container-wrap1">
                 <div class="row m0">
-                <div class="col s12 m3 hide-on-med-and-down">
-                        <?php $this->load->view('include/menu'); ?>
+                <div class="col s12 m3 hide-on-small-only">
+                        <?php $this->load->view('include/menu');?>
                     </div> <!-- End menu-->
-
                     <div class="col s12 m9">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
-                                <span class="card-title">Scholarship Application Detail</span>
+                                <div class="card-title">
+                                    Scholarship Application Detail
+                                    <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2 )? 'disabled' : ''  ?>" href="#modal1">Reject</a>
+                                    <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1 )? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
+                                </div>
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="app-detail-items">
@@ -288,9 +291,26 @@
 
 
     <!-- End Body form  -->
-        <section>
-
-        </section>
+    <div id="modal1" class="modal small">
+        <form action="<?php echo base_url() ?>reject" method="post">
+            <div class="modal-content">
+                <h5>Reject Reason</h5>
+                <div class="row m0">
+                    <div class="input-field col s12">
+                        <textarea required id="textarea1" name="reason" class="materialize-textarea"></textarea>
+                        <input type="hidden" name="id" value="<?php echo $result->aid ?>">
+                        <label for="textarea1">Enter the reason</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">eg: some document is missing</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</button>
+            </div>
+        </form>
+        
+    </div>
+        
 
     <!-- footer -->
         
@@ -307,22 +327,38 @@
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
 <?php $this->load->view('include/msg'); ?>
 <script>
-<script>
-   
+   document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {preventScrolling: false});
+  });
 
 
     var app = new Vue({
         el: '#app',
         data: {
-
             currentpsw: '',
             npsw: '',
             cpsw: '',
-
+            disabled: false,
+            reason: '',
         },  
 
         methods:{
-            
+            approve(id){
+                var self = this;
+                const formData = new FormData();
+                formData.append('id', id);
+                axios.post('<?php echo base_url() ?>approval', formData)
+                .then(function (response) {
+                    var msg = response.data.msg;
+                    M.toast({html: msg, classes: 'green darken-2'});
+                    self.disabled = true;
+                })
+                .catch(function (error) {
+                    var msg = error.response.data.msg;
+                    M.toast({html: msg, classes: 'red darken-4'});
+                })
+            }
         }
     })
 </script>

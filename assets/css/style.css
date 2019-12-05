@@ -753,6 +753,27 @@ input[type=number] {
 
 .sorting:after {
   position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #2f2f2f;
+  right: 10%;
+  top: 20px;
+  opacity: 0.5;
+}
+
+.sorting:before {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #2f2f2f;
+  right: 10%;
+  bottom: 20px;
   font-family: 'Material Icons';
   content: '\e5d7';
   right: 5px;
@@ -929,7 +950,6 @@ form .file-field .btn {
   }
 }
 
-<<<<<<< HEAD
 .com-reg {
   padding-left: 10px;
 }
@@ -954,7 +974,8 @@ form .file-field .btn {
   font-weight: 600;
   padding-bottom: 10px;
   margin-top: -10px;
-=======
+}
+
 table {
   border: 1px solid #ccc;
   border-collapse: collapse;
@@ -1039,6 +1060,22 @@ thead tr {
 
 .row-click tr {
   cursor: pointer;
->>>>>>> b37952ad95e3158020a4721e4323135b19d6462c
+}
+
+.badges {
+  background: #0091ea;
+  padding: 2px 12px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.modal.small {
+  width: 437px;
+}
+
+@media (max-width: 500px) {
+  .modal.small {
+    width: 90%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

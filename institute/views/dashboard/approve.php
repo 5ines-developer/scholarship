@@ -24,7 +24,7 @@
                     <div class="col s12 m9">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
-                                <span class="card-title">Scholarship  Application Request ({{tableRow.length}})</span>
+                                <span class="card-title">Approved Scholarship  Application  ({{tableRow.length}})</span>
                                 <div class="board-content">
                                     <div class="row m0">
                                         <table class="vue-data-table row-click">
@@ -115,7 +115,7 @@
 
             getData(){
                 var self= this;
-                axios.get('<?php echo base_url() ?>scholarship-request')
+                axios.get('<?php echo base_url() ?>student-approved')
                 .then(function (response) {
                     self.tableRow = response.data
                 })
