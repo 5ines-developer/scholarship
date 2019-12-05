@@ -1139,4 +1139,10 @@ thead tr {
 .reg-success, .hiegt-box {
   height: calc(100vh - 240px);
 }
+
+.reg-success, .bg {
+  background: rgba(0, 0, 0, 0.7) url("../image/rg-bg.jpg");
+  background-size: cover;
+  background-blend-mode: overlay;
+}
 /*# sourceMappingURL=style.css.map */

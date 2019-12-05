@@ -27,11 +27,12 @@ class auth extends CI_Controller {
                     
                     if($result = $this->m_auth->can_login($email, $password)) 
                     {
+                       
                         $session_data = array(
                             'scmail'    => $email,
                             'scinst'    => $result['id'],
                             'scqstn'    => $result['status'],
-                            'school'    => $result['status'],
+                            'school'    => $result['school_id'],
                         ); 
 
                         $this->session->set_userdata($session_data); 
