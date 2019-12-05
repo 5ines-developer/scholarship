@@ -5,12 +5,12 @@ class Std_application extends CI_Controller {
 
 	public function __construct()
     {
-        parent::__construct();
+		parent::__construct();
         //Do your magic here
         if ($this->session->userdata('stlid') == '') { $this->session->set_flashdata('error','Please login and try again!'); redirect('student/login','refresh'); } 
         $this->load->model('m_stdapplication');
-        $this->stid = $this->session->userdata('stlid');
-        $this->sid = $this->session->userdata('stlid');
+		$this->sid = $this->session->userdata('stlid');
+		$this->check = $this->m_stdapplication->checkApply($this->sid);
     }
 
 	/**
@@ -21,6 +21,13 @@ class Std_application extends CI_Controller {
     **/
 	public function index()
 	{
+		$item = $this->input->get('item');		
+		if (!empty($this->check) && (!empty($item)) ) {
+			$data['result'] = $this->m_stdapplication->getApplication($this->sid);
+		}else if(!empty($this->check)  ){
+			$this->session->set_flashdata('error', 'You have already applied to the scholarsip this year.');			
+			redirect('student/application-status','refresh');
+		}
 		$data['title']  	= 'Student Application';
 		$data['talluk'] 	= $this->m_stdapplication->getTalluk();
 		$data['district'] 	= $this->m_stdapplication->getDistrict();
@@ -39,34 +46,42 @@ class Std_application extends CI_Controller {
     {
 
 		$input = $this->input->post();
+		
 		if($this->input->post('terms') == 'true'){ $terms = 1; }
     	$apply = array(
     		'application_year' 	=> date('Y') , 
-    		'Student_id' 		=> $this->stid , 
+    		'Student_id' 		=> $this->sid , 
     		'school_id' 		=> $this->input->post('iname') , 
     		'company_id' 		=> $this->input->post('inname') , 
     		'uniq' 				=> random_string('alnum',10) , 
     		'terms ' 			=>  $terms, 
-    		'application_state ' 			=> '1', 
-    	);
+    		'application_state '=> '1', 
+		);
+		
+		if (!empty($this->input->post('aid'))) {
+			$apply['status'] = '0';
+		}
 
-    	$output = $this->m_stdapplication->insertAppli($apply);
+		$result = $this->m_stdapplication->insertAppli($apply);
 
-    	if (!empty($output)) {
-    		if($this->applicantBasic($this->input->post(),$output))
+		
+		$output = '';
+    	if (!empty($result)) {
+    		if($this->applicantBasic($this->input->post(),$result))
 	    	{
-				if($this->applicantAccount($this->input->post(),$output))
+				if($this->applicantAccount($this->input->post(),$result))
 				{
-					if($this->applicantCompany($this->input->post(),$output))
+					if($this->applicantCompany($this->input->post(),$result))
 					{
-						if($this->applicantSchool($this->input->post(),$output))
+						if($this->applicantSchool($this->input->post(),$result))
 						{
-							echo $output = 1;
+							$output = 1;
 						}
 					}
 				}
 	    	}
-    	}
+		}
+		echo $output;
 
     	
 
@@ -78,7 +93,8 @@ class Std_application extends CI_Controller {
     {
     	$this->load->library('upload');
     	$files = $_FILES;
-    	if (file_exists($_FILES['cfile']['tmp_name'])) {
+    	if (empty($_FILES['cfile']['tmp_name'])) {
+		}else{
     		$config['upload_path'] = 'student-cast/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
 	        $config['max_width'] = 0;
@@ -88,9 +104,10 @@ class Std_application extends CI_Controller {
 	        $this->upload->do_upload('cfile');
 	        $upload_data = $this->upload->data();
 	        $cast = 'student-cast/'.$upload_data['file_name'];
-	    }
-
-	    if (file_exists($_FILES['axerox']['tmp_name'])) {
+		}
+		
+		if (empty($_FILES['axerox']['tmp_name'])) {
+		}else{
     		$config['upload_path'] = 'student-adhar/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
 	        $config['max_width'] = 0;
@@ -113,7 +130,7 @@ class Std_application extends CI_Controller {
     		'adharcard_no' 		=> $this->input->post('anumber'), 
     	);
     	if (!empty($cast)) { $insert['cast_certificate'] = $cast; } 
-    	if (!empty($adhar)) { $insert['adharcard_file'] = $adhar; }
+		if (!empty($adhar)) { $insert['adharcard_file'] = $adhar; }
 
     	$output = $this->m_stdapplication->aplliBasic($insert); 
 
@@ -135,7 +152,8 @@ class Std_application extends CI_Controller {
     		'acc_no' 		=> $this->input->post('baccount'), 
 		);
 		
-		if (file_exists($_FILES['bpassbook']['tmp_name'])) {
+		if (empty($_FILES['bpassbook']['tmp_name'])) {
+		}else{
     		$config['upload_path'] = 'student-passbook/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
 	        $config['max_width'] = 0;
@@ -189,8 +207,9 @@ class Std_application extends CI_Controller {
     		'prv_marks' 	=> $this->input->post('pmarks'), 
 		);
 
-		if (file_exists($_FILES['bpassbook']['tmp_name'])) {
-    		$config['upload_path'] = 'student-passbook/';
+		if (empty($_FILES['bpassbook']['tmp_name'])) {
+		}else{
+    		$config['upload_path'] = 'student-marks/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
 	        $config['max_width'] = 0;
 	        $config['encrypt_name'] = true;
@@ -198,7 +217,7 @@ class Std_application extends CI_Controller {
 	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
 	        $this->upload->do_upload('bpassbook');
 	        $upload_data = $this->upload->data();
-			$pass = 'student-passbook/'.$upload_data['file_name'];			
+			$pass = 'student-marks/'.$upload_data['file_name'];			
 			$insert['prv_markcard'] = $pass;
 		}
 
@@ -234,11 +253,6 @@ class Std_application extends CI_Controller {
 	{
 		$data['title']  	= 'Student Application';
 		$data['result'] = $this->m_stdapplication->getStatus($this->sid);
-		
-		echo "<pre>";
-		print_r ($data);
-		echo "</pre>";
-		
 		$this->load->view('student/application-status', $data, FALSE);
 	}
 

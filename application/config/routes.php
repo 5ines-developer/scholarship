@@ -56,11 +56,11 @@ $route['translate_uri_dashes'] = FALSE;
 
 /************student**********************/ 
 // Registration
-$route['student/register'] 			= 'student/index';
+$route['student/register'] 			= 'student/register';
 $route['student/submit-register'] 	= 'student/registerInsert';
 $route['student/verification'] 		= 'student/email_verification';
 //login
-$route['student/login'] 			= 'student/login';
+$route['student/login'] 			= 'student/index';
 $route['student/login-check'] 		= 'student/login_submit';
 //forgot password - email
 $route['student/forgot-password'] 	= 'student/forgot_pass';

@@ -12,13 +12,29 @@ class Student extends CI_Controller {
         $this->load->model('m_student');
     }
 
+
+       /**
+    * student login - load view page
+    * @url      : student/login
+    * @param    : null
+    **/
+    public function index($value='')
+    {
+        if ($this->session->userdata('stlid') == '') {
+            $data['title']      = 'Student Login';
+            $this->load->view('student/student-login.php', $data, FALSE);
+        }else{
+            redirect('student/profile','refresh');
+        }
+    }
+
     /**
     * student registartion
     * @url      : student/register 
     * @param    : null
     * @data     : school data, company data,
     **/ 
-    public function index($var = null)
+    public function register($var = null)
     {
         if ($this->session->userdata('stlid') == '') {
             $data['title']      = 'Student Register';
@@ -151,20 +167,7 @@ class Student extends CI_Controller {
 
 
 
-    /**
-    * student login - load view page
-    * @url      : student/login
-    * @param    : null
-    **/
-    public function login($value='')
-    {
-        if ($this->session->userdata('stlid') == '') {
-            $data['title']      = 'Student Login';
-            $this->load->view('student/student-login.php', $data, FALSE);
-        }else{
-            redirect('student/profile','refresh');
-        }
-    }
+ 
 
     /**
     * student login - verify the credentials
