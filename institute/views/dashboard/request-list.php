@@ -17,14 +17,14 @@
         <section class="board">
             <div class="container-wrap1">
                 <div class="row m0">
-                    <div class="col s12 m3 hide-on-med-and-down">
+                    <div class="col s12 m3 hide-on-small-only">
                         <?php $this->load->view('include/menu'); ?>
                     </div> <!-- End menu-->
 
                     <div class="col s12 m9">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
-                                <span class="card-title">Scholarship  Application Request (100)</span>
+                                <span class="card-title">Scholarship  Application Request ({{tableRow.length}})</span>
                                 <div class="board-content">
                                     <div class="row m0">
                                         <table class="vue-data-table row-click">
@@ -35,7 +35,7 @@
                                             </thead>
                                             
                                             <tbody>
-                                                <tr v-for="(item , k) in tablerow" :key="k" @click="detail(item.id)">
+                                                <tr v-for="(item , k) in tableRow" :key="k" @click="detail(item.id)">
                                                     <td :data-label="tableHeading[0].title">{{k + 1}}</td>
                                                     <td :data-label="tableHeading[1].title">{{item.name}}</td>
                                                     <td :data-label="tableHeading[2].title">{{item.mark}}</td>
@@ -98,14 +98,14 @@
                { title :'Present Class', sorting: false },
                { title :'Action', sorting: false },
            ],
-           tablerow: [],
+           tableRow: [],
         },  
         mounted(){
             this.getData();
         },
         methods:{
             sorting(key){
-                console.log(this.tablerow);
+                console.log(this.tableRow);
             },
 
             detail(id){
@@ -117,7 +117,7 @@
                 var self= this;
                 axios.get('<?php echo base_url() ?>scholarship-request')
                 .then(function (response) {
-                    self.tablerow = response.data
+                    self.tableRow = response.data
                 })
                 .catch(function (error) {
                 })
