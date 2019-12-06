@@ -35,8 +35,8 @@
               <?php if($this->session->userdata('scinst') != ''){ ?>
                 <li><a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a></li>
               <?php } else{ ?>
-                <li><a href="#!">Login</a></li>
-                <li><a href="#!">Registration</a></li>
+                <li><a href="<?php echo base_url() ?>">Login</a></li>
+                <li><a href="<?php echo base_url() ?>register">Registration</a></li>
               <?php } ?>
               
             </ul>
@@ -45,11 +45,12 @@
 
         <ul class="sidenav" id="mobile-demo">
             <li><a href="#!">Home</a></li>
-            <li><a href="#!">Apply Scholarship</a></li>
-            <li><a href="#!">Scholarship Status</a></li>
-            <li><a href="#!">Application Detail</a></li>
-            <li><a href="#!">Account Settings</a></li>
-            <li><a href="#!">Logout</a></li>
+            <li><a href="<?php echo base_url() ?>dashboard">Scholarship  Request</a></li>
+            <li><a href="<?php echo base_url() ?>approve-list">Scholarship  Approved</a></li>
+            <li><a href="<?php echo base_url() ?>reject-list">Scholarship  Rejected</a></li>
+            <li><a href="<?php echo base_url() ?>account">Account Settings</a></li>
+            <li><a href="<?php echo base_url() ?>change-password">Change Password</a></li>
+            <li><a href="<?php echo base_url() ?>logout">Logout</a></li>
             
         </ul>
 
