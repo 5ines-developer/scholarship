@@ -93,9 +93,8 @@
                                                                 <ul>
                                                                     <li>
                                                                         <div class="app-item-content">
-                                                                            <img class="responsive-img" src="<?php echo base_url().$info->reg_certification ?>" alt="">
-                                                                            <button class="upload-btn " @click="SelectFile('
-                                                                            ')"><i class="material-icons ">backup </i> Upload</button>
+                                                                            <img class="responsive-img" :src="certificate" alt="">
+                                                                            <button class="upload-btn " @click="SelectFile('regfile')"><i class="material-icons ">backup </i> Upload</button>
                                                                         </div>
                                                                     </li> 
                                                                 </ul>
@@ -116,7 +115,7 @@
                                                                 <ul>
                                                                     <li>
                                                                         <div class="app-item-content">
-                                                                            <img class="responsive-img" src="<?php echo base_url().$info->priciple_signature ?>" alt="">
+                                                                            <img class="responsive-img" :src="signature" alt="">
                                                                             <button class="upload-btn " @click="SelectFile('signature')"><i class="material-icons ">backup </i> Upload</button>
                                                                         </div>
                                                                     </li> 
@@ -130,7 +129,7 @@
                                             <div class="col s12 m6">
                                                 <div class="app-detail-item">
                                                     <div class="app-item-heading">
-                                                        <p>Seal</p>
+                                                        <p>Institute Seal</p>
                                                     </div> 
                                                     <div class="app-item-body">
                                                         <div class="row m0">
@@ -138,7 +137,7 @@
                                                                 <ul>
                                                                     <li>
                                                                         <div class="app-item-content">
-                                                                            <img class="responsive-img" src="<?php echo base_url().$info->seal ?>" alt="">
+                                                                            <img class="responsive-img" :src="seal" alt="">
                                                                             <button class="upload-btn " @click="SelectFile('seal')"><i class="material-icons ">backup </i> Upload</button>
                                                                         </div>
                                                                     </li> 
@@ -157,7 +156,7 @@
             </div>
         </section>
 
-        <input type="file" id="profileimg" @change="upload()"  ref="fileInput" class="hide" accept="image/*">
+        <input type="file" id="profileimg" @change="upload"  ref="fileInput" class="hide" accept="image/*">
     <!-- End Body form  -->
     <div id="edtModal" class="modal">
         <form action="<?php echo base_url() ?>update-account" method="post">
@@ -244,7 +243,7 @@
         </form>
     </div>
     <!-- footer -->
-    <input type="file" v-modal="file">    
+    <!-- <input type="file" v-modal="file">     -->
 
     <?php $this->load->view('include/footer'); ?>
     <!-- End footer --> 
@@ -267,6 +266,10 @@
         data: {
           type : '',
           file: '',
+          seal: '<?php echo base_url().$info->seal ?>',
+          signature: '<?php echo base_url().$info->priciple_signature ?>',
+          certificate:'<?php echo base_url().$info->reg_certification ?>'
+
         },  
         mounted(){
            
@@ -274,19 +277,38 @@
         methods:{
             SelectFile(type){
                 this.type = type;
+                this.$refs.fileInput.click()
             },
             upload(e){
                 const file = e.target.files[0];
-                if(this.type == ''){
+                formData = new FormData();
+                formData.append('file', file);
+                formData.append('type', this.type);
 
+                if(this.type == 'regfile'){
+                    this.certificate = URL.createObjectURL(file);
                 }
-                else if(this.type == ''){
-
+                else if(this.type == 'signature'){
+                    this.signature = URL.createObjectURL(file);
                 }
                 else{
-
+                    this.seal = URL.createObjectURL(file);
                 }
-                this.profile = URL.createObjectURL(file);
+                
+                axios.post('<?php echo base_url() ?>institute-doc', formData,{
+                        headers: {
+                        'Content-Type': 'multipart/form-data'
+                        } 
+                })
+                .then(function (response) {
+                    var msg = response.data.msg;
+                    M.toast({html: msg, classes: 'green darken-2'});
+                    self.disabled = true;
+                })
+                .catch(function (error) {
+                    var msg = error.response.data.msg;
+                    M.toast({html: msg, classes: 'red darken-4'});
+                })
             }
         }
     })

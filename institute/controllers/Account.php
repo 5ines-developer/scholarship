@@ -43,6 +43,40 @@ class Account extends CI_Controller {
         redirect('account','refresh');
     }
 
+    // update images
+    public function institute_doc()
+    {
+        $key =  $this->input->post('type');
+      
+        $config['upload_path'] = './'.$key;
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_width'] = 0;
+        $config['encrypt_name'] = true;
+
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+        $this->upload->do_upload('file');
+        $upload_data = $this->upload->data();
+
+        if($key == 'regfile'){
+            $data = array( 'reg_certification' => $key.'/'.$upload_data['file_name']);
+        }elseif($key == 'signature') {
+            $data = array( 'priciple_signature' => $key.'/'.$upload_data['file_name']);
+        }else{
+            $data = array( 'seal' => $key.'/'.$upload_data['file_name']);
+        }
+        $schoolId = $this->session->userdata('school');
+        if($this->M_account->updateSchool($data,  $schoolId)){
+            $data = array('status' => 1, 'msg' => '🙂 Updated Successfully ');
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+        }
+        echo json_encode($data);
+    }
+
 }
 
 /* End of file Account.php */

@@ -75,7 +75,7 @@ class auth extends CI_Controller {
         foreach ($_FILES as $key => $value) {
             if (!empty($value)) {
                 $config['upload_path'] = './'.$key;
-                $config['allowed_types'] = 'jpg|png|jpeg|pdf';
+                $config['allowed_types'] = 'jpg|png|jpeg';
                 $config['max_width'] = 0;
                 $config['encrypt_name'] = true;
 
