@@ -104,6 +104,31 @@ function getUsers($password)
 } 
 
 
+// check mail id is exist
+public function checkMail($email = null)
+{
+   $this->db->select('email, ref_id');
+   $query = $this->db->where('email', $email)->get('school_auth');
+   if($query->num_rows() > 0){
+      return $query->row();
+   }else{
+      return false;
+   }
+}
+
+// verify forgot password link
+public function verification($id = null)
+{
+   $this->db->where('ref_id', $id);
+   $query = $this->db->get('school_auth');
+   if($query->num_rows() > 0){
+      return $query->row();
+   }else{
+      return false;
+   }
+   
+}
+
 }
 
 /* End of file M_auth.php */

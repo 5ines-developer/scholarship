@@ -77,6 +77,44 @@ class Account extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function changePassword()
+    {
+        $data['title']  = 'Student Change Password';
+		$this->load->view('auth/change-password', $data, FALSE);
+    }
+
+    public function checkPassword()
+    {
+        $output = $this->M_account->checkpsw($this->input->post('crpass'));
+        echo $output;
+    }
+
+    // update password
+    public function update_password()
+    {
+        $this->load->library('form_validation');
+        
+        $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
+        $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
+        $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
+        if ($this->form_validation->run() == true) {
+        	$hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
+        	$datas = array('psw' => $hash );
+        	if ($this->M_account->changePassword($datas)) {
+               	$this->session->set_flashdata('success', '🙂 Your password has been updated successfully');
+               	redirect('change-password', 'refresh');
+            } else {
+               	$this->session->set_flashdata('error', '😕 Something went wrong please try again later!');
+               	redirect('change-password', 'refresh');
+            }
+
+        }else{
+        	$error = validation_errors();
+            $this->session->set_flashdata('error', $error);
+            redirect('change-password','refresh');
+        }
+    }
+
 }
 
 /* End of file Account.php */

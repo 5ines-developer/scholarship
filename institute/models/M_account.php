@@ -39,10 +39,28 @@ class M_account extends CI_Model {
         return true;
     }
 
-    
-
 // update  End
 
+// check password
+public function checkpsw($psw='')
+{
+    $query = $this->db->select('psw')->where('id', $this->session->userdata('scinst'))->get('school_auth')->row_array();
+    if ($this->bcrypt->check_password($psw, $query['psw'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
+// change password
+public function changePassword($data ='')
+{
+    $this->db->where('id', $this->session->userdata('scinst'))->update('school_auth', $data);
+    if ($this->db->affected_rows() > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 }
 

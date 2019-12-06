@@ -53,10 +53,10 @@
             
         </ul>
 
-        <ul id='dropdown1' class='dropdown-content' style="max-width:250px; min-width:250px">
-          <li><a href="#!">Account Settings</a></li>
-          <li><a href="#!">Application Status</a></li>
-          <li><a href="#!">Logout</a></li>
+        <ul id='dropdown1' class='dropdown-content' style="max-width:250px; min-width:200px; transform:translateX(-50%) !important">
+          <li><a href="<?php echo base_url() ?>account">Account Settings</a></li>
+          <li><a href="<?php echo base_url() ?>change-password">Change Password</a></li>
+          <li><a href="<?php echo base_url() ?>logout">Logout</a></li>
           
         </ul>
     </header>

@@ -2,6 +2,10 @@
   font-size: 14px;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .top-header {
   padding: 5px 0;
 }
@@ -2355,6 +2359,20 @@ table.dataTable thead td {
   .board .card-content {
     padding: 10px 0px !important;
   }
+}
+
+.frgotPass .card-box {
+  background: #fff;
+  padding: 15px;
+}
+
+.frgotPass .card-heading {
+  background: #00437d;
+  color: #fff;
+  padding: 15px 15px;
+  margin: -15px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 #company-reject {
