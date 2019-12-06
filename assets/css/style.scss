@@ -5,7 +5,7 @@ $themligth: #347bb9;
     font-size: 14px;
 }
 
-body{
+body {
     overflow-x: hidden;
 }
 
@@ -1430,8 +1430,7 @@ thead tr {
     padding-bottom: 20px;
 }
 
-.sel-hr,
-.dropdown-content {
+.sel-hr ul {
     width: 100% !important;
     left: 0px !important;
 }
@@ -1753,8 +1752,7 @@ table.dataTable thead td {
         border-bottom: 1px solid #e1e1e1;
         padding-bottom: 20px;
     }
-    .sel-hr,
-    .dropdown-content {
+    .sel-hr ul {
         width: 100% !important;
         left: 0px !important;
     }
@@ -1836,8 +1834,7 @@ thead tr {
     padding-bottom: 20px;
 }
 
-.sel-hr,
-.dropdown-content {
+.sel-hr ul {
     width: 100% !important;
     left: 0px !important;
 }
@@ -2179,8 +2176,7 @@ table.dataTable thead td {
         border-bottom: 1px solid #e1e1e1;
         padding-bottom: 20px;
     }
-    .sel-hr,
-    .dropdown-content {
+    .sel-hr ul {
         width: 100% !important;
         left: 0px !important;
     }
@@ -2237,21 +2233,21 @@ table.dataTable thead td {
     }
 }
 
-.frgotPass{
-    .card-box{
+.frgotPass {
+    .card-box {
         background: #fff;
         padding: 15px;
     }
-    .card-heading{
+    .card-heading {
         background: $themcolor;
-        color:#fff;
+        color: #fff;
         padding: 15px 15px;
         margin: -15px;
         font-weight: 600;
         font-size: 16px;
     }
 }
-    
+
 // R 6-12-2019 Company
 #company-reject {
     width: 30%;
