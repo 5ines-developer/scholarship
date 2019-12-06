@@ -94,7 +94,8 @@
                                                                     <li>
                                                                         <div class="app-item-content">
                                                                             <img class="responsive-img" src="<?php echo base_url().$info->reg_certification ?>" alt="">
-                                                                            <button class="upload-btn "><i class="material-icons ">backup </i> Upload</button>
+                                                                            <button class="upload-btn " @click="SelectFile('
+                                                                            ')"><i class="material-icons ">backup </i> Upload</button>
                                                                         </div>
                                                                     </li> 
                                                                 </ul>
@@ -116,7 +117,7 @@
                                                                     <li>
                                                                         <div class="app-item-content">
                                                                             <img class="responsive-img" src="<?php echo base_url().$info->priciple_signature ?>" alt="">
-                                                                            <button class="upload-btn "><i class="material-icons ">backup </i> Upload</button>
+                                                                            <button class="upload-btn " @click="SelectFile('signature')"><i class="material-icons ">backup </i> Upload</button>
                                                                         </div>
                                                                     </li> 
                                                                 </ul>
@@ -138,7 +139,7 @@
                                                                     <li>
                                                                         <div class="app-item-content">
                                                                             <img class="responsive-img" src="<?php echo base_url().$info->seal ?>" alt="">
-                                                                            <button class="upload-btn "><i class="material-icons ">backup </i> Upload</button>
+                                                                            <button class="upload-btn " @click="SelectFile('seal')"><i class="material-icons ">backup </i> Upload</button>
                                                                         </div>
                                                                     </li> 
                                                                 </ul>
@@ -156,19 +157,95 @@
             </div>
         </section>
 
-
+        <input type="file" id="profileimg" @change="upload()"  ref="fileInput" class="hide" accept="image/*">
     <!-- End Body form  -->
     <div id="edtModal" class="modal">
+        <form action="<?php echo base_url() ?>update-account" method="post">
         <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
+            <h5>Edit Detail</h5>
+                <div class="row m0">
+                        <div class="input-field col m6">
+                            <input id="iname" value="<?php echo $info->name ?>" name="iname" type="text" required class="validate">
+                            <label for="iname">Institute Name</label>
+                        </div>
+
+                        <div class="input-field col m6">
+                            <input id="email" name="email" type="email" value="<?php echo $info->email ?>" required class="validate">
+                            <label for="email">Email</label>
+                        </div>
+
+                        
+
+                        <div class="input-field col s12 m6">
+                            <select name="taluk" required>
+                                <option value="" disabled >Select Taluk</option>
+                                <?php 
+                                    if(!empty($taluk)){
+                                        foreach ($taluk as $key => $value) {
+                                            echo '<option '.(($value->id == $info->taluk)? "selected" : "").' value="'.$value->id.'">'.$value->title.'</option>';
+                                        }
+                                    }
+                                ?>
+                            </select>
+                            <label>Taluk</label>
+                        </div>
+
+                        <div class="input-field col s12 m6">
+                            <select name="district" required>
+                                <option value="" disabled >Select District</option>
+                                <?php 
+                                    if(!empty($district)){
+                                        foreach ($district as $key => $value) {
+                                            echo '<option '.(($value->id == $info->district)? "selected" : "").' value="'.$value->id.'">'.$value->title.'</option>';
+                                        }
+                                    }
+                                ?>
+                            </select>
+                            <label>District</label>
+                        </div>
+
+                        <div class="input-field col m6">
+                            <input id="pin" name="pin" value="<?php echo $info->pin ?>" required type="number" class="validate">
+                            <label for="pin">Pin Code</label>
+                        </div>
+
+                        <div class="input-field col s12 m6">
+                            <textarea id="address" required name="address" class="materialize-textarea"><?php echo $info->address ?></textarea>
+                            <label for="address">Full Address</label>
+                        </div>
+
+
+                        <div class="input-field col m6">
+                            <input id="number" value="<?php echo $info->phone ?>" name="number" type="number" required class="validate">
+                            <label for="number">Phone Number</label>
+                        </div>
+
+                        <div class="input-field col m6">
+                            <input id="prname" value="<?php echo $info->principal ?>" type="text" name="prname" required class="validate">
+                            <label for="prname">Principal Name</label>
+                        </div>
+                        <!-- <div class="card-full-divider clearfix"></div> -->
+                        
+                        <div class="input-field col m6 ">
+                            <input id="regno" required name="regno" value="<?php echo $info->reg_no ?>" type="text" class="validate">
+                            <label for="regno">Registration Number</label>
+                        </div>
+                        
+                        
+                        
+                        <div class="clearfix"></div>
+                    
+            </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            <a class="waves-effect waves-light hoverable red darken-4 btn modal-close">Cancel</a>  
+            <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>  
         </div>
+        </form>
     </div>
     <!-- footer -->
-        
+    <input type="file" v-modal="file">    
+
     <?php $this->load->view('include/footer'); ?>
     <!-- End footer --> 
     </div>
@@ -188,13 +265,29 @@
     var app = new Vue({
         el: '#app',
         data: {
-          
+          type : '',
+          file: '',
         },  
         mounted(){
            
         },
         methods:{
-           
+            SelectFile(type){
+                this.type = type;
+            },
+            upload(e){
+                const file = e.target.files[0];
+                if(this.type == ''){
+
+                }
+                else if(this.type == ''){
+
+                }
+                else{
+
+                }
+                this.profile = URL.createObjectURL(file);
+            }
         }
     })
 </script>
