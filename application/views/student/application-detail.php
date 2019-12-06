@@ -77,7 +77,7 @@
                                                                         <li class="doted-divider"></li>
                                                                         <li>
                                                                             <p class="app-item-content-head">Student Present  Address</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->address))?$result->address:'---'; ?></p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->saddress))?$result->saddress:'---'; ?></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -107,7 +107,7 @@
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Marks Card Copy</p>
-                                                                            <p class="app-item-content"><img src="assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->prv_marks))?base_url().$result->prv_markcard:'#'; ?>"> markscard </a></p>
+                                                                            <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->prv_marks))?base_url().$result->prv_markcard:'#'; ?>"> markscard </a></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -133,7 +133,7 @@
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Cast Certificate File</p>
-                                                                            <p class="app-item-content"><img src="assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Cast-certificate </a></p>
+                                                                            <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Cast-certificate </a></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -223,7 +223,7 @@
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Adhaar card File</p>
-                                                                            <p class="app-item-content"><img src="assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->adharcard_file))?base_url().$result->adharcard_file:'#'; ?>">Aadhar Xerox</a></p>
+                                                                            <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->adharcard_file))?base_url().$result->adharcard_file:'#'; ?>">Aadhar Xerox</a></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -265,7 +265,7 @@
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Passbook Front Page Copy</p>
-                                                                            <p class="app-item-content"><img src="assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->passbook))?base_url().$result->passbook:'#'; ?>">Passbook</a></p>
+                                                                            <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->passbook))?base_url().$result->passbook:'#'; ?>">Passbook</a></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>

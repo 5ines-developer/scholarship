@@ -5,4 +5,5 @@ document.addEventListener('DOMContentLoaded', function() {
         alignment:'right'
     })
     var instances = M.FormSelect.init(document.querySelectorAll('select'));
+    M.Modal.init(document.querySelectorAll('.modal'));
 });

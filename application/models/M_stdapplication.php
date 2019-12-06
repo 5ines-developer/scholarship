@@ -45,58 +45,76 @@ class M_stdapplication extends CI_Model {
     **/
     public function insertAppli($apply='')
     {
-    	$this->db->where('uniq !=', $apply['uniq'])->insert('application',$apply);
-    	if ($this->db->affected_rows() >0) {
-    		return $this->db->insert_id();
-    	}else{
-    		return false;
-    	}
+        $query = $this->db->where('Student_id', $this->session->userdata('stlid'))
+        ->where('application_year',date('Y'))
+        ->where('status','2')
+        ->get('application');
+
+        if ($query->num_rows() > 0) {
+            $this->db->where('Student_id', $this->session->userdata('stlid'))
+            ->where('application_year',date('Y'))
+            ->where('status','2')->update('application',$apply);
+            return $query->row('id');
+        }else{
+            $this->db->insert('application',$apply);
+            return $this->db->insert_id();
+        }
+    	
+    	
     }
 
     public function aplliBasic($insert='')
     {
-    	$this->db->where('application_id !=', $insert['application_id'])->insert('applicant_basic_detail',$insert);
-    	if ($this->db->affected_rows() >0) {
-    		return $this->db->insert_id();
-    	}else{
-    		return false;
-    	}
+        $query = $this->db->where('application_id', $insert['application_id'])->get('applicant_basic_detail');
+        if ($query->num_rows() > 0) {
+            return $this->db->where('application_id', $insert['application_id'])->update('applicant_basic_detail',$insert);
+        }else{
+            return $this->db->insert('applicant_basic_detail',$insert);
+        }
+	
     }
 
     public function applicantAccount($insert = null)
     {
-        $this->db->where('application_id !=', $insert['application_id'])->insert('applicant_account',$insert);
-    	if ($this->db->affected_rows() >0) {
-    		return $this->db->insert_id();
-    	}else{
-    		return false;
-    	}
+        $query = $this->db->where('application_id', $insert['application_id'])->get('applicant_account');
+        if ($query->num_rows() > 0) {
+            return $this->db->where('application_id', $insert['application_id'])->update('applicant_account',$insert);
+        }else{
+            return $this->db->insert('applicant_account',$insert);
+        }
     }
 
     public function applicantCompany($insert = null)
     {
-        $this->db->where('application_id !=', $insert['application_id'])->insert('applicant_comapny',$insert);
-    	if ($this->db->affected_rows() >0) {
-    		return $this->db->insert_id();
-    	}else{
-    		return false;
-    	}
+        $query = $this->db->where('application_id', $insert['application_id'])->get('applicant_comapny');
+        if ($query->num_rows() > 0) {
+            return $this->db->where('application_id', $insert['application_id'])->update('applicant_comapny',$insert);
+        }else{
+            return $this->db->insert('applicant_comapny',$insert);
+        }
+
     }
 
     public function applicantSchool($insert = null)
     {
-        $this->db->where('application_id !=', $insert['application_id'])->insert('applicant_marks',$insert);
-    	if ($this->db->affected_rows() >0) {
-    		return $this->db->insert_id();
-    	}else{
-    		return false;
-    	}
+        $query = $this->db->where('application_id', $insert['application_id'])->get('applicant_marks');
+        if ($query->num_rows() > 0) {
+            return $this->db->where('application_id', $insert['application_id'])->update('applicant_marks',$insert);
+        }else{
+            return $this->db->insert('applicant_marks',$insert);
+        }
     }
 
+    /**
+    * student application - fetch the application detail
+    * @url      : student/application-detail
+    * @param    : null
+    * @data     : student application data,
+    **/
     public function getApplication($id = null)
     {      
         return $this->db->where('a.Student_id', $id)->where('a.application_year',date('Y'))
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,ab.address as saddress, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
@@ -111,9 +129,20 @@ class M_stdapplication extends CI_Model {
         ->get()->row();
     }
 
+    /**
+    * student application - get the status
+    * @url      : student/application-status
+    * @param    : null
+    * @data     : student application data,
+	**/
     public function getStatus($id = null)
     {   
        return $this->db->where('Student_id', $id)->where('application_year',date('Y'))->get('application')->row();  
+    }
+
+    public function checkApply($id = null)
+    {
+       return $this->db->where('Student_id', $id)->where('application_year',date('Y'))->get('application')->row(); 
     }
 
 }
