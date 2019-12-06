@@ -2239,3 +2239,23 @@ table.dataTable thead td {
     width: 30%;
     height: 261px;
 }
+
+.forg {
+    padding: 5% 0px;
+}
+
+.payment-pp {
+    padding: 0px 25px;
+}
+
+@media (max-width:767px) {
+    .com-reg {
+        padding-left: 10px;
+        display: block;
+        padding: 0;
+        margin-top: 10px;
+    }
+    .payment-pp {
+        padding: 0px 5px;
+    }
+}

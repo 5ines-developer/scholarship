@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scholarship</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/materialize.min.css">
+    <style>
+        .forg .fog-block-content .reg-right {
+            background: #fff;
+            padding: 0;
+        }
+        
+        .forg .fog-block-content::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .forg .fog-block-content .reg-right .form-block {
+            padding: 0 15px 20px 15px;
+        }
+        
+        .forg .fog-block-content .reg-right .form-block .card-box .card-heading {
+            margin: 0 -15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .forg .fog-block-content .reg-right .form-block .card-box .card-heading p {
+            text-align: center;
+            padding: 15px 0px;
+            z-index: 2;
+            color: #fff;
+            position: relative;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .forg .fog-block-content .reg-right .form-block .card-box .card-heading::after {
+            position: absolute;
+            content: '';
+            width: 107%;
+            background: #00437d;
+            height: 67px;
+            left: -9px;
+            top: -14px;
+            z-index: 0;
+        }
+        
+        .forg .fog-block-content .reg-right .form-block .card-box .card-body {
+            margin-top: 15px !important;
+        }
+        
+        .forg .fog-block-content .reg-right .form-block .card-box .card-body .input-field {
+            margin: 6px 0;
+        }
+        
+        .forg .fog-block-content .reg-right .form-block .card-box .card-body input {
+            font-size: 13px;
+        }
+        
+        .rforg .fog-block-content .reg-right .form-block .card-box .card-body label {
+            font-size: 12px;
+        }
+        
+        .for-title {
+            width: 70%;
+            margin: auto;
+        }
+        
+        #forgotForm {
+            padding: 0 30px;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <header class="">
+        <div class="top-header">
+            <div class="container ">
+                <div class="row m0">
+
+                    <div class="col s4 m4 push-m4">
+                        <div class="center">
+                            <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                        </div>
+                    </div>
+                    <div class="col s8 m4 pull-m4">
+                        <div class="center-align p17 frt">
+                            <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
+                            <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
+                        </div>
+                    </div>
+                    <div class="col s4 hide-on-small-only">
+                        <div class="center p17">
+                            <p class="top-header-title1">Government of Karnataka</p>
+                            <p class="top-header-title2">Karnataka Labour Welfare Board</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-block">
+            <div class="nav-wrapper container-wrap1">
+                <!-- <a href="#" class="brand-logo">Logo</a> -->
+                <ul id="nav-mobile1" class="left hide-on-med-and-down">
+                    <li><a href="#!">Home</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#!">Login</a></li>
+                    <li><a href="#!">Registration</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Registration form  -->
+    <section class="row m0 forg reg-block " id='app'>
+        <div class="container-wrap2">
+            <div class="col s12 m12 l10 push-l3 p0">
+                <div class="fog-block-content">
+                    <div class="col s12 m8 l7  reg-right z-depth-1">
+                        <div class="form-block">
+                            <div class="card-box">
+                                <div class="card-heading">
+                                    <p class="m0">Company Payment</p>
+                                </div>
+                                <form id="paymentform">
+                                    <div class="payment-pp">
+                                        <div class="card-body row m0 pt15 pb15">
+                                            <div class="input-field col m12 l12 s12">
+                                                <input id="name" name="p_uname" type="text" class="validate">
+                                                <label for="p_uname">User Name</label>
+                                            </div>
+                                            <div class="input-field col m12 l12 s12">
+                                                <input id="name" name="p_cname" type="text" class="validate">
+                                                <label for="p_cname">Company Name</label>
+                                            </div>
+                                            <div class="input-field col m12 l12 s12">
+                                                <input id="name" name="p_email" type="email" class="validate">
+                                                <label for="p_email">Email</label>
+                                            </div>
+                                            <div class="input-field col m12 l12 s12">
+                                                <input id="name" name="p_phone" type="text" class="validate">
+                                                <label for="p_phone">Phone</label>
+                                            </div>
+
+                                            <div class="input-field col m12 l12 s12">
+                                                <input id="name" name="p_amount" type="text" class="validate">
+                                                <label for="p_amount">Amount</label>
+                                                <div class="ff-inp">
+                                                    <p><b>Note:</b>300/- Amount For Each Person</p>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col m12 l12 s12">
+                                                <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
+                                                <span class="com-reg">You Can do the Payment by -<a href="#">UTR</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- footer -->
+
+    <footer class="pt20 pb20">
+        <div class="footer-copyright">
+            <div class="container center">
+                © Copyright 2019. All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- scripts -->
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/materialize.min.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var instances = M.FormSelect.init(document.querySelectorAll('select'));
+        });
+    </script>
+</body>
+
+</html>
