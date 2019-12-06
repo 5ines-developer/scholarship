@@ -1750,7 +1750,7 @@ table.dataTable thead td {
     // hr add list
     .title-list {
         border-bottom: 1px solid #e1e1e1;
-        padding-bottom: 20px;
+        padding: 15px 15px;
     }
     .sel-hr ul {
         width: 100% !important;
@@ -1904,6 +1904,24 @@ table.dataTable thead td {
         text-align: left;
     }
     .sorting::before {
+        position: unset;
+        content: '';
+        width: unset;
+        height: unset;
+        border-left: unset;
+        border-right: unset;
+        border-top: unset;
+        right: 10%;
+        bottom: 20px;
+        font-family: 'Material Icons';
+        content: '';
+        right: 5px;
+        top: 50%;
+        opacity: 0.5;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    .sorting::after {
         position: unset;
         content: '';
         width: unset;
@@ -2271,5 +2289,14 @@ table.dataTable thead td {
     }
     .payment-pp {
         padding: 0px 5px;
+    }
+    .list-title {
+        display: block;
+    }
+    .back-btn {
+        float: unset;
+    }
+    .add-btn {
+        margin-left: 0px;
     }
 }
