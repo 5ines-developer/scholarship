@@ -10,6 +10,7 @@ class auth extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('m_auth');
+        if($this->session->userdata('scinst') != ''){ redirect('dashboard','refresh'); }
     }
     
 

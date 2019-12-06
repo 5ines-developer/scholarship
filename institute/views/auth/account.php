@@ -254,13 +254,10 @@
 <!-- scripts -->
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 <?php $this->load->view('include/msg'); ?>
 <script>
-   
-
-
     var app = new Vue({
         el: '#app',
         data: {
