@@ -17,6 +17,33 @@ class M_account extends CI_Model {
         return $this->db->get()->row();   
     }
 
+// update  start
+    public function update($data, $id)
+    {
+       $this->updateAddress($data['school_address'], $id);
+       $this->updateSchool($data['schoolDetail'], $id);
+       return true;
+    }
+
+    public function updateAddress($data, $id)
+    {
+        $this->db->where('school_id', $id);
+        $this->db->update('school_address', $data);
+        return true;
+    }
+
+    public function updateSchool($data, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('school', $data);
+        return true;
+    }
+
+    
+
+// update  End
+
+
 }
 
 /* End of file M_account.php */

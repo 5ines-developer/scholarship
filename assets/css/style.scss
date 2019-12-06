@@ -859,6 +859,7 @@ form .file-field .btn {
             transform: translateY(-50%);
         }
     }
+}
     /********************************
     INSTITUTION REGISTRATION
 ********************************/
@@ -928,6 +929,7 @@ form .file-field .btn {
             margin: auto -25px;
         }
     }
+
     .height352 {
         max-height: 352px;
     }
@@ -1259,6 +1261,7 @@ form .file-field .btn {
                 transform: rotate(360deg);
             }
         }
+    }
         // company-registration
         .com-reg {
             padding-left: 10px;
@@ -1341,10 +1344,7 @@ form .file-field .btn {
                 text-align: right;
             }
             table td::before {
-                /*
-      * aria-label has no advantage, it won't be read inside a table
-      content: attr(aria-label);
-      */
+               
                 content: attr(data-label);
                 float: left;
                 font-weight: bold;
@@ -1636,7 +1636,7 @@ form .file-field .btn {
                 margin-bottom: 20px;
             }
         }
-    }
+    
     .badges {
         background: #0091ea;
         padding: 2px 12px;
@@ -1712,11 +1712,7 @@ form .file-field .btn {
         background-size: cover;
         background-blend-mode: overlay;
     }
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-}
+    
 
 table td:last-child {
     border-bottom: 0;
@@ -1926,6 +1922,36 @@ table.dataTable thead td {
     }
 }
 
+
+
+.upload-btn {
+  border: 1px dotted 
+ gray;
+  display: block;
+  width: 100%;
+  line-height: 42px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.upload-btn:hover {
+  background: #cecece;
+}
+
+.upload-btn:focus {
+  background: gray;
+  color: #fff;
+}
+
+.upload-btn i {
+  line-height: 40px;
+  position: relative;
+  top: 6px;
+}
+
+@media(max-width:600px){
 .cc-close {
     border-radius: 15px;
     font-size: 14px !important;
@@ -1984,6 +2010,7 @@ table.dataTable thead td {
     position: relative;
     top: -1px;
     height: 10%
+}
 }
 
 @media(max-width:767px) {
@@ -2133,3 +2160,4 @@ table.dataTable thead td {
         }
     }
 }
+
