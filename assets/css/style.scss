@@ -3,7 +3,10 @@ $themcolor: #00437d;
 $themligth: #347bb9;
 * {
     font-size: 14px;
-    ;
+}
+
+body{
+    overflow-x: hidden;
 }
 
 .top-header {
@@ -2230,4 +2233,20 @@ table.dataTable thead td {
             padding: 10px 0px !important;
         }
     }
+}
+
+.frgotPass{
+    .card-box{
+        background: #fff;
+        padding: 15px;
+    }
+    .card-heading{
+        background: $themcolor;
+        color:#fff;
+        padding: 15px 15px;
+        margin: -15px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
 }

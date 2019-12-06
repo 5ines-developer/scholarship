@@ -158,7 +158,7 @@
 
         <input type="file" id="profileimg" @change="upload"  ref="fileInput" class="hide" accept="image/*">
     <!-- End Body form  -->
-    <div id="edtModal" class="modal">
+    <div id="edtModal" class="modal modal-fixed-footer">
         <form action="<?php echo base_url() ?>update-account" method="post">
         <div class="modal-content">
             <h5>Edit Detail</h5>
