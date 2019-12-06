@@ -1627,9 +1627,9 @@ table.dataTable thead td {
 }
 
 .thead-list th {
-  padding: 10px 10px !important;
-  border-bottom: 1px solid #dedede;
+  padding: 5px 5px !important;
   text-align: left;
+  font-size: 11px !important;
 }
 
 .thead-list .sorting::before {
@@ -1683,6 +1683,7 @@ table.dataTable thead td {
 
 .tbody-list td {
   text-align: left;
+  font-size: 13px !important;
 }
 
 .tbody-list td a {
