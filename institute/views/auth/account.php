@@ -31,8 +31,9 @@
                                                 <div class="app-item-heading">
                                                     <p>INSTITUTE DETAILS</p> 
                                                 </div> 
-                                                <div class="app-item-body">
+                                                <div class="app-item-body pl15 pr15">
                                                     <div class="row ">
+                                                        <a href="#edtModal" class="waves-effect waves-light editButton modal-trigger"> <i class="material-icons tiny"> edit </i> Edit</a>
                                                         <div class="col s12 l4">
                                                             <ul>
                                                                 <li>
@@ -157,7 +158,15 @@
 
 
     <!-- End Body form  -->
-
+    <div id="edtModal" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
     <!-- footer -->
         
     <?php $this->load->view('include/footer'); ?>

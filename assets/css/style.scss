@@ -459,6 +459,7 @@
                             .app-item-body {
                                 padding: 20px 5px 5px;
                                 min-height: 234px;
+                                position: relative;
                                 ul {
                                     margin: 0px;
                                     li {
@@ -477,6 +478,16 @@
                                                 filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
                                             }
                                         }
+                                    }
+                                }
+                                .editButton{
+                                    position: absolute;
+                                    right: 15px;
+                                    font-size: 15px; font-weight: 600; letter-spacing: 1px;
+
+                                    i{
+                                        position: relative;
+                                        top: 2px;
                                     }
                                 }
                             }
@@ -560,16 +571,16 @@
                             margin-top: 7px;
                         }
                         
-                        .instreg {
+                        .instreg{
                             .card-outer-heading {
-                                background: $themcolor;
-                                padding: 2px 6px;
-                                border-radius: 3px;
-                                line-height: 0;
-                                &:hover {
-                                    box-shadow: 0px 0px 10px -5px black, 0px 0px 15px -8px black;
-                                    background: $themligth;
-                                }
+                                background: $themcolor; 
+                                color: #fff; 
+                                padding: 20px 20px; 
+                                font-size: 16px; 
+                                font-weight: 600; 
+                                margin: -25px -25px 10px; 
+                                border: 1px solid $themcolor;
+                               
                                 i {
                                     color: #fff;
                                     font-size: 19px;
@@ -1462,3 +1473,17 @@
                                 background-size: cover;
                                 background-blend-mode: overlay;
                             }
+                        }
+
+@media(max-width:600px){
+    .container-wrap1 {
+        width: 100%;
+    }
+
+    .board{
+        padding: 0px;
+        .card-content{
+            padding:10px 0px !important;
+        }
+    }
+}
