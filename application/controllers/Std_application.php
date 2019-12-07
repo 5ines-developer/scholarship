@@ -10,6 +10,7 @@ class Std_application extends CI_Controller {
         if ($this->session->userdata('stlid') == '') { $this->session->set_flashdata('error','Please login and try again!'); redirect('student/login','refresh'); } 
         $this->load->model('m_stdapplication');
 		$this->sid = $this->session->userdata('stlid');
+		$this->slmail = $this->session->userdata('slmail');
 		$this->check = $this->m_stdapplication->checkApply($this->sid);
     }
 
@@ -75,6 +76,8 @@ class Std_application extends CI_Controller {
 					{
 						if($this->applicantSchool($this->input->post(),$result))
 						{
+							$this->studentMail($this->input->post(),$result);
+							$this->studentSms($this->input->post(),$result);
 							$output = 1;
 						}
 					}
@@ -228,6 +231,46 @@ class Std_application extends CI_Controller {
     		return false;
     	} 
 	}
+
+
+	public function studentMail($data='',$apid='')
+	{
+		
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+		$msg = $this->load->view('email/stdapplication', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($this->slmail);
+        $this->email->subject('Application Confirmation'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+		
+	}
+
+	public function studentSms($data='', $apid='')
+    {
+		$phone = $this->input->post('sphone');
+		$msg = 'You have been succesfully applied to the Karnataka Labour Welfare Board Scholarship, we will notify the status via sms';
+        /* API URL */
+        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
+        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return $server_output;
+    }
 
 
     /**
