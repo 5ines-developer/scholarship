@@ -2404,6 +2404,56 @@ table.dataTable thead td {
   padding: 0px 25px;
 }
 
+.Profile-detail {
+  font-size: 15px;
+  text-align: left;
+  padding: 0px 12px;
+}
+
+.profile-ul {
+  -webkit-column-count: 2;
+          column-count: 2;
+}
+
+.border-right {
+  border-right: 1px solid gray;
+}
+
+.block-de {
+  text-align: center;
+}
+
+.block-de p {
+  font-size: 15px;
+  font-weight: 600;
+  padding-bottom: 15px;
+  color: gray;
+}
+
+.per-dd {
+  padding: 15px 10px;
+  border: 1px solid #eaeaea;
+}
+
+.detail-list ul li .app-item-content-head {
+  font-weight: 600;
+  color: #000;
+  font-size: 12.5px;
+}
+
+.p-detail ul li {
+  line-height: 25px;
+  margin-bottom: 20px;
+}
+
+.detail-list {
+  padding: 0px 18px;
+}
+
+.gap-m {
+  margin-right: 10px;
+}
+
 @media (max-width: 767px) {
   .com-reg {
     padding-left: 10px;
@@ -2422,6 +2472,16 @@ table.dataTable thead td {
   }
   .add-btn {
     margin-left: 0px;
+  }
+  .border-right {
+    border-right: unset;
+  }
+  .profile-ul {
+    -webkit-column-count: 1;
+            column-count: 1;
+  }
+  .res-p .card-content {
+    padding: 24px !important;
   }
 }
 /*# sourceMappingURL=style.css.map */
