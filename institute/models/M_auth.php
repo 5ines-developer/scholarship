@@ -61,6 +61,7 @@ public function set_password($data, $key)
 {
    $this->db->where('ref_id', $key);
    $this->db->update('school_auth', $data);
+
    if($this->db->affected_rows() > 0){
       return true;
    }else{
