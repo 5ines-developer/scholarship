@@ -88,14 +88,18 @@ function can_login($username, $password)
 function getUsers($password) 
 {
     $query = $this->db->get('school_auth');
+    
+   
     if ($query->num_rows() > 0) {
 
         $result = $query->row_array();
        
         if ($this->bcrypt->check_password($password, $result['psw'])) {
+           
             return $result;
         } 
         else {
+        
             return array();
         }
     } 

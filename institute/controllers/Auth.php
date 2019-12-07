@@ -24,8 +24,8 @@ class auth extends CI_Controller {
                 $this->form_validation->set_rules('email', 'Email Id', 'required');
                 $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[6]');
                 if ($this->form_validation->run() == True){
-                    echo $email = $this->input->post('email'); 
-                    echo $password = $this->input->post('pswd');
+                    $email = $this->input->post('email'); 
+                    $password = $this->input->post('pswd');
                     
                     if($result = $this->m_auth->can_login($email, $password)) 
                     {
