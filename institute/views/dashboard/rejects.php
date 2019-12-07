@@ -42,6 +42,9 @@
                                                     <td :data-label="tableHeading[3].title">{{item.class}}</td>
                                                     <td :data-label="tableHeading[4].title"><a :href="'<?php echo base_url()?>student/'+item.id " class="view waves-effect waves-light"><i class="material-icons"> remove_red_eye </i></a></td>
                                                 </tr>
+                                                <tr v-if="tableRow.length == 0">
+                                                    <td colspan="5">No data found</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <!-- <div class="row m0">

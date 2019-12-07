@@ -2484,4 +2484,8 @@ table.dataTable thead td {
     padding: 24px !important;
   }
 }
+
+.capitalize {
+  text-transform: capitalize !important;
+}
 /*# sourceMappingURL=style.css.map */

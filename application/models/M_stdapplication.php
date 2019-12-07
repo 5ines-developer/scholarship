@@ -9,7 +9,7 @@ class M_stdapplication extends CI_Model {
     **/
     public function getSchool($value='')
     {
-    	return $this->db->order_by('id', 'desc')->select('id as sId,name as sName')->where('status','1')->get('school')->result();
+    	return $this->db->order_by('id', 'desc')->select('id as sId,name as sName')->get('school')->result();
     }
 
 	/**
@@ -18,7 +18,7 @@ class M_stdapplication extends CI_Model {
     **/
     public function getCompany($value='')
     {
-    	return $this->db->order_by('id', 'desc')->select('id as iId,name as iName')->where('status','1')->get('industry')->result();
+    	return $this->db->order_by('id', 'desc')->select('id as iId,name as iName')->get('industry')->result();
     }
 
     /**

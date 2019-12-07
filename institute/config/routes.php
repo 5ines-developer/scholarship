@@ -28,6 +28,12 @@ $route['reject-list']               = 'dashboard/reject_list';
 $route['student-rejects']           = 'dashboard/student_rejects';
 $route['approve-list']              = 'dashboard/approve_list';
 $route['student-approved']          = 'dashboard/student_approved';
+// staff
+$route['staffs']                    = 'staffs';
+$route['staffs/create']             = 'staffs/create';
+$route['staffs/delete/(:any)']      = 'staffs/delete/$1';
+$route['staffs/update/(:any)']      = 'staffs/update/$1';
+$route['staffs/detail/(:any)']      = 'staffs/detail/$1';
 
 
 

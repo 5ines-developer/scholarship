@@ -34,7 +34,7 @@
                                 <div class="card-body row m0 pt15 pb15">
 
                                     <div class="input-field col s12">
-                                        <input  id="password" minlength=6 name="password" name="psw" v-model="psw" type="password" class="validate" required>
+                                        <input  id="password" minlength=6  name="psw" v-model="psw" type="password" class="validate" required>
                                         <label for="password">Password</label>
                                     </div>
 

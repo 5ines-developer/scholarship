@@ -18,9 +18,10 @@
             <div class="container-wrap1">
                 <div class="row m0">
                 <?php $this->load->view('includes/student-sidebar.php'); ?> <!-- End menu-->
-
+                    
                     <div class="col s12 m8">
                         <div class="card  darken-1">
+                        <?php if(!empty($result)){ ?>
                             <div class="card-content bord-right">
                                 <span class="card-title">Scholarship Status</span>
                                 <div class="board-content">
@@ -103,6 +104,14 @@
                                     </div>
                                 </div>
                             </div>
+                        <?php } else{ ?>
+                            <div class="card-content bord-right">
+                                <span class="card-title">Scholarship Status</span>
+                                <div class="board-content">
+                                    <h4 class="center">Not applied any Scholarship</h4>
+                                </div>
+                            </div>
+                        <?php } ?>
                         </div>
                     </div> <!-- End right board -->
                 </div>
