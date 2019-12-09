@@ -2220,7 +2220,7 @@ table.dataTable thead td {
     background: #00437d;
   }
   #short {
-    width: 16%;
+    width: 56%;
     float: right;
     position: relative;
     top: -1px;
@@ -2452,6 +2452,15 @@ table.dataTable thead td {
 
 .gap-m {
   margin-right: 10px;
+}
+
+.status {
+  background: green;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  font-size: 11px;
+  border-radius: 20px;
 }
 
 @media (max-width: 767px) {

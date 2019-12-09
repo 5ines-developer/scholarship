@@ -2097,7 +2097,7 @@ table.dataTable thead td {
         }
     }
     #short {
-        width: 16%;
+        width: 56%;
         float: right;
         position: relative;
         top: -1px;
@@ -2330,6 +2330,16 @@ table.dataTable thead td {
     margin-right: 10px;
 }
 
+//R 9-12-2019
+.status {
+    background: green;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-size: 11px;
+    border-radius: 20px;
+}
+
 @media (max-width:767px) {
     .com-reg {
         padding-left: 10px;
@@ -2349,7 +2359,6 @@ table.dataTable thead td {
     .add-btn {
         margin-left: 0px;
     }
-<<<<<<< HEAD
     // superadmin
     .border-right {
         border-right: unset;
@@ -2360,10 +2369,8 @@ table.dataTable thead td {
     .res-p .card-content {
         padding: 24px !important;
     }
-=======
 }
 
-.capitalize{
+.capitalize {
     text-transform: capitalize !important;
->>>>>>> af7da426fe62820d98f520b3eaeb57d48d24ce36
 }
