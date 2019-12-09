@@ -295,6 +295,13 @@ class auth extends CI_Controller {
             redirect('/','refresh');
         }
     }
+
+    public function talukFilter()
+    {
+        $district = $this->input->get('filter');
+        $result = $this->m_auth->getTalukFiletr($district);
+        echo json_encode($result);
+    }
     
 }
 
