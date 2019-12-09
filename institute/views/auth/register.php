@@ -47,22 +47,8 @@
                                     </div>
 
                                     <div class="input-field col s12 m6">
-                                        <select name="taluk" required>
-                                            <option value="" disabled selected>Select Taluk</option>
-                                            <?php 
-                                                if(!empty($taluk)){
-                                                    foreach ($taluk as $key => $value) {
-                                                        echo '<option value="'.$value->id.'">'.$value->title.'</option>';
-                                                    }
-                                                }
-                                            ?>
-                                        </select>
-                                        <label>Taluk</label>
-                                    </div>
-
-                                    <div class="input-field col s12 m6">
-                                        <select name="district" required>
-                                            <option value="" disabled selected>Select District</option>
+                                        <select name="district" required v-model="district" @change="talukFilter" class="browser-default">
+                                            <option  disabled selected>Select District</option>
                                             <?php 
                                                 if(!empty($district)){
                                                     foreach ($district as $key => $value) {
@@ -71,8 +57,17 @@
                                                 }
                                             ?>
                                         </select>
-                                        <label>District</label>
+                                        
                                     </div>
+
+                                    <div class="input-field col s12 m6">
+                                        <select name="taluk" v-model="tlq" required :disabled='disabled' class="browser-default">
+                                        <option value="" disabled selected>Select Taluk</option>
+                                            <option v-if="taluk.length > 0" v-for="(item , i) in taluk" :key="i" :value="item.id" selected>{{item.title}}</option>
+                                        </select>
+                                    </div>
+
+                                    
 
                                     <div class="input-field col m6">
                                         <input id="pin" name="pin" required type="number" class="validate">
@@ -146,6 +141,7 @@
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
+<script src="<?php echo $this->config->item('web_url')?>assets/js/axios.min.js"></script>
 <?php $this->load->view('include/msg'); ?>
 
 <script>
@@ -157,11 +153,25 @@
     var app = new Vue({
         el: '#app',
         data: {
-            
+            district: '',
+            taluk: [],
+            disabled: true,
+            tlq:''
         },
 
         methods:{
-            
+            talukFilter(){
+                var self = this;
+                axios.post('<?php echo base_url() ?>auth/talukFilter?filter='+this.district)
+                .then(res => {
+                    self.disabled = false;
+                    self.taluk = res.data;
+                })
+                .catch(err => {
+                    console.error(err); 
+                    self.disabled = true;
+                })
+            }
             
         }
     })

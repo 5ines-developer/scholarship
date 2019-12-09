@@ -134,6 +134,12 @@ public function verification($id = null)
    
 }
 
+public function getTalukFiletr($id = null)
+{
+   return $this->db->where('city_id', $id)
+   ->get('taluq')->result();
+}
+
 }
 
 /* End of file M_auth.php */
