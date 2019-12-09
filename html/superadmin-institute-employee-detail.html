@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scholarship</title>
+    <link rel="stylesheet " href="../assets/css/style.css ">
+    <link rel="stylesheet " href="../assets/css/materialize.min.css">
+    <!-- data table -->
+    <link rel="stylesheet " href="../assets/dataTable/datatables.min.css ">
+    <link rel="stylesheet " href="../assets/dataTable/button/css/buttons.dataTables.css ">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <header class="">
+            <div class="top-header">
+                <div class="container ">
+                    <div class="row m0">
+                        <div class="col s4 m4 push-m4">
+                            <div class="center">
+                                <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                            </div>
+                        </div>
+                        <div class="col s8 m4 pull-m4">
+                            <div class="center-align p17 frt">
+                                <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
+                                <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
+                            </div>
+                        </div>
+                        <div class="col s4 hide-on-small-only">
+                            <div class="center p17">
+                                <p class="top-header-title1">Government of Karnataka</p>
+                                <p class="top-header-title2">Karnataka Labour Welfare Board</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-block">
+                <div class="nav-wrapper container-wrap1">
+                    <!-- <a href="#" class="brand-logo">Logo</a> -->
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile1" class="left hide-on-med-and-down">
+                        <li><a href="#!">Home</a></li>
+                    </ul>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="#!">Home</a></li>
+                <li><a href="#!">Apply Scholarship</a></li>
+                <li><a href="#!">Scholarship Status</a></li>
+                <li><a href="#!">Application Detail</a></li>
+                <li><a href="#!">Account Settings</a></li>
+                <li><a href="#!">Logout</a></li>
+
+            </ul>
+
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!">Account Settings</a></li>
+                <li><a href="#!">Application Status</a></li>
+                <li><a href="#!">Logout</a></li>
+
+            </ul>
+        </header>
+
+        <!-- Body form  -->
+        <section class="board res-p">
+            <div class="container-wrap1">
+                <div class="row m0">
+                    <div class="col s12 m3 hide-on-small-only">
+                        <div class="menu-left">
+                            <ul>
+                                <li><a href=" ">Student List</a></li>
+                                <li><a href=" ">Institute List</a></li>
+                                <li><a href=" ">Company List</a></li>
+                                <li><a href=" ">Change Password</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End menu-->
+                    <div class="col s12 m9">
+                        <div class="card ">
+                            <div class="card-content bord-right">
+                                <div class="card-title">
+                                    Institue Employee Detail
+                                </div>
+                                <div class="board-content">
+                                    <div class="row m0">
+                                        <div class="app-detail-items">
+                                            <div class="col s12 l12 p0">
+                                                <div class="white">
+                                                    <!-- <div class="app-item-heading ">
+                                                        <p class="Profile-detail">Profile Detail</p>
+                                                    </div> -->
+                                                    <div class="per-dd">
+                                                        <div class="row m0">
+                                                            <div class="col s12 l4 border-right">
+                                                                <div class="profile-img">
+                                                                    <center> <img src="https://via.placeholder.com/150" alt="" class="circle responsive-img" width="130px"></center>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class=" col s12 l8 ">
+                                                                <div class="block-de">
+                                                                    <p class="">0</p>
+                                                                    <p>Total Number Of Applied Scholarship</p>
+                                                                    <a class="btn-small gap-m red darken-3 waves-effect waves-light ">Block</a>
+                                                                    <a class="btn-small green darken-3 waves-effect waves-light {'disabled': disabled }">Unblock</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><br>
+                                                <div class="p-detail app-detail-item">
+                                                    <div class="app-item-heading ">
+                                                        <p class="Profile-detail ">Profile Detail</p>
+                                                    </div>
+                                                    <div class="detail-list ">
+                                                        <ul class="profile-ul">
+                                                            <li>
+                                                                <p class="app-item-content-head"> Name</p>
+                                                                <p class="app-item-content">Raju</p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Email</p>
+                                                                <p class="app-item-content">example@gmail.com</p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Phone</p>
+                                                                <p class="app-item-content">9098909890</p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Employee Position</p>
+                                                                <p class="app-item-content">testing</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="white app-detail-item">
+                                                    <div class="app-item-heading ">
+                                                        <p class="Profile-detail ">Empty List</p>
+                                                    </div>
+                                                    <div class="app-item-body">
+                                                        <div class="card-content bord-right ">
+                                                            <div class="">
+                                                                <div class="hr-list">
+                                                                    <table id="dynamic" class="striped ">
+                                                                        <thead class="thead-list">
+                                                                            <th class="h5-para-p2">Name</th>
+                                                                            <th class="h5-para-p2">Email</th>
+                                                                            <th class="h5-para-p2">Phone No</th>
+                                                                            <th class="h5-para-p2">Employee Position</th>
+                                                                            <th class="h5-para-p2">Action</th>
+                                                                        </thead>
+                                                                        <tbody class="tbody-list">
+                                                                            <!-- <tr role="row" class="odd">
+                                                                                <td>ISRTC</td>
+                                                                                <td class="truncate">example@gmail.com</td>
+                                                                                <td>989890989</td>
+                                                                                <td>Manager</td>
+                                                                                <td class="action-btn center-align">
+                                                                                    <a href="" class="green white-text"> <i class="material-icons action-icon ">remove_red_eye</i></a>
+                                                                                    <a href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
+                                                                                </td>
+                                                                            </tr> -->
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End right board -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- End Body form  -->
+        <div id="company-reject " class="modal ">
+            <div class="modal-content company-mc ">
+                <h4>Reason For Rejecting</h4>
+                <a href="#! " class="modal-close ">
+                    <i class="material-icons cc-close ">close</i>
+                </a>
+            </div>
+            <div class="modal-footer company-mf ">
+                <form action=" ">
+                    <div class="form-file ">
+                        <div class="row ">
+                            <div class="col l12 s12 m12 ">
+                                <div class="input-field col l12 "><input id="phone " name="reason " type="text " class="validate "> <label for="reason " class=" ">Reason</label>
+                                    <div></div>
+                                </div>
+                                <div class="col l12 ">
+                                    <div class="ff-inp ">
+                                        <p><b>Note:</b>Menting the Mention the reason</p>
+                                    </div>
+                                </div>
+                                <div class="col l12 m12 s12 ">
+                                    <center> <button class="btn-sub z-depth-1 waves-effect waves-light ">
+                                        Submit</button></center>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        <!-- footer -->
+
+        <footer class="pt20 pb20 ">
+            <div class="footer-copyright ">
+                <div class="container center ">
+                    © Copyright 2019. All Rights Reserved
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+    </div>
+
+
+
+    <!-- scripts -->
+    <script src="../assets/js/jquery-3.4.1.min.js "></script>
+    <script src="../assets/js/vue.js "></script>
+    <script src="../assets/js/materialize.min.js "></script>
+    <script src="../assets/js/axios.min.js "></script>
+    <!-- data table -->
+    <script type="text/javascript " src="../assets/dataTable/datatables.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/dataTables.buttons.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/buttons.flash.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/buttons.html5.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/pdfmake.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/vfs_fonts.js "></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js "></script>
+    <!-- data table -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, {
+                preventScrolling: false
+            });
+        });
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                currentpsw: '',
+                npsw: '',
+                cpsw: '',
+                disabled: false,
+                reason: '',
+            },
+
+            methods: {
+                approve(id) {
+                    var self = this;
+                    const formData = new FormData();
+                    formData.append('id', id);
+                    axios.post('<?php echo base_url() ?>approval', formData)
+                        .then(function(response) {
+                            var msg = response.data.msg;
+                            M.toast({
+                                html: msg,
+                                classes: 'green darken-2'
+                            });
+                            self.disabled = true;
+                        })
+                        .catch(function(error) {
+                            var msg = error.response.data.msg;
+                            M.toast({
+                                html: msg,
+                                classes: 'red darken-4'
+                            });
+                        })
+                }
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf', 'csv'
+                ]
+
+            });
+            $('select').formSelect();
+            $('.modal').modal();
+        });
+    </script>
+</body>
+
+</html>

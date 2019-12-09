@@ -81,16 +81,24 @@ class M_student extends CI_Model {
     **/
     function can_login($username, $password)  
     {
-
+    
         $this->db->where('email', $username);  
         $this->db->where('status', '1');  
-        $result = $this->getUsers($password);
-        if (!empty($result)) {
-          return $result;
-        } 
-        else {
-            return null;
-        }  
+        $this->db->where('password', $password);
+       //  $result = $this->getUsers($password);
+       //  if (!empty($result)) {
+       //    return $result;
+       //  } 
+       //  else {
+       //      return null;
+       //  }  
+       $query = $this->db->get('student');
+        if ($query->num_rows() > 0) { 
+           return  $query->row_array();
+        }else{
+          return null;
+        }
+    
     }
 
     // check password
