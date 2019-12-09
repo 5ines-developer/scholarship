@@ -2174,6 +2174,11 @@ table.dataTable thead td {
   top: 6px;
 }
 
+.profile-ul-3 {
+  -webkit-column-count: 3;
+          column-count: 3;
+}
+
 @media (max-width: 600px) {
   .cc-close {
     border-radius: 15px;
