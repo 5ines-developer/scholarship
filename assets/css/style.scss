@@ -1667,6 +1667,7 @@ table.dataTable thead td {
     .hr-list {
         overflow-x: auto;
         float: unset;
+        padding: 0px 20px;
     }
     .hr-list,
     .dataTable thead th,
@@ -2053,6 +2054,12 @@ table.dataTable thead td {
     column-count: 3;
 }
 
+// 10-12-2019
+.add-btn {
+    margin-right: 11px;
+    cursor: pointer;
+}
+
 @media(max-width:600px) {
     .cc-close {
         border-radius: 15px;
@@ -2101,8 +2108,8 @@ table.dataTable thead td {
         }
     }
     #short {
-        width: 56%;
-        float: right;
+        width: 45%;
+        float: left;
         position: relative;
         top: -1px;
         height: 10%
@@ -2113,6 +2120,7 @@ table.dataTable thead td {
     .hr-list {
         overflow-x: auto;
         float: unset;
+        padding: 0px 20px !important;
     }
     .hr-list,
     .dataTable thead th,
@@ -2125,7 +2133,7 @@ table.dataTable thead td {
         text-align: center;
     }
     .hr-list .dataTables_wrapper .dataTables_filter {
-        float: right;
+        float: left;
         text-align: left;
     }
     .thead-list {
@@ -2197,7 +2205,7 @@ table.dataTable thead td {
     // hr add list
     .title-list {
         border-bottom: 1px solid #e1e1e1;
-        padding-bottom: 20px;
+        padding-bottom: 50px;
     }
     .sel-hr ul {
         width: 100% !important;
@@ -2361,7 +2369,7 @@ table.dataTable thead td {
         float: unset;
     }
     .add-btn {
-        margin-left: 0px;
+        margin-left: 10px;
     }
     // superadmin
     .border-right {
