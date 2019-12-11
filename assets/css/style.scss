@@ -1788,9 +1788,7 @@ table.dataTable thead td {
 }
 
 .reg-success,
-.hiegt-box {
-    height: calc(100vh - 240px);
-}
+
 
 .reg-success,
 .bg {
@@ -2242,7 +2240,7 @@ table.dataTable thead td {
 
 .reg-success,
 .hiegt-box {
-    height: calc(100vh - 240px);
+    min-height: calc(100vh - 240px);
 }
 
 .reg-success,

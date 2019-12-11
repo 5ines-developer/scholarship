@@ -1920,10 +1920,6 @@ table.dataTable thead td {
 }
 
 .reg-success,
-.hiegt-box {
-  height: calc(100vh - 240px);
-}
-
 .reg-success,
 .bg {
   background: rgba(0, 0, 0, 0.7) url("../image/rg-bg.jpg");
@@ -2367,7 +2363,7 @@ table.dataTable thead td {
 
 .reg-success,
 .hiegt-box {
-  height: calc(100vh - 240px);
+  min-height: calc(100vh - 240px);
 }
 
 .reg-success,
