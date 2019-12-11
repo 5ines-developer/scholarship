@@ -2480,6 +2480,13 @@ table.dataTable thead td {
   font-weight: 700;
 }
 
+.table-detail .select-wrapper {
+  width: 25%;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 767px) {
   .com-reg {
     padding-left: 10px;
@@ -2508,6 +2515,15 @@ table.dataTable thead td {
   }
   .res-p .card-content {
     padding: 24px !important;
+  }
+  .table-detail .select-wrapper {
+    width: 100%;
+    float: unset;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  .table-detail {
+    padding: 0px 20px;
   }
 }
 
