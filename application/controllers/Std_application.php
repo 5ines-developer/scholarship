@@ -299,6 +299,25 @@ class Std_application extends CI_Controller {
 		$this->load->view('student/application-status', $data, FALSE);
 	}
 
+	/**
+    * student application - get the talluk
+    * @url      : student/application-status
+    * @param    : null
+    * @data     : student application data,
+	**/
+	public function getTalluk($var = null)
+	{
+		$district = $this->input->post('district');
+		$data['talluk'] = $this->db->where('city_id', $district)->get('taluq')->result();
+		foreach ($data['talluk'] as $key => $value) {
+			$output[] = $value;
+		}
+		echo json_encode($output);
+		
+		
+	}
+	
+
 }
 
 /* End of file Std_application.php */
