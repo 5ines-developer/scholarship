@@ -78,12 +78,10 @@
                     <div class="col s12 m3 hide-on-med-and-down">
                         <div class="menu-left">
                             <ul>
-                                <li><a href="">Employee Detail List</a></li>
-                                <li><a href="">Scholarship  Request</a></li>
-                                <li><a href="">Scholarship  Approved</a></li>
-                                <li><a href="">Scholarship  Rejected</a></li>
-                                <li><a href="">Account Settings</a></li>
-                                <li><a href="">Change Password</a></li>
+                                <li><a href=" ">Student list</a></li>
+                                <li><a href=" ">Institute  List</a></li>
+                                <li><a href=" ">Change Password</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -93,7 +91,7 @@
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="title-list">
-                                    <span class="list-title">Employee Adding</span>
+                                    <span class="list-title">Company Add</span>
                                     <a href="#"><button class="back-btn z-depth-1 waves-effect waves-ligh">Back</button></a>
                                 </div>
                                 <div class="board-content">
@@ -101,16 +99,16 @@
                                         <div class="col s12 m12 l12">
                                             <form action="">
                                                 <div class="input-field col m6">
-                                                    <input id="phone" name="hr_name" type="text" class="validate">
-                                                    <label for="hr_name">Name</label>
+                                                    <input id="name" name="company_name" type="text" class="validate">
+                                                    <label for="company_name">Company Name</label>
                                                 </div>
                                                 <div class="input-field col m6">
-                                                    <input id="name" name="hr_email" type="email" class="validate">
-                                                    <label for="c_name">Email</label>
+                                                    <input id="dname" name="company_dname" type="text" class="validate">
+                                                    <label for="company_dname">Director Name</label>
                                                 </div>
                                                 <div class="input-field col m6">
-                                                    <input id="phone" name="hr_phone" type="text" class="validate">
-                                                    <label for="hr_phone">Mobile No</label>
+                                                    <input id="name" name="company_email" type="email" class="validate">
+                                                    <label for="company_email">Email</label>
                                                 </div>
                                                 <div class="input-field col sel-hr s12 m6">
                                                     <select name="hr_taluk" class="">
@@ -119,7 +117,25 @@
                                                             <option value="2">Option 2</option>
                                                             <option value="3">Option 3</option>
                                                         </select>
-                                                    <label>Employee Type</label>
+                                                    <label>City</label>
+                                                </div>
+                                                <div class="input-field col sel-hr s12 m6">
+                                                    <select name="hr_taluk" class="">
+                                                            <option value="" disabled selected>Choose your option</option>
+                                                            <option value="1">Option 1</option>
+                                                            <option value="2">Option 2</option>
+                                                            <option value="3">Option 3</option>
+                                                        </select>
+                                                    <label>District</label>
+                                                </div>
+                                                <div class="input-field col sel-hr s12 m6">
+                                                    <select name="hr_taluk" class="">
+                                                            <option value="" disabled selected>Choose your option</option>
+                                                            <option value="1">Option 1</option>
+                                                            <option value="2">Option 2</option>
+                                                            <option value="3">Option 3</option>
+                                                        </select>
+                                                    <label>Taluk</label>
                                                 </div>
                                                 <div class="input-field col s12">
                                                     <input type="file" @change="onFileChange" ref="fileInput" class="hide" v-model="profilePic" accept="image/*">
@@ -163,7 +179,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(document.querySelectorAll('select'));
-            
         });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
