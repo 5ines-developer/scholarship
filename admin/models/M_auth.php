@@ -75,6 +75,17 @@ class M_auth extends CI_Model {
     }
 
 
+    // activation
+public function activateAccount($id = null)
+{
+   $this->db->where('ref_link', $id);
+   $this->db->update('admin', array('status'=> 2));
+   if($this->db->affected_rows() > 0){
+      return true;
+   }else{
+      return false;
+   }
+}
    
 
 }

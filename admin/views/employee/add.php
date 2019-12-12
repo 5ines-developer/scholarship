@@ -41,6 +41,7 @@
                                                 <div class="input-field col m8">
                                                     <input id="email" name="email" required type="email" class="validate">
                                                     <label for="email">Email</label>
+                                                    <?php echo validation_errors(); ?>
                                                 </div>
                                                 <div class="input-field col m8">
                                                     <input id="phone" name="phone" required type="number" class="validate">
@@ -50,11 +51,11 @@
                                                     <label >Employee Designation</label>
                                                     <p class="mb10 mt10">
                                                         <label>
-                                                            <input class="with-gap" name="designation" type="radio"  checked />
+                                                            <input class="with-gap" name="designation" value="2" type="radio"  checked />
                                                             <span>Verification</span>
                                                         </label>
                                                         <label class="ml20">
-                                                            <input class="with-gap" name="designation" type="radio"  />
+                                                            <input class="with-gap" name="designation" value="3" type="radio"  />
                                                             <span>Financial</span>
                                                         </label>
                                                     </p>
