@@ -177,7 +177,6 @@
 
                     if(response.data != ''){
 
-                        console.log(response.data.profile);
                         this.student.email      = response.data.email;
                         this.student.name       = response.data.name;
                         this.student.mobile     = response.data.phone;                       

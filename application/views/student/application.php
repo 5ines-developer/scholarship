@@ -88,12 +88,24 @@
                                             <p class="box-title "></p>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="pclass" type="text" placeholder="ಪ್ರಸ್ತುತ ತರಗತಿ" class="validate" required="" v-model="institute.pclass">
-                                                <label for="pclass"> <span class="black-text">Present Class</span>   </label>
+                                                <select id="in_district" required="" @change="districtGet()" v-model="institute.district">
+                                                    <option value="" selected>ಜಿಲ್ಲೆ</option>                                                  
+                                                    <?php if (!empty($district)) {
+                                                        foreach ($district as $dist => $distct) { 
+                                                          echo '<option value="'.$distct->districtId.'">'.$distct->district.'</option>';
+                                                     } } ?> 
+                                                </select>
+                                                <label for="in_district">District</label>
                                             </div>
-
                                             <div class="input-field col s12 m5 l5">
-                                                <select required="" v-model="institute.name">
+                                                <select id="in_talluk" :disabled="disable" required="" v-model="institute.talluk">
+                                                    <option value="" selected>ತಾಲ್ಲೂಕು</option>
+                                                    <option v-if="intalluk.length > 0" v-for="(item , i) in intalluk" :key="i" :value="item.id">{{item.title}}</option>
+                                                </select>
+                                                <label for="in_talluk">Taluk</label>
+                                            </div>
+                                            <div class="input-field col s12 m5 l5">
+                                                <select required=""  :disabled="disable"  v-model="institute.name">
                                                     <option value="" selected>ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆ</option>
                                                     <?php if (!empty($school)) {
                                                         foreach ($school as $sch => $schl) { 
@@ -102,31 +114,18 @@
                                                 </select>
                                                 <label>Select Present Institution</label>
                                             </div>
+                                            <div class="input-field col s12 m5 l5">
+                                                <input id="pclass" type="text" placeholder="ಪ್ರಸ್ತುತ ತರಗತಿ" class="validate" required="" v-model="institute.pclass">
+                                                <label for="pclass"> <span class="black-text">Present Class</span>   </label>
+                                            </div>
+                                            
                                             <div class="clearfix"></div>
                                             <div class="input-field col s12 m5">
                                                 <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" v-model="institute.pin">
                                                 <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
                                             </div>
-                                            <div class="input-field col s12 m5 l5">
-                                                <select id="in_talluk" required="" v-model="institute.talluk">
-                                                    <option value="" selected>ತಾಲ್ಲೂಕು</option>
-                                                    <?php if (!empty($talluk)) {
-                                                        foreach ($talluk as $tal => $talk) { 
-                                                          echo '<option value="'.$talk->tallukId.'">'.$talk->talluk.'</option>';
-                                                     } } ?> 
-                                                </select>
-                                                <label for="in_talluk">Taluk</label>
-                                            </div>
-                                            <div class="input-field col s12 m5 l5">
-                                                <select id="in_district" required="" v-model="institute.district">
-                                                    <option value="" selected>ಜಿಲ್ಲೆ</option>
-                                                    <?php if (!empty($district)) {
-                                                        foreach ($district as $dist => $distct) { 
-                                                          echo '<option value="'.$distct->districtId.'">'.$distct->district.'</option>';
-                                                     } } ?> 
-                                                </select>
-                                                <label for="in_district">District</label>
-                                            </div>
+                                            
+                                            
                                         </div><!-- End Box-->
 
                                         <div class="borderd-box ">
@@ -422,6 +421,7 @@
         el: '#app',
         data: {
             loader:false,
+            disable:true,
             uniq:'<?php echo (!empty($result->uniq))?$result->uniq:''; ?>',
             terms:'<?php echo (!empty($result->terms))?'true':''; ?>',
             file:'',
@@ -470,10 +470,27 @@
                 branch:'<?php echo (!empty($result->branch))?$result->branch:''; ?>',
                 ifsc:'<?php echo (!empty($result->acc_no))?$result->acc_no:''; ?>',
                 account:'<?php echo (!empty($result->ifsc))?$result->ifsc:''; ?>',
-            }
+            },
+            intalluk:[],
 
         },
         methods:{
+            districtGet(){
+                this.loader=true;
+                const formData = new FormData();
+                formData.append('district', this.institute.district);
+                axios.post('<?php echo base_url() ?>std_application/getTalluk', formData)
+                .then(response => { 
+                    this.loader     = false;
+                    this.disable    = false;
+                    this.intalluk   = response.data;
+                 })
+                 .catch(error =>{
+                    this.loader=false;
+                    console.error(error); 
+
+                 })
+            },
             markcard(){
                 this.file = this.$refs.file.files[0];
                 

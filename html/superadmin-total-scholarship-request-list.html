@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible " content="ie=edge ">
+    <title>Scholarship</title>
+    <link rel="stylesheet " href="../assets/css/style.css ">
+    <link rel="stylesheet " href="../assets/css/materialize.min.css ">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
+    <!-- data table -->
+    <link rel="stylesheet " href="../assets/dataTable/datatables.min.css ">
+    <link rel="stylesheet " href="../assets/dataTable/button/css/buttons.dataTables.css ">
+</head>
+
+<body>
+    <div id="app ">
+        <header class=" ">
+            <div class="top-header ">
+                <div class="container ">
+                    <div class="row m0 ">
+                        <div class="col s4 m4 push-m4 ">
+                            <div class="center ">
+                                <img class="responsive-img " src="assets/image/logo.png " alt="Karnataka Labour Welfare Board ">
+                            </div>
+                        </div>
+                        <div class="col s8 m4 pull-m4 ">
+                            <div class="center-align p17 frt ">
+                                <p class="top-header-title1 ">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
+                                <p class="top-header-title2 ">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
+                            </div>
+                        </div>
+                        <div class="col s4 hide-on-small-only ">
+                            <div class="center p17 ">
+                                <p class="top-header-title1 ">Government of Karnataka</p>
+                                <p class="top-header-title2 ">Karnataka Labour Welfare Board</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-block ">
+                <div class="nav-wrapper container-wrap1 ">
+                    <!-- <a href="# " class="brand-logo ">Logo</a> -->
+                    <a href="# " data-target="mobile-demo " class="sidenav-trigger "><i class="material-icons ">menu</i></a>
+                    <ul id="nav-mobile1 " class="left hide-on-med-and-down ">
+                        <li><a href="#! ">Home</a></li>
+                    </ul>
+                    <ul id="nav-mobile " class="right hide-on-med-and-down ">
+                        <li>
+                            <a href="#! " class="dropdown-trigger " data-target='dropdown1'> <i class="material-icons user-nav-btn ">account_circle</i> </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+
+            <ul class="sidenav " id="mobile-demo ">
+                <li><a href="#! ">Home</a></li>
+                <li><a href="#! ">Apply Scholarship</a></li>
+                <li><a href="#! ">Scholarship Status</a></li>
+                <li><a href="#! ">Application Detail</a></li>
+                <li><a href="#! ">Account Settings</a></li>
+                <li><a href="#! ">Logout</a></li>
+
+            </ul>
+
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#! ">Account Settings</a></li>
+                <li><a href="#! ">Application Status</a></li>
+                <li><a href="#! ">Logout</a></li>
+
+            </ul>
+        </header>
+
+        <!-- Body form  -->
+        <section class="board ">
+            <div class="container-wrap1 ">
+                <div class="row m0 ">
+                    <div class="col s12 m3 l3 hide-on-med-and-down ">
+                        <div class="menu-left ">
+                            <ul>
+                                <li><a href=" ">Student List</a></li>
+                                <li><a href=" ">Institute  List</a></li>
+                                <li><a href=" ">Government Employee  List</a></li>
+                                <li><a href=" ">Scholarship Request List</a></li>
+                                <li><a href=" ">Scholarship Approved List</a></li>
+                                <li><a href=" ">Change Password</a></li>
+                                <li><a href=" ">Account Settings</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End menu-->
+                    <div class="col s12 m9 l9 ">
+                        <div class="card darken-1 ">
+                            <div class="card-content bord-right ">
+                                <div class="title-list ">
+                                    <span class="list-title ">Scholarship Request List</span>
+                                    <select class="browser-default" id="short">
+                                            <option value="10">2019 - 2020</option>
+                                            <option value="50">2018 - 2019</option>
+                                            <option value="150">2017  - 2018</option>
+                                </select>
+                                </div>
+                                <div class="board-content ">
+                                    <div class="table-detail">
+                                        <select name="dist" id="dis-drp" class="">
+                                                <option value="" disabled selected>District</option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                        </select>
+                                        <select name="dist" id="dis-drp" class="">
+                                                <option value="" disabled selected>Taluk</option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="hr-list">
+                                        <table id="dynamic" class="striped ">
+                                            <thead class="thead-list">
+                                                <th id="a" class="h5-para-p2">Name</th>
+                                                <!-- <th id="b" class="h5-para-p2">Father Name</th> -->
+                                                <th id="c" class="h5-para-p2">Mark</th>
+                                                <th id="c" class="h5-para-p2">Email</th>
+                                                <th id="d" class="h5-para-p2">Phone</th>
+                                                <th id="e" class="h5-para-p2">Reg Date</th>
+                                                <th id="e" class="h5-para-p2">Status</th>
+                                                <th id="f" class="h5-para-p2">Action</th>
+                                            </thead>
+                                            <tbody class="tbody-list">
+                                                <tr role="row" class="odd">
+                                                    <td>Raj Kumar</td>
+                                                    <!-- <td>Rajesh</td> -->
+                                                    <td>456</td>
+                                                    <td class="truncate">example@gmail.com</td>
+                                                    <td>989890989</td>
+                                                    <td class="">22-10-209</td>
+                                                    <td class="">
+                                                        <p class="status">Active</p>
+                                                    </td>
+                                                    <td class="action-btn center-align">
+                                                        <a href="" class="green white-text"> <i class="material-icons action-icon ">remove_red_eye</i></a>
+                                                        <a href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End right board -->
+                </div>
+            </div>
+        </section>
+
+        <!-- bulk upload file -->
+        <!-- Modal Structure -->
+        <!-- Modal Structure -->
+        <div id="import" class="modal">
+            <div class="modal-content company-mc">
+                <h4>Bulk Upload Document</h4>
+                <a href="#!" class="modal-close">
+                    <i class="material-icons cc-close">close</i>
+                </a>
+            </div>
+            <div class="modal-footer company-mf">
+                <form action="">
+                    <div class="form-file">
+                        <div class="row">
+                            <div class="col l12 s12 m12">
+                                <div class="file-field input-field col l12 m0 upload-fil">
+                                    <div class="btn ">
+                                        <span>File</span>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" placeholder="Upload hr detail" type="text" required="">
+                                    </div>
+                                </div>
+                                <div class="col l12">
+                                    <div class="ff-inp">
+                                        <p><b>Note:</b>File should be in .pdf / .jpg format Size should be not more than 200KB</p>
+                                    </div>
+                                </div>
+                                <div class="col l12 m12 s12">
+                                    <center> <button class="btn-sub z-depth-1 waves-effect waves-light">
+                                        Submit</button></center>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        <!-- footer -->
+        <footer class="pt20 pb20 ">
+            <div class="footer-copyright ">
+                <div class="container center ">
+                    © Copyright 2019. All Rights Reserved
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+    </div>
+
+
+
+    <!-- scripts -->
+    <script src="../assets/js/jquery-3.4.1.min.js"></script>
+    <script src="../assets/js/vue.js "></script>
+    <script src="../assets/js/materialize.min.js "></script>
+    <script src="../assets/js/axios.min.js "></script>
+    <!-- data table -->
+    <script type="text/javascript " src="../assets/dataTable/datatables.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/dataTables.buttons.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/buttons.flash.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/buttons.html5.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/pdfmake.min.js "></script>
+    <script type="text/javascript " src="../assets/dataTable/button/js/vfs_fonts.js "></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js "></script>
+    <!-- data table -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
+            var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
+                constrainWidth: false,
+                alignment: 'right'
+            })
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf', 'csv'
+                ]
+
+            });
+            $('select').formSelect();
+            $('.modal').modal();
+        });
+    </script>
+</body>
+
+
+</html>

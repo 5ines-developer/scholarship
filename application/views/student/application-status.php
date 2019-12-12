@@ -14,7 +14,7 @@
     <?php $this->load->view('includes/header'); ?>
 
     <!-- Body form  -->
-        <section class="board">
+        <section class="board hiegt-box">
             <div class="container-wrap1">
                 <div class="row m0">
                 <?php $this->load->view('includes/student-sidebar.php'); ?> <!-- End menu-->
@@ -119,10 +119,7 @@
         </section>
 
 
-    <!-- End Body form  -->
-        <section>
-
-        </section>
+ 
 
     <!-- footer -->
         
