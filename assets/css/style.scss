@@ -2355,6 +2355,14 @@ table.dataTable thead td {
     font-weight: 700;
 }
 
+// 11-12-2019
+.table-detail .select-wrapper {
+    width: 25%;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
 @media (max-width:767px) {
     .com-reg {
         padding-left: 10px;
@@ -2384,8 +2392,86 @@ table.dataTable thead td {
     .res-p .card-content {
         padding: 24px !important;
     }
+    // 11-12-2019
+    .table-detail .select-wrapper {
+        width: 100%;
+        float: unset;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    .table-detail {
+        padding: 0px 20px;
+    }
 }
 
 .capitalize {
     text-transform: capitalize !important;
+}
+
+// school pramanapatra
+
+.bold{
+    font-weight: 700;
+}
+
+#shcoolapp {
+    ol{
+        padding: 0 15px !important;
+        margin-bottom: 10px;
+        li{
+            margin-bottom: 15px;
+            div{
+                margin-left: 20px;
+                p{
+                    text-align: justify;
+                    line-height: 35px;
+                    margin: 0px;
+                    span{
+                        min-width: 150px;
+                        display: inline-block;
+                        text-align: center;
+                        font-weight: 600;
+                        position: relative;
+                        margin:0 10px;
+                        top:-4px;
+
+                        &:after{
+                            content: '';
+                            position: absolute;
+                            height: 1px;
+                            width: 100%;
+                            // background: black;
+                            border-bottom: 1px dotted black;
+                            left: 0px;
+                            bottom: 6px;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    .foo-address{
+        p{
+            line-height: 30px;
+            overflow: hidden;
+        }
+        .dashed-line{
+            position: relative;
+            display: inline-block;
+            margin-left: 10px;
+            top: -4px;
+            &:after{
+                content: '';
+                position: absolute;
+                height: 1px;
+                width: 100%;
+                background: #999;
+                left: 0px;
+                bottom: 2px;
+                min-width: 500px;
+            }
+        }
+    }
 }

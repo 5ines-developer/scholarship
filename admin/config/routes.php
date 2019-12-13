@@ -13,6 +13,8 @@ $route['checkEmail']                = 'auth/checkEmail';
 $route['forgot-password-check']     = 'auth/forgot_password_check';
 $route['forgot-verify/(:any)']      = 'auth/verification/$1';
 $route['set-new-password']          = 'auth/set_new_password';
+$route['account-activation/(:any)'] = 'auth/account_activation/$1';
+$route['set-password']              = 'auth/set_password';
 // dashboard
 $route['dashboard']                 = 'dashboard';
 // employee management
