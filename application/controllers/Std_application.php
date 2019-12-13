@@ -49,6 +49,9 @@ class Std_application extends CI_Controller {
 		$input = $this->input->post();
 		
 		if($this->input->post('terms') == 'true'){ $terms = 1; }
+
+		if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
+		if(($this->input->post('clow') != '') && ($this->input->post('pmarks') < 45)){ echo 'error'; die(); }
     	$apply = array(
     		'application_year' 	=> date('Y') , 
     		'Student_id' 		=> $this->sid , 
@@ -94,9 +97,10 @@ class Std_application extends CI_Controller {
 
     public function applicantBasic($data='',$apid='')
     {
+
     	$this->load->library('upload');
     	$files = $_FILES;
-    	if (empty($_FILES['cfile']['tmp_name'])) {
+    	if (($this->input->post('clow') != '') &&  (empty($_FILES['cfile']['tmp_name'])) ) {
 		}else{
     		$config['upload_path'] = 'student-cast/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
@@ -299,23 +303,7 @@ class Std_application extends CI_Controller {
 		$this->load->view('student/application-status', $data, FALSE);
 	}
 
-	/**
-    * student application - get the talluk
-    * @url      : student/application-status
-    * @param    : null
-    * @data     : student application data,
-	**/
-	public function getTalluk($var = null)
-	{
-		$district = $this->input->post('district');
-		$data['talluk'] = $this->db->where('city_id', $district)->get('taluq')->result();
-		foreach ($data['talluk'] as $key => $value) {
-			$output[] = $value;
-		}
-		echo json_encode($output);
-		
-		
-	}
+
 	
 
 }

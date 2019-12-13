@@ -42,7 +42,7 @@
 
                         <div class="card-body">
                             <div class="row m0">
-                                <form action="#" method="post" enctype="multipart/form-data" id="s_apply" @submit="formSubmit"> 
+                                <form ref="form" @submit.prevent="formSubmit" action="#" method="post" enctype="multipart/form-data" id="s_apply"> 
 
                                     
                                     <!-- <div class="divider clearfix" tabindex="-1"></div> -->
@@ -88,8 +88,8 @@
                                             <p class="box-title "></p>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <select id="in_district" required="" @change="districtGet()" v-model="institute.district">
-                                                    <option value="" selected>ಜಿಲ್ಲೆ</option>                                                  
+                                                <select id="in_district" required="" v-model="institute.district">
+                                                    <option value="" disabled selected>ಜಿಲ್ಲೆ</option>                                                  
                                                     <?php if (!empty($district)) {
                                                         foreach ($district as $dist => $distct) { 
                                                           echo '<option value="'.$distct->districtId.'">'.$distct->district.'</option>';
@@ -98,15 +98,18 @@
                                                 <label for="in_district">District</label>
                                             </div>
                                             <div class="input-field col s12 m5 l5">
-                                                <select id="in_talluk" :disabled="disable" required="" v-model="institute.talluk">
-                                                    <option value="" selected>ತಾಲ್ಲೂಕು</option>
-                                                    <option v-if="intalluk.length > 0" v-for="(item , i) in intalluk" :key="i" :value="item.id">{{item.title}}</option>
+                                                <select id="in_talluk"  required="" v-model="institute.talluk">
+                                                    <option value="" disabled selected>ತಾಲ್ಲೂಕು</option>
+                                                    <?php if (!empty($talluk)) {
+                                                        foreach ($talluk as $tal => $talk) { 
+                                                          echo '<option value="'.$talk->tallukId.'">'.$talk->talluk.'</option>';
+                                                     } } ?>
                                                 </select>
                                                 <label for="in_talluk">Taluk</label>
                                             </div>
                                             <div class="input-field col s12 m5 l5">
-                                                <select required=""  :disabled="disable"  v-model="institute.name">
-                                                    <option value="" selected>ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆ</option>
+                                                <select required=""  v-model="institute.name">
+                                                    <option value="" disabled selected>ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆ</option>
                                                     <?php if (!empty($school)) {
                                                         foreach ($school as $sch => $schl) { 
                                                           echo '<option value="'.$schl->sId.'">'.$schl->sName.'</option>';
@@ -128,6 +131,45 @@
                                             
                                         </div><!-- End Box-->
 
+
+                                        <div class="borderd-box ">
+                                            <div class="col s12 box-title mb20">
+                                                <p>Does the student belong to the Scheduled Castes / Scheduled Tribes? If so Xerox copy of the cast certificate obtained from the Tahsildar To be Attached.</p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಪರಿಶಿಷ್ಠ ಜಾತಿ/ಪರಿಶಿಷ್ಠ ಪಂಗಡಗಳಿಗೆ ಸೇರಿದವರೇ ? ಹಾಗಿದ್ದರೆ ತಹಶೀಲ್ದಾರರಿಂದ ಪಡೆದ ಜಾತಿ ಪ್ರಮಾಣ ಪತ್ರದ ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸಬೇಕು.</p>
+                                                <?php echo (!empty($result->cast_certificate))?'
+                                                    <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
+                                                    <a target="_blank" href="'.base_url().$result->cast_certificate.'">Caste Certificate</a>
+                                                    </p>':'#'; ?>                                                
+                                            </div>
+
+                                            <div class="col s12">
+                                                <div class="col s6 m3 l2">
+                                                    <label>
+                                                        <input class="with-gap" name="std_cast" type="radio" @change="casteCheck()" value="" checked v-model="caste.low"/>
+                                                        <span>No (ಇಲ್ಲ)</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s6 m3 l2">
+                                                    <label>
+                                                        <input class="with-gap" name="std_cast" type="radio"   @change="casteCheck()" value="1" v-model="caste.low"/>
+                                                        <span>Yes (ಹೌದು)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="file-field input-field col s12 m6 " v-bind:class="{ hide: hide }">
+                                                <div class="btn">
+                                                    <span>File</span>
+                                                    <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()" <?php echo (!empty($result->cast_certificate))?'':"required"; ?>>
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
+                                                </div>
+                                                <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span> </p>
+                                            </div>
+                                            
+                                        </div><!-- End Box-->
+
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title ">
                                                 <p>Enter Your Previous year Class and Marks</p>
@@ -142,8 +184,9 @@
                                                 </div>
 
                                                 <div class="input-field col s12 ">
-                                                    <input id="pv_marks" type="number"  placeholder="ಅಂಕಗಳು" class="validate" required="" v-model="previous.marks">
-                                                    <label for="pv_marks"> <span class="black-text">Marks</span>   </label>
+                                                    <input id="pv_marks" type="number" @change="markCheck()" placeholder="ಶೇಕಡಾವಾರು ಅಂಕಗಳು" class="validate" required="" v-model="previous.marks">
+                                                    <label for="pv_marks"> <span class="black-text">Marks in Percentage</span>   </label>
+                                                    <span class="helper-text red-text">{{markError}}</span>
                                                 </div>
                                             </div>
 
@@ -206,8 +249,9 @@
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="id_msal" type="text" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" v-model="industry.salary">
+                                                <input id="id_msal" type="text" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" @change="salaryCheck()" v-model="industry.salary">
                                                 <label for="id_msal"> <span class="black-text">Monthly Salary</span>   </label>
+                                                <span class="helper-text red-text">{{salError}}</span>
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
@@ -233,7 +277,7 @@
 
                                             <div class="input-field col s12 m5 l5">
                                                 <select name="id_district" id="id_district" required="" v-model="industry.district" >
-                                                    <option value="" selected>ಜಿಲ್ಲೆ</option>
+                                                    <option value="" disabled selected>ಜಿಲ್ಲೆ</option>
                                                     <?php if (!empty($district)) {
                                                         foreach ($district as $dist => $distct) { 
                                                           echo '<option value="'.$distct->districtId.'">'.$distct->district.'</option>';
@@ -244,7 +288,7 @@
 
                                             <div class="input-field col s12 m5 l5">
                                                 <select name="id_name" id="id_name" required=""  v-model="industry.name" >
-                                                    <option value="" selected>ಪೋಷಕ ಉದ್ಯಮದ ಹೆಸರು</option>
+                                                    <option value="" disabled selected>ಪೋಷಕ ಉದ್ಯಮದ ಹೆಸರು</option>
                                                     <?php if (!empty($company)) {
                                                         foreach ($company as $comp => $compn) { 
                                                           echo '<option value="'.$compn->iId.'">'.$compn->iName.'</option>';
@@ -258,44 +302,7 @@
                                             </div>
                                         </div><!-- End Box-->
 
-                                        <div class="borderd-box ">
-                                            <div class="col s12 box-title mb20">
-                                                <p>Does the student belong to the Scheduled Castes / Scheduled Tribes? If so Xerox copy of the cast certificate obtained from the Tahsildar To be Attached.</p>
-                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಪರಿಶಿಷ್ಠ ಜಾತಿ/ಪರಿಶಿಷ್ಠ ಪಂಗಡಗಳಿಗೆ ಸೇರಿದವರೇ ? ಹಾಗಿದ್ದರೆ ತಹಶೀಲ್ದಾರರಿಂದ ಪಡೆದ ಜಾತಿ ಪ್ರಮಾಣ ಪತ್ರದ ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸಬೇಕು.</p>
-                                                <?php echo (!empty($result->cast_certificate))?'
-                                                    <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
-                                                    <a target="_blank" href="'.base_url().$result->cast_certificate.'">Caste Certificate</a>
-                                                    </p>':'#'; ?>
-                                                
-                                            </div>
-
-                                            <div class="col s12">
-                                                <div class="col s6 m3 l2">
-                                                    <label>
-                                                        <input class="with-gap" name="std_cast" type="radio" value="" checked v-model="caste.low"/>
-                                                        <span>No (ಇಲ್ಲ)</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col s6 m3 l2">
-                                                    <label>
-                                                        <input class="with-gap" name="std_cast" type="radio"  value="1" v-model="caste.low"/>
-                                                        <span>Yes (ಹೌದು)</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="file-field input-field col s12 m6">
-                                                <div class="btn">
-                                                    <span>File</span>
-                                                    <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()" <?php echo (!empty($result->cast_certificate))?'':"required"; ?>>
-                                                </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
-                                                </div>
-                                                <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span> </p>
-                                            </div>
-                                            
-                                        </div><!-- End Box-->
+                                        
 
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title ">
@@ -400,6 +407,7 @@
 
 
     <!-- footer -->
+    <div v-if="loader" class="loading">Loading&#8230;</div>
     
     <?php $this->load->view('includes/footer'); ?>
 </div>
@@ -420,8 +428,7 @@
     var app = new Vue({
         el: '#app',
         data: {
-            loader:false,
-            disable:true,
+            loader:false,            
             uniq:'<?php echo (!empty($result->uniq))?$result->uniq:''; ?>',
             terms:'<?php echo (!empty($result->terms))?'true':''; ?>',
             file:'',
@@ -471,30 +478,24 @@
                 ifsc:'<?php echo (!empty($result->acc_no))?$result->acc_no:''; ?>',
                 account:'<?php echo (!empty($result->ifsc))?$result->ifsc:''; ?>',
             },
-            intalluk:[],
+            hide:<?php echo (empty($result->is_scst))?'true':'false' ?>,
+            markError:'',
+            salError:'',
 
         },
         methods:{
-            districtGet(){
-                this.loader=true;
-                const formData = new FormData();
-                formData.append('district', this.institute.district);
-                axios.post('<?php echo base_url() ?>std_application/getTalluk', formData)
-                .then(response => { 
-                    this.loader     = false;
-                    this.disable    = false;
-                    this.intalluk   = response.data;
-                 })
-                 .catch(error =>{
-                    this.loader=false;
-                    console.error(error); 
-
-                 })
-            },
             markcard(){
                 this.file = this.$refs.file.files[0];
                 
             },
+            salaryCheck(){
+                this.salError = '';
+                if((this.industry.salary > 15000))
+                {
+                    M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                    this.salError = 'You are not eligible to apply for this scholarship';
+                }
+            },          
             castecertificate(){
                 this.file1 = this.$refs.file1.files[0];
                 
@@ -507,61 +508,87 @@
                 this.file3 = this.$refs.file3.files[0];
                 
             },
+            casteCheck(){
+                if (this.caste.low =='') {
+                    this.hide = true;
+                }else{
+                    this.hide = false;
+                }
+
+            },markCheck(){
+                this.markError = '';
+                if((this.caste.low =='') && (this.previous.marks < 50))
+                {
+                    M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                    this.markError = 'You are not eligible to apply for this scholarship';
+                }else if((this.caste.low !='') && (this.previous.marks < 45)){
+                    M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                    this.markError = 'You are not eligible to apply for this scholarship';
+                }
+            },
            formSubmit(e){
                 e.preventDefault();
-                this.loader=true;
-                const formData = new FormData();
-                formData.append('sname', this.student.name);
-                formData.append('sphone', this.student.phone);
-                formData.append('sfather', this.student.father);
-                formData.append('smother', this.student.mother);
-                formData.append('saddress', this.student.address);
-                formData.append('ipclass', this.institute.pclass);
-                formData.append('ipin', this.institute.pin);                
-                formData.append('iname', this.institute.name);
-                formData.append('italluk', this.institute.talluk);
-                formData.append('idistrict', this.institute.district);
-                formData.append('pclass', this.previous.class);
-                formData.append('pmarks', this.previous.marks);
-                formData.append('pcard', this.previous.card);
-                formData.append('incard', this.industry.working);
-                formData.append('inpname', this.industry.pname);
-                formData.append('insalary', this.industry.salary);
-                formData.append('inrelation', this.industry.relation);
-                formData.append('inpin', this.industry.pin);
-                formData.append('intalluk', this.industry.talluk);
-                formData.append('indistrict', this.industry.district);
-                formData.append('inname', this.industry.name);
-                formData.append('inaddress', this.industry.address);
-                formData.append('clow', this.caste.low);
-                formData.append('cfile', this.file1);
-                formData.append('anumber', this.adhaar.number);
-                formData.append('axerox', this.file2);
-                formData.append('bname', this.bank.name);
-                formData.append('branch', this.bank.branch);
-                formData.append('bifsc', this.bank.ifsc);
-                formData.append('baccount', this.bank.account);
-                formData.append('bpassbook', this.file3);                          
-                formData.append('uniq', this.uniq);                          
-                formData.append('terms', this.terms);                          
-                formData.append('aid', this.aid);                          
-                axios.post('<?php echo base_url() ?>student/submit-application', formData,
-                { headers: { 'Content-Type': 'multipart/form-data' } })
-                .then(response => {
-                    this.loader=false;
-                    if(response.data == '1'){
-                        M.toast({html: 'Your application has been submitted successfully, <br> you\'ll get notify once its get approved.', classes: 'green', displayLength : 5000 });
-                        window.location.href = "<?php echo base_url('student/application-detail') ?>";
-                    }else{
-                        M.toast({html: 'Something went wrong!, please try again Later', classes: 'red', displayLength : 5000 });
-                    }
-                })
-                .catch(error => {
-                    this.loader=false;
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                })
+                if ((this.markError == '') && (this.salError=='')){
+                    this.loader=true;
+                    const formData = new FormData();
+                    formData.append('sname', this.student.name);
+                    formData.append('sphone', this.student.phone);
+                    formData.append('sfather', this.student.father);
+                    formData.append('smother', this.student.mother);
+                    formData.append('saddress', this.student.address);
+                    formData.append('ipclass', this.institute.pclass);
+                    formData.append('ipin', this.institute.pin);                
+                    formData.append('iname', this.institute.name);
+                    formData.append('italluk', this.institute.talluk);
+                    formData.append('idistrict', this.institute.district);
+                    formData.append('pclass', this.previous.class);
+                    formData.append('pmarks', this.previous.marks);
+                    formData.append('pcard', this.previous.card);
+                    formData.append('incard', this.industry.working);
+                    formData.append('inpname', this.industry.pname);
+                    formData.append('insalary', this.industry.salary);
+                    formData.append('inrelation', this.industry.relation);
+                    formData.append('inpin', this.industry.pin);
+                    formData.append('intalluk', this.industry.talluk);
+                    formData.append('indistrict', this.industry.district);
+                    formData.append('inname', this.industry.name);
+                    formData.append('inaddress', this.industry.address);
+                    formData.append('clow', this.caste.low);
+                    formData.append('cfile', this.file1);
+                    formData.append('anumber', this.adhaar.number);
+                    formData.append('axerox', this.file2);
+                    formData.append('bname', this.bank.name);
+                    formData.append('branch', this.bank.branch);
+                    formData.append('bifsc', this.bank.ifsc);
+                    formData.append('baccount', this.bank.account);
+                    formData.append('bpassbook', this.file3);                          
+                    formData.append('uniq', this.uniq);                          
+                    formData.append('terms', this.terms);                          
+                    formData.append('aid', this.aid);                          
+                    axios.post('<?php echo base_url() ?>student/submit-application', formData,
+                    { headers: { 'Content-Type': 'multipart/form-data' } })
+                    .then(response => {
+                        this.loader=false;
+                        if(response.data == 'error'){
+                            M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                        }else if(response.data == '1'){
+                            M.toast({html: 'Your application has been submitted successfully, <br> you\'ll get notify once its get approved.', classes: 'green', displayLength : 5000 });
+                            window.location.href = "<?php echo base_url('student/application-detail') ?>";
+                        }else{
+                            M.toast({html: 'Something went wrong!, please try again Later', classes: 'red', displayLength : 5000 });
+                        }
+                    })
+                    .catch(error => {
+                        this.loader=false;
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+                }else{
+                    M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                }
+
+                
 
            },
  

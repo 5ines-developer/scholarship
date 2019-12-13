@@ -312,7 +312,7 @@
     var app = new Vue({
         el: '#app',
         data: {
-
+            loader:false,
             currentpsw: '',
             npsw: '',
             cpsw: '',
