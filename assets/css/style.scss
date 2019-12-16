@@ -1788,8 +1788,6 @@ table.dataTable thead td {
 }
 
 .reg-success,
-
-
 .reg-success,
 .bg {
     background: rgba(0, 0, 0, .7) url('../image/rg-bg.jpg');
@@ -2409,33 +2407,31 @@ table.dataTable thead td {
 }
 
 // school pramanapatra
-
-.bold{
+.bold {
     font-weight: 700;
 }
 
 #shcoolapp {
-    ol{
+    ol {
         padding: 0 15px !important;
         margin-bottom: 10px;
-        li{
+        li {
             margin-bottom: 15px;
-            div{
+            div {
                 margin-left: 20px;
-                p{
+                p {
                     text-align: justify;
                     line-height: 35px;
                     margin: 0px;
-                    span{
+                    span {
                         min-width: 150px;
                         display: inline-block;
                         text-align: center;
                         font-weight: 600;
                         position: relative;
-                        margin:0 10px;
-                        top:-4px;
-
-                        &:after{
+                        margin: 0 10px;
+                        top: -4px;
+                        &:after {
                             content: '';
                             position: absolute;
                             height: 1px;
@@ -2446,23 +2442,21 @@ table.dataTable thead td {
                             bottom: 6px;
                         }
                     }
-                    
                 }
             }
         }
     }
-
-    .foo-address{
-        p{
+    .foo-address {
+        p {
             line-height: 30px;
             overflow: hidden;
         }
-        .dashed-line{
+        .dashed-line {
             position: relative;
             display: inline-block;
             margin-left: 10px;
             top: -4px;
-            &:after{
+            &:after {
                 content: '';
                 position: absolute;
                 height: 1px;
@@ -2473,5 +2467,13 @@ table.dataTable thead td {
                 min-width: 500px;
             }
         }
+    }
+}
+
+.app-item-content.center {
+    img {
+        height: 100px;
+        width: auto;
+        margin: auto !important;
     }
 }

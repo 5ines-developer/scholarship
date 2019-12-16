@@ -29,6 +29,7 @@ class auth extends CI_Controller {
                         $session_data = array(
                             'sinmail'   => $email,
                             'scinds'    => $result['id'],
+                            'sccomp'    => $result['industry_id'],
                         ); 
 
                         $this->session->set_userdata($session_data); 

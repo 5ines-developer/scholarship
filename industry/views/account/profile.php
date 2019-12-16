@@ -12,85 +12,18 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <header class="">
-            <div class="top-header">
-                <div class="container ">
-                    <div class="row m0">
-
-                        <div class="col s4 m4 push-m4">
-                            <div class="center">
-                                <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
-                            </div>
-                        </div>
-                        <div class="col s8 m4 pull-m4">
-                            <div class="center-align p17 frt">
-                                <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
-                                <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
-                            </div>
-                        </div>
-                        <div class="col s4 hide-on-small-only">
-                            <div class="center p17">
-                                <p class="top-header-title1">Government of Karnataka</p>
-                                <p class="top-header-title2">Karnataka Labour Welfare Board</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <nav class="nav-block">
-                <div class="nav-wrapper container-wrap1">
-                    <!-- <a href="#" class="brand-logo">Logo</a> -->
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <ul id="nav-mobile1" class="left hide-on-med-and-down">
-                        <li><a href="#!">Home</a></li>
-                    </ul>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li>
-                            <a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>
-
-            <ul class="sidenav" id="mobile-demo">
-                <li><a href="#!">Home</a></li>
-                <li><a href="#!">Apply Scholarship</a></li>
-                <li><a href="#!">Scholarship Status</a></li>
-                <li><a href="#!">Application Detail</a></li>
-                <li><a href="#!">Account Settings</a></li>
-                <li><a href="#!">Logout</a></li>
-
-            </ul>
-
-            <ul id='dropdown1' class='dropdown-content'>
-                <li><a href="#!">Account Settings</a></li>
-                <li><a href="#!">Application Status</a></li>
-                <li><a href="#!">Logout</a></li>
-
-            </ul>
-        </header>
+       <?php $this->load->view('include/header'); ?>
 
         <!-- Body form  -->
         <section class="board">
             <div class="container-wrap1">
                 <div class="row m0">
-                    <div class="col s12 m3 hide-on-med-and-down">
-                        <div class="menu-left">
-                            <ul>
-                                <li><a href=" ">Hr List</a></li>
-                                <li><a href=" ">Scholarship Request List</a></li>
-                                <li><a href=" ">Scholarship Approval List</a></li>
-                                <li><a href=" ">Scholarship Reject List</a></li>
-                                <li><a href=" ">Account Settings</a></li>
-                                <li><a href=" ">Change Password</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <?php $this->load->view('include/menu'); ?>
                     <!-- End menu-->
 
                     <div class="col s12 m8">
@@ -101,62 +34,57 @@
                                         <div class="col s12">
                                             <div class="app-detail-item">
                                                 <div class="app-item-heading">
-                                                    <p>COMPANY DETAILS</p>
+                                                    <p>INDUSTRY DETAILS</p>
                                                 </div>
                                                 <div class="app-item-body pl15 pr15">
                                                     <div class="row ">
                                                         <a href="#edtModal" class="waves-effect waves-light editButton modal-trigger"> <i class="material-icons tiny"> edit </i> Edit</a>
-                                                        <div class="col s12 l4">
+                                                        <div class="col s12 l6">
                                                             <ul>
                                                                 <li>
-                                                                    <p class="app-item-content-head">Company Name</p>
-                                                                    <p class="app-item-content">Example</p>
+                                                                    <p class="app-item-content-head">Industry Name</p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->indNAme))?$info->indNAme:'---'; ?></p>
                                                                 </li>
                                                                 <li>
-                                                                    <p class="app-item-content-head">Company Reg.No</p>
-                                                                    <p class="app-item-content">Example</p>
+                                                                    <p class="app-item-content-head">Industry Reg.No</p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->reg_id))?$info->reg_id:'---'; ?></p>
                                                                 </li>
                                                                 <li>
                                                                     <p class="app-item-content-head">GSTIN No</p>
-                                                                    <p class="app-item-content">Example</p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->gst_no))?$info->gst_no:'---'; ?></p>
                                                                 </li>
                                                                 <li>
                                                                     <p class="app-item-content-head">PAN Card No</p>
-                                                                    <p class="app-item-content">Example</p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->pan_no))?$info->pan_no:'---'; ?></p>
                                                                 </li>
                                                                 <li>
                                                                     <p class="app-item-content-head">Email</p>
-                                                                    <p class="app-item-content">Example</p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->email))?$info->email:'---'; ?></p>
                                                                 </li>
                                                                 <li>
                                                                     <p class="app-item-content-head">Mobile No</p>
-                                                                    <p class="app-item-content">Example</p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->mobile))?$info->mobile:'---'; ?></p>
                                                                 </li>
 
                                                             </ul>
                                                         </div>
-                                                        <div class="col s12 l8">
+                                                        <div class="col s12 l6">
                                                             <ul>
                                                                 <li>
-                                                                    <p class="app-item-content-head">Principal Name </p>
-                                                                    <p class="app-item-content">Example</p>
+                                                                    <p class="app-item-content-head">Director Name </p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->director))?$info->director:'---'; ?></p>
                                                                 </li>
                                                                 <li>
                                                                     <p class="app-item-content-head">District</p>
-                                                                    <p class="app-item-content">Example</p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->district))?$info->district:'---'; ?></p>
                                                                 </li>
                                                                 <li>
                                                                     <p class="app-item-content-head">Taluk</p>
-                                                                    <p class="app-item-content">Example</p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->taluk))?$info->taluk:'---'; ?></p>
                                                                 </li>
                                                                 <li>
-                                                                    <p class="app-item-content-head">Pin Code</p>
-                                                                    <p class="app-item-content">Example</p>
-                                                                </li>
-                                                                <li>
-                                                                    <p class="app-item-content-head">Full address Address</p>
-                                                                    <p class="app-item-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                                                                        mus
+                                                                    <p class="app-item-content-head">Full Address</p>
+                                                                    <p class="app-item-content"><?php echo (!empty($info->address))?$info->address:'---'; ?>
                                                                     </p>
                                                                 </li>
                                                             </ul>
@@ -168,15 +96,15 @@
                                         <div class="col s12 m6">
                                             <div class="app-detail-item">
                                                 <div class="app-item-heading">
-                                                    <p>Company Registration </p>
+                                                    <p>Industry Register file</p>
                                                 </div>
                                                 <div class="app-item-body">
                                                     <div class="row m0">
                                                         <div class="col s12">
                                                             <ul>
                                                                 <li>
-                                                                    <div class="app-item-content">
-                                                                        <img class="responsive-img" :src="certificate" alt="">
+                                                                    <div class="app-item-content center">
+                                                                        <img class="responsive-img" :src="certificate" alt="" >
                                                                         <button class="upload-btn " @click="SelectFile('regfile')"><i class="material-icons ">backup </i> Upload</button>
                                                                     </div>
                                                                 </li>
@@ -197,9 +125,9 @@
                                                         <div class="col s12">
                                                             <ul>
                                                                 <li>
-                                                                    <div class="app-item-content">
-                                                                        <img class="responsive-img" :src="signature" alt="">
-                                                                        <button class="upload-btn " @click="SelectFile('signature')"><i class="material-icons ">backup </i> Upload</button>
+                                                                    <div class="app-item-content center">
+                                                                        <img class="responsive-img" :src="gst" alt="">
+                                                                        <button class="upload-btn " @click="SelectFile('gst')"><i class="material-icons ">backup </i> Upload</button>
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -219,9 +147,9 @@
                                                         <div class="col s12">
                                                             <ul>
                                                                 <li>
-                                                                    <div class="app-item-content">
-                                                                        <img class="responsive-img" :src="seal" alt="">
-                                                                        <button class="upload-btn " @click="SelectFile('seal')"><i class="material-icons ">backup </i> Upload</button>
+                                                                    <div class="app-item-content center">
+                                                                        <img class="responsive-img" :src="pan" alt="">
+                                                                        <button class="upload-btn " @click="SelectFile('pan')"><i class="material-icons ">backup </i> Upload</button>
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -246,68 +174,61 @@
         <input type="file" id="profileimg" @change="upload" ref="fileInput" class="hide" accept="image/*">
         <!-- End Body form  -->
         <div id="edtModal" class="modal modal-fixed-footer">
-            <form action="<?php echo base_url() ?>update-account" method="post">
+            <form action="<?php echo base_url() ?>dashboard/update" method="post">
                 <div class="modal-content">
                     <h5>Edit Detail</h5>
                     <div class="row m0">
                         <div class="input-field col m6">
-                            <input id="iname" value="" name="cname" type="text" required class="validate">
-                            <label for="cname">Company Name</label>
-                        </div>
-
-                        <div class="input-field col m6">
-                            <input id="email" name="email" type="email" value="" required class="validate">
-                            <label for="email">Email</label>
+                            <input id="iname" readonly value="<?php echo (!empty($info->indNAme))?$info->indNAme:''; ?>" name="iname" type="text" required class="validate">
+                            <label for="iname">Industry Name</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <select name="taluk" required>
+                            <select name="taluk" required id="taluk">
                                 <option value="" disabled >Select Taluk</option>
+                                <?php
+                                if(!empty($taluk)){
+                                    foreach ($taluk as $key => $value) {
+                                       echo '<option value="'.$value->id.'" ';if($info->talluk == $value->id){ echo 'selected'; } echo ' >'.$value->title.'</option>';
+                                    } }                              
+                                ?>
                             </select>
-                            <label>Taluk</label>
+                            <label for="taluk">Taluk</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <select name="district" required>
+                            <select name="district" required id="district">
                                 <option value="" disabled >Select District</option>
+                                <?php
+                                if(!empty($district)){
+                                    foreach ($district as $key => $value) {
+                                       echo '<option value="'.$value->id.'" ';if($info->district == $value->id){ echo 'selected'; } echo ' >'.$value->title.'</option>';
+                                    } }                              
+                                ?>
                             </select>
-                            <label>District</label>
+                            <label for="district">District</label>
                         </div>
-
                         <div class="input-field col m6">
-                            <input id="pin" name="pin" value="" required type="number" class="validate">
-                            <label for="pin">Pin Code</label>
+                            <input id="director" value="<?php echo (!empty($info->director))?$info->director:''; ?>" type="text" name="director" class="validate">
+                            <label for="director">Director Name</label>
                         </div>
-
-                        <div class="input-field col s12 m6">
-                            <textarea id="address" required name="address" class="materialize-textarea"></textarea>
-                            <label for="address">Full Address</label>
-                        </div>
-
                         <div class="input-field col m6">
-                            <input id="number" value="" name="number" type="number" required class="validate">
+                            <input id="number" value="<?php echo (!empty($info->mobile))?$info->mobile:''; ?>" name="number" type="number" required class="validate">
                             <label for="number">Phone Number</label>
                         </div>
 
-                        <div class="input-field col m6">
-                            <input id="prname" value="" type="text" name="prname" required class="validate">
-                            <label for="prname">Principal Name</label>
-                        </div>
-                        <!-- <div class="card-full-divider clearfix"></div> -->
-
                         <div class="input-field col m6 ">
-                            <input id="regno" required name="regno" value="" type="text" class="validate">
-                            <label for="regno">Company Registration Number</label>
+                            <input id="gstno" name="gstno" value="<?php echo (!empty($info->gst_no))?$info->gst_no:''; ?>" type="text" class="validate">
+                            <label for="gstno">Industry  GSTIN Number</label>
                         </div>
 
 
                         <div class="input-field col m6 ">
-                            <input id="regno" required name="regno" value="" type="text" class="validate">
-                            <label for="regno">Company  GSTIN Number</label>
+                            <input id="panno" value="<?php echo (!empty($info->pan_no))?$info->pan_no:''; ?>" name="panno" value="" type="text" class="validate">
+                            <label for="panno">Industry PAN card Number</label>
                         </div>
 
-
-                        <div class="input-field col m6 ">
-                            <input id="regno" required name="regno" value="" type="text" class="validate">
-                            <label for="regno">Company PAN card Number</label>
+                        <div class="input-field col s12 m12">
+                            <textarea id="address" required name="address" class="materialize-textarea"><?php echo (!empty($info->address))?$info->address:''; ?></textarea>
+                            <label for="address">Full Address</label>
                         </div>
 
 
@@ -324,19 +245,17 @@
         </div>
         <!-- footer -->
 
-        <footer class="pt20 pb20">
-            <div class="footer-copyright">
-                <div class="container center">
-                    © Copyright 2019. All Rights Reserved
-                </div>
-            </div>
-        </footer>
+        <?php $this->load->view('include/footer'); ?>
+        
         <!-- End footer -->
     </div>
 
 
 
     <!-- scripts -->
+    <script>
+        <?php $this->load->view('include/msg'); ?>
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.modal');
@@ -350,9 +269,10 @@
             data: {
                 type: '',
                 file: '',
-                seal: '',
-                signature: '',
-                certificate: ''
+                loader:false,
+                pan: '<?php echo (!empty($info->pancard))?base_url().$info->pancard:''; ?>',
+                gst: '<?php echo (!empty($info->gst))?base_url().$info->gst:''; ?>',
+                certificate: '<?php echo (!empty($info->register_doc))?base_url().$info->register_doc:''; ?>'
 
             },
             mounted() {
@@ -364,6 +284,37 @@
                     this.$refs.fileInput.click()
                 },
                 upload(e) {
+                    loader:true;
+                    const file = e.target.files[0];
+                    formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('type', this.type);
+                    if(this.type == 'regfile'){
+                        this.certificate = URL.createObjectURL(file);
+                    }
+                    else if(this.type == 'gst'){
+                        this.gst = URL.createObjectURL(file);
+                    }
+                    else{
+                        this.pan = URL.createObjectURL(file);
+                    }
+                    
+                    axios.post('<?php echo base_url() ?>industry-doc', formData,{
+                            headers: {
+                            'Content-Type': 'multipart/form-data'
+                            } 
+                    })
+                    .then(function (response) {
+                        loader:false;
+                        var msg = response.data.msg;
+                        M.toast({html: msg, classes: 'green darken-2'});
+                        self.disabled = true;
+                    })
+                    .catch(function (error) {
+                        loader:false;
+                        var msg = error.response.data.msg;
+                        M.toast({html: msg, classes: 'red darken-4'});
+                    })
 
                 }
             }

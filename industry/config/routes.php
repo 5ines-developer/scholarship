@@ -12,10 +12,17 @@ $route['security']                  = 'auth/security';
 $route['logout']                    = 'auth/logout';
 $route['forgot-password']           = 'auth/forgot_pass';
 $route['forgot-verify/(:any)']      = 'auth/forgot_verify/$1';
-$route['reset-password']           = 'auth/reset_password';
+$route['reset-password']           	= 'auth/reset_password';
 
 // account settings
-$route['dashboard']                  = 'account/index';
+$route['dashboard']                 = 'account/index';
+$route['dashboard/update']          = 'account/update';
+$route['industry-doc']           	= 'account/industry_doc';
+$route['change-password']          = 'account/changePassword';
+$route['update-password']          = 'account/update_password';
+
+
+
 
 
 $route['404_override'] = '';
