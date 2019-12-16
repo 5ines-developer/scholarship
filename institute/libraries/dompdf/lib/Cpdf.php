@@ -464,28 +464,28 @@ class Cpdf
                         // Named with limited valid values
                         case 'NonFullScreenPageMode':
                             if (!in_array($v, array('UseNone', 'UseOutlines', 'UseThumbs', 'UseOC'))) {
-                                break;
+                                continue 2;
                             }
                             $o['info'][$k] = $v;
                             break;
 
                         case 'Direction':
                             if (!in_array($v, array('L2R', 'R2L'))) {
-                                break;
+                                continue 2;
                             }
                             $o['info'][$k] = $v;
                             break;
 
                         case 'PrintScaling':
                             if (!in_array($v, array('None', 'AppDefault'))) {
-                                break;
+                                continue 2;
                             }
                             $o['info'][$k] = $v;
                             break;
 
                         case 'Duplex':
                             if (!in_array($v, array('None', 'AppDefault'))) {
-                                break;
+                                continue 2;
                             }
                             $o['info'][$k] = $v;
                             break;
@@ -3876,9 +3876,13 @@ EOT;
      */
     function stream($filename = "document.pdf", $options = array())
     {
-        if (headers_sent()) {
-            die("Unable to stream pdf: headers already sent");
+        $output = ob_get_clean();
+        if ( headers_sent()) {
+            echo $output;
         }
+//        if (headers_sent()) {
+//            die("Unable to stream pdf: headers already sent");
+//        }
 
         if (!isset($options["compress"])) $options["compress"] = true;
         if (!isset($options["Attachment"])) $options["Attachment"] = true;
@@ -4801,12 +4805,12 @@ EOT;
         imagesavealpha($img, false);
 
         // create temp alpha file
-        $tempfile_alpha = @tempnam($this->tmp, "cpdf_img_");
+        $tempfile_alpha = tempnam($this->tmp, "cpdf_img_");
         @unlink($tempfile_alpha);
         $tempfile_alpha = "$tempfile_alpha.png";
 
         // create temp plain file
-        $tempfile_plain = @tempnam($this->tmp, "cpdf_img_");
+        $tempfile_plain = tempnam($this->tmp, "cpdf_img_");
         @unlink($tempfile_plain);
         $tempfile_plain = "$tempfile_plain.png";
 

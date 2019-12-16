@@ -20,7 +20,7 @@
     to { top: 200px; } /* line 20 */
 }
 
-@IMPORT uRL(test.css); /* line 23 */
+@IMPORT url(test.css); /* line 23 */
 
 body {
     background: #FFFFFF url("http://somesite.com/images/someimage.gif") repeat top center; /* line 25 */

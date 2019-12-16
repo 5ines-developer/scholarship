@@ -70,7 +70,35 @@ class Staffs extends CI_Controller {
             return false;
         }
     }
+    public function pdfTest()
+    {
+        $this->load->library('pdf');
+        // $this->load->view('dashboard/pdf');
+        
+        $this->pdf->load_view('dashboard/pdf');
+        // $this->pdf->set_option('DOMPDF_UNICODE_ENABLED', true);
+        $this->pdf->setPaper('A5', 'portrait');
+        $this->pdf->render();
+        $this->pdf->stream("welcome.pdf", array("Attachment"=>0));
+    }
+
+    public function mpdf()
+    {
+        //     load library
+        $this->load->library('pdf');
+        $pdf = $this->pdf->load();
+       // retrieve data from model
+        
+        $data['title'] = "items";
+        ini_set('memory_limit', '256M'); 
+       // boost the memory limit if it's low ;)
+        $html = $this->load->view('dashboard/pdf', $data, true);
+       // render the view into HTML
+        $pdf->WriteHTML($html); // write the HTML into the PDF
+        $output = 'itemreport' . date('Y_m_d_H_i_s') . '_.pdf';
+        $pdf->Output("$output", 'I'); // save to file because we can
+        exit();
+    }
 
 }
-
 /* End of file Staffs.php */

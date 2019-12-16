@@ -411,9 +411,9 @@ class Cellmap
         $rows = $this->_frames[$key]["rows"];
         $h = 0;
         foreach ($rows as $i) {
-            if (!isset($this->_rows[$i])) {
+            /*if (!isset($this->_rows[$i])) {
                 throw new Exception("The row #$i could not be found, please file an issue in the tracker with the HTML code");
-            }
+            }*/
 
             $h += $this->_rows[$i]["height"];
         }
