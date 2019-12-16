@@ -293,7 +293,7 @@ class auth extends CI_Controller {
 
     }
 
-     /**
+    /**
     * company forgot password - reset password 
     * @url      : forgot-password
     * @param    : null.
@@ -326,6 +326,90 @@ class auth extends CI_Controller {
             }
         }else{
             redirect('dashboard','refresh');
+        }
+    }
+
+
+    /**
+    * company add request - loasd-view
+    * @url      : add-request
+    * @param    : null.
+    **/
+
+    public function requestAdd(Type $var = null)
+    {
+
+        if($this->session->userdata('scinds') != ''){ redirect('dashboard','refresh'); }
+        if($this->input->post()){
+           $this->submitRequest();
+        }else{
+            $data['title'] = 'Industry Add Request';
+            $data['taluk'] = $this->m_auth->getTaluk();
+            $data['district'] = $this->m_auth->getDistrict(); 
+            $this->load->view('auth/company-request', $data, FALSE);  
+        }
+    }
+
+    public function submitRequest($var = null)
+    {
+        $insert = array(
+            'email'          => $this->input->post('email'),
+            'mobile'         => $this->input->post('phone'),
+            'talluk'         => $this->input->post('taluk'),
+            'district'       => $this->input->post('district'),
+            'address'        => $this->input->post('address'),
+            'company'    => $this->input->post('company'),
+        );
+
+        if ((empty($_FILES['reg_doc']['tmp_name']))) {
+            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            redirect('register');
+        }else{
+            $config['upload_path'] = './reg-doc';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_width'] = 0;
+            $config['encrypt_name'] = true;
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+            if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+            $this->upload->do_upload('reg_doc');
+            $upload_data = $this->upload->data();
+            $reg = 'reg-doc/'.$upload_data['file_name'];
+
+            $insert['register_doc'] = $reg;
+        }
+        $output = $this->m_auth->addRequest($insert);
+
+        
+        if(!empty($output)){
+            $this->sendRequest($insert);
+        }else{
+            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+        }
+
+        redirect('company-request');
+
+    }
+
+    public function sendRequest($insert = null)
+    {
+        $data['result'] = $insert;
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/request', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to('prathwi@5ine.in');
+        $this->email->subject('Industry Add Requset'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
         }
     }
 

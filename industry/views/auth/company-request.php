@@ -26,10 +26,10 @@
                     <div class="card instreg">
                         <div class="card-content">
                             <div class="card-outer-heading">
-                            Industry Registration
+                            Industry Add Request
                             </div>
                             <div class="card-body">
-                                <form ref="form" @submit.prevent="checkForm"  action="<?php echo base_url('register') ?>" method="post" enctype="multipart/form-data">
+                                <form ref="form" @submit.prevent="checkForm"  action="<?php echo base_url('company-request') ?>" method="post" enctype="multipart/form-data">
                                     <div class="input-field col m6">
                                         <input id="email" name="email" type="email" class="validate" required="" v-model="email"  @change="emailCheck()">
                                         <label for="email">Email</label>
@@ -63,7 +63,7 @@
                                         <label for="district">District</label>
                                     </div>
                                     <div class="input-field col s12 m6">
-                                        <select id="act" name="act" required="" class="select2" v-model="act" @change="getCompany()" >
+                                        <select id="act" name="act" required="" class="select2" v-model="act">
                                             <option value="" disabled selected>Choose your option</option>
                                             <option value="1">Labour Act</option>
                                             <option value="2">Factory Act</option>                                            
@@ -72,18 +72,13 @@
                                     </div>
                                     <div class="row m0">                                    
                                         <div class="input-field col m6">
-                                            <select id="company" name="company" v-model="company">
-                                                <option value="" disabled >Select Your Industry</option>
-                                                <option v-for="comp in companies" v-bind:value="comp.id">
-                                                    {{ comp.name }}
-                                                </option>                                           
-                                            </select>
+                                        <input id="company" type="text" name="company" class="c_conreg validate" required="">
+                                        <label for="company">Industry Name</label>
                                         </div>
                                     </div>
                                     <div class="row m0">  
                                         <div class="input-field col m6">
-                                            <input id="c_conreg" type="text" readonly class="c_conreg validate" required="">
-                                            <input id="c_comp" type="hidden" name="c_comp" >
+                                            <input id="c_conreg" type="text" class="c_conreg validate" required="">
                                             <label class="crg" for="c_conreg">Industry Reg No</label>
                                         </div>
                                         <div class="file-field input-field col s12 m6">
@@ -95,17 +90,8 @@
                                             <input class="file-path validate" placeholder="Upload Industry Reg Doc" type="text">
                                         </div>
                                     </div> 
-                                    </div>
-                                    
-                                    <div class="input-field col m6">
-                                        <input id="password" type="password" class="c_password" class="validate" name="password"   required="" v-model="psw">
-                                        <label for="password">Password</label>
-                                    </div>
-                                    <div class="input-field col m6">
-                                        <input id="cpassword" @keyup="checkCpsw()" type="password" class="c_confpassword validate" name="cpassword" required="" v-model="cpsw">
-                                        <label for="cpassword">Confirm Password</label>
-                                        <span class="helper-text red-text">{{confError}}</span>
-                                    </div>                                                                       
+                                    </div>                                    
+                                                                                                           
                                     <div class="input-field col s12 m12">
                                         <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
@@ -118,9 +104,6 @@
                                     <div class="input-field col m12 ">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                         <span class="com-reg">If You Have an Account ?<a href="<?php echo base_url('login') ?>">Login</a></span>
-                                    </div>
-                                    <div class="input-field col m12 ">
-                                        <p class="click-com">If Your Industry is Not Available in Above List - <a href="<?php echo base_url('company-request') ?>">Click Here To Submit your Details</a></p>
                                     </div>
                                     <div class="clearfix"></div>
 
@@ -143,33 +126,11 @@
 
     <!-- scripts -->
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
     <script>
     <?php $this->load->view('include/msg'); ?>
 </script>
     <script>
-$(document).ready(function() {
-    $('#company').select2({width: "100%"});
-    
-    
-    $(document).on('change','#company',function(){
-        var cmp = $(this).val();
-        $('#c_comp').val(cmp);
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url('auth/companyChange') ?>",
-            data: { comp : cmp},
-            dataType: "html",
-            success: function (response) {
-                $('#c_conreg').val(response);
-                $(".crg").addClass('active');
-                
-            }
-        });
 
-    });
-});
 
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(document.querySelectorAll('.select2'));
@@ -181,17 +142,12 @@ $(document).ready(function() {
             data: {
                 mobile: '',
                 email: '',
-                psw: '',
-                cpsw: '',
                 emailError: '',
                 mobileError: '',
-                confError:'',
                 captcha:'',
-                company:'',
                 active:false,
                 istrue:false,
                 act:'',
-                companies:[],
                 loader:false,
 
             },
@@ -237,32 +193,8 @@ $(document).ready(function() {
                     }
                 } )
             },
-            getCompany(){
-                this.loader = true;
-                const formData = new FormData();
-                formData.append('act',this.act);
-                axios.post('<?php echo base_url('auth/getCompany') ?>', formData)
-                .then(response => {
-                    this.companies = response.data;
-                    this.loader = false;
-                }).catch(error =>{
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                    this.loader = false;
-                } )
-            },
-            // check Password matching
-            checkCpsw() {
-                if (this.psw != this.cpsw) {
-                    this.confError = 'Password must match with previous entry!';
-
-                } else {
-                    this.confError = '';
-                }
-            },
             checkForm() {
-                if ((this.confError == '') && (this.mobileError == '') && (this.emailError == '')) {
+                if ((this.mobileError == '') && (this.emailError == '')) {
 
                     this.$refs.form.submit();
 

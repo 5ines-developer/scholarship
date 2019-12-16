@@ -137,6 +137,16 @@ function can_login($email, $password)
         }
     }
 
+    public function addRequest($insert = null)
+    {
+        $result = $this->db->where('company',$insert['company'])->get('industry_add');
+        if ($result->num_rows() > 0) {
+           return false;
+        }else{         
+           return $this->db->insert('industry_add', $insert);
+        }
+    }
+
 }
 
 /* End of file M_auth.php */

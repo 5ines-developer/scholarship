@@ -14,6 +14,11 @@ $route['forgot-password']           = 'auth/forgot_pass';
 $route['forgot-verify/(:any)']      = 'auth/forgot_verify/$1';
 $route['reset-password']           	= 'auth/reset_password';
 
+//company add request
+$route['company-request']           	= 'auth/requestAdd';
+
+
+
 // account settings
 $route['dashboard']                 = 'account/index';
 $route['dashboard/update']          = 'account/update';
