@@ -117,7 +117,7 @@
                                     
                                     <div class="input-field col m12 ">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
-                                        <span class="com-reg">If You Have an Account ?<a href="#">Login</a></span>
+                                        <span class="com-reg">If You Have an Account ?<a href="<?php echo base_url('login') ?>">Login</a></span>
                                     </div>
                                     <div class="input-field col m12 ">
                                         <p class="click-com">If Your Industry is Not Available in Above List - <a href="#">Click Here To Submit your Details</a></p>

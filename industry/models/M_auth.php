@@ -21,8 +21,8 @@ class M_auth extends CI_Model {
           //vue js phone check exist or not
     public function mobile_check($phone='')
     {
-        $this->db->where('phone', $phone);
-        $result = $this->db->get('industry');
+        $this->db->where('mobile', $phone);
+        $result = $this->db->get('industry_register');
            if($result->num_rows() > 0){
             return true;
         }else{
@@ -34,7 +34,7 @@ class M_auth extends CI_Model {
         public function email_check($email='')
         {
             $this->db->where('email', $email);
-            $result = $this->db->get('industry');
+            $result = $this->db->get('industry_register');
             if($result->num_rows() > 0){
                 return true;
             }else{
@@ -48,14 +48,14 @@ class M_auth extends CI_Model {
         }
         
    // add school
-   public function addCompany($insert = null,$company = null)
+   public function addCompany($insert = null)
    {     
-     $this->db->where('status !=','1')->where('ref_id',null)->where('id', $company)->update('industry',$insert);
-     if($this->db->affected_rows() > 0){
-      return true;
-      }else{
-         return false;
-      }
+     $result = $this->db->where('industry_id',$insert['industry_id'])->get('industry_register');
+     if ($result->num_rows() > 0) {
+        return false;
+     }else{         
+        return $this->db->insert('industry_register', $insert);
+     }
      
    }
 
@@ -64,7 +64,7 @@ class M_auth extends CI_Model {
 public function activateAccount($id = null)
 {
    $this->db->where('ref_id', $id);
-   $this->db->update('industry', array('status'=> 1,'ref_id' => random_string('alnum',10)));
+   $this->db->update('industry_register', array('status'=> 1,'ref_id' => random_string('alnum',10)));
    if($this->db->affected_rows() > 0){
       return true;
    }else{
@@ -79,7 +79,7 @@ function can_login($email, $password)
     $this->db->where('email', $email);  
     $this->db->where('status', '1');  
     $this->db->where('password', $password);  
-    $result = $this->db->get('industry')->row_array();
+    $result = $this->db->get('industry_register')->row_array();
     if (!empty($result)) {
       return $result;
     } 
@@ -96,7 +96,7 @@ function can_login($email, $password)
     **/
     public function forgotPassword($email='',$ref_id='')
     {
-        $this->db->where('email', $email)->update('industry',array('ref_id' =>$ref_id));
+        $this->db->where('email', $email)->update('industry_register',array('ref_id' =>$ref_id));
         if ($this->db->affected_rows() > 0) {
             return true;
         }else{
@@ -111,7 +111,7 @@ function can_login($email, $password)
     **/
         public function forgotVerify($regid='', $newRegid='')
         {
-            $this->db->where('ref_id', $regid)->update('industry',array('ref_id' =>$newRegid));
+            $this->db->where('ref_id', $regid)->update('industry_register',array('ref_id' =>$newRegid));
             if ($this->db->affected_rows() > 0) {
                 return true;
             }else{
@@ -129,7 +129,7 @@ function can_login($email, $password)
      public function setPassword($datas, $ref_id)
     {
         $this->db->where('ref_id', $ref_id);
-        $query = $this->db->update('industry', $datas);
+        $query = $this->db->update('industry_register', $datas);
         if($this->db->affected_rows() > 0){
             return true;
         }else{

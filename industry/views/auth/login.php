@@ -42,7 +42,7 @@
                                         </div>
                                         <a href="<?php echo base_url('forgot-password') ?>" class="col mt15 mb15">Forgot Password?</a>
                                         <div class="input-field col s12">
-                                            <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>
+                                            <button class="waves-effect waves-light hoverable btn-theme btn">Login</button>
                                         </div>
                                     </form>
                                 </div>
@@ -55,7 +55,7 @@
                             <div class="contents">
                                 <p>Welcom To</p>
                                 <p>Karnataka Labour Welfare Board</p>
-                                <p>If You Dont Have an Account ? <a href="#!">Register</a></p>
+                                <p>If You Dont Have an Account ? <a href="<?php echo base_url('register') ?>">Register</a></p>
                             </div>
                         </div>
                     </div>

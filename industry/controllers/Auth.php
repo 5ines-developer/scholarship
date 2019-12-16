@@ -119,16 +119,15 @@ class auth extends CI_Controller {
 
         $insert = array(
             'email'          => $this->input->post('email'),
-            'phone'          => $this->input->post('phone'),
-            'taluq'          => $this->input->post('taluk'),
+            'mobile'         => $this->input->post('phone'),
+            'talluk'          => $this->input->post('taluk'),
             'district'       => $this->input->post('district'),
             'password'       => $this->input->post('password'),
             'address'        => $this->input->post('address'),
             'ref_id'         => random_string('alnum',16),
+            'industry_id'         => $this->input->post('c_comp'),
         );
         
-        $company =  $this->input->post('c_comp');
-
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
             redirect('register');
@@ -144,11 +143,11 @@ class auth extends CI_Controller {
             $upload_data = $this->upload->data();
             $reg = 'reg-doc/'.$upload_data['file_name'];
 
-            $insert['req_certificate'] = $reg;
+            $insert['register_doc'] = $reg;
 
         }
 
-        $output = $this->m_auth->addCompany($insert,$company);
+        $output = $this->m_auth->addCompany($insert);
 
         
         if(!empty($output)){
