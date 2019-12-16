@@ -13,55 +13,58 @@ class M_auth extends CI_Model {
       return $this->db->get('city')->result();
    }
 
-   // add school
-   public function addSchoolDetail($data = null)
+   public function getCompany($act = null)
    {
-      $this->db->insert('school', $data);
-      return $this->db->insert_id();
+      return $this->db->where('act',$act)->get('industry')->result();
    }
 
-   // aut
-   public function CreateAuth($data = null)
-   {
-      if($this->insertAuth($data['auth'])){
-         $this->db->insert('school_address', $data['school_address']);
-         if($this->db->affected_rows() > 0){
+          //vue js phone check exist or not
+    public function mobile_check($phone='')
+    {
+        $this->db->where('phone', $phone);
+        $result = $this->db->get('industry');
+           if($result->num_rows() > 0){
             return true;
-         }else{
+        }else{
             return false;
-         }
+        }
+    }
+
+        //vue js phone check exist or not
+        public function email_check($email='')
+        {
+            $this->db->where('email', $email);
+            $result = $this->db->get('industry');
+            if($result->num_rows() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function companyChange($id = null)
+        {
+            return $this->db->where('id', $id)->get('industry')->row('reg_id');
+        }
+        
+   // add school
+   public function addCompany($insert = null,$company = null)
+   {     
+     $this->db->where('status !=','1')->where('ref_id',null)->where('id', $company)->update('industry',$insert);
+     if($this->db->affected_rows() > 0){
+      return true;
       }else{
          return false;
       }
+     
    }
 
-   public function insertAuth($data = null)
-   {
-      $this->db->insert('school_auth', $data);
-      if($this->db->affected_rows() > 0){
-         return true;
-      }else{
-         return false;
-      }
-   }
 
 // activation
 public function activateAccount($id = null)
 {
    $this->db->where('ref_id', $id);
-   $this->db->update('school_auth', array('status'=> 2));
-   if($this->db->affected_rows() > 0){
-      return true;
-   }else{
-      return false;
-   }
-}
-// sett password
-public function set_password($data, $key)
-{
-   $this->db->where('ref_id', $key);
-   $this->db->update('school_auth', $data);
-
+   $this->db->update('industry', array('status'=> 1,'ref_id' => random_string('alnum',10)));
    if($this->db->affected_rows() > 0){
       return true;
    }else{
@@ -70,12 +73,13 @@ public function set_password($data, $key)
 }
 
 
-function can_login($username, $password)  
-{
 
-    $this->db->where('email', $username);  
+function can_login($email, $password)  
+{
+    $this->db->where('email', $email);  
     $this->db->where('status', '1');  
-    $result = $this->getUsers($password);
+    $this->db->where('password', $password);  
+    $result = $this->db->get('industry')->row_array();
     if (!empty($result)) {
       return $result;
     } 
@@ -84,55 +88,54 @@ function can_login($username, $password)
     }  
 }
 
-// check password
-function getUsers($password) 
-{
-    $query = $this->db->get('school_auth');
-    
-   
-    if ($query->num_rows() > 0) {
 
-        $result = $query->row_array();
-       
-        if ($this->bcrypt->check_password($password, $result['psw'])) {
-           
-            return $result;
-        } 
-        else {
-        
-            return array();
+   /**
+    * company forgot password - check phone
+    * @url      : forgot-password 
+    * @param    : email
+    **/
+    public function forgotPassword($email='',$ref_id='')
+    {
+        $this->db->where('email', $email)->update('industry',array('ref_id' =>$ref_id));
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }else{
+            return false;
         }
-    } 
-    else{
-        return array();
     }
-} 
+
+  /**
+    * company forgot password - check phone
+    * @url      : forgot-password 
+    * @param    : email
+    **/
+        public function forgotVerify($regid='', $newRegid='')
+        {
+            $this->db->where('ref_id', $regid)->update('industry',array('ref_id' =>$newRegid));
+            if ($this->db->affected_rows() > 0) {
+                return true;
+            }else{
+                return false;
+            }
+        }
 
 
-// check mail id is exist
-public function checkMail($email = null)
-{
-   $this->db->select('email, ref_id');
-   $query = $this->db->where('email', $email)->get('school_auth');
-   if($query->num_rows() > 0){
-      return $query->row();
-   }else{
-      return false;
-   }
-}
-
-// verify forgot password link
-public function verification($id = null)
-{
-   $this->db->where('ref_id', $id);
-   $query = $this->db->get('school_auth');
-   if($query->num_rows() > 0){
-      return $query->row();
-   }else{
-      return false;
-   }
-   
-}
+    
+  /**
+    * company forgot password - check phone
+    * @url      : forgot-password 
+    * @param    : email
+    **/
+     public function setPassword($datas, $ref_id)
+    {
+        $this->db->where('ref_id', $ref_id);
+        $query = $this->db->update('industry', $datas);
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
 

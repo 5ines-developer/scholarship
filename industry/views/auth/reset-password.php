@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Scholarship</title>
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
+        <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
     <style>
     .reg-block .fog-block-content .reg-right {background: #fff; padding: 0; }
 .reg-block .fog-block-content::after {
@@ -72,7 +75,7 @@
 </head>
 <body>
 
-     <?php $this->load->view('includes/header'); ?>
+     <?php $this->load->view('include/header'); ?>
 
     <!-- Registration form  -->
     <section class="reg-block row m0" id='app'>
@@ -84,30 +87,25 @@
                         <div class="form-block">
                             <div class="card-box">
                                 <div class="card-heading">
-                                    <p class="m0">Student Security Question</p>
+                                    <p class="m0">Student Forgot Password</p>
                                 </div>
-                                <form action="<?php echo base_url('student/security') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
-                                    <div class="for-title">
-                                        <p class="center-align">Setting a Security Question help us identify you as the owner of this account</p>
-                                    </div>
+                                <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('reset-password') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
                                 <div class="card-body row m0 pt15 pb15">
                                     <div class="input-field col s12">
-                                        <select name="qstn" required="">
-                                          <option value="" disabled selected>Select Your Question</option>
-                                          <?php  if (!empty($question)) {
-                                            foreach ($question as $key => $value) {
-                                                echo '<option value="'.$value->id.'">'.$value->question.'</option>';
-                                            } } ?>
-                                        </select>
-                                      </div>
-                                        <div class="input-field col s12">
-                                        <input  id="answer" name="answer" v-model="answer" type="text" class="validate" required>
-                                        <label for="answer">Answer</label>
+                                        <input  id="password" v-model="psw" name="password" type="password" class="validate" required>
+                                        <label for="password">Password</label>
                                     </div>
+                                    <div class="input-field col s12">
+                                        <input  id="cpassword" v-on:keyup="checkCpsw" name="cnpassword" v-model="cpsw" type="password" class="validate" required>
+                                        <label for="cpassword">Confirm Password</label>
+                                        <span class="helper-text red-text">{{confError}}</span>
+                                    </div>
+
+                                    <input type="hidden" name="rid" value="<?php echo (!empty($newRegid))?$newRegid:''; ?>">
+
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                     </div>
-                                    <a href="<?php echo base_url('student/login') ?>" class="col mt15 mb15">Nevermind, I remember my password</a>
                                 </div>
                             </form>
                             </div>
@@ -122,23 +120,46 @@
 
     <!-- footer -->
     
-  <?php $this->load->view('includes/footer'); ?>
+  <?php $this->load->view('include/footer'); ?>
               
-
-
-<!-- scripts -->
-<script src="<?php echo base_url() ?>assets/js/vue.js"></script>
-<script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
-<script>
-    <?php $this->load->view('includes/message'); ?>
-</script>
+   <script>
+        <?php $this->load->view('include/msg'); ?>
+    </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var instances = M.FormSelect.init(document.querySelectorAll('select'));
     });
 
 
-   
+    var app = new Vue({
+        el: '#app',
+        data: {
+            psw: '',
+            cpsw:'',
+            confError: '',
+
+            
+        },
+
+        methods:{
+
+            checkCpsw() {
+                if (this.psw != this.cpsw) {
+                    this.confError = 'Password must match with previous entry!';
+
+                } else {
+                    this.confError = '';
+                }
+            },
+
+            //check student email already exist
+            checkForm() {
+                if ((this.confError == '')) {
+                    this.$refs.form.submit();
+                } else {}
+            }
+        },
+    })
 </script>
 </body>
 </html>

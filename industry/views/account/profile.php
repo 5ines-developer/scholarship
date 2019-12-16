@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scholarship</title>
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header class="">
+            <div class="top-header">
+                <div class="container ">
+                    <div class="row m0">
+
+                        <div class="col s4 m4 push-m4">
+                            <div class="center">
+                                <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                            </div>
+                        </div>
+                        <div class="col s8 m4 pull-m4">
+                            <div class="center-align p17 frt">
+                                <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
+                                <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
+                            </div>
+                        </div>
+                        <div class="col s4 hide-on-small-only">
+                            <div class="center p17">
+                                <p class="top-header-title1">Government of Karnataka</p>
+                                <p class="top-header-title2">Karnataka Labour Welfare Board</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-block">
+                <div class="nav-wrapper container-wrap1">
+                    <!-- <a href="#" class="brand-logo">Logo</a> -->
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile1" class="left hide-on-med-and-down">
+                        <li><a href="#!">Home</a></li>
+                    </ul>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="#!">Home</a></li>
+                <li><a href="#!">Apply Scholarship</a></li>
+                <li><a href="#!">Scholarship Status</a></li>
+                <li><a href="#!">Application Detail</a></li>
+                <li><a href="#!">Account Settings</a></li>
+                <li><a href="#!">Logout</a></li>
+
+            </ul>
+
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!">Account Settings</a></li>
+                <li><a href="#!">Application Status</a></li>
+                <li><a href="#!">Logout</a></li>
+
+            </ul>
+        </header>
+
+        <!-- Body form  -->
+        <section class="board">
+            <div class="container-wrap1">
+                <div class="row m0">
+                    <div class="col s12 m3 hide-on-med-and-down">
+                        <div class="menu-left">
+                            <ul>
+                                <li><a href=" ">Hr List</a></li>
+                                <li><a href=" ">Scholarship Request List</a></li>
+                                <li><a href=" ">Scholarship Approval List</a></li>
+                                <li><a href=" ">Scholarship Reject List</a></li>
+                                <li><a href=" ">Account Settings</a></li>
+                                <li><a href=" ">Change Password</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End menu-->
+
+                    <div class="col s12 m8">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="row m0">
+                                    <div class="app-detail-items">
+                                        <div class="col s12">
+                                            <div class="app-detail-item">
+                                                <div class="app-item-heading">
+                                                    <p>COMPANY DETAILS</p>
+                                                </div>
+                                                <div class="app-item-body pl15 pr15">
+                                                    <div class="row ">
+                                                        <a href="#edtModal" class="waves-effect waves-light editButton modal-trigger"> <i class="material-icons tiny"> edit </i> Edit</a>
+                                                        <div class="col s12 l4">
+                                                            <ul>
+                                                                <li>
+                                                                    <p class="app-item-content-head">Company Name</p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="app-item-content-head">Company Reg.No</p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="app-item-content-head">GSTIN No</p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="app-item-content-head">PAN Card No</p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="app-item-content-head">Email</p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="app-item-content-head">Mobile No</p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col s12 l8">
+                                                            <ul>
+                                                                <li>
+                                                                    <p class="app-item-content-head">Principal Name </p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="app-item-content-head">District</p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="app-item-content-head">Taluk</p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="app-item-content-head">Pin Code</p>
+                                                                    <p class="app-item-content">Example</p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="app-item-content-head">Full address Address</p>
+                                                                    <p class="app-item-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                                                                        mus
+                                                                    </p>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <div class="app-detail-item">
+                                                <div class="app-item-heading">
+                                                    <p>Company Registration </p>
+                                                </div>
+                                                <div class="app-item-body">
+                                                    <div class="row m0">
+                                                        <div class="col s12">
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="app-item-content">
+                                                                        <img class="responsive-img" :src="certificate" alt="">
+                                                                        <button class="upload-btn " @click="SelectFile('regfile')"><i class="material-icons ">backup </i> Upload</button>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div class="app-detail-item">
+                                                <div class="app-item-heading">
+                                                    <p>GSTIN Certificate</p>
+                                                </div>
+                                                <div class="app-item-body">
+                                                    <div class="row m0">
+                                                        <div class="col s12">
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="app-item-content">
+                                                                        <img class="responsive-img" :src="signature" alt="">
+                                                                        <button class="upload-btn " @click="SelectFile('signature')"><i class="material-icons ">backup </i> Upload</button>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s12 m6">
+                                            <div class="app-detail-item">
+                                                <div class="app-item-heading">
+                                                    <p>PAN CARD</p>
+                                                </div>
+                                                <div class="app-item-body">
+                                                    <div class="row m0">
+                                                        <div class="col s12">
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="app-item-content">
+                                                                        <img class="responsive-img" :src="seal" alt="">
+                                                                        <button class="upload-btn " @click="SelectFile('seal')"><i class="material-icons ">backup </i> Upload</button>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End right board -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- End Body form  -->
+
+        <input type="file" id="profileimg" @change="upload" ref="fileInput" class="hide" accept="image/*">
+        <!-- End Body form  -->
+        <div id="edtModal" class="modal modal-fixed-footer">
+            <form action="<?php echo base_url() ?>update-account" method="post">
+                <div class="modal-content">
+                    <h5>Edit Detail</h5>
+                    <div class="row m0">
+                        <div class="input-field col m6">
+                            <input id="iname" value="" name="cname" type="text" required class="validate">
+                            <label for="cname">Company Name</label>
+                        </div>
+
+                        <div class="input-field col m6">
+                            <input id="email" name="email" type="email" value="" required class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <select name="taluk" required>
+                                <option value="" disabled >Select Taluk</option>
+                            </select>
+                            <label>Taluk</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <select name="district" required>
+                                <option value="" disabled >Select District</option>
+                            </select>
+                            <label>District</label>
+                        </div>
+
+                        <div class="input-field col m6">
+                            <input id="pin" name="pin" value="" required type="number" class="validate">
+                            <label for="pin">Pin Code</label>
+                        </div>
+
+                        <div class="input-field col s12 m6">
+                            <textarea id="address" required name="address" class="materialize-textarea"></textarea>
+                            <label for="address">Full Address</label>
+                        </div>
+
+                        <div class="input-field col m6">
+                            <input id="number" value="" name="number" type="number" required class="validate">
+                            <label for="number">Phone Number</label>
+                        </div>
+
+                        <div class="input-field col m6">
+                            <input id="prname" value="" type="text" name="prname" required class="validate">
+                            <label for="prname">Principal Name</label>
+                        </div>
+                        <!-- <div class="card-full-divider clearfix"></div> -->
+
+                        <div class="input-field col m6 ">
+                            <input id="regno" required name="regno" value="" type="text" class="validate">
+                            <label for="regno">Company Registration Number</label>
+                        </div>
+
+
+                        <div class="input-field col m6 ">
+                            <input id="regno" required name="regno" value="" type="text" class="validate">
+                            <label for="regno">Company  GSTIN Number</label>
+                        </div>
+
+
+                        <div class="input-field col m6 ">
+                            <input id="regno" required name="regno" value="" type="text" class="validate">
+                            <label for="regno">Company PAN card Number</label>
+                        </div>
+
+
+
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="waves-effect waves-light hoverable red darken-4 btn modal-close">Cancel</a>
+                    <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>
+                </div>
+            </form>
+        </div>
+        <!-- footer -->
+
+        <footer class="pt20 pb20">
+            <div class="footer-copyright">
+                <div class="container center">
+                    © Copyright 2019. All Rights Reserved
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+    </div>
+
+
+
+    <!-- scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, {
+                preventScrolling: false
+            });
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                type: '',
+                file: '',
+                seal: '',
+                signature: '',
+                certificate: ''
+
+            },
+            mounted() {
+
+            },
+            methods: {
+                SelectFile(type) {
+                    this.type = type;
+                    this.$refs.fileInput.click()
+                },
+                upload(e) {
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

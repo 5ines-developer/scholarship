@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Scholarship</title>
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <style>
     .reg-block .fog-block-content .reg-right {background: #fff; padding: 0; }
 .reg-block .fog-block-content::after {
@@ -72,7 +74,7 @@
 </head>
 <body>
 
-     <?php $this->load->view('includes/header'); ?>
+     <?php $this->load->view('include/header'); ?>
 
     <!-- Registration form  -->
     <section class="reg-block row m0" id='app'>
@@ -84,9 +86,9 @@
                         <div class="form-block">
                             <div class="card-box">
                                 <div class="card-heading">
-                                    <p class="m0">Student Security Question</p>
+                                    <p class="m0">Industry Security Question</p>
                                 </div>
-                                <form action="<?php echo base_url('student/security') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
+                                <form action="<?php echo base_url('security') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
                                     <div class="for-title">
                                         <p class="center-align">Setting a Security Question help us identify you as the owner of this account</p>
                                     </div>
@@ -122,15 +124,14 @@
 
     <!-- footer -->
     
-  <?php $this->load->view('includes/footer'); ?>
+  <?php $this->load->view('include/footer'); ?>
               
 
 
 <!-- scripts -->
-<script src="<?php echo base_url() ?>assets/js/vue.js"></script>
-<script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
+
 <script>
-    <?php $this->load->view('includes/message'); ?>
+    <?php $this->load->view('include/msg'); ?>
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

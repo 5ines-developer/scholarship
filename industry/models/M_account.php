@@ -6,8 +6,7 @@ class M_account extends CI_Model {
 
     public function getAccountDetails()
     {
-      
-        
+
         $this->db->select('s.id as schoolId, s.name, s.principal, s.email, s.phone, s.reg_no, s.reg_certification, s.priciple_signature, s.seal, a.address, c.title as district, a.pin, t.title as taluk');
         $this->db->where('s.id', $this->session->userdata('school'));
         $this->db->from('school s');

@@ -5,7 +5,7 @@
 
                     <div class="col s4 m4 push-m4">
                         <div class="center">
-                            <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                            <img class="responsive-img" src="<?php echo $this->config->item('web_url') ?>assets/image/logo.png" alt="Karnataka Labour Welfare Board">
                         </div>
                     </div>
                     <div class="col s8 m4 pull-m4">
@@ -27,11 +27,11 @@
             <div class="nav-wrapper container-wrap1">
                 <!-- <a href="#" class="brand-logo">Logo</a> -->
                 <ul id="nav-mobile1" class="left hide-on-med-and-down">
-                    <li><a href="#!">Home</a></li>
+                    <li><a href="<?php echo $this->config->item('web_url') ?>">Home</a></li>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#!">Login</a></li>
-                    <li><a href="#!">Registration</a></li>
+                    <li><a href="<?php echo base_url('login') ?>">Login</a></li>
+                    <li><a href="<?php echo base_url('register') ?>">Registration</a></li>
                 </ul>
             </div>
         </nav>

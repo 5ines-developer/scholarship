@@ -8,7 +8,7 @@ class Account extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('M_account');
-        if($this->session->userdata('scinst') == ''){ redirect('/','refresh'); }
+        if($this->session->userdata('scinds') == ''){ redirect('/','refresh'); }
     }
 
     public function index()
@@ -18,7 +18,7 @@ class Account extends CI_Controller {
         $data['taluk'] = $this->m_auth->getTaluk();
         $data['district'] = $this->m_auth->getDistrict();
         $data['info'] = $this->M_account->getAccountDetails();
-        $this->load->view('auth/account', $data, FALSE);
+        $this->load->view('account/profile', $data, FALSE);
     }
 
     public function update()
