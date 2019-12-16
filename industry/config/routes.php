@@ -17,14 +17,18 @@ $route['reset-password']           	= 'auth/reset_password';
 //company add request
 $route['company-request']           	= 'auth/requestAdd';
 
-
-
 // account settings
 $route['dashboard']                 = 'account/index';
 $route['dashboard/update']          = 'account/update';
 $route['industry-doc']           	= 'account/industry_doc';
-$route['change-password']          = 'account/changePassword';
-$route['update-password']          = 'account/update_password';
+$route['change-password']           = 'account/changePassword';
+$route['update-password']           = 'account/update_password';
+
+//scholarship request
+$route['application-request']       = 'application/index';
+$route['application/(:any)']        = 'application/singleStudent/$1';
+$route['application-rejected']      = 'application/reject_list/$1';
+$route['application-approved']      = 'application/approve_list/$1';
 
 
 
