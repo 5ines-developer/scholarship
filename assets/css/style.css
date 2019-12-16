@@ -2592,4 +2592,10 @@ table.dataTable thead td {
   bottom: 2px;
   min-width: 500px;
 }
+
+.app-item-content.center img {
+  height: 100px;
+  width: auto;
+  margin: auto !important;
+}
 /*# sourceMappingURL=style.css.map */

@@ -6,46 +6,30 @@ class M_account extends CI_Model {
 
     public function getAccountDetails()
     {
-      
-        
-        $this->db->select('s.id as schoolId, s.name, s.principal, s.email, s.phone, s.reg_no, s.reg_certification, s.priciple_signature, s.seal, a.address, c.title as district, a.pin, t.title as taluk');
-        $this->db->where('s.id', $this->session->userdata('school'));
-        $this->db->from('school s');
-        $this->db->join('school_address a', 'a.school_id = s.id', 'left');
-        $this->db->join('city c', 'c.id = a.city', 'left');
-        $this->db->join('taluq t', 't.id = a.taluq', 'left');
+
+        $this->db->select('in.id as indId, in.name as indNAme, ir.director, ir.email, ir.mobile, in.reg_id,ir.talluk,ir.district, ir.register_doc,ir.gst_no,ir.pan_no, ir.pancard, ir.gst, ir.address, c.title as district, t.title as taluk');
+        $this->db->where('ir.industry_id', $this->session->userdata('sccomp'));
+        $this->db->from('industry_register ir');
+        $this->db->join('industry in', 'in.id = ir.industry_id', 'left');
+        $this->db->join('city c', 'c.id = ir.district', 'left');
+        $this->db->join('taluq t', 't.id = ir.talluk', 'left');
         return $this->db->get()->row();   
     }
 
 // update  start
     public function update($data, $id)
-    {
-       $this->updateAddress($data['school_address'], $id);
-       $this->updateSchool($data['schoolDetail'], $id);
-       return true;
+    {        
+        return $this->db->where('id', $id)->update('industry_register',$data);
     }
 
-    public function updateAddress($data, $id)
-    {
-        $this->db->where('school_id', $id);
-        $this->db->update('school_address', $data);
-        return true;
-    }
+ 
 
-    public function updateSchool($data, $id)
-    {
-        $this->db->where('id', $id);
-        $this->db->update('school', $data);
-        return true;
-    }
-
-// update  End
 
 // check password
 public function checkpsw($psw='')
 {
-    $query = $this->db->select('psw')->where('id', $this->session->userdata('scinst'))->get('school_auth')->row_array();
-    if ($this->bcrypt->check_password($psw, $query['psw'])) {
+    $query = $this->db->where('id', $this->session->userdata('scinds'))->where('password',$psw)->get('industry_register');
+    if ($query->num_rows() > 0) {
         return true;
     } else {
         return false;
@@ -54,7 +38,7 @@ public function checkpsw($psw='')
 // change password
 public function changePassword($data ='')
 {
-    $this->db->where('id', $this->session->userdata('scinst'))->update('school_auth', $data);
+    $this->db->where('id', $this->session->userdata('scinds'))->update('industry_register', $data);
     if ($this->db->affected_rows() > 0) {
         return true;
     } else {

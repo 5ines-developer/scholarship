@@ -810,7 +810,7 @@
 
                                                                                         <span style="font-size:18px"><a
                                                                                                 href="*|ARCHIVE|*"
-                                                                                                target="_blank">Institution
+                                                                                                target="_blank">Industry
                                                                                                 Registration
                                                                                                 Verification</a></span>
                                                                                     </td>
@@ -909,7 +909,7 @@
                                                                                         <br>
                                                                                         <span
                                                                                             style="font-size:22px">Dear
-                                                                                            Principal,</span><br>
+                                                                                            Director,</span><br>
                                                                                         <br>
                                                                                         Thank you for registering with
                                                                                         karnataka labour welfare

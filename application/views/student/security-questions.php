@@ -84,7 +84,7 @@
                         <div class="form-block">
                             <div class="card-box">
                                 <div class="card-heading">
-                                    <p class="m0">Student Forgot Password</p>
+                                    <p class="m0">Student Security Question</p>
                                 </div>
                                 <form action="<?php echo base_url('student/security') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
                                     <div class="for-title">
@@ -92,7 +92,7 @@
                                     </div>
                                 <div class="card-body row m0 pt15 pb15">
                                     <div class="input-field col s12">
-                                        <select name="qstn">
+                                        <select name="qstn" required="">
                                           <option value="" disabled selected>Select Your Question</option>
                                           <?php  if (!empty($question)) {
                                             foreach ($question as $key => $value) {
