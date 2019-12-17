@@ -74,13 +74,12 @@ class Staffs extends CI_Controller {
     public function pdfTest()
     {
         $this->load->library('pdf');
-        // $this->load->view('dashboard/pdf');
-        
         $this->pdf->load_view('dashboard/pdf');
-        // $this->pdf->set_option('DOMPDF_UNICODE_ENABLED', true);
         $this->pdf->setPaper('A5', 'portrait');
         $this->pdf->render();
-        $this->pdf->stream("welcome.pdf", array("Attachment"=>0));
+        $output = $this->pdf->output();
+        if (!file_exists('temp')) { mkdir('temp', 0777, true); }
+        $created = file_put_contents('temp/application.pdf', $output);
     }
 
     public function mpdf()

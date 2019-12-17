@@ -30,28 +30,27 @@
                 <ol>
                     <li>
                         <div>
-                            <p>ಕುಮಾರ/ಕುಮಾರಿ <span class="dotted-line"> Rishabh </span> ಇವರು ಕಳೆಧ ಸಾಲಿನಲ್ಲಿ
-                            ನಡೆದ <span class="dotted-line"> 10th </span> ತರಗತಿಯ ಪರೀಕ್ಷೆಯಲ್ಲಿ ಒಟ್ಟು <span class="dotted-line"> 600 </span> ಅಂಕಗಳೆಗೆ <span class="dotted-line"> 550 </span> ಅಂಕಗಳನ್ನು
-                            ಪಡೆದ್ದು  ಶೇಕಡಾ <span class="dotted-line"> 90% </span> ಅಂಕ ದಿಂದ ತೇರ್ಗಡೆಯಾಗಿರುತಾರೆ.</p>
+                            <p>ಕುಮಾರ/ಕುಮಾರಿ <span class="dotted-line"> <?php echo $info->name ?> </span> ಇವರು ಕಳೆಧ ಸಾಲಿನಲ್ಲಿ
+                            ನಡೆದ <span class="dotted-line"> <?php echo $info->prv_class ?> </span> ತರಗತಿಯ ಪರೀಕ್ಷೆಯಲ್ಲಿ ಶೇಕಡಾ <span class="dotted-line"> <?php echo $info->prv_marks ?> % </span>  ಅಂಕಗಳನ್ನು
+                            ಪಡೆದ್ದು   ತೇರ್ಗಡೆಯಾಗಿರುತಾರೆ.</p>
                         </div>
                     </li>
                     <li>
                         <div>
-                            <p>2019-20ನೇ ಶೈಕ್ಷಣಿಕ ಸಾಲಿನಲ್ಲಿ <span class="dotted-line"> 11th </span> ತರಗತಿಯಲ್ಲಿ ವ್ಯಾಸಂಗ ಮಾಡುತ್ತಿದ್ದಾರೆಂದು ದೃಡೀಕರಿಸಲಾಗಿದೆ.</p>
+                            <p><?php echo date('Y', strtotime('-1 years')).'-'.date('Y')?>ನೇ ಶೈಕ್ಷಣಿಕ ಸಾಲಿನಲ್ಲಿ <span class="dotted-line"> <?php echo $info->class ?> </span> ತರಗತಿಯಲ್ಲಿ ವ್ಯಾಸಂಗ ಮಾಡುತ್ತಿದ್ದಾರೆಂದು ದೃಡೀಕರಿಸಲಾಗಿದೆ.</p>
                         </div>
                     </li>
                 </ol>
             </div>
             <div class="col s12 m5 foo-address left">
                 
-                <p>ಜಿಲ್ಲೆ: <span class="dashed-line"> Kodagu </span></p> 
-                <p>ಸ್ಥಳ: <span class="dashed-line"> Kodagu </span></p>
-                <p>ದಿನಾಂಕ: <span class="dashed-line"> Kodagu </span></p>
-                <p>ದೂರವಾಣಿ ಸಂಖ್ಯೆ (STD CODE ಸಹಿತ): <span class="dashed-line"> Kodagu </span></p>
+                <p>ಜಿಲ್ಲೆ: <span class="dashed-line"> <?php echo $info->dstctName ?> </span></p> 
+                <p>ಸ್ಥಳ: <span class="dashed-line"> <?php echo $info->talqName ?> </span></p>
+                <p>ದಿನಾಂಕ: <span class="dashed-line"> <?php echo date('Y') ?> </span></p>
+                <p>ದೂರವಾಣಿ ಸಂಖ್ಯೆ (STD CODE ಸಹಿತ): <span class="dashed-line"> <?php echo $info->parent_phone  ?> </span></p>
             </div>
             <div class="col s12 m5 push-m2 foo-address left">
-                <p> ಸಹಿ: <span class="dashed-line"> Kodagu </span></p>
-                <p>ಹೆಸರು: <span class="dashed-line"> Kodagu </span></p>
+                <p>ಹೆಸರು: <span class="dashed-line"> <?php echo $info->dstctName ?> </span></p>
                 <p>ಮುಖ್ಯೋಪಾಧ್ಯಾರ/ಪ್ರಾಂಶುಪಾಲರ ಸಹಿ ಹಾಗು ಮೊಹರು</p>
                 <br>
                 <img src="https://www.esfcamps.com/ranney/wp-content/uploads/sites/12/2017/05/Ranney-School-seal.png" width="100px" class="mr30" alt="">
@@ -63,10 +62,5 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.62/pdfmake.js"></script>
-<script>
-pdfMake.createPdf(docDefinition).open();
-
-</script>
 </body>
 </html>
