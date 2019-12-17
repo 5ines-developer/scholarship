@@ -5,6 +5,7 @@ class M_application extends CI_Model {
 
     public function getScholarshipRequest($year='')
     {
+        $in = array(1,2);
         if (!empty($year)) {
             $this->db->where('a.application_year', $year);
         }
@@ -12,7 +13,7 @@ class M_application extends CI_Model {
         $this->db->from('application a');
         $this->db->where('a.company_id', $sccomp);
         $this->db->where('a.application_state',2);
-        $this->db->where('a.status !=', 2);
+        $this->db->where_not_in('a.status',$in );
         $this->db->order_by('id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');

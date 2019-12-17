@@ -27,7 +27,11 @@ class Std_account extends CI_Controller {
 	public function getProfile($output = null)
 	{
 		$output = $this->m_stdaccount->getProfile($this->sid);
-        $output['profile'] = base_url().$output['profile_pic'];
+        if (!empty($output['profile_pic'])) {
+            $output['profile'] = base_url().$output['profile_pic'];
+        }else{
+            $output['profile'] = '';
+        }
         echo json_encode($output);
 
 	}

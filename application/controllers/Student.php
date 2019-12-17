@@ -100,7 +100,8 @@ class Student extends CI_Controller {
 
 
             if ($this->m_student->register($insert)) {
-                if ($this->sendregister($insert)) {
+                $outs = $this->sendregister($insert);
+                if (!empty($outs)) {
                     $this->session->set_flashdata('success', 'We have sent a activation link to your mail id <br> please verify and activate your account');
                 }else{
                     $this->db->where('ref_id', $insert['ref_id'])->delete('student');
@@ -410,11 +411,6 @@ class Student extends CI_Controller {
             $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another to get a reset link on your mail');
             redirect('student/forgot-password');
         }
-
-
-        
-
-      
     }
 
 

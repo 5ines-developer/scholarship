@@ -7,6 +7,9 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
+    <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
+    <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
 </head>
 <body>
 
@@ -70,9 +73,7 @@
 
 
 <!-- scripts -->
-<script src="<?php echo base_url() ?>assets/js/vue.js"></script>
-<script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
-<script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
+
 <script>
     <?php $this->load->view('includes/message'); ?>
 </script>

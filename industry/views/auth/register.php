@@ -63,7 +63,7 @@
                                         <label for="district">District</label>
                                     </div>
                                     <div class="input-field col s12 m6">
-                                        <select id="act" name="act" required="" class="select2" v-model="act" @change="getCompany()" >
+                                        <select id="act" name="act" required="" class="select2" v-model="act" >
                                             <option value="" disabled selected>Choose your option</option>
                                             <option value="1">Labour Act</option>
                                             <option value="2">Factory Act</option>                                            
@@ -110,10 +110,10 @@
                                         <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
                                     </div>
-                                    <!-- <div class="input-field col s12">
+                                    <div class="input-field col s12">
                                         <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
-                                    </div> -->
+                                    </div>
                                     
                                     <div class="input-field col m12 ">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
@@ -263,21 +263,6 @@ $(document).ready(function() {
                     }
                 } )
             },
-            getCompany(){
-                this.loader = true;
-                const formData = new FormData();
-                formData.append('act',this.act);
-                axios.post('<?php echo base_url('auth/getCompany') ?>', formData)
-                .then(response => {
-                    // this.companies = response.data;
-                    this.loader = false;
-                }).catch(error =>{
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                    this.loader = false;
-                } )
-            },
             // check Password matching
             checkCpsw() {
                 if (this.psw != this.cpsw) {
@@ -290,13 +275,11 @@ $(document).ready(function() {
             checkForm() {
                 if ((this.confError == '') && (this.mobileError == '') && (this.emailError == '')) {
 
-                    this.$refs.form.submit();
-
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
-                    //     this.$refs.form.submit();
-                    // }// 
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
+                        this.$refs.form.submit();
+                    }// 
                 } else {}
             }
 

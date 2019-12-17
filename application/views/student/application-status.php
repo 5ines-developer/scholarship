@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/script.js"></script>
+
 </head>
 <body>
     <div id="app">
@@ -108,7 +112,7 @@
                             <div class="card-content bord-right">
                                 <span class="card-title">Scholarship Status</span>
                                 <div class="board-content">
-                                    <h4 class="center">Not applied any Scholarship</h4>
+                                    <h4 class="center">No Result Found!</h4>
                                 </div>
                             </div>
                         <?php } ?>
@@ -130,9 +134,7 @@
 
 
 <!-- scripts -->
-<script src="<?php echo base_url() ?>assets/js/vue.js"></script>
-<script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
-<script src="<?php echo base_url() ?>assets/js/script.js"></script>
+
 <script>
     <?php $this->load->view('includes/message'); ?>
 </script>

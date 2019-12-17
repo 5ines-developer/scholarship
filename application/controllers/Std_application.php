@@ -285,9 +285,17 @@ class Std_application extends CI_Controller {
     **/
     public function getApplication($value='')
     {
-		$data['title']  	= 'Student Application';
-	   $data['result'] = $this->m_stdapplication->getApplication($this->sid);
-	   $this->load->view('student/application-detail', $data, FALSE);
+
+    	if(empty($this->check)){
+    		$this->session->set_flashdata('error', 'You have not applied the scholarship.');			
+			redirect('student/application','refresh');
+
+    	}else{
+    		$data['title']  	= 'Student Application';
+	  	 	$data['result'] = $this->m_stdapplication->getApplication($this->sid);
+	   		$this->load->view('student/application-detail', $data, FALSE);
+    	}
+		
 	}
 	
 	/**

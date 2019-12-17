@@ -7,6 +7,10 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
+    <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
+    <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
     <?php $this->load->view('includes/header'); ?>
@@ -86,10 +90,7 @@
 
 
 <!-- scripts -->
-<script src="<?php echo base_url() ?>assets/js/vue.js"></script>
-<script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
-<script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <script>
     <?php $this->load->view('includes/message'); ?>
 </script>
@@ -168,13 +169,11 @@
             checkForm() {
                 if ((this.confError == '') && (this.mobileError == '') && (this.emailError == '')) {
 
-                    this.$refs.form.submit();
-
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
-                    //     this.$refs.form.submit();
-                    // }// 
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
+                        this.$refs.form.submit();
+                    }// 
                 } else {}
             }
 

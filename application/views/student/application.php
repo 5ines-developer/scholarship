@@ -139,7 +139,7 @@
                                                 <?php echo (!empty($result->cast_certificate))?'
                                                     <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
                                                     <a target="_blank" href="'.base_url().$result->cast_certificate.'">Caste Certificate</a>
-                                                    </p>':'#'; ?>                                                
+                                                    </p>':''; ?>                                                
                                             </div>
 
                                             <div class="col s12">
@@ -160,7 +160,7 @@
                                             <div class="file-field input-field col s12 m6 " v-bind:class="{ hide: hide }">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()" <?php echo (!empty($result->cast_certificate))?'':"required"; ?>>
+                                                    <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()"  ?>>
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
@@ -197,7 +197,7 @@
                                                 <?php echo (!empty($result->prv_markcard))?'
                                                     <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
                                                     <a target="_blank" href="'.base_url().$result->prv_markcard.'">Marks card</a>
-                                                    </p>':'#'; ?>
+                                                    </p>':''; ?>
                                                 </p>
 
                                                 <div class="file-field input-field">
@@ -366,7 +366,7 @@
                                             <?php echo (!empty($result->cast_certificate))?'
                                                     <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
                                                     <a target="_blank" href="'.base_url().$result->passbook.'">Bank Passbook</a>
-                                                    </p>':'#'; ?>
+                                                    </p>':''; ?>
                                                 <p >ನಿಮ್ಮ ಪಾಸ್‌ಬುಕ್ ಮುಂದಿನ ಪುಟವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</p>                                                
                                                 <div class="btn">
                                                     <span>File</span>

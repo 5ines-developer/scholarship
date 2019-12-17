@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/script.js"></script>
 </head>
 <body>
     <div id="app">
@@ -102,12 +105,15 @@
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Marks</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->prv_marks))?$result->prv_marks:'---'; ?></p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->prv_marks))?$result->prv_marks.'%':'---'; ?></p>
                                                                         </li>
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Marks Card Copy</p>
+
+                                                                             <?php if (!empty($result->prv_markcard)) { ?>
                                                                             <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->prv_marks))?base_url().$result->prv_markcard:'#'; ?>"> markscard </a></p>
+                                                                        <?php } ?>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -120,20 +126,25 @@
                                                 <div class="col s12 l7">
                                                     <div class="app-detail-item">
                                                         <div class="app-item-heading">
-                                                            <p>Scheduled Castes / Scheduled Tribes? Certificate</p>
+                                                            <p>Scheduled Caste / Scheduled Tribes? Certificate</p>
                                                         </div>
                                                         <div class="app-item-body">
                                                             <div class="row m0">
                                                                 <div class="col s12">
                                                                     <ul>
                                                                         <li>
-                                                                            <p class="app-item-content-head">Scheduled Castes / Scheduled Tribes</p>
+                                                                            <p class="app-item-content-head">Scheduled Caste / Scheduled Tribes</p>
                                                                             <p class="app-item-content"><?php echo (!empty($result->is_scst))?'Yes':'No'; ?></p>
                                                                         </li>
 
                                                                         <li>
-                                                                            <p class="app-item-content-head">Cast Certificate File</p>
-                                                                            <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Cast-certificate </a></p>
+                                                                            <p class="app-item-content-head">Caste Certificate File</p>
+                                                                                <?php if (!empty($result->cast_certificate)) { ?>
+                                                                                    <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
+                                                                                    <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Caste-certificate
+                                                                                    </a>
+                                                                                    </p>
+                                                                                <?php } ?>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -158,7 +169,16 @@
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Who is Working </p>
-                                                                            <p class="app-item-content"><?php if($result->who_working =='1'){ echo 'Father'; }elseif($result->who_working =='2'){ echo 'mother'; }else{ echo 'Parent'; } ?></p>
+                                                                            <p class="app-item-content"><?php 
+
+                                                                            if(!empty($result->who_working)){
+
+                                                                            if($result->who_working =='1'){ echo 'Father'; }elseif($result->who_working =='2'){ echo 'mother'; }else{ echo 'Parent'; }  }else{
+                                                                                echo '---';
+                                                                            }
+
+
+                                                                            ?></p>
                                                                         </li>
 
                                                                         <li>
@@ -217,13 +237,15 @@
                                                                 <div class="col s12">
                                                                     <ul>
                                                                         <li>
-                                                                            <p class="app-item-content-head">Adhaar</p>
+                                                                            <p class="app-item-content-head">Aadhaar</p>
                                                                             <p class="app-item-content"><?php echo (!empty($result->adharcard_no))?$result->adharcard_no:'---'; ?></p>
                                                                         </li>
 
                                                                         <li>
-                                                                            <p class="app-item-content-head">Adhaar card File</p>
-                                                                            <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->adharcard_file))?base_url().$result->adharcard_file:'#'; ?>">Aadhar Xerox</a></p>
+                                                                            <p class="app-item-content-head">Aadhaar card File</p>
+                                                                            <?php if (!empty($result->adharcard_file)) { ?>
+                                                                            <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->adharcard_file))?base_url().$result->adharcard_file:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                        <?php } ?>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -265,7 +287,9 @@
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Passbook Front Page Copy</p>
+                                                                             <?php if (!empty($result->passbook)) { ?>
                                                                             <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->passbook))?base_url().$result->passbook:'#'; ?>">Passbook</a></p>
+                                                                        <?php } ?>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -299,9 +323,7 @@
 
 
 <!-- scripts -->
-<script src="<?php echo base_url() ?>assets/js/vue.js"></script>
-<script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
-<script src="<?php echo base_url() ?>assets/js/script.js"></script>
+
 <script>
     <?php $this->load->view('includes/message'); ?>
 </script>

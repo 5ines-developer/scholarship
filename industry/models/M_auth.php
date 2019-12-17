@@ -50,7 +50,7 @@ class M_auth extends CI_Model {
 
         public function search($term = null)
         {
-            return $this->db->like('name')->select('name,id')->get('industry')->result_array();
+            return $this->db->like('name',$term,'both')->select('name,id')->get('industry')->result_array();
         }
         
    // add school
