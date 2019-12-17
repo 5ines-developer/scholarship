@@ -47,7 +47,7 @@ class Dashboard extends CI_Controller {
         );
         if($this->m_dashboard->reject($data, $id)){
             $this->session->set_flashdata('success', 'Application rejected');
-            redirect('dashboard','refresh');
+            redirect('reject-list','refresh');
         }else{
             $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
             redirect('student/'.$id,'refresh');
@@ -85,7 +85,7 @@ class Dashboard extends CI_Controller {
     // approve application
     public function approval($var = null)
     {
-        // $this->sendmailApplication($this->input->post('id'));
+        $this->sendmailApplication($this->input->post('id'));
         if($this->m_dashboard->approval($this->input->post('id'))){
             $data = array('status' => 1, 'msg' => 'Approved successfully.');
         }else{
@@ -99,7 +99,6 @@ class Dashboard extends CI_Controller {
     public function sendmailApplication($id = null)
     {
         $data['info'] = $this->m_dashboard->singleStudent($id);
-        
         $this->load->library('pdf');
         $this->pdf->load_view('dashboard/pdf', $data);
         $this->pdf->setPaper('A5', 'portrait');

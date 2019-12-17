@@ -1,7 +1,7 @@
 <div class="menu-left z-depth-2">
     <ul>
         <li>
-            <a href="<?php echo base_url() ?>dashboard" class="<?php echo($this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == 'student') ? 'active' :'' ?>">
+            <a href="<?php echo base_url() ?>dashboard" class="<?php echo($this->uri->segment(1) == 'dashboard') ? 'active' :'' ?>">
                 Scholarship  Request 
                 <!-- <span class="badges right"> {{tableRow.length}} </span> -->
             </a>
