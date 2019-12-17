@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller']        = 'auth';
 $route['login']                     = 'auth';
 $route['register']                  = 'auth/registration';
-$route['register']                  = 'auth/registration';
+$route['register1']                  = 'auth/register1';
 $route['account-activation/(:any)'] = 'auth/account_activation/$1';
 $route['dashboard']                 = 'auth/dashboard';
 $route['security']                  = 'auth/security';

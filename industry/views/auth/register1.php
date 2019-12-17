@@ -72,11 +72,11 @@
                                     </div>
                                     <div class="row m0">                                    
                                         <div class="input-field col m6">
-                                            <select id="company" name="company">
+                                            <select id="company" name="company" v-model="company">
                                                 <option value="" disabled >Select Your Industry</option>
-                                                <!-- <option v-for="comp in companies" v-bind:value="comp.id">
+                                                <option v-for="comp in companies" v-bind:value="comp.id">
                                                     {{ comp.name }}
-                                                </option>                                            -->
+                                                </option>                                           
                                             </select>
                                         </div>
                                     </div>
@@ -150,33 +150,7 @@
 </script>
     <script>
 $(document).ready(function() {
-
-    $('#company').select2({
-        placeholder: 'Select a company',
-        minimumInputLength: 1,
-        ajax: {
-            url: "<?php echo base_url('auth/search') ?>",
-            dataType: 'json',
-            quietMillis: 250,
-            data: function (term, page) {
-                return {
-                    q: term, // search term
-                };
-            },
-            processResults: function (data) {
-
-            return {
-
-            results: data
-
-            };
-
-            },
-                            cache: true
-            },
-               
-    
-    });
+    $('#company').select2({width: "100%"});
     
     
     $(document).on('change','#company',function(){
@@ -217,7 +191,7 @@ $(document).ready(function() {
                 active:false,
                 istrue:false,
                 act:'',
-                // companies:[],
+                companies:[],
                 loader:false,
 
             },
@@ -269,7 +243,7 @@ $(document).ready(function() {
                 formData.append('act',this.act);
                 axios.post('<?php echo base_url('auth/getCompany') ?>', formData)
                 .then(response => {
-                    // this.companies = response.data;
+                    this.companies = response.data;
                     this.loader = false;
                 }).catch(error =>{
                     if (error.response) {

@@ -46,6 +46,12 @@ class M_auth extends CI_Model {
         {
             return $this->db->where('id', $id)->get('industry')->row('reg_id');
         }
+
+
+        public function search($term = null)
+        {
+            return $this->db->like('name')->select('name,id')->get('industry')->result_array();
+        }
         
    // add school
    public function addCompany($insert = null)
