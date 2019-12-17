@@ -7,11 +7,14 @@ class M_dashboard extends CI_Model {
 
     public function getScholarshipRequest()
     {
+        $in = array(1,2);
         $school = $this->session->userdata('school');
         $this->db->from('application a');
         $this->db->where('a.school_id', $school);
         $this->db->where('a.application_state', 1);
-        $this->db->where('a.status <>', 2);
+        $this->db->group_start();
+            $this->db->where_not_in('a.status',$in );
+        $this->db->group_end();
         $this->db->order_by('id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
@@ -79,10 +82,13 @@ class M_dashboard extends CI_Model {
     // Approved student list
     public function getScholarshipApproved()
     {
+        $in = array(2,3,4);
         $school = $this->session->userdata('school');
         $this->db->from('application a');
         $this->db->where('a.school_id', $school);
-        $this->db->where('a.status ', 1);
+        $this->db->group_start();
+            $this->db->where_in('a.application_state',$in);
+        $this->db->group_end();
         $this->db->order_by('id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
