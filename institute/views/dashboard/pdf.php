@@ -9,7 +9,7 @@
 
     <style>
         @font-face { font-family: Blanch; src: url('../../assets/fonts/Lohit-Kannada.ttf'); font-style: normal; font-weight: normal; }
-        body { font-family: 'Blanch',  sans-serif; font-size:14px}
+        body { font-family: 'Blanch',  sans-serif; font-size:15px}
         .center{ text-align:center }
         p{margin:0px;}
         .left{width:50%; float:left}
