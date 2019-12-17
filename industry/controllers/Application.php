@@ -78,7 +78,46 @@ class Application extends CI_Controller {
         }
     }
 
-    
+    public function studentMail($data='',$apid='')
+	{
+		
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+		$msg = $this->load->view('email/stdapplication', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($this->slmail);
+        $this->email->subject('Application Confirmation'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+		
+	}
+
+    public function studentSms($data='', $apid='')
+    {
+		$phone = $this->input->post('sphone');
+		$msg = 'You have been succesfully applied to the Karnataka Labour Welfare Board Scholarship, we will notify the status via sms';
+        /* API URL */
+        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
+        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return $server_output;
+    }
+
+
 
 }
 
