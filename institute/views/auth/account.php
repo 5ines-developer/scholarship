@@ -156,63 +156,28 @@
             </div>
         </section>
 
-        <input type="file" id="profileimg" @change="upload"  ref="fileInput" class="hide" accept="image/*">
+    <input type="file" id="profileimg" @change="upload"  ref="fileInput" class="hide" accept="image/*">
     <!-- End Body form  -->
     <div id="edtModal" class="modal modal-fixed-footer">
         <form action="<?php echo base_url() ?>update-account" method="post">
         <div class="modal-content">
-            <h5>Edit Detail</h5>
+            <h5>Institute  Detail Settings</h5>
                 <div class="row m0">
                         <div class="input-field col m6">
-                            <input id="iname" value="<?php echo $info->name ?>" name="iname" type="text" required class="validate">
+                            <input id="iname" value="<?php echo $info->name ?>" readonly name="iname" type="text" required class="validate">
                             <label for="iname">Institute Name</label>
+                        </div>
+
+                        <div class="input-field col m6 ">
+                            <input id="regno" required name="regno" readonly value="<?php echo $info->reg_no ?>" type="text" class="validate">
+                            <label for="regno">Registration Number</label>
                         </div>
 
                         <div class="input-field col m6">
                             <input id="email" name="email" type="email" value="<?php echo $info->email ?>" required class="validate">
                             <label for="email">Email</label>
                         </div>
-
                         
-
-                        <div class="input-field col s12 m6">
-                            <select name="taluk" required>
-                                <option value="" disabled >Select Taluk</option>
-                                <?php 
-                                    if(!empty($taluk)){
-                                        foreach ($taluk as $key => $value) {
-                                            echo '<option '.(($value->id == $info->taluk)? "selected" : "").' value="'.$value->id.'">'.$value->title.'</option>';
-                                        }
-                                    }
-                                ?>
-                            </select>
-                            <label>Taluk</label>
-                        </div>
-
-                        <div class="input-field col s12 m6">
-                            <select name="district" required>
-                                <option value="" disabled >Select District</option>
-                                <?php 
-                                    if(!empty($district)){
-                                        foreach ($district as $key => $value) {
-                                            echo '<option '.(($value->id == $info->district)? "selected" : "").' value="'.$value->id.'">'.$value->title.'</option>';
-                                        }
-                                    }
-                                ?>
-                            </select>
-                            <label>District</label>
-                        </div>
-
-                        <div class="input-field col m6">
-                            <input id="pin" name="pin" value="<?php echo $info->pin ?>" required type="number" class="validate">
-                            <label for="pin">Pin Code</label>
-                        </div>
-
-                        <div class="input-field col s12 m6">
-                            <textarea id="address" required name="address" class="materialize-textarea"><?php echo $info->address ?></textarea>
-                            <label for="address">Full Address</label>
-                        </div>
-
 
                         <div class="input-field col m6">
                             <input id="number" value="<?php echo $info->phone ?>" name="number" type="number" required class="validate">
@@ -223,14 +188,27 @@
                             <input id="prname" value="<?php echo $info->principal ?>" type="text" name="prname" required class="validate">
                             <label for="prname">Principal Name</label>
                         </div>
-                        <!-- <div class="card-full-divider clearfix"></div> -->
-                        
-                        <div class="input-field col m6 ">
-                            <input id="regno" required name="regno" value="<?php echo $info->reg_no ?>" type="text" class="validate">
-                            <label for="regno">Registration Number</label>
+
+                        <div class="input-field col s12 m6">
+                            <?php echo '<input type="text" name="taluk" readonly required value="'.$info->taluk.'">'; ?>
+                            <label>Taluk</label>
                         </div>
-                        
-                        
+
+                        <div class="input-field col s12 m6">
+                            <?php echo '<input type="text" name="district" readonly required value="'.$info->district.'">'; ?>
+                            <label>District</label>
+                        </div>
+
+                        <div class="input-field col m6">
+                            <input id="pin" name="pin" readonly value="<?php echo $info->pin ?>" required type="number" class="validate">
+                            <label for="pin">Pin Code</label>
+                        </div>
+
+
+                        <div class="input-field col s12 m12">
+                            <textarea id="address" required name="address" class="materialize-textarea"><?php echo $info->address ?></textarea>
+                            <label for="address">Full Address</label>
+                        </div>
                         
                         <div class="clearfix"></div>
                     
@@ -238,7 +216,7 @@
         </div>
         <div class="modal-footer">
             <a class="waves-effect waves-light hoverable red darken-4 btn modal-close">Cancel</a>  
-            <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>  
+            <button class="waves-effect waves-light hoverable btn-theme btn">Update</button>  
         </div>
         </form>
     </div>

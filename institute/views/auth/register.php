@@ -7,6 +7,8 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
+
 </head>
 <body>
    <div id="app">
@@ -15,7 +17,7 @@
 
    <!-- form section -->
     <section class="bg pt30 pb30">
-        <div class="container">
+        <div class="container mob-block">
             <div class="row m0">
                 <div class="col s12 m12 l10 push-l1">
                     <div class="card instreg">
@@ -26,9 +28,24 @@
 
                             <div class="card-body">
                                 <form action="<?php echo base_url() ?>register" method="post" enctype="multipart/form-data">
+
+                                    <div class="input-field col s12 m6">
+                                        <input type="hidden" name="district" :value="district.id">       
+                                        <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
+                                    </div>
+
+                                    <div class="input-field col s12 m6">
+                                        <input type="hidden" name="taluk" :value="tlq.id">       
+                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk" @input="instituteFilter"  tagging :from="taluk" />
+                                    </div>
                                     <div class="input-field col m6">
-                                        <input id="iname" name="iname" type="text" required class="validate">
-                                        <label for="iname">Institute Name</label>
+                                        <input type="hidden" name="iname" :value="instituteSelect.title"> 
+                                        <v-select v-model="instituteSelect"   as="title::id" :disabled='disabled1' placeholder="Select Institute"  tagging :from="institute" />
+                                    </div>
+                                    
+                                    <div class="input-field col m6 ">
+                                        <input id="regno" :value="instituteSelect.reg_no" readonly required placeholder="Registration Number" name="regno" type="text" class="validate">
+                                        
                                     </div>
 
                                     <div class="input-field col m6">
@@ -46,29 +63,6 @@
                                         <label for="prname">Principal Name</label>
                                     </div>
 
-                                    <div class="input-field col s12 m6">
-                                        <select name="district" required v-model="district" @change="talukFilter" class="browser-default">
-                                            <option  disabled selected>Select District</option>
-                                            <?php 
-                                                if(!empty($district)){
-                                                    foreach ($district as $key => $value) {
-                                                        echo '<option value="'.$value->id.'">'.$value->title.'</option>';
-                                                    }
-                                                }
-                                            ?>
-                                        </select>
-                                        
-                                    </div>
-
-                                    <div class="input-field col s12 m6">
-                                        <select name="taluk" v-model="tlq" required :disabled='disabled' class="browser-default">
-                                        <option value="" disabled selected>Select Taluk</option>
-                                            <option v-if="taluk.length > 0" v-for="(item , i) in taluk" :key="i" :value="item.id" selected>{{item.title}}</option>
-                                        </select>
-                                    </div>
-
-                                    
-
                                     <div class="input-field col m6">
                                         <input id="pin" name="pin" required type="number" class="validate">
                                         <label for="pin">Pin Code</label>
@@ -81,10 +75,7 @@
 
                                     <!-- <div class="card-full-divider clearfix"></div> -->
                                     
-                                    <div class="input-field col m6 ">
-                                        <input id="regno" required name="regno" type="text" class="validate">
-                                        <label for="regno">Registration Number</label>
-                                    </div>
+                                    
                                     
                                     <div class="file-field input-field col s12 m6">
                                         <div class="btn ">
@@ -117,7 +108,12 @@
                                     </div>
                                     <div class="card-full-divider clearfix"></div>
                                     <div class="col s12">
-                                       <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>  
+                                       <button class="waves-effect waves-light hoverable btn-theme btn mt10">Register</button> 
+                                       <div class="right">
+                                           <p class="pt20 pb10">
+                                               <a href="#!" class="mt10 ahover">Incase Institute not in above list add here.</a> 
+                                           </p>
+                                       </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>
@@ -139,30 +135,37 @@
 
 <!-- scripts -->
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
-<script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
+<!-- <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script> -->
 <script src="<?php echo $this->config->item('web_url')?>assets/js/axios.min.js"></script>
 <?php $this->load->view('include/msg'); ?>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var instances = M.FormSelect.init(document.querySelectorAll('select'));
-    });
 
 
     var app = new Vue({
         el: '#app',
+        components: {
+            vSelect: VueSelect.vSelect,
+        },
         data: {
             district: '',
             taluk: [],
             disabled: true,
-            tlq:''
+            disabled1: true,
+            tlq:'',
+            districtSelect: <?php echo json_encode($district) ?>,
+            instituteSelect: '',
+            institute: '',
         },
 
         methods:{
             talukFilter(){
                 var self = this;
-                axios.post('<?php echo base_url() ?>auth/talukFilter?filter='+this.district)
+                self.taluk = '';
+                self.tlq = '';
+                axios.post('<?php echo base_url() ?>auth/talukFilter?filter='+this.district.id)
                 .then(res => {
                     self.disabled = false;
                     self.taluk = res.data;
@@ -171,10 +174,23 @@
                     console.error(err); 
                     self.disabled = true;
                 })
-            }
-            
+            },
+            instituteFilter(){
+                var self = this;
+                axios.post('<?php echo base_url() ?>auth/instituteFilter?filter='+this.tlq.id)
+                .then(res => {
+                    self.disabled1 = false;
+                    self.institute = res.data;
+                })
+                .catch(err => {
+                    console.error(err); 
+                    self.disabled1 = true;
+                })
+            },
         }
     })
 </script>
+
+
 </body>
 </html>

@@ -134,11 +134,21 @@ public function verification($id = null)
    
 }
 
+// taluk filter
 public function getTalukFiletr($id = null)
 {
    return $this->db->where('city_id', $id)
    ->get('taluq')->result();
 }
+
+// institute filter
+public function instituteFilter($id = null)
+{
+   return $this->db->where('taluk', $id)
+   ->select('id, school_address as title, reg_no')
+   ->get('reg_schools')->result();
+}
+
 
 }
 

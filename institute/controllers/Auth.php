@@ -35,6 +35,7 @@ class auth extends CI_Controller {
                             'scinst'    => $result['id'],
                             'scqstn'    => $result['status'],
                             'school'    => $result['school_id'],
+                            'type'      => $result['created_by'],
                         ); 
 
                         $this->session->set_userdata($session_data); 
@@ -145,6 +146,7 @@ class auth extends CI_Controller {
     {
         $data['email'] = $insert['auth']['email'];
         $data['regid'] = $insert['auth']['ref_id'];
+        $data['team'] = 'Principal';
         $this->load->config('email');
         $this->load->library('email');
         $from = $this->config->item('smtp_user');
@@ -296,10 +298,19 @@ class auth extends CI_Controller {
         }
     }
 
+    // taluk filter based on selected district
     public function talukFilter()
     {
         $district = $this->input->get('filter');
         $result = $this->m_auth->getTalukFiletr($district);
+        echo json_encode($result);
+    }
+
+    // institute filter
+    public function instituteFilter()
+    {
+        $taluk = $this->input->get('filter');
+        $result = $this->m_auth->instituteFilter($taluk);
         echo json_encode($result);
     }
     

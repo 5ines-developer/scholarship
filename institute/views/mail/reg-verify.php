@@ -908,8 +908,8 @@
 
                                                                                         <br>
                                                                                         <span
-                                                                                            style="font-size:22px">Dear
-                                                                                            Principal,</span><br>
+                                                                                            style="font-size:22px">Dear 
+                                                                                            <?php echo $team ?>,</span><br>
                                                                                         <br>
                                                                                         Thank you for registering with
                                                                                         karnataka labour welfare
