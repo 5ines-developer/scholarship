@@ -91,5 +91,12 @@ return array(
             'bold_italic' => $distFontDir . 'DejaVuSerif-BoldItalic',
             'italic' => $distFontDir . 'DejaVuSerif-Italic',
             'normal' => $distFontDir . 'DejaVuSerif'
+        ),
+    'akshar' =>
+        array(
+            'bold' => $distFontDir . 'akshar',
+            'bold_italic' => $distFontDir . 'akshar',
+            'italic' => $distFontDir . 'akshar',
+            'normal' => $distFontDir . 'akshar'
         )
 );
