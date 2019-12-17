@@ -2366,7 +2366,9 @@ table.dataTable thead td {
 }
 
 .reg-success,
-.hiegt-box, .reg-block, .board {
+.hiegt-box,
+.reg-block,
+.board {
   min-height: calc(100vh - 240px);
 }
 
@@ -2387,7 +2389,9 @@ table.dataTable thead td {
   .board .card-content {
     padding: 10px 0px !important;
   }
-  .hiegt-box, .reg-block, .board {
+  .hiegt-box,
+  .reg-block,
+  .board {
     min-height: auto;
   }
 }
@@ -2598,12 +2602,6 @@ table.dataTable thead td {
   left: 0px;
   bottom: 2px;
   min-width: 500px;
-}
-
-.app-item-content.center img {
-  height: 100px;
-  width: auto;
-  margin: auto !important;
 }
 
 .select2-container {
