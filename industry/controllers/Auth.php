@@ -95,6 +95,26 @@ class auth extends CI_Controller {
        echo json_encode($data);       
     }
 
+    public function register1($var = null)
+    {
+        $data['title'] = 'Industry Registration';
+        $data['taluk'] = $this->m_auth->getTaluk();
+        $data['district'] = $this->m_auth->getDistrict();            
+        $this->load->view('auth/register1', $data, FALSE);
+    }
+
+    public function search($var = null)
+    {
+        $term = $this->input->get('q[term]');
+        $output = $this->m_auth->search($term);
+        $result = [];
+
+        foreach ($output as $key => $value) {
+            $json[] = ['id'=>$value['id'], 'text'=>$value['name']];
+        }
+        echo json_encode($json);
+    }
+
     /**
      * industry registration-> load view and insert data
      * url : register
@@ -126,7 +146,7 @@ class auth extends CI_Controller {
             'password'       => $this->input->post('password'),
             'address'        => $this->input->post('address'),
             'ref_id'         => random_string('alnum',16),
-            'industry_id'         => $this->input->post('c_comp'),
+            'industry_id'         => $this->input->post('company'),
         );
         
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
