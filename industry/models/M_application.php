@@ -90,17 +90,24 @@ class M_application extends CI_Model {
     }
 
 
-        // Reject application
-        public function reject($data, $id)
-        {
-            $this->db->where('id', $id);
-            $this->db->update('application', $data);
-            if($this->db->affected_rows() > 0){
-                return true;
-            }else{
-                return false;
-            }
+    // Reject application
+    public function reject($data, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('application', $data);
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
         }
-}
+    }
+
+    // public function getstd($id = null)
+    // {   
+    //     $this->db->where('Field / comparison', $Value);
+        
+    // }
+
+    }
 
 /* End of file ModelName.php */

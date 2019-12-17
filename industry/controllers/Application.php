@@ -52,13 +52,17 @@ class Application extends CI_Controller {
     // approve application
     public function approve($id = null)
     {
-        if($this->m_application->approval($this->input->post('id'))){
-            $data = array('status' => 1, 'msg' => 'Approved successfully.');
-        }else{
-            $this->output->set_status_header('400');
-            $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
-        }
-        echo json_encode($data);
+        $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to government for verification, we will notify the status via sms';
+        $id = $this->input->post('id');
+        // if($this->m_application->approval($id)){
+            $this->approveMail($id);
+        //     $this->studentSms($msg,$id);
+        //     $data = array('status' => 1, 'msg' => 'Approved successfully.');
+        // }else{
+        //     $this->output->set_status_header('400');
+        //     $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
+        // }
+        // echo json_encode($data);
     }
 
     // Reject 
@@ -78,8 +82,15 @@ class Application extends CI_Controller {
         }
     }
 
-    public function studentMail($data='',$apid='')
+    public function approveMail($id='')
 	{
+
+        $student = $this->m_application->getstd($id);
+        
+        echo "<pre>";
+        print_r ($id);
+        echo "</pre>";exit;
+        
 		
         $this->load->config('email');
         $this->load->library('email');
@@ -104,7 +115,7 @@ class Application extends CI_Controller {
     public function studentSms($data='', $apid='')
     {
 		$phone = $this->input->post('sphone');
-		$msg = 'You have been succesfully applied to the Karnataka Labour Welfare Board Scholarship, we will notify the status via sms';
+		
         /* API URL */
         $url = 'http://trans.smsfresh.co/api/sendmsg.php';
         $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
