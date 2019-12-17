@@ -14,7 +14,7 @@ class Staffs extends CI_Controller {
     public function index()
     {
         $data['title'] = 'Manage Staffs';
-        $data['staffs'] = $this->M_staffs->list();
+        $data['staffs'] = $this->M_staffs->lists();
         $this->load->view('staffs/list', $data);
     }
 
@@ -52,6 +52,7 @@ class Staffs extends CI_Controller {
     {
         $data['email'] = $insert['email'];
         $data['regid'] = $insert['ref_id'];
+        $data['team'] = 'Team';
         $this->load->config('email');
         $this->load->library('email');
         $from = $this->config->item('smtp_user');

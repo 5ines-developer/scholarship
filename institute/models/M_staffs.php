@@ -1,11 +1,8 @@
-<?php 
-
-
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_staffs extends CI_Model {
 
-    public function list()
+    public function lists()
     {
         return $this->db->where('school_id', $this->session->userdata('school'))
         ->where('created_by <>', null)

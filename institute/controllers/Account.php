@@ -25,18 +25,13 @@ class Account extends CI_Controller {
     {
         $schoolId = $this->session->userdata('school');
         $data['schoolDetail'] = array(
-            'name'              => $this->input->post('iname'),
             'principal'         => $this->input->post('prname'),
             'email'             => $this->input->post('email'),
             'phone'             => $this->input->post('number'),
-            'reg_no'            => $this->input->post('regno'),
         );
 
         $data['school_address'] = array(
             'address'   => $this->input->post('address'),
-            'city'      => $this->input->post('district'),
-            'taluq'     => $this->input->post('taluk'),
-            'pin'       => $this->input->post('pin'),
         );
         $this->M_account->update($data, $schoolId);
         $this->session->set_flashdata('success', 'Updated Successfully 🙂');
