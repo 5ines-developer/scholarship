@@ -22,8 +22,7 @@ class M_dashboard extends CI_Model {
     // get student Detail
     public function singleStudent($id = null)
     {
-        return $this->db->where('a.id', $id)
-        
+        return $this->db->where('a.id', $id)        
         ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
@@ -43,7 +42,7 @@ class M_dashboard extends CI_Model {
     public function approval($id = null)
     {
         $this->db->where('id', $id);
-        $this->db->update('application', array('application_state' => 2, 'status' => 1));
+        $this->db->update('application', array('application_state' => 2));
         if($this->db->affected_rows() > 0){
             return true;
         }else{

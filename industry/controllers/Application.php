@@ -44,59 +44,104 @@ class Application extends CI_Controller {
         // single student data
         public function singleStudent($id = null)
         {
-            $data['title'] = 'Scholarship | REquest list';
+            $data['title'] = 'Scholarship | Request list';
             $data['result'] = $this->m_application->singleStudent($id);
             $this->load->view('application/student-detail', $data, FALSE);
         }
         
-    // // approve application
-    // public function approval($var = null)
-    // {
-    //     if($this->m_dashboard->approval($this->input->post('id'))){
-    //         $data = array('status' => 1, 'msg' => 'Approved successfully.');
-    //     }else{
-    //         $this->output->set_status_header('400');
-    //         $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
-    //     }
-    //     echo json_encode($data);
-    // }
+    // approve application
+    public function approve($id = null)
+    {
+        if($this->m_application->approval($this->input->post('id'))){
+            $data = array('status' => 1, 'msg' => 'Approved successfully.');
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
+        }
+        echo json_encode($data);
+    }
 
-    // // Reject 
-    // public function reject()
-    // {
-    //    $id = $this->input->post('id');
-    //    $data = array(
-    //        'reject_reason' => $this->input->post('reason'),
-    //        'status' => 2,
-    //     );
-    //     if($this->m_dashboard->reject($data, $id)){
-    //         $this->session->set_flashdata('success', 'Application rejected');
-    //         redirect('dashboard','refresh');
-    //     }else{
-    //         $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
-    //         redirect('student/'.$id,'refresh');
-    //     }
-    // }
+    // Reject 
+    public function reject()
+    {
+       $id = $this->input->post('id');
+       $data = array(
+           'reject_reason' => $this->input->post('reason'),
+           'status' => 2,
+        );
+        if($this->m_application->reject($data, $id)){
+            $this->
+            $this->session->set_flashdata('success', 'Application rejected Successfully');
+            redirect('application-rejected','refresh');
+        }else{
+            $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
+            redirect('application/'.$id,'refresh');
+        }
+    }
 
- 
-
-    // // rejected list
-    // public function student_rejects()
-    // {
-    //     $result = $this->m_dashboard->getScholarshipRejects();
-    //     echo json_encode($result);
-    // }
-
-
-
-    // // Approved list
-    // public function student_approved()
-    // {
-    //     $result = $this->m_dashboard->getScholarshipApproved();
-    //     echo json_encode($result);
-    // }
-
+    //approve mail
+	public function approveMail($data='',$apid='')
+	{
+		
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+		$msg = $this->load->view('email/stdapplication', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($this->slmail);
+        $this->email->subject('Scholarship Application Rejected'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+		
+    }
     
+	public function rejectMail($data='',$apid='')
+	{
+		
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+		$msg = $this->load->view('email/stdapplication', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($this->slmail);
+        $this->email->subject('Scholarship Application Rejected'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+		
+	}
+    
+
+    public function sendSms($data='', $apid='',$msg)
+    {
+		$phone = $this->input->post('sphone');
+		$msg = 'You have been succesfully applied to the Karnataka Labour Welfare Board Scholarship, we will notify the status via sms';
+        /* API URL */
+        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
+        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return $server_output;
+    }
 
 }
 

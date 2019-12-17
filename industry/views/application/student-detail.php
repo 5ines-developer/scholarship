@@ -24,8 +24,8 @@
                             <div class="card-content bord-right">
                                 <div class="card-title">
                                     Scholarship Application Detail
-                                    <!-- <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2 )? 'disabled' : ''  ?>" href="#modal1">Reject</a>
-                                    <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1 )? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a> -->
+                                    <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo(($result->status == 2) || ($result->application_state != 2))? 'disabled' : ''  ?>" href="#modal1">Reject</a>
+                                    <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo(($result->status == 1) || ($result->application_state != 2))? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">
@@ -291,7 +291,7 @@
 
     <!-- End Body form  -->
     <div id="modal1" class="modal small">
-        <form action="<?php echo base_url() ?>reject" method="post">
+        <form action="<?php echo base_url() ?>application-reject" method="post">
             <div class="modal-content">
                 <h5>Reject Reason</h5>
                 <div class="row m0">
@@ -340,6 +340,7 @@
             cpsw: '',
             disabled: false,
             reason: '',
+            loader:false,
         },  
 
         methods:{
@@ -347,13 +348,13 @@
                 var self = this;
                 const formData = new FormData();
                 formData.append('id', id);
-                axios.post('<?php echo base_url() ?>approval', formData)
+                axios.post('<?php echo base_url() ?>application-approve', formData)
                 .then(function (response) {
                     var msg = response.data.msg;
                     M.toast({html: msg, classes: 'green darken-2'});
                     self.disabled = true;
                 })
-                .catch(function (error) {
+                .catch(error => {
                     var msg = error.response.data.msg;
                     M.toast({html: msg, classes: 'red darken-4'});
                 })

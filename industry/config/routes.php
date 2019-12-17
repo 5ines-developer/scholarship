@@ -29,6 +29,8 @@ $route['application-request']       = 'application/index';
 $route['application/(:any)']        = 'application/singleStudent/$1';
 $route['application-rejected']      = 'application/reject_list/$1';
 $route['application-approved']      = 'application/approve_list/$1';
+$route['application-approve']       = 'application/approve';
+$route['application-reject']        = 'application/reject';
 
 
 
