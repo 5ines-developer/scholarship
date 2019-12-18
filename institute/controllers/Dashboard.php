@@ -35,17 +35,7 @@ class Dashboard extends CI_Controller {
         $this->load->view('dashboard/student-detail', $data, FALSE);
     }
 
-    // approve application
-    public function approval($var = null)
-    {
-        if($this->m_dashboard->approval($this->input->post('id'))){
-            $data = array('status' => 1, 'msg' => 'Approved successfully.');
-        }else{
-            $this->output->set_status_header('400');
-            $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
-        }
-        echo json_encode($data);
-    }
+
 
     // Reject 
     public function reject()
@@ -92,6 +82,57 @@ class Dashboard extends CI_Controller {
         echo json_encode($result);
     }
 
+    // approve application
+    public function approval($var = null)
+    {
+        $this->sendmailApplication($this->input->post('id'));
+        if($this->m_dashboard->approval($this->input->post('id'))){
+            $data = array('status' => 1, 'msg' => 'Approved successfully.');
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
+        }
+        echo json_encode($data);
+    }
+
+    // Send a application pdf file
+    public function sendmailApplication($id = null)
+    {
+        $data['info'] = $this->m_dashboard->singleStudent($id);
+        
+        $this->load->library('pdf');
+        $this->pdf->load_view('dashboard/pdf', $data);
+        $this->pdf->setPaper('A5', 'portrait');
+        $this->pdf->render();
+        $output = $this->pdf->output();
+        if (!file_exists('temp')) { mkdir('temp', 0777, true); }
+        $created = file_put_contents('temp/application.pdf', $output);
+
+        if(!empty($created)){
+            $data['email'] = $data['info']->email;
+            $this->load->config('email');
+            $this->load->library('email');
+            $from = $this->config->item('smtp_user');
+            $msg = '
+            <p>Hi ,</p>
+            <p>Your Application approved from institute. More information please login your account and check from Scholarship website.</p>';
+            $this->email->set_newline("\r\n");
+            $this->email->from($from , 'Karnataka Labour Welfare Board');
+            $this->email->attach( '/temp/application.pdf');
+            $this->email->to($data['email']);
+            $this->email->subject('Institute Registration verification'); 
+            $this->email->message($msg);
+            if($this->email->send())  
+            {
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     
 
 }

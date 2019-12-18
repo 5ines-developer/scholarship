@@ -23,7 +23,7 @@ class M_dashboard extends CI_Model {
     public function singleStudent($id = null)
     {
         return $this->db->where('a.id', $id)        
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName, std.email as email')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
@@ -35,6 +35,7 @@ class M_dashboard extends CI_Model {
         ->join('state st', 'st.id = ind.state', 'left')
         ->join('city cty', 'cty.id = ac.district', 'left')
         ->join('taluq tq', 'tq.id = ac.talluk', 'left')
+        ->join('student std', 'std.id = a.Student_id', 'left')
         ->get()->row(); 
     }
 
