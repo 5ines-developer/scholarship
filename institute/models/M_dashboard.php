@@ -70,6 +70,7 @@ class M_dashboard extends CI_Model {
         $this->db->from('application a');
         $this->db->where('a.school_id', $school);
         $this->db->where('a.status ', 2);
+        $this->db->where('a.application_state ', 1);
         $this->db->order_by('id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
@@ -83,7 +84,9 @@ class M_dashboard extends CI_Model {
         $school = $this->session->userdata('school');
         $this->db->from('application a');
         $this->db->where('a.school_id', $school);
-        $this->db->where('a.status ', 1);
+        $this->db->where('a.application_state', 2);
+        $this->db->or_where('a.application_state', 3);
+        $this->db->or_where('a.application_state', 4);
         $this->db->order_by('id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');

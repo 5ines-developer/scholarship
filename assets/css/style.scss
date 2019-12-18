@@ -2506,7 +2506,7 @@ table.dataTable thead td {
     margin: 0px !important;
     button {
         position: absolute;
-        z-index: 9;
+        z-index: 2;
     }
     .v-select-btn-clear {
         right: 25px;
@@ -2554,4 +2554,10 @@ table.dataTable thead td {
     opacity: 0.7;
     color: black;
     text-decoration: underline;
+}
+::placeholder {
+    color: #646464 !important;
+}
+.red-text.helper-text{
+    position: absolute !important;
 }

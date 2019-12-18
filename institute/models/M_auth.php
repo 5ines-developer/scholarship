@@ -50,12 +50,24 @@ public function activateAccount($id = null)
 {
    $this->db->where('ref_id', $id);
    $this->db->update('school_auth', array('status'=> 2));
-   if($this->db->affected_rows() > 0){
+   if($this->checkLinkExist($id)){
       return true;
    }else{
       return false;
    }
 }
+public function checkLinkExist($id = null)
+{
+   $this->db->where('ref_id',$id);
+   $query = $this->db->get('school_auth');
+   if ($query->num_rows() > 0){
+     return true;
+   }
+   else{
+     return false;
+   }
+}
+
 // sett password
 public function set_password($data, $key)
 {
@@ -148,6 +160,45 @@ public function instituteFilter($id = null)
    ->select('id, school_address as title, reg_no')
    ->get('reg_schools')->result();
 }
+
+// check institute exist or not
+public function checkInstituteExist($id = null)
+{
+   $this->db->where('name',$id);
+   $query = $this->db->get('school');
+   if ($query->num_rows() > 0){
+     return false;
+   }
+   else{
+     return true;
+   }
+}
+
+public function checkEmailExist($id = null)
+{
+   $this->db->where('email',$id);
+   $query = $this->db->get('school');
+   if ($query->num_rows() > 0){
+     return false;
+   }
+   else{
+     return true;
+   }
+}
+
+
+public function checkPhoneExist($id = null)
+{
+   $this->db->where('phone',$id);
+   $query = $this->db->get('school');
+   if ($query->num_rows() > 0){
+     return false;
+   }
+   else{
+     return true;
+   }
+}
+
 
 
 }

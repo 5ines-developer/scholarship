@@ -107,20 +107,18 @@ class Dashboard extends CI_Controller {
         $output = $this->pdf->output();
         if (!file_exists('temp')) { mkdir('temp', 0777, true); }
         $created = file_put_contents('temp/application.pdf', $output);
-
+        // send mail
         if(!empty($created)){
             $data['email'] = $data['info']->email;
             $this->load->config('email');
             $this->load->library('email');
             $from = $this->config->item('smtp_user');
-            $msg = '
-            <p>Hi ,</p>
-            <p>Your Application approved from institute. More information please login your account and check from Scholarship website.</p>';
+            $msg = $this->load->view('mail/approve', $data, true);
             $this->email->set_newline("\r\n");
             $this->email->from($from , 'Karnataka Labour Welfare Board');
-            $this->email->attach( '/temp/application.pdf');
-            $this->email->to($data['email']);
-            $this->email->subject('Institute Registration verification'); 
+            $this->email->attach($_SERVER["DOCUMENT_ROOT"].'/scholarship/institute/temp/application.pdf');
+            $this->email->to('shahirkm@5ine.in');
+            $this->email->subject('Scholarship application Approved'); 
             $this->email->message($msg);
             if($this->email->send())  
             {

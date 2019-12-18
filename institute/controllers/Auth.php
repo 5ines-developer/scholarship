@@ -75,25 +75,24 @@ class auth extends CI_Controller {
     public function regSubmit(Type $var = null)
     {
         
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('iname', 'Institute', 'trim|required|is_unique[school.name]', array( 'is_unique'=> 'Institute already exists.' ));
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[school.email]', array( 'is_unique'=> 'This %s already exists.' ));
+        $this->form_validation->set_rules('number', 'Phone number', 'trim|required|is_unique[school.phone]', array( 'is_unique'=> 'This %s already exists.' ));
         
-        foreach ($_FILES as $key => $value) {
-            if (!empty($value)) {
-                $config['upload_path'] = './'.$key;
-                $config['allowed_types'] = 'jpg|png|jpeg';
-                $config['max_width'] = 0;
-                $config['encrypt_name'] = true;
+        if ($this->form_validation->run() == TRUE ) {
+            foreach ($_FILES as $key => $value) {
+                if (!empty($value)) {
+                    $config['upload_path'] = './'.$key;
+                    $config['allowed_types'] = 'jpg|png|jpeg';
+                    $config['max_width'] = 0;
+                    $config['encrypt_name'] = true;
 
-                $this->load->library('upload');
-                $this->upload->initialize($config);
+                    $this->load->library('upload');
+                    $this->upload->initialize($config);
 
-                if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-                if (!$this->upload->do_upload($key)) {
-                    $error = array('error' => $this->upload->display_errors());
-                    // print_r($error);exit();
-                    $this->session->set_flashdata('error', $this->upload->display_errors());
-                    redirect('register');
-                } else {
-
+                    if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+                    $this->upload->do_upload($key);
                     $upload_data = $this->upload->data();
                     if($key == 'regfile'){
                         $regfile = $key.'/'.$upload_data['file_name'];
@@ -102,49 +101,53 @@ class auth extends CI_Controller {
                     }else{
                         $seal = $key.'/'.$upload_data['file_name'];
                     }
-
                 }
                 
             }
+
+            $data['schoolDetail'] = array(
+                'name'              => $this->input->post('iname'),
+                'principal'         => $this->input->post('prname'),
+                'email'             => $this->input->post('email'),
+                'phone'             => $this->input->post('number'),
+                'reg_no'            => $this->input->post('regno'),
+                'reg_certification' => $regfile,
+                'priciple_signature'=> $signature,
+                'seal'              => $seal,
+                'status'            => '0',
+            );
+
+            $schoolId = $this->m_auth->addSchoolDetail($data['schoolDetail']);
+
+            $this->load->helper('string');
+            $data['auth'] = array(
+                'email'         => $this->input->post('email'),
+                'phone'         => $this->input->post('number'),
+                'school_id'     => $schoolId,
+                'ref_id'        => random_string('alnum', 50),
+                'otp'           => date('is'),
+                'name'          => $this->input->post('iname'),
+            );
+
+            $data['school_address'] = array(
+                'school_id' => $schoolId,
+                'address'   => $this->input->post('address'),
+                'city'      => $this->input->post('district'),
+                'taluq'     => $this->input->post('taluk'),
+                'pin'       => $this->input->post('pin'),
+            );
+            
+            if($this->m_auth->CreateAuth($data)){
+                $this->sendActivation($data);
+                $this->load->view('auth/reg-thank', $data);
+            }else{
+                $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+                redirect('register');
+            }
         }
-
-        $data['schoolDetail'] = array(
-            'name'              => $this->input->post('iname'),
-            'principal'         => $this->input->post('prname'),
-            'email'             => $this->input->post('email'),
-            'phone'             => $this->input->post('number'),
-            'reg_no'            => $this->input->post('regno'),
-            'reg_certification' => $regfile,
-            'priciple_signature'=> $signature,
-            'seal'              => $seal,
-            'status'            => '0',
-        );
-
-        $schoolId = $this->m_auth->addSchoolDetail($data['schoolDetail']);
-
-        $this->load->helper('string');
-        $data['auth'] = array(
-            'email'         => $this->input->post('email'),
-            'phone'         => $this->input->post('number'),
-            'school_id'     => $schoolId,
-            'ref_id'        => random_string('alnum', 50),
-            'otp'           => date('is'),
-            'name'          => $this->input->post('iname'),
-        );
-
-        $data['school_address'] = array(
-            'school_id' => $schoolId,
-            'address'   => $this->input->post('address'),
-            'city'      => $this->input->post('district'),
-            'taluq'     => $this->input->post('taluk'),
-            'pin'       => $this->input->post('pin'),
-        );
-        
-        if($this->m_auth->CreateAuth($data)){
-            $this->sendActivation($data);
-            $this->load->view('auth/reg-thank', $data);
-        }else{
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+        else{
+            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
             redirect('register');
         }
     }
@@ -322,11 +325,47 @@ class auth extends CI_Controller {
         $result = $this->m_auth->instituteFilter($taluk);
         echo json_encode($result);
     }
+
+    // institute filter
+    public function checkInstituteExist()
+    {
+        $id = $this->input->get('filter');
+        if($this->m_auth->checkInstituteExist($id)){
+            echo json_encode(array('status' => 1, 'msg' =>''));
+        }else{
+            http_response_code(409);
+            echo  json_encode(array('status' => 1, 'msg' =>'Institute already exist'));
+        }
+    }
+
+    // institute filter
+    public function checkEmailExist()
+    {
+        $id = $this->input->get('filter');
+        if($this->m_auth->checkEmailExist($id)){
+            echo json_encode(array('status' => 1, 'msg' =>''));
+        }else{
+            http_response_code(409);
+            echo  json_encode(array('status' => 1, 'msg' =>'Email Id already exist'));
+        }
+    }
+
+    // institute filter
+    public function checkPhoneExist()
+    {
+        $id = $this->input->get('filter');
+        if($this->m_auth->checkPhoneExist($id)){
+            echo json_encode(array('status' => 1, 'msg' =>''));
+        }else{
+            http_response_code(409);
+            echo  json_encode(array('status' => 1, 'msg' =>'Phone Number already exist'));
+        }
+    }
     
 }
 
 /* End of file auth.php */
-// matrixchange
+// 
 
 
 

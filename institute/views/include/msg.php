@@ -10,6 +10,4 @@ elseif($this->session->flashdata('error')){
     </script>';
 }
 
-
-
 ?>
