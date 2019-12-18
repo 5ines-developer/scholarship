@@ -13,7 +13,11 @@ class M_application extends CI_Model {
         $this->db->from('application a');
         $this->db->where('a.company_id', $sccomp);
         $this->db->where('a.application_state',2);
-        $this->db->where_not_in('a.status',$in );
+        
+        $this->db->group_start();
+            $this->db->where_not_in('a.status',$in );
+        $this->db->group_end();
+
         $this->db->order_by('id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
@@ -90,17 +94,24 @@ class M_application extends CI_Model {
     }
 
 
-        // Reject application
-        public function reject($data, $id)
-        {
-            $this->db->where('id', $id);
-            $this->db->update('application', $data);
-            if($this->db->affected_rows() > 0){
-                return true;
-            }else{
-                return false;
-            }
+    // Reject application
+    public function reject($data, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('application', $data);
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
         }
-}
+    }
+
+    // public function getstd($id = null)
+    // {   
+    //     $this->db->where('Field / comparison', $Value);
+        
+    // }
+
+    }
 
 /* End of file ModelName.php */

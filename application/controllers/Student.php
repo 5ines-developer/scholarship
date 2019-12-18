@@ -98,6 +98,9 @@ class Student extends CI_Controller {
                 'ref_id'    =>  random_string('alnum',20),
             );
 
+            $name = explode("@",$insert['email']);
+            $insert['name'] =  $name[0]; 
+
 
             if ($this->m_student->register($insert)) {
                 $outs = $this->sendregister($insert);

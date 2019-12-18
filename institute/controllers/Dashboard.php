@@ -47,7 +47,7 @@ class Dashboard extends CI_Controller {
         );
         if($this->m_dashboard->reject($data, $id)){
             $this->session->set_flashdata('success', 'Application rejected');
-            redirect('dashboard','refresh');
+            redirect('reject-list','refresh');
         }else{
             $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
             redirect('student/'.$id,'refresh');

@@ -27,8 +27,8 @@ $route['update-password']           = 'account/update_password';
 //scholarship request
 $route['application-request']       = 'application/index';
 $route['application/(:any)']        = 'application/singleStudent/$1';
-$route['application-rejected']      = 'application/reject_list/$1';
-$route['application-approved']      = 'application/approve_list/$1';
+$route['application-rejected']      = 'application/reject_list';
+$route['application-approved']      = 'application/approve_list';
 $route['application-approve']       = 'application/approve';
 $route['application-reject']        = 'application/reject';
 

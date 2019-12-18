@@ -23,9 +23,25 @@
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="card-title">
-                                    Scholarship Application Detail
-                                    <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo(($result->status == 2) || ($result->application_state != 2))? 'disabled' : ''  ?>" href="#modal1">Reject</a>
-                                    <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo(($result->status == 1) || ($result->application_state != 2))? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
+                                    Scholarship Application Detail'
+
+                                    <?php if (($result->application_state == 2) && ($result->status == 2)) { ?>
+                                        <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
+                                    <?php }elseif ((($result->application_state != 2) && ($result->application_state != 1)) && ($result->status !=2)){ ?>
+                                        <a class="btn-small right mr10 green darken-3 waves-effect waves-light" >Approved</a>
+                                    <?php }else{ ?>
+
+                                        <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
+                                    <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1)? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
+
+                                    <?php } ?>
+
+                                    <!-- <?php
+
+                                    if (($result->application_state == 2)) { ?>
+                                    <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
+                                    <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1)? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
+                                <?php } ?> -->
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">
@@ -353,6 +369,7 @@
                     var msg = response.data.msg;
                     M.toast({html: msg, classes: 'green darken-2'});
                     self.disabled = true;
+                    window.location.href = "<?php echo base_url('application-approved') ?>";
                 })
                 .catch(error => {
                     var msg = error.response.data.msg;
