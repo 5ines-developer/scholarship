@@ -149,6 +149,45 @@ public function instituteFilter($id = null)
    ->get('reg_schools')->result();
 }
 
+// check institute exist or not
+public function checkInstituteExist($id = null)
+{
+   $this->db->where('name',$id);
+   $query = $this->db->get('school');
+   if ($query->num_rows() > 0){
+     return false;
+   }
+   else{
+     return true;
+   }
+}
+
+public function checkEmailExist($id = null)
+{
+   $this->db->where('email',$id);
+   $query = $this->db->get('school');
+   if ($query->num_rows() > 0){
+     return false;
+   }
+   else{
+     return true;
+   }
+}
+
+
+public function checkPhoneExist($id = null)
+{
+   $this->db->where('phone',$id);
+   $query = $this->db->get('school');
+   if ($query->num_rows() > 0){
+     return false;
+   }
+   else{
+     return true;
+   }
+}
+
+
 
 }
 

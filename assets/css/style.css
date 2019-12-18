@@ -2631,7 +2631,7 @@ table.dataTable thead td {
 
 .v-select-inp-group button {
   position: absolute;
-  z-index: 9;
+  z-index: 2;
 }
 
 .v-select-inp-group .v-select-btn-clear {
@@ -2687,5 +2687,25 @@ table.dataTable thead td {
   opacity: 0.7;
   color: black;
   text-decoration: underline;
+}
+
+::-webkit-input-placeholder {
+  color: #646464 !important;
+}
+
+:-ms-input-placeholder {
+  color: #646464 !important;
+}
+
+::-ms-input-placeholder {
+  color: #646464 !important;
+}
+
+::placeholder {
+  color: #646464 !important;
+}
+
+.red-text.helper-text {
+  position: absolute !important;
 }
 /*# sourceMappingURL=style.css.map */

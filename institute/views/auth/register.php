@@ -39,23 +39,28 @@
                                         <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk" @input="instituteFilter"  tagging :from="taluk" />
                                     </div>
                                     <div class="input-field col m6">
-                                        <input type="hidden" name="iname" :value="instituteSelect.title"> 
-                                        <v-select v-model="instituteSelect"   as="title::id" :disabled='disabled1' placeholder="Select Institute"  tagging :from="institute" />
+                                        <div>
+                                            <input type="hidden" name="iname" :value="instituteSelect.id"> 
+                                            <v-select v-model="instituteSelect" @input="checkInstituteExist"  as="title::id" :disabled='disabled1' placeholder="Select Institute"  tagging :from="institute" />
+                                        </div>
+                                        <span class="red-text helper-text"> {{instituteError}}</span>
                                     </div>
                                     
                                     <div class="input-field col m6 ">
                                         <input id="regno" :value="instituteSelect.reg_no" readonly required placeholder="Registration Number" name="regno" type="text" class="validate">
-                                        
+                                        <span class="red-text helper-text"></span>
                                     </div>
 
                                     <div class="input-field col m6">
-                                        <input id="email" name="email" type="email" required class="validate">
+                                        <input id="email" v-model="email" @change="checkEmailExist" name="email" type="email" required class="validate">
                                         <label for="email">Email</label>
+                                        <span class="red-text helper-text">{{emailError}}</span>
                                     </div>
 
                                     <div class="input-field col m6">
-                                        <input id="number" name="number" type="number" required class="validate">
+                                        <input id="number" v-model="phone" @change="checkPhoneExist" name="number" type="number" required class="validate">
                                         <label for="number">Phone Number</label>
+                                        <span class="red-text helper-text">{{phoneError}}</span>
                                     </div>
 
                                     <div class="input-field col m6">
@@ -108,7 +113,7 @@
                                     </div>
                                     <div class="card-full-divider clearfix"></div>
                                     <div class="col s12">
-                                       <button class="waves-effect waves-light hoverable btn-theme btn mt10">Register</button> 
+                                       <button class="waves-effect waves-light hoverable btn-theme btn mt10" :type="type">Register</button> 
                                        <div class="right">
                                            <p class="pt20 pb10">
                                                <a href="#!" class="mt10 ahover">Incase Institute not in above list add here.</a> 
@@ -158,6 +163,12 @@
             districtSelect: <?php echo json_encode($district) ?>,
             instituteSelect: '',
             institute: '',
+            instituteError: '',
+            emailError: '',
+            phoneError: '',
+            email:'',
+            phone:'',
+            type: 'submit',
         },
 
         methods:{
@@ -165,6 +176,8 @@
                 var self = this;
                 self.taluk = '';
                 self.tlq = '';
+                self.instituteSelect = '';
+                self.institute = '';
                 axios.post('<?php echo base_url() ?>auth/talukFilter?filter='+this.district.id)
                 .then(res => {
                     self.disabled = false;
@@ -177,6 +190,8 @@
             },
             instituteFilter(){
                 var self = this;
+                self.instituteSelect = '';
+                self.institute = '';
                 axios.post('<?php echo base_url() ?>auth/instituteFilter?filter='+this.tlq.id)
                 .then(res => {
                     self.disabled1 = false;
@@ -185,6 +200,42 @@
                 .catch(err => {
                     console.error(err); 
                     self.disabled1 = true;
+                })
+            },
+            checkInstituteExist(){
+                var self = this;
+                axios.post('<?php echo base_url() ?>auth/checkInstituteExist?filter='+this.instituteSelect.id)
+                .then(res => {
+                    self.instituteError = '';
+                    self.type = 'submit';
+                })
+                .catch(err => {
+                    self.instituteError = err.response.data.msg;
+                    self.type = 'button';
+                })
+            },
+            checkEmailExist(){
+                var self = this;
+                axios.post('<?php echo base_url() ?>auth/checkEmailExist?filter='+this.email)
+                .then(res => {
+                    self.emailError = '';
+                    self.type = 'submit';
+                })
+                .catch(err => {
+                    self.emailError = err.response.data.msg;
+                    self.type = 'button';
+                })
+            },
+            checkPhoneExist(){
+                var self = this;
+                axios.post('<?php echo base_url() ?>auth/checkPhoneExist?filter='+this.phone)
+                .then(res => {
+                    self.phoneError = '';
+                    self.type = 'submit';
+                })
+                .catch(err => {
+                    self.phoneError = err.response.data.msg;
+                    self.type = 'button';
                 })
             },
         }
