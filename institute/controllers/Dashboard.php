@@ -99,6 +99,7 @@ class Dashboard extends CI_Controller {
     public function sendmailApplication($id = null)
     {
         $data['info'] = $this->m_dashboard->singleStudent($id);
+        
         $this->load->library('pdf');
         $this->pdf->load_view('dashboard/pdf', $data);
         $this->pdf->setPaper('A5', 'portrait');
