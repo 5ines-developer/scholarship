@@ -50,12 +50,24 @@ public function activateAccount($id = null)
 {
    $this->db->where('ref_id', $id);
    $this->db->update('school_auth', array('status'=> 2));
-   if($this->db->affected_rows() > 0){
+   if($this->checkLinkExist($id)){
       return true;
    }else{
       return false;
    }
 }
+public function checkLinkExist($id = null)
+{
+   $this->db->where('ref_id',$id);
+   $query = $this->db->get('school_auth');
+   if ($query->num_rows() > 0){
+     return true;
+   }
+   else{
+     return false;
+   }
+}
+
 // sett password
 public function set_password($data, $key)
 {

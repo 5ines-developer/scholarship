@@ -326,7 +326,7 @@
         </form>
         
     </div>
-        
+    <div v-if="loader" class="loading">Loading&#8230;</div>
 
     <!-- footer -->
         
@@ -357,6 +357,7 @@
             cpsw: '',
             disabled: false,
             reason: '',
+            loader: false
         },  
 
         methods:{
@@ -364,16 +365,19 @@
                 var self = this;
                 const formData = new FormData();
                 formData.append('id', id);
+                self.loader = true;
                 axios.post('<?php echo base_url() ?>approval', formData)
                 .then(function (response) {
                     var msg = response.data.msg;
                     M.toast({html: msg, classes: 'green darken-2'});
                     self.disabled = true;
                     window.location.href = "<?php echo base_url('approve-list') ?>";
+                    self.loader = false;
                 })
                 .catch(function (error) {
                     var msg = error.response.data.msg;
                     M.toast({html: msg, classes: 'red darken-4'});
+                    self.loader = false;
                 })
             }
         }
