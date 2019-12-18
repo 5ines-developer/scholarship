@@ -47,7 +47,6 @@ class Std_application extends CI_Controller {
     {
 
 		$input = $this->input->post();
-		
 		if($this->input->post('terms') == 'true'){ $terms = 1; }
 
 		if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
@@ -100,7 +99,7 @@ class Std_application extends CI_Controller {
 
     	$this->load->library('upload');
     	$files = $_FILES;
-    	if (($this->input->post('clow') != '') &&  (empty($_FILES['cfile']['tmp_name'])) ) {
+    	if (($this->input->post('clow') == '') &&  (empty($_FILES['cfile']['tmp_name'])) ) {
 		}else{
     		$config['upload_path'] = 'student-cast/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
@@ -214,7 +213,7 @@ class Std_application extends CI_Controller {
     		'prv_marks' 	=> $this->input->post('pmarks'), 
 		);
 
-		if (empty($_FILES['bpassbook']['tmp_name'])) {
+		if (empty($_FILES['pcard']['tmp_name'])) {
 		}else{
     		$config['upload_path'] = 'student-marks/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
@@ -222,7 +221,7 @@ class Std_application extends CI_Controller {
 	        $config['encrypt_name'] = true;
 	        $this->upload->initialize($config);
 	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-	        $this->upload->do_upload('bpassbook');
+	        $this->upload->do_upload('pcard');
 	        $upload_data = $this->upload->data();
 			$pass = 'student-marks/'.$upload_data['file_name'];			
 			$insert['prv_markcard'] = $pass;

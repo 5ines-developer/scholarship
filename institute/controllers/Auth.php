@@ -102,6 +102,7 @@ class auth extends CI_Controller {
                         $seal = $key.'/'.$upload_data['file_name'];
                     }
                 }
+                
             }
 
             $data['schoolDetail'] = array(

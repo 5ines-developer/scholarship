@@ -543,7 +543,7 @@
                     formData.append('idistrict', this.institute.district);
                     formData.append('pclass', this.previous.class);
                     formData.append('pmarks', this.previous.marks);
-                    formData.append('pcard', this.previous.card);
+                    formData.append('pcard', this.file);
                     formData.append('incard', this.industry.working);
                     formData.append('inpname', this.industry.pname);
                     formData.append('insalary', this.industry.salary);
