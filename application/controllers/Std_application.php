@@ -37,6 +37,18 @@ class Std_application extends CI_Controller {
 		$this->load->view('student/application', $data, FALSE);
 	}
 
+    public function search($var = null)
+    {
+        $term = $this->input->get('q[term]');
+        $output = $this->m_stdapplication->search($term);
+        $result = [];
+
+        foreach ($output as $key => $value) {
+            $json[] = ['id'=>$value['id'], 'text'=>$value['name']];
+        }
+        echo json_encode($json);
+    }
+
 	/**
     * student application - insert application
     * @url      : student/submit-application
