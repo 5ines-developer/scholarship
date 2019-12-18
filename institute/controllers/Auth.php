@@ -87,15 +87,24 @@ class auth extends CI_Controller {
                 $this->upload->initialize($config);
 
                 if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-                $this->upload->do_upload($key);
-                $upload_data = $this->upload->data();
-                if($key == 'regfile'){
-                    $regfile = $key.'/'.$upload_data['file_name'];
-                }elseif($key == 'signature') {
-                    $signature = $key.'/'.$upload_data['file_name'];
-                }else{
-                    $seal = $key.'/'.$upload_data['file_name'];
+                if (!$this->upload->do_upload($key)) {
+                    $error = array('error' => $this->upload->display_errors());
+                    // print_r($error);exit();
+                    $this->session->set_flashdata('error', $this->upload->display_errors());
+                    redirect('register');
+                } else {
+
+                    $upload_data = $this->upload->data();
+                    if($key == 'regfile'){
+                        $regfile = $key.'/'.$upload_data['file_name'];
+                    }elseif($key == 'signature') {
+                        $signature = $key.'/'.$upload_data['file_name'];
+                    }else{
+                        $seal = $key.'/'.$upload_data['file_name'];
+                    }
+
                 }
+                
             }
         }
 
