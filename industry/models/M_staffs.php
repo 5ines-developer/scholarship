@@ -75,6 +75,16 @@ class M_staffs extends CI_Model {
        }
     }
 
+  public function stasChange($id='',$status='')
+  {
+    $this->db->where('id', $id)->update('industry_register', array('status' => $status));
+    if($this->db->affected_rows() > 0){
+      return true;
+    }
+    else{
+       return false;
+    }
+  }
 }
 
 /* End of file M_staffs.php */

@@ -16,9 +16,6 @@ class Staffs extends CI_Controller {
     {
         $data['title'] = 'Manage Staffs';
         $data['staffs'] = $this->M_staffs->lists();
-        echo "<pre>";
-        print_r ($data);
-        echo "</pre>";
         $this->load->view('staffs/list', $data);
     }
 
@@ -96,6 +93,33 @@ class Staffs extends CI_Controller {
         {
             return false;
         }
+    }
+
+    public function block($value='')
+    {
+        $id = $this->input->post('id');
+        $status = '2';
+
+        if($this->M_staffs->stasChange($id,$status)){
+             $data = array('status' => 1, 'msg' => '🙂 Staff Blocked Successfully ');
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+        }
+        echo json_encode($data);
+    }
+
+    public function unblock($value='')
+    {
+        $id = $this->input->post('id');
+        $status = '1';
+        if($this->M_staffs->stasChange($id,$status)){
+             $data = array('status' => 1, 'msg' => '🙂 Staff Unblocked  Successfully ');
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+        }
+        echo json_encode($data);
     }
 
 

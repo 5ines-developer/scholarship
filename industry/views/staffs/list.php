@@ -25,6 +25,7 @@
                             <div>
                                 <a class="waves-effect waves-light hoverable btn-theme btn right capitalize" href="<?php echo base_url()  ?>staffs/create">  <i class="material-icons tiny left">add</i> Add new staff</a>
                                 <span class="card-title">Verification staffs</span>
+                                <input type="hidden" v-model="id">
                             </div>
                                 <div class="board-content">
                                     <div class="row m0">
@@ -47,17 +48,13 @@
                                                         <td><?php echo (!empty($value->email))?$value->email:''; ?></td>
                                                         <td><?php echo (!empty($value->mobile))?$value->mobile:''; ?></td>
                                                         <td>
-                                                            <?php 
-                                                                if($value->status == 0){
-                                                                    echo '<span class="red-text">Not Activated</span>';
-                                                                }elseif($value->status == 1){
-                                                                    echo '<span class="green-text">Active</span>';
-                                                                }else{
-                                                                    echo '<span class="red-text">Block</span>';
-                                                                }
-                                                            ?>
+                                                            <span v-bind:style="{ color: activeColor}">{{actve}}</span>
                                                         </td>
-                                                        <td></td>
+                                                        <?php echo $value->status?>
+                                                        <td>
+                                                            <a :class="{hide:hiden}"  class="btn-small right red darken-3 waves-effect waves-light" @click="staffBlock">Block</a>
+                                                            <a :class="{hide:hiden1}" @click="unBlock" class="btn-small right green darken-3 waves-effect waves-light">UNBlock</a>
+                                                        </td>
                                                     </tr>      
                                                 <?php } if(empty($staffs)){ ?>
                                                     <tr>
@@ -100,11 +97,55 @@
         el: '#app',
         data: {
             loader:false,
+            deactivate:'',
+            id:'<?php echo (!empty($value->id))?$value->id:''; ?>',
+            loginType:'',
+            hiden:'<?php echo ($value->status == '2')?true:false; ?>',
+            hiden1:'<?php echo ($value->status == '1')?true:false; ?>',
+            actve:'<?php if($value->status == 0){ echo 'Inactive'; }else if($value->status == 1){ echo 'Active'; }else
+            { echo 'Blocked'; } ?>',
+            activeColor:'<?php if($value->status == 1){ echo 'green'; }else{ echo 'red'; } ?>',
           
         },  
         mounted(){
         },
         methods:{
+            staffBlock(){
+                 loader = true;
+               const formData = new FormData();
+               formData.append('id',this.id);
+               axios.post('<?php echo base_url('staffs/block') ?>',formData)
+               .then(response => {
+                    loader = false;
+                    msg = response.data.msg;
+                    this.hiden1 = false;
+                    this.hiden = true;
+                    this.actve = 'Blocked';
+                    this.activeColor = 'red';
+                    M.toast({html: msg, classes: 'green', displayLength : 5000 });
+               })
+               .catch(error =>{
+                 this.errormsg = error.response.data.error;
+               })
+            },
+            unBlock(){
+                loader = true;
+                    const formData = new FormData();
+                   formData.append('id',this.id);
+                   axios.post('<?php echo base_url('staffs/unblock') ?>',formData)
+                   .then(response => {
+                        msg = response.data.msg;
+                        loader = false;
+                        this.hiden = false;
+                        this.hiden1 = true;
+                        this.actve = 'Active';
+                        this.activeColor = 'green';
+                        M.toast({html: msg, classes: 'green', displayLength : 5000 });
+                   })
+                   .catch(error =>{
+                     this.errormsg = error.response.data.error;
+                   })
+            }
             
         }
     })
