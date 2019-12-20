@@ -96,42 +96,41 @@ class Dashboard extends CI_Controller {
     }
 
     // Send a application pdf file
-    public function sendmailApplication($id = null)
+    public function sendmailApplication($id = 27)
     {
         $data['info'] = $this->m_dashboard->singleStudent($id);
-        
-        $this->load->library('pdf');
-        $this->pdf->load_view('dashboard/pdf', $data);
-        $this->pdf->setPaper('A5', 'portrait');
-        $this->pdf->render();
-        $output = $this->pdf->output();
-        if (!file_exists('temp')) { mkdir('temp', 0777, true); }
-        $created = file_put_contents('temp/application.pdf', $output);
-        // send mail
-        if(!empty($created)){
-            $data['email'] = $data['info']->email;
-            $this->load->config('email');
-            $this->load->library('email');
-            $from = $this->config->item('smtp_user');
-            $msg = $this->load->view('mail/approve', $data, true);
-            $this->email->set_newline("\r\n");
-            $this->email->from($from , 'Karnataka Labour Welfare Board');
-            $this->email->attach($_SERVER["DOCUMENT_ROOT"].'/scholarship/institute/temp/application.pdf');
-            $this->email->to('shahirkm@5ine.in');
-            $this->email->subject('Scholarship application Approved'); 
-            $this->email->message($msg);
-            if($this->email->send())  
-            {
-                return true;
-            } 
-            else
-            {
-                return false;
-            }
+        $data['email'] = $data['info']->email;
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/approve', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to('shahirkm@5ine.in');
+        $this->email->subject('Scholarship application Approved'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
         }
-        return true;
+        
     }
     
+
+    public function pdftest($var = null)
+    {
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+	        'default_font' => 'tunga'
+        ]);
+        if (!file_exists('temp')) { mkdir('temp', 0777, true); }
+        $mpdf->WriteHTML('<h1>ಶಿಕ್ಷಣ ಸಂಸ್ಥೆಯವರು ಭರ್ತಿ ಮಾಡಿ ತಪ್ಪದೇ ದೃಡೀಕರಿಸವುದು</h1>');
+        $mpdf->Output();
+    }
 
 }
 
