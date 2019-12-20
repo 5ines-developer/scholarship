@@ -31,6 +31,9 @@
             font-weight:600;
             font-size:14px
         }
+        .bold{
+            font-weight:bold
+        }
         ol{
             padding-left:15px;
             margin:50px 0px
@@ -41,7 +44,7 @@
     </style>
 </head>
 <body class="">
-<div style="border:1px solid black; padding: 50px 0px; ">
+<div style="border:1px solid black; padding: 100px 0px; ">
     <div class="container z-depth-2 mt15" id="shcoolapp">
         <div class="row">
             <div class="col m10 push-m1">
@@ -74,12 +77,11 @@
                     <p>ದೂರವಾಣಿ ಸಂಖ್ಯೆ (STD CODE ಸಹಿತ): <span class="dashed-line"> <?php echo $info->parent_phone  ?> </span></p>
                 </div>
                 <div class="col s12 m5 push-m2 foo-address left">
-                    <p>ಹೆಸರು: <span class="dashed-line"> <?php echo $info->dstctName ?> </span></p>
-                    <br><br>
+                    <!-- <p>ಹೆಸರು: <span class="dashed-line"> <?php echo $info->dstctName ?> </span></p> -->
+                    <img src="https://www.esfcamps.com/ranney/wp-content/uploads/sites/12/2017/05/Ranney-School-seal.png" width="80px" class="mr30" alt="">
+                    <img src="https://www.purcell-school.org/wp-content/uploads/2018/09/Principle-Signature-300x168.png" width="80px" alt="">
                     <p class="mt10">ಮುಖ್ಯೋಪಾಧ್ಯಾರ/ಪ್ರಾಂಶುಪಾಲರ ಸಹಿ ಹಾಗು ಮೊಹರು</p>
-                    <br>
-                    <img src="https://www.esfcamps.com/ranney/wp-content/uploads/sites/12/2017/05/Ranney-School-seal.png" width="100px" class="mr30" alt="">
-                    <img src="https://www.purcell-school.org/wp-content/uploads/2018/09/Principle-Signature-300x168.png" width="100px" alt="">
+                    <br><br>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col s12 center foo-address"><p>( ವಿ.ಸೂ: ಶಿಕ್ಷಣ ಸಂಸ್ಥೆಯ ಪೂರ್ಣ ವಿಳಾಸವುಳ್ಳ ಮೊಹರು ತಪ್ಪದೆ ಹಾಕುವುದು. )</p></div>
