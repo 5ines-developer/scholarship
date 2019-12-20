@@ -82,33 +82,45 @@ class Application extends CI_Controller {
         }
     }
 
+    public function pdfTest($id='')
+    {
+        $ids =  urldecode($id);
+        $data['info'] = base64_decode($ids);
+        // $this->load->model('m_dashboard');
+        // $data['info'] = $this->m_dashboard->singleStudent($apid);
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+            'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('account/pdf', $data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit; 
+    }
+
     public function approveMail($id='')
 	{
 
-        $student = $this->m_application->getstd($id);
-        
-        echo "<pre>";
-        print_r ($id);
-        echo "</pre>";exit;
-        
-		
-        $this->load->config('email');
-        $this->load->library('email');
-        $from = $this->config->item('smtp_user');
-		$msg = $this->load->view('email/stdapplication', $data, true);
-        $this->email->set_newline("\r\n");
-        $this->email->from($from , 'Karnataka Labour Welfare Board');
-        $this->email->to($this->slmail);
-        $this->email->subject('Application Confirmation'); 
-        $this->email->message($msg);
-        if($this->email->send())  
-        {
-            return true;
-        } 
-        else
-        {
-            return false;
-        }
+
+  //       $student = $this->m_application->getstd($id);
+  //       $this->load->config('email');
+  //       $this->load->library('email');
+  //       $from = $this->config->item('smtp_user');
+		// $msg = $this->load->view('email/stdapplication', $data, true);
+  //       $this->email->set_newline("\r\n");
+  //       $this->email->from($from , 'Karnataka Labour Welfare Board');
+  //       $this->email->to($this->slmail);
+  //       $this->email->subject('Application Confirmation'); 
+  //       $this->email->message($msg);
+  //       if($this->email->send())  
+  //       {
+  //           return true;
+  //       } 
+  //       else
+  //       {
+  //           return false;
+  //       }
 		
 	}
 

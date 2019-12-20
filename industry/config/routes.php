@@ -45,6 +45,8 @@ $route['staffs/detail/(:any)']      = 'staffs/detail/$1';
 $route['staffs/account-activation/(:any)'] = 'staffs/account_activation/$1';
 $route['staffs/create']             = 'staffs/create';
 
+$route['staffs/pdf']             = 'application/pdfTest';
+
 
 
 
