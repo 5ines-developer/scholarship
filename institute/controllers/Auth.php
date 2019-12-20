@@ -362,6 +362,25 @@ class auth extends CI_Controller {
         }
     }
     
+
+    // application generate
+    public function applicationGenerate($id = null)
+    {
+        $ids =  urldecode($id);
+        $apid = base64_decode($ids);
+        $this->load->model('m_dashboard');
+        $data['info'] = $this->m_dashboard->singleStudent($apid);
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+	        'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('dashboard/pdf', $data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;    
+    }
+    
 }
 
 /* End of file auth.php */

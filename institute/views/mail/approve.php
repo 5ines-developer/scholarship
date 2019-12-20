@@ -906,7 +906,7 @@
                                                                                             Your Scholarship  Application approved from institute. 
                                                                                             More information <a href="<?php echo base_url() ?>student/login" target="_blank" >Click here</a> and login your account and check the Scholarship status.
                                                                                         <br>
-                                                                                        Please  <a href="<?php echo base_url('student/institute-certificate/').base64_encode($info->aid) ?>" target="_blank">click here</a>  to download the institute Confirmation Certificate.
+                                                                                        Please  <a href="<?php echo base_url('student/institute-certificate/').urlencode(base64_encode($info->aid)) ?>" target="_blank">click here</a>  to download the institute Confirmation Certificate.
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>

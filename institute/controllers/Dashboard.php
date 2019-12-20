@@ -121,17 +121,6 @@ class Dashboard extends CI_Controller {
     }
     
 
-    public function pdftest($var = null)
-    {
-        $mpdf = new \Mpdf\Mpdf([
-            'default_font_size' => 9,
-	        'default_font' => 'tunga'
-        ]);
-        if (!file_exists('temp')) { mkdir('temp', 0777, true); }
-        $mpdf->WriteHTML('<h1>ಶಿಕ್ಷಣ ಸಂಸ್ಥೆಯವರು ಭರ್ತಿ ಮಾಡಿ ತಪ್ಪದೇ ದೃಡೀಕರಿಸವುದು</h1>');
-        $mpdf->Output();
-    }
-
 }
 
-/* End of file Dashboard.php */
+/* End of file Dashboard.php email*/

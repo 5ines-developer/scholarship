@@ -34,7 +34,7 @@ $route['staffs/create']             = 'staffs/create';
 $route['staffs/delete/(:any)']      = 'staffs/delete/$1';
 $route['staffs/update/(:any)']      = 'staffs/update/$1';
 $route['staffs/detail/(:any)']      = 'staffs/detail/$1';
-
+$route['student/institute-certificate/(:any)'] = 'auth/applicationGenerate/$1';
 
 
 $route['404_override'] = '';
