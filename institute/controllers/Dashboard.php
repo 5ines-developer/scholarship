@@ -85,7 +85,6 @@ class Dashboard extends CI_Controller {
     // approve application
     public function approval($var = null)
     {
-        $this->sendmailApplication($this->input->post('id'));
         if($this->m_dashboard->approval($this->input->post('id'))){
             $data = array('status' => 1, 'msg' => 'Approved successfully.');
         }else{
@@ -93,46 +92,35 @@ class Dashboard extends CI_Controller {
             $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
         }
         echo json_encode($data);
+        $this->sendmailApplication($this->input->post('id'));
     }
 
     // Send a application pdf file
-    public function sendmailApplication($id = null)
+    public function sendmailApplication($id = 27)
     {
         $data['info'] = $this->m_dashboard->singleStudent($id);
-        
-        $this->load->library('pdf');
-        $this->pdf->load_view('dashboard/pdf', $data);
-        $this->pdf->setPaper('A5', 'portrait');
-        $this->pdf->render();
-        $output = $this->pdf->output();
-        if (!file_exists('temp')) { mkdir('temp', 0777, true); }
-        $created = file_put_contents('temp/application.pdf', $output);
-        // send mail
-        if(!empty($created)){
-            $data['email'] = $data['info']->email;
-            $this->load->config('email');
-            $this->load->library('email');
-            $from = $this->config->item('smtp_user');
-            $msg = $this->load->view('mail/approve', $data, true);
-            $this->email->set_newline("\r\n");
-            $this->email->from($from , 'Karnataka Labour Welfare Board');
-            $this->email->attach($_SERVER["DOCUMENT_ROOT"].'/scholarship/institute/temp/application.pdf');
-            $this->email->to('shahirkm@5ine.in');
-            $this->email->subject('Scholarship application Approved'); 
-            $this->email->message($msg);
-            if($this->email->send())  
-            {
-                return true;
-            } 
-            else
-            {
-                return false;
-            }
+        $data['email'] = $data['info']->email;
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/approve', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to('shahirkm@5ine.in');
+        $this->email->subject('Scholarship application Approved'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
         }
-        return true;
+        
     }
     
 
 }
 
-/* End of file Dashboard.php */
+/* End of file Dashboard.php email*/

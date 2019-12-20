@@ -8,8 +8,10 @@
     
 
     <style>
-        @font-face { font-family: Blanch; src: url('../../assets/fonts/Lohit-Kannada.ttf'); font-style: normal; font-weight: normal; }
-        body { font-family: 'Blanch',  sans-serif; font-size:15px}
+        /* @font-face { font-family: Blanch; src: url('../../assets/fonts/Lohit-Kannada.ttf') format('truetype'); font-style: normal; font-weight:900; }
+         */
+        @import url('https://fonts.googleapis.com/css?family=Baloo+Tamma&display=swap');
+        body { font-family: 'Baloo Tamma',  sans-serif; font-size:15px}
         .center{ text-align:center }
         p{margin:0px;}
         .left{width:50%; float:left}
