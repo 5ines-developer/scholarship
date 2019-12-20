@@ -150,6 +150,12 @@ class M_stdapplication extends CI_Model {
         return $this->db->like('name',$term,'both')->select('name,id')->get('industry')->result_array();
     }
     
+    // taluk filter
+    public function getTalukFiletr($id = null)
+    {
+       return $this->db->where('city_id', $id)
+       ->get('taluq')->result();
+    }
 
 }
 

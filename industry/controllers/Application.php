@@ -54,15 +54,15 @@ class Application extends CI_Controller {
     {
         $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to government for verification, we will notify the status via sms';
         $id = $this->input->post('id');
-        // if($this->m_application->approval($id)){
-            $this->approveMail($id);
-        //     $this->studentSms($msg,$id);
-        //     $data = array('status' => 1, 'msg' => 'Approved successfully.');
-        // }else{
-        //     $this->output->set_status_header('400');
-        //     $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
-        // }
-        // echo json_encode($data);
+        if($this->m_application->approval($id)){
+            // $this->approveMail($id);
+            // $this->studentSms($msg,$id);
+            $data = array('status' => 1, 'msg' => 'Approved successfully.');
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
+        }
+        echo json_encode($data);
     }
 
     // Reject 

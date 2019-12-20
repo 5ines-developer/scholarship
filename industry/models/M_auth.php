@@ -70,28 +70,41 @@ class M_auth extends CI_Model {
 public function activateAccount($id = null)
 {
    $this->db->where('ref_id', $id);
-   $this->db->update('industry_register', array('status'=> 1,'ref_id' => random_string('alnum',10)));
-   if($this->db->affected_rows() > 0){
+   $this->db->update('industry_register', array('status'=> 2));
+   if($this->checkLinkExist($id)){
       return true;
    }else{
       return false;
    }
 }
 
-
+public function checkLinkExist($id = null)
+{
+   $this->db->where('ref_id',$id);
+   $query = $this->db->get('industry_register');
+   if ($query->num_rows() > 0){
+     return true;
+   }
+   else{
+     return false;
+   }
+}
 
 function can_login($email, $password)  
 {
     $this->db->where('email', $email);  
     $this->db->where('status', '1');  
-    $this->db->where('password', $password);  
     $result = $this->db->get('industry_register')->row_array();
     if (!empty($result)) {
-      return $result;
+      if ($this->bcrypt->check_password($password, $result['password'])) {
+        return $result;
+      }else{
+        return null;
+      }
     } 
     else {
         return null;
-    }  
+    } 
 }
 
 

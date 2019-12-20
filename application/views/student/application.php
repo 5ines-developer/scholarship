@@ -8,20 +8,6 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/select2.css" rel="stylesheet" />
-
-    <style>
-        datalist  option{
-            clear: both;
-            color: 
-            rgba(0,0,0,0.87);
-            cursor: pointer;
-            min-height: 50px;
-            line-height: 1.5rem;
-            width: 100%;
-            text-align: left;
-        }
-    </style>
 
 </head>
 <body>
@@ -102,7 +88,7 @@
                                             <p class="box-title "></p>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <select id="in_district" required="" class="select1" class="select1" v-model="institute.district">
+                                                <select id="in_district" required="" v-model="institute.district">
                                                     <option value="" disabled selected>ಜಿಲ್ಲೆ</option>                                                  
                                                     <?php if (!empty($district)) {
                                                         foreach ($district as $dist => $distct) { 
@@ -112,7 +98,7 @@
                                                 <label for="in_district">District</label>
                                             </div>
                                             <div class="input-field col s12 m5 l5">
-                                                <select id="in_talluk"  required="" class="select1" v-model="institute.talluk">
+                                                <select id="in_talluk"  required="" v-model="institute.talluk">
                                                     <option value="" disabled selected>ತಾಲ್ಲೂಕು</option>
                                                     <?php if (!empty($talluk)) {
                                                         foreach ($talluk as $tal => $talk) { 
@@ -122,7 +108,7 @@
                                                 <label for="in_talluk">Taluk</label>
                                             </div>
                                             <div class="input-field col s12 m5 l5">
-                                                <select required="" class="select1" v-model="institute.name">
+                                                <select required=""  v-model="institute.name">
                                                     <option value="" disabled selected>ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆ</option>
                                                     <?php if (!empty($school)) {
                                                         foreach ($school as $sch => $schl) { 
@@ -279,7 +265,7 @@
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <select name="id_talluk" class="select1" id="id_talluk" required="" v-model="industry.talluk" >
+                                                <select name="id_talluk" id="id_talluk" required="" v-model="industry.talluk" >
                                                     <option value="" disabled selected>ತಾಲ್ಲೂಕು</option>
                                                     <?php if (!empty($talluk)) {
                                                         foreach ($talluk as $tal => $talk) { 
@@ -290,7 +276,7 @@
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <select name="id_district" id="id_district" required="" class="select1" v-model="industry.district" >
+                                                <select name="id_district" id="id_district" required="" v-model="industry.district" >
                                                     <option value="" disabled selected>ಜಿಲ್ಲೆ</option>
                                                     <?php if (!empty($district)) {
                                                         foreach ($district as $dist => $distct) { 
@@ -300,20 +286,16 @@
                                                 <label for="id_district">District</label>
                                             </div>
 
-                                            <!-- <div class="input-field col s12 m5 l5">
-                                                    <input id="bn_ifscss" type="text" list="states-list"  v-model="industry.name" @keyup="getCompany">
-                                                    <label for="bn_ifscss"> <span class="black-text">Search</span></label>
-                                                    <datalist id="states-list">
-                                                        <option v-for="company in searchresult" :value="company.name">{{ company.name }}</option>
-                                                    </datalist>
-                                            </div> -->
-
                                             <div class="input-field col s12 m5 l5">
                                                 <select name="id_name" id="id_name" required=""  v-model="industry.name" >
-                                                    <option value="" disabled selected>ಪೋಷಕ ಉದ್ಯಮದ ಹೆಸರು</option>                                                    
-                                                    <option value="<?php echo (!empty($result->company_id))?$result->company_id:''; ?>"><?php echo (!empty($result->indName))?$result->indName:''; ?></option>
+                                                    <option value="" disabled selected>ಪೋಷಕ ಉದ್ಯಮದ ಹೆಸರು</option>
+                                                    <?php if (!empty($company)) {
+                                                        foreach ($company as $comp => $compn) { 
+                                                          echo '<option value="'.$compn->iId.'">'.$compn->iName.'</option>';
+                                                     } } ?> 
                                                 </select>
-                                            </div> 
+                                                <label for="id_name">Parent Industry Name</label>
+                                            </div>
                                             <div class="input-field col s12 m7">
                                               <textarea id="id_add" class="materialize-textarea" placeholder="ಉದ್ಯಮದ ವಿಳಾಸ" name="id_add" required=""   v-model="industry.address" ></textarea>
                                               <label for="id_add"><span class="black-text">Industry Address</span></label>
@@ -398,7 +380,6 @@
                                             
                                             <input type="hidden" name="uniq" value="<?php echo random_string('alnum',16); ?>" v-model="uniq"/>
                                             <input type="hidden" name="aid" v-model="aid" />
-                                            <input id="c_comp" type="hidden" name="c_comp" @change="c_comp = $event.target.value">
 
 
                                             <p class="col s12 mb20 mt10">
@@ -408,8 +389,6 @@
                                                 </label>
                                             </p>
                                         </div><!-- End Box-->
-
-                                        
 
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Apply</button>
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Reset</button>
@@ -437,60 +416,18 @@
 <!-- scripts -->
 <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
 <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
+<script src="<?php echo base_url() ?>assets/js/script.js"></script>
 <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
-<script src="<?php echo base_url()?>assets/js/jquery-3.4.1.min.js"></script>
-<script src="<?php echo base_url()?>assets/js/select2.js"></script>
 
 <script>
    document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.parallax');
         var instances = M.Parallax.init(elems);
-
-        var instances = M.FormSelect.init(document.querySelectorAll('.select1'));
     });
-
-    $(document).ready(function() {
-
-
-    $('#id_name').select2({
-    placeholder: 'Parent Industry Name',
-    minimumInputLength: 1,
-    ajax: {
-        url: "<?php echo base_url('std_application/search') ?>",
-        dataType: 'json',
-        quietMillis: 250,
-        data: function (term, page) {
-            return {
-                q: term, // search term
-            };
-        },
-        processResults: function (data) {
-
-        return {
-
-        results: data
-
-        };
-
-        },
-                        cache: true
-        },
-           
-
-    });
-
-
-    $(document).on('change','#id_name',function(){
-        var cmp = $(this).val();
-        $('#c_comp').val(cmp);
-    });
-});
 
     var app = new Vue({
         el: '#app',
         data: {
-            searchresult: [],
-            c_comp: '',
             loader:false,            
             uniq:'<?php echo (!empty($result->uniq))?$result->uniq:''; ?>',
             terms:'<?php echo (!empty($result->terms))?'true':''; ?>',
@@ -509,7 +446,7 @@
             institute: {
                 pclass:'<?php echo (!empty($result->class))?$result->class:''; ?>',
                 pin:'<?php echo (!empty($result->ins_pin))?$result->ins_pin:''; ?>',
-                name:'<?php echo (!empty($result->schID))?$result->schID:''; ?>',
+                name:'<?php echo (!empty($result->ins_talluk))?$result->ins_talluk:''; ?>',
                 talluk:'<?php echo (!empty($result->ins_talluk))?$result->ins_talluk:''; ?>',
                 district:'<?php echo (!empty($result->ins_district))?$result->ins_district:''; ?>',
             },
@@ -547,24 +484,6 @@
 
         },
         methods:{
-            getCompany(){
-                // this.loader=true;
-                if((this.industry.name.length >= 3))
-                {
-                    const formData = new FormData();
-                    formData.append('comapny', this.industry.name);
-                    axios.post('<?php echo base_url('std_application/search') ?>',formData)
-                    .then(response =>{
-                        this.searchresult = response.data;
-                    }).catch(error => {
-                        if (error.response) {
-                            this.errormsg = error.response.data.error;
-                        }
-                    })
-                }
-
-                    
-            },
             markcard(){
                 this.file = this.$refs.file.files[0];
                 
@@ -609,7 +528,6 @@
             },
            formSubmit(e){
                 e.preventDefault();
-                alert(this.industry.name);
                 if ((this.markError == '') && (this.salError=='')){
                     this.loader=true;
                     const formData = new FormData();
@@ -633,7 +551,7 @@
                     formData.append('inpin', this.industry.pin);
                     formData.append('intalluk', this.industry.talluk);
                     formData.append('indistrict', this.industry.district);
-                    formData.append('inname', this.c_comp);
+                    formData.append('inname', this.industry.name);
                     formData.append('inaddress', this.industry.address);
                     formData.append('clow', this.caste.low);
                     formData.append('cfile', this.file1);

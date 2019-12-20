@@ -284,7 +284,7 @@ class auth extends CI_Controller {
             $data['refid'] = $id;
             $this->load->view('auth/new-password', $data);
         }else{
-            $this->session->set_flashdata('error', 'forgot password link has been expired <br> Please tru again');
+            $this->session->set_flashdata('error', 'forgot password link has been expired <br> Please try again');
             redirect('/','refresh');
         }
     }

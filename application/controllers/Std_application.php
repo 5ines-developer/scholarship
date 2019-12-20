@@ -323,7 +323,14 @@ class Std_application extends CI_Controller {
 	}
 
 
-	
+	   // taluk filter based on selected district
+    public function talukFilter()
+    {
+        $district = $this->input->get('filter');
+        $result = $this->m_stdapplication->getTalukFiletr($district);
+        echo json_encode($result);
+    }
+
 
 }
 

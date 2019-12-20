@@ -30,8 +30,8 @@ class auth extends CI_Controller {
                             'sinmail'   => $email,
                             'scinds'    => $result['id'],
                             'sccomp'    => $result['industry_id'],
+                            'scctype'    => $result['type'],
                         ); 
-
                         $this->session->set_userdata($session_data); 
                         redirect('dashboard'); 
                     } 
@@ -50,7 +50,14 @@ class auth extends CI_Controller {
         }
     }
 
-
+    // logout
+    public function logout()
+    {
+        $this->session->unset_userdata($this->session->userdata());
+        $this->session->sess_destroy();
+        $this->session->set_flashdata('success', 'You are Logged Out successfully');
+        redirect('/');
+    }
 
        /**
      * industry registration-> mobile number check exist
@@ -143,12 +150,11 @@ class auth extends CI_Controller {
             'mobile'         => $this->input->post('phone'),
             'talluk'          => $this->input->post('taluk'),
             'district'       => $this->input->post('district'),
-            'password'       => $this->input->post('password'),
             'address'        => $this->input->post('address'),
             'ref_id'         => random_string('alnum',16),
-            'industry_id'         => $this->input->post('company'),
+            'industry_id'    => $this->input->post('company'),
+            'type'          => 1,
         );
-        
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
             redirect('register');
@@ -209,21 +215,37 @@ class auth extends CI_Controller {
     public function account_activation($refId = null)
     {
         if($this->m_auth->activateAccount($refId)){
-            $this->session->set_flashdata('success', 'Your account has been activated successfully <br> you can login now.');
-            redirect('login','refresh');
+            $data['key'] = $refId;
+            $this->load->view('auth/set-password', $data);
         }else{
             $this->session->set_flashdata('error', 'Activation link has been expired');
             redirect('register','refresh');
         }
     }
 
-    // logout
-    public function logout()
+
+
+
+   // Set password
+    public function set_password($var = null)
     {
-        $this->session->unset_userdata($this->session->userdata());
-        $this->session->sess_destroy();
-        $this->session->set_flashdata('success', 'You are Logged Out successfully');
-        redirect('/');
+       $password = $this->bcrypt->hash_password($this->input->post('psw'));
+       $key = $this->input->post('key');
+       $this->load->helper('string');
+
+        $data = array(
+           'password'    => $password, 
+           'ref_id' => random_string('alnum', 30), 
+           'status' => 1, 
+        );
+        if($this->m_auth->setPassword($data, $key)){
+            $this->session->set_flashdata('success', 'Email verification successfully completed.<br> Now you can login.');
+            redirect('/','refresh');
+        }
+        else{
+            $this->session->set_flashdata('error', 'Activation link has been expired');
+            redirect('register','refresh');
+        }
     }
 
        /**
@@ -330,7 +352,7 @@ class auth extends CI_Controller {
                 $npass = $this->input->post('password');
                 $datas = array(
                     'ref_id' => $ref_id,
-                    'password' => $npass,
+                    'password' => $this->bcrypt->hash_password($npass),
                 );
                 if ($this->m_auth->setPassword($datas, $rid)) {
                     $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
@@ -355,7 +377,6 @@ class auth extends CI_Controller {
     * @url      : add-request
     * @param    : null.
     **/
-
     public function requestAdd(Type $var = null)
     {
 

@@ -5,8 +5,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller']        = 'auth';
 $route['login']                     = 'auth';
 $route['register']                  = 'auth/registration';
-$route['register1']                  = 'auth/register1';
+$route['register1']                 = 'auth/register1';
 $route['account-activation/(:any)'] = 'auth/account_activation/$1';
+$route['set-password']              = 'auth/set_password';
+
+
+
 $route['dashboard']                 = 'auth/dashboard';
 $route['security']                  = 'auth/security';
 $route['logout']                    = 'auth/logout';
@@ -32,6 +36,14 @@ $route['application-approved']      = 'application/approve_list';
 $route['application-approve']       = 'application/approve';
 $route['application-reject']        = 'application/reject';
 
+//Verification staffs
+$route['staffs']                    = 'staffs';
+$route['staffs/create']             = 'staffs/create';
+$route['staffs/delete/(:any)']      = 'staffs/delete/$1';
+$route['staffs/update/(:any)']      = 'staffs/update/$1';
+$route['staffs/detail/(:any)']      = 'staffs/detail/$1';
+$route['staffs/account-activation/(:any)'] = 'staffs/account_activation/$1';
+$route['staffs/create']             = 'staffs/create';
 
 
 

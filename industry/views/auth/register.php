@@ -12,6 +12,9 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
 </head>
 
 <body>
@@ -96,24 +99,14 @@
                                         </div>
                                     </div> 
                                     </div>
-                                    
-                                    <div class="input-field col m6">
-                                        <input id="password" type="password" class="c_password" class="validate" name="password"   required="" v-model="psw">
-                                        <label for="password">Password</label>
-                                    </div>
-                                    <div class="input-field col m6">
-                                        <input id="cpassword" @keyup="checkCpsw()" type="password" class="c_confpassword validate" name="cpassword" required="" v-model="cpsw">
-                                        <label for="cpassword">Confirm Password</label>
-                                        <span class="helper-text red-text">{{confError}}</span>
-                                    </div>                                                                       
                                     <div class="input-field col s12 m12">
                                         <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
                                     </div>
-                                    <div class="input-field col s12">
+                                    <!-- <div class="input-field col s12">
                                         <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
-                                    </div>
+                                    </div> -->
                                     
                                     <div class="input-field col m12 ">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
@@ -142,9 +135,7 @@
 
 
     <!-- scripts -->
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
+ 
     <script>
     <?php $this->load->view('include/msg'); ?>
 </script>
@@ -207,11 +198,8 @@ $(document).ready(function() {
             data: {
                 mobile: '',
                 email: '',
-                psw: '',
-                cpsw: '',
                 emailError: '',
                 mobileError: '',
-                confError:'',
                 captcha:'',
                 company:'',
                 active:false,
@@ -263,23 +251,14 @@ $(document).ready(function() {
                     }
                 } )
             },
-            // check Password matching
-            checkCpsw() {
-                if (this.psw != this.cpsw) {
-                    this.confError = 'Password must match with previous entry!';
-
-                } else {
-                    this.confError = '';
-                }
-            },
             checkForm() {
-                if ((this.confError == '') && (this.mobileError == '') && (this.emailError == '')) {
+                if ((this.mobileError == '') && (this.emailError == '')) {
 
-                    if (grecaptcha.getResponse() == '') {
-                        this.captcha = 'Captcha is required';
-                    } else {
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {
                         this.$refs.form.submit();
-                    }// 
+                    // }// 
                 } else {}
             }
 

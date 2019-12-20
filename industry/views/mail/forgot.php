@@ -759,8 +759,8 @@
                                                                                         <span style="font-size:18px"><a
                                                                                                 href="*|ARCHIVE|*"
                                                                                                 target="_blank">Industry
-                                                                                                Registration
-                                                                                                Verification</a></span>
+                                                                                                Forgot
+                                                                                                Password</a></span>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -836,7 +836,7 @@
 
                                                                                         <br>
                                                                                         <span style="font-size:22px">Dear
-                                                                                            Director,</span><br>
+                                                                                            Team,</span><br>
                                                                                         <br> You have requested for Karnataka Labour Welfare Board industry account reset password, please click the below button to reset your password.<br>
                                                                                     </td>
                                                                                 </tr>

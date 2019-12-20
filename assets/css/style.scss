@@ -2555,9 +2555,19 @@ table.dataTable thead td {
     color: black;
     text-decoration: underline;
 }
+
 ::placeholder {
     color: #646464 !important;
 }
-.red-text.helper-text{
+
+.red-text.helper-text {
     position: absolute !important;
+}
+
+.ovrflw-tbl tr td {
+    padding: .625em;
+    text-align: center;
+    width: 50px;
+    text-overflow: ellipsis;
+    overflow: auto;
 }

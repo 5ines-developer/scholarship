@@ -33,7 +33,7 @@
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
-                                    <span class="list-title ">Scholarship Request List</span>
+                                    <span class="list-title ">Scholarship Request List (<?php echo (!empty($result))?count($result):'0'; ?>)</span>
                                     <select class="browser-default" id="short" name="years" @change="yearChange()" v-model="year">
                                     <option value="" >Select by Year</option>
                                         <?php
@@ -53,21 +53,21 @@
                                                 <th id="g" class="h5-para-p2">Action</th>
                                             </thead>
                                             <tbody class="tbody-list">
-                                                <tr role="row" class="odd">
+                                                
                                                     <?php
                                                     $i=0;
                                                     if (!empty($result)) {
                                                        foreach ($result as $key => $value) { 
                                                            $i++;
-                                                        echo '<td class="h5-para-p2"><a href="'.base_url('application/').$value->id.'">'.$i.'</a></td>
+                                                        echo '<tr role="row" class="odd"><td class="h5-para-p2"><a href="'.base_url('application/').$value->id.'">'.$i.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->name.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->mark.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->class.'</a></td>
                                                         <td class="action-btn  center-align">
                                                             <a href="'.base_url('application/').$value->id.'" class="view waves-effect waves-light"> <i class="material-icons"> remove_red_eye </i></a>
-                                                        </td>';
+                                                        </td></tr>';
                                                     } } ?>                                                    
-                                                </tr>
+                                                
                                             </tbody>
                                         </table>
                                     </div>

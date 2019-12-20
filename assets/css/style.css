@@ -2708,4 +2708,12 @@ table.dataTable thead td {
 .red-text.helper-text {
   position: absolute !important;
 }
+
+.ovrflw-tbl tr td {
+  padding: .625em;
+  text-align: center;
+  width: 50px;
+  text-overflow: ellipsis;
+  overflow: auto;
+}
 /*# sourceMappingURL=style.css.map */
