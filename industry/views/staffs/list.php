@@ -50,7 +50,6 @@
                                                         <td>
                                                             <span v-bind:style="{ color: activeColor}">{{actve}}</span>
                                                         </td>
-                                                        <?php echo $value->status?>
                                                         <td>
                                                             <a :class="{hide:hiden}"  class="btn-small right red darken-3 waves-effect waves-light" @click="staffBlock">Block</a>
                                                             <a :class="{hide:hiden1}" @click="unBlock" class="btn-small right green darken-3 waves-effect waves-light">UNBlock</a>
