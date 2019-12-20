@@ -85,7 +85,6 @@ class Dashboard extends CI_Controller {
     // approve application
     public function approval($var = null)
     {
-        $this->sendmailApplication($this->input->post('id'));
         if($this->m_dashboard->approval($this->input->post('id'))){
             $data = array('status' => 1, 'msg' => 'Approved successfully.');
         }else{
@@ -93,6 +92,7 @@ class Dashboard extends CI_Controller {
             $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
         }
         echo json_encode($data);
+        $this->sendmailApplication($this->input->post('id'));
     }
 
     // Send a application pdf file

@@ -371,7 +371,7 @@
                     var msg = response.data.msg;
                     M.toast({html: msg, classes: 'green darken-2'});
                     self.disabled = true;
-                    window.location.href = "<?php echo base_url('approve-list') ?>";
+                    window.location.href = "<?php echo base_url('dashboard') ?>";
                     self.loader = false;
                 })
                 .catch(function (error) {
