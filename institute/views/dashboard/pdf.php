@@ -55,7 +55,7 @@
                         <li>
                             <div>
                                 <p>ಕುಮಾರ/ಕುಮಾರಿ <span class="dotted-line"> <?php echo $info->name ?> </span> ಇವರು ಕಳೆಧ ಸಾಲಿನಲ್ಲಿ
-                                ನಡೆದ <span class="dotted-line"> <?php echo $info->prv_class ?> </span> ತರಗತಿಯ ಪರೀಕ್ಷೆಯಲ್ಲಿ ಶೇಕಡಾ <span class="dotted-line"> <?php echo $info->prv_marks ?> % </span>  ಅಂಕಗಳನ್ನು
+                                ನಡೆದ <span class="dotted-line"> <?php echo $info->prv_class ?> </span> ತರಗತಿಯ ಪರೀಕ್ಷೆಯಲ್ಲಿ ಶೇಕಡಾ <span class="dotted-line"> <?php echo $info->prv_marks ?>% </span>  ಅಂಕಗಳನ್ನು
                                 ಪಡೆದ್ದು   ತೇರ್ಗಡೆಯಾಗಿರುತಾರೆ.</p>
                             </div>
                         </li>
