@@ -55,8 +55,8 @@ class Application extends CI_Controller {
         $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to government for verification, we will notify the status via sms';
         $id = $this->input->post('id');
         if($this->m_application->approval($id)){
-            // $this->approveMail($id);
-            // $this->studentSms($msg,$id);
+            $this->approveMail($id);
+            $this->studentSms($msg,$id);
             $data = array('status' => 1, 'msg' => 'Approved successfully.');
         }else{
             $this->output->set_status_header('400');
@@ -82,46 +82,27 @@ class Application extends CI_Controller {
         }
     }
 
-    public function pdfTest($id='')
-    {
-        $ids =  urldecode($id);
-        $data['info'] = base64_decode($ids);
-        // $this->load->model('m_dashboard');
-        // $data['info'] = $this->m_dashboard->singleStudent($apid);
-        $mpdf = new \Mpdf\Mpdf([
-            'default_font_size' => 9,
-            'default_font' => 'tunga'
-        ]);
-        $html = $this->load->view('account/pdf', $data, TRUE);
-        
-        $mpdf->WriteHTML($html);
-        $mpdf->Output();
-        exit; 
-    }
-
     public function approveMail($id='')
 	{
-
-
-  //       $student = $this->m_application->getstd($id);
-  //       $this->load->config('email');
-  //       $this->load->library('email');
-  //       $from = $this->config->item('smtp_user');
-		// $msg = $this->load->view('email/stdapplication', $data, true);
-  //       $this->email->set_newline("\r\n");
-  //       $this->email->from($from , 'Karnataka Labour Welfare Board');
-  //       $this->email->to($this->slmail);
-  //       $this->email->subject('Application Confirmation'); 
-  //       $this->email->message($msg);
-  //       if($this->email->send())  
-  //       {
-  //           return true;
-  //       } 
-  //       else
-  //       {
-  //           return false;
-  //       }
-		
+        $data['info'] = $this->m_application->singleStudent($id);
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+		$msg = $this->load->view('mail/approve', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        // $this->email->to($this->slmail);
+        $this->email->to('prathwi@5ine.in');
+        $this->email->subject('Scholarship application Approved'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
 	}
 
     public function studentSms($data='', $apid='')

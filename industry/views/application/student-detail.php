@@ -23,7 +23,7 @@
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="card-title">
-                                    Scholarship Application Detail'
+                                    Scholarship Application Detail
 
                                     <?php if (($result->application_state == 2) && ($result->status == 2)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
@@ -293,6 +293,37 @@
                                                         </div>
                                                     </div>
                                                 </div><!-- End-->
+
+                                                <div class="col s12 l6">
+                                                    <div class="app-detail-item">
+                                                        <div class="app-item-heading">
+                                                            <p>Confirmation Report</p>
+                                                        </div>
+                                                        <div class="app-item-body">
+                                                            <div class="row m0">
+                                                                <div class="col s12">
+                                                                    <ul>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Institute Confirmation Report</p>
+                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo $this->config->item('web_url').'institute/student/institute-certificate/'.urlencode(base64_encode($result->aid)) ?>">PDF</a></p>
+                                                                        </li>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Industry Confirmation Report</p>
+                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo base_url('industry-certificate/'.urlencode(base64_encode($result->aid))) ?>">PDF</a></p>
+                                                                        </li>
+
+                                                                        
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- End-->
+
+
+                                                
 
                                         </div>
                                     </div>

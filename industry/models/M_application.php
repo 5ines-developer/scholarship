@@ -106,11 +106,11 @@ class M_application extends CI_Model {
         }
     }
 
-    // public function getstd($id = null)
-    // {   
-    //     $this->db->where('Field / comparison', $Value);
+    public function compDocs($id = null)
+    {   
+       return $this->db->select('name')->where('industry_id', $id)->where('type','1')->get('industry_register')->row();
         
-    // }
+    }
 
     }
 
