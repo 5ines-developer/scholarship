@@ -90,14 +90,34 @@
                                             <label class="crg" for="c_conreg">Industry Reg No</label>
                                         </div>
                                         <div class="file-field input-field col s12 m6">
-                                        <div class="btn ">
-                                            <span>File</span>
-                                            <input type="file" name="reg_doc" required="">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" placeholder="Upload Industry Reg Doc" type="text">
-                                        </div>
-                                    </div> 
+                                            <div class="btn ">
+                                                <span>File</span>
+                                                <input type="file" name="reg_doc" required="">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" placeholder="Upload Industry Reg Doc" type="text">
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="row m0">
+                                        <div class="file-field input-field col s12 m6">
+                                            <div class="btn ">
+                                                <span>File</span>
+                                                <input type="file" name="seal" required="">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" placeholder="Upload Industry Seal" type="text">
+                                            </div>
+                                        </div> 
+                                        <div class="file-field input-field col s12 m6">
+                                            <div class="btn ">
+                                                <span>File</span>
+                                                <input type="file" name="sign" required="">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" placeholder="Upload Director Signature" type="text">
+                                            </div>
+                                        </div> 
                                     </div>
                                     <div class="input-field col s12 m12">
                                         <textarea id="address" name="address" class="materialize-textarea"></textarea>
