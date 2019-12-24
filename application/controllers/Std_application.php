@@ -37,6 +37,34 @@ class Std_application extends CI_Controller {
 		$this->load->view('student/application', $data, FALSE);
 	}
 
+	/**
+    * student application - get district
+    * @url      : student/application
+    * @param    : null
+    * @data     : null,
+    **/
+	public function district(Type $var = null)
+	{
+		$district = $this->m_stdapplication->getDistrict();
+		echo json_encode($district);
+	}
+
+	public function tallukget(Type $var = null)
+	{
+		$id = $this->input->get('id');
+		$talluk = $this->m_stdapplication->getTalluk($id);
+		echo json_encode($talluk);
+	}
+
+	public function schoolget(Type $var = null)
+	{
+		$id = $this->input->get('id');
+		$School = $this->m_stdapplication->getSchool($id);
+		echo json_encode($School);
+	}
+
+	
+
     public function search($var = null)
     {
         $term = $this->input->get('q[term]');
@@ -59,6 +87,7 @@ class Std_application extends CI_Controller {
     {
 
 		$input = $this->input->post();
+		
 		if($this->input->post('terms') == 'true'){ $terms = 1; }
 
 		if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
@@ -145,10 +174,17 @@ class Std_application extends CI_Controller {
     		'address' 		=> $this->input->post('saddress'), 
     		'parent_phone' 	=> $this->input->post('sphone'), 
     		'is_scst' 		=> $this->input->post('clow'), 
-    		'adharcard_no' 		=> $this->input->post('anumber'), 
+    		'adharcard_no' 	=> $this->input->post('anumber'), 
+            'gender'        => $this->input->post('gender'),
     	);
     	if (!empty($cast)) { $insert['cast_certificate'] = $cast; } 
 		if (!empty($adhar)) { $insert['adharcard_file'] = $adhar; }
+
+		if (!empty($insert['is_scst'])) {
+			$insert['category'] = $this->input->post('tcat');
+		}else{
+			$insert['category'] = $this->input->post('gcat');
+		}
 
     	$output = $this->m_stdapplication->aplliBasic($insert); 
 
