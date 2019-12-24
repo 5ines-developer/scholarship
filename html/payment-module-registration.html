@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scholarship</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../assets/css/select2.css" rel="stylesheet" />
+    <script src="../assets/js/materialize.min.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    <script src="../assets/js/jquery-3.4.1.min.js"></script>
+    <script src="../assets/js/select2.js"></script>
+</head>
+<style>
+    .ss-dd .select-dropdown.dropdown-trigger {
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="app">
+
+    </div>
+    <header class="">
+        <div class="top-header">
+            <div class="container ">
+                <div class="row m0">
+                    <div class="col s4 m4 push-m4">
+                        <div class="center">
+                            <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                        </div>
+                    </div>
+                    <div class="col s8 m4 pull-m4">
+                        <div class="center-align p17 frt">
+                            <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
+                            <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
+                        </div>
+                    </div>
+                    <div class="col s4 hide-on-small-only">
+                        <div class="center p17">
+                            <p class="top-header-title1">Government of Karnataka</p>
+                            <p class="top-header-title2">Karnataka Labour Welfare Board</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-block">
+            <div class="nav-wrapper container-wrap1">
+                <!-- <a href="#" class="brand-logo">Logo</a> -->
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile1" class="left hide-on-med-and-down">
+                    <li><a href="#!">Home</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="#!">Home</a></li>
+            <li><a href="#!">Apply Scholarship</a></li>
+            <li><a href="#!">Scholarship Status</a></li>
+            <li><a href="#!">Application Detail</a></li>
+            <li><a href="#!">Account Settings</a></li>
+            <li><a href="#!">Logout</a></li>
+
+        </ul>
+
+        <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!">Account Settings</a></li>
+            <li><a href="#!">Application Status</a></li>
+            <li><a href="#!">Logout</a></li>
+
+        </ul>
+    </header>
+    <!-- form section -->
+    <section class="bg pt30 pb30 reg-block">
+        <div class="container">
+            <div class="row m0">
+                <div class="col l10 offset-l1">
+                    <div class="card instreg">
+                        <div class="card-content">
+                            <div class="card-outer-heading">
+                                PAYMENT REGISTRATION
+                            </div>
+                            <div class="card-body">
+                                <form action="">
+                                    <div class="row mb0">
+                                        <div class="input-field col m6">
+                                            <input id="payname" name="payname" type="email" class="validate" required>
+                                            <label for="payname">Email</label>
+                                        </div>
+
+                                        <div class="input-field col m6">
+                                            <input id="payphone" name="payphone" type="text" class="validate" required>
+                                            <label for="payphone">Mobile No</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <select name="paytaluk">
+                                                <option value="" disabled selected>Choose your option</option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                            </select>
+                                            <label>Taluk</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <select name="paydist">
+                                                <option value="" disabled selected>Choose your option</option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                            </select>
+                                            <label>District</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <select name="payindu">
+                                                <option value="" disabled selected>Choose your option</option>
+                                                <option value="1">Labour Act</option>
+                                                <option value="2">Factory Act</option>
+                                            </select>
+                                            <label>Industry Type</label>
+                                        </div>
+                                        <div class="input-field col m6 s12 ">
+                                            <div class="ss-dd">
+                                                <select id="company" name="company">                     
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col m6 s12">
+                                            <input id="payindus" name="payindus" type="text" class="validate" required>
+                                            <label for="payindus">Industry Reg No</label>
+                                        </div>
+                                        <div class="file-field input-field col s12 m6">
+                                            <div class="btn ">
+                                                <span>File</span>
+                                                <input type="file" required name="payreg">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" required placeholder="Upload  industry Reg Doc" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="input-field col m6 s12">
+                                            <input id="paypassword" name="paypassword" type="text" class="validate" required>
+                                            <label for="paypassword">Password</label>
+                                        </div>
+                                        <div class="input-field col m6 s12">
+                                            <input id="paycpassword" name="paycpassword" type="text" class="validate" required>
+                                            <label for="paycpassword">Confirm Password</label>
+                                        </div>
+                                        <div class="input-field col m12 s12">
+                                            <textarea id="payaddress" required name="payaddress" class="materialize-textarea"></textarea>
+                                            <label for="payaddress">Address</label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="input-field col m12 s12">
+                                            <button class="waves-effect waves-light  btn-theme btn">Submit</button>
+                                            <span class="com-reg">If You Have an Account ?<a href="#">Login</a></span>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+
+    <footer class="pt20 pb20">
+        <div class="footer-copyright">
+            <div class="container center">
+                © Copyright 2019. All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- scripts -->
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/materialize.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script>
+        $(document).ready(function() {
+            var instances = M.FormSelect.init(document.querySelectorAll('.select2'));
+            $('#company').select2({
+                placeholder: 'Select a company',
+                minimumInputLength: 1,
+                ajax: {
+                    url: "<?php echo base_url('auth/search') ?>",
+                    dataType: 'json',
+                    quietMillis: 250,
+                    data: function(term, page) {
+                        return {
+                            q: term, // search term
+                        };
+                    },
+                    processResults: function(data) {
+
+                        return {
+
+                            results: data
+
+                        };
+
+                    },
+                    cache: true
+                },
+
+
+            });
+
+
+        });
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                company: '',
+                active: false,
+                istrue: false,
+                act: '',
+                // companies:[],
+
+            },
+
+            methods: {
+
+
+            }
+        })
+    </script>
+</body>
+
+</html
