@@ -59,6 +59,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['student/register'] 			= 'student/register';
 $route['student/submit-register'] 	= 'student/registerInsert';
 $route['student/verification'] 		= 'student/email_verification';
+$route['student/otp-verify'] 		= 'student/otpVerify';
 //login
 $route['student/login'] 			= 'student/index';
 $route['student/login-check'] 		= 'student/login_submit';

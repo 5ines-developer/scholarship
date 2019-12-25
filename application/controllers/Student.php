@@ -80,7 +80,7 @@ class Student extends CI_Controller {
     {
         if ($this->session->userdata('stlid') == '') {
         $this->security->xss_clean($_POST);
-        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[student.email]',array('is_unique' => 'This %s is already exist'));
+        $this->form_validation->set_rules('email', 'Email', 'is_unique[student.email]',array('is_unique' => 'This %s is already exist'));
         $this->form_validation->set_rules('mobile', 'Mobile No.', 'required|is_unique[student.phone]',array('is_unique' => 'This %s is already exist'));
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
         $this->form_validation->set_rules('cnpassword', 'Password Confirmation', 'trim|required|matches[password]');
@@ -98,27 +98,79 @@ class Student extends CI_Controller {
                 'ref_id'    =>  random_string('alnum',20),
             );
 
-            $name = explode("@",$insert['email']);
-            $insert['name'] =  $name[0]; 
-
+           $verifyMethod = $this->input->post('verify');
+            if(!empty($insert['email'])){
+                $name = explode("@",$insert['email']);
+                $insert['name'] =  $name[0];
+            }
 
             if ($this->m_student->register($insert)) {
-                $outs = $this->sendregister($insert);
-                if (!empty($outs)) {
-                    $this->session->set_flashdata('success', 'We have sent a activation link to your mail id <br> please verify and activate your account');
+                if ($verifyMethod == '1') {
+                    if($this->studentOtp($insert))
+                    {
+                        $this->session->set_flashdata('success', 'We have sent a OTP to your mobile number '.$insert['phone'].' <br> Enter the OTP and activate your account.');
+                        $this->load->view('student/otp-verify',$insert);
+                    }else{
+                        $this->db->where('ref_id', $insert['ref_id'])->delete('student');
+                        $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
+                        redirect('student/register','refresh');
+                    }
                 }else{
-                    $this->db->where('ref_id', $insert['ref_id'])->delete('student');
-                    $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
-                }
+                    if($this->sendregister($insert))
+                    {
+                        $this->session->set_flashdata('success', 'We have sent a activation link to your mail id <br> please verify and activate your account');
+                    }else{
+                        $this->db->where('ref_id', $insert['ref_id'])->delete('student');
+                        $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
+                    }
                     redirect('student/register','refresh');
+                }
             }else{
                 $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
                 redirect('student/register','refresh');
             }
+            
+           
         }
         }else{
             redirect('student/profile','refresh');
         }
+    }
+
+    public function otpVerify($value='')
+    {
+        $refid = $this->input->post('refid');
+        $phone = $this->input->post('phone');
+        $otp = $this->input->post('otp');
+        $output = $this->m_student->otpVerify($refid,$phone,$otp);
+        echo $output;
+    }
+
+
+    public function resendOtp($value='')
+    {
+        $refid  = $this->input->post('refid');
+        $phone  = $this->input->post('phone');
+        $otp    = random_string('nozero',6);
+        $output = $this->m_student->resendOtp($refid,$phone,$otp);
+        echo $output;
+    }
+
+
+    public function studentOtp($data='', $apid='')
+    {
+        
+        $msg = 'Your One time Password For Karnataka Labour Welfare Board Scholarship registration is ' . $data['otp'] . ' . Do not share with anyone';
+        /* API URL */
+        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
+        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $data['phone'] . '&text=' . $msg . '&priority=ndnd&stype=normal';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return $server_output;
     }
 
     /**

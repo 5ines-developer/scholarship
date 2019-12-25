@@ -1,6 +1,6 @@
 <div class="menu-left">
     <ul>
-        <li><a href=" ">Student Management</a></li>
+        <li><a href="<?php echo base_url() ?>student">Student Management</a></li>
         <li><a href=" ">Institute Management</a></li>
         <li><a href=" ">Company Management</a></li>
         <li><a href="<?php echo base_url() ?>employee">Employee Management</a></li>

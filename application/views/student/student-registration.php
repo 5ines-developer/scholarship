@@ -11,6 +11,9 @@
     <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <style>
+        .helper-text.red-text.rel{ position: relative !important; }
+    </style>
 </head>
 <body>
     <?php $this->load->view('includes/header'); ?>
@@ -31,16 +34,26 @@
                                 <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('student/submit-register') ?>" method="post" enctype="multipart/form-data" id="registerForm">
                                 <div class="card-body row m0">
                                     <div class="input-field col s12">
-                                        <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate" required>
-                                        <label for="email">Email ID</label>
+                                        <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate">
+                                        <label for="email">Email ID (optional)</label>
                                         <span class="helper-text red-text">{{ emailError }}</span>
                                     </div>
 
                                     <div class="input-field col s12">
                                         <input  id="phone" @change="mobileCheck()" name="mobile" v-model="mobile" type="text" class="validate" required>
                                         <label for="phone">Mobile No</label>
-                                        <span class="helper-text red-text">{{mobileError}}</span>
+                                        <span class="helper-text red-text">{{mobileError}}</span><br>
                                     </div>
+
+
+                                    <div class="input-field col s12">
+                                        <select name="verify" id="verify" required="" >
+                                            <option value="">ಪರಿಶೀಲನೆ ವಿಧಾನ</option>
+                                            <option value="1">Mobile Verification</option>
+                                            <option value="2">Email Verification</option>
+                                        </select>
+                                        <label for="verify">Verification Method</label>
+                                     </div>
 
                                     <div class="input-field col s12">
                                         <input  id="password" v-model="psw" name="password" type="password" class="validate" required>
@@ -50,7 +63,7 @@
                                     <div class="input-field col s12">
                                         <input  id="cpassword" v-on:keyup="checkCpsw" name="cnpassword" v-model="cpsw" type="password" class="validate" required>
                                         <label for="cpassword">Confirm Password</label>
-                                        <span class="helper-text red-text">{{confError}}</span>
+                                        <span class="helper-text red-text rel">{{confError}}</span>
                                     </div>
 
                                     <!-- <div class="input-field col s12">
