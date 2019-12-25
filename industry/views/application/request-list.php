@@ -132,7 +132,7 @@
             },
             methods:{
                 yearChange(){
-                    window.location.href = "<?php echo base_url('application-request?year=') ?>"+this.year;
+                    window.location.href = "<?php echo base_url('student?year=') ?>"+this.year;
                 },
             },
         })

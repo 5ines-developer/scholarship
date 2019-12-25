@@ -52,7 +52,7 @@
                                                         </td>
                                                         <td>
                                                             <a :class="{hide:hiden}"  class="btn-small right red darken-3 waves-effect waves-light" @click="staffBlock">Block</a>
-                                                            <a :class="{hide:hiden1}" @click="unBlock" class="btn-small right green darken-3 waves-effect waves-light">UNBlock</a>
+                                                            <a :class="{hide:hiden1}" @click="unBlock" class="btn-small right green darken-3 waves-effect waves-light">Unblock</a>
                                                         </td>
                                                     </tr>      
                                                 <?php } if(empty($staffs)){ ?>

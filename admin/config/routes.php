@@ -20,3 +20,7 @@ $route['dashboard']                 = 'dashboard';
 // employee management
 $route['employee']                  = 'employee';
 $route['employee/add']              = 'employee/add';
+//student management
+$route['student']                  	= 'student/index';
+$route['student/(:any)']            = 'student/index/$1';
+

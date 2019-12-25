@@ -12,15 +12,45 @@ class Student extends CI_Controller {
     }
 
 
-	public function index()
+	public function index($id='')
 	{
 		$data['title']      = 'Student Management';
-		$data['result']= $this->m_student->getStudent();
-		echo "<pre>";
-		print_r ($data);
-		echo "</pre>";
-		$this->load->view('student/list.php', $data, FALSE);
+		$year = $this->input->get('year');
+		if(!empty($id)){
+			$data['result']= $this->m_student->getStudent($year,$id);
+			$data['apply']= $this->m_student->getscholar($id);
+			$this->load->view('student/detail.php', $data, FALSE);
+		}else{
+			$data['result']= $this->m_student->getStudent($year);
+			$this->load->view('student/list.php', $data, FALSE);
+		}
 	}
+
+	public function block($value='')
+    {
+        $id = $this->input->post('id');
+        $status = '2';
+        if($this->m_student->stasChange($id,$status)){
+             $data = array('status' => 1, 'msg' => '🙂 Student Blocked Successfully ');
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+        }
+        echo json_encode($data);
+    }
+
+    public function unblock($value='')
+    {
+        $id = $this->input->post('id');
+        $status = '1';
+        if($this->m_student->stasChange($id,$status)){
+             $data = array('status' => 1, 'msg' => '🙂 Student Unblocked  Successfully ');
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+        }
+        echo json_encode($data);
+    }
 
 }
 
