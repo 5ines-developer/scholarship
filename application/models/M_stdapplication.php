@@ -9,7 +9,15 @@ class M_stdapplication extends CI_Model {
     **/
     public function getSchool($value='')
     {
-    	return $this->db->order_by('id', 'desc')->select('id as sId,name as sName')->get('school')->result();
+        if (!empty($id)) {           
+            $this->db->where('rs.taluk', $id);           
+        }
+        return $this->db->select('sc.id as sId,sc.name as sName')
+        ->order_by('sc.id', 'desc')
+        ->distinct()
+        ->from('school sc')
+        ->join('reg_schools rs', 'rs.reg_no = sc.reg_no', 'inner')
+        ->get()->result();
     }
 
 	/**
@@ -25,8 +33,11 @@ class M_stdapplication extends CI_Model {
     * get talluk
     * @data     : company data,
     **/
-    public function getTalluk($value='')
+    public function getTalluk($id='')
     {
+        if (!empty($id)) {           
+           $this->db->where('city_id', $id);           
+        }
     	return $this->db->order_by('id', 'asc')->select('id as tallukId,title as talluk')->get('taluq')->result();
     }
 

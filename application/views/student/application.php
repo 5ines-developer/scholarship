@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
 
 </head>
 <body>
@@ -59,7 +60,7 @@
                                             </div>
                                             
                                             <div class="input-field col s12 m5">
-                                                <input id="mobile" type="number" placeholder="ವಿದ್ಯಾರ್ಥಿ/ಪೋಷಕರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" class="validate" v-model="student.phone" required="" >
+                                                <input id="mobile" type="number"  maxlength="10"  placeholder="ವಿದ್ಯಾರ್ಥಿ/ಪೋಷಕರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" class="validate" v-model="student.phone" required="">
                                                 <label for="mobile"> <span class="black-text">Mobile Number</span>  </label>
                                             </div>
 
@@ -73,11 +74,31 @@
                                                 <label for="mname"> <span class="black-text">Mother Name</span></label>
                                             </div>
 
-
-                                            <div class="input-field col s12 m10">
-                                              <textarea id="address" class="materialize-textarea" name="s_address"  placeholder="ಪೂರ್ಣ ಅಂಚೆ ವಿಳಾಸ (ಪಿನ್ ಕೋಡ್ ಸಹಿತ)" required="" v-model="student.address"></textarea>
-                                              <label for="address"><span class="black-text">Address</span></label>
+                                            <div class="input-field col s12">
+                                                <p><span class="black-text">Gender</span></p>
+                                                <div class="col s6 m3 l3">
+                                                    <label>
+                                                        <input class="with-gap" name="std_gender"  type="radio" value="male" v-model="student.gend" />
+                                                        <span>Male (ಪುರುಷ)</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s6 m3 l3">
+                                                    <label>
+                                                        <input class="with-gap" name="std_gender" type="radio"  value="female"  v-model="student.gend" />
+                                                        <span>Female (ಹೆಣ್ಣು)</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s6 m3 l3">
+                                                    <label>
+                                                        <input class="with-gap" name="std_gender" type="radio"  value="other"  v-model="student.gend" />
+                                                        <span>Other (ಇತರ)</span>
+                                                    </label>
+                                                </div>
                                             </div>
+                                                <div class="input-field col s12 mt10">
+                                                    <textarea id="address" class="materialize-textarea" name="s_address"  placeholder="ಪೂರ್ಣ ಅಂಚೆ ವಿಳಾಸ (ಪಿನ್ ಕೋಡ್ ಸಹಿತ)" required="" v-model="student.address"></textarea>
+                                                      <label for="address"><span class="black-text">Address</span></label>
+                                                </div>
                                         </div> <!-- End Box-->
 
                                         <div class="borderd-box ">
@@ -87,49 +108,117 @@
                                             </div>
                                             <p class="box-title "></p>
 
+                                            
+                                            <div class="input-field col s12 m5">
+                                                <input type="hidden" name="in_district" :value="institute.district.districtId">       
+                                                <v-select  v-model="institute.district"  as="district::districtId" placeholder="Select District" @input="tallukget('institute')" tagging :from="districtSelect" />
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input type="hidden" name="in_talluk" :value="institute.talluk.tallukId">       
+                                                <v-select  v-model="institute.talluk"  as="talluk::tallukId" placeholder="Select Taluk" @input="schoolget" tagging :from="tallukSelect" />
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input type="hidden" name="in_school" :value="institute.name.sId">       
+                                                <v-select  v-model="institute.name"  as="sName::sId" placeholder="Select Present Institution"  tagging :from="schoolSelect" />
+                                            </div>
+                                            
+                                            
+                                            <div class="input-field col s12 m5">
+                                                <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" v-model="institute.pin">
+                                                <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
+                                            </div>
+
                                             <div class="input-field col s12 m5 l5">
-                                                <select id="in_district" required="" v-model="institute.district">
-                                                    <option value="" disabled selected>ಜಿಲ್ಲೆ</option>                                                  
-                                                    <?php if (!empty($district)) {
-                                                        foreach ($district as $dist => $distct) { 
-                                                          echo '<option value="'.$distct->districtId.'">'.$distct->district.'</option>';
-                                                     } } ?> 
+                                                <select id="in_grad" required="" class="browser-default" v-model="institute.grad">
+                                                <option value="" disabled selected>ಪದವಿ</option>
+                                                <option value="1">High school</option>
+                                                <option value="2">Puc & Equivalent courses</option>
+                                                <option value="3">Degree</option>
+                                                <option value="4">Master Degree</option>
+                                                <option value="5">Engineering & Medical</option>
                                                 </select>
-                                                <label for="in_district">District</label>
+                                                <label  class=active for="in_grad">Graduation</label>
                                             </div>
                                             <div class="input-field col s12 m5 l5">
-                                                <select id="in_talluk"  required="" v-model="institute.talluk">
-                                                    <option value="" disabled selected>ತಾಲ್ಲೂಕು</option>
-                                                    <?php if (!empty($talluk)) {
-                                                        foreach ($talluk as $tal => $talk) { 
-                                                          echo '<option value="'.$talk->tallukId.'">'.$talk->talluk.'</option>';
-                                                     } } ?>
+                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
+                                                    <option value="" disabled selected>ತರಗತಿ</option>
+                                                    <option value="8">8th</option>
+                                                    <option value="9">9th</option>
+                                                    <option value="10">10th</option>
                                                 </select>
-                                                <label for="in_talluk">Taluk</label>
+                                                <label  class=active for="in_schools">Class</label>
                                             </div>
+
                                             <div class="input-field col s12 m5 l5">
-                                                <select required=""  v-model="institute.name">
-                                                    <option value="" disabled selected>ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆ</option>
-                                                    <?php if (!empty($school)) {
-                                                        foreach ($school as $sch => $schl) { 
-                                                          echo '<option value="'.$schl->sId.'">'.$schl->sName.'</option>';
-                                                     } } ?> 
+                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
+                                                    <option value="" disabled selected>ಪದವಿ ಪೂರ್ವ ಕಾಲೇಜು & ಸಮಾನ ಶಿಕ್ಷಣ</option>
+                                                    <option value="puc">PUC </option>
+                                                    <option value="Diploma">Diploma </option>
+                                                    <option value="ITI">ITI </option>
+                                                    <option value="D.Ed">D.Ed </option>
+                                                    <option value="D.pharm">D.pharm </option>
+                                                    <option value="ANM">ANM </option>
+                                                    <option value="GNM">GNM</option>
                                                 </select>
-                                                <label>Select Present Institution</label>
+                                                <label  class=active for="in_schools">Puc & Equivalent courses</label>
                                             </div>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
+                                                    <option value="" disabled selected>ಪದವಿ ಪೂರ್ವ ಕಾಲೇಜು</option>
+                                                    <option value="1">1st PUC </option>
+                                                    <option value="2">2nd PUC </option>
+                                                </select>
+                                                <label  class=active for="in_schools">Pre University</label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
+                                                    <option value="" disabled selected>ಡಿಪ್ಲೊಮಾ</option>
+                                                    <option value="1">1st sem </option>
+                                                    <option value="2">2nd sem </option>
+                                                    <option value="3">3rd sem </option>
+                                                    <option value="4">4th sem </option>
+                                                    <option value="5">5th sem </option>
+                                                    <option value="6">6th sem </option>
+                                                </select>
+                                                <label  class=active for="in_schools">Diploma</label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
+                                                    <option value="" disabled selected>ಐಟಿಐ</option>
+                                                    <option value="1">1st sem </option>
+                                                    <option value="2">2nd sem </option>
+                                                    <option value="3">3rd sem </option>
+                                                    <option value="4">4th sem </option>
+                                                </select>
+                                                <label  class=active for="in_schools">ITI</label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
+                                                    <option value="" disabled selected>ಐಟಿಐ</option>
+                                                    <option value="1">1st sem </option>
+                                                    <option value="2">2nd sem </option>
+                                                    <option value="3">3rd sem </option>
+                                                    <option value="4">4th sem </option>
+                                                </select>
+                                                <label  class=active for="in_schools">ITI</label>
+                                            </div>
+
+                                            
+
                                             <div class="input-field col s12 m5 l5">
                                                 <input id="pclass" type="text" placeholder="ಪ್ರಸ್ತುತ ತರಗತಿ" class="validate" required="" v-model="institute.pclass">
                                                 <label for="pclass"> <span class="black-text">Present Class</span>   </label>
                                             </div>
                                             
-                                            <div class="clearfix"></div>
-                                            <div class="input-field col s12 m5">
-                                                <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" v-model="institute.pin">
-                                                <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
-                                            </div>
                                             
-                                            
-                                        </div><!-- End Box-->
+                                        </div>
+                                        <!-- End Box-->
 
 
                                         <div class="borderd-box ">
@@ -139,10 +228,10 @@
                                                 <?php echo (!empty($result->cast_certificate))?'
                                                     <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
                                                     <a target="_blank" href="'.base_url().$result->cast_certificate.'">Caste Certificate</a>
-                                                    </p>':'#'; ?>                                                 
+                                                    </p>':''; ?>                                                 
                                             </div>
 
-                                            <div class="col s12">
+                                            <div class="input-field col s12">
                                                 <div class="col s6 m3 l2">
                                                     <label>
                                                         <input class="with-gap" name="std_cast" type="radio" @change="casteCheck()" value="" checked v-model="caste.low"/>
@@ -155,20 +244,60 @@
                                                         <span>Yes (ಹೌದು)</span>
                                                     </label>
                                                 </div>
+                                            </div><br>
+
+                                            <div class="file-field input-field col s12 m10 " v-bind:class="{ hide: tribes }">
+                                                <div class="input-field col s6 ">
+                                                    <div class="btn">
+                                                        <span>File</span>
+                                                        <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()" >
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
+                                                    </div>
+                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span> </p>
+                                                </div>
+
+                                                <div class="input-field col s6 ">
+                                                    <input id="cast_number" type="text"  placeholder="ಜಾತಿ ಸರ್ಟಿಫಿಕೇಟ್  ನಂಬರ್" class="validate" required="" v-model="caste.number" >
+                                                    <label for="cast_number"> <span class="black-text">Caste certificate number</span>   </label>
+                                                </div>
                                             </div>
 
-                                            <div class="file-field input-field col s12 m6 " v-bind:class="{ hide: hide }">
-                                                <div class="btn">
-                                                    <span>File</span>
-                                                    <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()" >
+
+                                                <div class="input-field col s12 m10" v-bind:class="{ hide: scaste }">
+                                                    <p><span class="black-text">Select your category</span></p>
+                                                    <div class="col s6 m3 l3">
+                                                        <label>
+                                                            <input class="with-gap" name="std_cat1" type="radio" value="sc" checked v-model="trcategory"/>
+                                                            <span>SC (ಪರಿಶಿಷ್ಠ ಜಾತಿ)</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col s6 m3 l3">
+                                                        <label>
+                                                            <input class="with-gap" name="std_cat1" type="radio" value="st" v-model="trcategory"/>
+                                                            <span>ST (ಪರಿಶಿಷ್ಠ ಪಂಗಡ)</span>
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
+                                                <div class="input-field col s12 m10" v-bind:class="{ hide: genral }">
+                                                    <p><span class="black-text">Select your category</span></p>
+                                                    <div class="col s6 m3 l4">
+                                                        <label>
+                                                            <input class="with-gap" name="std_cat" type="radio" value="general" checked v-model="gncategory"/>
+                                                            <span>General (ಸಾಮಾನ್ಯ ವರ್ಗ)</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col s6 m3 l4">
+                                                        <label>
+                                                            <input class="with-gap" name="std_cat" type="radio" value="obc" v-model="gncategory"/>
+                                                            <span>OBC (ಅಲ್ಪಸಂಖ್ಯಾತರು)</span>
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span> </p>
-                                            </div>
-                                            
-                                        </div><!-- End Box-->
+                                             
+                                        </div>
+                                        <!-- End Box-->
 
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title ">
@@ -180,7 +309,7 @@
                                             <div class="col s12 m5">
                                                 <div class="input-field col s12 ">
                                                     <input id="pv_class" type="text"  placeholder="ಹಿಂದಿನ ತರಗತಿ ಹೆಸರು" class="validate" required="" v-model="previous.class" >
-                                                    <label for="pv_class"> <span class="black-text">Previous Class Name</span>   </label>
+                                                    <label for="pv_class"> <span class="black-text">Previous Standard</span>   </label>
                                                 </div>
 
                                                 <div class="input-field col s12 ">
@@ -209,11 +338,12 @@
                                                         <input class="file-path validate" type="text" >
                                                     </div>
                                                     
-                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note :</span> <span class="red-text"> File Should be in pdf / jpg / png format. Size should be not more than 512KB </span></p>
+                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note :</span> <span class="red-text"> File Should be in pdf / jpg / png format. Size should be not more than 512KB. <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a>  </span></p>
                                                 </div>
                                             </div>
                                             
-                                        </div><!-- End Box-->
+                                        </div>
+                                        <!-- End Box -->
 
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title ">
@@ -221,6 +351,8 @@
                                                 <p>ಉದ್ಯಮದ ವಿವರಗಳು</p>
                                             </div>
                                             <div class="mt10">
+                                                <div class="input-field col s12 m5 l10">
+                                                    <p>ಉದ್ಯೋಗಧಾರರು  ಯಾರು</p>
                                                 <div class="col s12 m4 l2">
                                                     <label>
                                                         <input class="with-gap" v-model="industry.working" value="1" type="radio" checked="checked"  />
@@ -233,11 +365,6 @@
                                                         <span>Mother (ತಾಯಿ)</span>
                                                     </label>
                                                 </div>
-                                                <div class="col s12 m4 l2">
-                                                    <label>
-                                                        <input class="with-gap" v-model="industry.working" value="3" type="radio"  />
-                                                        <span>Guardian (ರಕ್ಷಕ)</span>
-                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="clearfix mb20"></div>
@@ -296,11 +423,9 @@
                                                 </select>
                                                 <label for="id_name">Parent Industry Name</label>
                                             </div>
-                                            <div class="input-field col s12 m7">
-                                              <textarea id="id_add" class="materialize-textarea" placeholder="ಉದ್ಯಮದ ವಿಳಾಸ" name="id_add" required=""   v-model="industry.address" ></textarea>
-                                              <label for="id_add"><span class="black-text">Industry Address</span></label>
-                                            </div>
-                                        </div><!-- End Box-->
+                                        </div>
+                                        
+                                        <!-- End Box-->
 
                                         
 
@@ -311,12 +436,12 @@
                                                 <?php echo (!empty($result->adharcard_file))?'
                                                     <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
                                                     <a target="_blank" href="'.base_url().$result->adharcard_file.'">Aadhar Card</a>
-                                                    </p>':'#'; ?>
+                                                    </p>':''; ?>
                                             </div>
                                             
 
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="number" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number">
+                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
                                                 <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
                                             </div>
 
@@ -330,10 +455,12 @@
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
                                                 </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span></span>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span></span>
                                             </div>
                                             
-                                        </div><!-- End Box-->
+                                        </div>
+                                        
+                                        <!-- End Box-->
 
 
                                         <div class="borderd-box ">
@@ -342,16 +469,28 @@
                                                 <p>ವಿದ್ಯಾರ್ಥಿ ಬ್ಯಾಂಕ್ ವಿವರಗಳು. </p>
                                             </div>
 
+                                            <div class="input-field col s12 m5 l5">
+                                                <select id="in_talluk"  required="" v-model="bank.type">
+                                                    <option value="" disabled selected>ಖಾತೆದಾರರು</option>
+                                                    <option value="1">Parent</option>
+                                                    <option value="2">Student</option>
+                                                </select>
+                                                <label for="in_talluk">Account Holder</label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="bn_holdr" type="text" placeholder="ಖಾತೆದಾರರ ಹೆಸರು" class="validate" name="bn_branch" required=""  v-model="bank.holder">
+                                                <label for="bn_holdr"> <span class="black-text">Account Holder Name</span>   </label>
+                                            </div>
+
                                             <div class="input-field col s12 m5">
                                                 <input id="bn_name" type="text" placeholder="ಬ್ಯಾಂಕ್ ಹೆಸರು" class="validate" name="bn_name" required="" v-model="bank.name">
                                                 <label for="bn_name"> <span class="black-text">Bank Name</span> </label>
                                             </div>
-                
                                             <div class="input-field col s12 m5">
                                                 <input id="bn_branch" type="text" placeholder="ಶಾಖೆಯ ಹೆಸರು" class="validate" name="bn_branch" required=""  v-model="bank.branch">
                                                 <label for="bn_branch"> <span class="black-text">Branch Name</span>   </label>
                                             </div>
-
                                             <div class="input-field col s12 m5">
                                                 <input id="bn_ifsc" type="text" placeholder="ಐಎಫ್‌ಎಸ್‌ಸಿ ಸಂಖ್ಯೆ" class="validate" name="bn_ifsc" required="" v-model="bank.ifsc">
                                                 <label for="bn_ifsc"> <span class="black-text">IFSC No.</span></label>
@@ -375,20 +514,14 @@
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Passbook Front page" >
                                                 </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right">File Should be in pdf / jpg / png format. Size should be not more than 512KB </span>
+                                                <span class="red-text helper-text" data-error="wrong"  data-success="right">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span><br><br>
                                             </div>
                                             
-                                            <input type="hidden" name="uniq" value="<?php echo random_string('alnum',16); ?>" v-model="uniq"/>
-                                            <input type="hidden" name="aid" v-model="aid" />
+                                        </div>
+                                        <!-- End Box-->
 
-
-                                            <p class="col s12 mb20 mt10">
-                                                <label>
-                                                    <input type="checkbox" name="terms" required="" v-model="terms" />
-                                                    <span>I accept all the <a>Terms & Condition</a></span>
-                                                </label>
-                                            </p>
-                                        </div><!-- End Box-->
+                                        <input type="hidden" name="uniq" value="<?php echo random_string('alnum',16); ?>" v-model="uniq"/>
+                                        <input type="hidden" name="aid" v-model="aid" />
 
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Apply</button>
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Reset</button>
@@ -418,19 +551,30 @@
 <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/script.js"></script>
 <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
 
 <script>
    document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.parallax');
         var instances = M.Parallax.init(elems);
+
+        var instances = M.FormSelect.init(document.querySelectorAll('select'));
     });
+
 
     var app = new Vue({
         el: '#app',
+        components: {
+            vSelect: VueSelect.vSelect,
+        },
         data: {
-            loader:false,            
+            districtSelect: [],
+            tallukSelect: [],
+            schoolSelect:[],          
+            disabled1:true,
+            disabled2:true,
+            loader:false,  
             uniq:'<?php echo (!empty($result->uniq))?$result->uniq:''; ?>',
-            terms:'<?php echo (!empty($result->terms))?'true':''; ?>',
             file:'',
             file1:'',
             file2:'',
@@ -442,6 +586,8 @@
                 father: '<?php echo(!empty($result->father_name))?$result->father_name:''; ?>',
                 mother: '<?php echo (!empty($result->mothor_name))?$result->mothor_name:''; ?>',
                 address:'<?php echo (!empty($result->saddress))?$result->saddress:''; ?>',
+                gend:'<?php echo (!empty($result->gender))?$result->gender:'male'; ?>',
+
             },
             institute: {
                 pclass:'<?php echo (!empty($result->class))?$result->class:''; ?>',
@@ -455,7 +601,7 @@
                 marks:'<?php echo (!empty($result->prv_marks))?$result->prv_marks:''; ?>',
             },
             industry:{
-                working:'<?php echo (!empty($result->who_working))?$result->who_working:''; ?>',
+                working:'<?php echo (!empty($result->who_working))?$result->who_working:'1'; ?>',
                 pname:'<?php echo (!empty($result->pName))?$result->pName:''; ?>',
                 salary:'<?php echo (!empty($result->msalary))?$result->msalary:''; ?>',
                 relation:'<?php echo (!empty($result->relationship))?$result->relationship:''; ?>',
@@ -463,10 +609,10 @@
                 talluk:'<?php echo (!empty($result->talluk))?$result->talluk:''; ?>',
                 district:'<?php echo (!empty($result->district))?$result->district:''; ?>',
                 name:'<?php echo (!empty($result->company_id))?$result->company_id:''; ?>',
-                address:'<?php echo (!empty($result->ind_address))?$result->ind_address:''; ?>',
             },
             caste:{
                 low:'<?php echo (!empty($result->is_scst))?$result->is_scst:''; ?>',
+                number:'',
 
             },
             adhaar:{
@@ -477,13 +623,25 @@
                 branch:'<?php echo (!empty($result->branch))?$result->branch:''; ?>',
                 ifsc:'<?php echo (!empty($result->acc_no))?$result->acc_no:''; ?>',
                 account:'<?php echo (!empty($result->ifsc))?$result->ifsc:''; ?>',
+                type:'<?php echo (!empty($result->type))?$result->type:''; ?>',
+                holder:'<?php echo (!empty($result->holder))?$result->holder:''; ?>',
             },
-            hide:<?php echo (empty($result->is_scst))?'true':'false' ?>,
+            tribes:<?php echo (empty($result->is_scst))?'true':'false' ?>,
             markError:'',
             salError:'',
+            scaste: true,
+            genral:false,
+            max: 16,
+            trcategory:'<?php echo (!empty($result->category))?$result->category:'sc' ?>',
+            gncategory:'<?php echo (!empty($result->category))?$result->category:'general' ?>',
 
         },
         methods:{
+            cardNumberSpace(){
+                var cardNumber = this.$refs.creditCardNumber.value;
+                var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
+                this.adhaar.number = result;
+            },
             markcard(){
                 this.file = this.$refs.file.files[0];
                 
@@ -509,10 +667,14 @@
                 
             },
             casteCheck(){
-                if (this.caste.low =='') {
-                    this.hide = true;
+                if (this.caste.low !='') {
+                    this.tribes = false;
+                    this.scaste = false;
+                    this.genral = true;
                 }else{
-                    this.hide = false;
+                    this.tribes = true;
+                    this.scaste = true;
+                    this.genral = false;
                 }
 
             },markCheck(){
@@ -536,14 +698,19 @@
                     formData.append('sfather', this.student.father);
                     formData.append('smother', this.student.mother);
                     formData.append('saddress', this.student.address);
+                    formData.append('gender', this.student.gend);  
                     formData.append('ipclass', this.institute.pclass);
                     formData.append('ipin', this.institute.pin);                
-                    formData.append('iname', this.institute.name);
-                    formData.append('italluk', this.institute.talluk);
-                    formData.append('idistrict', this.institute.district);
-                    formData.append('pclass', this.previous.class);
-                    formData.append('pmarks', this.previous.marks);
-                    formData.append('pcard', this.file);
+                    formData.append('iname', this.institute.name.sId);
+                    formData.append('italluk', this.institute.talluk.tallukId);
+                    formData.append('idistrict', this.institute.district.districtId);
+
+                    formData.append('clow', this.caste.low);
+                    formData.append('cfile', this.file1);
+                    formData.append('cnumber', this.caste.number);
+                    formData.append('tcat', this.trcategory);
+                    formData.append('gcat', this.gncategory);
+
                     formData.append('incard', this.industry.working);
                     formData.append('inpname', this.industry.pname);
                     formData.append('insalary', this.industry.salary);
@@ -552,19 +719,24 @@
                     formData.append('intalluk', this.industry.talluk);
                     formData.append('indistrict', this.industry.district);
                     formData.append('inname', this.industry.name);
-                    formData.append('inaddress', this.industry.address);
-                    formData.append('clow', this.caste.low);
-                    formData.append('cfile', this.file1);
+
+                    formData.append('pclass', this.previous.class);
+                    formData.append('pmarks', this.previous.marks);
+                    formData.append('pcard', this.file);
+                                       
                     formData.append('anumber', this.adhaar.number);
                     formData.append('axerox', this.file2);
+
+                    formData.append('bname', this.bank.name);
+                    formData.append('bname', this.bank.name);
                     formData.append('bname', this.bank.name);
                     formData.append('branch', this.bank.branch);
                     formData.append('bifsc', this.bank.ifsc);
                     formData.append('baccount', this.bank.account);
                     formData.append('bpassbook', this.file3);                          
                     formData.append('uniq', this.uniq);                          
-                    formData.append('terms', this.terms);                          
                     formData.append('aid', this.aid);                          
+                                            
                     axios.post('<?php echo base_url() ?>student/submit-application', formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } })
                     .then(response => {
@@ -587,11 +759,55 @@
                 }else{
                     M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
                 }
-
-                
-
            },
+           getDistrict(){
+                    var self= this;
+                    axios.get('<?php echo base_url() ?>std_application/district')
+                    .then(function (response) {
+                        self.districtSelect = response.data;
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                },  
+                tallukget(type){
+                    var self= this;
+                    if (self.type="institute") {
+                        id = self.institute.district.districtId
+                    }
+
+
+                    formData = new FormData();
+                    formData.append('id', id);
+                    axios.get('<?php echo base_url() ?>std_application/tallukget?id='+id)
+                    .then(function (response) {
+                        if (self.type="institute") {
+                            self.disabled1 = false;
+                            self.tallukSelect = response.data;
+                        }
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                },
+                schoolget(type){
+                    var self= this; 
+                    formData = new FormData();
+                    formData.append('id', self.institute.talluk.tallukId);
+                    axios.get('<?php echo base_url() ?>std_application/schoolget?id='+id)
+                    .then(function (response) {  
+                        console.log(response);                    
+                        self.schoolSelect = response.data;
+                        self.disabled2 = false;
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                },       
  
+        },
+        mounted:function(){
+               this.getDistrict();
         }
     })
 </script>
