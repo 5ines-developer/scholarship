@@ -2576,3 +2576,195 @@ table.dataTable thead td {
 .mb0 {
     margin-bottom: 0 !important;
 }
+
+.payment-reg {
+    border: 1px solid #e7e7e7;
+}
+
+.pay-title p {
+    margin: 0;
+    background: #00437d;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.add-logo {
+    width: 107px;
+}
+
+.addre-pp {
+    padding: 5px 4%;
+}
+
+.com-detail h5 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.com-detail p {
+    font-size: 14px;
+}
+
+.pay-date {
+    float: right;
+    padding-top: 7%;
+}
+
+.under-line {
+    border-bottom: 1px dashed gray;
+}
+
+.pay-ff p {
+    background: #00437d;
+    padding: 15px 5%;
+    color: white;
+    font-size: 16px;
+}
+
+.pay-form {
+    width: 85%;
+    margin: 0px auto;
+}
+
+.form-pay {
+    padding: 0px 5%;
+}
+
+.table-for {
+    padding-bottom: 10%;
+}
+
+.amt-tab th {
+    font-size: 10px;
+    text-align: right;
+    padding: 10px 3%;
+}
+
+.amt-resu td {
+    text-align: right;
+    padding: 10px 3%;
+}
+
+.amt-resu tr {
+    border-bottom: 1px solid #e3e3e3 !important;
+    border: none;
+    background-color: unset !important;
+}
+
+.btn-p {
+    padding: 10px 30px;
+    border: navajowhite;
+    float: right;
+    margin-top: 20px;
+}
+
+.pay-form {
+    margin: 0px auto;
+    margin-bottom: 0px;
+    margin-bottom: 6%;
+}
+
+// 25-12-2019
+// .formd-reg {
+//     border: 1px solid #e7e7e7;
+// }
+.form-receipt {
+    margin: 0;
+    background: #00437d;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.form-receipt h3 {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 26px;
+    margin: 0;
+}
+
+.form-receipt p {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 26px;
+    letter-spacing: 1px;
+}
+
+.table-pp tr {
+    background: unset !important;
+}
+
+.table-pp td {
+    font-size: 14px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 10px !important;
+    height: auto;
+    border: 1px solid #cecccc;
+}
+
+.table-pp th {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    border: 1px solid gainsboro;
+    padding: 15px;
+}
+
+.sign-w {
+    width: 50%;
+    max-width: 100%;
+}
+
+.sign-emp h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.sign-emp {
+    text-align: right;
+    padding-top: 2%;
+}
+
+.place-date {
+    padding-top: 20px;
+}
+
+.form-note h6 {
+    font-weight: 600;
+}
+
+.form-note p {
+    font-size: 14px;
+    color: black;
+}
+
+.form-note {
+    border: 1px solid #ededed;
+    padding: 3px 10px;
+    margin-top: 15px;
+}
+
+.form-note ol {
+    padding: 0px 16px;
+}
+
+.form-note li {
+    font-size: 15px;
+    line-height: 28px;
+}
+
+@media(max-width:767px) {
+    .pay-date {
+        float: left;
+        padding-top: 0px;
+    }
+    .pay-form {
+        width: 100%;
+    }
+}
