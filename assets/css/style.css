@@ -2288,9 +2288,15 @@ table.dataTable thead td {
     margin: 0;
     border: none;
     padding: 0px;
+    display: contents !important;
   }
   #dynamic_paginate {
     margin-bottom: 20px;
+  }
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: contents;
+    margin-bottom: .625em;
   }
 }
 
@@ -2906,6 +2912,9 @@ table.dataTable thead td {
   }
   .pay-form {
     width: 100%;
+  }
+  .pb0 {
+    padding-bottom: 0px;
   }
 }
 /*# sourceMappingURL=style.css.map */
