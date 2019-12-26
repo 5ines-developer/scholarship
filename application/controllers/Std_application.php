@@ -30,10 +30,6 @@ class Std_application extends CI_Controller {
 			redirect('student/application-status','refresh');
 		}
 		$data['title']  	= 'Student Application';
-		$data['talluk'] 	= $this->m_stdapplication->getTalluk();
-		$data['district'] 	= $this->m_stdapplication->getDistrict();
-		$data['school'] 	= $this->m_stdapplication->getSchool();
-		$data['company'] 	= $this->m_stdapplication->getCompany();
 		$this->load->view('student/application', $data, FALSE);
 	}
 
@@ -63,19 +59,39 @@ class Std_application extends CI_Controller {
 		echo json_encode($School);
 	}
 
+
+	public function industryget($value='')
+	{
+		$id = $this->input->get('id');
+		$data = $this->m_stdapplication->getCompany();
+		echo json_encode($data);
+	}
+
+	public function garduation($value='')
+	{
+		$data = $this->m_stdapplication->garduation();
+		echo json_encode($data);
+	}
+
+	public function courseGet($value='')
+	{
+		$id = $this->input->get('id');
+		$data = $this->m_stdapplication->courseGet($id);
+		echo json_encode($data);
+	}
+
+	public function classGet($value='')
+	{
+		$id = $this->input->get('id');
+		$data = $this->m_stdapplication->classGet($id);
+		echo json_encode($data);
+	}
+
 	
 
-    public function search($var = null)
-    {
-        $term = $this->input->get('q[term]');
-        $output = $this->m_stdapplication->search($term);
-        $result = [];
 
-        foreach ($output as $key => $value) {
-            $json[] = ['id'=>$value['id'], 'text'=>$value['name']];
-        }
-        echo json_encode($json);
-    }
+	
+
 
 	/**
     * student application - insert application
@@ -87,8 +103,6 @@ class Std_application extends CI_Controller {
     {
 
 		$input = $this->input->post();
-		
-		if($this->input->post('terms') == 'true'){ $terms = 1; }
 
 		if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
 		if(($this->input->post('clow') != '') && ($this->input->post('pmarks') < 45)){ echo 'error'; die(); }
@@ -98,7 +112,6 @@ class Std_application extends CI_Controller {
     		'school_id' 		=> $this->input->post('iname') , 
     		'company_id' 		=> $this->input->post('inname') , 
     		'uniq' 				=> random_string('alnum',10) , 
-    		'terms ' 			=>  $terms, 
     		'application_state '=> '1', 
 		);
 		
@@ -176,6 +189,7 @@ class Std_application extends CI_Controller {
     		'is_scst' 		=> $this->input->post('clow'), 
     		'adharcard_no' 	=> $this->input->post('anumber'), 
             'gender'        => $this->input->post('gender'),
+            'cast_no'        => $this->input->post('cnumber'),
     	);
     	if (!empty($cast)) { $insert['cast_certificate'] = $cast; } 
 		if (!empty($adhar)) { $insert['adharcard_file'] = $adhar; }
@@ -204,6 +218,8 @@ class Std_application extends CI_Controller {
     		'branch' 		=> $this->input->post('branch'), 
     		'ifsc' 			=> $this->input->post('bifsc'), 
     		'acc_no' 		=> $this->input->post('baccount'), 
+    		'type' 			=> $this->input->post('btype'), 
+    		'holder' 		=> $this->input->post('bholder'), 
 		);
 		
 		if (empty($_FILES['bpassbook']['tmp_name'])) {
@@ -239,7 +255,6 @@ class Std_application extends CI_Controller {
     		'pincode' 				=> $this->input->post('inpin'), 
     		'talluk' 				=> $this->input->post('intalluk'), 
     		'district' 				=> $this->input->post('indistrict'), 
-    		'ind_address' 			=> $this->input->post('inaddress'), 
 		);
 		$output = $this->m_stdapplication->applicantCompany($insert);
 		if (!empty($output)) {
@@ -253,13 +268,20 @@ class Std_application extends CI_Controller {
 	{
 		$insert = array(
     		'application_id'=> $apid, 
-    		'class  ' 		=> $this->input->post('ipclass'), 
     		'ins_pin' 		=> $this->input->post('ipin'), 
     		'ins_talluk' 	=> $this->input->post('italluk'), 
     		'ins_district' 	=> $this->input->post('idistrict'), 
     		'prv_class' 	=> $this->input->post('pclass'), 
     		'prv_marks' 	=> $this->input->post('pmarks'), 
+    		'graduation' 	=> $this->input->post('igrad'), 
+    		'course' 		=> $this->input->post('icourse'), 
 		);
+
+		if ($insert['graduation'] != '1') {
+			$insert['class'] = $this->input->post('ipclass');
+		}
+
+
 
 		if (empty($_FILES['pcard']['tmp_name'])) {
 		}else{

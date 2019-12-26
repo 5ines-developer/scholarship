@@ -99,7 +99,8 @@
                                                     <textarea id="address" class="materialize-textarea" name="s_address"  placeholder="ಪೂರ್ಣ ಅಂಚೆ ವಿಳಾಸ (ಪಿನ್ ಕೋಡ್ ಸಹಿತ)" required="" v-model="student.address"></textarea>
                                                       <label for="address"><span class="black-text">Address</span></label>
                                                 </div>
-                                        </div> <!-- End Box-->
+                                        </div> 
+                                        <!-- End Box-->
 
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title ">
@@ -110,8 +111,7 @@
 
                                             
                                             <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_district" :value="institute.district.districtId">       
-                                                <v-select  v-model="institute.district"  as="district::districtId" placeholder="Select District" @input="tallukget('institute')" tagging :from="districtSelect" />
+                                                <input type="hidden" name="in_district" :value="institute.district.districtId"> <v-select  v-model="institute.district"  as="district::districtId" placeholder="Select District" @input="tallukget" tagging :from="districtSelect" />
                                             </div>
 
                                             <div class="input-field col s12 m5">
@@ -130,93 +130,21 @@
                                                 <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
                                             </div>
 
-                                            <div class="input-field col s12 m5 l5">
-                                                <select id="in_grad" required="" class="browser-default" v-model="institute.grad">
-                                                <option value="" disabled selected>ಪದವಿ</option>
-                                                <option value="1">High school</option>
-                                                <option value="2">Puc & Equivalent courses</option>
-                                                <option value="3">Degree</option>
-                                                <option value="4">Master Degree</option>
-                                                <option value="5">Engineering & Medical</option>
-                                                </select>
-                                                <label  class=active for="in_grad">Graduation</label>
-                                            </div>
-                                            <div class="input-field col s12 m5 l5">
-                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
-                                                    <option value="" disabled selected>ತರಗತಿ</option>
-                                                    <option value="8">8th</option>
-                                                    <option value="9">9th</option>
-                                                    <option value="10">10th</option>
-                                                </select>
-                                                <label  class=active for="in_schools">Class</label>
+                                            <div class="input-field col s12 m5">
+                                                <input type="hidden" name="in_grad" :value="institute.grad.id">       
+                                                <v-select  v-model="institute.grad"  as="title::id" placeholder="Select Your graduation" @input="courseGet"  tagging :from="gardSelect" />
                                             </div>
 
-                                            <div class="input-field col s12 m5 l5">
-                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
-                                                    <option value="" disabled selected>ಪದವಿ ಪೂರ್ವ ಕಾಲೇಜು & ಸಮಾನ ಶಿಕ್ಷಣ</option>
-                                                    <option value="puc">PUC </option>
-                                                    <option value="Diploma">Diploma </option>
-                                                    <option value="ITI">ITI </option>
-                                                    <option value="D.Ed">D.Ed </option>
-                                                    <option value="D.pharm">D.pharm </option>
-                                                    <option value="ANM">ANM </option>
-                                                    <option value="GNM">GNM</option>
-                                                </select>
-                                                <label  class=active for="in_schools">Puc & Equivalent courses</label>
+                                            <div class="input-field col s12 m5">
+                                                <input type="hidden" name="in_course" :value="institute.course.id">       
+                                                <v-select  v-model="institute.course"  as="course::id" placeholder="Select Your Course" @input="classGet"  tagging :from="courseSelect" />
                                             </div>
 
-                                            <div class="input-field col s12 m5 l5">
-                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
-                                                    <option value="" disabled selected>ಪದವಿ ಪೂರ್ವ ಕಾಲೇಜು</option>
-                                                    <option value="1">1st PUC </option>
-                                                    <option value="2">2nd PUC </option>
-                                                </select>
-                                                <label  class=active for="in_schools">Pre University</label>
+                                            <div class="input-field col s12 m5" v-bind:class="{ hide: crse }">
+                                                <input type="hidden" name="in_sem" :value="institute.pclass.id" >       
+                                                <v-select  v-model="institute.pclass"  as="clss::id" placeholder="Select Your Present Class"tagging :from="classSelect" />
                                             </div>
 
-                                            <div class="input-field col s12 m5 l5">
-                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
-                                                    <option value="" disabled selected>ಡಿಪ್ಲೊಮಾ</option>
-                                                    <option value="1">1st sem </option>
-                                                    <option value="2">2nd sem </option>
-                                                    <option value="3">3rd sem </option>
-                                                    <option value="4">4th sem </option>
-                                                    <option value="5">5th sem </option>
-                                                    <option value="6">6th sem </option>
-                                                </select>
-                                                <label  class=active for="in_schools">Diploma</label>
-                                            </div>
-
-                                            <div class="input-field col s12 m5 l5">
-                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
-                                                    <option value="" disabled selected>ಐಟಿಐ</option>
-                                                    <option value="1">1st sem </option>
-                                                    <option value="2">2nd sem </option>
-                                                    <option value="3">3rd sem </option>
-                                                    <option value="4">4th sem </option>
-                                                </select>
-                                                <label  class=active for="in_schools">ITI</label>
-                                            </div>
-
-                                            <div class="input-field col s12 m5 l5">
-                                                <select id="in_schools" required="" class="browser-default" v-model="institute.grad">
-                                                    <option value="" disabled selected>ಐಟಿಐ</option>
-                                                    <option value="1">1st sem </option>
-                                                    <option value="2">2nd sem </option>
-                                                    <option value="3">3rd sem </option>
-                                                    <option value="4">4th sem </option>
-                                                </select>
-                                                <label  class=active for="in_schools">ITI</label>
-                                            </div>
-
-                                            
-
-                                            <div class="input-field col s12 m5 l5">
-                                                <input id="pclass" type="text" placeholder="ಪ್ರಸ್ತುತ ತರಗತಿ" class="validate" required="" v-model="institute.pclass">
-                                                <label for="pclass"> <span class="black-text">Present Class</span>   </label>
-                                            </div>
-                                            
-                                            
                                         </div>
                                         <!-- End Box-->
 
@@ -259,7 +187,7 @@
                                                 </div>
 
                                                 <div class="input-field col s6 ">
-                                                    <input id="cast_number" type="text"  placeholder="ಜಾತಿ ಸರ್ಟಿಫಿಕೇಟ್  ನಂಬರ್" class="validate" required="" v-model="caste.number" >
+                                                    <input id="cast_number" type="text"  placeholder="ಜಾತಿ ಸರ್ಟಿಫಿಕೇಟ್  ನಂಬರ್" class="validate" v-model="caste.number" >
                                                     <label for="cast_number"> <span class="black-text">Caste certificate number</span>   </label>
                                                 </div>
                                             </div>
@@ -344,91 +272,6 @@
                                             
                                         </div>
                                         <!-- End Box -->
-
-                                        <div class="borderd-box ">
-                                            <div class="col s12 box-title ">
-                                                <p>Industry Details</p>
-                                                <p>ಉದ್ಯಮದ ವಿವರಗಳು</p>
-                                            </div>
-                                            <div class="mt10">
-                                                <div class="input-field col s12 m5 l10">
-                                                    <p>ಉದ್ಯೋಗಧಾರರು  ಯಾರು</p>
-                                                <div class="col s12 m4 l2">
-                                                    <label>
-                                                        <input class="with-gap" v-model="industry.working" value="1" type="radio" checked="checked"  />
-                                                        <span>Father (ತಂದೆ)</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col s12 m4 l2">
-                                                    <label>
-                                                        <input class="with-gap" v-model="industry.working" value="2" type="radio"  />
-                                                        <span>Mother (ತಾಯಿ)</span>
-                                                    </label>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix mb20"></div>
-                                            
-                                            
-                                            <div class="input-field col s12 m5 l5">
-                                                <input id="id_pname" type="text" placeholder="ಪೋಷಕ / ರಕ್ಷಕರ ಹೆಸರು" class="validate" v-model="industry.pname"  required="" >
-                                                <label for="id_pname"> <span class="black-text">Parent / Guardian Name</span>   </label>
-                                            </div>
-
-                                            <div class="input-field col s12 m5 l5">
-                                                <input id="id_msal" type="text" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" @change="salaryCheck()" v-model="industry.salary">
-                                                <label for="id_msal"> <span class="black-text">Monthly Salary</span>   </label>
-                                                <span class="helper-text red-text">{{salError}}</span>
-                                            </div>
-
-                                            <div class="input-field col s12 m5 l5">
-                                                <input id="id_rel" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ ಮತ್ತು ಪೋಷಕರ ನಡುವಿನ ಸಂಬಂಧ" class="validate" v-model="industry.relation" required="" >
-                                                <label for="id_rel"> <span class="black-text">Relation between Student & Parent</span>   </label>
-                                            </div>
-
-                                            <div class="input-field col s12 m5">
-                                                <input id="id_pin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="id_pin" required="" v-model="industry.pin" >
-                                                <label for="id_pin"> <span class="black-text">Pin Code</span>   </label>
-                                            </div>
-
-                                            <div class="input-field col s12 m5 l5">
-                                                <select name="id_talluk" id="id_talluk" required="" v-model="industry.talluk" >
-                                                    <option value="" disabled selected>ತಾಲ್ಲೂಕು</option>
-                                                    <?php if (!empty($talluk)) {
-                                                        foreach ($talluk as $tal => $talk) { 
-                                                          echo '<option value="'.$talk->tallukId.'">'.$talk->talluk.'</option>';
-                                                     } } ?>
-                                                </select>
-                                                <label for="id_talluk">Talluk</label>
-                                            </div>
-
-                                            <div class="input-field col s12 m5 l5">
-                                                <select name="id_district" id="id_district" required="" v-model="industry.district" >
-                                                    <option value="" disabled selected>ಜಿಲ್ಲೆ</option>
-                                                    <?php if (!empty($district)) {
-                                                        foreach ($district as $dist => $distct) { 
-                                                          echo '<option value="'.$distct->districtId.'">'.$distct->district.'</option>';
-                                                     } } ?> 
-                                                </select>
-                                                <label for="id_district">District</label>
-                                            </div>
-
-                                            <div class="input-field col s12 m5 l5">
-                                                <select name="id_name" id="id_name" required=""  v-model="industry.name" >
-                                                    <option value="" disabled selected>ಪೋಷಕ ಉದ್ಯಮದ ಹೆಸರು</option>
-                                                    <?php if (!empty($company)) {
-                                                        foreach ($company as $comp => $compn) { 
-                                                          echo '<option value="'.$compn->iId.'">'.$compn->iName.'</option>';
-                                                     } } ?> 
-                                                </select>
-                                                <label for="id_name">Parent Industry Name</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- End Box-->
-
-                                        
-
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title ">
                                                 <p>Enter Student Aadhar Card Number and Attach the Xerox copy.</p>
@@ -520,6 +363,69 @@
                                         </div>
                                         <!-- End Box-->
 
+
+                                        <div class="borderd-box ">
+                                            <div class="col s12 box-title ">
+                                                <p>Industry Details</p>
+                                                <p>ಉದ್ಯಮದ ವಿವರಗಳು</p>
+                                            </div>
+                                            <div class="mt10">
+                                                <div class="input-field col s12 m5 l10">
+                                                    <p>ಉದ್ಯೋಗಧಾರರು  ಯಾರು</p>
+                                                <div class="col s12 m4 l2">
+                                                    <label>
+                                                        <input class="with-gap" v-model="industry.working" value="1" type="radio" checked="checked"  />
+                                                        <span>Father (ತಂದೆ)</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s12 m4 l2">
+                                                    <label>
+                                                        <input class="with-gap" v-model="industry.working" value="2" type="radio"  />
+                                                        <span>Mother (ತಾಯಿ)</span>
+                                                    </label>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix mb20"></div>
+                                            
+                                            
+                                            <div class="input-field col s12 m5 l5">
+                                                <input id="id_pname" type="text" placeholder="ಪೋಷಕ / ರಕ್ಷಕರ ಹೆಸರು" class="validate" v-model="industry.pname"  required="" >
+                                                <label for="id_pname"> <span class="black-text">Parent / Guardian Name</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <input id="id_msal" type="text" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" @change="salaryCheck()" v-model="industry.salary">
+                                                <label for="id_msal"> <span class="black-text">Monthly Salary</span>   </label>
+                                                <span class="helper-text red-text">{{salError}}</span>
+                                            </div>
+
+                                            <div class="input-field col s12 m5 l5">
+                                                <input id="id_rel" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ ಮತ್ತು ಪೋಷಕರ ನಡುವಿನ ಸಂಬಂಧ" class="validate" v-model="industry.relation" required="" >
+                                                <label for="id_rel"> <span class="black-text">Relation between Student & Parent</span>   </label>
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="id_pin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="id_pin" required="" v-model="industry.pin" >
+                                                <label for="id_pin"> <span class="black-text">Pin Code</span>   </label>
+                                            </div>
+                                            <div class="input-field col s12 m5">
+                                                <input type="hidden" name="id_district" :value="industry.district.districtId">       
+                                                <v-select  v-model="industry.district"  as="district::districtId" placeholder="Select District" @input="tallukgets" tagging :from="districtSelect" />
+                                            </div>
+
+                                            <div class="input-field col s12 m5">
+                                                <input type="hidden" name="id_talluk" :value="industry.talluk.tallukId"> <v-select  v-model="industry.talluk"  as="talluk::tallukId" placeholder="Select Taluk" tagging :from="tallukSelects" />
+                                            </div>
+
+                                            <div class="input-field col s12 m12">
+                                                <input type="hidden" name="id_name" :value="industry.name.iId"> 
+                                                <v-select  v-model="industry.name"  as="iName::iId" placeholder="Parent Industry Name" tagging :from="industrySelects" />
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- End Box-->
+
                                         <input type="hidden" name="uniq" value="<?php echo random_string('alnum',16); ?>" v-model="uniq"/>
                                         <input type="hidden" name="aid" v-model="aid" />
 
@@ -570,10 +476,14 @@
         data: {
             districtSelect: [],
             tallukSelect: [],
-            schoolSelect:[],          
-            disabled1:true,
-            disabled2:true,
+            tallukSelects: [],
+            schoolSelect:[], 
+            industrySelects:[],   
+            gardSelect:[],  
+            courseSelect:[],    
+            classSelect:[],    
             loader:false,  
+            crse:false,  
             uniq:'<?php echo (!empty($result->uniq))?$result->uniq:''; ?>',
             file:'',
             file1:'',
@@ -595,6 +505,8 @@
                 name:'<?php echo (!empty($result->ins_talluk))?$result->ins_talluk:''; ?>',
                 talluk:'<?php echo (!empty($result->ins_talluk))?$result->ins_talluk:''; ?>',
                 district:'<?php echo (!empty($result->ins_district))?$result->ins_district:''; ?>',
+                grad:'',
+                course:'',
             },
             previous:{
                 class:'<?php echo (!empty($result->prv_class))?$result->prv_class:''; ?>',
@@ -698,42 +610,43 @@
                     formData.append('sfather', this.student.father);
                     formData.append('smother', this.student.mother);
                     formData.append('saddress', this.student.address);
-                    formData.append('gender', this.student.gend);  
-                    formData.append('ipclass', this.institute.pclass);
+                    formData.append('gender', this.student.gend);
+
+                    formData.append('ipclass', this.institute.pclass.id);
                     formData.append('ipin', this.institute.pin);                
                     formData.append('iname', this.institute.name.sId);
                     formData.append('italluk', this.institute.talluk.tallukId);
                     formData.append('idistrict', this.institute.district.districtId);
-
+                    formData.append('igrad', this.institute.grad.id);
+                    formData.append('icourse', this.institute.course.id);
                     formData.append('clow', this.caste.low);
                     formData.append('cfile', this.file1);
                     formData.append('cnumber', this.caste.number);
                     formData.append('tcat', this.trcategory);
                     formData.append('gcat', this.gncategory);
-
+                    formData.append('pclass', this.previous.class);
+                    formData.append('pmarks', this.previous.marks);
+                    formData.append('pcard', this.file);
                     formData.append('incard', this.industry.working);
                     formData.append('inpname', this.industry.pname);
                     formData.append('insalary', this.industry.salary);
                     formData.append('inrelation', this.industry.relation);
                     formData.append('inpin', this.industry.pin);
-                    formData.append('intalluk', this.industry.talluk);
-                    formData.append('indistrict', this.industry.district);
-                    formData.append('inname', this.industry.name);
-
-                    formData.append('pclass', this.previous.class);
-                    formData.append('pmarks', this.previous.marks);
-                    formData.append('pcard', this.file);
-                                       
+                    formData.append('intalluk', this.industry.talluk.tallukId);
+                    formData.append('indistrict', this.industry.district.districtId);
+                    formData.append('inname', this.industry.name.iId);
                     formData.append('anumber', this.adhaar.number);
                     formData.append('axerox', this.file2);
-
                     formData.append('bname', this.bank.name);
                     formData.append('bname', this.bank.name);
                     formData.append('bname', this.bank.name);
                     formData.append('branch', this.bank.branch);
                     formData.append('bifsc', this.bank.ifsc);
                     formData.append('baccount', this.bank.account);
-                    formData.append('bpassbook', this.file3);                          
+                    formData.append('bpassbook', this.file3);
+                    formData.append('btype', this.bank.type);
+                    formData.append('bholder', this.bank.holder);
+                                              
                     formData.append('uniq', this.uniq);                          
                     formData.append('aid', this.aid);                          
                                             
@@ -760,7 +673,17 @@
                     M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
                 }
            },
-           getDistrict(){
+                getIndustry(){
+                    var self= this;
+                    axios.get('<?php echo base_url() ?>std_application/industryget')
+                    .then(function (response) {
+                        self.industrySelects = response.data;
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                },
+                getDistrict(){
                     var self= this;
                     axios.get('<?php echo base_url() ?>std_application/district')
                     .then(function (response) {
@@ -770,21 +693,23 @@
                         this.errormsg = error.response.data.error;
                     })
                 },  
-                tallukget(type){
+                tallukget(){
                     var self= this;
-                    if (self.type="institute") {
-                        id = self.institute.district.districtId
-                    }
-
-
-                    formData = new FormData();
-                    formData.append('id', id);
-                    axios.get('<?php echo base_url() ?>std_application/tallukget?id='+id)
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/tallukget?id='+self.institute.district.districtId)
                     .then(function (response) {
-                        if (self.type="institute") {
-                            self.disabled1 = false;
-                            self.tallukSelect = response.data;
-                        }
+                        self.tallukSelect = response.data;
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                },
+                tallukgets(){
+                     var self= this;
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/tallukget?id='+self.industry.district.districtId)
+                    .then(function (response) {
+                        self.tallukSelects = response.data;
                     })
                     .catch(function (error) {
                         this.errormsg = error.response.data.error;
@@ -792,22 +717,64 @@
                 },
                 schoolget(type){
                     var self= this; 
-                    formData = new FormData();
+                    const formData = new FormData();
                     formData.append('id', self.institute.talluk.tallukId);
-                    axios.get('<?php echo base_url() ?>std_application/schoolget?id='+id)
+                    axios.get('<?php echo base_url() ?>std_application/schoolget?id='+self.institute.talluk.tallukId)
                     .then(function (response) {  
-                        console.log(response);                    
                         self.schoolSelect = response.data;
-                        self.disabled2 = false;
                     })
                     .catch(function (error) {
                         this.errormsg = error.response.data.error;
                     })
-                },       
+                },
+                garduation(){
+                    var self= this; 
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/garduation')
+                    .then(function (response) {  
+                        self.gardSelect = response.data;
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                },
+                courseGet(){
+                    var self= this; 
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/courseGet?id='+self.institute.grad.id)
+                    .then(function (response) { 
+                        self.courseSelect = response.data;
+                        if (self.institute.grad.id == 1) {
+                            self.crse = true;
+                        }else{
+                            self.crse = false;
+                        }
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                },
+                classGet(){
+                    var self= this; 
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/classGet?id='+self.institute.course.id)
+                    .then(function (response) {
+                        console.log(response)
+                        if (self.institute.grad.id != 1) {
+                            self.classSelect = response.data;
+                        }
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                }
+
  
         },
         mounted:function(){
                this.getDistrict();
+               this.getIndustry();
+               this.garduation();
         }
     })
 </script>

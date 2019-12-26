@@ -7,17 +7,9 @@ class M_stdapplication extends CI_Model {
     * get school
     * @data     : schhol data
     **/
-    public function getSchool($value='')
+    public function getSchool($id='')
     {
-        if (!empty($id)) {           
-            $this->db->where('rs.taluk', $id);           
-        }
-        return $this->db->select('sc.id as sId,sc.name as sName')
-        ->order_by('sc.id', 'desc')
-        ->distinct()
-        ->from('school sc')
-        ->join('reg_schools rs', 'rs.reg_no = sc.reg_no', 'inner')
-        ->get()->result();
+        return $this->db->where('taluk',  $id)->select('id as sId,school_address as sName')->get('reg_schools')->result();
     }
 
 	/**
@@ -125,7 +117,7 @@ class M_stdapplication extends CI_Model {
     public function getApplication($id = null)
     {      
         return $this->db->where('a.Student_id', $id)->where('a.application_year',date('Y'))
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,ab.address as saddress, aa.name as bnkName,schl.id as schID, schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,ab.address as saddress, aa.name as bnkName,schl.id as schID,schl.name as schoolName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
@@ -137,6 +129,9 @@ class M_stdapplication extends CI_Model {
         ->join('state st', 'st.id = ind.state', 'left')
         ->join('city cty', 'cty.id = ac.district', 'left')
         ->join('taluq tq', 'tq.id = ac.talluk', 'left')
+        ->join('courses crs', 'crs.id = am.course', 'left')
+        ->join('gradution grd', 'grd.id = am.graduation', 'left')
+        ->join('class cls', 'cls.id = am.class', 'left')
         ->get()->row();
     }
 
@@ -156,16 +151,21 @@ class M_stdapplication extends CI_Model {
        return $this->db->where('Student_id', $id)->where('application_year',date('Y'))->get('application')->row(); 
     }
 
-    public function search($term = null)
+
+
+    public function garduation($value='')
     {
-        return $this->db->like('name',$term,'both')->select('name,id')->get('industry')->result_array();
+         return $this->db->distinct()->get('gradution')->result(); 
     }
-    
-    // taluk filter
-    public function getTalukFiletr($id = null)
+
+    public function courseGet($id='')
     {
-       return $this->db->where('city_id', $id)
-       ->get('taluq')->result();
+        return $this->db->distinct()->where('graduation_id',$id)->get('courses')->result();
+    }
+
+    public function classGet($id='')
+    {
+        return $this->db->distinct()->where('course_id',$id)->get('class')->result();
     }
 
 }
