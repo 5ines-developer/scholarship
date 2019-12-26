@@ -81,7 +81,7 @@
                                                     {{ comp.name }}
                                                 </option>                                            -->
                                             </select>
-                                             <p class="inregister"></p>
+                                            <p class="inregister"></p>
                                         </div>
                                     </div>
                                     <div class="row m0">  
@@ -183,7 +183,7 @@ $(document).ready(function() {
             };
 
             },
-                cache: true
+                            cache: true
             },
                
     
@@ -199,12 +199,15 @@ $(document).ready(function() {
             data: { comp : cmp},
             dataType: "html",
             success: function (response) {
+
                 if (response == 'exist') {
                     $('.inregister').append('<span class="helper-text red-text">Industry has been already registered</span>');
                 }else{
                    $('#c_conreg').val(response);
                     $(".crg").addClass('active'); 
                 }
+
+                
                 
             }
         });

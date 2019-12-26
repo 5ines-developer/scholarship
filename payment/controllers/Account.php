@@ -8,9 +8,9 @@ class Account extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('M_account');
-        if($this->session->userdata('scinds') == ''){ redirect('/','refresh'); }
-        $this->inId = $this->session->userdata('sccomp');
-        $this->reg = $this->session->userdata('scinds');
+        if($this->session->userdata('pyId') == ''){ redirect('/','refresh'); }
+        $this->inId = $this->session->userdata('pyComp');
+        $this->reg = $this->session->userdata('pyId');
     }
 
     public function index()
@@ -28,7 +28,7 @@ class Account extends CI_Controller {
         $insert = array(
             'talluk'       => $this->input->post('taluk'),
             'district'     => $this->input->post('district'),
-            'director'     => $this->input->post('director'),
+            'name'         => $this->input->post('director'),
             'mobile'       => $this->input->post('number'),
             'pan_no'       => $this->input->post('panno'),
             'gst_no'       => $this->input->post('gstno'),

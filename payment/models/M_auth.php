@@ -44,7 +44,7 @@ class M_auth extends CI_Model {
 
         public function companyChange($id = null)
         {
-            $query =  $this->db->where('industry_id', $id)->where('type','1')->get('industry_register');
+          $query =  $this->db->where('industry_id', $id)->where('type','1')->get('industry_register');
             if($query->num_rows() > 0){
               return 'exist';
             }else{

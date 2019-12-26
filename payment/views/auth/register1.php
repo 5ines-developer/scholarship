@@ -12,9 +12,6 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
 </head>
 
 <body>
@@ -66,7 +63,7 @@
                                         <label for="district">District</label>
                                     </div>
                                     <div class="input-field col s12 m6">
-                                        <select id="act" name="act" required="" class="select2" v-model="act" >
+                                        <select id="act" name="act" required="" class="select2" v-model="act" @change="getCompany()" >
                                             <option value="" disabled selected>Choose your option</option>
                                             <option value="1">Labour Act</option>
                                             <option value="2">Factory Act</option>                                            
@@ -75,13 +72,12 @@
                                     </div>
                                     <div class="row m0">                                    
                                         <div class="input-field col m6">
-                                            <select id="company" name="company">
+                                            <select id="company" name="company" v-model="company">
                                                 <option value="" disabled >Select Your Industry</option>
-                                                <!-- <option v-for="comp in companies" v-bind:value="comp.id">
+                                                <option v-for="comp in companies" v-bind:value="comp.id">
                                                     {{ comp.name }}
-                                                </option>                                            -->
+                                                </option>                                           
                                             </select>
-                                             <p class="inregister"></p>
                                         </div>
                                     </div>
                                     <div class="row m0">  
@@ -91,43 +87,33 @@
                                             <label class="crg" for="c_conreg">Industry Reg No</label>
                                         </div>
                                         <div class="file-field input-field col s12 m6">
-                                            <div class="btn ">
-                                                <span>File</span>
-                                                <input type="file" name="reg_doc" required="">
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" placeholder="Upload Industry Reg Doc" type="text">
-                                            </div>
-                                        </div> 
+                                        <div class="btn ">
+                                            <span>File</span>
+                                            <input type="file" name="reg_doc" required="">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" placeholder="Upload Industry Reg Doc" type="text">
+                                        </div>
+                                    </div> 
                                     </div>
-                                    <div class="row m0">
-                                        <div class="file-field input-field col s12 m6">
-                                            <div class="btn ">
-                                                <span>File</span>
-                                                <input type="file" name="seal" required="">
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" placeholder="Upload Industry Seal" type="text">
-                                            </div>
-                                        </div> 
-                                        <div class="file-field input-field col s12 m6">
-                                            <div class="btn ">
-                                                <span>File</span>
-                                                <input type="file" name="sign" required="">
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" placeholder="Upload Director Signature" type="text">
-                                            </div>
-                                        </div> 
+                                    
+                                    <div class="input-field col m6">
+                                        <input id="password" type="password" class="c_password" class="validate" name="password"   required="" v-model="psw">
+                                        <label for="password">Password</label>
                                     </div>
+                                    <div class="input-field col m6">
+                                        <input id="cpassword" @keyup="checkCpsw()" type="password" class="c_confpassword validate" name="cpassword" required="" v-model="cpsw">
+                                        <label for="cpassword">Confirm Password</label>
+                                        <span class="helper-text red-text">{{confError}}</span>
+                                    </div>                                                                       
                                     <div class="input-field col s12 m12">
                                         <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
                                     </div>
-                                    <!-- <div class="input-field col s12">
+                                    <div class="input-field col s12">
                                         <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
-                                    </div> -->
+                                    </div>
                                     
                                     <div class="input-field col m12 ">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
@@ -150,44 +136,21 @@
     <!-- footer -->
     <?php $this->load->view('include/footer') ?>
     <div v-if="loader" class="loading">Loading&#8230;</div>
+
 </div>
 
 
 
     <!-- scripts -->
- 
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
     <script>
     <?php $this->load->view('include/msg'); ?>
 </script>
     <script>
 $(document).ready(function() {
-
-    $('#company').select2({
-        placeholder: 'Select a company',
-        minimumInputLength: 1,
-        ajax: {
-            url: "<?php echo base_url('auth/search') ?>",
-            dataType: 'json',
-            quietMillis: 250,
-            data: function (term, page) {
-                return {
-                    q: term, // search term
-                };
-            },
-            processResults: function (data) {
-
-            return {
-
-            results: data
-
-            };
-
-            },
-                cache: true
-            },
-               
-    
-    });
+    $('#company').select2({width: "100%"});
     
     
     $(document).on('change','#company',function(){
@@ -199,12 +162,8 @@ $(document).ready(function() {
             data: { comp : cmp},
             dataType: "html",
             success: function (response) {
-                if (response == 'exist') {
-                    $('.inregister').append('<span class="helper-text red-text">Industry has been already registered</span>');
-                }else{
-                   $('#c_conreg').val(response);
-                    $(".crg").addClass('active'); 
-                }
+                $('#c_conreg').val(response);
+                $(".crg").addClass('active');
                 
             }
         });
@@ -222,14 +181,17 @@ $(document).ready(function() {
             data: {
                 mobile: '',
                 email: '',
+                psw: '',
+                cpsw: '',
                 emailError: '',
                 mobileError: '',
+                confError:'',
                 captcha:'',
                 company:'',
                 active:false,
                 istrue:false,
                 act:'',
-                // companies:[],
+                companies:[],
                 loader:false,
 
             },
@@ -275,14 +237,40 @@ $(document).ready(function() {
                     }
                 } )
             },
-            checkForm() {
-                if ((this.mobileError == '') && (this.emailError == '')) {
+            getCompany(){
+                this.loader = true;
+                const formData = new FormData();
+                formData.append('act',this.act);
+                axios.post('<?php echo base_url('auth/getCompany') ?>', formData)
+                .then(response => {
+                    this.companies = response.data;
+                    this.loader = false;
+                }).catch(error =>{
+                    if (error.response) {
+                        this.errormsg = error.response.data.error;
+                    }
+                    this.loader = false;
+                } )
+            },
+            // check Password matching
+            checkCpsw() {
+                if (this.psw != this.cpsw) {
+                    this.confError = 'Password must match with previous entry!';
 
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+                } else {
+                    this.confError = '';
+                }
+            },
+            checkForm() {
+                if ((this.confError == '') && (this.mobileError == '') && (this.emailError == '')) {
+
+                    this.$refs.form.submit();
+
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // }// 
+                    }// 
                 } else {}
             }
 
