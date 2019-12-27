@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scholarship</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <header class="">
+            <div class="top-header">
+                <div class="container ">
+                    <div class="row m0">
+                        <div class="col s4 m4 push-m4">
+                            <div class="center">
+                                <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                            </div>
+                        </div>
+                        <div class="col s8 m4 pull-m4">
+                            <div class="center-align p17 frt">
+                                <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
+                                <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
+                            </div>
+                        </div>
+                        <div class="col s4 hide-on-small-only">
+                            <div class="center p17">
+                                <p class="top-header-title1">Government of Karnataka</p>
+                                <p class="top-header-title2">Karnataka Labour Welfare Board</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-block">
+                <div class="nav-wrapper container-wrap1">
+                    <!-- <a href="#" class="brand-logo">Logo</a> -->
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile1" class="left hide-on-med-and-down">
+                        <li><a href="#!">Home</a></li>
+                    </ul>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#!">Login</a></li>
+                        <li><a href="#!">Registration</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="#!">Home</a></li>
+                <li><a href="#!">Login</a></li>
+                <li><a href="#!">Registration</a></li>
+            </ul>
+
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!">Account Settings</a></li>
+                <li><a href="#!">Application Status</a></li>
+                <li><a href="#!">Logout</a></li>
+
+            </ul>
+        </header>
+        <!-- Body form  -->
+        <section class="board">
+            <div class="container-wrap1">
+                <div class="row m0">
+                    <div class="col offset-l1 s12 m10 l10">
+                        <div class="download">
+                            <button class="rec-down waves-effect waves-light">Download</button>
+                        </div>
+                        <div class="fund-reg">
+                            <div class="title-track">
+                                <h5>K.A.S Letter(60606)</h5>
+                                <h6>Payment Receipt</h6>
+                            </div>
+                            <div class="date-fund">
+                                <p>ISRTC Pvt Ltd <b>Office</b></p>
+                                <p><b>Place : </b>Bangalore</p>
+                                <p><b>Date : </b>12-12-2019</p>
+                            </div>
+                            <div class="receipt-detail">
+                                <b>_________________________
+                                    <span>For this</span>___________________________________________________
+                                    <span>Rupees</span>_____________________________________
+                                    <span>From them we have received adn each Book</span> ___________________________
+                                    <span>No. Page</span>______<span>Baby</span>______________________<span>Day Deposited</span></b>
+                            </div>
+                            <div class="office-ex">
+                                <p>Office Executive</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- End Body form  -->
+
+        <!-- End Body form  -->
+        <!-- footer -->
+        <footer class="pt20 pb20">
+            <div class="footer-copyright">
+                <div class="container center">
+                    © Copyright 2019. All Rights Reserved
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+    </div>
+
+
+
+    <!-- scripts -->
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, {
+                preventScrolling: false
+            });
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                disabled: false
+
+            },
+
+            methods: {
+
+
+            }
+        });
+    </script>
+</body>
+
+</html>
