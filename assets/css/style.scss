@@ -2765,6 +2765,69 @@ table.dataTable thead td {
     line-height: 28px;
 }
 
+//*********Fund-receipt***************
+.fund-reg {
+    border: 1px solid #dbdbdb;
+    padding: 10px;
+}
+
+.title-track {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 10px;
+}
+
+.title-track h5 {
+    font-size: 16px;
+    font-weight: 700;
+    font-style: italic;
+    margin: 0;
+}
+
+.title-track h6 {
+    font-size: 16px;
+    font-weight: 600;
+    padding-top: 6px;
+    color: #053f71;
+}
+
+.date-fund {
+    text-align: right;
+    padding-top: 10px;
+}
+
+.fund-reg {
+    border: 1px solid #dbdbdb;
+    padding: 20px 35px;
+}
+
+.receipt-detail b {
+    line-height: 55px;
+    font-size: 14px;
+}
+
+.office-ex {
+    text-align: right;
+    padding-top: 25px;
+}
+
+.office-ex p {
+    font-weight: 600;
+}
+
+.rec-down {
+    padding: 10px 25px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 23px;
+}
+
+.download {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
 @media(max-width:767px) {
     .pay-date {
         float: left;
@@ -2775,5 +2838,17 @@ table.dataTable thead td {
     }
     .pb0 {
         padding-bottom: 0px;
+    }
+    .receipt-detail b {
+        line-height: 38px;
+    }
+    .date-fund {
+        text-align: left;
+        padding-top: 10px;
+    }
+    .download {
+        text-align: right;
+        margin-bottom: 15px;
+        margin-top: 10px;
     }
 }
