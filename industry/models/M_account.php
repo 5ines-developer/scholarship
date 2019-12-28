@@ -6,7 +6,6 @@ class M_account extends CI_Model {
 
     public function getAccountDetails()
     {
-
         $this->db->select('in.id as indId, in.name as indNAme, ir.name as director, ir.email, ir.mobile, in.reg_id,ir.talluk,ir.district, ir.register_doc,ir.gst_no,ir.pan_no, ir.pancard, ir.gst, ir.address, c.title as district, t.title as taluk');
         $this->db->where('ir.industry_id', $this->session->userdata('sccomp'));
         $this->db->from('industry_register ir');

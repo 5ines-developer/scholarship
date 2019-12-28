@@ -62,9 +62,9 @@
                                                         echo '<tr role="row" class="odd"><td class="h5-para-p2"><a href="'.base_url('application/').$value->id.'">'.$i.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->name.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->mark.'</a></td>
-                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->class.'</a></td>
-                                                        <td class="action-btn  center-align">
-                                                            <a href="'.base_url('application/').$value->id.'" class="view waves-effect waves-light"> <i class="material-icons"> remove_red_eye </i></a>
+                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->course.$value->class.'</a></td>
+                                                        <td class="center-align">
+                                                            <a href="'.base_url('application/').$value->id.'" class="blue-text waves-effect waves-light"> View</a>
                                                         </td></tr>';
                                                     } } ?>                                                    
                                                 
@@ -132,7 +132,7 @@
             },
             methods:{
                 yearChange(){
-                    window.location.href = "<?php echo base_url('student?year=') ?>"+this.year;
+                    window.location.href = "<?php echo base_url('application-request?year=') ?>"+this.year;
                 },
             },
         })

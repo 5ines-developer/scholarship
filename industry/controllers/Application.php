@@ -50,7 +50,7 @@ class Application extends CI_Controller {
         }
         
     // approve application
-    public function approve($id = null)
+    public function approve($id = null,$msg='')
     {
         $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to government for verification, we will notify the status via sms';
         $id = $this->input->post('id');
@@ -111,7 +111,7 @@ class Application extends CI_Controller {
 		
         /* API URL */
         $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
+        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $data . '&priority=ndnd&stype=normal';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);

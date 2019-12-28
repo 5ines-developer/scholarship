@@ -48,7 +48,7 @@
                                                 </div>
                                                 
                                                 <div class="input-field col s12">
-                                                    <input id="email" autofocus="" readonly="" type="email"  v-model="student.email" class="validate">
+                                                    <input id="email" autofocus="" type="email"  v-model="student.email" class="validate">
                                                     <label for="email">Email Id</label>
                                                 </div>
                                                 

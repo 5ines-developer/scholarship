@@ -81,46 +81,20 @@ class M_student extends CI_Model {
     **/
     function can_login($username, $password)  
     {
-    
-        $this->db->where('email', $username);  
-        $this->db->where('status', '1');  
-        $this->db->where('password', $password);
-       //  $result = $this->getUsers($password);
-       //  if (!empty($result)) {
-       //    return $result;
-       //  } 
-       //  else {
-       //      return null;
-       //  }  
-       $query = $this->db->get('student');
-        if ($query->num_rows() > 0) { 
-           return  $query->row_array();
-        }else{
-          return null;
+        $this->db->where('status', '1'); 
+        $this->db->group_start();
+            $this->db->where('email', $username);  
+            $this->db->or_where('phone', $username);  
+        $this->db->group_end();
+        $query = $this->db->get('student')->row_array();
+        if ($this->bcrypt->check_password($password, $query['password'])) {
+            return $query;
+        } else {
+            return false;
         }
-    
     }
 
-    // check password
-    function getUsers($password) 
-    {
-        $query = $this->db->get('student');
-        if ($query->num_rows() > 0) {
-            $result = $query->row_array();
-            if ($this->bcrypt->check_password($password, $result['password'])) {
-                //We're good
-                return $result;
-            } 
-            else {
-                //Wrong password
-                return array();
-            }
-        } 
-        else{
-            return array();
-        }
-    } 
-
+   
 
     /**
     * student forgot password - check phone

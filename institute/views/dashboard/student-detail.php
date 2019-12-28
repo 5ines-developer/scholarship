@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->model('m_dashboard');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +29,7 @@
                             <div class="card-content bord-right">
                                 <div class="card-title">
                                     Scholarship Application Detail
+
                                     <?php if (($result->application_state == 1) && ($result->status == 2)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
                                     <?php }elseif (($result->application_state != 1) && ($result->status !=2)){ ?>
@@ -35,6 +40,8 @@
                                     <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1)? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
 
                                     <?php } ?>
+
+                                    
 
                                     <!-- <?php if (($result->status == 2) || ($result->application_state == 1)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
@@ -76,29 +83,35 @@
                                                                             <p class="app-item-content-head">Mobile Number</p>
                                                                             <p class="app-item-content"><?php echo (!empty($result->parent_phone))?$result->parent_phone:'___'; ?></p>
                                                                         </li>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Gender</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->gender))?$result->gender:'---'; ?></p>
+                                                                        </li>
+
                                                                     </ul>
                                                                 </div>
 
                                                                 <div class="col s12 l8">
                                                                     <ul>
+
                                                                         <li>
-                                                                            <p class="app-item-content-head">Present Class</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->class))?$result->class:'___'; ?></p>
+                                                                            <p class="app-item-content-head">Graduation</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->gradutions))?$result->gradutions:'---'; ?></p>
+                                                                        </li>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Present class/ Course</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->corse))?$result->corse.'&nbsp;'.$result->cLass:'---'; ?></p>
                                                                         </li>
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Present School Name</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->schoolName))?$result->schoolName:'___'; ?></p>
-                                                                        </li>
+                                                                            <p class="app-item-content"><?php echo $this->ci->m_dashboard->schlName($result->school_id) ?></p> </li>
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Present School Address</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->sclAddrss))?$result->sclAddrss:'___'; ?></p>
-                                                                        </li>
-                                                                        <li class="doted-divider"></li>
-                                                                        <li>
-                                                                            <p class="app-item-content-head">Student Present  Address</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->address))?$result->address:'___'; ?></p>
+                                                                            <p class="app-item-content"><?php echo $this->ci->m_dashboard->schlAddress($result->school_id) ?></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -153,8 +166,19 @@
                                                                         </li>
 
                                                                         <li>
-                                                                            <p class="app-item-content-head">Cast Certificate File</p>
-                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?$this->config->item('web_url').$result->cast_certificate:'#'; ?>"> Cast-certificate </a></p>
+                                                                            <p class="app-item-content-head">Category</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->category))?$result->category:''; ?></p>
+                                                                        </li>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Caste Certificate File/ Number</p>
+                                                                                <?php if (!empty($result->cast_certificate)) { ?>
+                                                                                    <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
+                                                                                    <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Caste-certificate
+                                                                                    </a>
+                                                                                    <?php echo (!empty($result->cast_no))?'-'.$result->cast_no:''; ?>
+                                                                                    </p>
+                                                                                <?php } ?>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -217,10 +241,7 @@
                                                                             <p class="app-item-content"><?php echo (!empty($result->indPincode))?$result->indPincode:'___'; ?></p>
                                                                         </li>
 
-                                                                        <li>
-                                                                            <p class="app-item-content-head">Industry Address</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->ind_address))?$result->ind_address:'___'; ?></p>
-                                                                        </li>
+                                                                        
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -275,6 +296,17 @@
 
                                                                         <li class="row">
                                                                             <div class="col s12 m6 ">
+                                                                                <p class="app-item-content-head">Account Type</p>
+                                                                                <p class="app-item-content"><?php echo ((!empty($result->type)) && $result->type== '1' )?'Parent':'Student'; ?></p>
+                                                                            </div>
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Account Holder name</p>
+                                                                                <p class="app-item-content"><?php echo (!empty($result->holder))?$result->holder:'---'; ?></p>
+                                                                            </div>
+                                                                        </li>
+
+                                                                        <li class="row">
+                                                                            <div class="col s12 m6 ">
                                                                                 <p class="app-item-content-head">Account Number</p>
                                                                                 <p class="app-item-content"><?php echo (!empty($result->acc_no))?$result->acc_no:'___'; ?></p>
                                                                             </div>
@@ -283,6 +315,8 @@
                                                                                 <p class="app-item-content"><?php echo (!empty($result->ifsc))?$result->ifsc:'___'; ?></p>
                                                                             </div>
                                                                         </li>
+                                                                        
+
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Passbook Front Page Copy</p>

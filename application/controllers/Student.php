@@ -93,7 +93,7 @@ class Student extends CI_Controller {
             $insert = array(
                 'email'     =>  $this->input->post('email'), 
                 'phone'     =>  $this->input->post('mobile'),
-                'password'  =>  $this->input->post('password'),
+                'password'  =>  $this->bcrypt->hash_password($this->input->post('password')),
                 'otp'       =>  random_string('nozero',6), 
                 'ref_id'    =>  random_string('alnum',20),
             );
@@ -414,7 +414,7 @@ class Student extends CI_Controller {
             if ($this->form_validation->run() == true) {
                 $ref_id = random_string('alnum', 16);
                 $rid = $this->input->post('rid');
-                $npass = $this->input->post('password');
+                $npass = $this->bcrypt->hash_password($this->input->post('password'));
                 $datas = array(
                     'ref_id' => $ref_id,
                     'password' => $npass,
@@ -452,8 +452,7 @@ class Student extends CI_Controller {
     public function qst_resetpass($var = null)
     {
         $email      = $this->input->post('email');
-        // $password   = $this->bcrypt->hash_password($this->input->post('password'));
-        $password   = $this->input->post('password');
+        $password   = $this->bcrypt->hash_password($this->input->post('password'));
         $qstn       = $this->input->post('qstn');
         $ans        = $this->input->post('ans');
 

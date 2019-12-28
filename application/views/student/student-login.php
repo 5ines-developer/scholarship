@@ -27,14 +27,12 @@
                                 <div class="card-heading">
                                     <p class="m0">Student Login</p>
                                 </div>
-                                <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('student/login-check') ?>" method="post" enctype="multipart/form-data" id="loginForm">
+                                <form  action="<?php echo base_url('student/login-check') ?>" method="post" enctype="multipart/form-data" id="loginForm">
                                 <div class="card-body row m0 pt15 pb15">
                                     <div class="input-field col s12">
-                                        <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate" required>
-                                        <label for="email">Email ID</label>
-                                        <span class="helper-text red-text">{{ emailError }}</span>
+                                        <input  id="email"  name="email" v-model="email" type="text" class="validate" required>
+                                        <label for="email">Email ID or Mobile No.</label>
                                     </div>
-
                                    
                                     <div class="input-field col s12">
                                         <input  id="password" v-model="psw" name="pswd" type="password" class="validate" required>
@@ -88,38 +86,14 @@
         data: {
             email: '',
             psw: '',
-            emailError: '',
 
             
         },
 
         methods:{
-            //check student email already exist
-            emailCheck(){
-                this.emailError='';
-                const formData = new FormData();
-                formData.append('email',this.email);
-                axios.post('<?php echo base_url('student/emailcheck') ?>',formData)
-                .then(response =>{
-                    if (response.data == '') {
-                        this.emailError = 'Account does not exist!';
-                    } else {
-                        this.emailError = '';
-                    }
-
-                }).catch(error => {
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                })
-            },
-            checkForm() {
-                if ((this.emailError == '')) {
-
-                    this.$refs.form.submit();
-
-                } else {}
-            }
+            
+            
+            
         },
     })
 </script>

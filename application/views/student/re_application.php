@@ -313,12 +313,16 @@
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <select id="in_talluk"  required="" v-model="bank.type">
+
+                                                <input type="hidden" name="in_grad" :value="bank.type.id">       
+                                                <v-select  v-model="bank.type"  as="title::id" placeholder="Select Your graduation" @input="courseGet"  tagging :from="[{title: 'Parent', id: 1}, {title: 'Student', id: 2}]" />
+
+                                                <!-- <select id="in_talluk"  required="" v-model="bank.type" class="browser-default-">
                                                     <option value="" disabled selected>ಖಾತೆದಾರರು</option>
                                                     <option value="1">Parent</option>
                                                     <option value="2">Student</option>
                                                 </select>
-                                                <label for="in_talluk">Account Holder</label>
+                                                <label for="in_talluk">Account Holder</label> -->
                                             </div>
 
                                             <div class="input-field col s12 m5">
@@ -410,8 +414,7 @@
                                                 <label for="id_pin"> <span class="black-text">Pin Code</span>   </label>
                                             </div>
                                             <div class="input-field col s12 m5">
-                                                <input type="hidden" name="id_district" :value="industry.district.districtId">       
-                                                <v-select  v-model="industry.district"  as="district::districtId" placeholder="Select District" @input="tallukgets" tagging :from="districtSelect" />
+                                                <input type="hidden" name="id_district" :value="industry.district.districtId"> <v-select  v-model="industry.district"  as="district::districtId" placeholder="Select District" @input="tallukgets" tagging :from="districtSelect" />
                                             </div>
 
                                             <div class="input-field col s12 m5">
@@ -423,7 +426,7 @@
                                                 <v-select  v-model="industry.name"  as="iName::iId" placeholder="Parent Industry Name" tagging :from="industrySelects" />
                                             </div>
                                         </div>
-                                        
+
                                         <!-- End Box-->
 
                                         <input type="hidden" name="uniq" value="<?php echo random_string('alnum',16); ?>" v-model="uniq"/>
@@ -489,7 +492,7 @@
             file1:'',
             file2:'',
             file3:'',
-            aid:'',
+            aid:'<?php $this->input->get('item') ?>',
             student: {
                 name: '',
                 phone: '',
@@ -537,6 +540,7 @@
                 account:'',
                 type:'',
                 holder:'',
+                id:'',
             },
             tribes:false,
             markError:'',
@@ -766,6 +770,66 @@
                     .catch(function (error) {
                         this.errormsg = error.response.data.error;
                     })
+                },
+                getdata(){
+                    var self= this;
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/appliGet')
+                    .then(function (response) {
+                        self.student.name    = response.data.name;
+                        self.student.phone   = response.data.parent_phone;
+                        self.student.father  = response.data.father_name;
+                        self.student.mother  = response.data.mothor_name;
+                        self.student.address = response.data.saddress;
+                        self.student.gend    = response.data.gender;
+
+                        self.institute.pclass   = response.data.cLass;
+                        self.institute.pin      = response.data.ins_pin;
+                        self.institute.name     = response.data.school_id;
+                        self.institute.talluk   = response.data.ins_talluk;
+                        self.institute.district = response.data.ins_district;
+                        self.institute.grad     = response.data.gradutions;
+                        self.institute.course   = response.data.corse;
+
+                        self.institute.district.districtId  = response.data.ins_district;
+                        self.institute.talluk.tallukId      = response.data.ins_talluk;
+                        self.institute.name.sId             = response.data.school_id;
+                        self.institute.grad.id              = response.data.graduation;
+                        self.institute.course.id            = response.data.course;
+                        self.institute.pclass.id            = response.data.class;
+
+                        self.caste.low          = response.data.is_scst;
+                        self.caste.number       = response.data.cast_no;
+                        self.caste.trcategory   = response.data.category;
+                        self.caste.gncategory   = response.data.category;
+                        self.previous.class     = response.data.prv_class;
+                        self.previous.marks     = response.data.prv_marks;
+                        self.adhaar.number      = response.data.adharcard_no;
+                        self.bank.name          = response.data.name;
+                        self.bank.branch        = response.data.branch;
+                        self.bank.ifsc          = response.data.ifsc;
+                        self.bank.account       = response.data.acc_no;
+                        self.bank.type          = response.data.type;
+                        self.bank.holder        = response.data.holder;
+
+                        self.industry.working   = response.data.who_working;
+                        self.industry.pname     = response.data.indpname;
+                        self.industry.salary    = response.data.msalary;
+                        self.industry.relation  = response.data.relationship;
+                        self.industry.pin       = response.data.indpincode;
+                        self.industry.talluk    = response.data.talqName;
+                        self.industry.district  = response.data.dstctName;
+                        self.industry.name      = response.data.indName;
+                        industry.talluk.tallukId            = response.data.indtalluk;
+                        industry.name.iId                   = response.data.company_id;
+                        self.industry.district.districtId   = response.data.company_id;
+
+
+
+                    })
+                    .catch(function (error) {
+                        // this.errormsg = error.response.data.error;
+                    })
                 }
 
  
@@ -774,6 +838,7 @@
                this.getDistrict();
                this.getIndustry();
                this.garduation();
+               this.getdata();
         }
     })
 </script>

@@ -29,14 +29,16 @@ class auth extends CI_Controller {
                     
                     if($result = $this->m_auth->can_login($email, $password)) 
                     {
+
+                        $school_id = $this->db->where('id', $result['school_id'])->get('school')->row('name');
                        
                         $session_data = array(
                             'scmail'    => $email,
                             'scinst'    => $result['id'],
                             'scqstn'    => $result['status'],
-                            'school'    => $result['school_id'],
+                            'school'    => $school_id,
                             'type'      => $result['created_by'],
-                        ); 
+                        );
 
                         $this->session->set_userdata($session_data); 
                         redirect('dashboard'); 

@@ -99,11 +99,15 @@
             deactivate:'',
             id:'<?php echo (!empty($value->id))?$value->id:''; ?>',
             loginType:'',
-            hiden:'<?php echo ($value->status == '2')?true:false; ?>',
-            hiden1:'<?php echo ($value->status == '1')?true:false; ?>',
-            actve:'<?php if($value->status == 0){ echo 'Inactive'; }else if($value->status == 1){ echo 'Active'; }else
-            { echo 'Blocked'; } ?>',
-            activeColor:'<?php if($value->status == 1){ echo 'green'; }else{ echo 'red'; } ?>',
+            hiden:'<?php echo ((!empty($value->id)) && ($value->status == '2'))?true:false; ?>',
+            hiden1:'<?php echo ((!empty($value->status)) && ($value->status == '1'))?true:false; ?>',
+            actve:'<?php 
+
+            if(empty($value->status)) { echo 'Inactive'; }else if((!empty($value->status)) && ($value->status == 1)){ echo 'Active'; }else
+            { echo 'Blocked'; } 
+
+            ?>',
+            activeColor:'<?php if((!empty($value->status)) && ($value->status == 1)){ echo 'green'; }else{ echo 'red'; } ?>',
           
         },  
         mounted(){

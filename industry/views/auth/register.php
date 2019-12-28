@@ -44,6 +44,17 @@
                                         <label for="phone">Mobile No</label>
                                         <span class="helper-text red-text">{{mobileError}}</span>
                                     </div>
+
+                                     <div class="input-field col s12 m6">
+                                        <select id="district" name="district" required="" class="select2">
+                                            <option value="" disabled selected>Choose your option</option>
+                                            <?php if (!empty($district)) {
+                                                foreach ($district as $key => $value) {
+                                                    echo '<option value="'.$value->id.'">'.$value->title.'</option>';
+                                            } } ?>
+                                        </select>
+                                        <label for="district">District</label>
+                                    </div>
                                     
                                     <div class="input-field col s12 m6">
                                         <select id="taluk" name="taluk" required="" class="select2">
@@ -55,16 +66,7 @@
                                         </select>
                                         <label for="taluk">Taluk</label>
                                     </div>
-                                    <div class="input-field col s12 m6">
-                                        <select id="district" name="district" required="" class="select2">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <?php if (!empty($district)) {
-                                                foreach ($district as $key => $value) {
-                                                    echo '<option value="'.$value->id.'">'.$value->title.'</option>';
-                                            } } ?>
-                                        </select>
-                                        <label for="district">District</label>
-                                    </div>
+                                   
                                     <div class="input-field col s12 m6">
                                         <select id="act" name="act" required="" class="select2" v-model="act" >
                                             <option value="" disabled selected>Choose your option</option>
@@ -202,6 +204,7 @@ $(document).ready(function() {
                 if (response == 'exist') {
                     $('.inregister').append('<span class="helper-text red-text">Industry has been already registered</span>');
                 }else{
+                	$(".inregister>span").remove();
                    $('#c_conreg').val(response);
                     $(".crg").addClass('active'); 
                 }

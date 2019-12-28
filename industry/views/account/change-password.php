@@ -123,7 +123,7 @@
 
                 },
                 checkForm() {
-                    if ((this.confError == '') && (this.samepassError == '')  && (this.samepassError == '')) {
+                    if ((this.confError == '') && (this.samepassError == '')  && (this.crpError == '')) {
                         this.$refs.form.submit()
                     }
                 }

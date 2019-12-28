@@ -28,7 +28,7 @@ class Account extends CI_Controller {
         $insert = array(
             'talluk'       => $this->input->post('taluk'),
             'district'     => $this->input->post('district'),
-            'director'     => $this->input->post('director'),
+            'name'     => $this->input->post('director'),
             'mobile'       => $this->input->post('number'),
             'pan_no'       => $this->input->post('panno'),
             'gst_no'       => $this->input->post('gstno'),

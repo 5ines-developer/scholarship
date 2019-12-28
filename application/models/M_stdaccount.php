@@ -40,7 +40,8 @@ class M_stdaccount extends CI_Model {
     **/
     public function getProfile($stdid='')
     {
-    	return $this->db->select('email,phone,name,profile_pic')->where('id', $this->session->userdata('stlid'))->get('student')->row_array();
+    	return $this->db->select('email,phone,name,profile_pic')->where('id', $this->session->userdata('stlid'))
+        ->get('student')->row_array(); 
     }
 
     /**
@@ -63,9 +64,9 @@ class M_stdaccount extends CI_Model {
         return $this->db->where('id', $id)->update('student',array('phone' => $phone));
     }
 
-    public function updateProfile($name = "",$phone="",$id="")
+    public function updateProfile($email="",$name = "",$phone="",$id="")
     {        
-        return $this->db->where('id', $id)->update('student',array('name' =>$name, 'phone' => $phone));        
+        return $this->db->where('id', $id)->update('student',array('email' =>$email,'name' =>$name, 'phone' => $phone));        
     }
 
 	

@@ -22,15 +22,22 @@ class Std_application extends CI_Controller {
     **/
 	public function index()
 	{
+		$data['title']  	= 'Student Application';
 		$item = $this->input->get('item');		
 		if (!empty($this->check) && (!empty($item)) ) {
-			$data['result'] = $this->m_stdapplication->getApplication($this->sid);
+			$this->load->view('student/re_application', $data, FALSE);
 		}else if(!empty($this->check)  ){
 			$this->session->set_flashdata('error', 'You have already applied to the scholarsip this year.');			
 			redirect('student/application-status','refresh');
+		}else{
+			$this->load->view('student/application', $data, FALSE);
 		}
-		$data['title']  	= 'Student Application';
-		$this->load->view('student/application', $data, FALSE);
+	}
+
+	public function appliGet($value='')
+	{
+		$data = $this->m_stdapplication->getApplication($this->sid);
+		echo json_encode($data);
 	}
 
 	/**

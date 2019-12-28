@@ -9,7 +9,16 @@ class M_stdapplication extends CI_Model {
     **/
     public function getSchool($id='')
     {
-        return $this->db->where('taluk',  $id)->select('id as sId,school_address as sName')->get('reg_schools')->result();
+
+        if (!empty($id)) {           
+            $this->db->where('rs.taluk', $id);           
+        }
+        return $this->db->select('sc.name as sId,rs.school_address as sName')
+        ->order_by('sc.id', 'desc')
+        ->distinct()
+        ->from('school sc')
+        ->join('reg_schools rs', 'rs.reg_no = sc.reg_no', 'inner')
+        ->get()->result();
     }
 
 	/**
@@ -18,6 +27,14 @@ class M_stdapplication extends CI_Model {
     **/
     public function getCompany($value='')
     {
+        // return $this->db->select('irg.id as iId,ind.name as iName')
+        // ->order_by('irg.id', 'desc')
+        // ->distinct()
+        // ->group_by('ind.name')
+        // ->from('industry_register irg')
+        // ->join('industry ind', 'ind.id = irg.industry_id', 'left')
+        // ->get()->result();
+
     	return $this->db->order_by('id', 'desc')->select('id as iId,name as iName')->get('industry')->result();
     }
 
@@ -117,7 +134,7 @@ class M_stdapplication extends CI_Model {
     public function getApplication($id = null)
     {      
         return $this->db->where('a.Student_id', $id)->where('a.application_year',date('Y'))
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,ab.address as saddress, aa.name as bnkName,schl.id as schID,schl.name as schoolName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,ab.address as saddress, aa.name as bnkName,schl.id as schID,schl.name as schoolName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,ac.talluk as indtalluk,ac.district as inddistrict,ac.pincode as indpincode,ac.relationship as relationship,ac.msalary as msalary,ac.name as indpname,tq.title as instalq')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
@@ -132,8 +149,36 @@ class M_stdapplication extends CI_Model {
         ->join('courses crs', 'crs.id = am.course', 'left')
         ->join('gradution grd', 'grd.id = am.graduation', 'left')
         ->join('class cls', 'cls.id = am.class', 'left')
+
         ->get()->row();
     }
+
+    public function schlName($id='')
+    {
+       return $this->db->where('id', $id)->get('reg_schools')->row('school_address');
+    }
+
+    public function schlAddress($id='')
+    {
+        $this->db->where('rs.id', $id);
+        $this->db->select('rs.school_address,cty.title as district,tl.title as taluku');
+        $this->db->from('reg_schools rs');
+        $this->db->join('taluq tl', 'tl.id = rs.taluk', 'left');
+        $this->db->join('city cty', 'cty.id = tl.city_id', 'left');
+        $this->db->distinct();
+        $result = $this->db->get()->row();
+
+        if (!empty($result)) {
+            return $result->school_address.', '.$result->taluku.', '.$result->district;
+        }else{
+            return false;
+        }
+    }
+
+
+
+    
+
 
     /**
     * student application - get the status

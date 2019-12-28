@@ -40,7 +40,8 @@ class Std_account extends CI_Controller {
     {
         $name = $this->input->post('name');
         $phone = $this->input->post('mobile');
-        $output = $this->m_stdaccount->updateProfile($name,$phone,$this->sid);
+        $email = $this->input->post('email');
+        $output = $this->m_stdaccount->updateProfile($email,$name,$phone,$this->sid);
         echo $output;           
     }
 

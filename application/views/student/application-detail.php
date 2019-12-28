@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->model('m_stdapplication');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,12 +85,11 @@
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Present School Name</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->schoolName))?$result->schoolName:'---'; ?></p>
-                                                                        </li>
+                                                                            <p class="app-item-content"><?php echo $this->ci->m_stdapplication->schlName($result->school_id) ?></p> </li>
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Present School Address</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->sclAddrss))?$result->sclAddrss:'---'; ?></p>
+                                                                            <p class="app-item-content"><?php echo $this->ci->m_stdapplication->schlAddress($result->school_id) ?></p>
                                                                         </li>
                                                                         <li class="doted-divider"></li>
                                                                         <li>
