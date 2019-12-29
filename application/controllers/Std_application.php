@@ -25,6 +25,7 @@ class Std_application extends CI_Controller {
 		$data['title']  	= 'Student Application';
 		$item = $this->input->get('item');		
 		if (!empty($this->check) && (!empty($item)) ) {
+			$data['scholls'] = $this->m_stdapplication->getscholls($item); //get current institution details
 			$this->load->view('student/re_application', $data, FALSE);
 		}else if(!empty($this->check)  ){
 			$this->session->set_flashdata('error', 'You have already applied to the scholarsip this year.');			
@@ -116,14 +117,20 @@ class Std_application extends CI_Controller {
     	$apply = array(
     		'application_year' 	=> date('Y') , 
     		'Student_id' 		=> $this->sid , 
-    		'school_id' 		=> $this->input->post('iname') , 
-    		'company_id' 		=> $this->input->post('inname') , 
     		'uniq' 				=> random_string('alnum',10) , 
     		'application_state '=> '1', 
 		);
 		
 		if (!empty($this->input->post('aid'))) {
 			$apply['status'] = '0';
+		}
+
+		if ($this->input->post('iname') != 'undefined') {
+			$apply['school_id'] =$this->input->post('iname');
+		}
+
+		if ($this->input->post('inname') != 'undefined') {
+			$apply['company_id'] =$this->input->post('inname');
 		}
 
 		$result = $this->m_stdapplication->insertAppli($apply);
@@ -260,9 +267,15 @@ class Std_application extends CI_Controller {
     		'relationship' 			=> $this->input->post('inrelation'), 
     		'msalary' 				=> $this->input->post('insalary'), 
     		'pincode' 				=> $this->input->post('inpin'), 
-    		'talluk' 				=> $this->input->post('intalluk'), 
-    		'district' 				=> $this->input->post('indistrict'), 
 		);
+
+		if ($this->input->post('intalluk') != 'undefined') {
+			$insert['talluk'] = $this->input->post('intalluk');
+		}
+		if ($this->input->post('indistrict') != 'undefined') {
+			$insert['district'] = $this->input->post('indistrict');
+		}
+
 		$output = $this->m_stdapplication->applicantCompany($insert);
 		if (!empty($output)) {
     		return true;
@@ -275,18 +288,30 @@ class Std_application extends CI_Controller {
 	{
 		$insert = array(
     		'application_id'=> $apid, 
-    		'ins_pin' 		=> $this->input->post('ipin'), 
-    		'ins_talluk' 	=> $this->input->post('italluk'), 
+    		'ins_pin' 		=> $this->input->post('ipin'),
     		'ins_district' 	=> $this->input->post('idistrict'), 
     		'prv_class' 	=> $this->input->post('pclass'), 
     		'prv_marks' 	=> $this->input->post('pmarks'), 
-    		'graduation' 	=> $this->input->post('igrad'), 
-    		'course' 		=> $this->input->post('icourse'), 
 		);
 
-		if ($insert['graduation'] != '1') {
-			$insert['class'] = $this->input->post('ipclass');
+		if ($this->input->post('igrad') != 'undefined') {
+			$insert['graduation'] = $this->input->post('igrad');
 		}
+
+		if ($this->input->post('igrad') != '1') {
+			if ($this->input->post('ipclass') != 'undefined') {
+				$insert['class'] = $this->input->post('ipclass');
+			}
+		}
+
+		if ($this->input->post('italluk') != 'undefined') {
+			$insert['ins_talluk'] = $this->input->post('italluk');
+		}
+
+		if ($this->input->post('icourse') != 'undefined') {
+			$insert['course'] = $this->input->post('icourse');
+		}
+
 
 
 

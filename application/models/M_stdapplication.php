@@ -134,7 +134,7 @@ class M_stdapplication extends CI_Model {
     public function getApplication($id = null)
     {      
         return $this->db->where('a.Student_id', $id)->where('a.application_year',date('Y'))
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,ab.address as saddress, aa.name as bnkName,schl.id as schID,schl.name as schoolName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,ac.talluk as indtalluk,ac.district as inddistrict,ac.pincode as indpincode,ac.relationship as relationship,ac.msalary as msalary,ac.name as indpname,tq.title as instalq')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,ab.address as saddress, aa.name as bnkName,schl.id as schID,schl.name as schoolName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,ac.talluk as indtalluk,ac.district as inddistrict,ac.pincode as indpincode,ac.relationship as relationship,ac.msalary as msalary,ac.name as indpname,tq.title as instalq,a.id as aId')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
@@ -211,6 +211,24 @@ class M_stdapplication extends CI_Model {
     public function classGet($id='')
     {
         return $this->db->distinct()->where('course_id',$id)->get('class')->result();
+    }
+
+    public function getscholls($aid='')
+    {
+        $aid = base64_decode($aid);
+        $aid = urldecode($aid);
+        $school = $this->getScholid($aid);
+        return $this->db->where('rs.id', $school)
+        ->select('rs.school_address,tq.title as talluk,cty.title as districtname')
+        ->from('reg_schools rs')
+        ->join('taluq tq', 'tq.id = rs.taluk', 'left')
+        ->join('city cty', 'cty.id = tq.city_id', 'left')
+        ->get()->row();
+    }
+
+    public function getScholid($aid='')
+    {
+        return $this->db->where('id', $aid)->get('application')->row('school_id');
     }
 
 }

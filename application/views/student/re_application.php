@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->model('m_stdapplication');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -162,7 +166,7 @@
                                             <div class="input-field col s12">
                                                 <div class="col s6 m3 l2">
                                                     <label>
-                                                        <input class="with-gap" name="std_cast" type="radio" @change="casteCheck()" value="" checked v-model="caste.low"/>
+                                                        <input class="with-gap" name="std_cast" type="radio" @change="casteCheck()" value="0" checked v-model="caste.low"/>
                                                         <span>No (ಇಲ್ಲ)</span>
                                                     </label>
                                                 </div>
@@ -174,14 +178,22 @@
                                                 </div>
                                             </div><br>
 
-                                            <div class="file-field input-field col s12 m10 " v-bind:class="{ hide: tribes }">
+                                            <div class="file-field input-field col s12 m10 " v-if="tribes" >
+
+                                                <div class="input-field col s6 ">
+                                                    <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
+                                                        <a target="_blank" :href="castpdf">Caste Certificate</a>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+
                                                 <div class="input-field col s6 ">
                                                     <div class="btn">
                                                         <span>File</span>
                                                         <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()" >
                                                     </div>
                                                     <div class="file-path-wrapper">
-                                                        <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
+                                                        <input class="file-path validate" type="text" placeholder="Upload cast certificate">
                                                     </div>
                                                     <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span> </p>
                                                 </div>
@@ -249,21 +261,19 @@
 
                                             <div class="col s12 m6">
                                                 <p  class="mb5">Attach Your Marks Card Copy</p>
-                                                <p class="mb20">(ಅಂಕಪಟ್ಟಿಯ  ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸುವುದು) 
-
-                                                <?php echo (!empty($result->prv_markcard))?'
-                                                    <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
-                                                    <a target="_blank" href="'.base_url().$result->prv_markcard.'">Marks card</a>
-                                                    </p>':''; ?>
+                                                <p class="mb20">(ಅಂಕಪಟ್ಟಿಯ  ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸುವುದು)
+                                                    <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
+                                                        <a target="_blank" :href="mrcard">Marks card</a>
+                                                    </p>
                                                 </p>
 
                                                 <div class="file-field input-field">
                                                     <div class="btn">
                                                         <span>File</span>
-                                                        <input type="file" name="pv_mrcard" ref="file" @change="markcard()" <?php echo (!empty($result->prv_markcard))?'':"required"; ?>>
+                                                        <input type="file" name="pv_mrcard" ref="file" @change="markcard()">
                                                     </div>
                                                     <div class="file-path-wrapper">
-                                                        <input class="file-path validate" type="text" >
+                                                        <input class="file-path validate" type="text">
                                                     </div>
                                                     
                                                     <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note :</span> <span class="red-text"> File Should be in pdf / jpg / png format. Size should be not more than 512KB. <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a>  </span></p>
@@ -276,10 +286,6 @@
                                             <div class="col s12 box-title ">
                                                 <p>Enter Student Aadhar Card Number and Attach the Xerox copy.</p>
                                                 <p>ವಿದ್ಯಾರ್ಥಿಯು ಆಧಾರ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ  (ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸುವುದು). </p>
-                                                <?php echo (!empty($result->adharcard_file))?'
-                                                    <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
-                                                    <a target="_blank" href="'.base_url().$result->adharcard_file.'">Aadhar Card</a>
-                                                    </p>':''; ?>
                                             </div>
                                             
 
@@ -287,13 +293,19 @@
                                                 <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
                                                 <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
                                             </div>
+                                            <div class="clearfix"></div>
 
+                                            <div class="input-field col s12 m5">
+                                            <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
+                                                <a target="_blank" :href="adhrpdf">Aadhar Card</a>
+                                            </p>
+                                            </div>
                                             <div class="clearfix"></div>
 
                                             <div class="file-field input-field col s12 m6">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="adhar"  ref="file2" @change="adhaarXerox" <?php echo (!empty($result->adharcard_file))?'':"required"; ?>>
+                                                    <input type="file" name="adhar"  ref="file2" @change="adhaarXerox">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
@@ -347,19 +359,26 @@
                                                 <input id="bn_acc" type="text" placeholder="ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ" class="validate" name="bn_acc" required="" v-model="bank.account">
                                                 <label for="bn_acc"> <span class="black-text">Saving Account Number</span></label>
                                             </div>
-
+                                            <div class="input-field col s12 m5">
+                                                <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
+                                                    <a target="_blank" :href="bankpdf">Bank Passbook</a>
+                                                </p>
+                                            </div>
+                                            <div class="clearfix"></div>
                                             <div class="file-field input-field col s12 m6">
                                             <?php echo (!empty($result->cast_certificate))?'
                                                     <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
                                                     <a target="_blank" href="'.base_url().$result->passbook.'">Bank Passbook</a>
                                                     </p>':''; ?>
-                                                <p >ನಿಮ್ಮ ಪಾಸ್‌ಬುಕ್ ಮುಂದಿನ ಪುಟವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</p>                                                
+                                                <p >ನಿಮ್ಮ ಪಾಸ್‌ಬುಕ್ ಮುಂದಿನ ಪುಟವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</p>
+
+
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="bn_passbk"  ref="file3" @change="bankPassbook" <?php echo (!empty($result->passbook))?'':"required"; ?>>
+                                                    <input type="file" name="bn_passbk"  ref="file3" @change="bankPassbook">
                                                 </div>
                                                 <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload Your Passbook Front page" >
+                                                    <input class="file-path validate" type="text" placeholder="Upload Your Passbook Front page">
                                                 </div>
                                                 <span class="red-text helper-text" data-error="wrong"  data-success="right">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span><br><br>
                                             </div>
@@ -492,7 +511,7 @@
             file1:'',
             file2:'',
             file3:'',
-            aid:'<?php $this->input->get('item') ?>',
+            aid:'',
             student: {
                 name: '',
                 phone: '',
@@ -542,7 +561,7 @@
                 holder:'',
                 id:'',
             },
-            tribes:false,
+            tribes:'',
             markError:'',
             salError:'',
             scaste: true,
@@ -550,7 +569,10 @@
             max: 16,
             trcategory:'sc',
             gncategory:'general',
-
+            mrcard:'',
+            castpdf:'',
+            adhrpdf:'',
+            bankpdf:'',
         },
         methods:{
             cardNumberSpace(){
@@ -583,12 +605,12 @@
                 
             },
             casteCheck(){
-                if (this.caste.low !='') {
-                    this.tribes = false;
+                if (this.caste.low =='1') {
+                    this.tribes = true;
                     this.scaste = false;
                     this.genral = true;
                 }else{
-                    this.tribes = true;
+                    this.tribes = false;
                     this.scaste = true;
                     this.genral = false;
                 }
@@ -650,10 +672,8 @@
                     formData.append('bpassbook', this.file3);
                     formData.append('btype', this.bank.type);
                     formData.append('bholder', this.bank.holder);
-                                              
                     formData.append('uniq', this.uniq);                          
-                    formData.append('aid', this.aid);                          
-                                            
+                    formData.append('aid', this.aid);
                     axios.post('<?php echo base_url() ?>student/submit-application', formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } })
                     .then(response => {
@@ -776,42 +796,71 @@
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/appliGet')
                     .then(function (response) {
+                        self.aid =  response.data.aId;
+                        //basic details
                         self.student.name    = response.data.name;
                         self.student.phone   = response.data.parent_phone;
                         self.student.father  = response.data.father_name;
                         self.student.mother  = response.data.mothor_name;
                         self.student.address = response.data.saddress;
                         self.student.gend    = response.data.gender;
-
+                        //insttitute details
+                        self.institute.name     = '<?php echo (!empty($scholls->school_address))?$scholls->school_address:''; ?>';
+                        self.institute.talluk   = '<?php echo (!empty($scholls->talluk))?$scholls->talluk:''; ?>';
+                        self.institute.district = '<?php echo (!empty($scholls->districtname))?$scholls->districtname:''; ?>';
                         self.institute.pclass   = response.data.cLass;
                         self.institute.pin      = response.data.ins_pin;
-                        self.institute.name     = response.data.school_id;
-                        self.institute.talluk   = response.data.ins_talluk;
-                        self.institute.district = response.data.ins_district;
                         self.institute.grad     = response.data.gradutions;
                         self.institute.course   = response.data.corse;
-
                         self.institute.district.districtId  = response.data.ins_district;
                         self.institute.talluk.tallukId      = response.data.ins_talluk;
                         self.institute.name.sId             = response.data.school_id;
                         self.institute.grad.id              = response.data.graduation;
                         self.institute.course.id            = response.data.course;
                         self.institute.pclass.id            = response.data.class;
-
+                        //caste details
+                        if(response.data.is_scst != 1){
+                            this.tribes = true;
+                            this.scaste = true;
+                            this.genral = false; 
+                        }
                         self.caste.low          = response.data.is_scst;
                         self.caste.number       = response.data.cast_no;
                         self.caste.trcategory   = response.data.category;
                         self.caste.gncategory   = response.data.category;
+                        if (response.data.cast_certificate !=null) {
+                            self.castpdf   = "<?php echo base_url() ?>"+response.data.cast_certificate;
+                        }else{
+                            self.castpdf = "#";
+                        }
+                        //previous year class details
                         self.previous.class     = response.data.prv_class;
                         self.previous.marks     = response.data.prv_marks;
+                        if (response.data.prv_markcard !=null) {
+                            self.mrcard  = "<?php echo base_url() ?>"+response.data.prv_markcard;
+                        }else{
+                            self.mrcard = "#";
+                        }
+                        //adhar card
                         self.adhaar.number      = response.data.adharcard_no;
+                        if (response.data.adharcard_file !=null) {
+                            self.adhrpdf  = "<?php echo base_url() ?>"+response.data.adharcard_file;
+                        }else{
+                            self.adhrpdf = "#";
+                        }
+                        //bank details
                         self.bank.name          = response.data.name;
                         self.bank.branch        = response.data.branch;
                         self.bank.ifsc          = response.data.ifsc;
                         self.bank.account       = response.data.acc_no;
                         self.bank.type          = response.data.type;
                         self.bank.holder        = response.data.holder;
-
+                        if (response.data.passbook !=null) {
+                            self.bankpdf  = "<?php echo base_url() ?>"+response.data.passbook;
+                        }else{
+                            self.bankpdf = "#";
+                        }
+                        //industry details
                         self.industry.working   = response.data.who_working;
                         self.industry.pname     = response.data.indpname;
                         self.industry.salary    = response.data.msalary;
@@ -823,9 +872,6 @@
                         industry.talluk.tallukId            = response.data.indtalluk;
                         industry.name.iId                   = response.data.company_id;
                         self.industry.district.districtId   = response.data.company_id;
-
-
-
                     })
                     .catch(function (error) {
                         // this.errormsg = error.response.data.error;
