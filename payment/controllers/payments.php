@@ -23,6 +23,7 @@ class Payments extends CI_Controller {
         $this->load->view('payment/make-payment', $data, FALSE);
     }
 
+
 }
 
 /* End of file Controllername.php */

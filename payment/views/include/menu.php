@@ -2,7 +2,7 @@
                         <div class="menu-left">
                             <ul>
                                 <li><a href=" ">Payment List</a></li>
-                                <li><a href=" ">Payment</a></li>
+                                <li><a href="<?php echo base_url('make-payment') ?>">Make Payment</a></li>
                                 <li><a href="<?php echo base_url() ?>dashboard"  class="<?php echo($this->uri->segment(1) == 'dashboard') ? 'active' :'' ?>">Account Settings</a></li>
                             </ul>
                         </div>

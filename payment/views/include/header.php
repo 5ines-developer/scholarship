@@ -43,14 +43,11 @@
             </nav>
 
             <ul class="sidenav" id="mobile-demo">
-                <li><a href=" ">Home</a></li>
-                <li><a href=" ">Hr List</a></li>
-                <li><a href=" ">Scholarship Request List</a></li>
-                <li><a href=" ">Scholarship Approval List</a></li>
-                <li><a href=" ">Scholarship Reject List</a></li>
-                <li><a href="<?php echo base_url() ?>dashboard"  class="<?php echo($this->uri->segment(1) == 'dashboard') ? 'active' :'' ?>">Account Settings</a></li>
-                <li><a href="<?php echo base_url() ?>change-password"  class="<?php echo($this->uri->segment(1) == 'change-password') ? 'active' :'' ?>">Change Password</a></li>
-                <li><a href="<?php echo base_url('student/logout')?>">Logout</a></li>
+                <li><a href="<?php echo $this->config->item('web_url') ?>">Home</a></li>
+                <li><a href="<?php echo base_url() ?>make-payment">Make Payment</a></li>
+                <li><a href="<?php echo base_url('dashboard')?>">Account Settings</a></li>
+                <li><a href="<?php echo base_url('change-password')?>">Change Password</a></li>
+                <li><a href="<?php echo base_url('logout')?>">Logout</a></li>
             </ul>
 
             <ul id='dropdown1' class='dropdown-content'>
