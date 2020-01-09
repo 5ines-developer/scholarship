@@ -22,10 +22,8 @@
         <section class="board res-p">
             <div class="container-wrap1">
                 <div class="row m0">
-                    <div class="col s12 m3 hide-on-small-only">
-                        <div class="menu-left">
+                <div class="col s12 m3 l3 hide-on-med-and-down ">
                             <?php $this->load->view('include/menu'); ?>
-                        </div>
                     </div>
                     <!-- End menu-->
 
@@ -114,13 +112,13 @@
                                                                             <?php if(!empty($apply)){
                                                                             foreach ($apply as $key => $value) { $key++ ?>
                                                                             <tr role="row" class="odd">
-                                                                                <td><a href="<?php echo base_url('applications/').$value->id ?>"><?php echo (!empty($value))?$key:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('applications/').$value->id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('applications/').$value->id ?>"><?php echo (!empty($value->class))?$value->class:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('applications/').$value->id ?>"><?php echo (!empty($value->mark))?$value->mark.' %':'---'; ?></a></td>
-                                                                                <td class=""><a href="<?php echo base_url('applications/').$value->id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value))?$key:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->class))?$value->class:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->mark))?$value->mark.' %':'---'; ?></a></td>
+                                                                                <td class=""><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
                                                                                 <td class="action-btn center-align">
-                                                                                    <a href="<?php echo base_url('applications/').$value->id ?>" class="green white-text"> <i class="material-icons action-icon ">remove_red_eye</i></a>
+                                                                                    <a href="<?php echo base_url('scholarship-application/').$value->id ?>" class="green white-text"> <i class="material-icons action-icon ">remove_red_eye</i></a>
                                                                                 </td>
                                                                             </tr>
                                                                             <?php } } ?>

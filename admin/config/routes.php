@@ -23,4 +23,5 @@ $route['employee/add']              = 'employee/add';
 //student management
 $route['student']                  	= 'student/index';
 $route['student/(:any)']            = 'student/index/$1';
-
+//scholareship application
+$route['scholarship-application/(:any)']   = 'scholar/singleGet/$1';

@@ -23,9 +23,7 @@
             <div class="container-wrap1 ">
                 <div class="row m0 ">
                     <div class="col s12 m3 l3 hide-on-med-and-down ">
-                        <div class="menu-left ">
                             <?php $this->load->view('include/menu'); ?>
-                        </div>
                     </div>
                     <!-- End menu-->
 
