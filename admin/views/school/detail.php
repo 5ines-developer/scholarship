@@ -31,7 +31,7 @@
                         <div class="card ">
                             <div class="card-content bord-right">
                                 <div class="card-title">
-                                    Student Detail
+                                    Institute Detail
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">
@@ -43,8 +43,8 @@
                                                             <div class="col s12 l4 border-right">
                                                                 <div class="profile-img">
                                                                     <?php 
-                                                                    if((!empty($result[0]->profile_pic))){
-                                                                        $img = $this->config->item('web_url').$result[0]->profile_pic;
+                                                                    if((!empty($result[0]->reg_certification))){
+                                                                        $img = $this->config->item('web_url').'institute/'.$result[0]->reg_certification;
                                                                     }else{
                                                                          $img = 'https://via.placeholder.com/150';
                                                                     } ?>
@@ -71,23 +71,68 @@
                                                         <ul class="profile-ul">
                                                             <li>
                                                                 <p class="app-item-content-head">Name</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->name))?$result[0]->name:'---'; ?></p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->school_address))?$result[0]->school_address:'---'; ?></p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Management Type</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->management_type))?$result[0]->management_type:'---'; ?></p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Institute Category</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->school_category))?$result[0]->school_category:'---'; ?></p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Institute Type</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->school_type))?$result[0]->school_type:'---'; ?></p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Region Type</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->urban_rural))?$result[0]->urban_rural:'---'; ?></p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Taluk</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->title))?$result[0]->title:'---'; ?></p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">District</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->district))?$result[0]->district:'---'; ?></p>
                                                             </li>
 
                                                             <li>
-                                                                <p class="app-item-content-head">Email</p>
-                                                                <p class="app-item-content"><a href="mailto:<?php echo (!empty($result[0]->email))?$result[0]->email:'#'; ?>"><?php echo (!empty($result[0]->email))?$result[0]->email:'---'; ?></a></p>
+                                                                <p class="app-item-content-head">Principal</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->principal))?$result[0]->principal:'---'; ?></p>
+                                                            </li>
+                                                            <?php 
+                                                                    if((!empty($result[0]->priciple_signature))){
+                                                                        $sign = $this->config->item('web_url').'institute/'.$result[0]->priciple_signature;
+
+                                                                    }else{
+                                                                         $sign = 'https://via.placeholder.com/150';
+                                                                    } ?>
+
+                                                            <li>
+                                                                <p class="app-item-content-head">Principal Signature</p>
+                                                                <a target="_blank" href="<?php echo $sign ?>"><img src="<?php echo  $sign ?>" alt="" class="circle responsive-img" width="100px"></a>
+                                                            </li>
+
+                                                            <?php 
+                                                                    if((!empty($result[0]->seal))){
+                                                                        $seal = $this->config->item('web_url').'institute/'.$result[0]->seal;
+
+                                                                    }else{
+                                                                         $seal = 'https://via.placeholder.com/150';
+                                                                    } ?>
+
+                                                            <li>
+                                                                <p class="app-item-content-head">Principal Seal</p>
+                                                                <a target="_blank" href="<?php echo $seal ?>"><img src="<?php echo  $seal ?>" alt="" class="circle responsive-img" width="100px"></a>
                                                             </li>
 
                                                             <li>
-                                                                <p class="app-item-content-head">Phone</p>
-                                                                <p class="app-item-content"><a href="tel:<?php echo (!empty($result[0]->phone))?$result[0]->phone:'#'; ?>"><?php echo (!empty($result[0]->phone))?$result[0]->phone:'---'; ?></a></p>
+                                                                <p class="app-item-content-head">Registered On</p>
+                                                                <p class="app-item-content"> <?php echo (!empty($result[0]->created_on))?date('d M, Y',strtotime($result[0]->created_on)):'---'; ?></p>
                                                             </li>
 
-                                                            <li>
-                                                                <p class="app-item-content-head">Registration Date</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->date))?date('d M, Y',strtotime($result[0]->date)):'---'; ?></p>
-                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -239,7 +284,7 @@
                     var self = this;
                     const formData = new FormData();
                    formData.append('id',this.id);
-                   axios.post('<?php echo base_url('Student/unblock') ?>',formData)
+                   axios.post('<?php echo base_url('school/unblock') ?>',formData)
                    .then(response => {
                         self.block = false;
                         self.unblock = true;
@@ -254,7 +299,7 @@
                     var self = this;
                    const formData = new FormData();
                    formData.append('id',this.id);
-                   axios.post('<?php echo base_url('Student/block') ?>',formData)
+                   axios.post('<?php echo base_url('school/block') ?>',formData)
                    .then(response => {
                         self.block = true;
                         self.unblock = false;
