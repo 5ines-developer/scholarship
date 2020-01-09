@@ -28,3 +28,4 @@ $route['scholarship-application/(:any)']   = 'scholar/singleGet/$1';
 //institute management
 $route['institute']                  	= 'school/index';
 $route['institute/(:any)']              = 'school/index/$1';
+$route['institute-add']                 = 'school/add';

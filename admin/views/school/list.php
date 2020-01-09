@@ -32,6 +32,8 @@
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Institute  List</span>
+                                    <a href="<?php echo base_url('institute-add') ?>"><button class="back-btn z-depth-1 waves-effect waves-ligh add-btn">
+                                        <i class="material-icons add-icon ">add</i><span>Add</span></button></a>
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">

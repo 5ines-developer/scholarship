@@ -143,41 +143,7 @@
         </section>
 
 
-        <!-- End Body form  -->
-        <div id="company-reject " class="modal ">
-            <div class="modal-content company-mc ">
-                <h4>Reason For Rejecting</h4>
-                <a href="#! " class="modal-close ">
-                    <i class="material-icons cc-close ">close</i>
-                </a>
-            </div>
-            <div class="modal-footer company-mf ">
-                <form action=" ">
-                    <div class="form-file ">
-                        <div class="row ">
-                            <div class="col l12 s12 m12 ">
-                                <div class="input-field col l12 "><input id="phone " name="reason " type="text " class="validate "> <label for="reason " class=" ">Reason</label>
-                                    <div></div>
-                                </div>
-                                <div class="col l12 ">
-                                    <div class="ff-inp ">
-                                        <p><b>Note:</b>Menting the Mention the reason</p>
-                                    </div>
-                                </div>
-                                <div class="col l12 m12 s12 ">
-                                    <center> <button class="btn-sub z-depth-1 waves-effect waves-light ">
-                                        Submit</button></center>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                </form>
-
-            </div>
-        </div>
+        
         <!-- footer -->
 
 
