@@ -28,6 +28,8 @@ $route['industry-doc']           	= 'account/industry_doc';
 $route['change-password']           = 'account/changePassword';
 $route['update-password']           = 'account/update_password';
 
+//payments
+$route['make-payment']              = 'payments/index'; //make payment
 
 
 

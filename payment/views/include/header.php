@@ -29,7 +29,7 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile1" class="left hide-on-med-and-down">
                 <li><a href="<?php echo $this->config->item('web_url') ?>">Home</a></li>
-                <li><a href="<?php echo $this->config->item('web_url') ?>">Make Payment</a></li>
+                <li><a href="<?php echo base_url() ?>make-payment">Make Payment</a></li>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <?php if ($this->session->userdata('pyId') == '') { ?>

@@ -103,13 +103,6 @@ class auth extends CI_Controller {
        echo json_encode($data);       
     }
 
-    public function register1($var = null)
-    {
-        $data['title'] = 'Industry Registration';
-        $data['taluk'] = $this->m_auth->getTaluk();
-        $data['district'] = $this->m_auth->getDistrict();            
-        $this->load->view('auth/register1', $data, FALSE);
-    }
 
     public function search($var = null)
     {
@@ -173,43 +166,9 @@ class auth extends CI_Controller {
 
             $insert['register_doc'] = $reg;
 
-        }
+        }    
 
-        if ((empty($_FILES['seal']['tmp_name']))) {
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
-            redirect('register');
-        }else{
-            $config['upload_path'] = './seal-doc';
-            $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_width'] = 0;
-            $config['encrypt_name'] = true;
-            $this->load->library('upload');
-            $this->upload->initialize($config);
-            if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-            $this->upload->do_upload('seal');
-            $upload_data = $this->upload->data();
-            $seal = 'seal-doc/'.$upload_data['file_name'];
-
-            $insert['seal'] = $reg;
-
-        }
-
-        if ((empty($_FILES['sign']['tmp_name']))) {
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
-            redirect('register');
-        }else{
-            $config['upload_path'] = './sign-doc';
-            $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_width'] = 0;
-            $config['encrypt_name'] = true;
-            $this->load->library('upload');
-            $this->upload->initialize($config);
-            if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-            $this->upload->do_upload('sign');
-            $upload_data = $this->upload->data();
-            $sign = 'sign-doc/'.$upload_data['file_name'];
-            $insert['sign'] = $reg;
-        }
+        
         $output = $this->m_auth->addCompany($insert);
 
         
