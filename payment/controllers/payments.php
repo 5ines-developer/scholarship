@@ -20,11 +20,6 @@ class Payments extends CI_Controller {
         $data['title']  = 'Make Payment | Scholarship';
         $data['info']   = $this->M_account->getAccountDetails();
         $data['act']    = $this->m_payments->getAct($data['info']->indId);
-        
-        echo "<pre>";
-        print_r ($data);
-        echo "</pre>";
-        
         $this->load->view('payment/make-payment', $data, FALSE);
     }
 

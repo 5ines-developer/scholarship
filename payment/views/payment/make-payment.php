@@ -69,12 +69,12 @@
                                             </div>
                                             <div class="col l3 m5 s12">
                                                 <div class="input-field">
-                                                    <select name="p_year">
+                                                    <select name="p_year" v-model="year">
                                                     <option value="" disabled selected>Year</option>
                                                     <?php
 
                                                     for ($i=2000; $i <= date('Y') ; $i++) { 
-                                                        echo '<option value="1">'.$i.'</option>';
+                                                        echo '<option value="15-1-'.$i.'">'.$i.'</option>';
                                                     }
                                                     
                                                     ?>
@@ -151,8 +151,8 @@
                                                         <td>{{amount}}</td>
                                                     </tr>
                                                     <tr class="wid-pp">
-                                                        <td colspan="3">Sub Total</td>
-                                                        <td>{{subtot}}</td>
+                                                        <td colspan="3">Interest</td>
+                                                        <td>{{interest}}</td>
                                                     </tr>
                                                     <tr class="wid-pp1">
                                                         <td colspan="3"><b>Total</b></td>
@@ -212,8 +212,9 @@
                 employees:'',
                 uprice:'',
                 amount:'',
-                subtot:'',
+                interest:'',
                 total:'',
+                year:'',
 
             },
             
@@ -233,11 +234,26 @@
                     }else{
                         emp = (male + female);
                     }
+                    var selDate = this.year;
+                    var today = new Date();
+                    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();                  
+                    var spl = selDate.split("-");
+                    var selyear = spl['2'];
+                    var months;
+                    months = (today.getFullYear() - selyear )  * 12;
+                    var price  = emp * 60;
+
+                    if(months <= 3 && months >= 1){ 
+                        var interest = (price * 12) / 100;
+                    }else if(months >= '3'){
+                        var interest = (price * 18) / 100;
+                    }
+
                     
                     this.employees = emp;
                     this.amount  =  emp * 60;
-                    this.subtot  =  emp * 60;
-                    this.total   =  emp * 60;
+                    this.interest  =  interest;
+                    this.total   =  interest + price;
                 }
                 
                 
