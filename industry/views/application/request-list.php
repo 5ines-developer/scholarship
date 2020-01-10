@@ -48,7 +48,7 @@
                                             <thead class="thead-list">
                                                 <th id="a" class="h5-para-p2">SL NO.</th>
                                                 <th id="a" class="h5-para-p2">NAME</th>
-                                                <th id="c" class="h5-para-p2">MARKS<s/th>
+                                                <th id="c" class="h5-para-p2">MARKS</th>
                                                 <th id="g" class="h5-para-p2">PRESENT CLASS</th>
                                                 <th id="g" class="h5-para-p2">Action</th>
                                             </thead>

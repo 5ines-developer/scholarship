@@ -29,3 +29,8 @@ $route['scholarship-application/(:any)']   = 'scholar/singleGet/$1';
 $route['institute']                  	= 'school/index';
 $route['institute/(:any)']              = 'school/index/$1';
 $route['institute-add']                 = 'school/add';
+$route['institutes']                 	= 'school/schoolGet'; //all school list
+$route['institute-edit/(:any)']         = 'school/edit/$1';
+
+
+

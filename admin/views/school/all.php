@@ -44,17 +44,19 @@
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">
-                                        <table id="dynamic" class="striped ">
+                                        <table id="dynamic" class="striped">
                                             <thead class="thead-list">
+                                                <tr class="tt">
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Reg No.</th>
                                                 <th class="h5-para-p2">Mangement Type</th>
-                                                <th class="h5-para-p2">Taluk</th>
+                                                <th class="h5-para-p2">School Category</th>
                                                 <th class="h5-para-p2">District</th>
-                                                <th class="h5-para-p2">Status</th>
+                                                <th class="h5-para-p2">Taluk</th>
                                                 <th class="h5-para-p2">Action</th>
+                                            </tr>
                                             </thead>
-                                            <tbody class="tbody-list">
+                                            <!-- <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
                                                     foreach ($result as $key => $value) { ?>
                                                     <tr role="row" class="odd">
@@ -81,8 +83,8 @@
                                                         <a onclick="return confirm('Are you sure you want to delete this item?');" href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
                                                     </td>
                                                 </tr>
-                                                <?php    } } ?>
-                                            </tbody>
+                                                <?php    } } ?> -->
+                                            <!-- </tbody> -->
                                         </table>
                                     </div>
                                 </div>
@@ -129,13 +131,28 @@
     </script>
     <script>
         $(document).ready(function() {
-            var table = $('table').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf', 'csv'
-                ]
+            var dataTable = $('#dynamic').DataTable({
+                  'processing' : true,
+                  'serverSide' : true,
+                  'dom': 'Bfrtip',
+                  'buttons': [
+                     'copy', 'csv', 'pdf'
+                  ], 
+                  'order' : [],
+                  'ajax':{
+                    'url' : "<?php echo base_url(). 'school/allschool' ?>",
+                     'type' :'POST'
+                  },
+                  'columnDefs':[
+                     {
+                        "targets":[0, 3],
+                        "orderable":false,
+                     }
+                  ]
+               })
 
-            });
+
+
             $('select').formSelect();
             $('.modal').modal();
         });

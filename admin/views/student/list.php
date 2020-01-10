@@ -12,6 +12,13 @@
     <!-- data table -->
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.css ">
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/css/buttons.dataTables.css ">
+    <style>
+        .vie-btn{
+            padding-right: 12px;
+            font-weight: 600;
+        }
+        
+    </style>
 </head>
 
 <body>
@@ -77,7 +84,7 @@
                                                         ?></a>
                                                     </td>
                                                     <td class="action-btn center-align">
-                                                        <a href="<?php echo base_url('student/').$value->id ?>" class="green white-text"> <i class="material-icons action-icon ">remove_red_eye</i></a>
+                                                        <a href="<?php echo base_url('student/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light" > View </a>
                                                         <a onclick="return confirm('Are you sure you want to delete this item?');" href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
                                                     </td>
                                                 </tr>

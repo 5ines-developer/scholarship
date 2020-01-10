@@ -118,7 +118,7 @@
                                                                                 <td><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->mark))?$value->mark.' %':'---'; ?></a></td>
                                                                                 <td class=""><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
                                                                                 <td class="action-btn center-align">
-                                                                                    <a href="<?php echo base_url('scholarship-application/').$value->id ?>" class="green white-text"> <i class="material-icons action-icon ">remove_red_eye</i></a>
+                                                                                    <a href="<?php echo base_url('scholarship-application/').$value->id ?>" class="blue-text"> view</a>
                                                                                 </td>
                                                                             </tr>
                                                                             <?php } } ?>

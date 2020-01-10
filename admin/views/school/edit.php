@@ -13,14 +13,14 @@
 
 <body>
     <div id="app">
-    <?php $this->load->view('include/header'); ?>
+        <?php $this->load->view('include/header'); ?>
 
         <!-- Body form  -->
-        <section class="board hiegt-box">
+        <section class="board">
             <div class="container-wrap1">
                 <div class="row m0">
-                    <div class="col s12 m3 hide-on-med-and-down">
-                    <?php $this->load->view('include/menu'); ?>
+                    <div class="col s12 m3 l3 hide-on-med-and-down ">
+                            <?php $this->load->view('include/menu'); ?>
                     </div>
                     <!-- End menu-->
 
@@ -28,42 +28,73 @@
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="title-list">
-                                    <span class="list-title">Government Employee Add</span>
+                                    <span class="list-title">Institute Add</span>
+                                    <a href="<?php echo base_url('institutes') ?>"  class="back-btn z-depth-1 waves-effect waves-ligh">Back</a>
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="col s12 m12 l12">
-                                            <form action="<?php echo base_url() ?>employee/add" method="post">
-                                                <div class="input-field col m8">
-                                                    <input id="em_name" name="em_name" required type="text" class="validate">
-                                                    <label for="em_name">Employee Name</label>
+                                            <form ref="form" @submit.prevent="formSubmit" action="<?php echo base_url('institute-edit/').$this->uri->segment(2); ?>" method="post">
+                                                <div class="input-field col m6">
+                                                    <input id="name" name="name" type="text" class="validate" v-model="name" @change="namecheck()">
+                                                    <label for="name">Institute Name</label>
+                                                    <span class="helper-text red-text">{{nameError}}</span>
                                                 </div>
-                                                <div class="input-field col m8">
-                                                    <input id="email" name="email" required type="email" class="validate">
-                                                    <label for="email">Email</label>
-                                                    <?php echo validation_errors(); ?>
+                                                <div class="input-field col m6">
+                                                    <input id="rno" name="rno" type="text" class="validate" v-model="regno" @change="regnocheck()">
+                                                    <label for="rno">Register Number</label>
+                                                     <span class="helper-text red-text">{{noError}}</span>
                                                 </div>
-                                                <div class="input-field col m8">
-                                                    <input id="phone" name="phone" required type="number" class="validate">
-                                                    <label for="phone">Phone</label>
+
+                                                <div class="input-field col m6">
+                                                    <input id="mtype" name="mtype" type="text" class="validate" value="<?php echo (!empty($result->management_type))?$result->management_type:''; ?>">
+                                                    <label for="mtype">Management Type</label>
                                                 </div>
-                                                <div class="col sel-hr s12 m8">
-                                                    <label >Employee Designation</label>
-                                                    <p class="mb10 mt10">
-                                                        <label>
-                                                            <input class="with-gap" name="designation" value="2" type="radio"  checked />
-                                                            <span>Verification</span>
-                                                        </label>
-                                                        <label class="ml20">
-                                                            <input class="with-gap" name="designation" value="3" type="radio"  />
-                                                            <span>Financial</span>
-                                                        </label>
-                                                    </p>
+
+                                                <div class="input-field col m6">
+                                                    <input id="sccat" name="sccat" type="text" class="validate" value="<?php echo (!empty($result->school_category))?$result->school_category:''; ?>">
+                                                    <label for="sccat">School Category</label>
+                                                </div>
+
+                                                <div class="input-field col m6">
+                                                    <input id="sctype" name="sctype" type="text" class="validate" value="<?php echo (!empty($result->school_type))?$result->school_type:''; ?>">
+                                                    <label for="sctype">School Type</label>
+                                                </div>
+
+                                                <div class="input-field col sel-hr s12 m6">
+                                                    <select name="rural" class="">
+                                                            <option value="" disabled selected>Choose Region Type</option>
+                                                            <option value="Urban" <?php echo ($result->urban_rural == 'Urban')?'selected':''; ?> >Urban</option>
+                                                            <option value="Rural" <?php echo ($result->urban_rural == 'Rural')?'selected':''; ?>>Rural</option>
+                                                        </select>
+                                                    <label>Region Type</label>
+                                                </div>
+                                                <div class="input-field col sel-hr s12 m6">
+                                                    <select name="district" class="">
+                                                            <option value="" disabled selected>Choose your option</option>
+                                                            <?php
+                                                            if (!empty($district)) {
+                                                               foreach ($district as $key => $value) { ?> 
+                                                                   <option value="<?php echo  $value->districtId ?>" <?php if($value->districtId == $result->district){ echo 'selected';
+                                                                   } ?> ><?php echo $value->district ?></option>';
+                                                              <?php } } ?>
+                                                        </select>
+                                                    <label>District</label>
+                                                </div>
+                                                <div class="input-field col sel-hr s12 m6">
+                                                    <select name="taluk" class="">
+                                                            <option value="" disabled selected>Choose your option</option>
+                                                            <?php
+                                                            if (!empty($taluk)) {
+                                                               foreach ($taluk as $key => $value) { ?> 
+                                                                   <option value="<?php echo $value->tallukId ?>" <?php if($value->tallukId == $result->taluk){ echo 'selected';
+                                                                   } ?> ><?php echo $value->talluk ?></option>
+                                                             <?php } } ?>
+                                                        </select>
+                                                    <label>Taluk</label>
                                                 </div>
                                                 <div class="input-field col s12">
-                                                    
-                                                    <button class="waves-effect waves-light hoverable btn-theme btn mr10">Submit</button>
-                                                    <button class="waves-effect waves-light hoverable btn-theme btn" type="button">Cancel</button>
+                                                    <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -78,9 +109,15 @@
         </section>
 
 
-      
+        <!-- End Body form  -->
+        <section>
+
+        </section>
+
+        <!-- footer -->
 
         <?php $this->load->view('include/footer'); ?>
+        
         <!-- End footer -->
     </div>
 
@@ -89,7 +126,7 @@
     <!-- scripts -->
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
     <?php $this->load->view('include/msg'); ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -107,21 +144,53 @@
         var app = new Vue({
             el: '#app',
             data: {
-                student: {
-                    name: 'Shahir',
-                    email: 'Testing@test.com',
-                    mobile: '0123456789',
-                    profile: 'https://img.icons8.com/pastel-glyph/2x/person-male.png',
-                },
-                profilePic: '',
+                name:'<?php echo (!empty($result->school_address))?$result->school_address:''; ?>',
+                nameError:'',
+                regno:'<?php echo (!empty($result->reg_no))?$result->reg_no:''; ?>',
+                noError:'',
 
             },
 
             methods: {
-                onFileChange(e) {
-                    const file = e.target.files[0];
-                    this.student.profile = URL.createObjectURL(file);
+                namecheck(){
+                    this.nameError='';
+                    const formData = new FormData();
+                    formData.append('name',this.name);
+                    axios.post('<?php echo base_url('school/namecheck') ?>',formData)
+                    .then(response =>{
+                        if(response.data == 1){
+                            this.nameError = 'School Already Exist!';
+                        }
+                    }).catch(error => {
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+
+                },
+                regnocheck(){
+                    this.noError='';
+                    const formData = new FormData();
+                    formData.append('regno',this.regno);
+                    axios.post('<?php echo base_url('school/regcheck') ?>',formData)
+                    .then(response =>{
+                        if(response.data == 1){
+                            this.noError = 'Register Number Already Exist!';
+                        }
+
+                    }).catch(error => {
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+
+                },
+                formSubmit() {
+                if ((this.noError == '') && (this.nameError == '')) {
+                    this.$refs.form.submit();
                 }
+            }
+                
             }
         })
     </script>

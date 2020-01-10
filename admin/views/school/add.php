@@ -34,14 +34,16 @@
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="col s12 m12 l12">
-                                            <form action="<?php echo base_url('institute/add') ?>" method="post">
+                                            <form ref="form" @submit.prevent="formSubmit" action="<?php echo base_url('institute-add') ?>" method="post">
                                                 <div class="input-field col m6">
-                                                    <input id="name" name="name" type="text" class="validate">
+                                                    <input id="name" name="name" type="text" class="validate" v-model="name" @change="namecheck()">
                                                     <label for="name">Institute Name</label>
+                                                    <span class="helper-text red-text">{{nameError}}</span>
                                                 </div>
                                                 <div class="input-field col m6">
-                                                    <input id="rno" name="rno" type="text" class="validate">
+                                                    <input id="rno" name="rno" type="text" class="validate" v-model="regno" @change="regnocheck()">
                                                     <label for="rno">Register Number</label>
+                                                     <span class="helper-text red-text">{{noError}}</span>
                                                 </div>
 
                                                 <div class="input-field col m6">
@@ -71,9 +73,9 @@
                                                     <select name="district" class="">
                                                             <option value="" disabled selected>Choose your option</option>
                                                             <?php
-                                                            if (!empty($taluk)) {
-                                                               foreach ($taluk as $key => $value) { 
-                                                                   echo '<option value="'.$value->tallukId.'">'.$value->talluk.'</option>';
+                                                            if (!empty($district)) {
+                                                               foreach ($district as $key => $value) { 
+                                                                   echo '<option value="'.$value->districtId.'">'.$value->district.'</option>';
                                                               } } ?>
                                                         </select>
                                                     <label>District</label>
@@ -82,9 +84,9 @@
                                                     <select name="taluk" class="">
                                                             <option value="" disabled selected>Choose your option</option>
                                                             <?php
-                                                            if (!empty($district)) {
-                                                               foreach ($district as $key => $value) { 
-                                                                   echo '<option value="'.$value->districtId.'">'.$value->district.'</option>';
+                                                            if (!empty($taluk)) {
+                                                               foreach ($taluk as $key => $value) { 
+                                                                   echo '<option value="'.$value->tallukId.'">'.$value->talluk.'</option>';
                                                               } } ?>
                                                         </select>
                                                     <label>Taluk</label>
@@ -122,6 +124,7 @@
     <!-- scripts -->
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(document.querySelectorAll('select'));
@@ -138,10 +141,52 @@
         var app = new Vue({
             el: '#app',
             data: {
+                name:'',
+                nameError:'',
+                regno:'',
+                noError:'',
 
             },
 
             methods: {
+                namecheck(){
+                    this.nameError='';
+                    const formData = new FormData();
+                    formData.append('name',this.name);
+                    axios.post('<?php echo base_url('school/namecheck') ?>',formData)
+                    .then(response =>{
+                        if(response.data == 1){
+                            this.nameError = 'School Already Exist!';
+                        }
+                    }).catch(error => {
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+
+                },
+                regnocheck(){
+                    this.noError='';
+                    const formData = new FormData();
+                    formData.append('regno',this.regno);
+                    axios.post('<?php echo base_url('school/regcheck') ?>',formData)
+                    .then(response =>{
+                        if(response.data == 1){
+                            this.noError = 'Register Number Already Exist!';
+                        }
+
+                    }).catch(error => {
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+
+                },
+                formSubmit() {
+                if ((this.noError == '') && (this.nameError == '')) {
+                    this.$refs.form.submit();
+                }
+            }
                 
             }
         })
