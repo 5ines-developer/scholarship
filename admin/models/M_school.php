@@ -133,4 +133,18 @@ class M_school extends CI_Model {
     }
 
 
+    public function requestLists($id='')
+    {
+        if(!empty($id)){
+            $this->db->where('sca.id', $id);
+        }
+        $this->db->select('sca.id,sca.name,sca.email,sca.mobile,sca.pincode,sca.address,sca.register_doc,sca.date,tq.title as taluk,cty.title as district');
+        $this->db->order_by('sca.id', 'desc');
+        $this->db->from('school_add sca');
+        $this->db->join('taluq tq', 'tq.id = sca.taluk', 'left');
+        $this->db->join('city cty', 'cty.id = sca.district', 'left');
+        return $this->db->get('school_add')->result();
+    }
+
+
 }

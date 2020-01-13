@@ -382,6 +382,98 @@ class auth extends CI_Controller {
         $mpdf->Output();
         exit;    
     }
+
+    public function instititeCheck($value='')
+    {
+       $ins =  $this->input->get('filter');
+       $output = $this->m_auth->instititeCheck($ins);
+       if(!empty($output)){
+            http_response_code(409);
+            echo  json_encode(array('status' => 1, 'msg' =>'Institute already exist'));
+       }else{
+         echo json_encode(array('status' => 1, 'msg' =>''));
+       }
+    }
+
+    public function requestAdd(Type $var = null)
+    {
+        if($this->session->userdata('scinst') != ''){ redirect('dashboard','refresh'); }
+        if($this->input->post()){
+           $this->submitRequest();
+        }else{
+            $data['title'] = 'Institite Add Request';
+            $data['taluk'] = $this->m_auth->getTaluk();
+            $data['district'] = $this->m_auth->getDistrict(); 
+            $this->load->view('auth/company-request', $data, FALSE);  
+        }
+    }
+
+        public function submitRequest($var = null)
+    {
+        $insert = array(
+            'name'          => $this->input->post('name'),
+            'mobile'         => $this->input->post('number'),
+            'email'         => $this->input->post('email'),
+            'district'       => $this->input->post('district'),
+            'taluk'         => $this->input->post('taluk'),
+            'pincode'         => $this->input->post('c_pincode'),
+            'address'        => $this->input->post('c_address'),
+        );
+
+        if ((empty($_FILES['reg_doc']['tmp_name']))) {
+            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+             redirect('institute-request');
+        }else{
+            $config['upload_path'] = './regfile';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_width'] = 0;
+            $config['encrypt_name'] = true;
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+            if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+            $this->upload->do_upload('reg_doc');
+            $upload_data = $this->upload->data();
+            $reg = 'regfile/'.$upload_data['file_name'];
+
+            $insert['register_doc'] = $reg;
+        }
+
+        $output = $this->m_auth->addRequest($insert);
+
+        
+        if(!empty($output)){
+            $this->sendRequest($insert);
+        }else{
+            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+        }
+
+        redirect('institute-request');
+
+    }
+
+    public function sendRequest($insert = null)
+    {
+        $data['result'] = $insert;
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/request', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to('prathwi@5ine.in');
+        $this->email->subject('Institute Add Requset'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+    }
+
+
     
 }
 

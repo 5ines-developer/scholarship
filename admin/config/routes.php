@@ -38,6 +38,9 @@ $route['institute/(:any)']              = 'school/index/$1';
 $route['institute-add']                 = 'school/add';
 $route['institutes']                 	= 'school/schoolGet'; //all school list
 $route['institute-edit/(:any)']         = 'school/edit/$1';
+$route['institute-request']         	= 'school/requestLists';
+$route['institute-request/(:any)']      = 'school/requestLists/$1';
+
 
 
 

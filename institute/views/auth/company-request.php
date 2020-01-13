@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scholarship</title>
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
+</head>
+
+<body>
+      <div id="app">
+    <?php $this->load->view('include/header'); ?>
+
+    <!-- form section -->
+    <section class="bg pt30 pb30 ">
+        <div class="container">
+            <div class="row m0">
+                <div class="col l10 offset-l1">
+                    <div class="card instreg">
+                        <div class="card-content">
+                            <div class="card-outer-heading">
+                                Company Requested Detail
+                            </div>
+                            <div class="card-body">
+                                <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>institute-request" method="post" enctype="multipart/form-data">
+                                    <div class="input-field col m6 s12">
+                                        <input required id="name" name="name"  v-model="institute" @change="checkInstituteExist" type="text" class="validate">
+                                        <label for="name">Institute Name</label>
+                                        <span class="red-text helper-text"> {{instituteError}}</span>
+                                    </div>
+
+                                    <div class="input-field col m6 s12">
+                                        <input id="email" v-model="email" @change="checkEmailExist" name="email" type="email" required class="validate">
+                                        <label for="email">Email</label>
+                                        <span class="red-text helper-text">{{emailError}}</span>
+                                    </div>
+                                    <div class="row m0">
+                                        <div class="input-field col m6 s12">
+                                            <input id="number" v-model="phone" @change="checkPhoneExist" name="number" type="number" required class="validate">
+                                            <label for="number">Phone Number</label>
+                                            <span class="red-text helper-text">{{phoneError}}</span>
+                                        </div>
+                                        <div class="input-field col m6 s12 ">
+                                            <input type="hidden" name="district" :value="district.id">       
+                                            <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="input-field col m6 s12 ">
+                                        <input type="hidden" name="taluk" :value="tlq.id">       
+                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk"   tagging :from="taluk" />
+                                    </div>
+
+                                    
+                                    <div class="input-field col m6 s12">
+                                        <input required id="pincode" name="c_pincode" type="text" class="validate">
+                                        <label for="pincode">Pin Code</label>
+                                    </div>
+                                    <div class="file-field input-field col  m6 s12 ">
+                                        <div class="btn ">
+                                            <span>File</span>
+                                            <input type="file" required name="reg_doc">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" placeholder="Upload company Reg Doc" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s12 m12">
+                                        <textarea id="textarea1" name="c_address" class="materialize-textarea"></textarea>
+                                        <label for="textarea1">Address</label>
+                                    </div>
+                                    <!-- <div class="input-field col s12">
+                                        <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
+                                        <span class="helper-text red-text">{{ captcha }}</span>
+                                    </div> -->
+                                    <div class="input-field col m12 ">
+                                        <button type="submit" class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <?php $this->load->view('include/footer'); ?>
+    
+   </div>
+
+    <!-- scripts -->
+ <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
+<script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
+<!-- <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script> -->
+<script src="<?php echo $this->config->item('web_url')?>assets/js/axios.min.js"></script>
+<?php $this->load->view('include/msg'); ?>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script>
+
+
+    var app = new Vue({
+        el: '#app',
+        components: {
+            vSelect: VueSelect.vSelect,
+        },
+        data: {
+            district: '',
+            taluk: [],
+            disabled: true,
+            disabled1: true,
+            tlq:'',
+            districtSelect: <?php echo json_encode($district) ?>,
+            instituteSelect: '',
+            institute: '',
+            instituteError: '',
+            emailError: '',
+            phoneError: '',
+            email:'',
+            phone:'',
+            type: 'submit',
+        },
+
+        methods:{
+            talukFilter(){
+                var self = this;
+                self.taluk = '';
+                self.tlq = '';
+                self.instituteSelect = '';
+                self.institute = '';
+                axios.post('<?php echo base_url() ?>auth/talukFilter?filter='+this.district.id)
+                .then(res => {
+                    self.disabled = false;
+                    self.taluk = res.data;
+                })
+                .catch(err => {
+                    console.error(err); 
+                    self.disabled = true;
+                })
+            },
+            checkInstituteExist(){
+                var self = this;
+                axios.post('<?php echo base_url() ?>auth/instititeCheck?filter='+this.institute)
+                .then(res => {
+                    self.instituteError = '';
+                    self.type = 'submit';
+                })
+                .catch(err => {
+                    self.instituteError = err.response.data.msg;
+                    self.type = 'button';
+                })
+            },
+            checkEmailExist(){
+                var self = this;
+                axios.post('<?php echo base_url() ?>auth/checkEmailExist?filter='+this.email)
+                .then(res => {
+                    self.emailError = '';
+                    self.type = 'submit';
+                })
+                .catch(err => {
+                    self.emailError = err.response.data.msg;
+                    self.type = 'button';
+                })
+            },
+            checkPhoneExist(){
+                var self = this;
+                axios.post('<?php echo base_url() ?>auth/checkPhoneExist?filter='+this.phone)
+                .then(res => {
+                    self.phoneError = '';
+                    self.type = 'submit';
+                })
+                .catch(err => {
+                    self.phoneError = err.response.data.msg;
+                    self.type = 'button';
+                })
+            },
+            checkForm() {
+                if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '')) {
+
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {
+                        this.$refs.form.submit();
+                    // }// 
+                } else {}
+            }
+        }
+    })
+</script>
+</body>
+
+</html>

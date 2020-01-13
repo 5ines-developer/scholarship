@@ -7,6 +7,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
 
 </head>
@@ -116,7 +117,7 @@
                                        <button class="waves-effect waves-light hoverable btn-theme btn mt10" :type="type">Register</button> 
                                        <div class="right">
                                            <p class="pt20 pb10">
-                                               <a href="#!" class="mt10 ahover">Incase Institute not in above list add here.</a> 
+                                               <a href="<?php echo base_url() ?>institute-request" class="mt10 ahover">Incase Institute not in above list add here.</a> 
                                            </p>
                                        </div>
                                     </div>

@@ -199,6 +199,22 @@ public function checkPhoneExist($id = null)
    }
 }
 
+public function instititeCheck($name='')
+{
+  $query =  $this->db->where('school_address', $name)->get('reg_schools')->row();
+  if (!empty($query)){
+     return $this->db->where('name', $query->id)->get('school')->row();
+   }
+   else{
+     return false;
+   }
+}
+
+public function addRequest($insert='')
+{
+  return $this->db->insert('school_add', $insert);
+}
+
 
 
 }

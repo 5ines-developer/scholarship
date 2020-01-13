@@ -172,4 +172,20 @@ class School extends CI_Controller {
         }
     }
 
+
+    public function requestLists($id='')
+    {
+        $data['title']      = 'Institute Management';
+        if(!empty($id)){
+            $data['result']= $this->m_school->requestLists($id);
+            echo "<pre>";
+            print_r ($data);
+            echo "</pre>";
+            $this->load->view('school/request-detail.php', $data, FALSE);
+        }else{
+            $data['result']= $this->m_school->requestLists();
+            $this->load->view('school/request-list.php', $data, FALSE);
+        }
+    }
+
 }

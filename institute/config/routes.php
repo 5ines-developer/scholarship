@@ -36,6 +36,8 @@ $route['staffs/update/(:any)']      = 'staffs/update/$1';
 $route['staffs/detail/(:any)']      = 'staffs/detail/$1';
 $route['student/institute-certificate/(:any)'] = 'auth/applicationGenerate/$1';
 
+//school add request
+$route['institute-request']           	= 'auth/requestAdd';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
