@@ -24,7 +24,14 @@ $route['employee/add']              = 'employee/add';
 $route['student']                  	= 'student/index';
 $route['student/(:any)']            = 'student/index/$1';
 //scholareship application
-$route['scholarship-application/(:any)']   = 'scholar/singleGet/$1';
+$route['applications']                  =   'scholar/index';
+$route['applications/detail/(:any)']   	= 	'scholar/singleGet/$1';
+$route['applications/approved']         =   'scholar/approved';
+$route['applications/rejected']         =   'scholar/rejected';
+$route['application-approve']           =   'scholar/approve';
+$route['application-reject']           	=   'scholar/reject';
+
+
 //institute management
 $route['institute']                  	= 'school/index';
 $route['institute/(:any)']              = 'school/index/$1';

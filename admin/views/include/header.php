@@ -27,12 +27,23 @@
             <div class="nav-wrapper container-wrap1">
                 <!-- <a href="#" class="brand-logo">Logo</a> -->
                 <ul id="nav-mobile1" class="left hide-on-med-and-down">
-                    <li><a href="#!">Home</a></li>
+                    <li><a href="<?php echo base_url() ?>">Home</a></li>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#!">Login</a></li>
-                    <li><a href="#!">Registration</a></li>
+                    <?php if($this->session->userdata('said') == ''){ ?>
+                        <li><a href="<?php echo base_url('login') ?>">Login</a></li>
+                   <?php }else{ ?>
+                    <li><a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a></li>
+
+                   <?php } ?>
+                    
                 </ul>
             </div>
         </nav>
+
+        <ul id='dropdown1' class='dropdown-content'>
+              <li><a href="#">Account Settings</a></li>
+              <li><a href="#">Change Password</a></li>
+              <li><a href="<?php echo base_url('logout')?>">Logout</a></li>
+            </ul>
     </header>

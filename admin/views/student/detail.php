@@ -112,13 +112,13 @@
                                                                             <?php if(!empty($apply)){
                                                                             foreach ($apply as $key => $value) { $key++ ?>
                                                                             <tr role="row" class="odd">
-                                                                                <td><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value))?$key:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->class))?$value->class:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->mark))?$value->mark.' %':'---'; ?></a></td>
-                                                                                <td class=""><a href="<?php echo base_url('scholarship-application/').$value->id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value))?$key:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value->class))?$value->class:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value->mark))?$value->mark.' %':'---'; ?></a></td>
+                                                                                <td class=""><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
                                                                                 <td class="action-btn center-align">
-                                                                                    <a href="<?php echo base_url('scholarship-application/').$value->id ?>" class="blue-text"> view</a>
+                                                                                    <a href="<?php echo base_url('applications/detail/').$value->id ?>" class="blue-text"> view</a>
                                                                                 </td>
                                                                             </tr>
                                                                             <?php } } ?>
@@ -159,6 +159,7 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
+     <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
     <!-- data table -->
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.js "></script>
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/dataTables.buttons.min.js "></script>

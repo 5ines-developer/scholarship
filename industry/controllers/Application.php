@@ -85,29 +85,36 @@ class Application extends CI_Controller {
     public function approveMail($id='')
 	{
         $data['info'] = $this->m_application->singleStudent($id);
-        $this->load->config('email');
-        $this->load->library('email');
-        $from = $this->config->item('smtp_user');
-		$msg = $this->load->view('mail/approve', $data, true);
-        $this->email->set_newline("\r\n");
-        $this->email->from($from , 'Karnataka Labour Welfare Board');
-        // $this->email->to($this->slmail);
-        $this->email->to('prathwi@5ine.in');
-        $this->email->subject('Scholarship application Approved'); 
-        $this->email->message($msg);
-        if($this->email->send())  
-        {
+        $email = $this->m_application->emailGet($data['info']->Student_id);
+
+        if (!empty($email)) {
+            $this->load->config('email');
+            $this->load->library('email');
+            $from = $this->config->item('smtp_user');
+            $msg = $this->load->view('mail/approve', $data, true);
+            $this->email->set_newline("\r\n");
+            $this->email->from($from , 'Karnataka Labour Welfare Board');
+            $this->email->to($email);
+            $this->email->subject('Scholarship application Approved'); 
+            $this->email->message($msg);
+            if($this->email->send())  
+            {
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+        }else{
             return true;
-        } 
-        else
-        {
-            return false;
         }
+        
 	}
 
     public function studentSms($data='', $apid='')
     {
-		$phone = $this->input->post('sphone');
+		$data['info'] = $this->m_application->singleGet($id);
+        $phone = $this->m_application->phoneGet($data['info']->Student_id);
 		
         /* API URL */
         $url = 'http://trans.smsfresh.co/api/sendmsg.php';

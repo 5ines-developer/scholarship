@@ -56,35 +56,7 @@
                                                 <th class="h5-para-p2">Action</th>
                                             </tr>
                                             </thead>
-                                            <!-- <tbody class="tbody-list">
-                                                <?php if(!empty($result)){
-                                                    foreach ($result as $key => $value) { ?>
-                                                    <tr role="row" class="odd">
-                                                    <td class="truncate"><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->school_address))?$value->school_address:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->reg_no))?$value->reg_no:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->management_type))?$value->management_type:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->title))?$value->title:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->district))?$value->district:'---'; ?></a></td>
-
-                                                    
-                                                    <td class=""><a href="<?php echo base_url('institute/').$value->id ?>">
-                                                        <?php
-                                                        if($value->status==1){
-                                                            echo '<p class="status darken-2">Active</p>';
-                                                        }else if($value->status== 0){
-                                                            echo '<p class="status blue darken-2">Inactive</p>';
-                                                        }else{
-                                                            echo '<p class="status red darken-2">Blocked</p>';
-                                                        }
-                                                        ?></a>
-                                                    </td>
-                                                    <td class="action-btn center-align">
-                                                        <a href="<?php echo base_url('institute/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light"> View</a>
-                                                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
-                                                    </td>
-                                                </tr>
-                                                <?php    } } ?> -->
-                                            <!-- </tbody> -->
+                                            
                                         </table>
                                     </div>
                                 </div>
@@ -110,6 +82,7 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js "></script>
     <!-- data table -->
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.js "></script>
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/dataTables.buttons.min.js "></script>

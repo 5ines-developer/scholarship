@@ -18,7 +18,6 @@ class M_school extends CI_Model {
 
     public function make_query($value='')
     {
-
         $select_column = array('reg.id','reg.reg_no','reg.school_address','reg.management_type','reg.school_category','reg.school_type','reg.urban_rural','reg.taluk','reg.status','tq.title','cty.title as district');
         $order_column = array("reg.school_address","reg.reg_no", "reg.management_type", "tq.title", "cty.title","reg.status",null );  
 
@@ -132,4 +131,6 @@ class M_school extends CI_Model {
         $this->db->join('city cty', 'cty.id = tq.city_id', 'left');
         return $this->db->get()->row();
     }
+
+
 }

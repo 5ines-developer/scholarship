@@ -149,7 +149,6 @@ class M_stdapplication extends CI_Model {
         ->join('courses crs', 'crs.id = am.course', 'left')
         ->join('gradution grd', 'grd.id = am.graduation', 'left')
         ->join('class cls', 'cls.id = am.class', 'left')
-
         ->get()->row();
     }
 

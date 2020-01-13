@@ -108,6 +108,7 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js "></script>
     <!-- data table -->
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.js "></script>
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/dataTables.buttons.min.js "></script>

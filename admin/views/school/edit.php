@@ -84,12 +84,11 @@
                                                 <div class="input-field col sel-hr s12 m6">
                                                     <select name="taluk" class="">
                                                             <option value="" disabled selected>Choose your option</option>
-                                                            <?php
-                                                            if (!empty($taluk)) {
+                                                            <?php if (!empty($taluk)) {
                                                                foreach ($taluk as $key => $value) { ?> 
                                                                    <option value="<?php echo $value->tallukId ?>" <?php if($value->tallukId == $result->taluk){ echo 'selected';
                                                                    } ?> ><?php echo $value->talluk ?></option>
-                                                             <?php } } ?>
+                                                            <?php } } ?>
                                                         </select>
                                                     <label>Taluk</label>
                                                 </div>

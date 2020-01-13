@@ -142,6 +142,16 @@ class M_application extends CI_Model {
         
     }
 
+    public function emailGet($id='')
+    {
+        return $this->db->select('email')->where('id',$id)->get('student')->row('email');
     }
+
+    public function phoneGet($id='')
+    {
+        return $this->db->select('phone')->where('id',$id)->get('student')->row('phone');
+    }
+
+}
 
 /* End of file ModelName.php */

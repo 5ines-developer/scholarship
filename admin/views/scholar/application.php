@@ -40,9 +40,85 @@ $this->load->model('m_scholar');
                                         <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1)? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
                                     <?php } ?>
 
+
                                     
                                 </div>
                                 <div class="board-content">
+                                    <div class="row ad-stt-list">
+                                       <ul class="status-list">
+                                           <li class="center status-item">
+                                               <div>Application</div>
+                                               <div class="circle">1</div>
+                                               <?php if ((($result->application_state == 1) || ($result->application_state == 2) || ($result->application_state == 3) || (($result->application_state == 4)))) {
+                                                   echo '<div class="green-text">Submitted</div>';
+                                                }else{
+                                                    echo '<div class="blue-text">Pending</div>';
+                                                } ?>                                               
+                                           </li>
+                                           <li class="center status-item">
+                                               <div>Institution</div>
+                                               <div class="circle">2</div> 
+                                               <?php if (($result->status != 2) && (($result->application_state == 2) || ($result->application_state == 3) || (($result->application_state == 4)))) {
+                                                   echo '<div class="green-text">Approved</div>';
+                                                }else if (($result->status == 2) && ($result->application_state == 1) ){
+                                                    echo '<div class="red-text">Rejected</div>';                                                    
+                                                }else{
+                                                    echo '<div class="blue-text">Pending</div>';
+                                                } ?>  
+                                           </li>
+                                           <li class="center status-item">
+                                               <div>Industry</div>
+                                               <div class="circle">3</div>
+                                               <?php if (($result->status != 2) && (($result->application_state == 3) || (($result->application_state == 4)))) {
+                                                   echo '<div class="green-text">Approved</div>';
+                                                }else if (($result->status == 2) && ($result->application_state == 2) ){
+                                                    echo '<div class="red-text">Rejected</div>';                                                    
+                                                }else{
+                                                    echo '<div class="blue-text">Pending</div>';
+                                                } ?> 
+                                           </li>
+                                           <li class="center status-item">
+                                               <div>Government</div>
+                                               <div class="circle">4</div>
+                                               <?php if (($result->status == 2) && (($result->application_state == 4))) {
+                                                   echo '<div class="green-text">Approved</div>';
+                                                }else if (($result->status == 2) && ($result->application_state == 4)){
+                                                    echo '<div class="red-text">Rejected</div>';                                                    
+                                                }else{
+                                                    echo '<div class="blue-text">Pending</div>';
+                                                } ?>
+                                           </li>
+                                       </ul> 
+                                            <?php 
+
+                                            switch ($result->application_state) {
+                                                case 1:
+                                                    $level = 'Institution';
+                                                    break;
+                                                case 2:
+                                                    $level = 'Industry';
+                                                    break;                                                
+                                                default:
+                                                    $level = 'Government';
+                                                    break;
+                                            }
+                                            
+                                            
+                                            if ($result->status == 2) {
+                                                echo '<div class="reason-reject">
+                                                <p class="center-align mb15">This application has been Rejected from '.$level.' level</p>
+                                                <table>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>'.$result->reject_reason.'</td>
+                                                    </tr>
+                                                </table>
+                                                </div>';
+                                            } ?>
+                                       
+                                       
+                                    </div>
+
                                     <div class="row m0">
                                         <div class="app-detail-items">
                                                 <div class="col s12">
@@ -161,7 +237,7 @@ $this->load->model('m_scholar');
                                                                         <li>
                                                                             <p class="app-item-content-head">Caste Certificate File/ Number</p>
                                                                                 <?php if (!empty($result->cast_certificate)) { ?>
-                                                                                    <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
+                                                                                    <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
                                                                                     <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Caste-certificate
                                                                                     </a>
                                                                                     <?php echo (!empty($result->cast_no))?'-'.$result->cast_no:''; ?>
@@ -315,7 +391,7 @@ $this->load->model('m_scholar');
                                                     </div>
                                                 </div><!-- End-->
 
-                                                <!-- <div class="col s12 l6">
+                                                <div class="col s12 l6">
                                                     <div class="app-detail-item">
                                                         <div class="app-item-heading">
                                                             <p>Confirmation Report</p>
@@ -332,7 +408,7 @@ $this->load->model('m_scholar');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Industry Confirmation Report</p>
-                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo base_url('industry-certificate/'.urlencode(base64_encode($result->aid))) ?>">PDF</a></p>
+                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo $this->config->item('web_url').'industry/industry-certificate/'.urlencode(base64_encode($result->aid)) ?>">PDF</a></p>
                                                                         </li>
 
                                                                         
@@ -341,7 +417,7 @@ $this->load->model('m_scholar');
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div> -->
+                                                </div>
 
                                                 <!-- End-->
 
@@ -374,7 +450,8 @@ $this->load->model('m_scholar');
                 </div>
             </div>
             <div class="modal-footer">
-                <button href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</button>
+                <button type="submit" class="modal-close btn waves-effect waves-green indigo darken-4 btn-float">Submit</button>
+                <button type="reset" class="modal-close btn waves-effect waves-green red darken-4 btn-float">Reset</button>
             </div>
         </form>
         
@@ -423,10 +500,10 @@ $this->load->model('m_scholar');
                     var msg = response.data.msg;
                     M.toast({html: msg, classes: 'green darken-2'});
                     self.disabled = true;
-                    window.location.href = "<?php echo base_url('application-approved') ?>";
+                    window.location.href = "<?php echo base_url('applications/approved') ?>";
                 })
                 .catch(error => {
-                    var msg = error.response.data.msg;
+                    var msg = error.data.msg;
                     M.toast({html: msg, classes: 'red darken-4'});
                 })
             }
