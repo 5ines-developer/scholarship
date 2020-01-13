@@ -654,7 +654,6 @@
         
         .ad-stt-list {
             margin-bottom: 15px;
-            border: 1px dotted gray;
             padding: 30px;
             margin-bottom: 15px;
         }
@@ -2881,4 +2880,8 @@
                 margin-bottom: 15px;
                 margin-top: 10px;
             }
+        }
+        
+        #dynamic_wrapper {
+            overflow: auto;
         }

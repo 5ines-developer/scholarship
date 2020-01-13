@@ -907,7 +907,6 @@ form .file-field .btn {
 
 .ad-stt-list {
   margin-bottom: 15px;
-  border: 1px dotted gray;
   padding: 30px;
   margin-bottom: 15px;
 }
@@ -3046,5 +3045,9 @@ table.dataTable thead td {
     margin-bottom: 15px;
     margin-top: 10px;
   }
+}
+
+#dynamic_wrapper {
+  overflow: auto;
 }
 /*# sourceMappingURL=style.css.map */

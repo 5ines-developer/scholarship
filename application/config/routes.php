@@ -81,6 +81,8 @@ $route['student/application'] 			= 'Std_application/index';
 $route['student/submit-application'] 	= 'Std_application/insertAppli';
 $route['student/application-detail'] 	= 'Std_application/getApplication';
 $route['student/application-status'] 	= 'Std_application/getStatus';
+$route['student/application-list'] 		= 'Std_application/list';
+$route['student/application-list/(:any)'] 		= 'Std_application/list/$1';
 
 
 

@@ -230,6 +230,65 @@ class M_stdapplication extends CI_Model {
         return $this->db->where('id', $aid)->get('application')->row('school_id');
     }
 
+
+    public function getList($id='',$year='')
+    {
+        $select_column = array('s.name','s.email','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district');
+
+        if(!empty($year)){
+                if (!empty($year)) {
+                $date  = explode("-",$year);
+                $sdate = $date[0];
+                $edate = $date[1];
+                $this->db->where('a.application_year >=', $sdate);
+                $this->db->where('a.application_year <=', $edate);
+            }
+        }
+        return $this->db->where('a.Student_id', $id)
+        ->select($select_column)
+        ->from('application a')
+        ->join('applicant_marks m', 'm.application_id = a.id', 'left')
+        ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
+        ->join('applicant_comapny ac', 'ac.application_id = a.id', 'left')
+        ->join('applicant_marks am', 'am.application_id = a.id', 'left')
+        ->join('student s', 's.id = a.Student_id', 'left')
+        ->join('school schl', 'schl.id = a.school_id', 'left')
+        ->join('school_address scad', 'scad.school_id = a.school_id', 'left')
+        ->join('reg_schools rs', 'rs.id = a.school_id', 'left')
+        ->join('industry ind', 'ind.id = a.company_id', 'left')
+        ->join('state st', 'st.id = ind.state', 'left')
+        ->join('city cty', 'cty.id = am.ins_district', 'left')
+        ->join('taluq tq', 'tq.id = am.ins_talluk', 'left')
+        ->join('courses crs', 'crs.id = m.course', 'left')
+        ->join('class cls', 'cls.id = m.class', 'left')
+        ->get()->result();
+    }
+
+
+    public function getDeatil($sid="",$id = null)
+    {  
+
+        $eid = base64_decode($id); 
+        $aid = urldecode($eid); 
+        return $this->db->where('a.id', $aid)
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,ab.address as saddress, aa.name as bnkName,schl.id as schID,schl.name as schoolName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,ac.talluk as indtalluk,ac.district as inddistrict,ac.pincode as indpincode,ac.relationship as relationship,ac.msalary as msalary,ac.name as indpname,tq.title as instalq,a.id as aId')
+        ->from('application a')        
+        ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
+        ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
+        ->join('applicant_comapny ac', 'ac.application_id = a.id', 'left')
+        ->join('applicant_marks am', 'am.application_id = a.id', 'left')
+        ->join('school schl', 'schl.id = a.school_id', 'left')
+        ->join('school_address scad', 'scad.school_id = a.school_id', 'left')
+        ->join('industry ind', 'ind.id = a.company_id', 'left')
+        ->join('state st', 'st.id = ind.state', 'left')
+        ->join('city cty', 'cty.id = ac.district', 'left')
+        ->join('taluq tq', 'tq.id = ac.talluk', 'left')
+        ->join('courses crs', 'crs.id = am.course', 'left')
+        ->join('gradution grd', 'grd.id = am.graduation', 'left')
+        ->join('class cls', 'cls.id = am.class', 'left')
+        ->get()->row();
+    }
+
 }
 
 /* End of file m_stdapplication.php */

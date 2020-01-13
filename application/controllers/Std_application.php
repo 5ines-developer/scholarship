@@ -60,7 +60,7 @@ class Std_application extends CI_Controller {
 		echo json_encode($talluk);
 	}
 
-	public function schoolget(Type $var = null)
+	public function schoolget($var = null)
 	{
 		$id = $this->input->get('id');
 		$School = $this->m_stdapplication->getSchool($id);
@@ -95,12 +95,6 @@ class Std_application extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	
-
-
-	
-
-
 	/**
     * student application - insert application
     * @url      : student/submit-application
@@ -109,7 +103,6 @@ class Std_application extends CI_Controller {
     **/
     public function insertAppli($value='')
     {
-
 		$input = $this->input->post();
 
 		if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
@@ -419,6 +412,21 @@ class Std_application extends CI_Controller {
         $district = $this->input->get('filter');
         $result = $this->m_stdapplication->getTalukFiletr($district);
         echo json_encode($result);
+    }
+
+
+    //application list
+    public function list($id='')
+    {
+    	if(!empty($id)){
+    		$data['result'] = $this->m_stdapplication->getDeatil($this->sid,$id);
+    		$this->load->view('student/application-detail', $data, FALSE);
+
+    	}else{
+    		$year = $this->input->get('year');
+    		$data['result'] = $this->m_stdapplication->getList($this->sid,$year);
+    		$this->load->view('student/application-list', $data, FALSE);
+    	}
     }
 
 
