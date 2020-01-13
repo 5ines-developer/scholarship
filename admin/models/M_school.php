@@ -146,5 +146,10 @@ class M_school extends CI_Model {
         return $this->db->get('school_add')->result();
     }
 
+    public function getEmployee($id='')
+    {
+        return $this->db->where('name',$id)->get('school_auth')->result();
+    }
+
 
 }

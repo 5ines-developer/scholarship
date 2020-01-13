@@ -174,6 +174,49 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="white app-detail-item">
+                                                    <div class="app-item-heading ">
+                                                        <p class="Profile-detail ">Employee List</p>
+                                                    </div>
+                                                    <div class="app-item-body">
+                                                        <div class="card-content bord-right ">
+                                                            <div class="">
+                                                                <div class="hr-list">
+                                                                    <table id="dynamic" class="striped ">
+                                                                        <thead class="thead-list">
+                                                                            <th id="a" class="h5-para-p2">Sl No</th>
+                                                                            <th id="c" class="h5-para-p2">Email</th>
+                                                                            <th id="b" class="h5-para-p2">Phone</th>
+                                                                            <th id="c" class="h5-para-p2">Status</th>
+                                                                            <th id="g" class="h5-para-p2">Date</th>
+                                                                        </thead>
+                                                                        <tbody class="tbody-list">
+                                                                            <?php if(!empty($emp)){
+                                                                            foreach ($emp as $key => $value) { $key++ ?>
+                                                                            <tr role="row" class="odd">
+                                                                                <td><?php echo (!empty($value))?$key:'---'; ?></td>
+                                                                                <td><?php echo (!empty($value->email))?$value->email:'---'; ?></td>
+                                                                                <td><?php echo (!empty($value->phone))?$value->phone:'---'; ?></td>
+                                                                                <td><?php
+                                                                                if($value->status==1){
+                                                                                    echo '<p class="status darken-2">Active</p>';
+                                                                                }else if($value->status== 0){
+                                                                                    echo '<p class="status blue darken-2">Inactive</p>';
+                                                                                }else{
+                                                                                    echo '<p class="status red darken-2">Blocked</p>';
+                                                                                } ?></td>
+                                                                                <td><?php echo (!empty($value->created_on))?date('d M, Y',strtotime($value->created_on)):'---'; ?></td>
+                                                                            </tr>
+                                                                            <?php } } ?>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <!-- End-->
                                         </div>
