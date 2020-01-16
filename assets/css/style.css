@@ -3050,4 +3050,35 @@ table.dataTable thead td {
 #dynamic_wrapper {
   overflow: auto;
 }
+
+.top-count .card {
+  border-radius: 4px;
+}
+
+.top-count .card-content {
+  padding: 10px 0 0 0 !important;
+}
+
+.top-count .card-content .card-title {
+  margin-bottom: 0 !important;
+}
+
+.top-count .card-content i {
+  font-size: 30px;
+}
+
+.top-count .card-action {
+  padding: 10px 0 10px 24px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.top-count span {
+  font-weight: 600;
+}
+
+.top-count p {
+  font-weight: 600;
+  margin: 4px;
+  font-size: 16px;
+}
 /*# sourceMappingURL=style.css.map */

@@ -12,5 +12,17 @@ class M_employee extends CI_Model {
         endif;
     }
 
+    public function getEmployee( $var = null)
+    {
+        // ->where('type !=','1')
+        return $this->db->get('admin')->result();
+    }
+
+    public function singleEmployee($id='')
+    {
+        // ->where('type !=','1')
+        return $this->db->where('id', $id)->get('admin')->result();
+    }
+
 }
 /* End of file M_employee.php */

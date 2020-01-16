@@ -11,19 +11,19 @@ class School extends CI_Controller {
         if ($this->session->userdata('said') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
     }
 
-	public function index($id='')
+	public function index($id='',$year='')
 	{
 		$data['title']      = 'Institute Management';
 		if(!empty($id)){
 			$data['result']= $this->m_school->getSchool($id);
             $data['apply']= $this->m_school->getscholar($id);
 			$data['emp']= $this->m_school->getEmployee($id);
-            echo "<pre>";
-            print_r ($data);
-            echo "</pre>";
 			$this->load->view('school/detail.php', $data, FALSE);
 		}else{
-			$data['result']= $this->m_school->getSchool();
+			$data['result']= $this->m_school->getSchool($year);
+            $data['count'] = $this->m_school->schoolcount($year);
+            $data['taluk'] = $this->m_school->getTalluk();
+            $data['district'] = $this->m_school->getDistrict();
 			$this->load->view('school/list.php', $data, FALSE);
 		}
     }
@@ -182,9 +182,6 @@ class School extends CI_Controller {
         $data['title']      = 'Institute Management';
         if(!empty($id)){
             $data['result']= $this->m_school->requestLists($id);
-            echo "<pre>";
-            print_r ($data);
-            echo "</pre>";
             $this->load->view('school/request-detail.php', $data, FALSE);
         }else{
             $data['result']= $this->m_school->requestLists();

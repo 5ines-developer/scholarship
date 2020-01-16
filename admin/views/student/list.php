@@ -13,11 +13,7 @@
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.css ">
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/css/buttons.dataTables.css ">
     <style>
-        .vie-btn{
-            padding-right: 12px;
-            font-weight: 600;
-        }
-        
+        .vie-btn{padding-right: 12px; font-weight: 600; }
     </style>
 </head>
 
@@ -34,7 +30,64 @@
                     </div>
                     <!-- End menu-->
 
+                    
+
                     <div class="col m9 l9  s12">
+
+<div class="row">
+<div class="top-count">                     
+    <div class="col s12 m3">
+      <div class="card green hoverable">
+        <div class="card-content white-text center-align">
+          <span class="card-title center-align"><i class="material-icons">supervisor_account</i></span>
+           <p><?php echo $count['tot'] ?></p>
+        </div>
+        <div class="card-action center-align">
+          <span class="white-text">Total Students</span>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m3">
+      <div class="card orange hoverable">
+        <div class="card-content white-text center-align">
+          <span class="card-title center-align"><i class="material-icons">how_to_reg</i></span>
+           <p><?php echo $count['reg_yer'] ?></p>
+        </div>
+        <div class="card-action center-align">
+          <span class="white-text">Registered in <?php echo date('Y') ?></span>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m3">
+      <div class="card blue darken-1 hoverable">
+        <div class="card-content white-text center-align">
+          <span class="card-title center-align"><i class="material-icons">insert_drive_file</i></span>
+           <p><?php echo $count['app_year'] ?></p>
+        </div>
+        <div class="card-action center-align">
+          <span class="white-text">Total Scolarship Applied</span>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m3">
+      <div class="card green  darken-4 hoverable">
+        <div class="card-content white-text center-align">
+          <span class="card-title center-align"><i class="material-icons">insert_drive_file</i></span>
+           <p><?php echo $count['app_schl'] ?></p>
+        </div>
+        <div class="card-action center-align">
+          <span class="white-text">Scolarship Applied in <?php echo date('Y') ?></span>
+        </div>
+      </div>
+    </div>
+</div>
+</div>              
+
+
+
+
+                      
+
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">

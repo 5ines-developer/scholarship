@@ -36,11 +36,6 @@
                                     <span class="list-title ">Employee  List</span>
                                     <a href="<?php echo base_url() ?>employee/add" class="back-btn z-depth-1 waves-effect waves-ligh hoverable add-btn">
                                         <i class="material-icons add-icon ">add</i><span>Add New Employee</span></a>
-                                    <select class="browser-default" id="short">
-                                            <option value="10">2019 - 2020</option>
-                                            <option value="50">2018 - 2019</option>
-                                            <option value="150">2017  - 2018</option>
-                                </select>
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">
@@ -55,20 +50,41 @@
                                                 <th class="h5-para-p2">Action</th>
                                             </thead>
                                             <tbody class="tbody-list">
-                                                <tr role="row" class="odd">
-                                                    <td>ISRTCr</td>
-                                                    <td class="truncate">example@gmail.com</td>
-                                                    <td>989890989</td>
-                                                    <td>Financial</td>
-                                                    <td class="">22-10-209</td>
-                                                    <td class="">
-                                                        <p class="status">Active</p>
-                                                    </td>
-                                                    <td class="action-btn center-align">
-                                                        <a href="" class="green white-text"> <i class="material-icons action-icon ">remove_red_eye</i></a>
-                                                        <a href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
-                                                    </td>
-                                                </tr>
+                                                <?php
+                                                if (!empty($result)) {
+                                                    foreach ($result as $key => $value) { 
+                                                        if ($value->type == '2') {
+                                                            $ty = 'verification Department';
+                                                        }else{
+                                                            $ty = 'Finance Department';
+                                                        }
+
+                                                    ?>
+                                                        <tr role="row" class="odd">
+                                                            <td><?php echo (!empty($value->name))?$value->name:''; ?></td>
+                                                            <td class="truncate"><?php echo (!empty($value->email))?$value->email:''; ?></td>
+                                                            <td><?php echo (!empty($value->phone))?$value->phone:''; ?></td>
+                                                            <td><?php echo (!empty($ty))?$ty:''; ?></td>
+                                                            <td class=""><?php echo (!empty($value->phone))?date('d M, Y',strtotime($value->created_on)):''; ?></td>
+                                                            <td class="">
+                                                                <?php
+                                                                if ($value->status == 1) {
+                                                                    $stat = 'Active'; ?>
+                                                                    <p class="status">Active</p>
+                                                                <?php }else{ ?>
+                                                                   <p class="status red">Inactive</p>
+                                                                <?php } ?> 
+                                                            </td>
+                                                            <td class="action-btn center-align">
+                                                                <a href="<?php echo base_url('employee/detail/').$value->id ?>" class="blue-text"> View</a> &nbsp; &nbsp;
+                                                                <a href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
+                                                            </td>
+                                                        </tr>
+                                                <?php   }
+                                                }
+
+                                                ?>
+                                                
                                             </tbody>
                                         </table>
                                     </div>

@@ -35,6 +35,56 @@
                     <!-- End menu-->
 
                     <div class="col s12 m9 l9 ">
+
+                        <div class="row">
+                        <div class="top-count">                     
+                            <div class="col s12 m3">
+                              <div class="card green hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                   <p><?php echo $count['tot'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Total Institute</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m3">
+                              <div class="card orange hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">how_to_reg</i></span>
+                                   <p><?php echo $count['reg_yer'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Registered in <?php echo date('Y') ?></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m3">
+                              <div class="card blue darken-1 hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                   <p><?php echo $count['app_year'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Active Institute</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m3">
+                              <div class="card green  darken-4 hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">insert_drive_file</i></span>
+                                   <p><?php echo $count['app_schl'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Scholarship Applied</span>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </div>
+
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
@@ -43,6 +93,25 @@
                                         <i class="material-icons add-icon ">add</i><span>Add</span></button></a>
                                 </div>
                                 <div class="board-content ">
+
+                                    <div class="table-detail">
+                                        <select name="dist" id="dis-drp" class="district">
+                                                <option value="" disabled selected>District</option>
+                                                <?php
+                                                if (!empty($district)) {
+                                                   foreach ($district as $key => $value) { 
+                                                       echo '<option value="'.$value->districtId.'">'.$value->district.'</option>';
+                                                } } ?>
+                                        </select>
+                                        <select name="dist" id="dis-drp" class="taluk">
+                                                <option value="" disabled selected>Taluk</option>
+                                                <?php if (!empty($taluk)) {
+                                                   foreach ($taluk as $key => $value) { ?> 
+                                                       <option value="<?php echo $value->tallukId ?>"><?php echo $value->talluk ?></option>
+                                                <?php } } ?>
+                                        </select>
+                                    </div>
+
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">

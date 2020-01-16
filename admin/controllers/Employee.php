@@ -15,6 +15,7 @@ class Employee extends CI_Controller {
     public function index()
     {
         $data['title'] = 'Employee List | Scholarship';
+        $data['result'] = $this->M_employee->getEmployee();
         $this->load->view('employee/list', $data, FALSE);
     }
 
@@ -78,6 +79,16 @@ class Employee extends CI_Controller {
         {
             return false;
         }
+    }
+
+    public function detail($id='')
+    {
+        $data['title'] = 'Employee List | Scholarship';
+        $data['result'] = $this->M_employee->singleEmployee($id);
+        echo "<pre>";
+        print_r ($data);
+        echo "</pre>";
+        $this->load->view('employee/detail', $data, FALSE);
     }
 
 }

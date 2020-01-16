@@ -22,6 +22,7 @@ class Student extends CI_Controller {
 			$this->load->view('student/detail.php', $data, FALSE);
 		}else{
 			$data['result']= $this->m_student->getStudent($year);
+            $data['count'] = $this->m_student->stdcount($year);
 			$this->load->view('student/list.php', $data, FALSE);
 		}
 	}
