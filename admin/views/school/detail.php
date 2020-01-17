@@ -259,6 +259,11 @@
     <!-- data table -->
     <?php $this->load->view('include/msg'); ?>
     <script>
+        $(document).ready(function() {
+            $('.si-m >.collapsible-body').css({
+                display: 'block',
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
             var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {

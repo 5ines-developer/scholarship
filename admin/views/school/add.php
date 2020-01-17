@@ -24,12 +24,15 @@
                     </div>
                     <!-- End menu-->
 
-                    <div class="col s12 m8">
+                    <div class="col s12 m12 l8">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="title-list">
-                                    <span class="list-title">Institute Add</span>
-                                    <a href="<?php echo base_url('institute') ?>"  class="back-btn z-depth-1 waves-effect waves-ligh">Back</a>
+                                    <span class="list-title left">Institute Add</span>'
+                                    <div class="row m0 right">
+                                        <a href="#import"  class="bulk-btn z-depth-1 white-text green darken-3 waves-effect waves-ligh modal-trigger">Bulk Upload</a>
+                                        <a href="<?php echo base_url('institute') ?>"  class="back-btn z-depth-1 waves-effect waves-ligh">Back</a>
+                                    </div>
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">
@@ -108,9 +111,46 @@
 
 
         <!-- End Body form  -->
-        <section>
+       <div id="import" class="modal">
+            <div class="modal-content company-mc">
+                <h4>Institute Bulk Upload</h4>
+                <a href="#!" class="modal-close">
+                    <i class="material-icons cc-close">close</i>
+                </a>
+            </div>
+            <div class="modal-footer company-mf">
+                <form action="<?php echo base_url('upload-institute') ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-file">
+                        <div class="row">
+                            <div class="col l12 s12 m12">
+                                <div class="file-field input-field col l12 m0 upload-fil">
+                                    <div class="btn ">
+                                        <span>File</span>
+                                        <input type="file" name="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" placeholder="Import the excel file here" type="text" required="">
+                                    </div>
+                                </div>
+                                <div class="col l12">
+                                    <div class="ff-inp">
+                                        <p><b>Note:</b>File should be in .csv / .xsl format Size should be not more than 200KB</p>
+                                    </div>
+                                </div>
+                                <div class="col l12 m12 s12">
+                                    <center> <button class="btn-sub z-depth-1 waves-effect waves-light">
+                                        Submit</button></center>
+                                </div>
+                            </div>
+                        </div>
 
-        </section>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
 
         <!-- footer -->
 
@@ -122,10 +162,18 @@
 
 
     <!-- scripts -->
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
+    <?php $this->load->view('include/msg'); ?>
     <script>
+        $(document).ready(function() {
+            $('.modal').modal();
+            $('.si-m >.collapsible-body').css({
+                display: 'block',
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(document.querySelectorAll('select'));
         });

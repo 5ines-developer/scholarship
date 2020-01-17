@@ -199,5 +199,20 @@ class M_school extends CI_Model {
         return $this->db->get('application')->num_rows();
     }
 
+    public function imptalluk($taluk='')
+    {
+       return $this->db->where('title', $taluk)->get('taluq')->row();
+    }
+
+    public function insertbulk($insert='')
+    {
+        $query = $this->db->where('reg_no', $insert['reg_no'])->or_where('school_address', $insert['school_address'])->get('reg_schools');
+        if ($query->num_rows() > 0) {
+            return false;
+        }else{
+            return $this->db->insert('reg_schools', $insert);
+        }
+    }
+
 
 }

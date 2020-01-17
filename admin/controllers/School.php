@@ -9,6 +9,7 @@ class School extends CI_Controller {
         //Do your magic here
         $this->load->model('m_school');
         if ($this->session->userdata('said') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
+        $this->load->library(array('email', 'upload', 'MY_Upload', 'excel'));
     }
 
 	public function index($id='',$year='')
@@ -111,9 +112,10 @@ class School extends CI_Controller {
     }
 
 
-    public function schoolGet($value='')
+    public function schoolGet($year='')
     {
         $data['title']    = 'Institutes';
+        $data['count'] = $this->m_school->schoolcount($year);
         $this->load->view('school/all', $data, FALSE);
     }
 
@@ -187,6 +189,64 @@ class School extends CI_Controller {
             $data['result']= $this->m_school->requestLists();
             $this->load->view('school/request-list.php', $data, FALSE);
         }
+    }
+
+
+    /**
+     * Institute -> Bulk upload
+     * url : upload-institute
+     * @param : id
+    **/
+    public function import_excel()
+    {
+        if (isset($_FILES["file"]["name"])) {
+            $path = $_FILES["file"]["tmp_name"];
+            $object = PHPExcel_IOFactory::load($path);
+            foreach ($object->getWorksheetIterator() as $worksheet) {
+                $highestRow = $worksheet->getHighestRow();
+                $highestColumn = $worksheet->getHighestColumn();
+                for ($row = 2; $row <= $highestRow; $row++) {
+                    $regno  = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $school = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $mtype  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $scat   = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    $stype   = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                    $rtype  = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                    $taluk  = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+                    $talluk = $this->m_school->imptalluk($taluk);
+                    $insert = array(
+                        'reg_no'            => $regno, 
+                        'school_address'    => $school, 
+                        'management_type'   => $mtype, 
+                        'school_category'   => $scat, 
+                        'school_type'       => $stype, 
+                        'urban_rural'       => $rtype, 
+                        'taluk'             => $talluk->id,
+                        'status'            => '1',
+                    );
+
+                    $output[] = $this->m_school->insertbulk($insert);
+                    
+                    if (empty($output[$row])) {
+                        $out[] = $row;
+                    }
+
+                    
+                }
+            }
+
+            if(!empty($out)){
+                $out1 = str_replace(" ",",",implode(" ",$out));
+                
+                $this->session->set_flashdata('error', 'Unable to insert the row '.$out1.'<br> please try again');
+            }else{
+                $this->session->set_flashdata('success', 'Product added  Successfully');
+            }
+            redirect('institute-add', 'refresh');
+
+
+        }
+
     }
 
 }

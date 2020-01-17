@@ -128,6 +128,11 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
     <?php $this->load->view('include/msg'); ?>
     <script>
+        $(document).ready(function() {
+            $('.si-m >.collapsible-body').css({
+                display: 'block',
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(document.querySelectorAll('select'));
         });

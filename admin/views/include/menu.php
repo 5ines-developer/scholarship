@@ -13,9 +13,8 @@
               <div class="collapsible-header"><i class="material-icons">school</i>Institute Management</div>
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institutes" class="<?php echo($this->uri->segment(1) == 'institutes') ? 'active' :'' ?>">All Institute</a></span></div>
-              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute" class="<?php echo($this->uri->segment(1) == 'institute') ? 'active' :'' ?>">Active Institute</a></span></div>
-              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute" class="<?php echo($this->uri->segment(1) == 'institute') ? 'active' :'' ?>">Inactive Institute</a></span></div>
-              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute-request" class="<?php echo($this->uri->segment(1) == 'institute-request') ? 'active' :'' ?>">Institute Add Request</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute" class="<?php echo($this->uri->segment(1) == 'institute') ? 'active' :'' ?>">Registered Institute</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute-request" class="<?php echo (($this->uri->segment(1) == 'institute-request') || ($this->uri->segment(1) == 'institute-add')) ? 'active' :'' ?>">Institute Add Request</a></span></div>
 
 
 

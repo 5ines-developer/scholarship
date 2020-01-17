@@ -30,17 +30,66 @@
             <div class="container-wrap1 ">
                 <div class="row m0 ">
                     <div class="col s12 m3 l3 hide-on-med-and-down ">
-                            <?php $this->load->view('include/menu'); ?>
+                        <?php $this->load->view('include/menu'); ?>
                     </div>
                     <!-- End menu-->
 
                     <div class="col s12 m9 l9 ">
+
+                        <div class="row">
+                        <div class="top-count">                     
+                            <div class="col s12 m3">
+                              <div class="card green hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                   <p><?php echo $count['tot'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Total Institute</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m3">
+                              <div class="card orange hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">how_to_reg</i></span>
+                                   <p><?php echo $count['reg_yer'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Registered in <?php echo date('Y') ?></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m3">
+                              <div class="card blue darken-1 hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                   <p><?php echo $count['app_year'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Active Institute</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m3">
+                              <div class="card green  darken-4 hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">insert_drive_file</i></span>
+                                   <p><?php echo $count['app_schl'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Scholarship Applied</span>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </div>
+
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Institute  List</span>
-                                    <a href="<?php echo base_url('institute-add') ?>"><button class="back-btn z-depth-1 waves-effect waves-ligh add-btn">
-                                        <i class="material-icons add-icon ">add</i><span>Add</span></button></a>
+                                    <a href="<?php echo base_url('institute-add') ?>" class="back-btn z-depth-1 waves-effect waves-ligh add-btn"> <i class="material-icons add-icon ">add</i><span>Add</span></a>
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">
@@ -94,6 +143,11 @@
     <!-- data table -->
     <?php $this->load->view('include/msg'); ?>
     <script>
+        $(document).ready(function() {
+            $('.si-m >.collapsible-body').css({
+                display: 'block',
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
             var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {

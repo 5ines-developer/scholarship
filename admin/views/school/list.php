@@ -89,8 +89,6 @@
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Institute  List</span>
-                                    <a href="<?php echo base_url('institute-add') ?>"><button class="back-btn z-depth-1 waves-effect waves-ligh add-btn">
-                                        <i class="material-icons add-icon ">add</i><span>Add</span></button></a>
                                 </div>
                                 <div class="board-content ">
 
@@ -189,6 +187,11 @@
     <!-- data table -->
     <?php $this->load->view('include/msg'); ?>
     <script>
+        $(document).ready(function() {
+            $('.si-m >.collapsible-body').css({
+                display: 'block',
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
             var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
