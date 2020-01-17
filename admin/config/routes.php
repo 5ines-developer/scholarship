@@ -17,6 +17,9 @@ $route['account-activation/(:any)'] = 'auth/account_activation/$1';
 $route['set-password']              = 'auth/set_password';
 // dashboard
 $route['dashboard']                 = 'dashboard';
+$route['profile']                 	= 'dashboard/profile';
+$route['change-password']           = 'dashboard/changepassword';
+$route['update-password']           = 'dashboard/updatepassword';
 // employee management
 $route['employee']                  = 'employee';
 $route['employee/add']              = 'employee/add';

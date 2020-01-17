@@ -161,7 +161,7 @@
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/vfs_fonts.js "></script>
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js "></script>
     <!-- data table -->
-    <?php $this->load->view('include/menu'); ?>
+    <?php $this->load->view('include/msg'); ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));

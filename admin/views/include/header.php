@@ -42,8 +42,8 @@
         </nav>
 
         <ul id='dropdown1' class='dropdown-content'>
-              <li><a href="#">Account Settings</a></li>
-              <li><a href="#">Change Password</a></li>
+              <li><a href="<?php echo base_url('profile')?>">Account Settings</a></li>
+              <li><a href="<?php echo base_url('change-password') ?>">Change Password</a></li>
               <li><a href="<?php echo base_url('logout')?>">Logout</a></li>
             </ul>
     </header>
