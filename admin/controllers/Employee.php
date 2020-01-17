@@ -81,15 +81,40 @@ class Employee extends CI_Controller {
         }
     }
 
-    public function detail($id='')
+    public function edit($id='')
     {
         $data['title'] = 'Employee List | Scholarship';
         $data['result'] = $this->M_employee->singleEmployee($id);
-        echo "<pre>";
-        print_r ($data);
-        echo "</pre>";
-        $this->load->view('employee/detail', $data, FALSE);
+        $this->load->view('employee/edit', $data, FALSE);
     }
+
+
+    public function block($value='')
+    {
+        $id = $this->input->get('id');
+        $status = '2';
+
+        if($this->M_employee->stasChange($id,$status)){
+            $this->session->set_flashdata('success', 'Employee Blocked Successfully');
+        }else{
+            $this->session->set_flashdata('Error', 'Something went wrong please try again!');
+        }
+       redirect('employee','refresh');
+    }
+
+    public function unblock($value='')
+    {
+        $id = $this->input->get('id');
+        $status = '1';
+        if($this->M_employee->stasChange($id,$status)){
+            $this->session->set_flashdata('success', 'Employee Unblocked Successfully');
+        }else{
+            $this->session->set_flashdata('error', 'Something went wrong please try again!');
+        }
+        redirect('employee','refresh');
+    }
+
+
 
 }
 

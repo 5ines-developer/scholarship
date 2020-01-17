@@ -14,15 +14,25 @@ class M_employee extends CI_Model {
 
     public function getEmployee( $var = null)
     {
-        // ->where('type !=','1')
-        return $this->db->get('admin')->result();
+        return $this->db->where('type !=','1')->get('admin')->result();
     }
 
     public function singleEmployee($id='')
     {
-        // ->where('type !=','1')
-        return $this->db->where('id', $id)->get('admin')->result();
+        
+        return $this->db->where('id', $id)->where('type !=','1')->get('admin')->row();
     }
+
+    public function stasChange($id='',$status='')
+  {
+    $this->db->where('id', $id)->where('type !=','1')->update('admin', array('status' => $status));
+    if($this->db->affected_rows() > 0){
+      return true;
+    }
+    else{
+       return false;
+    }
+  }
 
 }
 /* End of file M_employee.php */

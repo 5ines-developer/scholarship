@@ -35,27 +35,27 @@
                                         <div class="col s12 m12 l12">
                                             <form action="<?php echo base_url() ?>employee/add" method="post">
                                                 <div class="input-field col m8">
-                                                    <input id="em_name" name="em_name" required type="text" class="validate">
+                                                    <input id="em_name" name="em_name" required type="text" class="validate" value="<?php echo (!empty($result->name))?$result->name:''; ?>">
                                                     <label for="em_name">Employee Name</label>
                                                 </div>
                                                 <div class="input-field col m8">
-                                                    <input id="email" name="email" required type="email" class="validate">
+                                                    <input id="email" readonly name="email" required type="email" class="validate" value="<?php echo (!empty($result->email))?$result->email:''; ?>">
                                                     <label for="email">Email</label>
                                                     <?php echo validation_errors(); ?>
                                                 </div>
                                                 <div class="input-field col m8">
-                                                    <input id="phone" name="phone" required type="number" class="validate">
+                                                    <input id="phone" name="phone" required type="number" class="validate" value="<?php echo (!empty($result->phone))?$result->phone:''; ?>">
                                                     <label for="phone">Phone</label>
                                                 </div>
                                                 <div class="col sel-hr s12 m8">
                                                     <label >Employee Designation</label>
                                                     <p class="mb10 mt10">
                                                         <label>
-                                                            <input class="with-gap" name="designation" value="2" type="radio"  checked />
+                                                            <input class="with-gap" name="designation" value="2" type="radio"  <?php echo ($result->type == '2')?'checked':''; ?> />
                                                             <span>Verification</span>
                                                         </label>
                                                         <label class="ml20">
-                                                            <input class="with-gap" name="designation" value="3" type="radio"  />
+                                                            <input class="with-gap" name="designation" value="3" type="radio"  <?php echo ($result->type == '3')?'checked':''; ?>/>
                                                             <span>Financial</span>
                                                         </label>
                                                     </p>

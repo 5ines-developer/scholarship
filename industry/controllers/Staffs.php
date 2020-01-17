@@ -97,29 +97,27 @@ class Staffs extends CI_Controller {
 
     public function block($value='')
     {
-        $id = $this->input->post('id');
+        $id = $this->input->get('id');
         $status = '2';
 
         if($this->M_staffs->stasChange($id,$status)){
-             $data = array('status' => 1, 'msg' => '🙂 Staff Blocked Successfully ');
+            $this->session->set_flashdata('success', 'Staff Blocked Successfully');
         }else{
-            $this->output->set_status_header('400');
-            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+            $this->session->set_flashdata('Error', 'Something went wrong please try again!');
         }
-        echo json_encode($data);
+       redirect('staffs','refresh');
     }
 
     public function unblock($value='')
     {
-        $id = $this->input->post('id');
+        $id = $this->input->get('id');
         $status = '1';
         if($this->M_staffs->stasChange($id,$status)){
-             $data = array('status' => 1, 'msg' => '🙂 Staff Unblocked  Successfully ');
+            $this->session->set_flashdata('success', 'Staff Unblocked Successfully');
         }else{
-            $this->output->set_status_header('400');
-            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+            $this->session->set_flashdata('error', 'Something went wrong please try again!');
         }
-        echo json_encode($data);
+        redirect('staffs','refresh');
     }
 
 

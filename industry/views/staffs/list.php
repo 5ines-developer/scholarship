@@ -25,7 +25,6 @@
                             <div>
                                 <a class="waves-effect waves-light hoverable btn-theme btn right capitalize" href="<?php echo base_url()  ?>staffs/create">  <i class="material-icons tiny left">add</i> Add new staff</a>
                                 <span class="card-title">Verification staffs</span>
-                                <input type="hidden" v-model="id">
                             </div>
                                 <div class="board-content">
                                     <div class="row m0">
@@ -41,20 +40,33 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($staffs as $key => $value) { ?>
+                                                <?php foreach ($staffs as $key => $value) { 
+                                                    if(empty($value->status)) { 
+                                                        $sts    =  '<span class="red-text">Inactive</span>'; 
+                                                        $block  =   "display:block";
+                                                        $un     =   "display:none";
+                                                    }else if((!empty($value->status)) && ($value->status == 1)) {
+                                                        $sts    =  '<span class="green-text">Active</span>'; 
+                                                        $block  =   "display:block";
+                                                        $un     =   "display:none";
+                                                    }else {
+                                                        $sts    =  '<span class="red-text">Blocked</span>'; 
+                                                        $block  =   "display:none";
+                                                        $un     =   "display:block";
+                                                    }
+
+                                                    ?>
                                                     <tr>
                                                         <td><?php echo (!empty($staffs))?$key + 1:''; ?></td>
                                                         <td><?php echo (!empty($value->name))?$value->name:''; ?></td>
                                                         <td><?php echo (!empty($value->email))?$value->email:''; ?></td>
                                                         <td><?php echo (!empty($value->mobile))?$value->mobile:''; ?></td>
+                                                        <td> <?php echo $sts ?> </td> 
                                                         <td>
-                                                            <span v-bind:style="{ color: activeColor}">{{actve}}</span>
+                                                            <a style="<?php echo $block ?>" href="<?php echo base_url('staffs/block?id='.$value->id.'') ?>"  class="btn-small right red darken-3 waves-effect waves-light">Block</a>
+                                                            <a style="<?php echo $un ?>" href="<?php echo base_url('staffs/unblock?id='.$value->id.'') ?>" class="btn-small right green darken-3 waves-effect waves-light">Unblock</a>
                                                         </td>
-                                                        <td>
-                                                            <a :class="{hide:hiden}"  class="btn-small right red darken-3 waves-effect waves-light" @click="staffBlock">Block</a>
-                                                            <a :class="{hide:hiden1}" @click="unBlock" class="btn-small right green darken-3 waves-effect waves-light">Unblock</a>
-                                                        </td>
-                                                    </tr>      
+                                                    </tr>
                                                 <?php } if(empty($staffs)){ ?>
                                                     <tr>
                                                         <td colspan="6">No result found</td>
@@ -87,8 +99,8 @@
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
-<?php $this->load->view('include/msg'); ?>
 <script>
+<?php $this->load->view('include/msg'); ?>
    
 
 
@@ -96,59 +108,12 @@
         el: '#app',
         data: {
             loader:false,
-            deactivate:'',
-            id:'<?php echo (!empty($value->id))?$value->id:''; ?>',
-            loginType:'',
-            hiden:'<?php echo ((!empty($value->id)) && ($value->status == '2'))?true:false; ?>',
-            hiden1:'<?php echo ((!empty($value->status)) && ($value->status == '1'))?true:false; ?>',
-            actve:'<?php 
-
-            if(empty($value->status)) { echo 'Inactive'; }else if((!empty($value->status)) && ($value->status == 1)){ echo 'Active'; }else
-            { echo 'Blocked'; } 
-
-            ?>',
-            activeColor:'<?php if((!empty($value->status)) && ($value->status == 1)){ echo 'green'; }else{ echo 'red'; } ?>',
           
         },  
         mounted(){
         },
         methods:{
-            staffBlock(){
-                 loader = true;
-               const formData = new FormData();
-               formData.append('id',this.id);
-               axios.post('<?php echo base_url('staffs/block') ?>',formData)
-               .then(response => {
-                    loader = false;
-                    msg = response.data.msg;
-                    this.hiden1 = false;
-                    this.hiden = true;
-                    this.actve = 'Blocked';
-                    this.activeColor = 'red';
-                    M.toast({html: msg, classes: 'green', displayLength : 5000 });
-               })
-               .catch(error =>{
-                 this.errormsg = error.response.data.error;
-               })
-            },
-            unBlock(){
-                loader = true;
-                    const formData = new FormData();
-                   formData.append('id',this.id);
-                   axios.post('<?php echo base_url('staffs/unblock') ?>',formData)
-                   .then(response => {
-                        msg = response.data.msg;
-                        loader = false;
-                        this.hiden = false;
-                        this.hiden1 = true;
-                        this.actve = 'Active';
-                        this.activeColor = 'green';
-                        M.toast({html: msg, classes: 'green', displayLength : 5000 });
-                   })
-                   .catch(error =>{
-                     this.errormsg = error.response.data.error;
-                   })
-            }
+          
             
         }
     })

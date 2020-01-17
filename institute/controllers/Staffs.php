@@ -100,5 +100,31 @@ class Staffs extends CI_Controller {
         exit();
     }
 
+
+    public function block($value='')
+    {
+        $id = $this->input->get('id');
+        $status = '3';
+
+        if($this->M_staffs->stasChange($id,$status)){
+            $this->session->set_flashdata('success', 'Staff Blocked Successfully');
+        }else{
+            $this->session->set_flashdata('Error', 'Something went wrong please try again!');
+        }
+       redirect('staffs','refresh');
+    }
+
+    public function unblock($value='')
+    {
+        $id = $this->input->get('id');
+        $status = '1';
+        if($this->M_staffs->stasChange($id,$status)){
+            $this->session->set_flashdata('success', 'Staff Unblocked Successfully');
+        }else{
+            $this->session->set_flashdata('error', 'Something went wrong please try again!');
+        }
+        redirect('staffs','refresh');
+    }
+
 }
 /* End of file Staffs.php */

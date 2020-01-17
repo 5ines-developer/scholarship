@@ -42,24 +42,31 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($staffs as $key => $value) { ?>
+                                                <?php foreach ($staffs as $key => $value) { 
+                                                    if(empty($value->status)) { 
+                                                        $sts    =  '<span class="red-text">Inactive</span>'; 
+                                                        $block  =   "display:block";
+                                                        $un     =   "display:none";
+                                                    }else if((!empty($value->status)) && ($value->status == 1)) {
+                                                        $sts    =  '<span class="green-text">Active</span>'; 
+                                                        $block  =   "display:block";
+                                                        $un     =   "display:none";
+                                                    }else {
+                                                        $sts    =  '<span class="red-text">Blocked</span>'; 
+                                                        $block  =   "display:none";
+                                                        $un     =   "display:block";
+                                                    }
+                                                    ?>
                                                     <tr>
                                                         <td><?php echo $key + 1 ?></td>
                                                         <td><?php echo $value->name ?></td>
                                                         <td><?php echo $value->email ?></td>
                                                         <td><?php echo $value->phone ?></td>
+                                                        <td> <?php echo $sts ?> </td>
                                                         <td>
-                                                            <?php 
-                                                                if($value->status == 0){
-                                                                    echo '<span class="red-text">Not Activated</span>';
-                                                                }elseif($value->status == 1){
-                                                                    echo '<span class="green-text">Active</span>';
-                                                                }else{
-                                                                    echo '<span class="red-text">Block</span>';
-                                                                }
-                                                            ?>
+                                                            <a style="<?php echo $block ?>" href="<?php echo base_url('staffs/block?id='.$value->id.'') ?>"  class="btn-small right red darken-3 waves-effect waves-light">Block</a>
+                                                            <a style="<?php echo $un ?>" href="<?php echo base_url('staffs/unblock?id='.$value->id.'') ?>" class="btn-small right green darken-3 waves-effect waves-light">Unblock</a>
                                                         </td>
-                                                        <td></td>
                                                     </tr>      
                                                 <?php } if(empty($staffs)){ ?>
                                                     <tr>

@@ -69,16 +69,26 @@
                                                             <td class="">
                                                                 <?php
                                                                 if ($value->status == 1) {
-                                                                    $stat = 'Active'; ?>
+                                                                    $blc = 'display:block'; 
+                                                                    $unbl = 'display:none'; 
+                                                                ?>
                                                                     <p class="status">Active</p>
-                                                                <?php }else{ ?>
-                                                                   <p class="status red">Inactive</p>
+                                                                <?php }else if($value->status == 2){ 
+                                                                    $blc = 'display:none'; 
+                                                                    $unbl = 'display:block'; 
+                                                                    ?>
+                                                                   <p class="status red">Blocked</p>
+                                                                <?php }else{ 
+                                                                    $blc = 'display:none'; 
+                                                                    $unbl = 'display:block'; 
+                                                                ?>
+                                                                    <p class="status red">Inactive</p>
                                                                 <?php } ?> 
                                                             </td>
-                                                            <td class="action-btn center-align">
-                                                                <a href="<?php echo base_url('employee/detail/').$value->id ?>" class="blue-text"> View</a> &nbsp; &nbsp;
-                                                                <a href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
-                                                            </td>
+                                                            <td>
+                                                            <a style="<?php echo $blc ?>" href="<?php echo base_url('employee/block?id='.$value->id.'') ?>"  class="btn-small right red darken-3 waves-effect waves-light white-text">Block</a>
+                                                            <a style="<?php echo $unbl ?>" href="<?php echo base_url('employee/unblock?id='.$value->id.'') ?>" class="btn-small right green darken-3 waves-effect waves-light white-text">Unblock</a>
+                                                        </td>
                                                         </tr>
                                                 <?php   }
                                                 }
@@ -97,49 +107,7 @@
             </div>
         </section>
 
-        <!-- bulk upload file -->
-        <!-- Modal Structure -->
-        <!-- Modal Structure -->
-        <div id="import" class="modal">
-            <div class="modal-content company-mc">
-                <h4>Bulk Upload Document</h4>
-                <a href="#!" class="modal-close">
-                    <i class="material-icons cc-close">close</i>
-                </a>
-            </div>
-            <div class="modal-footer company-mf">
-                <form action="">
-                    <div class="form-file">
-                        <div class="row">
-                            <div class="col l12 s12 m12">
-                                <div class="file-field input-field col l12 m0 upload-fil">
-                                    <div class="btn ">
-                                        <span>File</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" placeholder="Upload hr detail" type="text" required="">
-                                    </div>
-                                </div>
-                                <div class="col l12">
-                                    <div class="ff-inp">
-                                        <p><b>Note:</b>File should be in .pdf / .jpg format Size should be not more than 200KB</p>
-                                    </div>
-                                </div>
-                                <div class="col l12 m12 s12">
-                                    <center> <button class="btn-sub z-depth-1 waves-effect waves-light">
-                                        Submit</button></center>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                </form>
-
-            </div>
-        </div>
+        
         <!-- footer -->
         <?php $this->load->view('include/footer'); ?>
         <!-- End footer -->
@@ -161,8 +129,8 @@
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/vfs_fonts.js "></script>
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js "></script>
     <!-- data table -->
-    <?php $this->load->view('include/msg'); ?>
     <script>
+    <?php $this->load->view('include/msg'); ?>
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
             var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
