@@ -41,6 +41,7 @@ class M_student extends CI_Model {
 
   	public function stdcount($year='')
   	{
+  		$year = date('Y');
   		$data['reg_yer'] 	= $this->thisy_count($year);
   		$data['app_schl'] 	= $this->stscolar($year);
   		$data['app_year'] 	= $this->thisstscolar($year);
@@ -50,15 +51,8 @@ class M_student extends CI_Model {
 
   	public function thisy_count($year='')
   	{
-  		 if (empty($year)) {
-			$date  = explode("-",$year);
-			$sdate = date('Y') . '-01-01';
-			$edate = (date('Y')+1). '-01-01';
-		}else{
-			$date  = explode("-",$year);
-			$sdate = $date[0] . '-01-01';
-			$edate = $date[1] . '-01-01';
-		}
+  		$sdate = date('Y') . '-01-01';
+		$edate = date('Y'). '-12-31';
 		$this->db->where('date >=', $sdate);
 		$this->db->where('date <=', $edate);
 		return $this->db->where('status',1)->get('student')->num_rows();
@@ -72,15 +66,8 @@ class M_student extends CI_Model {
 
   	public function thisstscolar($year='')
   	{
-  		 if (empty($year)) {
-			$date  = explode("-",$year);
-			$sdate = date('Y') . '-01-01';
-			$edate = (date('Y')+1). '-01-01';
-		}else{
-			$date  = explode("-",$year);
-			$sdate = $date[0] . '-01-01';
-			$edate = $date[1] . '-01-01';
-		}
+  		$sdate = date('Y') . '-01-01';
+		$edate = date('Y'). '-12-31';
 		$this->db->where('date >=', $sdate);
 		$this->db->where('date <=', $edate);
 		$this->db->group_by('application_year,Student_id');

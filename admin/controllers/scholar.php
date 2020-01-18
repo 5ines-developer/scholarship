@@ -12,18 +12,36 @@ class Scholar extends CI_Controller {
         if ($this->session->userdata('said') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
     }
 
-    public function index($value='')
+    public function index($district='')
     {
+        $dist = $this->input->get('district');
+        if (!empty($dist)) {
+            $district = $this->m_scholar->distGet($dist);
+        }
         $data['title'] = 'Scholarship List';
-        $data['taluk'] = $this->m_school->getTalluk();
         $data['district'] = $this->m_school->getDistrict();
+        $data['taluk'] = $this->m_school->getTalluk($district);
+        $data['count'] = $this->m_scholar->scholarcount();
         $this->load->view('scholar/list', $data, FALSE);        
     }
 
     public function allApplication($value='')
     {
-        echo $this->input->post('year');
-        $fetch_data   = $this->m_scholar->make_datatables();
+        $filt['year']   = $this->input->post('year');
+        $dist           = $this->input->post('district');
+        $tal            = $this->input->post('taluk');
+        $filt['caste']  = $this->input->post('caste');
+        $filt['item']  = $this->input->post('item');
+
+        if (!empty($dist)) {
+            $filt['district'] = $this->m_scholar->distGet($dist);
+        }
+
+        if (!empty($tal)) {
+            $filt['taluk'] = $this->m_scholar->talGet($tal);
+        }
+        
+        $fetch_data   = $this->m_scholar->make_datatables($filt);
         $data = array();
         foreach($fetch_data as $row)  
         {  
@@ -57,6 +75,7 @@ class Scholar extends CI_Controller {
             $sub_array[] = character_limiter($row->industry, 10);  
             $sub_array[] = $row->course.'-'.$row->clss;
             $sub_array[] = $row->application_year;  
+            $sub_array[] = $row->adharcard_no;  
             $sub_array[] = date('d M, Y',strtotime($row->date));  
             $sub_array[] = $row->district;  
             $sub_array[] = $row->taluk;  

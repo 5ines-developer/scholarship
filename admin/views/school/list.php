@@ -53,7 +53,7 @@
                               <div class="card orange hoverable">
                                 <div class="card-content white-text center-align">
                                   <span class="card-title center-align"><i class="material-icons">how_to_reg</i></span>
-                                   <p><?php echo $count['reg_yer'] ?></p>
+                                   <p><?php echo $count['cr_scool'] ?></p>
                                 </div>
                                 <div class="card-action center-align">
                                   <span class="white-text">Registered in <?php echo date('Y') ?></span>
@@ -64,7 +64,7 @@
                               <div class="card blue darken-1 hoverable">
                                 <div class="card-content white-text center-align">
                                   <span class="card-title center-align"><i class="material-icons">school</i></span>
-                                   <p><?php echo $count['app_year'] ?></p>
+                                   <p><?php echo $count['ac_inst'] ?></p>
                                 </div>
                                 <div class="card-action center-align">
                                   <span class="white-text">Active Institute</span>
@@ -75,7 +75,7 @@
                               <div class="card green  darken-4 hoverable">
                                 <div class="card-content white-text center-align">
                                   <span class="card-title center-align"><i class="material-icons">insert_drive_file</i></span>
-                                   <p><?php echo $count['app_schl'] ?></p>
+                                   <p><?php echo $count['tot_app'] ?></p>
                                 </div>
                                 <div class="card-action center-align">
                                   <span class="white-text">Scholarship Applied</span>

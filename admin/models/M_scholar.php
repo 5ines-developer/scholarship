@@ -48,9 +48,9 @@ class M_scholar extends CI_Model {
     }
 
 
-    public function make_datatables($value='')
+    public function make_datatables($filter='')
     {
-        $this->make_query();  
+        $this->make_query($filter);  
         if($_POST["length"] != -1)  
         {  
              $this->db->limit($_POST['length'], $_POST['start']);  
@@ -59,14 +59,60 @@ class M_scholar extends CI_Model {
         return $query->result();  
     }
 
-    public function make_query($value='')
+    public function make_query($filter='')
     {
 
-        $select_column = array('s.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district');
-        $order_column = array("s.name","a.school_id", "ind.name",null,"crs.course","a.application_year","a.application_state","a.status");  
+        $select_column = array('s.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district');
+        $order_column = array("s.name","a.school_id", "ind.name",null,"crs.course","a.application_year","a.application_state","a.status"); 
 
-        $this->db->select($select_column)
-        ->order_by('a.id', 'desc')
+
+        $this->db->select($select_column);
+
+        if (!empty($filter['item'])) {
+            if($filter['item'] =='approved'){
+                $stss = '1';
+            }else if($filter['item'] =='rejected'){
+                $stss = '2';
+            }else{
+                $stss = '0';
+            }
+            $this->db->group_start();
+             $this->db->where('a.status', $stss);
+            $this->db->group_end();
+        }
+
+
+        if (!empty($filter['year'])) {
+            $date  = explode("-",$filter['year']);
+            $sdate = $date[0];
+            $edate = $date[1];
+            $this->db->group_start();
+                $this->db->where('a.application_year >=', $sdate);
+                $this->db->where('a.application_year <=', $edate); 
+            $this->db->group_end();
+        }
+
+        if (!empty($filter['caste'])) { 
+            $this->db->group_start();
+            $this->db->where('ab.category', $filter['caste']); 
+            $this->db->group_end();
+        }
+
+        if (!empty($filter['district'])) {
+            $this->db->group_start();
+                $this->db->where('am.ins_district', $filter['district']);
+            $this->db->group_end();
+        }
+
+        if (!empty($filter['taluk'])) {
+            $this->db->group_start();
+                $this->db->where('am.ins_talluk', $filter['taluk']);
+            $this->db->group_end();
+        }
+
+
+
+        $this->db->order_by('a.id', 'desc')
         ->from('application a')
         ->join('applicant_marks m', 'm.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
@@ -84,16 +130,19 @@ class M_scholar extends CI_Model {
         ->join('class cls', 'cls.id = m.class', 'left');
 
         if(isset($_POST["search"]["value"])){
-            $this->db->like("s.name", $_POST["search"]["value"]);  
-            $this->db->or_like("rs.school_address", $_POST["search"]["value"]);
-            $this->db->or_like("ind.name", $_POST["search"]["value"]);
-            $this->db->or_like("cls.clss", $_POST["search"]["value"]);
-            $this->db->or_like("crs.course", $_POST["search"]["value"]);
-            $this->db->or_like("cls.clss", $_POST["search"]["value"]);
-            $this->db->or_like("tq.title", $_POST["search"]["value"]);
-            $this->db->or_like("cty.title", $_POST["search"]["value"]);
-            $this->db->or_like("a.application_year", $_POST["search"]["value"]);
-            $this->db->or_like("a.date", $_POST["search"]["value"]);
+            $this->db->group_start();
+                $this->db->like("s.name", $_POST["search"]["value"]);  
+                $this->db->or_like("rs.school_address", $_POST["search"]["value"]);
+                $this->db->or_like("ind.name", $_POST["search"]["value"]);
+                $this->db->or_like("cls.clss", $_POST["search"]["value"]);
+                $this->db->or_like("crs.course", $_POST["search"]["value"]);
+                $this->db->or_like("cls.clss", $_POST["search"]["value"]);
+                $this->db->or_like("tq.title", $_POST["search"]["value"]);
+                $this->db->or_like("cty.title", $_POST["search"]["value"]);
+                $this->db->or_like("a.application_year", $_POST["search"]["value"]);
+                $this->db->or_like("a.date", $_POST["search"]["value"]);
+                $this->db->or_like("ab.adharcard_no", $_POST["search"]["value"]);
+            $this->db->group_end();
         }
 
         if(isset($_POST["order"]))  
@@ -119,6 +168,17 @@ class M_scholar extends CI_Model {
         return $this->db->count_all_results();
     }
 
+    public function distGet($dist='')
+    {
+        return $this->db->where('title', $dist)->get('city')->row('id');
+    }
+
+    public function talGet($tal='')
+    {
+        return $this->db->where('title', $tal)->get('taluq')->row('id');
+    }
+
+
     public function emailGet($id='')
     {
         return $this->db->select('email')->where('id',$id)->get('student')->row('email');
@@ -142,6 +202,50 @@ class M_scholar extends CI_Model {
     {
         $this->db->where('id', $id);
         return $this->db->update('application', $data);
+    }
+
+    public function scholarcount($year='')
+    {
+        $year = date('Y');
+        $data['approved']   = $this->approved();
+        $data['rejected']   = $this->rejected($year);
+        $data['ap_this']   = $this->apl_this($year);
+        $data['tot']        = $this->db->get('application')->num_rows();
+        return $data;
+    }
+
+    public function approved()
+    {
+        $this->db->where('status', 1);
+        $this->db->where('application_state', 4);
+        return $this->db->get('application')->num_rows();
+    }
+
+    public function rejected($year='')
+    {
+        $this->db->where('status', 2);
+        return $this->db->get('application')->num_rows();
+    }
+
+    public function apl_this($year='')
+    {
+        $this->db->where('application_year', $year);
+        return $this->db->get('application')->num_rows();
+    }
+
+    public function imptalluk($taluk='')
+    {
+       return $this->db->where('title', $taluk)->get('taluq')->row();
+    }
+
+    public function insertbulk($insert='')
+    {
+        $query = $this->db->where('reg_no', $insert['reg_no'])->or_where('school_address', $insert['school_address'])->get('reg_schools');
+        if ($query->num_rows() > 0) {
+            return false;
+        }else{
+            return $this->db->insert('reg_schools', $insert);
+        }
     }
 
     

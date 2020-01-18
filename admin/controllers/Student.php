@@ -8,7 +8,7 @@ class Student extends CI_Controller {
         parent::__construct();
         //Do your magic here
         $this->load->model('m_student');
-        if ($this->session->userdata('said') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
+        if ($this->session->userdata('said') == '') { $this->session->set_flashdata('error','Please login and try again!'); redirect('login','refresh'); }
     }
 
 
@@ -22,7 +22,7 @@ class Student extends CI_Controller {
 			$this->load->view('student/detail.php', $data, FALSE);
 		}else{
 			$data['result']= $this->m_student->getStudent($year);
-            $data['count'] = $this->m_student->stdcount($year);
+            $data['count'] = $this->m_student->stdcount();
 			$this->load->view('student/list.php', $data, FALSE);
 		}
 	}

@@ -8,7 +8,7 @@ class School extends CI_Controller {
         parent::__construct();
         //Do your magic here
         $this->load->model('m_school');
-        if ($this->session->userdata('said') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
+        if ($this->session->userdata('said') == '') { $this->session->set_flashdata('error','Please login and try again!');redirect('login','refresh'); }
         $this->load->library(array('email', 'upload', 'MY_Upload', 'excel'));
     }
 

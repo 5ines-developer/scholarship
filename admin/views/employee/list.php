@@ -12,6 +12,7 @@
     <!-- data table -->
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.css ">
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/css/buttons.dataTables.css ">
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js "></script>
 </head>
 
 <body>

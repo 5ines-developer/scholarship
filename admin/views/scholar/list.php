@@ -34,34 +34,98 @@
                     </div>
                     <!-- End menu-->
                     <div class="col s12 m9 l9 ">
+
+
+                        <div class="row">
+                        <div class="top-count">                     
+                            <div class="col s12 m3">
+                              <div class="card green hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                   <p><?php echo $count['tot'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Total Applications</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m3">
+                              <div class="card orange hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">how_to_reg</i></span>
+                                   <p><?php echo $count['approved'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Approved Applications</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m3">
+                              <div class="card red darken-1 hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                   <p><?php echo $count['rejected'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Rejected Applications</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m3">
+                              <div class="card green  darken-4 hoverable">
+                                <div class="card-content white-text center-align">
+                                  <span class="card-title center-align"><i class="material-icons">insert_drive_file</i></span>
+                                   <p><?php echo $count['ap_this'] ?></p>
+                                </div>
+                                <div class="card-action center-align">
+                                  <span class="white-text">Applied in <?php echo date('Y') ?></span>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </div>
+                        
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Scholarship List</span>
-                                    <select class="browser-default" id="short">
+                                    <select class="browser-default select-list" fname="year" id="short">
                                         <option value="">Choose Year</option>
                                         <?php
-                                            for($i=2000; $i<= date('Y')+1 ; $i++){
-                                               echo '<option value="'.($i - 1) .'-'.($i ).'" >'.($i - 1) .'-'.($i ).'</option>';
-                                        } ?>
+                                            $yr = $this->input->get('year');
+                                            for($i=2000; $i<= date('Y')+1 ; $i++){ 
+                                            $year = ($i - 1).'-'.($i);
+                                            ?>
+                                               <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                                 <div class="board-content ">
                                     <div class="table-detail">
-                                        <select name="dist" id="dis-drp" class="district">
+                                        <select name="dist" fname="district" id="dis-drp" class="select-list">
                                                 <option value="" disabled selected>District</option>
-                                                <?php
-                                                if (!empty($district)) {
-                                                   foreach ($district as $key => $value) { 
-                                                       echo '<option value="'.$value->districtId.'">'.$value->district.'</option>';
-                                                } } ?>
-                                        </select>
-                                        <select name="dist" id="dis-drp" class="taluk">
-                                                <option value="" disabled selected>Taluk</option>
-                                                <?php if (!empty($taluk)) {
-                                                   foreach ($taluk as $key => $value) { ?> 
-                                                       <option value="<?php echo $value->tallukId ?>"><?php echo $value->talluk ?></option>
+                                                <?php if (!empty($district)) {
+                                                    $ds = $this->input->get('district');
+                                                   foreach ($district as $key => $value) { ?> 
+                                                       <option value="<?php echo $value->district ?>" <?php if($value->district == $ds){ echo 'selected="true"'; } ?>><?php echo $value->district ?></option>
                                                 <?php } } ?>
+                                               
+                                        </select>
+                                        <select name="dist" fname="taluk" id="dis-drp" class="select-list">
+                                                <option value="" disabled selected>Taluk</option>
+                                                <?php
+                                                if (!empty($taluk)) {
+                                                    $tl = $this->input->get('taluk');
+                                                   foreach ($taluk as $key => $value) { ?> 
+                                                       <option value="<?php echo $value->talluk ?>" <?php if($value->talluk == $tl){ echo 'selected="true"'; } ?>><?php echo $value->talluk ?></option>
+                                                <?php } } ?>
+                                        </select>
+                                        <select name="dist" fname="caste" id="dis-drp" class="select-list">
+                                            <option value="" disabled >Caste</option>
+                                            <option value="sc" <?php if($this->input->get('caste') == 'sc'){ echo 'selected="true"'; } ?>>SC</option>
+                                            <option value="st" <?php if($this->input->get('caste') == 'st'){ echo 'selected="true"'; } ?>>ST</option>
+                                            <option value="general" <?php if($this->input->get('caste') == 'general'){ echo 'selected="true"'; } ?>>General</option>
+                                            <option value="obc" <?php if($this->input->get('caste') == 'obc'){ echo 'selected="true"'; } ?>>OBC</option>
                                         </select>
                                     </div>
                                     <div class="hr-list">
@@ -72,6 +136,7 @@
                                                 <th id="c" class="h5-para-p2" style="width: 120px;">Industry</th>
                                                 <th id="g" class="h5-para-p2" style="width: 120px;">Present Class</th>
                                                 <th id="d" class="h5-para-p2" style="width: 120px;">Year</th>
+                                                <th id="d" class="h5-para-p2" style="width: 120px;">Adhaar No.</th>
                                                 <th id="e" class="h5-para-p2" style="width: 120px;">Applied Date</th>
                                                 <th id="f" class="h5-para-p2" style="width: 120px;">District</th>
                                                 <th id="g" class="h5-para-p2" style="width: 120px;">Talluk</th>
@@ -132,64 +197,47 @@
     </script>
     <script>
          $(document).ready(function() {
-            var year = '<?php $this->input->get('year') ?>';
-
-            $('#short').on('change',function(){
-                var year = $(this).val();
-
-                // if(window.location.href.indexOf("?") > 0) 
-                // {
-                //     var windowURL = window.location.href; 
-                //     var arr = windowURL.split('?')[0];
-                //     var url =  arr+'?year='+year;
-                // }else{
-                //     var url = window.location.href+'?year='+year;
-                // }
-
-                if(window.location.href.indexOf("?year") > 0) 
-                {
-                    var arr = window.location.href.split('?year')[0];
-                    // var district = window.location.href.split('&district=')[1];
-                    // var taluk = window.location.href.split('&taluk=')[1];
-                    alert(arr)
-                   
-                    var url = windowURL = arr+'&year='+year; 
-                }else{
-                    alert('no')
-                    var url = windowURL = window.location.href+'?year='+year; 
-                }
-                // window.location = url;
-            });
-
-            $('#district').on('change',function(){
-                var district = $(this).val();
-                if(window.location.href.indexOf("?") > 0) 
-                {
-                    var url = windowURL = window.location.href+'&district='+district; 
-                }else{
-                    var url = windowURL = window.location.href+'?district='+district; 
-                }
-
-                window.location = url;
-            });
-
-            $('#taluk').on('change',function(){
-                var taluk = $(this).val();
-                if(window.location.href.indexOf("?") > 0) 
-                {
-                    var url = windowURL = window.location.href+'&taluk='+taluk; 
-                }else{
-                    var url = windowURL = window.location.href+'?taluk='+taluk; 
-                }
-
-                window.location = url;
-            });
-
+            var yar     = '<?php echo $this->input->get('year') ?>';
+            var dist    = '<?php echo $this->input->get('district') ?>';
+            var tal     = '<?php echo $this->input->get('taluk') ?>';
+            var cas     = '<?php echo $this->input->get('caste') ?>';
+            var item     = '<?php echo $this->input->get('item') ?>';
             
 
+            $('.select-list').change(function(){
 
-            
+                if(window.location.href.indexOf("?") < 0){
+                    var windowUrl = window.location.href+'?';
+                } else{
+                    var windowUrl = window.location.href;
+                }
 
+                var val = $(this).val();
+                var name = '&'+$(this).attr('fname')+'=';
+                var names=$(this).attr('fname');
+                var url = windowUrl+name+val;
+                var originalURL = windowUrl+name+val;
+                var alteredURL = removeParam(names, originalURL);
+                window.location = alteredURL+name+val;
+            });
+
+            function removeParam(key, sourceURL) {
+                var rtn = sourceURL.split("?")[0],
+                    param,
+                    params_arr = [],
+                    queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+                if (queryString !== "") {
+                    params_arr = queryString.split("&");
+                    for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+                        param = params_arr[i].split("=")[0];
+                        if (param === key) {
+                            params_arr.splice(i, 1);
+                        }
+                    }
+                    rtn = rtn + "?" + params_arr.join("&");
+                }
+                return rtn;
+            }
 
             var dataTable = $('#dynamic').DataTable({
                   'processing' : true,
@@ -203,7 +251,7 @@
                     'url' : "<?php echo base_url(). 'scholar/allApplication' ?>",
                      'type' :'POST',
                      "data": {
-                        "param_name":  year
+                        "year":  yar,"district":  dist,"taluk":  tal,"caste":  cas,"item":  item,
                     }
                   },
                   'columnDefs':[
