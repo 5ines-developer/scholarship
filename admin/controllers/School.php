@@ -14,6 +14,8 @@ class School extends CI_Controller {
 
 	public function index($id='',$year='')
 	{
+        $district = $this->input->get('district');
+        $taluk    = $this->input->get('taluk');
 		$data['title']      = 'Institute Management';
 		if(!empty($id)){
 			$data['result']= $this->m_school->getSchool($id);
@@ -21,9 +23,9 @@ class School extends CI_Controller {
 			$data['emp']= $this->m_school->getEmployee($id);
 			$this->load->view('school/detail.php', $data, FALSE);
 		}else{
-			$data['result']= $this->m_school->getSchool($year);
+			$data['result']= $this->m_school->getSchool($year,$district,$taluk);
             $data['count'] = $this->m_school->schoolcount($year);
-            $data['taluk'] = $this->m_school->getTalluk();
+            $data['taluk'] = $this->m_school->getTalluk($district);
             $data['district'] = $this->m_school->getDistrict();
 			$this->load->view('school/list.php', $data, FALSE);
 		}

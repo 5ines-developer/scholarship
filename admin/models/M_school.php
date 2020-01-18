@@ -64,12 +64,11 @@ class M_school extends CI_Model {
 
 
 
-	public function getSchool($id='')
+	public function getSchool($id='',$district='',$taluk='')
 	{
-		if (!empty($id)) {
-			$this->db->where('schl.name', $id);
-		}
-		return $this->db->select('schl.name as id,rs.reg_no,rs.school_address,rs.management_type,rs.school_category,rs.school_type,rs.urban_rural,tq.title,cty.title as district,sca.status,schl.reg_certification,schl.principal,schl.priciple_signature,schl.seal,schl.created_on')
+        if (!empty($id)) {  $this->db->where('schl.name', $id); } 
+		if (!empty($taluk)) { $this->db->where('rs.taluk', $taluk); } 
+        return $this->db->select('schl.name as id,rs.reg_no,rs.school_address,rs.management_type,rs.school_category,rs.school_type,rs.urban_rural,tq.title,cty.title as district,sca.status,schl.reg_certification,schl.principal,schl.priciple_signature,schl.seal,schl.created_on')
 		->from('school schl')
 		->join('reg_schools rs', 'rs.id = schl.name', 'left')
 		->join('school_auth sca', 'sca.school_id = schl.id', 'left')

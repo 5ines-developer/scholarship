@@ -93,19 +93,21 @@
                                 <div class="board-content ">
 
                                     <div class="table-detail">
-                                        <select name="dist" id="dis-drp" class="district">
+                                        <select name="dist" fname="district" id="dis-drp" class="select-list">
                                                 <option value="" disabled selected>District</option>
                                                 <?php
                                                 if (!empty($district)) {
-                                                   foreach ($district as $key => $value) { 
-                                                       echo '<option value="'.$value->districtId.'">'.$value->district.'</option>';
-                                                } } ?>
+                                                     $ds = $this->input->get('district');
+                                                   foreach ($district as $key => $value) { ?>
+                                                    <option value="<?php echo $value->districtId ?>" <?php if($value->districtId == $ds){ echo 'selected="true"'; } ?>><?php echo $value->district ?></option>
+                                                <?php } } ?>
                                         </select>
-                                        <select name="dist" id="dis-drp" class="taluk">
+                                        <select name="dist" fname="taluk" id="dis-drp" class="select-list">
                                                 <option value="" disabled selected>Taluk</option>
                                                 <?php if (!empty($taluk)) {
+                                                    $tl = $this->input->get('taluk');
                                                    foreach ($taluk as $key => $value) { ?> 
-                                                       <option value="<?php echo $value->tallukId ?>"><?php echo $value->talluk ?></option>
+                                                       <option value="<?php echo $value->tallukId ?>" <?php if($value->tallukId == $tl){ echo 'selected="true"'; } ?>><?php echo $value->talluk ?></option>
                                                 <?php } } ?>
                                         </select>
                                     </div>
@@ -211,6 +213,42 @@
             });
             $('select').formSelect();
             $('.modal').modal();
+
+            $('.select-list').change(function(){
+                if(window.location.href.indexOf("?") < 0){
+                    var windowUrl = window.location.href+'?';
+                } else{
+                    var windowUrl = window.location.href;
+                }
+                var val = $(this).val();
+                var name = '&'+$(this).attr('fname')+'=';
+                var names=$(this).attr('fname');
+                var url = windowUrl+name+val;
+                var originalURL = windowUrl+name+val;
+                var alteredURL = removeParam(names, originalURL);
+                console.log(url);
+                console.log(windowUrl);
+                window.location = alteredURL+name+val;
+            });
+            function removeParam(key, sourceURL) {
+                var rtn = sourceURL.split("?")[0],
+                    param,
+                    params_arr = [],
+                    queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+                if (queryString !== "") {
+                    params_arr = queryString.split("&");
+                    for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+                        param = params_arr[i].split("=")[0];
+                        if (param === key) {
+                            params_arr.splice(i, 1);
+                        }
+                    }
+                    rtn = rtn + "?" + params_arr.join("&");
+                }
+                return rtn;
+            }
+
+
         });
 
         var app = new Vue({
