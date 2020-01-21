@@ -166,7 +166,6 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
     <?php $this->load->view('include/msg'); ?>
     <script>
         $(document).ready(function() {

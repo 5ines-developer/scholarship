@@ -8,7 +8,7 @@ class Payments extends CI_Controller {
         parent::__construct();
         $this->load->model('m_payments');
         $this->load->model('M_account');
-        if($this->session->userdata('pyId') == ''){ redirect('/','refresh'); }
+        // if($this->session->userdata('pyId') == ''){ redirect('/','refresh'); }
         $this->inId = $this->session->userdata('pyComp');
         $this->reg = $this->session->userdata('pyId');
         $this->load->helper('text');

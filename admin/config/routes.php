@@ -47,6 +47,9 @@ $route['institute-request']         	= 'school/requestLists';
 $route['institute-request/(:any)']      = 'school/requestLists/$1';
 $route['upload-institute']         		= 'school/import_excel';
 
+//industry management
+$route['industry']                  	= 'industry/index';
+$route['industry/detail/(:any)']        = 'industry/index/$1';
 
 
 

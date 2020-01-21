@@ -44,7 +44,7 @@
                                                                 <div class="profile-img">
                                                                     <?php 
                                                                     if((!empty($result[0]->reg_certification))){
-                                                                        $img = $this->config->item('web_url').'institute/'.$result[0]->reg_certification;
+                                                                        $img = $this->config->item('web_url').'industry/'.$result[0]->register_doc;
                                                                     }else{
                                                                          $img = 'https://via.placeholder.com/150';
                                                                     } ?>
@@ -71,53 +71,56 @@
                                                         <ul class="profile-ul">
                                                             <li>
                                                                 <p class="app-item-content-head">Name</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->school_address))?$result[0]->school_address:'---'; ?></p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->indNAme))?$result[0]->indNAme:'---'; ?></p>
                                                             </li>
                                                             <li>
-                                                                <p class="app-item-content-head">Management Type</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->management_type))?$result[0]->management_type:'---'; ?></p>
+                                                                <p class="app-item-content-head">Act</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->act ) && $result[0]->act == '1')?'Labour Act':'Factory Act'; ?></p>
                                                             </li>
                                                             <li>
-                                                                <p class="app-item-content-head">Institute Category</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->school_category))?$result[0]->school_category:'---'; ?></p>
-                                                            </li>
-                                                            <li>
-                                                                <p class="app-item-content-head">Institute Type</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->school_type))?$result[0]->school_type:'---'; ?></p>
-                                                            </li>
-                                                            <li>
-                                                                <p class="app-item-content-head">Region Type</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->urban_rural))?$result[0]->urban_rural:'---'; ?></p>
+                                                                <p class="app-item-content-head">Register Number</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->reg_id))?$result[0]->reg_id:'---'; ?></p>
                                                             </li>
                                                             <li>
                                                                 <p class="app-item-content-head">Taluk</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->title))?$result[0]->title:'---'; ?></p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->taluk))?$result[0]->taluk:'---'; ?></p>
                                                             </li>
                                                             <li>
                                                                 <p class="app-item-content-head">District</p>
                                                                 <p class="app-item-content"><?php echo (!empty($result[0]->district))?$result[0]->district:'---'; ?></p>
                                                             </li>
-
                                                             <li>
-                                                                <p class="app-item-content-head">Principal</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->principal))?$result[0]->principal:'---'; ?></p>
+                                                                <p class="app-item-content-head">Registered On</p>
+                                                                <p class="app-item-content"> <?php echo (!empty($result[0]->date))?date('d M, Y',strtotime($result[0]->date)):'---'; ?></p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Director</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->director))?$result[0]->director:'---'; ?></p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Email</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->email))?$result[0]->email:'---'; ?></p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="app-item-content-head">Phone</p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->mobile))?$result[0]->mobile:'---'; ?></p>
                                                             </li>
                                                             <?php 
-                                                                    if((!empty($result[0]->priciple_signature))){
-                                                                        $sign = $this->config->item('web_url').'institute/'.$result[0]->priciple_signature;
+                                                                    if((!empty($result[0]->sign))){
+                                                                        $sign = $this->config->item('web_url').'industry/'.$result[0]->sign;
 
                                                                     }else{
                                                                          $sign = 'https://via.placeholder.com/150';
                                                                     } ?>
 
                                                             <li>
-                                                                <p class="app-item-content-head">Principal Signature</p>
+                                                                <p class="app-item-content-head">Director Signature</p>
                                                                 <a target="_blank" href="<?php echo $sign ?>"><img src="<?php echo  $sign ?>" alt="" class="circle responsive-img" width="100px"></a>
                                                             </li>
 
                                                             <?php 
                                                                     if((!empty($result[0]->seal))){
-                                                                        $seal = $this->config->item('web_url').'institute/'.$result[0]->seal;
+                                                                        $seal = $this->config->item('web_url').'industry/'.$result[0]->seal;
 
                                                                     }else{
                                                                          $seal = 'https://via.placeholder.com/150';
@@ -128,10 +131,7 @@
                                                                 <a target="_blank" href="<?php echo $seal ?>"><img src="<?php echo  $seal ?>" alt="" class="circle responsive-img" width="100px"></a>
                                                             </li>
 
-                                                            <li>
-                                                                <p class="app-item-content-head">Registered On</p>
-                                                                <p class="app-item-content"> <?php echo (!empty($result[0]->created_on))?date('d M, Y',strtotime($result[0]->created_on)):'---'; ?></p>
-                                                            </li>
+                                                            
 
                                                         </ul>
                                                     </div>
@@ -197,7 +197,7 @@
                                                                             <tr role="row" class="odd">
                                                                                 <td><?php echo (!empty($value))?$key:'---'; ?></td>
                                                                                 <td><?php echo (!empty($value->email))?$value->email:'---'; ?></td>
-                                                                                <td><?php echo (!empty($value->phone))?$value->phone:'---'; ?></td>
+                                                                                <td><?php echo (!empty($value->mobile))?$value->mobile:'---'; ?></td>
                                                                                 <td><?php
                                                                                 if($value->status==1){
                                                                                     echo '<p class="status darken-2">Active</p>';
@@ -206,7 +206,7 @@
                                                                                 }else{
                                                                                     echo '<p class="status red darken-2">Blocked</p>';
                                                                                 } ?></td>
-                                                                                <td><?php echo (!empty($value->created_on))?date('d M, Y',strtotime($value->created_on)):'---'; ?></td>
+                                                                                <td><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></td>
                                                                             </tr>
                                                                             <?php } } ?>
                                                                         </tbody>
@@ -248,7 +248,6 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
     <!-- data table -->
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.js "></script>
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/dataTables.buttons.min.js "></script>
@@ -261,7 +260,7 @@
     <?php $this->load->view('include/msg'); ?>
     <script>
         $(document).ready(function() {
-            $('.si-m >.collapsible-body').css({
+            $('.sid-m >.collapsible-body').css({
                 display: 'block',
             });
         });
@@ -291,7 +290,7 @@
          var app = new Vue({
             el: '#app',
             data: {
-                block: <?php echo ($result[0]->status !='3')?'true':'false'; ?>,
+                block: <?php echo ($result[0]->status !='1')?'true':'false'; ?>,
                 unblock: <?php echo ($result[0]->status =='1')?'true':'false'; ?>,
                 id:<?php echo ($result[0]->id) ?>,
             },

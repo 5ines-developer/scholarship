@@ -27,6 +27,7 @@ class M_school extends CI_Model {
         $this->db->join('city cty', 'cty.id = tq.city_id', 'left');
 
         if(isset($_POST["search"]["value"])){
+            $this->db->group_start();
             $this->db->like("reg.reg_no", $_POST["search"]["value"]);  
             $this->db->or_like("reg.school_address", $_POST["search"]["value"]);
             $this->db->or_like("reg.management_type", $_POST["search"]["value"]);
@@ -35,6 +36,7 @@ class M_school extends CI_Model {
             $this->db->or_like("tq.title", $_POST["search"]["value"]);
             $this->db->or_like("reg.urban_rural", $_POST["search"]["value"]);
             $this->db->or_like("reg.status", $_POST["search"]["value"]);
+            $this->db->group_end();
         }
 
         if(isset($_POST["order"]))  
