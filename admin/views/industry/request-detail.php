@@ -46,7 +46,7 @@
                                                         <ul class="profile-ul">
                                                             <li>
                                                                 <p class="app-item-content-head">Name</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->name))?$result[0]->name:'---'; ?></p>
+                                                                <p class="app-item-content"><?php echo (!empty($result[0]->company))?$result[0]->company:'---'; ?></p>
                                                             </li>
                                                             <li>
                                                                 <p class="app-item-content-head">Email</p>
@@ -57,8 +57,14 @@
                                                                 <p class="app-item-content"><?php echo (!empty($result[0]->mobile))?$result[0]->mobile:'---'; ?></p>
                                                             </li>
                                                             <li>
-                                                                <p class="app-item-content-head">Pincode</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->pincode))?$result[0]->pincode:'---'; ?></p>
+                                                                <p class="app-item-content-head">Act</p>
+                                                                <p class="app-item-content"><?php if($result[0]->act == '1'){
+                                                                        echo "Factory Act";
+                                                                    }else{
+                                                                        echo "Labour Act";
+                                                                    }
+
+                                                                ?></p>
                                                             </li>
                                                             <li>
                                                                 <p class="app-item-content-head">Taluk</p>
@@ -75,24 +81,20 @@
                                                             </li>
                                                             <?php 
                                                                     if((!empty($result[0]->register_doc))){
-                                                                        $sign = $this->config->item('web_url').'institute/'.$result[0]->register_doc;
+                                                                        $sign = $this->config->item('web_url').'industry/'.$result[0]->register_doc;
 
                                                                     }else{
                                                                          $sign = 'https://via.placeholder.com/150';
                                                                     } ?>
 
                                                             <li>
-                                                                <p class="app-item-content-head">Principal Signature</p>
+                                                                <p class="app-item-content-head">Industry Register Document</p>
                                                                 <a target="_blank" href="<?php echo $sign ?>"><img src="<?php echo  $sign ?>" alt="" class="circle responsive-img" width="100px"></a>
                                                             </li>
-
-                                                           
-
                                                             <li>
                                                                 <p class="app-item-content-head">Requested On</p>
                                                                 <p class="app-item-content"> <?php echo (!empty($result[0]->date))?date('d M, Y',strtotime($result[0]->date)):'---'; ?></p>
                                                             </li>
-
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -140,7 +142,7 @@
     <?php $this->load->view('include/msg'); ?>
     <script>
         $(document).ready(function() {
-            $('.si-m >.collapsible-body').css({
+            $('.sid-m >.collapsible-body').css({
                 display: 'block',
             });
         });

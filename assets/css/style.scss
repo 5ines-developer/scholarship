@@ -2918,3 +2918,16 @@
         display: inline-block;
         margin: 0 10px 10px 17px;
     }
+    
+    table.striped>tbody>tr>td {
+        border-radius: 0;
+        text-align: left;
+    }
+    
+    .hr-list {
+        overflow: auto;
+    }
+    
+    .mail-wdth {
+        width: 250px;
+    }

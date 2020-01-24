@@ -145,7 +145,7 @@ class M_school extends CI_Model {
         $this->db->from('school_add sca');
         $this->db->join('taluq tq', 'tq.id = sca.taluk', 'left');
         $this->db->join('city cty', 'cty.id = sca.district', 'left');
-        return $this->db->get('school_add')->result();
+        return $this->db->get()->result();
     }
 
     public function getEmployee($id='')

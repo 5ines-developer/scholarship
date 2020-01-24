@@ -96,7 +96,7 @@ class M_industry extends CI_Model {
 
     public function getCompany($id='')
     {
-        $this->db->select('in.id as indId, in.name as indNAme, ir.name as director, ir.email, ir.mobile, in.reg_id,in.act,ir.talluk,ir.district, ir.register_doc,ir.gst_no,ir.pan_no, ir.pancard, ir.gst, ir.address, c.title as district, t.title as taluk,ir.date,ir.seal,ir.sign');
+        $this->db->select('in.id as indId, in.name as indNAme, ir.name as director, ir.email, ir.mobile, in.reg_id,in.act,ir.talluk,ir.district, ir.register_doc,ir.gst_no,ir.pan_no, ir.pancard, ir.gst, ir.address, c.title as district, t.title as taluk,ir.date,ir.seal,ir.sign,ir.status');
         $this->db->where('ir.industry_id', $id);
         $this->db->where('ir.type', '1');
         $this->db->from('industry_register ir');
@@ -122,7 +122,126 @@ class M_industry extends CI_Model {
         return $this->db->where('type !=','1')->where('industry_id',$id)->get('industry_register')->result();
     }
 
+    /******** fetch all industries ************/
+    function make_datatables(){  
+        $this->make_query();  
+        if($_POST["length"] != -1)  
+        {  
+             $this->db->limit($_POST['length'], $_POST['start']);  
+        }  
+        $query = $this->db->get(); 
+        return $query->result();  
+    }
+
+    public function make_query($value='')
+    {
+        $select_column = array('ind.id','ind.reg_id','ind.name','ind.taluq','ind.act','ind.created_on');
+        $order_column = array('ind.id','ind.reg_id','ind.name','ind.taluq','ind.act','ind.created_on',null );  
+
+        $this->db->select($select_column);
+        $this->db->from('industry ind');
+        if(isset($_POST["search"]["value"])){
+            $this->db->group_start();
+            $this->db->like("ind.reg_id", $_POST["search"]["value"]);  
+            $this->db->or_like("ind.name", $_POST["search"]["value"]);
+            $this->db->or_like("ind.taluq", $_POST["search"]["value"]);
+            $this->db->or_like("ind.act", $_POST["search"]["value"]);
+            $this->db->or_like("ind.created_on", $_POST["search"]["value"]);
+            $this->db->group_end();
+        }
+
+        if(isset($_POST["order"]))  
+        {  
+            $this->db->order_by($order_column[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);  
+        }  
+        else  
+        {  
+            $this->db->order_by('ind.name', 'ASC');  
+        }  
+    }
+
+
+    function get_filtered(){  
+        $this->make_query();  
+        $query = $this->db->get();  
+        return $query->num_rows();  
+    } 
+
+    function get_all()  
+    {  
+        $select_column = array('ind.id','ind.reg_id','ind.name','ind.taluq','ind.act','ind.created_on');
+        $this->db->select($select_column);
+        $this->db->from('industry ind');
+        return $this->db->count_all_results();
+    }
+
+    public function requestLists($id='')
+    {
+        if(!empty($id)){
+            $this->db->where('inad.id', $id);
+        }
+        $this->db->select('inad.id,inad.company,inad.email,inad.mobile,inad.act,inad.gst_no,inad.address,
+            inad.register_doc,inad.date,tq.title as taluk,cty.title as district'); 
+        $this->db->order_by('inad.id', 'desc');
+        $this->db->from('industry_add inad');
+        $this->db->join('taluq tq', 'tq.id = inad.talluk', 'left');
+        $this->db->join('city cty', 'cty.id = inad.district', 'left');
+        return $this->db->get()->result();
+    }
 	
+
+    public function add($insert='')
+    {
+        return $this->db->where('reg_id !=', $insert['reg_id'])->insert('industry',$insert);
+    }
+
+    public function getedit($id='')
+    {
+        $this->db->select('ind.id,ind.reg_id,ind.name,ind.act');
+        $this->db->where('ind.id', $id);
+        $this->db->from('industry ind');
+        return $this->db->get()->row();
+    }
+
+    public function update($id='',$update='')
+    {
+        return $this->db->where('id', $id)->update('industry',$update);
+    }
+
+    public function stasChange($id='',$status='')
+    {
+        $this->db->where('industry_id', $id)->update('industry_register', array('status' => $status));
+        if($this->db->affected_rows() > 0){
+          return true;
+        }
+        else{
+           return false;
+        }
+    }
+
+    public function empstasChange($id='',$stat='')
+    {
+        $query = $this->db->where('id', $id)->get('industry_register')->row();
+        if (!empty($query)) {
+            $this->db->where('id', $id);
+            return $this->db->update('industry_register', array('status' => $stat));
+        }else{
+            return false;
+        }
+    }
+
+    public function insertbulk($insert='')
+    {
+        $this->db->where('reg_id', $insert['reg_id']);
+        $this->db->or_where('name', $insert['name']);
+        $query = $this->db->get('industry');
+        if ($query->num_rows() > 0) {
+            return false;
+        }else{
+            return $this->db->insert('industry', $insert);
+            
+        }
+    }
 
 }
 

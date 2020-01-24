@@ -439,7 +439,8 @@ class auth extends CI_Controller {
             'talluk'         => $this->input->post('taluk'),
             'district'       => $this->input->post('district'),
             'address'        => $this->input->post('address'),
-            'company'    => $this->input->post('company'),
+            'company'       => $this->input->post('company'),
+            'act'           => $this->input->post('act'),
         );
 
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
@@ -464,6 +465,7 @@ class auth extends CI_Controller {
         
         if(!empty($output)){
             $this->sendRequest($insert);
+            $this->session->set_flashdata('success', 'Your request has been submitted successfully to our team.');
         }else{
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
         }

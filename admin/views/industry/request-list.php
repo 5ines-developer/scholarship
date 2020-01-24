@@ -45,6 +45,7 @@
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
                                                 <th class="h5-para-p2">Name</th>
+                                                <th class="h5-para-p2">Act</th>
                                                 <th class="h5-para-p2">Email</th>
                                                 <th class="h5-para-p2">Phone No</th>
                                                 <th class="h5-para-p2">District</th>
@@ -56,14 +57,15 @@
                                                 <?php if(!empty($result)){
                                                     foreach ($result as $key => $value) { ?>
                                                     <tr role="row" class="odd">
-                                                    <td><a href="<?php echo base_url('institute-request/').$value->id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
-                                                    <td class="truncate"><a href="<?php echo base_url('institute-request/').$value->id ?>"><?php echo (!empty($value->email))?$value->email:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute-request/').$value->id ?>"><?php echo (!empty($value->mobile))?$value->mobile:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute-request/').$value->id ?>"><?php echo (!empty($value->district))?$value->district:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute-request/').$value->id ?>"><?php echo (!empty($value->taluk))?$value->taluk:'---'; ?></a></td>
-                                                    <td class=""><a href="<?php echo base_url('institute-request/').$value->id ?>"><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('industry-request/').$value->id ?>"><?php echo (!empty($value->company))?$value->company:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('industry-request/').$value->id ?>"><?php if($result[0]->act == '1'){echo "Factory Act"; }else{echo "Labour Act"; } ?></a></td>
+                                                    <td class="truncate"><a href="<?php echo base_url('industry-request/').$value->id ?>"><?php echo (!empty($value->email))?$value->email:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('industry-request/').$value->id ?>"><?php echo (!empty($value->mobile))?$value->mobile:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('industry-request/').$value->id ?>"><?php echo (!empty($value->district))?$value->district:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('industry-request/').$value->id ?>"><?php echo (!empty($value->taluk))?$value->taluk:'---'; ?></a></td>
+                                                    <td class=""><a href="<?php echo base_url('industry-request/').$value->id ?>"><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></a></td>
                                                     <td class="action-btn center-align">
-                                                        <a href="<?php echo base_url('institute-request/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light" > View </a>
+                                                        <a href="<?php echo base_url('industry-request/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light" > View </a>
                                                         <!-- <a onclick="return confirm('Are you sure you want to delete this item?');" href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a> -->
                                                     </td>
                                                 </tr>
@@ -107,7 +109,7 @@
     <?php $this->load->view('include/msg'); ?>
     <script>
         $(document).ready(function() {
-            $('.si-m >.collapsible-body').css({
+            $('.sid-m >.collapsible-body').css({
                 display: 'block',
             });
         });

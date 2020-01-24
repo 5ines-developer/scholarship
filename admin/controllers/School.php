@@ -207,7 +207,10 @@ class School extends CI_Controller {
             foreach ($object->getWorksheetIterator() as $worksheet) {
                 $highestRow = $worksheet->getHighestRow();
                 $highestColumn = $worksheet->getHighestColumn();
+                $i = -1;
+                $out = '';
                 for ($row = 2; $row <= $highestRow; $row++) {
+                    $i++;
                     $regno  = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
                     $school = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
                     $mtype  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
@@ -229,8 +232,8 @@ class School extends CI_Controller {
 
                     $output[] = $this->m_school->insertbulk($insert);
                     
-                    if (empty($output[$row])) {
-                        $out[] = $row;
+                    if (empty($output[$i])) {
+                        $out .= $row.',';
                     }
 
                     
@@ -238,11 +241,11 @@ class School extends CI_Controller {
             }
 
             if(!empty($out)){
-                $out1 = str_replace(" ",",",implode(" ",$out));
+                $out1 = rtrim($out);
                 
                 $this->session->set_flashdata('error', 'Unable to insert the row '.$out1.'<br> please try again');
             }else{
-                $this->session->set_flashdata('success', 'Product added  Successfully');
+                $this->session->set_flashdata('success', 'Institute added  Successfully');
             }
             redirect('institute-add', 'refresh');
 

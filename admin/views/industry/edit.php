@@ -28,16 +28,16 @@
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="title-list">
-                                    <span class="list-title">Institute Add</span>
-                                    <a href="<?php echo base_url('institutes') ?>"  class="back-btn z-depth-1 waves-effect waves-ligh">Back</a>
+                                    <span class="list-title">Industry Add</span>
+                                    <a href="<?php echo base_url('industries') ?>"  class="back-btn z-depth-1 waves-effect waves-ligh">Back</a>
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="col s12 m12 l12">
-                                            <form ref="form" @submit.prevent="formSubmit" action="<?php echo base_url('institute-edit/').$this->uri->segment(2); ?>" method="post">
-                                                <div class="input-field col m6">
+                                            <form ref="form" @submit.prevent="formSubmit" action="<?php echo base_url('industry-edit/').$this->uri->segment(2); ?>" method="post">
+                                                <div class="input-field col m10">
                                                     <input id="name" name="name" type="text" class="validate" v-model="name" @change="namecheck()">
-                                                    <label for="name">Institute Name</label>
+                                                    <label for="name">Industry Name</label>
                                                     <span class="helper-text red-text">{{nameError}}</span>
                                                 </div>
                                                 <div class="input-field col m6">
@@ -45,53 +45,17 @@
                                                     <label for="rno">Register Number</label>
                                                      <span class="helper-text red-text">{{noError}}</span>
                                                 </div>
-
-                                                <div class="input-field col m6">
-                                                    <input id="mtype" name="mtype" type="text" class="validate" value="<?php echo (!empty($result->management_type))?$result->management_type:''; ?>">
-                                                    <label for="mtype">Management Type</label>
-                                                </div>
-
-                                                <div class="input-field col m6">
-                                                    <input id="sccat" name="sccat" type="text" class="validate" value="<?php echo (!empty($result->school_category))?$result->school_category:''; ?>">
-                                                    <label for="sccat">School Category</label>
-                                                </div>
-
-                                                <div class="input-field col m6">
-                                                    <input id="sctype" name="sctype" type="text" class="validate" value="<?php echo (!empty($result->school_type))?$result->school_type:''; ?>">
-                                                    <label for="sctype">School Type</label>
-                                                </div>
-
                                                 <div class="input-field col sel-hr s12 m6">
-                                                    <select name="rural" class="">
-                                                            <option value="" disabled selected>Choose Region Type</option>
-                                                            <option value="Urban" <?php echo ($result->urban_rural == 'Urban')?'selected':''; ?> >Urban</option>
-                                                            <option value="Rural" <?php echo ($result->urban_rural == 'Rural')?'selected':''; ?>>Rural</option>
+                                                    <select name="act" class="" v-model="act">
+                                                            <option value="" disabled selected>Choose Act Type</option>
+                                                            <option value="1">Labour ACt</option>
+                                                            <option value="2">Factory ACt</option>
                                                         </select>
-                                                    <label>Region Type</label>
+                                                    <label>Act Type</label>
                                                 </div>
-                                                <div class="input-field col sel-hr s12 m6">
-                                                    <select name="district" class="">
-                                                            <option value="" disabled selected>Choose your option</option>
-                                                            <?php
-                                                            if (!empty($district)) {
-                                                               foreach ($district as $key => $value) { ?> 
-                                                                   <option value="<?php echo  $value->districtId ?>" <?php if($value->districtId == $result->district){ echo 'selected';
-                                                                   } ?> ><?php echo $value->district ?></option>';
-                                                              <?php } } ?>
-                                                        </select>
-                                                    <label>District</label>
-                                                </div>
-                                                <div class="input-field col sel-hr s12 m6">
-                                                    <select name="taluk" class="">
-                                                            <option value="" disabled selected>Choose your option</option>
-                                                            <?php if (!empty($taluk)) {
-                                                               foreach ($taluk as $key => $value) { ?> 
-                                                                   <option value="<?php echo $value->tallukId ?>" <?php if($value->tallukId == $result->taluk){ echo 'selected';
-                                                                   } ?> ><?php echo $value->talluk ?></option>
-                                                            <?php } } ?>
-                                                        </select>
-                                                    <label>Taluk</label>
-                                                </div>
+
+
+                                               
                                                 <div class="input-field col s12">
                                                     <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                                 </div>
@@ -130,7 +94,7 @@
     <?php $this->load->view('include/msg'); ?>
     <script>
         $(document).ready(function() {
-            $('.si-m >.collapsible-body').css({
+            $('.sid-m >.collapsible-body').css({
                 display: 'block',
             });
         });
@@ -149,10 +113,11 @@
         var app = new Vue({
             el: '#app',
             data: {
-                name:'<?php echo (!empty($result->school_address))?$result->school_address:''; ?>',
+                name:'<?php echo (!empty($result->name))?$result->name:''; ?>',
                 nameError:'',
-                regno:'<?php echo (!empty($result->reg_no))?$result->reg_no:''; ?>',
+                regno:'<?php echo (!empty($result->reg_id))?$result->reg_id:''; ?>',
                 noError:'',
+                act:'<?php echo (!empty($result->act))?$result->act:''; ?>',
 
             },
 
@@ -161,10 +126,10 @@
                     this.nameError='';
                     const formData = new FormData();
                     formData.append('name',this.name);
-                    axios.post('<?php echo base_url('school/namecheck') ?>',formData)
+                    axios.post('<?php echo base_url('industry/namecheck') ?>',formData)
                     .then(response =>{
                         if(response.data == 1){
-                            this.nameError = 'School Already Exist!';
+                            this.nameError = 'Industry Already Exist!';
                         }
                     }).catch(error => {
                         if (error.response) {
@@ -177,7 +142,7 @@
                     this.noError='';
                     const formData = new FormData();
                     formData.append('regno',this.regno);
-                    axios.post('<?php echo base_url('school/regcheck') ?>',formData)
+                    axios.post('<?php echo base_url('industry/regcheck') ?>',formData)
                     .then(response =>{
                         if(response.data == 1){
                             this.noError = 'Register Number Already Exist!';

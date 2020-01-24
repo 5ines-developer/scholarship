@@ -41,11 +41,11 @@
                             <div class="col s12 m3">
                               <div class="card green hoverable">
                                 <div class="card-content white-text center-align">
-                                  <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                  <span class="card-title center-align"><i class="material-icons">location_city</i></span>
                                    <p><?php echo $count['tot'] ?></p>
                                 </div>
                                 <div class="card-action center-align">
-                                  <span class="white-text">Total Institute</span>
+                                  <span class="white-text">Total Industries</span>
                                 </div>
                               </div>
                             </div>
@@ -63,11 +63,11 @@
                             <div class="col s12 m3">
                               <div class="card blue darken-1 hoverable">
                                 <div class="card-content white-text center-align">
-                                  <span class="card-title center-align"><i class="material-icons">school</i></span>
-                                   <p><?php echo $count['ac_inst'] ?></p>
+                                  <span class="card-title center-align"><i class="material-icons">location_city</i></span>
+                                   <p><?php echo $count['ac_ind'] ?></p>
                                 </div>
                                 <div class="card-action center-align">
-                                  <span class="white-text">Active Institute</span>
+                                  <span class="white-text">Active Industries</span>
                                 </div>
                               </div>
                             </div>
@@ -89,7 +89,7 @@
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Institute  List</span>
-                                    <a href="<?php echo base_url('institute-add') ?>" class="back-btn z-depth-1 waves-effect waves-ligh add-btn"> <i class="material-icons add-icon ">add</i><span>Add</span></a>
+                                    <a href="<?php echo base_url('industry-add') ?>" class="back-btn z-depth-1 waves-effect waves-ligh add-btn"> <i class="material-icons add-icon ">add</i><span>Add</span></a>
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">
@@ -98,10 +98,8 @@
                                                 <tr class="tt">
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Reg No.</th>
-                                                <th class="h5-para-p2">Mangement Type</th>
-                                                <th class="h5-para-p2">School Category</th>
-                                                <th class="h5-para-p2">District</th>
-                                                <th class="h5-para-p2">Taluk</th>
+                                                <th class="h5-para-p2">Act</th>
+                                                <th class="h5-para-p2">Created On</th>
                                                 <th class="h5-para-p2">Action</th>
                                             </tr>
                                             </thead>
@@ -144,7 +142,7 @@
     <?php $this->load->view('include/msg'); ?>
     <script>
         $(document).ready(function() {
-            $('.si-m >.collapsible-body').css({
+            $('.sid-m >.collapsible-body').css({
                 display: 'block',
             });
         });
@@ -167,7 +165,7 @@
                   ], 
                   'order' : [],
                   'ajax':{
-                    'url' : "<?php echo base_url(). 'school/allschool' ?>",
+                    'url' : "<?php echo base_url(). 'industry/allindustry' ?>",
                      'type' :'POST'
                   },
                   'columnDefs':[

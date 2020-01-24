@@ -186,10 +186,11 @@
                                                                     <table id="dynamic" class="striped ">
                                                                         <thead class="thead-list">
                                                                             <th id="a" class="h5-para-p2">Sl No</th>
-                                                                            <th id="c" class="h5-para-p2">Email</th>
+                                                                            <th id="c" class="h5-para-p2 mail-wdth">Email</th>
                                                                             <th id="b" class="h5-para-p2">Phone</th>
                                                                             <th id="c" class="h5-para-p2">Status</th>
                                                                             <th id="g" class="h5-para-p2">Date</th>
+                                                                            <th id="g" class="h5-para-p2">Action</th>
                                                                         </thead>
                                                                         <tbody class="tbody-list">
                                                                             <?php if(!empty($emp)){
@@ -207,6 +208,15 @@
                                                                                     echo '<p class="status red darken-2">Blocked</p>';
                                                                                 } ?></td>
                                                                                 <td><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></td>
+                                                                                <td>
+                                                                                <?php if($value->status == '1'){ ?>
+                                                                                    <a class="btn-small white-text gap-m red darken-3 waves-effect waves-light" href="<?php echo base_url('industry/empblock/?id='.$value->id.'&ind='.$result[0]->indId.'') ?>" >Block</a>
+                                                                                <?php }else{ ?>
+                                                                                    <a class="btn-small white-text green darken-3 waves-effect waves-light" href="<?php echo base_url('industry/empunblock/?id='.$value->id.'&ind='.$result[0]->indId.'') ?>">Unblock</a>
+                                                                               <?php  } ?>
+                                                                                    
+                                                                                    
+                                                                                </td>
                                                                             </tr>
                                                                             <?php } } ?>
                                                                         </tbody>
@@ -292,14 +302,14 @@
             data: {
                 block: <?php echo ($result[0]->status !='1')?'true':'false'; ?>,
                 unblock: <?php echo ($result[0]->status =='1')?'true':'false'; ?>,
-                id:<?php echo ($result[0]->id) ?>,
+                id:<?php echo ($result[0]->indId) ?>,
             },
             methods:{
                 unBlock(){
                     var self = this;
                     const formData = new FormData();
                    formData.append('id',this.id);
-                   axios.post('<?php echo base_url('school/unblock') ?>',formData)
+                   axios.post('<?php echo base_url('industry/unblock') ?>',formData)
                    .then(response => {
                         self.block = false;
                         self.unblock = true;
@@ -314,7 +324,7 @@
                     var self = this;
                    const formData = new FormData();
                    formData.append('id',this.id);
-                   axios.post('<?php echo base_url('school/block') ?>',formData)
+                   axios.post('<?php echo base_url('industry/block') ?>',formData)
                    .then(response => {
                         self.block = true;
                         self.unblock = false;

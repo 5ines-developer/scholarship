@@ -50,6 +50,12 @@ $route['upload-institute']         		= 'school/import_excel';
 //industry management
 $route['industry']                  	= 'industry/index';
 $route['industry/detail/(:any)']        = 'industry/index/$1';
+$route['industries']                 	= 'industry/industryGet'; //all school list
+$route['industry-request']         	    = 'industry/requestLists';
+$route['industry-request/(:any)']       = 'industry/requestLists/$1';
+$route['industry-add']                 	= 'industry/add';
+$route['industry-edit/(:any)']         	= 'industry/edit/$1';
+$route['upload-industry']         		= 'industry/import_excel';
 
 
 
