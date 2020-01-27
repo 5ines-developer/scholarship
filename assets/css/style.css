@@ -3100,4 +3100,100 @@ table.striped > tbody > tr > td {
 .mail-wdth {
   width: 250px;
 }
+
+.das-chart {
+  max-width: 500px;
+  min-width: 500px;
+  overflow-x: scroll;
+}
+
+.bar-line {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border: 1px solid #e3e3e3;
+  border-radius: 2px;
+}
+
+.bar-line .h5-para-p1 {
+  margin: 10px 0;
+}
+
+.bar-line .list-height {
+  line-height: 30px;
+}
+
+.bar-line .list-height .progress-bar-set {
+  padding: 5px 0;
+}
+
+.bar-line .progress-bar-set div {
+  display: inline-block !important;
+  font-size: 13px;
+  color: gray;
+}
+
+.bar-line .title-bar {
+  width: 50px;
+}
+
+.bar-line .progress-app {
+  width: 50% !important;
+  height: 7px;
+  margin: 0 12px;
+}
+
+.bar-line .progress {
+  background-color: #f5f5f5;
+}
+
+.bar-line .progress .deter1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #046304;
+  -webkit-transition: width .3s linear;
+  transition: width .3s linear;
+}
+
+.bar-line .progress .deter2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #da2c2c;
+  -webkit-transition: width .3s linear;
+  transition: width .3s linear;
+}
+
+.bar-line .progress .deter3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #4fc3f7;
+  -webkit-transition: width .3s linear;
+  transition: width .3s linear;
+}
+
+@media (max-width: 700px) {
+  .das-chart {
+    max-width: 340px !important;
+    min-width: 340px !important;
+    overflow-x: scroll !important;
+  }
+}
+
+@media screen and (min-width: 776px) and (max-width: 992px) {
+  .das-chart {
+    max-width: 600px !important;
+    min-width: 600px !important;
+    overflow-x: scroll !important;
+  }
+}
+
+.pr0 {
+  padding-right: 0;
+}
 /*# sourceMappingURL=style.css.map */

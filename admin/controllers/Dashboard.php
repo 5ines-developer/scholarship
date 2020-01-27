@@ -15,9 +15,24 @@ class Dashboard extends CI_Controller {
 
     public function index()
     {
-        $data['title'] = 'Dashboard | admin';
+        $data['title']      = 'Dashboard | admin';
+        $data['count']      = $this->m_dashboard->dashcounts();
+        $data['indcount']   = $this->m_dashboard->industry_counts();
+        $data['inscount']   = $this->m_dashboard->insti_counts();
         $this->load->view('dashboard/index', $data, FALSE);
     }
+
+    /**
+	* get total scholarship by year to display in graph
+	* @url : dashboard/getordergraph
+	**/
+	public function getordergraph()
+	{
+		$startdate 	= '2000'; //start date of the year (jan first)
+		$result		= $this->m_dashboard->getordergraph($startdate);
+		echo json_encode($result);
+	}
+
 
     public function profile($value='')
     {
