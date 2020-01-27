@@ -137,10 +137,10 @@
     }
 
     /*
-	@tab Page
-	@section background style
-	@tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
-	*/
+    @tab Page
+    @section background style
+    @tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+    */
     body,
     #bodyTable,
     #templateFooter {
@@ -149,21 +149,21 @@
     }
 
     /*
-	@tab Page
-	@section background style
-	@tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
-	*/
+    @tab Page
+    @section background style
+    @tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+    */
     #bodyCell {
         /*@editable*/
         border-top: 0;
     }
 
     /*
-	@tab Page
-	@section heading 1
-	@tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
-	@style heading 1
-	*/
+    @tab Page
+    @section heading 1
+    @tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
+    @style heading 1
+    */
     h1 {
         /*@editable*/
         color: #202020 !important;
@@ -184,11 +184,11 @@
     }
 
     /*
-	@tab Page
-	@section heading 2
-	@tip Set the styling for all second-level headings in your emails.
-	@style heading 2
-	*/
+    @tab Page
+    @section heading 2
+    @tip Set the styling for all second-level headings in your emails.
+    @style heading 2
+    */
     h2 {
         /*@editable*/
         color: #202020 !important;
@@ -209,11 +209,11 @@
     }
 
     /*
-	@tab Page
-	@section heading 3
-	@tip Set the styling for all third-level headings in your emails.
-	@style heading 3
-	*/
+    @tab Page
+    @section heading 3
+    @tip Set the styling for all third-level headings in your emails.
+    @style heading 3
+    */
     h3 {
         /*@editable*/
         color: #202020 !important;
@@ -234,11 +234,11 @@
     }
 
     /*
-	@tab Page
-	@section heading 4
-	@tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
-	@style heading 4
-	*/
+    @tab Page
+    @section heading 4
+    @tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
+    @style heading 4
+    */
     h4 {
         /*@editable*/
         color: #202020 !important;
@@ -259,10 +259,10 @@
     }
 
     /*
-	@tab Preheader
-	@section preheader style
-	@tip Set the background color and borders for your email's preheader area.
-	*/
+    @tab Preheader
+    @section preheader style
+    @tip Set the background color and borders for your email's preheader area.
+    */
     #templatePreheader {
         /*@editable*/
         background-color: #26ABE2;
@@ -273,10 +273,10 @@
     }
 
     /*
-	@tab Preheader
-	@section preheader text
-	@tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
-	*/
+    @tab Preheader
+    @section preheader text
+    @tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
+    */
     .preheaderContainer .mcnTextContent,
     .preheaderContainer .mcnTextContent p {
         /*@editable*/
@@ -292,10 +292,10 @@
     }
 
     /*
-	@tab Preheader
-	@section preheader link
-	@tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
-	*/
+    @tab Preheader
+    @section preheader link
+    @tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
+    */
     .preheaderContainer .mcnTextContent a {
         /*@editable*/
         color: #FAFAFA;
@@ -306,10 +306,10 @@
     }
 
     /*
-	@tab Header
-	@section header style
-	@tip Set the background color and borders for your email's header area.
-	*/
+    @tab Header
+    @section header style
+    @tip Set the background color and borders for your email's header area.
+    */
     #templateHeader {
         /*@editable*/
         background-color: #FAFAFA;
@@ -320,10 +320,10 @@
     }
 
     /*
-	@tab Header
-	@section header text
-	@tip Set the styling for your email's header text. Choose a size and color that is easy to read.
-	*/
+    @tab Header
+    @section header text
+    @tip Set the styling for your email's header text. Choose a size and color that is easy to read.
+    */
     .headerContainer .mcnTextContent,
     .headerContainer .mcnTextContent p {
         /*@editable*/
@@ -339,10 +339,10 @@
     }
 
     /*
-	@tab Header
-	@section header link
-	@tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
-	*/
+    @tab Header
+    @section header link
+    @tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
+    */
     .headerContainer .mcnTextContent a {
         /*@editable*/
         color: #26ABE2;
@@ -353,10 +353,10 @@
     }
 
     /*
-	@tab Body
-	@section body style
-	@tip Set the background color and borders for your email's body area.
-	*/
+    @tab Body
+    @section body style
+    @tip Set the background color and borders for your email's body area.
+    */
     #templateBody {
         /*@editable*/
         background-color: #FAFAFA;
@@ -367,10 +367,10 @@
     }
 
     /*
-	@tab Body
-	@section body text
-	@tip Set the styling for your email's body text. Choose a size and color that is easy to read.
-	*/
+    @tab Body
+    @section body text
+    @tip Set the styling for your email's body text. Choose a size and color that is easy to read.
+    */
     .bodyContainer .mcnTextContent,
     .bodyContainer .mcnTextContent p {
         /*@editable*/
@@ -386,10 +386,10 @@
     }
 
     /*
-	@tab Body
-	@section body link
-	@tip Set the styling for your email's body links. Choose a color that helps them stand out from your text.
-	*/
+    @tab Body
+    @section body link
+    @tip Set the styling for your email's body links. Choose a color that helps them stand out from your text.
+    */
     .bodyContainer .mcnTextContent a {
         /*@editable*/
         color: #26ABE2;
@@ -400,10 +400,10 @@
     }
 
     /*
-	@tab Footer
-	@section footer style
-	@tip Set the background color and borders for your email's footer area.
-	*/
+    @tab Footer
+    @section footer style
+    @tip Set the background color and borders for your email's footer area.
+    */
     #templateFooter {
         /*@editable*/
         border-top: 0;
@@ -412,10 +412,10 @@
     }
 
     /*
-	@tab Footer
-	@section footer text
-	@tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
-	*/
+    @tab Footer
+    @section footer text
+    @tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
+    */
     .footerContainer .mcnTextContent,
     .footerContainer .mcnTextContent p {
         /*@editable*/
@@ -431,10 +431,10 @@
     }
 
     /*
-	@tab Footer
-	@section footer link
-	@tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
-	*/
+    @tab Footer
+    @section footer link
+    @tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
+    */
     .footerContainer .mcnTextContent a {
         /*@editable*/
         color: #202020;
@@ -600,10 +600,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section heading 1
-	@tip Make the first-level headings larger in size for better readability on small screens.
-	*/
+    @tab Mobile Styles
+    @section heading 1
+    @tip Make the first-level headings larger in size for better readability on small screens.
+    */
         h1 {
             /*@editable*/
             font-size: 24px !important;
@@ -616,10 +616,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section heading 2
-	@tip Make the second-level headings larger in size for better readability on small screens.
-	*/
+    @tab Mobile Styles
+    @section heading 2
+    @tip Make the second-level headings larger in size for better readability on small screens.
+    */
         h2 {
             /*@editable*/
             font-size: 20px !important;
@@ -632,10 +632,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section heading 3
-	@tip Make the third-level headings larger in size for better readability on small screens.
-	*/
+    @tab Mobile Styles
+    @section heading 3
+    @tip Make the third-level headings larger in size for better readability on small screens.
+    */
         h3 {
             /*@editable*/
             font-size: 18px !important;
@@ -648,10 +648,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section heading 4
-	@tip Make the fourth-level headings larger in size for better readability on small screens.
-	*/
+    @tab Mobile Styles
+    @section heading 4
+    @tip Make the fourth-level headings larger in size for better readability on small screens.
+    */
         h4 {
             /*@editable*/
             font-size: 16px !important;
@@ -664,10 +664,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section Boxed Text
-	@tip Make the boxed text larger in size for better readability on small screens. We recommend a font size of at least 16px.
-	*/
+    @tab Mobile Styles
+    @section Boxed Text
+    @tip Make the boxed text larger in size for better readability on small screens. We recommend a font size of at least 16px.
+    */
         .mcnBoxedTextContentContainer .mcnTextContent,
         .mcnBoxedTextContentContainer .mcnTextContent p {
             /*@editable*/
@@ -681,10 +681,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section Preheader Visibility
-	@tip Set the visibility of the email's preheader on small screens. You can hide it to save space.
-	*/
+    @tab Mobile Styles
+    @section Preheader Visibility
+    @tip Set the visibility of the email's preheader on small screens. You can hide it to save space.
+    */
         #templatePreheader {
             /*@editable*/
             display: block !important;
@@ -695,10 +695,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section Preheader Text
-	@tip Make the preheader text larger in size for better readability on small screens.
-	*/
+    @tab Mobile Styles
+    @section Preheader Text
+    @tip Make the preheader text larger in size for better readability on small screens.
+    */
         .preheaderContainer .mcnTextContent,
         .preheaderContainer .mcnTextContent p {
             /*@editable*/
@@ -712,10 +712,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section Header Text
-	@tip Make the header text larger in size for better readability on small screens.
-	*/
+    @tab Mobile Styles
+    @section Header Text
+    @tip Make the header text larger in size for better readability on small screens.
+    */
         .headerContainer .mcnTextContent,
         .headerContainer .mcnTextContent p {
             /*@editable*/
@@ -729,10 +729,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section Body Text
-	@tip Make the body text larger in size for better readability on small screens. We recommend a font size of at least 16px.
-	*/
+    @tab Mobile Styles
+    @section Body Text
+    @tip Make the body text larger in size for better readability on small screens. We recommend a font size of at least 16px.
+    */
         .bodyContainer .mcnTextContent,
         .bodyContainer .mcnTextContent p {
             /*@editable*/
@@ -746,10 +746,10 @@
     @media only screen and (max-width: 480px) {
 
         /*
-	@tab Mobile Styles
-	@section footer text
-	@tip Make the body content text larger in size for better readability on small screens.
-	*/
+    @tab Mobile Styles
+    @section footer text
+    @tip Make the body content text larger in size for better readability on small screens.
+    */
         .footerContainer .mcnTextContent,
         .footerContainer .mcnTextContent p {
             /*@editable*/
@@ -790,13 +790,13 @@
                                                                     <td class="mcnTextBlockInner"
                                                                         style="padding-top:9px;" valign="top">
                                                                         <!--[if mso]>
-				<table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-				<tr>
-				<![endif]-->
+                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                <tr>
+                <![endif]-->
 
                                                                         <!--[if mso]>
-				<td valign="top" width="640" style="width:640px;">
-				<![endif]-->
+                <td valign="top" width="640" style="width:640px;">
+                <![endif]-->
                                                                         <table style="max-width:100%; min-width:100%;"
                                                                             class="mcnTextContentContainer" width="100%"
                                                                             cellspacing="0" cellpadding="0" border="0"
@@ -810,21 +810,21 @@
 
                                                                                         <span style="font-size:18px"><a
                                                                                                 href="*|ARCHIVE|*"
-                                                                                                target="_blank">Employee
-                                                                                                Registration
-                                                                                                </a></span>
+                                                                                                target="_blank">Industry
+                                                                                                Staff
+                                                                                                Verification</a></span>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
                                                                         <!--[if mso]>
-				</td>
-				<![endif]-->
+                </td>
+                <![endif]-->
 
                                                                         <!--[if mso]>
-				</tr>
-				</table>
-				<![endif]-->
+                </tr>
+                </table>
+                <![endif]-->
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -868,7 +868,7 @@
 
                                                                                         <img alt=""
                                                                                             src="<?php echo $this->config->item('web_url') ?>assets/image/logo.png"
-                                                                                            style="max-width:350px; padding-bottom: 0; display: inline !important; vertical-align: bottom;"
+                                                                                            style="max-width:150px; padding-bottom: 0; display: inline !important; vertical-align: bottom;"
                                                                                             class="mcnImage" width="350"
                                                                                             align="middle">
 
@@ -888,13 +888,13 @@
                                                                     <td class="mcnTextBlockInner"
                                                                         style="padding-top:9px;" valign="top">
                                                                         <!--[if mso]>
-				<table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-				<tr>
-				<![endif]-->
+                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                <tr>
+                <![endif]-->
 
                                                                         <!--[if mso]>
-				<td valign="top" width="640" style="width:640px;">
-				<![endif]-->
+                <td valign="top" width="640" style="width:640px;">
+                <![endif]-->
                                                                         <table style="max-width:100%; min-width:100%;"
                                                                             class="mcnTextContentContainer" width="100%"
                                                                             cellspacing="0" cellpadding="0" border="0"
@@ -908,12 +908,16 @@
 
                                                                                         <br>
                                                                                         <span
-                                                                                            style="font-size:22px">Dear
-                                                                                            <?php echo $name ?>,</span><br>
-                                                                                        <br>Congratulations!, You are recieving this email because you have added as employee in 
+                                                                                            style="font-size:22px">Dear 
+                                                                                            Staff,</span><br>
+                                                                                        <br>
+                                                                                        Thank you for registering with
                                                                                         karnataka labour welfare
                                                                                         scholarship portal<br>
                                                                                         <br>
+                                                                                        You have been successfully
+                                                                                        registered as industry verification staff   karnataka labour
+                                                                                        welfare scholarship portal<br>
                                                                                         please click the below link to
                                                                                         activate your account and set your password<br>
                                                                                         &nbsp;
@@ -922,13 +926,13 @@
                                                                             </tbody>
                                                                         </table>
                                                                         <!--[if mso]>
-				</td>
-				<![endif]-->
+                </td>
+                <![endif]-->
 
                                                                         <!--[if mso]>
-				</tr>
-				</table>
-				<![endif]-->
+                </tr>
+                </table>
+                <![endif]-->
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -950,7 +954,7 @@
                                                                                         valign="middle" align="center">
                                                                                         <a class="mcnButton "
                                                                                             title="Activate my account"
-                                                                                            href="<?php echo $this->config->item('web_url').'govt/account-activation/'.$regid ?>" target="_blank"
+                                                                                            href="<?php echo base_url('account-activation/').$regid ?>" target="_blank"
                                                                                             style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Activate
                                                                                             my account</a>
                                                                                     </td>
@@ -988,13 +992,13 @@
                                                                     <td class="mcnTextBlockInner"
                                                                         style="padding-top:9px;" valign="top">
                                                                         <!--[if mso]>
-				<table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-				<tr>
-				<![endif]-->
+                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                <tr>
+                <![endif]-->
 
                                                                         <!--[if mso]>
-				<td valign="top" width="640" style="width:640px;">
-				<![endif]-->
+                <td valign="top" width="640" style="width:640px;">
+                <![endif]-->
                                                                         <table style="max-width:100%; min-width:100%;"
                                                                             class="mcnTextContentContainer" width="100%"
                                                                             cellspacing="0" cellpadding="0" border="0"
@@ -1012,13 +1016,13 @@
                                                                             </tbody>
                                                                         </table>
                                                                         <!--[if mso]>
-				</td>
-				<![endif]-->
+                </td>
+                <![endif]-->
 
                                                                         <!--[if mso]>
-				</tr>
-				</table>
-				<![endif]-->
+                </tr>
+                </table>
+                <![endif]-->
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -1076,13 +1080,13 @@
                                                                     <td class="mcnTextBlockInner"
                                                                         style="padding-top:9px;" valign="top">
                                                                         <!--[if mso]>
-				<table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-				<tr>
-				<![endif]-->
+                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                <tr>
+                <![endif]-->
 
                                                                         <!--[if mso]>
-				<td valign="top" width="640" style="width:640px;">
-				<![endif]-->
+                <td valign="top" width="640" style="width:640px;">
+                <![endif]-->
                                                                         <table style="max-width:100%; min-width:100%;"
                                                                             class="mcnTextContentContainer" width="100%"
                                                                             cellspacing="0" cellpadding="0" border="0"
@@ -1101,13 +1105,13 @@
                                                                             </tbody>
                                                                         </table>
                                                                         <!--[if mso]>
-				</td>
-				<![endif]-->
+                </td>
+                <![endif]-->
 
                                                                         <!--[if mso]>
-				</tr>
-				</table>
-				<![endif]-->
+                </tr>
+                </table>
+                <![endif]-->
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

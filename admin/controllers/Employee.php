@@ -62,6 +62,7 @@ class Employee extends CI_Controller {
     {
         $data['email'] = $insert['email'];
         $data['regid'] = $insert['ref_link'];
+        $data['name'] = $insert['name'];
         $this->load->config('email');
         $this->load->library('email');
         $from = $this->config->item('smtp_user');

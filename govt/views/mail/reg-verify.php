@@ -810,9 +810,9 @@
 
                                                                                         <span style="font-size:18px"><a
                                                                                                 href="*|ARCHIVE|*"
-                                                                                                target="_blank">Employee
+                                                                                                target="_blank">Industry
                                                                                                 Registration
-                                                                                                </a></span>
+                                                                                                Verification</a></span>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -909,11 +909,15 @@
                                                                                         <br>
                                                                                         <span
                                                                                             style="font-size:22px">Dear
-                                                                                            <?php echo $name ?>,</span><br>
-                                                                                        <br>Congratulations!, You are recieving this email because you have added as employee in 
+                                                                                            Director,</span><br>
+                                                                                        <br>
+                                                                                        Thank you for registering with
                                                                                         karnataka labour welfare
                                                                                         scholarship portal<br>
                                                                                         <br>
+                                                                                        You have been successfully
+                                                                                        registered with karnataka labour
+                                                                                        welfare scholarship portal<br>
                                                                                         please click the below link to
                                                                                         activate your account and set your password<br>
                                                                                         &nbsp;
@@ -950,7 +954,7 @@
                                                                                         valign="middle" align="center">
                                                                                         <a class="mcnButton "
                                                                                             title="Activate my account"
-                                                                                            href="<?php echo $this->config->item('web_url').'govt/account-activation/'.$regid ?>" target="_blank"
+                                                                                            href="<?php echo base_url('account-activation/').$regid ?>" target="_blank"
                                                                                             style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Activate
                                                                                             my account</a>
                                                                                     </td>

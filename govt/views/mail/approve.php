@@ -804,15 +804,8 @@
                                                                             <tbody>
                                                                                 <tr>
 
-                                                                                    <td class="mcnTextContent"
-                                                                                        style="padding: 0px 18px 9px; text-align: center;"
-                                                                                        valign="top">
-
-                                                                                        <span style="font-size:18px"><a
-                                                                                                href="*|ARCHIVE|*"
-                                                                                                target="_blank">Employee
-                                                                                                Registration
-                                                                                                </a></span>
+                                                                                    <td class="mcnTextContent" style="padding: 0px 18px 9px; text-align: center;" valign="top">
+                                                                                        <span style="font-size:18px">Scholarship Application Status</span>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -908,59 +901,22 @@
 
                                                                                         <br>
                                                                                         <span
-                                                                                            style="font-size:22px">Dear
-                                                                                            <?php echo $name ?>,</span><br>
-                                                                                        <br>Congratulations!, You are recieving this email because you have added as employee in 
-                                                                                        karnataka labour welfare
-                                                                                        scholarship portal<br>
+                                                                                            style="font-size:22px">Dear <?php echo $info->name ?>,</span><br>
                                                                                         <br>
-                                                                                        please click the below link to
-                                                                                        activate your account and set your password<br>
-                                                                                        &nbsp;
+                                                                                            Your Scholarship  Application approved from industry.For  
+                                                                                            More information <a href="<?php echo base_url() ?>student/login" target="_blank" >Click here</a> and login your account and check the Scholarship status.
+                                                                                        <br>
+                                                                                        Please  <a href="<?php echo base_url('industry-certificate/').urlencode(base64_encode($info->aid)) ?>" target="_blank">click here</a>  to download the industry Confirmation Certificate.
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
-                                                                        <!--[if mso]>
-				</td>
-				<![endif]-->
-
-                                                                        <!--[if mso]>
-				</tr>
-				</table>
-				<![endif]-->
+                                                               
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                        <table class="mcnButtonBlock" style="min-width:100%;"
-                                                            width="100%" cellspacing="0" cellpadding="0" border="0">
-                                                            <tbody class="mcnButtonBlockOuter">
-                                                                <tr>
-                                                                    <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;"
-                                                                        class="mcnButtonBlockInner" valign="top"
-                                                                        align="center">
-                                                                        <table class="mcnButtonContentContainer"
-                                                                            style="border-collapse: separate !important;border-radius: 4px;background-color: #2BAADF;"
-                                                                            cellspacing="0" cellpadding="0" border="0">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td class="mcnButtonContent"
-                                                                                        style="font-family: Arial; font-size: 16px; padding: 18px;"
-                                                                                        valign="middle" align="center">
-                                                                                        <a class="mcnButton "
-                                                                                            title="Activate my account"
-                                                                                            href="<?php echo $this->config->item('web_url').'govt/account-activation/'.$regid ?>" target="_blank"
-                                                                                            style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Activate
-                                                                                            my account</a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                       
                                                     </td>
                                                 </tr>
                                             </table>
@@ -970,68 +926,7 @@
                                 <!-- // END HEADER -->
                             </td>
                         </tr>
-                        <tr>
-                            <td align="center" valign="top">
-                                <!-- BEGIN BODY // -->
-                                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
-                                    <tr>
-                                        <td align="center" valign="top">
-                                            <table border="0" cellpadding="0" cellspacing="0" width="640"
-                                                class="templateContainer">
-                                                <tr>
-                                                    <td valign="top" class="bodyContainer"
-                                                        style="padding-top:9px; padding-bottom:9px;">
-                                                        <table class="mcnTextBlock" style="min-width:100%;" width="100%"
-                                                            cellspacing="0" cellpadding="0" border="0">
-                                                            <tbody class="mcnTextBlockOuter">
-                                                                <tr>
-                                                                    <td class="mcnTextBlockInner"
-                                                                        style="padding-top:9px;" valign="top">
-                                                                        <!--[if mso]>
-				<table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-				<tr>
-				<![endif]-->
-
-                                                                        <!--[if mso]>
-				<td valign="top" width="640" style="width:640px;">
-				<![endif]-->
-                                                                        <table style="max-width:100%; min-width:100%;"
-                                                                            class="mcnTextContentContainer" width="100%"
-                                                                            cellspacing="0" cellpadding="0" border="0"
-                                                                            align="left">
-                                                                            <tbody>
-                                                                                <tr>
-
-                                                                                    <td class="mcnTextContent"
-                                                                                        style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;"
-                                                                                        valign="top">
-
-                                                                                       
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                        <!--[if mso]>
-				</td>
-				<![endif]-->
-
-                                                                        <!--[if mso]>
-				</tr>
-				</table>
-				<![endif]-->
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <!-- // END BODY -->
-                            </td>
-                        </tr>
+                        
                         <tr>
                             <td align="center" valign="top">
                                 <!-- BEGIN FOOTER // -->
