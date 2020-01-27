@@ -29,9 +29,9 @@ $this->load->model('m_application');
                                 <div class="card-title">
                                     Scholarship Application Detail
 
-                                    <?php if (($result->application_state == 2) && ($result->status == 2)) { ?>
+                                    <?php if (($result->application_state == 3) && ($result->status == 2)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
-                                    <?php }elseif ((($result->application_state != 2) && ($result->application_state != 1)) && ($result->status !=2)){ ?>
+                                    <?php }elseif ((($result->application_state != 3) && ($result->application_state != 2) && ($result->application_state != 2) && ($result->application_state != 1)) && ($result->status !=2)){ ?>
                                         <a class="btn-small right mr10 green darken-3 waves-effect waves-light" >Approved</a>
                                     <?php }else{ ?>
 

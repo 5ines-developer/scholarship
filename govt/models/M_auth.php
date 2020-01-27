@@ -22,7 +22,8 @@ public function activateAccount($id = null)
 function can_login($email, $password)  
 {
     $this->db->where('email', $email);  
-    $this->db->where('status', '1');  
+    $this->db->where('status', '1'); 
+    $this->db->where('type !=',1); 
     $result = $this->db->get('admin')->row_array();
     
     if (!empty($result['id'])) {

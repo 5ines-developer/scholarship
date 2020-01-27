@@ -10,7 +10,7 @@ class Application extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('m_application');
-        if($this->session->userdata('scinds') == ''){ redirect('/','refresh'); }
+        if($this->session->userdata('sgt_id') == ''){ redirect('/','refresh'); }
         $this->inId = $this->session->userdata('sccomp');
     }
     

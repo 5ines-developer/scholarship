@@ -9,10 +9,8 @@ class M_application extends CI_Model {
         if (!empty($year)) {
             $this->db->where('a.application_year', $year);
         }
-        $sccomp = $this->session->userdata('sccomp');
-        $this->db->where('a.company_id', $sccomp);
-        $this->db->where('a.application_state',2);
         
+        $this->db->where('a.application_state',3);        
         $this->db->group_start();
             $this->db->where_not_in('a.status',$in );
         $this->db->group_end();
@@ -28,14 +26,12 @@ class M_application extends CI_Model {
 
     public function getScholarshipApproved($year='')
     {
-        $in = array(3,4);
+        $in = array(4);
         if (!empty($year)) {
             $this->db->where('a.application_year', $year);
         }
-        $sccomp = $this->session->userdata('sccomp');
         $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course');
         $this->db->from('application a');
-        $this->db->where('a.company_id', $sccomp);        
         $this->db->order_by('id', 'desc');
         $this->db->group_start();
             $this->db->where_in('a.application_state',$in);
@@ -52,11 +48,9 @@ class M_application extends CI_Model {
         if (!empty($year)) {
             $this->db->where('a.application_year', $year);
         }
-        $sccomp = $this->session->userdata('sccomp');
         $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course');
         $this->db->from('application a');
-        $this->db->where('a.company_id', $sccomp);
-        $this->db->where('a.application_state !=',1);
+        $this->db->where('a.application_state',3);
         $this->db->where('a.status', 2);
         $this->db->order_by('id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');

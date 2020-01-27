@@ -31,7 +31,7 @@
                 <li><a href="<?php echo $this->config->item('web_url') ?>">Home</a></li>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <?php if ($this->session->userdata('scinds') == '') { ?>
+                    <?php if ($this->session->userdata('sgt_id') == '') { ?>
                         <li><a href="<?php echo base_url('login')?>">Login</a></li>
                         <li><a href="<?php echo base_url('register')?>">Registration</a></li>
                     <?php }else{ ?>
