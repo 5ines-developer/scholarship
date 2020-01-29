@@ -110,7 +110,7 @@ class Auth extends CI_Controller {
         $this->email->set_newline("\r\n");
         $this->email->from($from , 'Karnataka Labour Welfare Board');
         $this->email->to($data['email']);
-        $this->email->subject('Institute Forgot password Password'); 
+        $this->email->subject('Admin Forgot password Password'); 
         $this->email->message($msg);
         if($this->email->send())  
         {

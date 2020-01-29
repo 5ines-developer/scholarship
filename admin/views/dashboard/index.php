@@ -21,9 +21,9 @@
         <section class="board pr0">
             <div class="container-wrap1">
                 <div class="row m0">
-                    <div class="col l3 s12 m3 hide-on-med-and-down">
+                <div class="col s12 m3 l3 hide-on-med-and-down ">
                         <?php $this->load->view('include/menu'); ?>
-                    </div>
+                        </div>
                     <!-- End menu-->
 
                     <div class="col l9 s12 m12">
@@ -52,7 +52,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Registered in <?php echo date('Y') ?></span>
+                                            <span class="white-text">Applied in <?php echo date('Y') ?></span>
                                         </div>
                                     </div>
                                 </div>

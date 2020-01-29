@@ -91,6 +91,7 @@
                                     <span class="list-title ">Institute  List</span>
                                 </div>
                                 <div class="board-content ">
+                                    <div class="row m0">
 
                                     <div class="table-detail">
                                         <select name="dist" fname="district" id="dis-drp" class="select-list">
@@ -110,6 +111,7 @@
                                                        <option value="<?php echo $value->tallukId ?>" <?php if($value->tallukId == $tl){ echo 'selected="true"'; } ?>><?php echo $value->talluk ?></option>
                                                 <?php } } ?>
                                         </select>
+                                    </div>
                                     </div>
 
                                     <div class="hr-list">

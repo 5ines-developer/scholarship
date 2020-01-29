@@ -66,7 +66,12 @@ class Employee extends CI_Controller {
         $this->load->config('email');
         $this->load->library('email');
         $from = $this->config->item('smtp_user');
-        $msg = $this->load->view('mail/reg-verify', $data, true);
+        if ($insert['type'] == '3') {
+            $msg = $this->load->view('mail/finance-register', $data, true);
+        }else if ($insert['type'] == '2') {
+            $msg = $this->load->view('mail/reg-verify', $data, true);
+        }
+
         $this->email->set_newline("\r\n");
         $this->email->from($from , 'Karnataka Labour Welfare Board');
         $this->email->to($data['email']);

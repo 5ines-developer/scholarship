@@ -203,7 +203,7 @@
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 5px; padding-bottom: 30px; font-family: Arial, sans-serif"><![endif]-->
 <div style="color:#555555;font-family:'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:1.5;padding-top:5px;padding-right:10px;padding-left:10px;">
 <div style="font-size: 12px; line-height: 1.5; font-family: 'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #555555; mso-line-height-alt: 18px;">
-<p style="font-size: 14px; line-height: 1.5; mso-line-height-alt: 21px; margin: 0;">You are requested for  Karnataka Labour Welfare Board student account reset password, please click the below link to reset your password .</p>
+<p style="font-size: 14px; line-height: 1.5; mso-line-height-alt: 21px; margin: 0;">You are requested for  Karnataka Labour Welfare Board Veification officer account reset password, please click the below link to reset your password .</p>
 </div>
 </div>
 

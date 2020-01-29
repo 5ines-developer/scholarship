@@ -101,6 +101,7 @@
                                     </select>
                                 </div>
                                 <div class="board-content ">
+                                    <div class="row m0">
                                     <div class="table-detail">
                                         <select name="dist" fname="district" id="dis-drp" class="select-list">
                                                 <option value="" disabled selected>District</option>
@@ -127,6 +128,7 @@
                                             <option value="general" <?php if($this->input->get('caste') == 'general'){ echo 'selected="true"'; } ?>>General</option>
                                             <option value="obc" <?php if($this->input->get('caste') == 'obc'){ echo 'selected="true"'; } ?>>OBC</option>
                                         </select>
+                                    </div>
                                     </div>
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
