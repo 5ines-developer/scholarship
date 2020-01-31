@@ -7,7 +7,7 @@ class M_scholar extends CI_Model {
     public function singleGet($id = null)
     {
         return $this->db->where('a.id', $id)            
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,fs.amount')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
@@ -22,6 +22,7 @@ class M_scholar extends CI_Model {
         ->join('courses crs', 'crs.id = am.course', 'left')
         ->join('gradution grd', 'grd.id = am.graduation', 'left')
         ->join('class cls', 'cls.id = am.class', 'left')
+        ->join('fees fs', 'fs.class = grd.id', 'left')
         ->get()->row(); 
     }
 
@@ -62,7 +63,7 @@ class M_scholar extends CI_Model {
     public function make_query($filter='')
     {
 
-        $select_column = array('s.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district');
+        $select_column = array('s.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','fs.amount');
         $order_column = array("s.name","a.school_id", "ind.name",null,"crs.course","a.application_year","a.application_state","a.status"); 
 
 
@@ -72,16 +73,7 @@ class M_scholar extends CI_Model {
             if($filter['item'] =='approved'){
                 $this->db->group_start();
                  $this->db->where('a.application_state', 4);
-                $this->db->group_end();
-            }else if($filter['item'] =='rejected'){
-                $this->db->group_start();
-                 $this->db->where('a.status', 2);
-                 $this->db->where('a.application_state', 3);
-                $this->db->group_end();
-            }else{
-                $this->db->group_start();
-                 $this->db->where('a.status', 0);
-                 $this->db->where('a.application_state', 3);
+                 $this->db->where('a.status', 1);
                 $this->db->group_end();
             }
             
@@ -133,7 +125,9 @@ class M_scholar extends CI_Model {
         ->join('city cty', 'cty.id = am.ins_district', 'left')
         ->join('taluq tq', 'tq.id = am.ins_talluk', 'left')
         ->join('courses crs', 'crs.id = m.course', 'left')
-        ->join('class cls', 'cls.id = m.class', 'left');
+        ->join('class cls', 'cls.id = m.class', 'left')
+        ->join('gradution grd', 'grd.id = am.graduation', 'left')
+        ->join('fees fs', 'fs.class = grd.id', 'left');
 
         if(isset($_POST["search"]["value"])){
             $this->db->group_start();

@@ -3,6 +3,10 @@
         <li><a href="<?php echo base_url() ?>dashboard" class="<?php echo($this->uri->segment(1) == 'dashboard') ? 'active' :'' ?>"><i class="material-icons"> dashboard </i>Dashboard</a></li>
         <li><a href="<?php echo base_url() ?>employee" class="<?php echo($this->uri->segment(1) == 'employee') ? 'active' :'' ?>"><i class="material-icons"> perm_identity </i>Employee Management</a></li>
         <li><a href="<?php echo base_url() ?>student" class="<?php echo($this->uri->segment(1) == 'student') ? 'active' :'' ?>"><i class="material-icons">supervisor_account</i>Student Management</a></li>
+
+        <li><a href="<?php echo base_url() ?>fees/manage" class="<?php echo($this->uri->segment(1) == 'fees') ? 'active' :'' ?>"><i class="material-icons"> attach_money </i>Fees Management</a></li>
+
+
         <ul class="collapsible men-lft">
             <li class="si-m">
               <div class="collapsible-header"><i class="material-icons">school</i>Institute Management</div>
@@ -26,6 +30,7 @@
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry" class="<?php echo($this->uri->segment(1) == 'industry') ? 'active' :'' ?>">Registered Industry</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-request" class="<?php echo (($this->uri->segment(1) == 'industry-request') || ($this->uri->segment(1) == 'industry-add')) ? 'active' :'' ?>">Industry Add Request</a></span></div>
             </li>
+
 
             <li class="rpt-m">
               <div class="collapsible-header"><i class="material-icons">report</i>Reports</div>

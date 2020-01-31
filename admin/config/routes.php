@@ -57,6 +57,17 @@ $route['industry-add']                 	= 'industry/add';
 $route['industry-edit/(:any)']         	= 'industry/edit/$1';
 $route['upload-industry']         		= 'industry/import_excel';
 
+// fees managemnet
+$route['fees/add']                  	= 'fees/add';
+$route['fees/edit/(:any)']              = 'fees/edit/$1';
+$route['fees/manage']            		= 'fees/manage';
+$route['fees/delete/(:any)']              = 'fees/delete/$1';
+
+
+
+
+
+
 // Reports
 $route['reports']                  		= 'reports/index';
 

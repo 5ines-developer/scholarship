@@ -3202,4 +3202,9 @@ table.striped > tbody > tr > td {
   min-width: 650px;
   overflow-x: scroll;
 }
+
+.ad-selt2 .select-dropdown {
+  width: 100% !important;
+  left: 0 !important;
+}
 /*# sourceMappingURL=style.css.map */

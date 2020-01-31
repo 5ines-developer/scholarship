@@ -9,7 +9,7 @@ class Scholar extends CI_Controller {
         //Do your magic here
         $this->load->model('m_scholar');
         $this->load->model('m_scholar');
-        if ($this->session->userdata('sgt_id') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
+        if ($this->session->userdata('sfn_id') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
     }
 
     public function index($district='')
@@ -42,6 +42,7 @@ class Scholar extends CI_Controller {
         }
         
         $fetch_data   = $this->m_scholar->make_datatables($filt);
+
         $data = array();
         foreach($fetch_data as $row)  
         {  
@@ -80,6 +81,7 @@ class Scholar extends CI_Controller {
             $sub_array[] = $row->district;  
             $sub_array[] = $row->taluk;  
             $sub_array[] = $status;  
+            $sub_array[] = '&#8377; &nbsp;'.$row->amount;  
             $sub_array[] = $btn;  
 
             $data[] = $sub_array;  

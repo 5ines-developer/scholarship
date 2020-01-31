@@ -29,15 +29,11 @@ $this->load->model('m_scholar');
                                 <div class="card-title">
                                     Scholarship Application Detail
 
-                                    <?php if (($result->status == 3)) { ?>
+                                    <?php if (($result->status == 2) && ($result->application_state == 4)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
-                                    <?php }elseif ((($result->application_state == 4)  && ($result->application_state == 3) ) && ($result->status ==1)){ ?>
+                                    <?php }elseif (($result->application_state == 4)  && ($result->status ==1)){ ?>
                                         <a class="btn-small right mr10 green darken-3 waves-effect waves-light" >Approved</a>
-                                    <?php }elseif ((($result->application_state == 3))&& ($result->status ==0)){ ?>
-                                        <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
-                                        <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1)? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
                                     <?php } ?>
-
 
                                     
                                 </div>
@@ -176,6 +172,12 @@ $this->load->model('m_scholar');
                                                                             <p class="app-item-content-head">Present School Address</p>
                                                                             <p class="app-item-content"><?php echo $this->ci->m_scholar->schlAddress($result->school_id) ?></p>
                                                                         </li>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Scholarship Amount</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->amount))?'&#8377; &nbsp;'.$result->amount:'---'; ?></p>
+                                                                        </li>
+
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -490,22 +492,7 @@ $this->load->model('m_scholar');
         },  
 
         methods:{
-            approve(id){
-                var self = this;
-                const formData = new FormData();
-                formData.append('id', id);
-                axios.post('<?php echo base_url() ?>application-approve', formData)
-                .then(function (response) {
-                    var msg = response.data.msg;
-                    M.toast({html: msg, classes: 'green darken-2'});
-                    self.disabled = true;
-                    window.location.href = "<?php echo base_url('applications?item=approved') ?>";
-                })
-                .catch(error => {
-                    var msg = error.data.msg;
-                    M.toast({html: msg, classes: 'red darken-4'});
-                })
-            }
+            
         }
     })
 </script>

@@ -154,6 +154,7 @@
                                                 <th id="f" class="h5-para-p2" style="width: 120px;">District</th>
                                                 <th id="g" class="h5-para-p2" style="width: 120px;">Talluk</th>
                                                 <th id="h" class="h5-para-p2" style="width: 120px;">Status</th>
+                                                <th id="h" class="h5-para-p2" style="width: 120px;">Amount</th>
                                                 <th id="i" class="h5-para-p2" style="width: 120px;">Action</th>
                                             </thead>
                                         </table>
