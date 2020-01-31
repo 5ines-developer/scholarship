@@ -85,7 +85,7 @@
 
                         <div class="row">
 
-                            <div class="col m8 s12 l8">
+                            <div class="col m9 s12 l9">
 
                                 <div class="card  darken-1">
                                     <div class="card-content ">
@@ -100,7 +100,7 @@
                                             </div>
 
 
-                                            <div class="x_content das-chart">
+                                            <div class="x_content das-chart chrt-width">
 
                                                 <canvas id="myChart"></canvas>
 
@@ -111,6 +111,35 @@
                                 </div>
                             </div>
 
+                            <div class="col s12 m3 l3">
+                                    <div class="card blue-grey    hoverable">
+                                        <div class="card-content white-text center-align">
+                                            <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                            <p>
+                                            <?php echo (!empty($count['acti_inst']))?$count['acti_inst']:''; ?>
+                                            </p>
+                                        </div>
+                                        <div class="card-action center-align">
+                                            <span class="white-text">Scholarship Payment Completed</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col s12 m3 l3">
+                                    <div class="card deep-purple darken-4 hoverable">
+                                        <div class="card-content white-text center-align">
+                                            <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                            <p>
+                                            <?php echo (!empty($count['acti_inst']))?$count['acti_inst']:''; ?>
+                                            </p>
+                                        </div>
+                                        <div class="card-action center-align">
+                                            <span class="white-text">Scholarship Payment Pending</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="row">
 
                             <div class="col m4 s12 l4">
 
@@ -178,7 +207,11 @@
                                 </div>
                                 <br>
 
-                                <div class="bar-line white">
+                               
+                            </div>
+
+                            <div class="col m4 s12 l4">
+                             <div class="bar-line white">
                                     <p class="h5-para-p1 ">Institute Details </p>
                                     <div class="row m0">
                                         <div class="col s12">
@@ -239,7 +272,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
+
                         </div>
 
 

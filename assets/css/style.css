@@ -3196,4 +3196,10 @@ table.striped > tbody > tr > td {
 .pr0 {
   padding-right: 0;
 }
+
+.chrt-width {
+  max-width: 650px;
+  min-width: 650px;
+  overflow-x: scroll;
+}
 /*# sourceMappingURL=style.css.map */
