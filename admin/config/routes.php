@@ -57,5 +57,8 @@ $route['industry-add']                 	= 'industry/add';
 $route['industry-edit/(:any)']         	= 'industry/edit/$1';
 $route['upload-industry']         		= 'industry/import_excel';
 
+// Reports
+$route['reports']                  		= 'reports/index';
+
 
 
