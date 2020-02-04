@@ -126,7 +126,7 @@
                                 </div>
 
                                 <div class="col s12 m3 l3">
-                                    <div class="card deep-purple darken-4 hoverable">
+                                    <div class="card green  hoverable">
                                         <div class="card-content white-text center-align">
                                             <span class="card-title center-align"><i class="material-icons">school</i></span>
                                             <p>

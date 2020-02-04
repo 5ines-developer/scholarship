@@ -10,6 +10,7 @@ class Scholar extends CI_Controller {
         $this->load->model('m_scholar');
         $this->load->model('m_scholar');
         if ($this->session->userdata('sfn_id') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
+        $this->load->library(array('email', 'upload', 'MY_Upload', 'excel'));
     }
 
 
@@ -197,17 +198,121 @@ class Scholar extends CI_Controller {
         );
 
        if($pay_stats == '2'){
-            $data['failreason'] = $this->input->post('failreason');
+            $data['pay_freason'] = $this->input->post('failreason');
        }
-       if($this->m_scholar->payStatus($data, $id)){
+       
+
+       $output = $this->m_scholar->payStatus($data, $id);
+       if(!empty($output)){
+            $this->paymail($output,$data);
+            $this->paysms($output,$data);
             $this->session->set_flashdata('success', 'Payment status updated Successfully');
         }else{
             $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
         }
-            redirect('applications/detail/'.$id,'refresh');
-       
+        redirect('applications/detail/'.$id,'refresh');
+    }
 
+    public function importPaystatus($value='')
+    {
+        if (isset($_FILES["file"]["name"])) {
+            $path = $_FILES["file"]["tmp_name"];
+            $object = PHPExcel_IOFactory::load($path);
+            foreach ($object->getWorksheetIterator() as $worksheet) {
+                $highestRow = $worksheet->getHighestRow();
+                $highestColumn = $worksheet->getHighestColumn();
 
+                $i = -1;
+                $out = '';
+                for ($row = 2; $row <= $highestRow; $row++) {
+                    $i++;
+                    $adhar = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $status  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $reason  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+
+                    if($status=='success' || $status=='Success'){
+                        $stat = '1';
+                    }else{
+                        $stat = '2';
+                    }
+
+                    $insert = array(
+                        'pay_status'    => $stat,
+                        'pay_freason'    => $reason,
+                    );
+                    $output[] = $this->m_scholar->importPaystatus($insert,$adhar);
+                    
+                    if (empty($output[$i])) {
+                        $out .= $row.',';
+                    }
+                    $this->paymail($output[$i],$insert);
+                    $this->paysms($output[$i],$insert);
+                }
+            }
+            if(!empty($out)){
+                $out1 = rtrim($out);
+                
+                $this->session->set_flashdata('error', 'Unable to insert the row '.$out1.'<br> please try again');
+            }else{
+                
+                $this->session->set_flashdata('success', 'Payment Status Updated  Successfully');
+            }
+            redirect('applications?item=approved', 'refresh');
+        }
+    }
+
+    public function paysms($output='',$insert='')
+    {
+
+        if($insert['pay_status'] == '1'){
+            $msg = 'Congratulations!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Successfully transfered to your account!';
+        }else{
+            $msg = 'Sorry!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Failed due to '.$insert['pay_freason'];
+        }
+        /* API URL */
+        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
+        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $output->phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return $server_output;
+    }
+
+    public function paymail($output='',$insert='')
+    {
+        $data['output'] = $output;
+        $data['insert'] = $insert;
+
+        if($insert['pay_status'] == '1'){
+           $data['msg'] = 'Congratulations!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Successfully transfered to your account!';
+        }else{
+            $data['msg'] = 'Sorry!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Failed due to '.$insert['pay_freason'];
+        }
+
+        if (!empty($output->email)) {
+            $this->load->config('email');
+            $this->load->library('email');
+            $from = $this->config->item('smtp_user');
+            $msg = $this->load->view('mail/paystatus', $data, true);
+            $this->email->set_newline("\r\n");
+            $this->email->from($from , 'Karnataka Labour Welfare Board');
+            $this->email->to($output->email);
+            $this->email->subject('Scholarship Payment Status'); 
+            $this->email->message($msg);
+            if($this->email->send())  
+            {
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+        }else{
+            return true;
+        }
     }
 
 

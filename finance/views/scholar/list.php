@@ -94,10 +94,52 @@
                             </div>
                         </div>
 
+
+                         <!-- End Body form  -->
+       <div id="import" class="modal">
+            <div class="modal-content company-mc">
+                <h4>Upload Application Payment Status</h4>
+                <a href="#!" class="modal-close">
+                    <i class="material-icons cc-close">close</i>
+                </a>
+            </div>
+            <div class="modal-footer company-mf">
+                <form action="<?php echo base_url('application-status') ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-file">
+                        <div class="row">
+                            <div class="col l12 s12 m12">
+                                <div class="file-field input-field col l12 m0 upload-fil">
+                                    <div class="btn ">
+                                        <span>File</span>
+                                        <input type="file" name="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" placeholder="Import the excel file here" type="text" required="">
+                                    </div>
+                                </div>
+                                <div class="col l12">
+                                    <div class="ff-inp">
+                                        <p><b>Note:</b>File should be in .csv / .xsl format Size should be not more than 200KB</p>
+                                    </div>
+                                </div>
+                                <div class="col l12 m12 s12">
+                                    <center> <button class="btn-sub z-depth-1 waves-effect waves-light">
+                                        Submit</button></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Scholarship List</span>
+
+                                    <a href="#import"  class="bulk-btn z-depth-1 white-text green darken-3 waves-effect waves-ligh modal-trigger">Payment Status Bulk Upload</a>
+
                                     <select class="browser-default select-list" fname="year" id="short">
                                         <option value="">Choose Year</option>
                                         <?php
@@ -195,6 +237,7 @@
 
 
     <script>
+        <?php $this->load->view('include/msg'); ?>
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
             var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {

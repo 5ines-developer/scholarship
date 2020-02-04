@@ -260,7 +260,32 @@ class M_scholar extends CI_Model {
 
     public function payStatus($data='',$id='')
     {
-        return $this->db->where('id', $id)->update('application',$data);
+        if($this->db->where('id', $id)->update('application',$data))
+        {
+            $this->db->where('id', $id);
+            $this->db->from('application a');
+            $this->db->join('student s', 's.id = a.Student_id', 'left');
+            return $this->db->get()->row();
+        }else{
+            return false;
+        }
+    }
+
+    public function importPaystatus($insert='',$adhar='')
+    {
+        $this->db->where('ab.adharcard_no', $adhar);
+        $this->db->select('a.id,s.email,s.phone');
+        $this->db->from('applicant_basic_detail ab');
+        $this->db->join('application a', 'a.id = ab.application_id', 'left');
+        $this->db->join('student s', 's.id = a.Student_id', 'left');
+        $result = $this->db->get()->row();
+        if(!empty($result->id)){
+            $this->db->where('id', $result->id);
+            $this->db->update('application', $insert);
+            return $result;
+        }else{
+            return false;
+        }
     }
 
     

@@ -28,6 +28,10 @@ $route['applications/approved']         =   'scholar/approved';
 $route['applications/rejected']         =   'scholar/rejected';
 $route['application-approve']           =   'scholar/approve';
 $route['application-reject']           	=   'scholar/reject';
+//payment status
+$route['application-status']           	=   'scholar/importPaystatus';
+
+
 
 
 
