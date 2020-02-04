@@ -504,6 +504,9 @@ class auth extends CI_Controller {
         $this->load->model('m_application');
         $data['info'] = $this->m_application->singleStudent($apid);
         $data['img'] =$this->m_application->compDocs($data['info']->company_id);
+
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
             'default_font' => 'tunga'
