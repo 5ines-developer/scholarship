@@ -28,6 +28,12 @@ $this->load->model('m_scholar');
                             <div class="card-content bord-right">
                                 <div class="card-title">
                                     Scholarship Application Detail
+                                    <?php if ($result->pay_status == '0') { ?>
+                                        &nbsp;&nbsp;&nbsp;<a href="#modal2" class="btn-small green darken-3 waves-effect waves-light modal-trigger" >Payment Status</a>
+                                    <?php }?> 
+                                    
+
+                                    
 
                                     <?php if (($result->status == 2) && ($result->application_state == 4)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
@@ -39,6 +45,13 @@ $this->load->model('m_scholar');
                                 </div>
                                 <div class="board-content">
                                     <div class="row ad-stt-list">
+
+                                        <?php if ($result->pay_status == '1') { ?>
+                                        &nbsp;&nbsp;&nbsp;<a class="btn-small green darken-3 waves-effect waves-light" >Payment Success</a>
+                                     <?php }else if ($result->pay_status == '2') { 
+                                        echo '&nbsp;&nbsp;&nbsp;<a class="btn-small red darken-3 waves-effect waves-light" >Payment Failed -'.$result->pay_freason.'</a>';
+                                      } ?>
+
                                        <ul class="status-list">
                                            <li class="center status-item">
                                                <div>Application</div>
@@ -457,6 +470,35 @@ $this->load->model('m_scholar');
         </form>
         
     </div>
+
+
+    <div id="modal2" class="modal small">
+        <form action="<?php echo base_url() ?>scholar/payStatus" method="post">
+            <div class="modal-content">
+                <h5>Scholarship Payment Status</h5>
+                <div class="row m0">
+                    <div class="input-field col s12">
+                        <select name="pay_stats" id="dis-drp" class="select-list" v-model="stats" @change="statuschange">
+                            <option value="">Choose the option</option>
+                            <option value="1">Success</option>
+                            <option value="2">Failed</option>
+                        </select>
+                    </div>
+                        <input type="hidden" name="payid" value="<?php echo $result->aid ?>">
+                    <div class="input-field col s12" v-if="seen">
+                        <textarea required id="textarea1" name="failreason" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Enter the reason</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">eg: some document is missing</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="modal-close btn waves-effect waves-green indigo darken-4 btn-float">Submit</button>
+                <button type="reset" class="modal-close btn waves-effect waves-green red darken-4 btn-float">Reset</button>
+            </div>
+        </form>
+        
+    </div>
         
 
     <!-- footer -->
@@ -489,11 +531,18 @@ $this->load->model('m_scholar');
             disabled: false,
             reason: '',
             loader:false,
-        },  
-
+            seen:false,
+            stats:'',
+        },
         methods:{
-            
-        }
+            statuschange(){
+                if(this.stats == '2'){
+                    this.seen = true;
+                }else{
+                    this.seen = false;
+                }
+            }
+        },
     })
 </script>
 </body>

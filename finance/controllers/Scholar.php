@@ -12,6 +12,8 @@ class Scholar extends CI_Controller {
         if ($this->session->userdata('sfn_id') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
     }
 
+
+
     public function index($district='')
     {
         $dist = $this->input->get('district');
@@ -184,6 +186,28 @@ class Scholar extends CI_Controller {
         $server_output = curl_exec($ch);
         curl_close($ch);
         return $server_output;
+    }
+
+    public function payStatus($value='')
+    {
+       $pay_stats = $this->input->post('pay_stats');
+       $id = $this->input->post('payid');
+       $data = array(
+        'pay_status' =>  $pay_stats 
+        );
+
+       if($pay_stats == '2'){
+            $data['failreason'] = $this->input->post('failreason');
+       }
+       if($this->m_scholar->payStatus($data, $id)){
+            $this->session->set_flashdata('success', 'Payment status updated Successfully');
+        }else{
+            $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
+        }
+            redirect('applications/detail/'.$id,'refresh');
+       
+
+
     }
 
 

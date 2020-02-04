@@ -7,7 +7,7 @@ class M_scholar extends CI_Model {
     public function singleGet($id = null)
     {
         return $this->db->where('a.id', $id)            
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,fs.amount')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,fs.amount,a.pay_status,a.pay_freason')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
@@ -256,6 +256,11 @@ class M_scholar extends CI_Model {
      public function getDistrict($value='')
     {
     	return $this->db->order_by('id', 'asc')->select('id as districtId,title as district')->get('city')->result();
+    }
+
+    public function payStatus($data='',$id='')
+    {
+        return $this->db->where('id', $id)->update('application',$data);
     }
 
     
