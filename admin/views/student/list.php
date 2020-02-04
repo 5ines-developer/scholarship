@@ -29,11 +29,7 @@
                         <?php $this->load->view('include/menu'); ?>
                     </div>
                     <!-- End menu-->
-
-                    
-
                     <div class="col m9 l9  s12">
-
 <div class="row">
 <div class="top-count">                     
     <div class="col s12 m3">
@@ -92,6 +88,10 @@
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Student  List</span>
+
+                                    <a href="<?php echo base_url() ?>student-add" class="back-btn z-depth-1 waves-effect waves-ligh hoverable add-btn">
+                                        <i class="material-icons add-icon ">add</i><span>Add New Student</span></a>
+
                                     <select class="browser-default" id="short" @change="yearChange()" v-model="year">
                                         <option value="">Choose Year</option>
                                         <?php
@@ -138,7 +138,9 @@
                                                     </td>
                                                     <td class="action-btn center-align">
                                                         <a href="<?php echo base_url('student/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light" > View </a>
-                                                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
+                                                        <a href="<?php echo base_url('student-edit/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light left" > Edit </a>
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="<?php echo base_url('student-delete/').$value->id ?>" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
                                                     </td>
                                                 </tr>
                                                 <?php    } } ?>

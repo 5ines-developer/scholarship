@@ -28,6 +28,12 @@ $route['employee/edit/(:any)']      = 'employee/edit/$1';
 //student management
 $route['student']                  	= 'student/index';
 $route['student/(:any)']            = 'student/index/$1';
+$route['student-add']               = 'student/add';
+$route['student-emailcheck']        = 'student/emailcheck';
+$route['student-mobile_check']      = 'student/mobile_check';
+$route['student-edit/(:any)']      	= 'student/edit/$1';
+$route['student-delete/(:any)']     = 'student/delete/$1';
+
 //scholareship application
 $route['applications']                  =   'scholar/index';
 $route['applications/detail/(:any)']   	= 	'scholar/singleGet/$1';

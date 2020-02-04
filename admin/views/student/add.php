@@ -33,18 +33,17 @@
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="col s12 m12 l12">
-                                            <form action="<?php echo base_url('student-edit/').$result->id ?>" method="post">
+                                            <form action="<?php echo base_url() ?>student-add" method="post">
 
                                                 <div class="input-field col m8 l5">
-                                                    <input id="email" name="email" type="email" class="validate"  value="<?php echo (!empty($result->email))?$result->email:''; ?>">
+                                                    <input id="email" name="email" type="email" v-model="email" class="validate" @change="emailCheck">
                                                     <label for="email">Email</label>
                                                     <span class="helper-text red-text">{{ emailError }}</span>
                                                 </div>
-                                                <input type="hidden" name="id" value="<?php echo (!empty($result->id))?$result->id:''; ?>">
                                                 <div class="clearfix"></div>
 
                                                 <div class="input-field col m8 l5">
-                                                    <input id="phone" name="phone" type="text" required class="validate" value="<?php echo (!empty($result->phone))?$result->phone:''; ?>">
+                                                    <input id="phone" name="phone" type="text" required v-model="phone" class="validate" @change="mobileCheck">
                                                     <label for="phone">Phone Number</label>
                                                     <span class="helper-text red-text">{{mobileError}}</span><br>
                                                 </div>
@@ -52,7 +51,7 @@
 
 
                                                 <div class="input-field col m8 l5">
-                                                    <input id="password" name="password" type="password" class="validate">
+                                                    <input id="password" name="password" required type="password" class="validate">
                                                     <label for="password">Password</label>
                                                 </div>
                                                 <div class="input-field col s12">
@@ -102,13 +101,57 @@
         var app = new Vue({
             el: '#app',
             data: {
-                
+                email: '',
+                phone: '',
+                emailError: '',
+                mobileError: '',
             },
 
             methods: {
-                
-                
-                
+                //check student mobile already exist
+                mobileCheck(){
+
+                    this.mobileError='';
+                    const formData = new FormData();
+                    formData.append('phone',this.phone);
+                    axios.post('<?php echo base_url('student-mobile_check') ?>', formData)
+                    .then(response => {
+                        if (response.data == '1') {
+                            this.mobileError = 'This Mobile number already exist!';
+                        } else {
+                            this.mobileError = '';
+                        }
+
+                    }).catch(error =>{
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    } )
+                },
+                //check student email already exist
+                emailCheck(){
+                    this.emailError='';
+                    const formData = new FormData();
+                    formData.append('email',this.email);
+                    axios.post('<?php echo base_url('student-emailcheck') ?>',formData)
+                    .then(response =>{
+                        if (response.data == '1') {
+                            this.emailError = 'This Email id already exist!';
+                        } else {
+                            this.emailError = '';
+                        }
+
+                    }).catch(error => {
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+                },
+                checkForm() {
+                if ((this.mobileError == '') && (this.emailError == '')) {
+                        this.$refs.form.submit();
+                    }
+                }
 
             }
         })

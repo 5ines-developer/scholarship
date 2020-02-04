@@ -73,6 +73,67 @@ class M_student extends CI_Model {
 		$this->db->group_by('application_year,Student_id');
 		return $this->db->get('application')->num_rows();
   	}
+
+  public function add($insert)
+  {
+    $this->db->where('email', $insert['email']);
+    $this->db->or_where('phone', $insert['phone']);
+    $query = $this->db->get('student');
+    if($query->num_rows() > 0){
+      return false;
+    }else{
+      return $this->db->insert('student', $insert);
+    }
+  }
+
+
+  //vue js phone check exist or not
+  public function mobile_check($phone='')
+  {
+    $this->db->where('phone', $phone);
+    $result = $this->db->get('student');
+       if($result->num_rows() > 0){
+        return true;
+    }else{
+        return false;
+    }
+  }
+
+  //vue js phone check exist or not
+  public function email_check($email='')
+  {
+    $this->db->where('email', $email);
+    $result = $this->db->get('student');
+       if($result->num_rows() > 0){
+        return true;
+    }else{
+        return false;
+    }
+  }
+
+  public function edit($id='')
+  {
+    if (!empty($id)) {$this->db->where('id', $id); }
+    return $this->db->select('date,status,id,email,phone,name')->get('student')->row();
+  }
+
+  public function update($insert='',$id='')
+  {
+    $this->db->where('id', $id);
+    $this->db->update('student', $insert);
+    if($this->db->affected_rows() > 0){
+        return true;
+    }else{
+        return false;
+    }
+  }
+
+  public function delete($id='')
+  {
+    $this->db->where('id', $id);
+    return $this->db->delete('student');
+    
+  }
 	
 
 }

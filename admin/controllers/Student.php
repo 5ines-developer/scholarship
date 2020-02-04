@@ -53,6 +53,99 @@ class Student extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function add($value='')
+    {
+        $data['title'] = 'Add Student';
+        if(!empty($this->input->post())){
+            $phone = $this->input->post('phone');
+            $email = $this->input->post('email');
+            $password =$this->input->post('password');
+            $hash = $this->bcrypt->hash_password($password);
+            $insert = array(
+                'email' => $email, 
+                'phone' => $phone, 
+                'password' => $hash, 
+                'status' => 1, 
+            );
+            if($this->m_student->add($insert)){
+                $this->session->set_flashdata('success', 'Student added Successfully');
+                redirect('student','refresh');
+            }
+            else{
+                $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+                redirect('student-add','refresh');
+            }
+
+        }else{
+            $this->load->view('student/add', $data, FALSE);
+        }
+    }
+
+
+    /**
+     * user registration-> mobile number check exist
+     * url : register
+    **/
+    public function mobile_check($value='')
+    {
+        $this->security->xss_clean($_POST);
+        $mobile = $this->input->post('phone');
+        $output = $this->m_student->mobile_check($mobile);
+        echo  $output;
+    }
+
+    /**
+     * user registration-> email check exist
+     * url : register
+    **/
+    public function emailcheck($value='')
+    {
+        $this->security->xss_clean($_POST);
+        $email = $this->input->post('email');
+        $output = $this->m_student->email_check($email);
+        echo  $output;
+    }
+
+    public function edit($id='',$year='')
+    {
+        $data['title'] = 'Add Student';
+        if(!empty($this->input->post())){
+            $id     = $this->input->post('id');
+            $phone = $this->input->post('phone');
+            $email = $this->input->post('email');
+            $password =$this->input->post('password');
+            $hash = $this->bcrypt->hash_password($password);
+            $insert = array(
+                'email' => $email, 
+                'phone' => $phone, 
+                'password' => $hash, 
+                'status' => 1, 
+            );
+            if($this->m_student->update($insert,$id)){
+                $this->session->set_flashdata('success', 'Student updated Successfully');
+                redirect('student-edit/'.$id,'refresh');
+            }
+            else{
+                $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+                redirect('student-edit/'.$id,'refresh');
+            }
+        }else{
+            $data['result']= $this->m_student->edit($id);
+            $this->load->view('student/edit.php', $data, FALSE);
+        }
+    }
+
+    public function delete($id='')
+    {
+        if($this->m_student->delete($id)){
+            $this->session->set_flashdata('success', 'Student Deleted Successfully');
+        }
+        else{
+            $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+        }
+        redirect('student','refresh');
+    }
+
 }
 
 /* End of file Student.php */
