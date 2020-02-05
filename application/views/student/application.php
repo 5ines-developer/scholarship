@@ -162,7 +162,7 @@
                                             <div class="input-field col s12">
                                                 <div class="col s6 m3 l2">
                                                     <label>
-                                                        <input class="with-gap" name="std_cast" type="radio" @change="casteCheck()" value="" checked v-model="caste.low"/>
+                                                        <input class="with-gap" name="std_cast" type="radio" @change="casteCheck()" value="0" checked v-model="caste.low"/>
                                                         <span>No (ಇಲ್ಲ)</span>
                                                     </label>
                                                 </div>
@@ -538,7 +538,7 @@
                 type:'',
                 holder:'',
             },
-            tribes:false,
+            tribes:true,
             markError:'',
             salError:'',
             scaste: true,
@@ -766,6 +766,64 @@
                     .catch(function (error) {
                         this.errormsg = error.response.data.error;
                     })
+                },
+                getdata(){
+                    var self= this;
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/lastData')
+                    .then(function (response) {
+                        //basic details
+                        self.student.name    = response.data.name;
+                        self.student.phone   = response.data.parent_phone;
+                        self.student.father  = response.data.father_name;
+                        self.student.mother  = response.data.mothor_name;
+                        self.student.address = response.data.saddress;
+                        self.student.gend    = response.data.gender;
+
+                        //caste details
+                        if(response.data.is_scst != 1){
+                            this.tribes = true;
+                            this.scaste = true;
+                            this.genral = false; 
+                        }
+                        self.caste.low          = response.data.is_scst;
+                        self.caste.number       = response.data.cast_no;
+                        self.caste.trcategory   = response.data.category;
+                        self.caste.gncategory   = response.data.category;
+                        if (response.data.cast_certificate !=null) {
+                            self.castpdf   = "<?php echo base_url() ?>"+response.data.cast_certificate;
+                        }else{
+                            self.castpdf = "#";
+                        }
+
+                        //adhar card
+                        self.adhaar.number      = response.data.adharcard_no;
+                        if (response.data.adharcard_file !=null) {
+                            self.adhrpdf  = "<?php echo base_url() ?>"+response.data.adharcard_file;
+                        }else{
+                            self.adhrpdf = "#";
+                        }
+
+                        //bank details
+                        self.bank.name          = response.data.name;
+                        self.bank.branch        = response.data.branch;
+                        self.bank.ifsc          = response.data.ifsc;
+                        self.bank.account       = response.data.acc_no;
+                        self.bank.type          = response.data.type;
+                        self.bank.holder        = response.data.holder;
+                        if (response.data.passbook !=null) {
+                            self.bankpdf  = "<?php echo base_url() ?>"+response.data.passbook;
+                        }else{
+                            self.bankpdf = "#";
+                        }
+
+
+                    })
+                    .catch(function (error) {
+
+                    })
+
+
                 }
 
  
@@ -774,6 +832,7 @@
                this.getDistrict();
                this.getIndustry();
                this.garduation();
+               this.getdata();
         }
     })
 </script>

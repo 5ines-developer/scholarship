@@ -35,6 +35,12 @@ class Std_application extends CI_Controller {
 		}
 	}
 
+	public function lastData($value='')
+	{
+		$data = $this->m_stdapplication->getlastData($this->sid);
+		echo json_encode($data);
+	}
+
 	public function appliGet($value='')
 	{
 		$data = $this->m_stdapplication->getApplication($this->sid);
