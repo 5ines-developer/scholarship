@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="<?php echo $this->config->item('web_url') ?>assets/css/select2.css" rel="stylesheet" />
 </head>
 
 <body>
     <div id="app">
-    <?php $this->load->view('include/header'); ?>
+       <?php $this->load->view('include/header'); ?>
         <!-- Body form  -->
         <section class="board">
             <div class="container-wrap1">
@@ -27,11 +28,11 @@
                             <div class="addre-pp">
                                 <div class="row">
                                     <div class="col l2 m3 s12">
-                                        <img class="responsive-img add-logo" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                                        <img class="responsive-img add-logo" src="<?php echo $this->config->item('web_url') ?>assets/image/logo.png" alt="Karnataka Labour Welfare Board">
                                     </div>
                                     <div class="col col l4 m5 s12">
                                         <div class="com-detail">
-                                            <p><?php echo (!empty($info->indNAme))?$info->indNAme:''; ?></p>
+                                            <h5>Karnataka Labour Welfare Board Contribution</h5>
                                         </div>
                                     </div>
                                     <div class="col col l5 m5 s12">
@@ -51,55 +52,42 @@
                                         <div class="row">
                                             <div class="col l5 m6 s12">
                                                 <div class="input-field">
-                                                    <!-- <select name="p_cc">
-                                                        <option value="" disabled selected>Company Category</option>
-                                                        <option value="1">Option 1</option>
-                                                        <option value="2">Option 2</option>
-                                                        <option value="3">Option 3</option>
-                                                    </select> -->
-                                                    <input id="category" readonly name="category" type="text" class="validate" required value="<?php echo (!empty($act))?$act:''; ?>">
-                                                    <label for="category">Company Category</label>
+                                                    <select name="p_cc" class="select">
+	                                                    <option value="" disabled selected>Company Category</option>
+	                                                    <option value="1">Labour Act</option>
+	                                            		<option value="2">Factory Act</option> 
+                                                	</select>
                                                 </div>
                                             </div>
-                                            <div class="col l3 m5 s12">
+                                            <div class="col l5 m5 s12">
                                                 <div class="input-field">
-                                                    <input id="reg_no" readonly name="reg_no" type="text" class="validate" required value="<?php echo (!empty($info->reg_id))?$info->reg_id:''; ?>">
-                                                    <label for="reg_no">Reg No</label>
-                                                </div>
-                                            </div>
-                                            <div class="col l3 m5 s12">
-                                                <div class="input-field">
-                                                    <select name="p_year" v-model="year">
+                                                    <select name="p_year" v-model="year" class="select" @change="countPrice()">
                                                     <option value="" disabled selected>Year</option>
-                                                    <?php
-
-                                                    for ($i=2000; $i <= date('Y') ; $i++) { 
+                                                    <?php for ($i=2000; $i <= date('Y') ; $i++) {
                                                         echo '<option value="15-1-'.$i.'">'.$i.'</option>';
-                                                    }
-                                                    
-                                                    ?>
-                                                    
+                                                    } ?>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col l11 m10 s12">
+                                            <div class="col l10 m10 s12">
                                                 <div class="input-field">
-                                                <input id="company" readonly name="company" type="text" class="validate" required value="<?php echo (!empty($info->indNAme))?substr($info->indNAme,0,100):''; ?>">
-                                                    <label for="company">Company Name</label>
+                                                    <select id="company" name="company">
+                                                    <option value="" disabled >Select Your Industry</option>
+                                                    
+                                                	</select>
+                                                	<p class="inregister"></p>
                                                 </div>
                                             </div>
-                                            <!-- <div class="col l3 m6 s12">
+
+                                            <div class="col l5 m5 s12">
                                                 <div class="input-field">
-                                                <input id="district" readonly name="district" type="text" class="validate" required value="<?php echo (!empty($info->district))?$info->district:''; ?>">
-                                                <label for="district">District</label>
+                                                    <input id="c_conreg" type="text" readonly class="c_conreg validate" required="">
+		                                            <input id="c_comp" type="hidden" name="c_comp" >
+		                                            <label class="crg" for="c_conreg">Industry Reg No</label>
                                                 </div>
-                                            </div> -->
-                                            <!-- <div class="col l3 m6 s12">
-                                                <div class="input-field">
-                                                    <input id="taluk" readonly name="taluk" type="text" class="validate" required value="<?php echo (!empty($info->taluk))?$info->taluk:''; ?>">
-                                                    <label for="taluk">Taluk</label>
-                                                </div>
-                                            </div> -->
+                                            </div>
+
+                                            
                                             <div class="col l5 m5 s12">
                                                 <div class="input-field">
                                                     <input id="p_cmale" name="p_cmale" type="number" @change="countPrice()" class="validate" required v-model="male">
@@ -126,7 +114,7 @@
                                                 </thead>
                                                 <tbody class="amt-resu">
                                                     <tr>
-                                                        <td colspan="1"><?php echo strlen($info->indNAme) > 50 ? substr($info->indNAme,0,60)."..." : $info->indNAme; ?></td>
+                                                        <td colspan="1" class="cname"></td>
                                                         <td>{{employees}}</td>
                                                         <td class="grey-text">60₹</td>
                                                         <td>{{amount}}</td>
@@ -170,19 +158,74 @@
 
 
     <!-- scripts -->
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
-    <script>
-        <?php $this->load->view('include/msg'); ?>
-    </script>
+     <script>
+     	<?php $this->load->view('include/msg'); ?>
+$(document).ready(function() {
+
+
+    $('#company').select2({
+        placeholder: 'Select a company',
+        minimumInputLength: 1,
+        ajax: {
+            url: "<?php echo base_url('payments/search') ?>",
+            dataType: 'json',
+            quietMillis: 250,
+            data: function (term, page) {
+                return {
+                    q: term, // search term
+                };
+            },
+            processResults: function (data) {
+            	return {
+            		results: data,
+            	};
+
+
+            },
+                cache: true
+            },
+    });
+
+     $(document).on('change','#company',function(){
+        var cmp = $(this).val();
+        $('#c_comp').val(cmp);
+		var name  = $(this).text();
+		$('.cname').text(name);
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('payments/companyChange') ?>",
+            data: { comp : cmp},
+            dataType: "html",
+            success: function (response) {
+                if (response !='') {
+                	$('#c_conreg').val(response);
+                    $(".crg").addClass('active'); 
+                }else{
+                    $('.inregister').append('<span class="helper-text red-text">Industry is not registered, please  register to make the payment</span>');
+                    $('#c_conreg').val(response);
+                    $(".crg").removeClass('active'); 
+                }
+            }
+        });
+
+    });
+});
+</script>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.modal');
             var instances = M.Modal.init(elems, {
                 preventScrolling: false
             });
+
+            var instances = M.FormSelect.init(document.querySelectorAll('.select'));
         });
 
         var app = new Vue({
@@ -207,7 +250,7 @@
                     let female = parseInt(this.female);
 
                     if(this.female == '' && this.male==''){
-                        emp = '';
+                    	emp = '';
                     }else if (this.male == '' && this.female != '') {
                         emp = female;                        
                     }else if(this.female == '' && this.male != ''){
@@ -215,7 +258,7 @@
                     }else{
                         emp = (male + female);
                     }
-                    
+
                     var selDate = this.year;
                     var today = new Date();
                     var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();                  
@@ -232,6 +275,8 @@
                     }else{
                         var interest = '';
                     }
+
+                    console.log(emp)
 
                     
                     this.employees = emp;

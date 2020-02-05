@@ -12,7 +12,21 @@ class M_payments extends CI_Model {
         }else{
             return 'Factory Act';
         }
-        
+    }
+
+    public function search($term = null)
+    {
+        return $this->db->like('name',$term,'both')->select('name,id')->get('industry')->result_array();
+    }
+
+    public function companyChange($id = null)
+    {
+      $query =  $this->db->where('industry_id', $id)->where('type','1')->get('industry_register');
+        if($query->num_rows() > 0){
+          return $query->row('industry_id');
+        }else{
+          return false;
+        }
     }
     
 

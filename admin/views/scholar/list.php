@@ -18,6 +18,9 @@
             border-radius: 0;
             text-align: left;
         }
+        td:first-child { text-align: center !important; }
+        #approve_select{ display: none; }
+        .loading{display: none;}
     </style>
 </head>
 
@@ -87,19 +90,25 @@
                         
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
-                                <div class="title-list ">
-                                    <span class="list-title ">Scholarship List</span>
-                                    <select class="browser-default select-list" fname="year" id="short">
-                                        <option value="">Choose Year</option>
-                                        <?php
-                                            $yr = $this->input->get('year');
-                                            for($i=2000; $i<= date('Y')+1 ; $i++){ 
-                                            $year = ($i - 1).'-'.($i);
-                                            ?>
-                                               <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                                    <div class="title-list ">
+                                        <span class="list-title">Scholarship List</span>
+
+                                            <a id="approve_all" class="bulk-btn z-depth-1 white-text green darken-3 waves-effect waves-ligh">Approve All</a>
+                                            <a id="approve_select" class="bulk-btn z-depth-1 white-text blue darken-3 waves-effect waves-ligh">Approve Selected</a>
+
+
+                                        <select class="browser-default select-list" fname="year" id="short">
+                                            <option value="">Choose Year</option>
+                                            <?php
+                                                $yr = $this->input->get('year');
+                                                for($i=2000; $i<= date('Y')+1 ; $i++){ 
+                                                $year = ($i - 1).'-'.($i);
+                                                ?>
+                                                   <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
                                 <div class="board-content ">
                                     <div class="row m0">
                                     <div class="table-detail">
@@ -133,6 +142,12 @@
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
+                                                <th id="a" class="h5-para-p2" style="width: 120px;">
+                                                    <label>
+                                                    <input type="checkbox" class="filled-in" id="allCheck"/>
+                                                    <span style="font-size: 12px; font-weight: 600;" class="h5-para-p2">Select All</span> 
+                                                </label>
+                                                </th>
                                                 <th id="a" class="h5-para-p2" style="width: 120px;">Name</th>
                                                 <th id="c" class="h5-para-p2" style="width: 120px;">Institute</th>
                                                 <th id="c" class="h5-para-p2" style="width: 120px;">Industry</th>
@@ -158,6 +173,7 @@
 
        
         <?php $this->load->view('include/footer'); ?>
+        <div class="loading">Loading&#8230;</div>
         <!-- End footer -->
     </div>
 
@@ -264,10 +280,80 @@
                   ]
                })
 
-
-
             $('select').formSelect();
             $('.modal').modal();
+
+            $('#allCheck').change(function (e) { 
+               e.preventDefault();
+               if($(this).prop("checked") == true){
+                  $('.indual').prop( "checked", true );
+                  $('#approve_select').css('display','inline-block');
+               }
+               else if($(this). prop("checked") == false){
+                  $('.indual').prop( "checked", false );
+                  $('#approve_select').css('display','none');
+               }
+            });
+
+            $(document).on('change','.indual',function () {
+                if($(this).prop("checked") == true){
+                  $('#approve_select').css('display','inline-block');
+               }
+               else if($(this). prop("checked") == false){
+                  $('#approve_select').css('display','none');
+               }
+
+            });
+
+            $(document).on('click','#approve_select',function () {
+               if(confirm('Are you sure you want to approve all the selected applications?')){
+                  var selected = [];
+                     $('.indual:checked').each(function() {
+                        selected.push($(this).val());
+                     });
+                     $('.loading').css('display','block');
+                  $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url() ?>scholar/approveSelect",
+                        data: {ids : selected},
+                        dataType: "json",
+                        success: function(response) {
+                            M.toast({html: response, classes: 'green darken-4'});
+                            location.reload(); 
+                            $('.loading').css('display','none');
+                        },
+                  });
+               }else{
+                  return false;
+               }
+               
+            });
+
+            $(document).on('click','#approve_all',function () {
+               if(confirm('Are you sure you want to approve all the applications?')){
+                  var selected = [];
+                     $('.indual').each(function() {
+                        selected.push($(this).val());
+                     });
+                     $('.loading').css('display','block');
+                  $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url() ?>scholar/approveSelect",
+                        data: {ids : selected},
+                        dataType: "json",
+                        success: function(response) {
+                            M.toast({html: response, classes: 'green darken-4'});
+                            location.reload(); 
+                            $('.loading').css('display','none');
+                        },
+                  });
+               }else{
+                  return false;
+               }
+               
+            });
+
+
         });
 
     </script>

@@ -196,6 +196,19 @@ class M_scholar extends CI_Model {
         return $this->db->update('application', array('status' => 1));
     }
 
+    public function approveSelect($id='')
+    {
+        $this->db->where('id', $id);
+        $this->db->where('application_state', 4);
+        $this->db->update('application', array('status' => 1));
+        if($this->db->affected_rows() > 0){
+            return $id;
+        }else{
+            return false;
+        }
+        
+    }
+
     
     // Reject application
     public function reject($data, $id)
