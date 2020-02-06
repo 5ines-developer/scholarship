@@ -35,11 +35,10 @@
             <li class="rpt-m">
               <div class="collapsible-header"><i class="material-icons">report</i>Reports</div>
 
-              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports" class="<?php echo($this->uri->segment(1) == 'reports') ? 'active' :'' ?>">Total Scholarship Request</a></span></div>
-
-              <!-- <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry" class="<?php echo($this->uri->segment(1) == 'industry') ? 'active' :'' ?>">Registered Industry</a></span></div>
-              
-              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-request" class="<?php echo (($this->uri->segment(1) == 'industry-request') || ($this->uri->segment(1) == 'industry-add')) ? 'active' :'' ?>">Industry Add Request</a></span></div> -->
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports" class="<?php echo($this->uri->segment(1) == 'reports' && (empty($this->input->get('item'))) ) ? 'active' :'' ?>">Total Scholarship Request</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports?item=pending" class="<?php echo($this->input->get('item') == 'pending') ? 'active' :'' ?>">Total Pending Scholarship</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports?item=approved" class="<?php echo($this->input->get('item') == 'approved') ? 'active' :'' ?>">Total Approved Scholarship</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports?item=rejected" class="<?php echo($this->input->get('item') == 'rejected') ? 'active' :'' ?>">Total Rejected Scholarship</a></span></div>
             </li>
 
         </ul>
