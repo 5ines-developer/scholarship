@@ -180,9 +180,9 @@
                 axios.post('<?php echo base_url() ?>student/resendOtp', formData)
                 .then(response => {
                     if(response.data == '1'){
-                        M.toast({html: 'OTP has been resent to '+ this.phone +'', classes: 'red darken-2'});
+                        M.toast({html: 'OTP has been resent to '+ this.phone +'', classes: 'green darken-2'});
                     }else{
-                        M.toast({html: 'Something went wrong<br>Please try again.', classes: 'green darken-2'});
+                        M.toast({html: 'Something went wrong<br>Please try again.', classes: 'red darken-2'});
                     }
                 }).catch(error => {
                     if (error.response) {

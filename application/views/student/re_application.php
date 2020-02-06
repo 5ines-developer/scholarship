@@ -808,7 +808,11 @@ $this->load->model('m_stdapplication');
                         self.institute.name     = '<?php echo (!empty($scholls->school_address))?$scholls->school_address:''; ?>';
                         self.institute.talluk   = '<?php echo (!empty($scholls->talluk))?$scholls->talluk:''; ?>';
                         self.institute.district = '<?php echo (!empty($scholls->districtname))?$scholls->districtname:''; ?>';
-                        self.institute.pclass   = response.data.cLass;
+                        if(response.data.course =='1'){
+                            self.crse = true;
+                        }else{
+                            self.institute.pclass   = response.data.cLass;
+                        }
                         self.institute.pin      = response.data.ins_pin;
                         self.institute.grad     = response.data.gradutions;
                         self.institute.course   = response.data.corse;

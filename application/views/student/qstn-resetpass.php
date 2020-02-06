@@ -89,9 +89,9 @@
                                 <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('student/reset-pass') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
                                 <div class="card-body row m0 pt15 pb15">
                                     <div class="input-field col s12">
-                                            <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate" required>
-                                            <label for="email">Email ID</label>
-                                            <span class="helper-text red-text">{{ emailError }}</span>
+                                            <input  id="email" @change="mobile_check()" name="phone" v-model="phone" type="number" class="validate" required>
+                                            <label for="phone">Phone No.</label>
+                                            <span class="helper-text red-text">{{ phoneError }}</span>
                                     </div>
                                     <div class="input-field col s12">
                                         <input  id="password" v-model="psw" name="password" type="password" class="validate" required>
@@ -100,7 +100,7 @@
                                     <div class="input-field col s12">
                                         <input  id="cpassword" v-on:keyup="checkCpsw" name="cnpassword" v-model="cpsw" type="password" class="validate" required>
                                         <label for="cpassword">Confirm Password</label>
-                                        <span class="helper-text red-text">{{confError}}</span>
+                                        <span class="helper-text red-text">{{confError}}</span><br>
                                     </div>
 
                                     <input type="hidden" name="qstn" value="<?php echo (!empty($qstn))?$qstn:''; ?>">
@@ -147,8 +147,8 @@
             psw: '',
             cpsw:'',
             confError: '',
-            emailError:'',
-            email:'',            
+            phoneError:'',
+            phone:'',            
         },
 
         methods:{
@@ -162,16 +162,16 @@
                 }
             },
             //check student email already exist
-            emailCheck(){
-                this.emailError='';
+            mobile_check(){
+                this.phoneError='';
                 const formData = new FormData();
-                formData.append('email',this.email);
-                axios.post('<?php echo base_url('student/emailcheck') ?>',formData)
+                formData.append('mobile',this.phone);
+                axios.post('<?php echo base_url('student/mobile_check') ?>',formData)
                 .then(response =>{
                     if (response.data == '') {
-                        this.emailError = 'Account does not exist!';
+                        this.phoneError = 'Account does not exist!';
                     } else {
-                        this.emailError = '';
+                        this.phoneError = '';
                     }
 
                 }).catch(error => {
@@ -183,7 +183,7 @@
 
             //check student email already exist
             checkForm() {
-                if ((this.confError == '') && (this.emailError =='')) {
+                if ((this.confError == '') && (this.phoneError =='')) {
                     this.$refs.form.submit();
                 } else {}
             }

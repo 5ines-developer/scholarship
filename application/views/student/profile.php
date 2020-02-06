@@ -53,7 +53,7 @@
                                                 </div>
                                                 
                                                 <div class="input-field col s12">
-                                                    <input id="phone" autofocus="" v-model="student.mobile" type="number" class="validate">
+                                                    <input id="phone" autofocus="" readonly="" v-model="student.mobile" type="number" class="validate">
                                                     <label for="phone">Mobile Number</label>
                                                 </div>
                                                 
@@ -152,7 +152,7 @@
                     this.loader=true;
                     const formData = new FormData();
                     formData.append('name', this.student.name);
-                    formData.append('mobile', this.student.mobile);
+                    formData.append('email', this.student.email);
                     axios.post('<?php echo base_url() ?>std_account/updateprofile', formData)
                     .then(response => {
                     this.loader=false;

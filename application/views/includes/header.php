@@ -44,15 +44,15 @@
             <ul class="sidenav" id="mobile-demo">
                 <li><a href="<?php echo base_url()?>">Home</a></li>
                 <li><a href="<?php echo base_url('student/application')?>">Apply Scholarship</a></li>
-                <li><a href="#!">Scholarship Status</a></li>
-                <li><a href="#!">Application Detail</a></li>
+                <li><a href="<?php echo base_url('student/application-status')?>">Scholarship Status</a></li>
+                <li><a href="<?php echo base_url('student/application-detail')?>">Application Detail</a></li>
                 <li><a href="<?php echo base_url('student/profile')?>" <?php if($this->uri->segment(2)=='profile'){ echo 'active'; } ?> >Account Settings</a></li>
                 <li><a href="<?php echo base_url('student/logout')?>">Logout</a></li>
             </ul>
 
             <ul id='dropdown1' class='dropdown-content'>
               <li><a href="<?php echo base_url('student/profile')?>">Account Settings</a></li>
-              <li><a href="<?php echo base_url('student/application')?>">Application Status</a></li>
+              <li><a href="<?php echo base_url('student/change-password')?>">Change Password</a></li>
               <li><a href="<?php echo base_url('student/logout')?>">Logout</a></li>
             </ul>
         </header>

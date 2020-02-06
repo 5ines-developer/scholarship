@@ -21,21 +21,29 @@ class M_stdapplication extends CI_Model {
         ->get()->result();
     }
 
+    public function adharcheck($adhar='')
+    {
+        $this->db->where('ab.adharcard_no', $adhar);
+        $this->db->where('a.application_year !=', date('Y'));
+        $this->db->from('application a');
+        $this->db->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left');
+        return $this->db->get()->num_rows();
+    }
+
 	/**
     * get company
     * @data     : company data,
     **/
     public function getCompany($value='')
     {
-        // return $this->db->select('irg.id as iId,ind.name as iName')
-        // ->order_by('irg.id', 'desc')
-        // ->distinct()
-        // ->group_by('ind.name')
-        // ->from('industry_register irg')
-        // ->join('industry ind', 'ind.id = irg.industry_id', 'left')
-        // ->get()->result();
+        return $this->db->select('irg.id as iId,ind.name as iName')
+        ->order_by('irg.id', 'desc')
+        ->distinct()
+        ->group_by('ind.name')
+        ->from('industry_register irg')
+        ->join('industry ind', 'ind.id = irg.industry_id', 'left')
+        ->get()->result();
 
-    	return $this->db->order_by('id', 'desc')->select('id as iId,name as iName')->get('industry')->result();
     }
 
     /**

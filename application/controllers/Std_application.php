@@ -101,6 +101,13 @@ class Std_application extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function adharcheck($value='')
+	{
+		$adhar = $this->input->get('adhar');
+		$data = $this->m_stdapplication->adharcheck($adhar);
+		echo json_encode($data);
+	}
+
 	/**
     * student application - insert application
     * @url      : student/submit-application

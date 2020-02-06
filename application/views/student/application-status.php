@@ -73,6 +73,7 @@
                                                     echo '<div class="blue-text">Pending</div>';
                                                 } ?>
                                            </li>
+
                                        </ul> 
                                             <?php 
 
@@ -87,9 +88,21 @@
                                                     $level = 'Government';
                                                     break;
                                             }
-                                            
-                                            
-                                            if ($result->status == 2) {
+
+
+                                            if ($result->status == 1 && $result->application_state == 4 && $result->pay_status == 0) {
+                                                echo '<div class="reason-reject">
+                                                <h6 class="center-align mb15">Your scholarship application has been approved<br>Payment is under process.</h6>
+                                                </div>';
+                                            }elseif ($result->status == 1 && $result->application_state == 4 && $result->pay_status == 1) {
+                                                echo '<div class="reason-reject">
+                                                <h6 class="center-align mb15">Your Scholarship amount has been succesfully transfered to your Bank account.</h6>
+                                                </div>';
+                                            }elseif ($result->status == 1 && $result->application_state == 4 && $result->pay_status == 2) {
+                                              echo '<div class="reason-reject">
+                                                <h6 class="center-align mb15">Your Scholarship amount transaction failed due to '.$result->pay_freason.'.</h6>
+                                                </div>';
+                                            }else if ($result->status == 2) {
                                                 echo '<div class="reason-reject">
                                                 <p class="center-align mb15">Your application has been Rejected from '.$level.' level</p>
                                                 <table>

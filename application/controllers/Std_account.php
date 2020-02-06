@@ -39,9 +39,8 @@ class Std_account extends CI_Controller {
     public function updateprofile($output='')
     {
         $name = $this->input->post('name');
-        $phone = $this->input->post('mobile');
         $email = $this->input->post('email');
-        $output = $this->m_stdaccount->updateProfile($email,$name,$phone,$this->sid);
+        $output = $this->m_stdaccount->updateProfile($email,$name,$this->sid);
         echo $output;           
     }
 

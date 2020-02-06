@@ -110,7 +110,6 @@
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                     </div>
-                                    <a href="<?php echo base_url('student/login') ?>" class="col mt15 mb15">Nevermind, I remember my password</a>
                                 </div>
                             </form>
                             </div>

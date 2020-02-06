@@ -162,13 +162,13 @@
                                             <div class="input-field col s12">
                                                 <div class="col s6 m3 l2">
                                                     <label>
-                                                        <input class="with-gap" name="std_cast" type="radio" @change="casteCheck()" value="0" checked v-model="caste.low"/>
+                                                        <input class="with-gap" name="std_cast" type="radio" @change="casteCheck()" value="0"  v-model="caste.low"/>
                                                         <span>No (ಇಲ್ಲ)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s6 m3 l2">
                                                     <label>
-                                                        <input class="with-gap" name="std_cast" type="radio"   @change="casteCheck()" value="1" v-model="caste.low"/>
+                                                        <input class="with-gap" name="std_cast" type="radio"   @change="casteCheck()" value="1" checked v-model="caste.low"/>
                                                         <span>Yes (ಹೌದು)</span>
                                                     </label>
                                                 </div>
@@ -178,7 +178,7 @@
                                                 <div class="input-field col s6 ">
                                                     <div class="btn">
                                                         <span>File</span>
-                                                        <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()" >
+                                                        <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()" accept=".png,.jpg,.jpeg,.svg,.pdf">
                                                     </div>
                                                     <div class="file-path-wrapper">
                                                         <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
@@ -260,7 +260,7 @@
                                                 <div class="file-field input-field">
                                                     <div class="btn">
                                                         <span>File</span>
-                                                        <input type="file" name="pv_mrcard" ref="file" @change="markcard()" <?php echo (!empty($result->prv_markcard))?'':"required"; ?>>
+                                                        <input type="file" name="pv_mrcard" ref="file" @change="markcard()" <?php echo (!empty($result->prv_markcard))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
                                                     </div>
                                                     <div class="file-path-wrapper">
                                                         <input class="file-path validate" type="text" >
@@ -293,7 +293,8 @@
                                             <div class="file-field input-field col s12 m6">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="adhar"  ref="file2" @change="adhaarXerox" <?php echo (!empty($result->adharcard_file))?'':"required"; ?>>
+                                                    <input type="file" name="adhar"  ref="file2" @change="adhaarXerox" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                    <span class="red-text">{{adhError}}</span>
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
@@ -507,6 +508,7 @@
                 district:'',
                 grad:'',
                 course:'',
+                name:'',
             },
             previous:{
                 class:'',
@@ -523,7 +525,7 @@
                 name:'',
             },
             caste:{
-                low:'',
+                low:'0',
                 number:'',
 
             },
@@ -546,6 +548,7 @@
             max: 16,
             trcategory:'sc',
             gncategory:'general',
+            adhError:'',
 
         },
         methods:{
@@ -553,6 +556,23 @@
                 var cardNumber = this.$refs.creditCardNumber.value;
                 var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
                 this.adhaar.number = result;
+
+                    var self= this;
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/adharcheck?adhar='+cardNumber)
+                    .then(function (response) {
+
+                        if(response.data !=  '0'){
+                            M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                            this.adhError = 'You are not eligible to apply for this scholarship';
+                        }
+                        
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+
+                    
             },
             markcard(){
                 this.file = this.$refs.file.files[0];
@@ -579,7 +599,7 @@
                 
             },
             casteCheck(){
-                if (this.caste.low !='') {
+                if (this.caste.low =='1') {
                     this.tribes = false;
                     this.scaste = false;
                     this.genral = true;
@@ -591,7 +611,7 @@
 
             },markCheck(){
                 this.markError = '';
-                if((this.caste.low =='') && (this.previous.marks < 50))
+                if((this.caste.low !='1') && (this.previous.marks < 50))
                 {
                     M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
                     this.markError = 'You are not eligible to apply for this scholarship';
@@ -602,7 +622,7 @@
             },
            formSubmit(e){
                 e.preventDefault();
-                if ((this.markError == '') && (this.salError=='')){
+                if ((this.markError == '') && (this.salError=='') && (this.adhError=='') ){
                     this.loader=true;
                     const formData = new FormData();
                     formData.append('sname', this.student.name);
@@ -781,10 +801,14 @@
                         self.student.gend    = response.data.gender;
 
                         //caste details
-                        if(response.data.is_scst != 1){
-                            this.tribes = true;
-                            this.scaste = true;
-                            this.genral = false; 
+                        if(response.data.is_scst == 1){
+                            self.tribes = false;
+                            self.scaste = false;
+                            self.genral = true; 
+                        }else{
+                            self.tribes = true;
+                            self.scaste = true;
+                            self.genral = false;
                         }
                         self.caste.low          = response.data.is_scst;
                         self.caste.number       = response.data.cast_no;

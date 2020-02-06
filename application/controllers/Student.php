@@ -451,12 +451,12 @@ class Student extends CI_Controller {
 
     public function qst_resetpass($var = null)
     {
-        $email      = $this->input->post('email');
+        $phone      = $this->input->post('phone');
         $password   = $this->bcrypt->hash_password($this->input->post('password'));
         $qstn       = $this->input->post('qstn');
         $ans        = $this->input->post('ans');
 
-        $output = $this->m_student->verifyQstns($qstn,$email,$ans,$password);
+        $output = $this->m_student->verifyQstns($qstn,$phone,$ans,$password);
 
         if (!empty($output)) {
             $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');

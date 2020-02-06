@@ -176,11 +176,11 @@ class M_student extends CI_Model {
     * @url      : student/reset-pass
     * @param    : question,answern, userid
     **/
-    public function verifyQstns($qstn='',$email='',$ans='',$password='')
+    public function verifyQstns($qstn='',$phone='',$ans='',$password='')
     {       
-      $query = $this->db->where('email', $email)->where('question',$qstn)->where('answer',$ans)->get('student'); 
+      $query = $this->db->where('phone', $phone)->where('question',$qstn)->where('answer',$ans)->get('student'); 
       if ($query->num_rows() > 0) {
-        $this->db->where('email', $email)->where('question',$qstn)->where('answer',$ans)->update('student',array('password' => $password));
+        $this->db->where('phone', $phone)->where('question',$qstn)->where('answer',$ans)->update('student',array('password' => $password));
         if ($this->db->affected_rows() > 0) {
             return true;
         }else{
