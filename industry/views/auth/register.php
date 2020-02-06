@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
     <link href="<?php echo $this->config->item('web_url') ?>assets/css/select2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
 </head>
 
 <body>
@@ -45,26 +47,14 @@
                                         <span class="helper-text red-text">{{mobileError}}</span>
                                     </div>
 
-                                     <div class="input-field col s12 m6">
-                                        <select id="district" name="district" required="" class="select2">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <?php if (!empty($district)) {
-                                                foreach ($district as $key => $value) {
-                                                    echo '<option value="'.$value->id.'">'.$value->title.'</option>';
-                                            } } ?>
-                                        </select>
-                                        <label for="district">District</label>
-                                    </div>
-                                    
                                     <div class="input-field col s12 m6">
-                                        <select id="taluk" name="taluk" required="" class="select2">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <?php if (!empty($taluk)) {
-                                                foreach ($taluk as $key => $value) {
-                                                    echo '<option value="'.$value->id.'">'.$value->title.'</option>';
-                                            } } ?>
-                                        </select>
-                                        <label for="taluk">Taluk</label>
+                                        <input type="hidden" name="district" :value="district.id">       
+                                        <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
+                                    </div>
+
+                                    <div class="input-field col s12 m6">
+                                        <input type="hidden" name="taluk" :value="tlq.id">       
+                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk"  tagging :from="taluk" />
                                     </div>
                                    
                                     <div class="input-field col s12 m6">
@@ -222,6 +212,9 @@ $(document).ready(function() {
 
         var app = new Vue({
             el: '#app',
+            components: {
+            vSelect: VueSelect.vSelect,
+        },
             data: {
                 mobile: '',
                 email: '',
@@ -234,10 +227,34 @@ $(document).ready(function() {
                 act:'',
                 // companies:[],
                 loader:false,
+                districtSelect: <?php echo json_encode($district) ?>,
+                district: '',
+                taluk: [],
+                tlq:'',
+                disabled: true,
+                disabled1: true,
 
             },
 
             methods: {
+
+                talukFilter(){
+                var self = this;
+                self.taluk = '';
+                self.tlq = '';
+                self.instituteSelect = '';
+                self.institute = '';
+                axios.post('<?php echo base_url() ?>auth/talukFilter?filter='+this.district.id)
+                .then(res => {
+                    self.disabled = false;
+                    self.taluk = res.data;
+                })
+                .catch(err => {
+                    console.error(err); 
+                    self.disabled = true;
+                })
+            },
+
 
                             //check student email already exist
             emailCheck(){

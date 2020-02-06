@@ -139,6 +139,14 @@ class auth extends CI_Controller {
         }
     }
 
+     // taluk filter based on selected district
+    public function talukFilter()
+    {
+        $district = $this->input->get('filter');
+        $result = $this->m_auth->getTalukFiletr($district);
+        echo json_encode($result);
+    }
+
  
     
 
@@ -307,11 +315,11 @@ class auth extends CI_Controller {
                     if ($this->sendforgot($insert)) {
                         $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
                     }else{
-                        $this->session->set_flashdata('error', 'Some error occured! Please contact our support team');
+                        $this->session->set_flashdata('error', 'Something went wrong, Please try again Later!');
                     }
                     redirect('forgot-password','refresh');
                 }else{
-                    $this->session->set_flashdata('error', 'Some error occured! Please contact our support team');
+                    $this->session->set_flashdata('error', 'Something went wrong, Please try again Later!');
                     redirect('forgot-password','refresh');
                 }
             }else{
@@ -366,7 +374,7 @@ class auth extends CI_Controller {
                if($this->m_auth->forgotVerify($regid, $data['newRegid'])){
                 $this->load->view('auth/reset-password', $data, FALSE);
             }else{
-                $this->session->set_flashdata('error', 'Some error occured! Please contact our support team <br> if you are facing any issues on resetting the password');
+                $this->session->set_flashdata('error', 'Something went wrong, Please try again Later!');
                 redirect('forgot-password','refresh');
             }
         }else{
@@ -398,7 +406,7 @@ class auth extends CI_Controller {
                     $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
                     redirect('login');
                 } else {
-                    $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method reset your password');
+                    $this->session->set_flashdata('error', 'Something went wrong, Please try again Later!');
                     redirect('forgot-password');
                 }
             }else{

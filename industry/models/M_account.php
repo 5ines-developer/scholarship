@@ -15,10 +15,31 @@ class M_account extends CI_Model {
         return $this->db->get()->row();   
     }
 
+    public function getaccount($value='')
+    {
+        $this->db->select('email, id,mobile,name');
+       return $this->db->where('id', $this->session->userdata('scinds'))->get('industry_register')->row();
+    }
+
 // update  start
     public function update($data, $id)
     {        
         return $this->db->where('id', $id)->update('industry_register',$data);
+    }
+
+    //vue js phone check exist or not
+    public function mobile_check($phone='')
+    {
+        if ($this->session->userdata('scctype') != '1') {
+            $this->db->where('id !=', $this->session->userdata('scinds'));
+        }
+        $this->db->where('mobile', $phone);
+        $result = $this->db->get('industry_register');
+           if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
  

@@ -18,6 +18,13 @@ class M_auth extends CI_Model {
       return $this->db->where('act',$act)->get('industry')->result();
    }
 
+   // taluk filter
+public function getTalukFiletr($id = null)
+{
+   return $this->db->where('city_id', $id)
+   ->get('taluq')->result();
+}
+
           //vue js phone check exist or not
     public function mobile_check($phone='')
     {

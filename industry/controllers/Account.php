@@ -19,8 +19,23 @@ class Account extends CI_Controller {
         $data['title'] = 'Industry account';
         $data['taluk'] = $this->m_auth->getTaluk();
         $data['district'] = $this->m_auth->getDistrict();
-        $data['info'] = $this->M_account->getAccountDetails();
-        $this->load->view('account/profile', $data, FALSE);
+        
+
+        if ($this->session->userdata('scctype') == '1') {
+            $data['info'] = $this->M_account->getAccountDetails();
+            $this->load->view('account/profile', $data, FALSE);
+        }else{
+             $data['info'] = $this->M_account->getaccount();
+            $this->load->view('account/hr-profile', $data, FALSE);
+        }
+    }
+
+    public function mobile_check($value='')
+    {
+        $mobile =  $this->input->post('mobile');
+        $output = $this->M_account->mobile_check($mobile);
+        echo  $output;
+      
     }
 
     public function update()
@@ -34,6 +49,23 @@ class Account extends CI_Controller {
             'gst_no'       => $this->input->post('gstno'),
             'address'      => $this->input->post('address'),
         );
+        if($this->M_account->update($insert, $this->reg))
+        {
+            $this->session->set_flashdata('success', 'Profile details Updated Successfully 🙂');
+        }else{
+            $this->session->set_flashdata('error', '😕 Server error occurred. Please try again later');             
+        }
+        redirect('dashboard','refresh');
+    }
+
+    public function hrupdate($value='')
+    {
+        $insert = array(
+            'name'   => $this->input->post('name'),
+            'email'  => $this->input->post('email'),
+            'mobile' => $this->input->post('phone'),
+        );
+
         if($this->M_account->update($insert, $this->reg))
         {
             $this->session->set_flashdata('success', 'Profile details Updated Successfully 🙂');
