@@ -141,8 +141,8 @@
                 <p>ಉದ್ಯೋಗ ಸಂಸ್ಥೆಯ ಅಧಿಕೃತ ಅಧಿಕಾರಿ ಪಧಾನಾಮ/ಸಹಿ ಮತ್ತು ಮೊಹರು </p>
                 <br>
                 <span class="dashed-line"> <?php echo $img->name  ?> </span>
-                <!-- <img src="https://www.esfcamps.com/ranney/wp-content/uploads/sites/12/2017/05/Ranney-School-seal.png" width="100px" class="mr30" alt="">
-                <img src="https://www.purcell-school.org/wp-content/uploads/2018/09/Principle-Signature-300x168.png" width="100px" alt=""> -->
+                <img src="<?php echo base_url().$img->sign  ?>" width="100px" class="mr30" alt="">
+                <img src="<?php echo base_url().$img->seal  ?>" width="100px" alt="">
             </div>
             <div class="clearfix"></div>
             

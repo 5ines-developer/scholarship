@@ -113,8 +113,7 @@ class Application extends CI_Controller {
 
     public function studentSms($data='', $apid='')
     {
-		$data['info'] = $this->m_application->singleGet($id);
-        $phone = $this->m_application->phoneGet($data['info']->Student_id);
+		$phone = $this->m_application->singphoneget($apid);
 		
         /* API URL */
         $url = 'http://trans.smsfresh.co/api/sendmsg.php';

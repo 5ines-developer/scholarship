@@ -138,7 +138,7 @@ class M_application extends CI_Model {
 
     public function compDocs($id = null)
     {   
-       return $this->db->select('name')->where('industry_id', $id)->where('type','1')->get('industry_register')->row();
+       return $this->db->select('name,seal,sign')->where('industry_id', $id)->where('type','1')->get('industry_register')->row();
         
     }
 
@@ -150,6 +150,12 @@ class M_application extends CI_Model {
     public function phoneGet($id='')
     {
         return $this->db->select('phone')->where('id',$id)->get('student')->row('phone');
+    }
+
+    public function singphoneget($id='')
+    {
+        $result = $this->db->where('id', $id)->get('application')->row('Student_id');
+        return $this->phoneGet($result);
     }
 
 }

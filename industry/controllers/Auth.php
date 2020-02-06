@@ -164,29 +164,30 @@ class auth extends CI_Controller {
             'type'          => 1,
         );
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
-            redirect('register');
-        }else{
             $config['upload_path'] = './reg-doc';
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_width'] = 0;
             $config['encrypt_name'] = true;
             $this->load->library('upload');
             $this->upload->initialize($config);
-            if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-            $this->upload->do_upload('reg_doc');
-            $upload_data = $this->upload->data();
-            $reg = 'reg-doc/'.$upload_data['file_name'];
-
-            $insert['register_doc'] = $reg;
-
+            if (!is_dir($config['upload_path'])) { mkdir($config['upload_path'], 0777, true); }
+            if (!$this->upload->do_upload('reg_doc')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('register');
+            } else {
+                $this->upload->do_upload('reg_doc');
+                $upload_data = $this->upload->data();
+                $reg = 'reg-doc/'.$upload_data['file_name'];
+                $insert['register_doc'] = $reg;
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            redirect('register');
         }
 
 
-        if ((empty($_FILES['seal']['tmp_name']))) {
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
-            redirect('register');
-        }else{
+        if ((!empty($_FILES['seal']['tmp_name']))) {
             $config['upload_path'] = './seal-doc';
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_width'] = 0;
@@ -194,18 +195,23 @@ class auth extends CI_Controller {
             $this->load->library('upload');
             $this->upload->initialize($config);
             if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-            $this->upload->do_upload('seal');
-            $upload_data = $this->upload->data();
-            $seal = 'seal-doc/'.$upload_data['file_name'];
+            if (!$this->upload->do_upload('seal')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('register');
+            } else {
+                $this->upload->do_upload('seal');
+                $upload_data = $this->upload->data();
+                $seal = 'seal-doc/'.$upload_data['file_name'];
+                $insert['seal'] = $reg;
+            }
 
-            $insert['seal'] = $reg;
-
+        }else{
+             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            redirect('register');
         }
 
-        if ((empty($_FILES['sign']['tmp_name']))) {
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
-            redirect('register');
-        }else{
+        if ((!empty($_FILES['sign']['tmp_name']))) {
             $config['upload_path'] = './sign-doc';
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_width'] = 0;
@@ -213,18 +219,21 @@ class auth extends CI_Controller {
             $this->load->library('upload');
             $this->upload->initialize($config);
             if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-            $this->upload->do_upload('sign');
-            $upload_data = $this->upload->data();
-            $sign = 'sign-doc/'.$upload_data['file_name'];
-
-            $insert['sign'] = $reg;
-
+            if (!$this->upload->do_upload('sign')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('register');
+            } else {
+                $this->upload->do_upload('sign');
+                $upload_data = $this->upload->data();
+                $sign = 'sign-doc/'.$upload_data['file_name'];
+                $insert['sign'] = $reg;
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            redirect('register');
         }
-
-
         $output = $this->m_auth->addCompany($insert);
-
-        
         if(!empty($output)){
             $this->sendActivation($insert);
             $this->load->view('auth/reg-thank', $insert);
@@ -513,7 +522,7 @@ class auth extends CI_Controller {
         $data['info'] = $this->m_application->singleStudent($apid);
         $data['img'] =$this->m_application->compDocs($data['info']->company_id);
 
-        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
         
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,

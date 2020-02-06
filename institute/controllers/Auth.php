@@ -373,7 +373,7 @@ class auth extends CI_Controller {
         $this->load->model('m_dashboard');
         $data['info'] = $this->m_dashboard->singleStudent($apid);
 
-        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
         
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,

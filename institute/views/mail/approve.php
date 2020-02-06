@@ -904,7 +904,7 @@
                                                                                             style="font-size:22px">Dear <?php echo $info->name ?>,</span><br>
                                                                                         <br>
                                                                                             Your Scholarship  Application approved from institute. 
-                                                                                            More information <a href="<?php echo base_url() ?>student/login" target="_blank" >Click here</a> and login your account and check the Scholarship status.
+                                                                                            More information <a href="<?php echo $this->config->item('web_url') ?>student/login" target="_blank" >Click here</a> and login your account and check the Scholarship status.
                                                                                         <br>
                                                                                         Please  <a href="<?php echo base_url('student/institute-certificate/').urlencode(base64_encode($info->aid)) ?>" target="_blank">click here</a>  to download the institute Confirmation Certificate.
                                                                                     </td>

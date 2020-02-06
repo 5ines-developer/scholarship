@@ -380,6 +380,7 @@ $this->load->model('m_application');
             </div>
             <div class="modal-footer">
                 <button href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</button>
+                <a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
             </div>
         </form>
         
@@ -421,6 +422,7 @@ $this->load->model('m_application');
         methods:{
             approve(id){
                 var self = this;
+                self.loader = true;
                 const formData = new FormData();
                 formData.append('id', id);
                 axios.post('<?php echo base_url() ?>application-approve', formData)
@@ -428,9 +430,11 @@ $this->load->model('m_application');
                     var msg = response.data.msg;
                     M.toast({html: msg, classes: 'green darken-2'});
                     self.disabled = true;
+                    self.loader = false;
                     window.location.href = "<?php echo base_url('application-approved') ?>";
                 })
                 .catch(error => {
+                    self.loader = false;
                     var msg = error.response.data.msg;
                     M.toast({html: msg, classes: 'red darken-4'});
                 })
