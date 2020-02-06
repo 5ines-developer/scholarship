@@ -173,7 +173,7 @@ $this->load->model('m_dashboard');
                                                                         <li>
                                                                             <p class="app-item-content-head">Caste Certificate File/ Number</p>
                                                                                 <?php if (!empty($result->cast_certificate)) { ?>
-                                                                                    <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
+                                                                                    <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
                                                                                     <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Caste-certificate
                                                                                     </a>
                                                                                     <?php echo (!empty($result->cast_no))?'-'.$result->cast_no:''; ?>
@@ -355,7 +355,8 @@ $this->load->model('m_dashboard');
                 </div>
             </div>
             <div class="modal-footer">
-                <button href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</button>
+                <button  class="modal-close waves-effect waves-green btn-flat">Submit</button>
+                <a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
             </div>
         </form>
         

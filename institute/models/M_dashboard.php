@@ -139,6 +139,23 @@ class M_dashboard extends CI_Model {
             return false;
         }
     }
+
+    public function singphoneget($id='')
+    {
+        $result = $this->db->where('id', $id)->get('application')->row('Student_id');
+        return $this->phoneGet($result);
+    }
+
+    public function phoneGet($id='')
+    {
+        return $this->db->select('phone')->where('id',$id)->get('student')->row('phone');
+    }
+
+     public function compDocs($id = null)
+    {   
+       return $this->db->select('name,priciple_signature,seal')->where('name', $id)->get('school')->row();
+        
+    }
     
 }
 

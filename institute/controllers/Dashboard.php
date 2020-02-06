@@ -93,12 +93,15 @@ class Dashboard extends CI_Controller {
         }
         echo json_encode($data);
         $this->sendmailApplication($this->input->post('id'));
+        $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to industry for verification, we will notify the status via sms';
+        $this->studentSms($msg,$this->input->post('id'));
     }
 
     // Send a application pdf file
-    public function sendmailApplication($id = 27)
+    public function sendmailApplication($id = '')
     {
         $data['info'] = $this->m_dashboard->singleStudent($id);
+        $data['img'] =$this->m_application->compDocs($data['info']->company_id);
         $data['email'] = $data['info']->email;
         $this->load->config('email');
         $this->load->library('email');
@@ -106,7 +109,7 @@ class Dashboard extends CI_Controller {
         $msg = $this->load->view('mail/approve', $data, true);
         $this->email->set_newline("\r\n");
         $this->email->from($from , 'Karnataka Labour Welfare Board');
-        $this->email->to('shahirkm@5ine.in');
+        $this->email->to($data['email']);
         $this->email->subject('Scholarship application Approved'); 
         $this->email->message($msg);
         if($this->email->send())  
@@ -118,6 +121,22 @@ class Dashboard extends CI_Controller {
             return false;
         }
         
+    }
+
+    public function studentSms($data='', $apid='')
+    {
+        $phone = $this->m_dashboard->singphoneget($apid);
+        
+        /* API URL */
+        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
+        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $data . '&priority=ndnd&stype=normal';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return $server_output;
     }
     
 
