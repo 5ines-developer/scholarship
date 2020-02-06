@@ -187,8 +187,6 @@
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
                                                 <th id="a" class="h5-para-p2" style="width: 120px;">Name</th>
-                                                <th id="c" class="h5-para-p2" style="width: 120px;">Institute</th>
-                                                <th id="c" class="h5-para-p2" style="width: 120px;">Industry</th>
                                                 <th id="g" class="h5-para-p2" style="width: 120px;">Present Class</th>
                                                 <th id="d" class="h5-para-p2" style="width: 120px;">Year</th>
                                                 <th id="d" class="h5-para-p2" style="width: 120px;">Adhaar No.</th>
@@ -197,6 +195,11 @@
                                                 <th id="g" class="h5-para-p2" style="width: 120px;">Talluk</th>
                                                 <th id="h" class="h5-para-p2" style="width: 120px;">Status</th>
                                                 <th id="h" class="h5-para-p2" style="width: 120px;">Amount</th>
+                                                <th id="h" class="h5-para-p2" style="width: 120px;">Account Holder</th>
+                                                <th id="h" class="h5-para-p2" style="width: 120px;">Account No.</th>
+                                                <th id="h" class="h5-para-p2" style="width: 120px;">IFSC  Code</th>
+                                                <th id="h" class="h5-para-p2" style="width: 120px;">Bank Name</th>
+                                                <th id="h" class="h5-para-p2" style="width: 120px;">Branch</th>
                                                 <th id="i" class="h5-para-p2" style="width: 120px;">Action</th>
                                             </thead>
                                         </table>

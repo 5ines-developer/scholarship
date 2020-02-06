@@ -63,7 +63,7 @@ class M_scholar extends CI_Model {
     public function make_query($filter='')
     {
 
-        $select_column = array('s.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','fs.amount');
+        $select_column = array('s.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','fs.amount','acnt.name as bank','acnt.branch','acnt.acc_no','acnt.ifsc','acnt.holder');
         $order_column = array("s.name","a.school_id", "ind.name",null,"crs.course","a.application_year","a.application_state","a.status"); 
 
 
@@ -116,6 +116,7 @@ class M_scholar extends CI_Model {
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
         ->join('applicant_comapny ac', 'ac.application_id = a.id', 'left')
         ->join('applicant_marks am', 'am.application_id = a.id', 'left')
+        ->join('applicant_account acnt', 'acnt.application_id = a.id', 'left')
         ->join('student s', 's.id = a.Student_id', 'left')
         ->join('school schl', 'schl.id = a.school_id', 'left')
         ->join('school_address scad', 'scad.school_id = a.school_id', 'left')

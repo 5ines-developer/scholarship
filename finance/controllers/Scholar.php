@@ -45,7 +45,6 @@ class Scholar extends CI_Controller {
         }
         
         $fetch_data   = $this->m_scholar->make_datatables($filt);
-
         $data = array();
         foreach($fetch_data as $row)  
         {  
@@ -75,8 +74,6 @@ class Scholar extends CI_Controller {
 
             $sub_array = array();
             $sub_array[] = $row->name;
-            $sub_array[] = character_limiter($row->school, 10);
-            $sub_array[] = character_limiter($row->industry, 10);  
             $sub_array[] = $row->course.'-'.$row->clss;
             $sub_array[] = $row->application_year;  
             $sub_array[] = $row->adharcard_no;  
@@ -84,7 +81,12 @@ class Scholar extends CI_Controller {
             $sub_array[] = $row->district;  
             $sub_array[] = $row->taluk;  
             $sub_array[] = $status;  
-            $sub_array[] = '&#8377; &nbsp;'.$row->amount;  
+            $sub_array[] = $row->amount; 
+            $sub_array[] = $row->holder;
+            $sub_array[] = $row->acc_no;
+            $sub_array[] = $row->ifsc;
+            $sub_array[] = $row->bank; 
+            $sub_array[] = $row->branch; 
             $sub_array[] = $btn;  
 
             $data[] = $sub_array;  
