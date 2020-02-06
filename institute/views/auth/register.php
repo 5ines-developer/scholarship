@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url')?>assets/js/axios.min.js"></script>
 
 </head>
 <body>
@@ -140,11 +144,7 @@
 
 
 <!-- scripts -->
-<script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
-<script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
-<!-- <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script> -->
-<script src="<?php echo $this->config->item('web_url')?>assets/js/axios.min.js"></script>
+
 <?php $this->load->view('include/msg'); ?>
 
 <script>

@@ -170,7 +170,7 @@
 <!--<![endif]-->
 <div align="left" class="img-container left fixedwidth" style="padding-right: 25px;padding-left: 25px;">
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 25px;padding-left: 25px;" align="left"><![endif]-->
-<img alt="Image" border="0" class="left fixedwidth" src="<?php echo base_url()?>assets/image/logo.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 70px; max-width: 203px; display: block;" title="Image" width="203"/>
+<img alt="Image" border="0" class="left fixedwidth" src="<?php echo $this->config->item('web_url') ?>assets/image/logo.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 70px; max-width: 203px; display: block;" title="Image" width="203"/>
 <!--[if mso]></td></tr></table><![endif]-->
 </div>
 <!--[if (!mso)&(!IE)]><!-->

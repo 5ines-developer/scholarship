@@ -60,7 +60,7 @@
                                                     <tr>
                                                         <td><?php echo $key + 1 ?></td>
                                                         <td><?php echo $value->name ?></td>
-                                                        <td><?php echo $value->email ?></td>
+                                                        <td class="truncate"><?php echo $value->email ?></td>
                                                         <td><?php echo $value->phone ?></td>
                                                         <td> <?php echo $sts ?> </td>
                                                         <td>
