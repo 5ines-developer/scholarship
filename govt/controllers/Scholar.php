@@ -9,7 +9,7 @@ class Scholar extends CI_Controller {
         //Do your magic here
         $this->load->model('m_scholar');
         $this->load->model('m_scholar');
-        if ($this->session->userdata('sgt_id') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
+        if ($this->session->userdata('sgt_id') == '') { $this->session->set_flashdata('error','Please login and try again!'); redirect('/','refresh'); }
     }
 
     public function index($district='')
