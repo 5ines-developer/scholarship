@@ -165,7 +165,7 @@ $this->load->model('m_application');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Caste Certificate File/ Number</p>
-                                                                                <?php if (!empty($result->cast_certificate)) { ?>
+                                                                                <?php if (!empty($result->is_scst)) { ?>
                                                                                     <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
                                                                                     <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Caste-certificate
                                                                                     </a>
