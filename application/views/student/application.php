@@ -183,7 +183,7 @@
                                                     <div class="file-path-wrapper">
                                                         <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
                                                     </div>
-                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span> </p>
+                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span> </p>
                                                 </div>
 
                                                 <div class="input-field col s6 ">
@@ -266,7 +266,7 @@
                                                         <input class="file-path validate" type="text" >
                                                     </div>
                                                     
-                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note :</span> <span class="red-text"> File Should be in pdf / jpg / png format. Size should be not more than 512KB. <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a>  </span></p>
+                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note :</span> <span class="red-text"> File Should be in pdf / jpg / png format. Size should be not more than 512KB. <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a>  </span></p>
                                                 </div>
                                             </div>
                                             
@@ -299,7 +299,7 @@
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
                                                 </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span></span>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
                                             </div>
                                             
                                         </div>
@@ -353,12 +353,12 @@
                                                 <p >ನಿಮ್ಮ ಪಾಸ್‌ಬುಕ್ ಮುಂದಿನ ಪುಟವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</p>                                                
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="bn_passbk"  ref="file3" @change="bankPassbook" <?php echo (!empty($result->passbook))?'':"required"; ?>>
+                                                    <input type="file" name="bn_passbk"  ref="file3" @change="bankPassbook" <?php echo (!empty($result->passbook))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Passbook Front page" >
                                                 </div>
-                                                <span class="red-text helper-text" data-error="wrong"  data-success="right">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span><br><br>
+                                                <span class="red-text helper-text" data-error="wrong"  data-success="right">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span><br><br>
                                             </div>
                                             
                                         </div>

@@ -247,7 +247,7 @@ $this->load->model('m_stdapplication');
                                                 <div class="col s12 l6">
                                                     <div class="app-detail-item">
                                                         <div class="app-item-heading">
-                                                            <p>Aadhaar card Detail</p>
+                                                            <p>Aadhaar card Details</p>
                                                         </div>
                                                         <div class="app-item-body">
                                                             <div class="row m0">
@@ -274,7 +274,7 @@ $this->load->model('m_stdapplication');
                                                 <div class="col s12 l6">
                                                     <div class="app-detail-item">
                                                         <div class="app-item-heading">
-                                                            <p>Bank Detail</p>
+                                                            <p>Bank Details</p>
                                                         </div>
                                                         <div class="app-item-body">
                                                             <div class="row m0">

@@ -40,7 +40,7 @@
                                     </div>
 
                                     <div class="input-field col s12">
-                                        <input  id="phone" @change="mobileCheck()" name="mobile" v-model="mobile" type="text" class="validate" required>
+                                        <input  id="phone" @change="mobileCheck()" name="mobile" v-model="mobile" type="number" class="validate" required>
                                         <label for="phone">Mobile No</label>
                                         <span class="helper-text red-text">{{mobileError}}</span><br>
                                     </div>
@@ -66,10 +66,10 @@
                                         <span class="helper-text red-text rel">{{confError}}</span>
                                     </div>
 
-                                    <!-- <div class="input-field col s12">
+                                    <div class="input-field col s12">
                                         <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
-                                    </div> -->
+                                    </div>
 
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>
@@ -152,22 +152,28 @@
             //check student mobile already exist
             mobileCheck(){
 
-                this.mobileError='';
-                const formData = new FormData();
-                formData.append('mobile',this.mobile);
-                axios.post('<?php echo base_url('student/mobile_check') ?>', formData)
-                .then(response => {
-                    if (response.data == '1') {
-                        this.mobileError = 'This Mobile number already exist!';
-                    } else {
-                        this.mobileError = '';
-                    }
+                alert(this.mobile.length)
 
-                }).catch(error =>{
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                } )
+                if( (this.mobile.length !=10)){
+                    this.mobileError = 'Mobile number must be 10 digits';
+                }else{
+                    this.mobileError='';
+                    const formData = new FormData();
+                    formData.append('mobile',this.mobile);
+                    axios.post('<?php echo base_url('student/mobile_check') ?>', formData)
+                    .then(response => {
+                        if (response.data == '1') {
+                            this.mobileError = 'This Mobile number already exist!';
+                        } else {
+                            this.mobileError = '';
+                        }
+
+                    }).catch(error =>{
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    } )
+                }
             },
 
             // check Password matching
@@ -182,11 +188,11 @@
             checkForm() {
                 if ((this.confError == '') && (this.mobileError == '') && (this.emailError == '')) {
 
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // }// 
+                    }// 
                 } else {}
             }
 

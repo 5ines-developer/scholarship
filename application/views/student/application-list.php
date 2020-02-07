@@ -60,7 +60,8 @@
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
                                                     foreach ($result as $key => $value) { 
-                                                        $id = urlencode(base64_encode($value->id));
+                                                        $id = $value->id;
+
                                                     ?>
                                                     <tr role="row" class="odd">
 

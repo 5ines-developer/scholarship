@@ -273,11 +273,8 @@ class M_stdapplication extends CI_Model {
     }
 
 
-    public function getDeatil($sid="",$id = null)
+    public function getDeatil($sid="",$aid = null)
     {  
-
-        $eid = base64_decode($id); 
-        $aid = urldecode($eid); 
         return $this->db->where('a.id', $aid)
         ->select('a.*,aa.*,am.*,ac.*,ab.*,ab.address as saddress, aa.name as bnkName,schl.id as schID,schl.name as schoolName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,ac.talluk as indtalluk,ac.district as inddistrict,ac.pincode as indpincode,ac.relationship as relationship,ac.msalary as msalary,ac.name as indpname,tq.title as instalq,a.id as aId')
         ->from('application a')        
