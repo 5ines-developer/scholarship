@@ -35,7 +35,7 @@
                                         <div class="card-content white-text center-align">
                                             <span class="card-title center-align"><i class="material-icons">insert_drive_file</i></span>
                                             <p>
-                                                <?php echo (!empty($count['tot_app']))?$count['tot_app']:''; ?>
+                                                <?php echo (!empty($count['tot_app']))?$count['tot_app']:'0'; ?>
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
@@ -48,7 +48,7 @@
                                         <div class="card-content white-text center-align">
                                             <span class="card-title center-align"><i class="material-icons">insert_drive_file</i></span>
                                             <p>
-                                            <?php echo (!empty($count['cr_count']))?$count['cr_count']:''; ?>
+                                            <?php echo (!empty($count['cr_count']))?$count['cr_count']:'0'; ?>
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
@@ -61,7 +61,7 @@
                                         <div class="card-content white-text center-align">
                                             <span class="card-title center-align"><i class="material-icons">location_city</i></span>
                                             <p>
-                                            <?php echo (!empty($count['ac_inds']))?$count['ac_inds']:''; ?>
+                                            <?php echo (!empty($count['ac_inds']))?$count['ac_inds']:'0'; ?>
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
@@ -74,7 +74,7 @@
                                         <div class="card-content white-text center-align">
                                             <span class="card-title center-align"><i class="material-icons">school</i></span>
                                             <p>
-                                            <?php echo (!empty($count['acti_inst']))?$count['acti_inst']:''; ?>
+                                            <?php echo (!empty($count['acti_inst']))?$count['acti_inst']:'0'; ?>
                                             </p>
                                         </div>
                                         <div class="card-action center-align">

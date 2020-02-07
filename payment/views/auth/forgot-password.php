@@ -111,7 +111,7 @@
                                             <label for="email">Email ID</label>
                                             <span class="helper-text red-text">{{ emailError }}</span>
                                         </div>
-                                        <div class="input-field col s12">
+                                        <div class="input-field col s12"><br>
                                             <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                         </div>
                                         <a href="<?php echo base_url('login') ?>" class="col mt15 mb15">Never mind, I remember my password</a>

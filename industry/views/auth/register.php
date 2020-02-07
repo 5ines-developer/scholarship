@@ -116,10 +116,10 @@
                                         <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
                                     </div>
-                                    <!-- <div class="input-field col s12">
+                                    <div class="input-field col s12">
                                         <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
-                                    </div> -->
+                                    </div>
                                     
                                     <div class="input-field col m12 ">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
@@ -298,11 +298,11 @@ $(document).ready(function() {
             checkForm() {
                 if ((this.mobileError == '') && (this.emailError == '')) {
 
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // }// 
+                     } 
                 } else {}
             }
 

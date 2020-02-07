@@ -291,7 +291,7 @@
          var app = new Vue({
             el: '#app',
             data: {
-                block: <?php echo ($result[0]->status !='3')?'true':'false'; ?>,
+                block: <?php echo ($result[0]->status !='3' && $result[0]->status !='1')?'true':'false'; ?>,
                 unblock: <?php echo ($result[0]->status =='1')?'true':'false'; ?>,
                 id:<?php echo ($result[0]->id) ?>,
             },
