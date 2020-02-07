@@ -107,11 +107,8 @@ class Scholar extends CI_Controller {
     public function approve($id = null,$msg='')
     {
         
-        $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
         $id = $this->input->post('id');
         if($this->m_scholar->approval($id)){
-            $this->approveMail($id);
-            $this->studentSms($msg,$id);
             $data = array('status' => 1, 'msg' => 'Scholarship Approved successfully.');
         }else{
             $this->output->set_status_header('400');
@@ -136,53 +133,4 @@ class Scholar extends CI_Controller {
             redirect('applications/detail/'.$id,'refresh');
         }
     }
-
-
-    public function approveMail($id='')
-    {
-        $data['info'] = $this->m_scholar->singleGet($id);
-        $email = $this->m_scholar->emailGet($data['info']->Student_id);
-
-        if (!empty($email)) {
-            $this->load->config('email');
-            $this->load->library('email');
-            $from = $this->config->item('smtp_user');
-            $msg = $this->load->view('mail/approve', $data, true);
-            $this->email->set_newline("\r\n");
-            $this->email->from($from , 'Karnataka Labour Welfare Board');
-            $this->email->to($email);
-            $this->email->subject('Scholarship application Approved'); 
-            $this->email->message($msg);
-            if($this->email->send())  
-            {
-                return true;
-            } 
-            else
-            {
-                return false;
-            }
-        }else{
-            return true;
-        }
-        
-    }
-
-    public function studentSms($data='', $apid='')
-    {
-        $output['info'] = $this->m_scholar->singleGet($apid);
-        $phone = $this->m_scholar->phoneGet($output['info']->Student_id);
-        
-        /* API URL */
-        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $data . '&priority=ndnd&stype=normal';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $server_output = curl_exec($ch);
-        curl_close($ch);
-        return $server_output;
-    }
-
-
 }

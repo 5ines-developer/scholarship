@@ -27,6 +27,7 @@ class M_reports extends CI_Model {
 		if (!empty($caste)) { 	$this->db->where('ab.category', $caste);  } 
 		if ($item != 'nothing') { 	$this->db->where('a.status', $item);  }
 		$this->db->select('a.application_year as year');
+		$this->db->group_by('year');
 		$this->db->from('application a');
 		$this->db->join('applicant_marks am', 'am.application_id = a.id', 'left');
 		$this->db->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left');

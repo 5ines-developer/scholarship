@@ -29,9 +29,9 @@ $this->load->model('m_scholar');
                                 <div class="card-title">
                                     Scholarship Application Detail
 
-                                    <?php if (($result->status == 3)) { ?>
+                                    <?php if (($result->status == 2)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
-                                    <?php }elseif ((($result->application_state == 4)  && ($result->application_state == 3) ) && ($result->status ==1)){ ?>
+                                    <?php }elseif ((($result->application_state == 4))){ ?>
                                         <a class="btn-small right mr10 green darken-3 waves-effect waves-light" >Approved</a>
                                     <?php }elseif ((($result->application_state == 3))&& ($result->status ==0)){ ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
@@ -79,9 +79,9 @@ $this->load->model('m_scholar');
                                            <li class="center status-item">
                                                <div>Government</div>
                                                <div class="circle">4</div>
-                                               <?php if ((($result->application_state == 4))) {
+                                               <?php if ( ($result->status == 1) && ($result->application_state == 4) ) {
                                                    echo '<div class="green-text">Approved</div>';
-                                                }else if (($result->status == 2) && ($result->application_state == 3)){
+                                                }else if (($result->status == 2) && ($result->application_state == 4)){
                                                     echo '<div class="red-text">Rejected</div>';                                                    
                                                 }else{
                                                     echo '<div class="blue-text">Pending</div>';
@@ -235,7 +235,7 @@ $this->load->model('m_scholar');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Caste Certificate File/ Number</p>
-                                                                                <?php if (!empty($result->cast_certificate)) { ?>
+                                                                                <?php if (!empty($result->is_scst)) { ?>
                                                                                     <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
                                                                                     <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Caste-certificate
                                                                                     </a>

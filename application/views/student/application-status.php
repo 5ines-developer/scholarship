@@ -65,7 +65,7 @@
                                            <li class="center status-item">
                                                <div>Government</div>
                                                <div class="circle">4</div>
-                                               <?php if (($result->status != 2) && (($result->application_state == 4))) {
+                                               <?php if ( ($result->status == 1) && ($result->application_state == 4) ) {
                                                    echo '<div class="green-text">Approved</div>';
                                                 }else if (($result->status == 2) && ($result->application_state == 4)){
                                                     echo '<div class="red-text">Rejected</div>';                                                    
