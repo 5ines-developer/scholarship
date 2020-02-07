@@ -445,6 +445,7 @@ class auth extends CI_Controller {
         
         if(!empty($output)){
             $this->sendRequest($insert);
+            $this->session->set_flashdata('Success', 'Your Request has been Successfully submitted.');
         }else{
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
         }

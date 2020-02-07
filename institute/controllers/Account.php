@@ -29,7 +29,6 @@ class Account extends CI_Controller {
             'email'             => $this->input->post('email'),
             'phone'             => $this->input->post('number'),
         );
-
         $data['school_address'] = array(
             'address'   => $this->input->post('address'),
         );

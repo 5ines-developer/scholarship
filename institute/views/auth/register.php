@@ -13,6 +13,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url')?>assets/js/axios.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 <body>
@@ -32,7 +33,7 @@
                             </div>
 
                             <div class="card-body">
-                                <form action="<?php echo base_url() ?>register" method="post" enctype="multipart/form-data">
+                                <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>register" method="post" enctype="multipart/form-data">
 
                                     <div class="input-field col s12 m6">
                                         <input type="hidden" name="district" :value="district.id">       
@@ -116,7 +117,16 @@
                                             <input class="file-path validate" placeholder="Upload Institution seal" type="text">
                                         </div>
                                     </div>
+
+                                    <div class="input-field col s12">
+                                        <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
+                                        <span class="helper-text red-text">{{ captcha }}</span>
+                                    </div>
+
                                     <div class="card-full-divider clearfix"></div>
+
+                                    
+
                                     <div class="col s12">
                                        <button class="waves-effect waves-light hoverable btn-theme btn mt10" :type="type">Register</button> 
                                        <div class="right">
@@ -170,6 +180,7 @@
             email:'',
             phone:'',
             type: 'submit',
+            captcha:'',
         },
 
         methods:{
@@ -238,7 +249,16 @@
                     self.phoneError = err.response.data.msg;
                     self.type = 'button';
                 })
-            },
+            },checkForm() {
+                if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '')) {
+
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
+                        this.$refs.form.submit();
+                    }
+                } else {}
+            }
         }
     })
 </script>

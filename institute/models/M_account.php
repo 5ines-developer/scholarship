@@ -25,14 +25,17 @@ class M_account extends CI_Model {
 
     public function updateAddress($data, $id)
     {
-        $this->db->where('school_id', $id);
+        $this->db->where('name', $id);
+        $rows = $this->db->get('school')->row('id');
+
+        $this->db->where('school_id', $rows);
         $this->db->update('school_address', $data);
         return true;
     }
 
     public function updateSchool($data, $id)
     {
-        $this->db->where('id', $id);
+        $this->db->where('name', $id);
         $this->db->update('school', $data);
         return true;
     }

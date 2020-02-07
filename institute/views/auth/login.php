@@ -51,7 +51,7 @@
                                 <div class="contents">
                                     <p>Welcome To</p>
                                     <p>Karnataka Labour Welfare Board</p>
-                                    <p><a href="<?php echo base_url() ?>register">If You Have an Account  Register now</a></p>
+                                    <p><a href="<?php echo base_url() ?>register">If You Don't Have an Account  Register now</a></p>
                                 </div>
                             </div>
                         </div>

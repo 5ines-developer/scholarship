@@ -24,37 +24,40 @@
                     <div class="card instreg">
                         <div class="card-content">
                             <div class="card-outer-heading">
-                                Company Requested Detail
+                                Institute Requested Detail
                             </div>
                             <div class="card-body">
                                 <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>institute-request" method="post" enctype="multipart/form-data">
-                                    <div class="input-field col m6 s12">
-                                        <input required id="name" name="name"  v-model="institute" @change="checkInstituteExist" type="text" class="validate">
-                                        <label for="name">Institute Name</label>
-                                        <span class="red-text helper-text"> {{instituteError}}</span>
-                                    </div>
 
                                     <div class="input-field col m6 s12">
                                         <input id="email" v-model="email" @change="checkEmailExist" name="email" type="email" required class="validate">
                                         <label for="email">Email</label>
                                         <span class="red-text helper-text">{{emailError}}</span>
                                     </div>
-                                    <div class="row m0">
+                                   
                                         <div class="input-field col m6 s12">
                                             <input id="number" v-model="phone" @change="checkPhoneExist" name="number" type="number" required class="validate">
                                             <label for="number">Phone Number</label>
                                             <span class="red-text helper-text">{{phoneError}}</span>
                                         </div>
+                                    <div class="row m0">
                                         <div class="input-field col m6 s12 ">
                                             <input type="hidden" name="district" :value="district.id">       
                                             <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
                                         </div>
+                                        <div class="input-field col m6 s12 ">
+                                        <input type="hidden" name="taluk" :value="tlq.id">       
+                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk"   tagging :from="taluk" />
+                                    </div>
                                     </div>
                                     
 
-                                    <div class="input-field col m6 s12 ">
-                                        <input type="hidden" name="taluk" :value="tlq.id">       
-                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk"   tagging :from="taluk" />
+                                    
+
+                                    <div class="input-field col m6 s12">
+                                        <input required id="name" name="name"  v-model="institute" @change="checkInstituteExist" type="text" class="validate">
+                                        <label for="name">Institute Name</label>
+                                        <span class="red-text helper-text"> {{instituteError}}</span>
                                     </div>
 
                                     
@@ -68,17 +71,17 @@
                                             <input type="file" required name="reg_doc">
                                         </div>
                                         <div class="file-path-wrapper">
-                                            <input class="file-path validate" placeholder="Upload company Reg Doc" type="text">
+                                            <input class="file-path validate" placeholder="Upload Institute Reg Doc" type="text">
                                         </div>
                                     </div>
                                     <div class="input-field col s12 m12">
                                         <textarea id="textarea1" name="c_address" class="materialize-textarea"></textarea>
                                         <label for="textarea1">Address</label>
                                     </div>
-                                    <!-- <div class="input-field col s12">
+                                    <div class="input-field col s12">
                                         <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
-                                    </div> -->
+                                    </div>
                                     <div class="input-field col m12 ">
                                         <button type="submit" class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                     </div>
@@ -129,6 +132,8 @@
             email:'',
             phone:'',
             type: 'submit',
+            captcha:'',
+
         },
 
         methods:{
@@ -187,11 +192,11 @@
             checkForm() {
                 if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '')) {
 
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // }// 
+                    }
                 } else {}
             }
         }
