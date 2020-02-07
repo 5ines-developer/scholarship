@@ -3207,4 +3207,13 @@ table.striped > tbody > tr > td {
   width: 100% !important;
   left: 0 !important;
 }
+
+.btn-p.rest {
+  margin-left: 20px;
+}
+
+.btn-p.rests {
+  margin-left: 20px;
+  padding: 7px 30px;
+}
 /*# sourceMappingURL=style.css.map */

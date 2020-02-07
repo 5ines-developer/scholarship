@@ -9,7 +9,6 @@ class Payments extends CI_Controller {
         $this->load->model('m_payments');
         $this->load->model('m_auth');
         $this->load->model('M_account');
-        // if($this->session->userdata('pyId') == ''){ redirect('/','refresh'); }
         $this->inId = $this->session->userdata('pyComp');
         $this->reg = $this->session->userdata('pyId');
         $this->load->helper('text');
@@ -44,12 +43,18 @@ class Payments extends CI_Controller {
         echo json_encode($json);
     }
 
-        public function companyChange($var = null)
+    public function companyChange($var = null)
     {
         $this->security->xss_clean($_POST);
         $company = $this->input->post('comp');
         $output = $this->m_payments->companyChange($company);
         echo  $output;
+    }
+
+    public function payList($value='')
+    {
+        $data['title']  = 'Payment List | Scholarship';
+        $this->load->view('payment/payment-list.php', $data, FALSE);
     }
 
 

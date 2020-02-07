@@ -101,7 +101,7 @@ class Dashboard extends CI_Controller {
     public function sendmailApplication($id = '')
     {
         $data['info'] = $this->m_dashboard->singleStudent($id);
-        $data['img'] =$this->m_application->compDocs($data['info']->company_id);
+        $data['img'] =$this->m_dashboard->compDocs($data['info']->company_id);
         $data['email'] = $data['info']->email;
         $this->load->config('email');
         $this->load->library('email');

@@ -130,8 +130,8 @@
                                                 </tbody>
                                             </table>
                                             <div class="btn-pay">
-                                                <button class="btn-sub btn-p  z-depth-1 waves-effect waves-light">
-                                                Pay now</button>
+                                                <button type="reset" class="btn-sub btn-p rest z-depth-1 waves-effect waves-light">Reset</button>
+                                                <button type="submit" class="btn-sub btn-p  z-depth-1 waves-effect waves-light"> Pay now</button>
                                             </div>
                                         </div>
                                     </div>
@@ -194,7 +194,7 @@ $(document).ready(function() {
      $(document).on('change','#company',function(){
         var cmp = $(this).val();
         $('#c_comp').val(cmp);
-		var name  = $(this).text();
+		var name  = $('#company option:selected').text();
 		$('.cname').text(name);
         $.ajax({
             type: "post",
@@ -205,6 +205,7 @@ $(document).ready(function() {
                 if (response !='') {
                 	$('#c_conreg').val(response);
                     $(".crg").addClass('active'); 
+                    $('.inregister>span').remove();
                 }else{
                     $('.inregister').append('<span class="helper-text red-text">Industry is not registered, please  register to make the payment</span>');
                     $('#c_conreg').val(response);
@@ -250,7 +251,7 @@ $(document).ready(function() {
                     let female = parseInt(this.female);
 
                     if(this.female == '' && this.male==''){
-                    	emp = '';
+                        emp = '';
                     }else if (this.male == '' && this.female != '') {
                         emp = female;                        
                     }else if(this.female == '' && this.male != ''){
@@ -258,7 +259,7 @@ $(document).ready(function() {
                     }else{
                         emp = (male + female);
                     }
-
+                    
                     var selDate = this.year;
                     var today = new Date();
                     var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();                  
@@ -266,17 +267,26 @@ $(document).ready(function() {
                     var selyear = spl['2'];
                     var months;
                     months = (today.getFullYear() - selyear )  * 12;
+
+                    var selday = spl['0'];
+                    var day = ((today.getDate() - selday) );
+
+                    if(selday >= day){
+                        var days = selday - day;
+                    }else{
+                        var days = day - selday;
+                    }
+
+
                     var price  = emp * 60;
 
-                    if(months <= 3 && months >= 1){ 
+                    if(months <= 3 && days >= 1){ 
                         var interest = (price * 12) / 100;
                     }else if(months >= '3'){
                         var interest = (price * 18) / 100;
                     }else{
                         var interest = '';
                     }
-
-                    console.log(emp)
 
                     
                     this.employees = emp;

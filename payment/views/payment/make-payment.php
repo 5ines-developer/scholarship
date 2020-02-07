@@ -69,7 +69,7 @@
                                             </div>
                                             <div class="col l3 m5 s12">
                                                 <div class="input-field">
-                                                    <select name="p_year" v-model="year">
+                                                    <select name="p_year" v-model="year"  @change="countPrice()">
                                                     <option value="" disabled selected>Year</option>
                                                     <?php
 
@@ -142,6 +142,7 @@
                                                 </tbody>
                                             </table>
                                             <div class="btn-pay">
+                                                <a href="<?php echo base_url('dashboard')?>" class="btn-sub btn-p rests z-depth-1 waves-effect waves-light">Back</a>
                                                 <button class="btn-sub btn-p  z-depth-1 waves-effect waves-light">
                                                 Pay now</button>
                                             </div>
@@ -223,9 +224,20 @@
                     var selyear = spl['2'];
                     var months;
                     months = (today.getFullYear() - selyear )  * 12;
+
+                    var selday = spl['0'];
+                    var day = ((today.getDate() - selday) );
+
+                    if(selday >= day){
+                        var days = selday - day;
+                    }else{
+                        var days = day - selday;
+                    }
+
+
                     var price  = emp * 60;
 
-                    if(months <= 3 && months >= 1){ 
+                    if(months <= 3 && days >= 1){ 
                         var interest = (price * 12) / 100;
                     }else if(months >= '3'){
                         var interest = (price * 18) / 100;

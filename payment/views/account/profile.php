@@ -239,7 +239,7 @@
                 </div>
                 <div class="modal-footer">
                     <a class="waves-effect waves-light hoverable red darken-4 btn modal-close">Cancel</a>
-                    <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>
+                    <button class="waves-effect waves-light hoverable btn-theme btn">Update</button>
                 </div>
             </form>
         </div>
