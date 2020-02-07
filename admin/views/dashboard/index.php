@@ -21,7 +21,7 @@
         <section class="board pr0">
             <div class="container-wrap1">
                 <div class="row m0">
-                <div class="col s12 m3 l3 hide-on-med-and-down ">
+                        <div class="col s12 m3 l3 hide-on-med-and-down ">
                         <?php $this->load->view('include/menu'); ?>
                         </div>
                     <!-- End menu-->
@@ -87,7 +87,7 @@
 
                         <div class="row">
 
-                            <div class="col m8 s12 l8">
+                            <div class="col m9 s12 l9">
 
                                 <div class="card  darken-1">
                                     <div class="card-content ">
@@ -95,14 +95,14 @@
 
                                             <div class="x_title">
 
-                                                <h2 class="list-title ">Orders By Month</h2>
+                                                <h2 class="list-title ">Scholarship Application By Year</h2>
 
                                                 <div class="clearfix"></div>
 
                                             </div>
 
 
-                                            <div class="x_content das-chart">
+                                            <div class="x_content das-chart chrt-width">
 
                                                 <canvas id="myChart"></canvas>
 
@@ -113,6 +113,35 @@
                                 </div>
                             </div>
 
+                            <div class="col s12 m3 l3">
+                                    <div class="card blue-grey    hoverable">
+                                        <div class="card-content white-text center-align p20">
+                                            <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                            <p>
+                                            <?php echo $count['pay_comp'] ?>
+                                            </p>
+                                        </div>
+                                        <div class="card-action center-align">
+                                            <span class="white-text">Scholarship Payment Completed</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col s12 m3 l3">
+                                    <div class="card green  hoverable">
+                                        <div class="card-content white-text center-align p20">
+                                            <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                            <p>
+                                            <?php echo $count['pay_pend'] ?>
+                                            </p>
+                                        </div>
+                                        <div class="card-action center-align">
+                                            <span class="white-text">Scholarship Payment Pending</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="row">
 
                             <div class="col m4 s12 l4">
 
@@ -180,7 +209,11 @@
                                 </div>
                                 <br>
 
-                                <div class="bar-line white">
+                               
+                            </div>
+
+                            <div class="col m4 s12 l4">
+                             <div class="bar-line white">
                                     <p class="h5-para-p1 ">Institute Details </p>
                                     <div class="row m0">
                                         <div class="col s12">
@@ -241,7 +274,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
+
                         </div>
 
 

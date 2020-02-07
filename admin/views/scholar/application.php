@@ -45,6 +45,13 @@ $this->load->model('m_scholar');
                                 </div>
                                 <div class="board-content">
                                     <div class="row ad-stt-list">
+
+                                        <?php if ($result->pay_status == '1') { ?>
+                                        &nbsp;&nbsp;&nbsp;<a class="btn-small green darken-3 waves-effect waves-light" >Payment Success</a>
+                                     <?php }else if ($result->pay_status == '2') { 
+                                        echo '&nbsp;&nbsp;&nbsp;<a class="btn-small red darken-3 waves-effect waves-light" >Payment Failed -'.$result->pay_freason.'</a>';
+                                      } ?>
+                                      
                                        <ul class="status-list">
                                            <li class="center status-item">
                                                <div>Application</div>
