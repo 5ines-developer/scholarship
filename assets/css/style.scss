@@ -251,7 +251,7 @@
                         padding: 0;
                         border-bottom: none;
                         a {
-                            padding-left: 65px;
+                            padding-left: 50px;
                             background-color: #336a99;
                             &:hover {
                                 background-color: rgba(0, 0, 0, 0.3) !important;
@@ -3038,4 +3038,12 @@
         .btn-p.rests {
             margin-left: 20px;
             padding: 7px 30px;
+        }
+        
+        #dynamic {
+            .std-list {
+                .h5-para-p2.sorting {
+                    width: 180px;
+                }
+            }
         }

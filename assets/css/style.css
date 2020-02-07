@@ -477,7 +477,7 @@ footer {
 }
 
 .board .menu-left ul.men-lft .collapsible-body a {
-  padding-left: 65px;
+  padding-left: 50px;
   background-color: #336a99;
 }
 
@@ -3215,5 +3215,9 @@ table.striped > tbody > tr > td {
 .btn-p.rests {
   margin-left: 20px;
   padding: 7px 30px;
+}
+
+#dynamic .std-list .h5-para-p2.sorting {
+  width: 180px;
 }
 /*# sourceMappingURL=style.css.map */

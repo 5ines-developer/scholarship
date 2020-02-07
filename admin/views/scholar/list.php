@@ -93,8 +93,11 @@
                                     <div class="title-list ">
                                         <span class="list-title">Scholarship List</span>
 
+                                        <?php if (!empty($this->input->get('item')) && $this->input->get('item')=='pending') { ?>
+
                                             <a id="approve_all" class="bulk-btn z-depth-1 white-text green darken-3 waves-effect waves-ligh">Approve All</a>
                                             <a id="approve_select" class="bulk-btn z-depth-1 white-text blue darken-3 waves-effect waves-ligh">Approve Selected</a>
+                                        <?php } ?>
 
 
                                         <select class="browser-default select-list" fname="year" id="short">
@@ -142,12 +145,14 @@
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
+                                                <?php if (!empty($this->input->get('item')) && $this->input->get('item')=='pending') { ?>
                                                 <th id="a" class="h5-para-p2" style="width: 120px;">
                                                     <label>
                                                     <input type="checkbox" class="filled-in" id="allCheck"/>
                                                     <span style="font-size: 12px; font-weight: 600;" class="h5-para-p2">Select All</span> 
                                                 </label>
                                                 </th>
+                                            <?php } ?>
                                                 <th id="a" class="h5-para-p2" style="width: 120px;">Name</th>
                                                 <th id="c" class="h5-para-p2" style="width: 120px;">Institute</th>
                                                 <th id="c" class="h5-para-p2" style="width: 120px;">Industry</th>

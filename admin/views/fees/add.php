@@ -28,7 +28,7 @@
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="title-list">
-                                    <span class="list-title">Fees Add</span>
+                                    <span class="list-title">Scholarship Amount Add</span>
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">
@@ -48,11 +48,11 @@
 
                                                 <div class="input-field col m8 l5">
                                                     <input id="fees_am" name="fees_am" required type="text" class="validate">
-                                                    <label for="fees_am">Fees Amount</label>
+                                                    <label for="fees_am">Amount</label>
                                                 </div>
                                                 <div class="input-field col s12">
                                                     <button class="waves-effect waves-light hoverable btn-theme btn mr10">Submit</button>
-                                                    <button class="waves-effect waves-light hoverable btn-theme btn" type="button">Cancel</button>
+                                                    <a href="<?php echo base_url('fees/manage') ?>" class="waves-effect waves-light hoverable btn-theme btn" >Back</a>
                                                 </div>
                                             </form>
                                         </div>

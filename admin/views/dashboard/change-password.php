@@ -125,7 +125,7 @@
 
                 },
                 checkForm() {
-                    if ((this.confError == '')) {
+                    if ((this.confError == '') && (this.samepassError == '') && (this.samepassError == '')) {
                         this.$refs.form.submit()
                     }
                 }

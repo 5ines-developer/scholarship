@@ -91,7 +91,6 @@ class M_dashboard extends CI_Model {
 
     public function tot_app($var = null)
     {
-        $this->db->group_by('application_year,school_id');
         return $this->db->get('application')->num_rows();
     }
 

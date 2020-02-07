@@ -47,6 +47,8 @@ class Scholar extends CI_Controller {
         {  
             $btn = '<a href="'.base_url('applications/detail/').$row->id.'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
 
+            
+
             if($row->application_state == 3){
                 $state = 'Verification Officer';
             }else if ($row->application_state == 2) {
@@ -70,7 +72,9 @@ class Scholar extends CI_Controller {
             $status =  '<p class="status '.$color.' darken-2">'.$sttus.' '.$state.'</p>';
 
             $sub_array = array();
-            $sub_array[] = '<label><input type="checkbox" class="filled-in indual" name="deleteid[]" value="'.$row->id.'" /><span style="font-size: 13px; font-weight: 600;" class="h5-para-p2"></span></label>';
+            if (!empty($filt['item']) && $filt['item']=='pending') {
+                $sub_array[] = '<label><input type="checkbox" class="filled-in indual" name="deleteid[]" value="'.$row->id.'" /><span style="font-size: 13px; font-weight: 600;" class="h5-para-p2"></span></label>';
+            }
             $sub_array[] = $row->name;
             $sub_array[] = character_limiter($row->school, 10);
             $sub_array[] = character_limiter($row->industry, 10);  
@@ -139,6 +143,26 @@ class Scholar extends CI_Controller {
     }
 
 
+
+
+    public function approveSelect($value='')
+    {
+       $id = $this->input->post('ids');
+       $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
+       if(!empty($id)){
+        for($i=0; $i<count($id); $i++){
+            $output = $this->m_scholar->approveSelect($id[$i]);
+            if(!empty($output)){
+                $this->approveMail($id[$i]);
+                $this->studentSms($msg,$id[$i]);
+            }
+            }
+         }
+        $data = 'Applications approved Successfully';
+        echo json_encode($data);
+    }
+
+
     public function approveMail($id='')
     {
         $data['info'] = $this->m_scholar->singleGet($id);
@@ -183,23 +207,6 @@ class Scholar extends CI_Controller {
         $server_output = curl_exec($ch);
         curl_close($ch);
         return $server_output;
-    }
-
-    public function approveSelect($value='')
-    {
-       $id = $this->input->post('ids');
-       $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
-       if(!empty($id)){
-        for($i=0; $i<count($id); $i++){
-            $output = $this->m_scholar->approveSelect($id[$i]);
-            if(!empty($output)){
-                $this->approveMail($id[$i]);
-                $this->studentSms($msg,$id[$i]);
-            }
-            }
-         }
-        $data = 'Applications approved Successfully';
-        echo json_encode($data);
     }
 
 

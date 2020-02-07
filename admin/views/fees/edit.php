@@ -53,7 +53,7 @@
                                                 <input type="hidden" value="<?php echo $result[0]->feesId ?>" name="id">
                                                 <div class="input-field col s12">
                                                     <button class="waves-effect waves-light hoverable btn-theme btn mr10">Submit</button>
-                                                    <button class="waves-effect waves-light hoverable btn-theme btn" type="button">Cancel</button>
+                                                    <a href="<?php echo base_url('fees/manage') ?>" class="waves-effect waves-light hoverable btn-theme btn" >Back</a>
                                                 </div>
                                             </form>
                                         </div>

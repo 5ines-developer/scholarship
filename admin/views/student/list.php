@@ -72,7 +72,7 @@
            <p><?php echo $count['app_schl'] ?></p>
         </div>
         <div class="card-action center-align">
-          <span class="white-text">Scolarship Applied in <?php echo date('Y') ?></span>
+          <span class="white-text">Applied in <?php echo date('Y') ?></span>
         </div>
       </div>
     </div>
@@ -109,7 +109,7 @@
                                 <div class="board-content ">
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
-                                            <thead class="thead-list">
+                                            <thead class="thead-list std-list">
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Email</th>
                                                 <th class="h5-para-p2">Phone No</th>

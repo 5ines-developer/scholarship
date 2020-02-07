@@ -34,16 +34,16 @@
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
-                                    <span class="list-title ">Fees  List</span>
+                                    <span class="list-title ">Scholarship Amount List</span>
                                     <a href="<?php echo base_url() ?>fees/add" class="back-btn z-depth-1 waves-effect waves-ligh hoverable add-btn">
-                                        <i class="material-icons add-icon ">add</i><span>Add New Fees</span></a>
+                                        <i class="material-icons add-icon ">add</i><span>Add New</span></a>
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
                                                 <th class="h5-para-p2">Course</th>
-                                                <th class="h5-para-p2">Fees Amount</th>
+                                                <th class="h5-para-p2">Scholarship Amount</th>
                                                 <th class="h5-para-p2">Action</th>
                                             </thead>
                                             <tbody class="tbody-list">

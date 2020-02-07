@@ -501,7 +501,7 @@ $this->load->model('m_scholar');
                     var msg = response.data.msg;
                     M.toast({html: msg, classes: 'green darken-2'});
                     self.disabled = true;
-                    window.location.href = "<?php echo base_url('applications/approved') ?>";
+                    window.location.href = "<?php echo base_url('applications?item=approved') ?>";
                 })
                 .catch(error => {
                     var msg = error.data.msg;

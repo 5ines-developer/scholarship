@@ -33,7 +33,7 @@
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="col s12 m12 l12">
-                                            <form action="<?php echo base_url() ?>student-add" method="post">
+                                            <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>student-add" method="post">
 
                                                 <div class="input-field col m8 l5">
                                                     <input id="email" name="email" type="email" v-model="email" class="validate" @change="emailCheck">
@@ -56,7 +56,7 @@
                                                 </div>
                                                 <div class="input-field col s12">
                                                     <button class="waves-effect waves-light hoverable btn-theme btn mr10">Submit</button>
-                                                    <button class="waves-effect waves-light hoverable btn-theme btn" type="button">Cancel</button>
+                                                    <a href="<?php echo base_url('student') ?>" class="waves-effect waves-light hoverable btn-theme btn" >Back</a>
                                                 </div>
                                             </form>
                                         </div>
