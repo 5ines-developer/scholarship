@@ -86,12 +86,29 @@ class M_dashboard extends CI_Model {
         $data['cr_count']       = $this->thisy_count();
         $data['acti_inst']      = $this->active_inst();
         $data['ac_inds']        = $this->active_indstry();
+        $data['pay_comp']       = $this->pay_completed();
+        $data['pay_pend']       = $this->pay_pending();
         return $data;
+    }
+
+    public function pay_pending($value='')
+    {
+       $this->db->where('pay_status', 0);
+       $this->db->where('application_state', 4);
+       $this->db->where('status', 1);
+       return $this->db->get('application')->num_rows();
+    }
+
+    public function pay_completed($value='')
+    {
+       $this->db->where('pay_status', 1);
+       $this->db->where('application_state', 4);
+       $this->db->where('status', 1);
+       return $this->db->get('application')->num_rows();
     }
 
     public function tot_app($var = null)
     {
-        $this->db->group_by('application_year,Student_id');
         return $this->db->get('application')->num_rows();
     }
 

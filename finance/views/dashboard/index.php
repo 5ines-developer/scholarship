@@ -113,10 +113,10 @@
 
                             <div class="col s12 m3 l3">
                                     <div class="card blue-grey    hoverable">
-                                        <div class="card-content white-text center-align">
+                                        <div class="card-content white-text center-align p20">
                                             <span class="card-title center-align"><i class="material-icons">school</i></span>
                                             <p>
-                                            <?php echo (!empty($count['acti_inst']))?$count['acti_inst']:''; ?>
+                                            <?php echo $count['pay_comp'] ?>
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
@@ -127,10 +127,10 @@
 
                                 <div class="col s12 m3 l3">
                                     <div class="card green  hoverable">
-                                        <div class="card-content white-text center-align">
+                                        <div class="card-content white-text center-align p20">
                                             <span class="card-title center-align"><i class="material-icons">school</i></span>
                                             <p>
-                                            <?php echo (!empty($count['acti_inst']))?$count['acti_inst']:''; ?>
+                                            <?php echo (!empty($count['pay_pend']))?$count['pay_pend']:''; ?>
                                             </p>
                                         </div>
                                         <div class="card-action center-align">

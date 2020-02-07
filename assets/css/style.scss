@@ -3019,8 +3019,8 @@
         }
         
         .chrt-width {
-            max-width: 650px;
-            min-width: 650px;
+            max-width: 550px;
+            min-width: 550px;
             overflow-x: scroll;
         }
         
@@ -3046,4 +3046,8 @@
                     width: 180px;
                 }
             }
+        }
+        
+        .p20 {
+            padding: 20px !important;
         }

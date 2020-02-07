@@ -28,12 +28,7 @@ $this->load->model('m_scholar');
                             <div class="card-content bord-right">
                                 <div class="card-title">
                                     Scholarship Application Detail
-                                    <?php if ($result->pay_status == '0') { ?>
                                         &nbsp;&nbsp;&nbsp;<a href="#modal2" class="btn-small green darken-3 waves-effect waves-light modal-trigger" >Payment Status</a>
-                                    <?php }?> 
-                                    
-
-                                    
 
                                     <?php if (($result->status == 2) && ($result->application_state == 4)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
@@ -250,7 +245,7 @@ $this->load->model('m_scholar');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Caste Certificate File/ Number</p>
-                                                                                <?php if (!empty($result->cast_certificate)) { ?>
+                                                                                <?php if (!empty($result->is_scst)) { ?>
                                                                                     <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
                                                                                     <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Caste-certificate
                                                                                     </a>

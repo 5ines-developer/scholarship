@@ -27,7 +27,7 @@
                         <div class="form-block">
                             <div class="card-box">
                                 <div class="card-heading">
-                                    <p class="m0">Company Login</p>
+                                    <p class="m0">Finance Officer Login</p>
                                 </div>
                                 <div class="card-body row m0 pt15 pb15">
                                     <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('login') ?>" method="post">
@@ -55,7 +55,6 @@
                             <div class="contents">
                                 <p>Welcom To</p>
                                 <p>Karnataka Labour Welfare Board</p>
-                                <p>If You Dont Have an Account ? <a href="<?php echo base_url('register') ?>">Register</a></p>
                             </div>
                         </div>
                     </div>

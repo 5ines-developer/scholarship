@@ -99,7 +99,7 @@
        <div id="import" class="modal">
             <div class="modal-content company-mc">
                 <h4>Upload Application Payment Status</h4>
-                <a href="#!" class="modal-close">
+                <a class="modal-close">
                     <i class="material-icons cc-close">close</i>
                 </a>
             </div>

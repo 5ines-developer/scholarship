@@ -263,7 +263,7 @@ class M_scholar extends CI_Model {
     {
         if($this->db->where('id', $id)->update('application',$data))
         {
-            $this->db->where('id', $id);
+            $this->db->where('a.id', $id);
             $this->db->from('application a');
             $this->db->join('student s', 's.id = a.Student_id', 'left');
             return $this->db->get()->row();

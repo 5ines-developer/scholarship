@@ -265,22 +265,23 @@ class Scholar extends CI_Controller {
 
     public function paysms($output='',$insert='')
     {
-
-        if($insert['pay_status'] == '1'){
-            $msg = 'Congratulations!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Successfully transfered to your account!';
-        }else{
-            $msg = 'Sorry!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Failed due to '.$insert['pay_freason'];
+        if(!empty($output)){
+            if($insert['pay_status'] == '1'){
+                $msg = 'Congratulations!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Successfully transfered to your account!';
+            }else{
+                $msg = 'Sorry!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Failed due to '.$insert['pay_freason'];
+            }
+            /* API URL */
+            $url = 'http://trans.smsfresh.co/api/sendmsg.php';
+            $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $output->phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $server_output = curl_exec($ch);
+            curl_close($ch);
+            return $server_output;
         }
-        /* API URL */
-        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $output->phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $server_output = curl_exec($ch);
-        curl_close($ch);
-        return $server_output;
     }
 
     public function paymail($output='',$insert='')
