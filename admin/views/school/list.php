@@ -149,7 +149,7 @@
                                                     </td>
                                                     <td class="action-btn center-align">
                                                         <a href="<?php echo base_url('institute/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light"> View</a>
-                                                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
+                                                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="<?php echo base_url('institute-delete/').$value->id ?>" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
                                                     </td>
                                                 </tr>
                                                 <?php    } } ?>

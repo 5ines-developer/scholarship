@@ -88,11 +88,16 @@
                                 <div class="card-heading">
                                     <p class="m0">Student Forgot Password</p>
                                 </div>
-                                <form action="<?php echo base_url('student/forgot-validate') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
+                                <form ref="forms" @submit.prevent="checkForms" action="<?php echo base_url('student/forgot-validate') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
                                     <div class="for-title">
                                         <p class="center-align">Answer the below security question to reset your password.</p>
                                     </div>
                                 <div class="card-body row m0 pt15 pb15">
+                                    <div class="input-field col s12">
+                                        <input  id="mobile" @change="mobileCheck()" name="mobile" v-model="mobile" type="number" class="validate" required>
+                                        <label for="mobile">Mobile No.</label>
+                                        <span class="helper-text red-text">{{ mobileError }}</span><br>
+                                    </div>
                                     <div class="input-field col s12">
                                         <select id="qstn" name="qstn" required>
                                         <option value="">Select the question</option>
@@ -108,7 +113,7 @@
                                     <div class="input-field col s12">
                                             <input  id="ans"  name="ans" type="text" class="validate" required>
                                             <label for="ans">Answer</label>
-                                        </div>
+                                    </div>
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn flft">Submit</button>
                                         <div class="forg-cgange">
@@ -194,6 +199,8 @@
             forgotpassword: false,
             qsid:'',
             emailError:'',
+            mobile:'',
+            mobileError:'',
 
             
         },
@@ -218,12 +225,44 @@
                     }
                 })
             },
+            //check student mobile already exist
+            mobileCheck(){
+
+
+                if( (this.mobile.length !=10)){
+                    this.mobileError = 'Mobile number must be 10 digits';
+                }else{
+                    this.mobileError='';
+                    const formData = new FormData();
+                    formData.append('mobile',this.mobile);
+                    axios.post('<?php echo base_url('student/mobile_check') ?>', formData)
+                    .then(response => {
+                        if (response.data == '1') {
+                            this.mobileError = '';
+                        } else {
+                            this.mobileError = 'This Mobile number already exist!';
+                        }
+
+                    }).catch(error =>{
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    } )
+                }
+            },
             checkForm() {
                 if ((this.emailError == '')) {
 
                     this.$refs.form.submit();
 
-                } else {}
+                }
+            },
+            checkForms(){
+                if ((this.mobileError == '')) {
+
+                    this.$refs.forms.submit();
+
+                }
             },
             
         },

@@ -85,6 +85,18 @@ class M_staffs extends CI_Model {
        return false;
     }
   }
+
+  public function delete($id='')
+  {
+    $this->db->where('id', $id);
+    $this->db->delete('industry_register');
+    if($this->db->affected_rows() > 0){
+      return true;
+    }
+    else{
+       return false;
+    }
+  }
 }
 
 /* End of file M_staffs.php */

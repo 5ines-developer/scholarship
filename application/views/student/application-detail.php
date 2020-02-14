@@ -29,7 +29,10 @@ $this->load->model('m_stdapplication');
                     <div class="col s12 m9">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
-                                <span class="card-title">Scholarship Application Detail</span>
+                                <div class="card-title">Scholarship Application Detail
+                                    <!-- <a target="_blank" href="<?php echo base_url('std_application/applicationGenerate/'.$result->id.'') ?>" class="btn-small right mr10 green darken-3 waves-effect waves-light">Download</a> -->
+                                </div>
+
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="app-detail-items">
@@ -374,5 +377,8 @@ $this->load->model('m_stdapplication');
         }
     })
 </script>
+
+
+
 </body>
 </html>

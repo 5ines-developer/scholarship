@@ -30,7 +30,7 @@
                             </div>
                                 <div class="board-content">
                                     <div class="row m0">
-                                       <form action="<?php echo base_url() ?>staffs/create" method="post">
+                                       <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>staffs/create" method="post">
                                             <div class="col s12 m8 l7">
                                                 <div class="input-field col s12">
                                                     <input id="name" name="name" type="text" required class="validate">
@@ -38,13 +38,15 @@
                                                 </div>
 
                                                 <div class="input-field col s12"> 
-                                                    <input id="email" name="email" type="email" required class="validate">
+                                                    <input id="email" name="email" type="email" required class="validate" v-model="email" @change="emailCheck">
                                                     <label for="email">Email</label>
+                                                    <span class="helper-text red-text">{{ emailError }}</span>
                                                 </div>
 
                                                 <div class="input-field col s12">
-                                                    <input id="phone" name="phone" type="number" required class="validate">
+                                                    <input id="phone" name="phone" type="number" required class="validate" v-model="mobile" @change="mobileCheck">
                                                     <label for="phone">Phone number</label>
+                                                    <span class="helper-text red-text">{{mobileError}}</span>
                                                 </div>
 
                                                 <div class="input-field col s12">
@@ -85,11 +87,60 @@
     var app = new Vue({
         el: '#app',
         data: {
+            loader:false,
+            emailError:'',
+            mobileError :'',
+            mobile:'',
+            email:'',
           
         },  
         mounted(){
         },
         methods:{
+                            //check student email already exist
+            emailCheck(){
+                this.emailError='';
+                const formData = new FormData();
+                formData.append('email',this.email);
+                axios.post('<?php echo base_url('staffs/emailcheck') ?>',formData)
+                .then(response =>{
+                    if (response.data == '1') {
+                        this.emailError = 'This Email id already exist!';
+                    } else {
+                        this.emailError = '';
+                    }
+
+                }).catch(error => {
+                    if (error.response) {
+                        this.errormsg = error.response.data.error;
+                    }
+                })
+            },
+            //check student mobile already exist
+             mobileCheck(){
+
+                this.mobileError='';
+                const formData = new FormData();
+                formData.append('mobile',this.mobile);
+                axios.post('<?php echo base_url('staffs/mobile_check') ?>', formData)
+                .then(response => {
+                    if (response.data == '1') {
+                        this.mobileError = 'This Mobile number already exist!';
+                    } else {
+                        this.mobileError = '';
+                    }
+
+                }).catch(error =>{
+                    if (error.response) {
+                        this.errormsg = error.response.data.error;
+                    }
+                } )
+            },
+            checkForm() {
+                if ((this.mobileError == '') && (this.emailError == '')) {                   
+                    this.$refs.form.submit();
+                } else {}
+            }
             
         }
     })

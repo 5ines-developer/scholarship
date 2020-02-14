@@ -163,7 +163,8 @@ class auth extends CI_Controller {
             'industry_id'    => $this->input->post('company'),
             'type'          => 1,
         );
-        if ((empty($_FILES['reg_doc']['tmp_name']))) {
+
+        if ((!empty($_FILES['reg_doc']['tmp_name']))) {
             $config['upload_path'] = './reg-doc';
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_width'] = 0;

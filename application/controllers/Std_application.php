@@ -28,7 +28,7 @@ class Std_application extends CI_Controller {
 			$data['scholls'] = $this->m_stdapplication->getscholls($item); //get current institution details
 			$this->load->view('student/re_application', $data, FALSE);
 		}else if(!empty($this->check)  ){
-			$this->session->set_flashdata('error', 'You have already applied to the scholarsip this year.');			
+			$this->session->set_flashdata('error', 'You have already applied to the scholarship this year.');			
 			redirect('student/application-status','refresh');
 		}else{
 			$this->load->view('student/application', $data, FALSE);
@@ -394,7 +394,7 @@ class Std_application extends CI_Controller {
     {
 
     	if(empty($this->check)){
-    		$this->session->set_flashdata('error', 'You have not applied the scholarship.');			
+    		$this->session->set_flashdata('error', 'You have not applied to the scholarship.');			
 			redirect('student/application','refresh');
 
     	}else{
@@ -441,6 +441,28 @@ class Std_application extends CI_Controller {
     		$this->load->view('student/application-list', $data, FALSE);
     	}
     }
+
+
+    //     // application generate
+    // public function applicationGenerate($id = null)
+    // {
+    //     $ids =  urldecode($id);
+    //     $apid = base64_decode($ids);
+    //     $data['result'] = $this->m_stdapplication->getApplication($this->sid);
+    //     // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+
+    //     require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+
+    //     $mpdf = new \Mpdf\Mpdf([
+    //         'default_font_size' => 9,
+	   //      'default_font' => 'tunga'
+    //     ]);
+    //     $html = $this->load->view('student/application-detail', $data, TRUE);
+        
+    //     $mpdf->WriteHTML($html);
+    //     $mpdf->Output();
+    //     exit;    
+    // }
 
 
 }

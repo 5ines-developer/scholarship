@@ -36,6 +36,12 @@
                                             <form action="<?php echo base_url('student-edit/').$result->id ?>" method="post">
 
                                                 <div class="input-field col m8 l5">
+                                                    <input id="name" name="name" type="text" class="validate" required="" value="<?php echo (!empty($result->name))?$result->name:''; ?>">
+                                                    <label for="name">Name</label>
+                                                </div>
+                                                <div class="clearfix"></div>
+
+                                                <div class="input-field col m8 l5">
                                                     <input id="email" name="email" type="email" class="validate"  value="<?php echo (!empty($result->email))?$result->email:''; ?>">
                                                     <label for="email">Email</label>
                                                     <span class="helper-text red-text">{{ emailError }}</span>

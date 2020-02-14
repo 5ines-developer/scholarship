@@ -114,7 +114,7 @@
                                         <input type="file" name="file">
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" placeholder="Import the excel file here" type="text" required="">
+                                        <input class="file-path validate" placeholder="Import the excel file here" type="text" required="" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                     </div>
                                 </div>
                                 <div class="col l12">
@@ -142,6 +142,7 @@
 
                                     <select class="browser-default select-list" fname="year" id="short">
                                         <option value="">Choose Year</option>
+                                        <option value="">All Year</option>
                                         <?php
                                             $yr = $this->input->get('year');
                                             for($i=2000; $i<= date('Y')+1 ; $i++){ 

@@ -30,6 +30,30 @@ class M_staffs extends CI_Model {
     }
   }
 
+      //vue js phone check exist or not
+    public function mobile_check($phone='')
+    {
+        $this->db->where('phone', $phone);
+        $result = $this->db->get('school_auth');
+           if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //vue js phone check exist or not
+    public function email_check($email='')
+    {
+        $this->db->where('email', $email);
+        $result = $this->db->get('school_auth');
+        if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
 
 /* End of file M_staffs.php */

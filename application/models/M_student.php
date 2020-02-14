@@ -176,19 +176,24 @@ class M_student extends CI_Model {
     * @url      : student/reset-pass
     * @param    : question,answern, userid
     **/
-    public function verifyQstns($qstn='',$phone='',$ans='',$password='')
+    public function verifyQstns($qstn='',$phone='',$ans='')
     {       
       $query = $this->db->where('phone', $phone)->where('question',$qstn)->where('answer',$ans)->get('student'); 
       if ($query->num_rows() > 0) {
+        return true;
+      }else{
+        return false;
+      }      
+    }
+
+    public function securityForgo($phone='',$qstn='',$ans='',$password='')
+    {
         $this->db->where('phone', $phone)->where('question',$qstn)->where('answer',$ans)->update('student',array('password' => $password));
         if ($this->db->affected_rows() > 0) {
             return true;
         }else{
             return false;
         }
-      }else{
-        return false;
-      }      
     }
 
     public function otpVerify($refid='',$phone='',$otp='')

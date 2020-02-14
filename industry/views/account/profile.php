@@ -216,13 +216,13 @@
                         </div>
 
                         <div class="input-field col m6 ">
-                            <input id="gstno" name="gstno" value="<?php echo (!empty($info->gst_no))?$info->gst_no:''; ?>" type="text" class="validate">
+                            <input id="gstno" name="gstno" value="<?php echo (!empty($info->gst_no))?$info->gst_no:''; ?>" type="text" class="validate" minlength="15" minlength="15">
                             <label for="gstno">Industry  GSTIN Number</label>
                         </div>
 
 
                         <div class="input-field col m6 ">
-                            <input id="panno" value="<?php echo (!empty($info->pan_no))?$info->pan_no:''; ?>" name="panno" value="" type="text" class="validate">
+                            <input id="panno" value="<?php echo (!empty($info->pan_no))?$info->pan_no:''; ?>" name="panno" value="" type="text" class="validate" minlength="10" minlength="10">
                             <label for="panno">Industry PAN card Number</label>
                         </div>
 

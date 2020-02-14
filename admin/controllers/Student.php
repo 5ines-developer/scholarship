@@ -59,6 +59,7 @@ class Student extends CI_Controller {
         if(!empty($this->input->post())){
             $phone = $this->input->post('phone');
             $email = $this->input->post('email');
+            $name = $this->input->post('name');
             $password =$this->input->post('password');
             $hash = $this->bcrypt->hash_password($password);
             $insert = array(
@@ -66,6 +67,7 @@ class Student extends CI_Controller {
                 'phone' => $phone, 
                 'password' => $hash, 
                 'status' => 1, 
+                'name' => $name,
             );
             if($this->m_student->add($insert)){
                 $this->session->set_flashdata('success', 'Student added Successfully');
@@ -113,13 +115,15 @@ class Student extends CI_Controller {
             $id     = $this->input->post('id');
             $phone = $this->input->post('phone');
             $email = $this->input->post('email');
+            $name = $this->input->post('name');
             $password =$this->input->post('password');
             $hash = $this->bcrypt->hash_password($password);
             $insert = array(
                 'email' => $email, 
                 'phone' => $phone, 
                 'password' => $hash, 
-                'status' => 1, 
+                'status' => 1,
+                'name' => $name, 
             );
             if($this->m_student->update($insert,$id)){
                 $this->session->set_flashdata('success', 'Student updated Successfully');
@@ -138,7 +142,7 @@ class Student extends CI_Controller {
     public function delete($id='')
     {
         if($this->m_student->delete($id)){
-            $this->session->set_flashdata('success', 'Student Deleted Successfully');
+            $this->session->set_flashdata('success', 'Student Deleted Successfully <br> here we are blocking the student instead of deleting.<br>For fetch the all old data of perticular student');
         }
         else{
             $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');

@@ -100,6 +100,7 @@
                                     <span class="list-title ">Scholarship List</span>
                                     <select class="browser-default select-list" fname="year" id="short">
                                         <option value="">Choose Year</option>
+                                        <option value="">All Year</option>
                                         <?php
                                             $yr = $this->input->get('year');
                                             for($i=2000; $i<= date('Y')+1 ; $i++){ 

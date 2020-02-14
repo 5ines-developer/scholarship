@@ -36,7 +36,7 @@ class M_stdapplication extends CI_Model {
     **/
     public function getCompany($value='')
     {
-        return $this->db->select('irg.id as iId,ind.name as iName')
+        return $this->db->select('ind.id as iId,ind.name as iName')
         ->order_by('irg.id', 'desc')
         ->distinct()
         ->group_by('ind.name')

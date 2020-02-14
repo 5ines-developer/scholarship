@@ -120,6 +120,17 @@ class Staffs extends CI_Controller {
         redirect('staffs','refresh');
     }
 
+    public function delete($value='')
+    {
+        $id = $this->input->get('id');
+        if($this->M_staffs->delete($id)){
+            $this->session->set_flashdata('success', 'Staff Deleted Successfully');
+        }else{
+            $this->session->set_flashdata('error', 'Something went wrong please try again!');
+        }
+        redirect('staffs','refresh');
+    }
+
 
 
 }

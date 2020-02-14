@@ -254,4 +254,16 @@ class School extends CI_Controller {
 
     }
 
+
+    public function delete($id='')
+    {
+        if($this->m_school->delete($id))
+            {
+                $this->session->set_flashdata('success','institute deleted Successfully');
+            }else{
+                $this->session->set_flashdata('error','Some error occured <br> please try again.');
+            }
+        redirect('institute','refresh');
+    }
+
 }

@@ -45,7 +45,7 @@ class M_student extends CI_Model {
   		$data['reg_yer'] 	= $this->thisy_count($year);
   		$data['app_schl'] 	= $this->stscolar($year);
   		$data['app_year'] 	= $this->thisstscolar($year);
-  		$data['tot'] 		= $this->db->where('status',1)->get('student')->num_rows();
+  		$data['tot'] 		= $this->db->get('student')->num_rows();
   		return $data;
   	}
 
@@ -130,9 +130,7 @@ class M_student extends CI_Model {
 
   public function delete($id='')
   {
-    $this->db->where('id', $id);
-    return $this->db->delete('student');
-    
+    return $this->db->where('id', $id)->update('student',array('status' => 2));
   }
 	
 

@@ -37,6 +37,7 @@
                                                     <th>Phone</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
+                                                    <th>Delete</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -65,6 +66,9 @@
                                                         <td>
                                                             <a style="<?php echo $block ?>" href="<?php echo base_url('staffs/block?id='.$value->id.'') ?>"  class="btn-small right red darken-3 waves-effect waves-light">Block</a>
                                                             <a style="<?php echo $un ?>" href="<?php echo base_url('staffs/unblock?id='.$value->id.'') ?>" class="btn-small right green darken-3 waves-effect waves-light">Unblock</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?php echo base_url('staffs/delete?id='.$value->id.'') ?>" class="btn-small right green darken-3 waves-effect waves-light">Delete</a>
                                                         </td>
                                                     </tr>
                                                 <?php } if(empty($staffs)){ ?>

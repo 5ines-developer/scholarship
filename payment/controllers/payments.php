@@ -57,6 +57,18 @@ class Payments extends CI_Controller {
         $this->load->view('payment/payment-list.php', $data, FALSE);
     }
 
+    public function receipt($value='')
+    {
+        $this->load->view('payment/formd');
+    }
+
+    public function formd($value='')
+    {
+        $this->load->view('payment/reciept');
+    }
+
+
+
 
 
 }

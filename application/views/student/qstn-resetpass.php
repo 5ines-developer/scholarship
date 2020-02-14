@@ -89,9 +89,8 @@
                                 <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('student/reset-pass') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
                                 <div class="card-body row m0 pt15 pb15">
                                     <div class="input-field col s12">
-                                            <input  id="email" @change="mobile_check()" name="phone" v-model="phone" type="number" class="validate" required>
-                                            <label for="phone">Phone No.</label>
-                                            <span class="helper-text red-text">{{ phoneError }}</span>
+                                            <input   name="phone" type="hidden" class="validate" value="<?php echo $mobile ?>">
+                                            
                                     </div>
                                     <div class="input-field col s12">
                                         <input  id="password" v-model="psw" name="password" type="password" class="validate" required>
@@ -147,8 +146,7 @@
             psw: '',
             cpsw:'',
             confError: '',
-            phoneError:'',
-            phone:'',            
+                      
         },
 
         methods:{
@@ -162,28 +160,10 @@
                 }
             },
             //check student email already exist
-            mobile_check(){
-                this.phoneError='';
-                const formData = new FormData();
-                formData.append('mobile',this.phone);
-                axios.post('<?php echo base_url('student/mobile_check') ?>',formData)
-                .then(response =>{
-                    if (response.data == '') {
-                        this.phoneError = 'Account does not exist!';
-                    } else {
-                        this.phoneError = '';
-                    }
-
-                }).catch(error => {
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                })
-            },
-
+           
             //check student email already exist
             checkForm() {
-                if ((this.confError == '') && (this.phoneError =='')) {
+                if ((this.confError == '') ) {
                     this.$refs.form.submit();
                 } else {}
             }

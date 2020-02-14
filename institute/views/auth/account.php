@@ -38,7 +38,7 @@
                                                             <ul>
                                                                 <li>
                                                                     <p class="app-item-content-head">Institute Name</p> 
-                                                                    <p class="app-item-content"><?php echo $info->name ?></p>
+                                                                    <p class="app-item-content"><?php echo $info->school ?></p>
                                                                 </li> 
                                                                 <li>
                                                                     <p class="app-item-content-head">Institute Reg.No</p> 
@@ -164,7 +164,7 @@
             <h5>Institute  Detail Settings</h5>
                 <div class="row m0">
                         <div class="input-field col m6">
-                            <input id="iname" value="<?php echo $info->name ?>" readonly name="iname" type="text" required class="validate">
+                            <input id="iname" value="<?php echo $info->school ?>" readonly name="iname" type="text" required class="validate">
                             <label for="iname">Institute Name</label>
                         </div>
 

@@ -36,7 +36,13 @@
                                             <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>student-add" method="post">
 
                                                 <div class="input-field col m8 l5">
-                                                    <input id="email" name="email" type="email" v-model="email" class="validate" @change="emailCheck">
+                                                    <input id="name" name="name" type="text" class="validate" required="">
+                                                    <label for="name">Name</label>
+                                                </div>
+                                                <div class="clearfix"></div>
+
+                                                <div class="input-field col m8 l5">
+                                                    <input id="email" name="email" type="email" v-model="email" class="validate" @change="emailCheck" required="">
                                                     <label for="email">Email</label>
                                                     <span class="helper-text red-text">{{ emailError }}</span>
                                                 </div>

@@ -56,22 +56,22 @@
                                      </div>
 
                                     <div class="input-field col s12">
-                                        <input  id="password" v-model="psw" name="password" type="password" class="validate" required>
+                                        <input  id="password" minlength="5" v-model="psw" name="password" type="password" class="validate" required>
                                         <label for="password">Password</label>
                                     </div>
 
                                     <div class="input-field col s12">
-                                        <input  id="cpassword" v-on:keyup="checkCpsw" name="cnpassword" v-model="cpsw" type="password" class="validate" required>
+                                        <input  id="cpassword" minlength="5" v-on:keyup="checkCpsw" name="cnpassword" v-model="cpsw" type="password" class="validate" required>
                                         <label for="cpassword">Confirm Password</label>
                                         <span class="helper-text red-text rel">{{confError}}</span>
                                     </div>
 
                                     <div class="input-field col s12">
-                                        <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
+                                        <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
                                     </div>
 
-                                    <div class="input-field col s12">
+                                    <div class="input-field col s12"><br>
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Register</button>
                                     </div>
                                 </div>
@@ -152,7 +152,6 @@
             //check student mobile already exist
             mobileCheck(){
 
-                alert(this.mobile.length)
 
                 if( (this.mobile.length !=10)){
                     this.mobileError = 'Mobile number must be 10 digits';

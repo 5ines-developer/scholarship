@@ -52,7 +52,7 @@
                     <div class="col s12 pull-m6 pull-l6 m6 l6 reg-left height352 valign-wrapper">
                         <div class="reg-left-box ">
                             <div class="contents">
-                                <p>Welcom To</p>
+                                <p>Welcome To</p>
                                 <p>Karnataka Labour Welfare Board</p>
                                 <p>If You Don't  Have an Account ? <a href="<?php echo base_url('student/register') ?>">Register</a></p>
                             </div>

@@ -28,7 +28,7 @@
             <!-- <a href="#" class="brand-logo">Logo</a> -->
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile1" class="left hide-on-med-and-down">
-              <li><a href="#!">Home</a></li>
+              <li><a href="<?php echo $this->config->item('web_url') ?>">Home</a></li>
             </ul>
 
             <ul id="nav-mobile" class="right hide-on-med-and-down" style="position:relative">
@@ -44,13 +44,18 @@
         </nav>
 
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="#!">Home</a></li>
+            <li><a href="<?php echo $this->config->item('web_url') ?>">Home</a></li>
+            <?php if($this->session->userdata('scinst') != ''){ ?>
             <li><a href="<?php echo base_url() ?>dashboard">Scholarship  Request</a></li>
             <li><a href="<?php echo base_url() ?>approve-list">Scholarship  Approved</a></li>
             <li><a href="<?php echo base_url() ?>reject-list">Scholarship  Rejected</a></li>
             <li><a href="<?php echo base_url() ?>account">Account Settings</a></li>
             <li><a href="<?php echo base_url() ?>change-password">Change Password</a></li>
             <li><a href="<?php echo base_url() ?>logout">Logout</a></li>
+        <?php }else{ ?>
+            <li><a href="<?php echo base_url() ?>login">Login</a></li>
+            <li><a href="<?php echo base_url() ?>register">Register</a></li>
+        <?php } ?>
             
         </ul>
 

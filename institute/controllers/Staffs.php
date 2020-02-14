@@ -126,5 +126,30 @@ class Staffs extends CI_Controller {
         redirect('staffs','refresh');
     }
 
+
+        /**
+     * industry staffs add-> email check exist
+     * url : staff/create
+    **/
+    public function emailcheck($value='')
+    {
+        $this->security->xss_clean($_POST);
+        $email = $this->input->post('email');
+        $output = $this->M_staffs->email_check($email);
+        echo  $output;
+    }
+
+    /**
+     * industry staffs add-> mobile check exist
+     * url : staff/create
+    **/
+    public function mobile_check($value='')
+    {
+        $this->security->xss_clean($_POST);
+        $mobile = $this->input->post('mobile');
+        $output = $this->M_staffs->mobile_check($mobile);
+        echo  $output;
+    }
+
 }
 /* End of file Staffs.php */

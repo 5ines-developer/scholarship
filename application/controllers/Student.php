@@ -446,7 +446,16 @@ class Student extends CI_Controller {
     {
        $data['qstn']    =  $this->input->post('qstn');
        $data['ans']     =  $this->input->post('ans');
-       $this->load->view('student/qstn-resetpass', $data, FALSE);
+       $data['mobile']  =  $this->input->post('mobile');
+
+       if($this->m_student->verifyQstns($data['qstn'],$data['mobile'],$data['ans']))
+       {
+            $this->load->view('student/qstn-resetpass', $data, FALSE);
+       }else{
+            $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method to get a reset link on your mail');
+            redirect('student/forgot-password');
+       }
+
     }
 
     public function qst_resetpass($var = null)
@@ -462,7 +471,7 @@ class Student extends CI_Controller {
             $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
             redirect('student/login');
         }else{
-            $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another to get a reset link on your mail');
+            $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method to get a reset link on your mail');
             redirect('student/forgot-password');
         }
     }

@@ -6,65 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Scholarship</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/materialize.min.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
-        <header class="">
-            <div class="top-header">
-                <div class="container ">
-                    <div class="row m0">
-                        <div class="col s4 m4 push-m4">
-                            <div class="center">
-                                <img class="responsive-img" src="assets/image/logo.png" alt="Karnataka Labour Welfare Board">
-                            </div>
-                        </div>
-                        <div class="col s8 m4 pull-m4">
-                            <div class="center-align p17 frt">
-                                <p class="top-header-title1">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</p>
-                                <p class="top-header-title2">ಕರ್ನಾಟಕ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿ</p>
-                            </div>
-                        </div>
-                        <div class="col s4 hide-on-small-only">
-                            <div class="center p17">
-                                <p class="top-header-title1">Government of Karnataka</p>
-                                <p class="top-header-title2">Karnataka Labour Welfare Board</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <nav class="nav-block">
-                <div class="nav-wrapper container-wrap1">
-                    <!-- <a href="#" class="brand-logo">Logo</a> -->
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <ul id="nav-mobile1" class="left hide-on-med-and-down">
-                        <li><a href="#!">Home</a></li>
-                    </ul>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#!">Login</a></li>
-                        <li><a href="#!">Registration</a></li>
-
-                    </ul>
-                </div>
-            </nav>
-
-            <ul class="sidenav" id="mobile-demo">
-                <li><a href="#!">Home</a></li>
-                <li><a href="#!">Login</a></li>
-                <li><a href="#!">Registration</a></li>
-            </ul>
-
-            <ul id='dropdown1' class='dropdown-content'>
-                <li><a href="#!">Account Settings</a></li>
-                <li><a href="#!">Application Status</a></li>
-                <li><a href="#!">Logout</a></li>
-
-            </ul>
-        </header>
+        <?php $this->load->view('include/header'); ?>
         <!-- Body form  -->
         <section class="board">
             <div class="container-wrap1">
@@ -136,7 +85,7 @@
                                                 </div>
                                                 <div class="col l6 m6 s12">
                                                     <div class="sign-emp">
-                                                        <img src="../assets/image/sign.png" class="img-responsive sign-w
+                                                        <img src="<?php echo $this->config->item('web_url') ?>assets/image/sign.png" class="img-responsive sign-w
                                                         " alt="">
                                                         <h2>Signature of Employer And seal</h2>
                                                     </div>
@@ -166,23 +115,17 @@
 
         <!-- End Body form  -->
         <!-- footer -->
-        <footer class="pt20 pb20">
-            <div class="footer-copyright">
-                <div class="container center">
-                    © Copyright 2019. All Rights Reserved
-                </div>
-            </div>
-        </footer>
+        <?php $this->load->view('include/footer'); ?>
         <!-- End footer -->
     </div>
 
 
 
     <!-- scripts -->
-    <script src="../assets/js/vue.js"></script>
-    <script src="../assets/js/materialize.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-    <script src="../assets/js/script.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.modal');

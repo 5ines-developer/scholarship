@@ -12,7 +12,7 @@
     <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
 </head>
-<body>
+<body id="hello">
     <div id="app">
         
     <?php $this->load->view('includes/header'); ?>
@@ -43,7 +43,7 @@
                                         <div class="col s12 m8 l8">
                                             <form action="<?php echo base_url('student/updateprofile') ?>" method="post" @submit="formSubmit">
                                                 <div class="input-field col s12">
-                                                    <input id="name" autofocus="" v-model="student.name" type="text" class="validate">
+                                                    <input id="name" autofocus="" v-model="student.name" type="text" class="validate" required="">
                                                     <label for="name">Name</label>
                                                 </div>
                                                 
@@ -220,5 +220,8 @@
         showImage(src, target);
     }
 </script>
+
+
+
 </body>
 </html>

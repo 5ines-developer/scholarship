@@ -65,10 +65,19 @@ class M_stdaccount extends CI_Model {
     }
 
     public function updateProfile($email="",$name = "",$id="")
-    {        
-        return $this->db->where('id', $id)->update('student',array('email' =>$email,'name' =>$name));        
+    {  
+        $query = $this->db->where('id !=', $id)->where('email', $email)->get('student');
+        if ($query->num_rows() > 0) {
+            return false;
+        }else{
+            $this->db->where('id', $id)->update('student',array('email' =>$email,'name' =>$name));
+            if ($this->db->affected_rows() > 0) {
+                return true;
+            }else{
+                return false;
+            } 
+        }
     }
-
 	
 
 }

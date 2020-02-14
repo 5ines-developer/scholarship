@@ -57,7 +57,8 @@ class M_industry extends CI_Model {
     {  
         $select_column = array('ireg.email','ireg.mobile','ireg.name as director','ireg.pancard','ireg.status','ireg.gst','ireg.date','ireg.address','ireg.pan_no','ireg.gst_no','ireg.seal','ireg.sign');
         $this->db->select($select_column);
-        $this->db->from('reg_schools ireg');
+        $this->db->where('type', 1);
+       $this->db->from('industry_register ireg');
         return $this->db->count_all_results();
     }
 

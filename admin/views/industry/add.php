@@ -39,17 +39,17 @@
                                         <div class="col s12 m12 l12">
                                             <form ref="form" @submit.prevent="formSubmit" action="<?php echo base_url('industry-add') ?>" method="post">
                                                 <div class="input-field col m10">
-                                                    <input id="name" name="name" type="text" placeholder="Enter full name with adress & Pincode" class="validate" v-model="name" @change="namecheck()">
+                                                    <input id="name" name="name" type="text" placeholder="Enter full name with adress & Pincode" class="validate" v-model="name" @change="namecheck()" required="">
                                                     <label for="name">Industry Name</label>
                                                     <span class="helper-text red-text">{{nameError}}</span>
                                                 </div>
                                                 <div class="input-field col m6">
-                                                    <input id="rno" name="rno" type="text" class="validate" v-model="regno" @change="regnocheck()">
+                                                    <input id="rno" name="rno" type="text" class="validate" v-model="regno" @change="regnocheck()" required="">
                                                     <label for="rno">Register Number</label>
                                                      <span class="helper-text red-text">{{noError}}</span>
                                                 </div>
                                                 <div class="input-field col sel-hr s12 m6">
-                                                    <select name="act" class="">
+                                                    <select name="act" class="" required="">
                                                             <option value="" disabled selected>Choose Act Type</option>
                                                             <option value="1">Labour ACt</option>
                                                             <option value="2">Factory ACt</option>

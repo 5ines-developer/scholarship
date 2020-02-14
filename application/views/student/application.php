@@ -151,8 +151,8 @@
 
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title mb20">
-                                                <p>Does the student belong to the Scheduled Castes / Scheduled Tribes? If so Xerox copy of the cast certificate obtained from the Tahsildar To be Attached.</p>
-                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಪರಿಶಿಷ್ಠ ಜಾತಿ/ಪರಿಶಿಷ್ಠ ಪಂಗಡಗಳಿಗೆ ಸೇರಿದವರೇ ? ಹಾಗಿದ್ದರೆ ತಹಶೀಲ್ದಾರರಿಂದ ಪಡೆದ ಜಾತಿ ಪ್ರಮಾಣ ಪತ್ರದ ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸಬೇಕು.</p>
+                                                <p>Does the student belong to the Scheduled Castes / Scheduled Tribes? If so Xerox copy of the caste certificate obtained from the Tahsildar To be Attached</p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಪರಿಶಿಷ್ಠ ಜಾತಿ/ಪರಿಶಿಷ್ಠ ಪಂಗಡಗಳಿಗೆ ಸೇರಿದವರೇ ? ಹಾಗಿದ್ದರೆ ತಹಶೀಲ್ದಾರರಿಂದ ಪಡೆದ ಜಾತಿ ಪ್ರಮಾಣ ಪತ್ರದ ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸಬೇಕು</p>
                                                 <?php echo (!empty($result->cast_certificate))?'
                                                     <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
                                                     <a target="_blank" href="'.base_url().$result->cast_certificate.'">Caste Certificate</a>
@@ -230,7 +230,7 @@
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title ">
                                                 <p>Enter Your Previous year Class and Marks</p>
-                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಹಿಂದಿನ ಸಾಲಿನಲ್ಲಿ ತೇರ್ಗಡೆಯಾದ ತರಗತಿ ಮತ್ತು ಪರೀಕ್ಷಯಲ್ಲಿ ಪಡೆದಿರುವ ಅಂಕಗಳನ್ನು ನಮೂದಿಸುವುದು. </p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಹಿಂದಿನ ಸಾಲಿನಲ್ಲಿ ತೇರ್ಗಡೆಯಾದ ತರಗತಿ ಮತ್ತು ಪರೀಕ್ಷಯಲ್ಲಿ ಪಡೆದಿರುವ ಅಂಕಗಳನ್ನು ನಮೂದಿಸುವುದು </p>
                                             </div>
                                             
 
@@ -274,8 +274,8 @@
                                         <!-- End Box -->
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title ">
-                                                <p>Enter Student Aadhar Card Number and Attach the Xerox copy.</p>
-                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಆಧಾರ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ  (ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸುವುದು). </p>
+                                                <p>Enter Student Aadhar Card Number and Attach the Xerox copy</p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿಯು ಆಧಾರ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ  (ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸುವುದು)</p>
                                                 <?php echo (!empty($result->adharcard_file))?'
                                                     <p class="app-item-content"><img src="'.base_url().'assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
                                                     <a target="_blank" href="'.base_url().$result->adharcard_file.'">Aadhar Card</a>
@@ -309,8 +309,8 @@
 
                                         <div class="borderd-box ">
                                             <div class="col s12 box-title ">
-                                                <p>Student Bank Details.</p>
-                                                <p>ವಿದ್ಯಾರ್ಥಿ ಬ್ಯಾಂಕ್ ವಿವರಗಳು. </p>
+                                                <p>Student Bank Details</p>
+                                                <p>ವಿದ್ಯಾರ್ಥಿ ಬ್ಯಾಂಕ್ ವಿವರಗಳು</p>
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
@@ -430,8 +430,8 @@
                                         <input type="hidden" name="uniq" value="<?php echo random_string('alnum',16); ?>" v-model="uniq"/>
                                         <input type="hidden" name="aid" v-model="aid" />
 
-                                        <button class="waves-effect waves-light hoverable btn-theme btn">Apply</button>
-                                        <button class="waves-effect waves-light hoverable btn-theme btn">Reset</button>
+                                        <button type="submit" class="waves-effect waves-light hoverable btn-theme btn">Apply</button>
+                                        <button type="reset" class="waves-effect waves-light hoverable btn-theme btn">Reset</button>
                                     
 
                                 </form>

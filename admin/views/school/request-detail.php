@@ -82,7 +82,7 @@
                                                                     } ?>
 
                                                             <li>
-                                                                <p class="app-item-content-head">Principal Signature</p>
+                                                                <p class="app-item-content-head">Institute Registered Document</p>
                                                                 <a target="_blank" href="<?php echo $sign ?>"><img src="<?php echo  $sign ?>" alt="" class="circle responsive-img" width="100px"></a>
                                                             </li>
 

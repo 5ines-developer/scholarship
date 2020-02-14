@@ -68,7 +68,9 @@ class M_school extends CI_Model {
 
 	public function getSchool($id='',$district='',$taluk='')
 	{
-        if (!empty($id)) {  $this->db->where('schl.name', $id); } 
+        if (!empty($id)) {  $this->db->where('schl.name', $id); }else{
+            $this->db->group_by('schl.name');
+        }
 		if (!empty($taluk)) { $this->db->where('rs.taluk', $taluk); } 
         return $this->db->select('schl.name as id,rs.reg_no,rs.school_address,rs.management_type,rs.school_category,rs.school_type,rs.urban_rural,tq.title,cty.title as district,sca.status,schl.reg_certification,schl.principal,schl.priciple_signature,schl.seal,schl.created_on')
 		->from('school schl')
@@ -150,7 +152,7 @@ class M_school extends CI_Model {
 
     public function getEmployee($id='')
     {
-        return $this->db->where('name',$id)->get('school_auth')->result();
+        return $this->db->where('school_id',$id)->get('school_auth')->result();
     }
 
     public function schoolcount($year='')
@@ -195,6 +197,21 @@ class M_school extends CI_Model {
             return false;
         }else{
             return $this->db->insert('reg_schools', $insert);
+        }
+    }
+
+    public function delete($id='')
+    {
+        $this->db->where('school_id', $id);
+        if($this->db->delete('school_auth')){
+            $this->db->where('school_id', $id);
+            $this->db->delete('school_address');
+
+            $this->db->where('name', $id);
+            $this->db->delete('school');
+            
+        }else{
+            return false;
         }
     }
 

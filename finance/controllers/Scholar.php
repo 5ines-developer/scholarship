@@ -217,50 +217,59 @@ class Scholar extends CI_Controller {
 
     public function importPaystatus($value='')
     {
-        if (isset($_FILES["file"]["name"])) {
-            $path = $_FILES["file"]["tmp_name"];
-            $object = PHPExcel_IOFactory::load($path);
-            foreach ($object->getWorksheetIterator() as $worksheet) {
-                $highestRow = $worksheet->getHighestRow();
-                $highestColumn = $worksheet->getHighestColumn();
 
-                $i = -1;
-                $out = '';
-                for ($row = 2; $row <= $highestRow; $row++) {
-                    $i++;
-                    $adhar = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-                    $status  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                    $reason  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+        if ($_FILES["file"]["type"] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+            if (isset($_FILES["file"]["name"])) {
+                $path = $_FILES["file"]["tmp_name"];
+                $object = PHPExcel_IOFactory::load($path);
+                foreach ($object->getWorksheetIterator() as $worksheet) {
+                    $highestRow = $worksheet->getHighestRow();
+                    $highestColumn = $worksheet->getHighestColumn();
 
-                    if($status=='success' || $status=='Success'){
-                        $stat = '1';
-                    }else{
-                        $stat = '2';
+                    $i = -1;
+                    $out = '';
+                    for ($row = 2; $row <= $highestRow; $row++) {
+                        $i++;
+                        $adhar = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                        $status  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                        $reason  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+
+                        if($status=='success' || $status=='Success'){
+                            $stat = '1';
+                        }else{
+                            $stat = '2';
+                        }
+
+                        $insert = array(
+                            'pay_status'    => $stat,
+                            'pay_freason'    => $reason,
+                        );
+                        $output[] = $this->m_scholar->importPaystatus($insert,$adhar);
+                        
+                        if (empty($output[$i])) {
+                            $out .= $row.',';
+                        }
+                        $this->paymail($output[$i],$insert);
+                        $this->paysms($output[$i],$insert);
                     }
-
-                    $insert = array(
-                        'pay_status'    => $stat,
-                        'pay_freason'    => $reason,
-                    );
-                    $output[] = $this->m_scholar->importPaystatus($insert,$adhar);
-                    
-                    if (empty($output[$i])) {
-                        $out .= $row.',';
-                    }
-                    $this->paymail($output[$i],$insert);
-                    $this->paysms($output[$i],$insert);
                 }
+                if(!empty($out)){
+                    $out1 = rtrim($out);
+                    
+                    $this->session->set_flashdata('error', 'Unable to insert the row '.$out1.'<br> please try again');
+                }else{
+                    
+                    $this->session->set_flashdata('success', 'Payment Status Updated  Successfully');
+                }
+                redirect('applications?item=approved', 'refresh');
             }
-            if(!empty($out)){
-                $out1 = rtrim($out);
-                
-                $this->session->set_flashdata('error', 'Unable to insert the row '.$out1.'<br> please try again');
-            }else{
-                
-                $this->session->set_flashdata('success', 'Payment Status Updated  Successfully');
-            }
+        }else{
+            $this->session->set_flashdata('error', 'The file type you are trying to upload is not allowed');
             redirect('applications?item=approved', 'refresh');
         }
+
+
+        
     }
 
     public function paysms($output='',$insert='')
