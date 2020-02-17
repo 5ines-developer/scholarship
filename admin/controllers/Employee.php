@@ -98,7 +98,7 @@ class Employee extends CI_Controller {
     public function block($value='')
     {
         $id = $this->input->get('id');
-        $status = '2';
+        $status = '3';
 
         if($this->M_employee->stasChange($id,$status)){
             $this->session->set_flashdata('success', 'Employee Blocked Successfully');

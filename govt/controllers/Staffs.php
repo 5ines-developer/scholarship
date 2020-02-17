@@ -10,6 +10,8 @@ class Staffs extends CI_Controller {
         $this->load->model('M_staffs');
         if($this->session->userdata('scinds') == ''){ redirect('/','refresh'); }
         if ($this->session->userdata('scctype') != '1') { redirect('dashboard','refresh');  }
+        $this->load->library('sess_log');
+        $this->sess_log->check_auth($this->session->userdata('sgt_id'));
     }
 
     public function index()

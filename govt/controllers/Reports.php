@@ -11,6 +11,8 @@ class Reports extends CI_Controller {
         $this->load->model('m_school');
         $this->load->model('m_reports');
         if ($this->session->userdata('sgt_id') == '') { $this->session->set_flashdata('error','Please login and try again!'); redirect('/','refresh'); }
+        $this->load->library('sess_log');
+        $this->sess_log->check_auth($this->session->userdata('sgt_id'));
     }
 
     /*

@@ -78,8 +78,13 @@
                                                                     $blc = 'display:none'; 
                                                                     $unbl = 'display:block'; 
                                                                     ?>
+                                                                   <p class="status red">Password Not Set</p>
+                                                                <?php }else if($value->status == 3){ 
+                                                                    $blc = 'display:none'; 
+                                                                    $unbl = 'display:block'; 
+                                                                    ?>
                                                                    <p class="status red">Blocked</p>
-                                                                <?php }else{ 
+                                                                <?php } else{
                                                                     $blc = 'display:none'; 
                                                                     $unbl = 'display:block'; 
                                                                 ?>
@@ -130,8 +135,8 @@
     <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/vfs_fonts.js "></script>
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js "></script>
     <!-- data table -->
-    <script>
     <?php $this->load->view('include/msg'); ?>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
             var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {

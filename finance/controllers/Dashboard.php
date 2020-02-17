@@ -11,6 +11,8 @@ class Dashboard extends CI_Controller {
         $this->load->model('m_dashboard');
         if($this->session->userdata('sfn_id') == ''){ redirect('/','refresh'); }
         $this->adid = $this->session->userdata('sfn_id');
+        $this->load->library('sess_log');
+        $this->sess_log->check_auth($this->adid);
     }
 
     public function index()

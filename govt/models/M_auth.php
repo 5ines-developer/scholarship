@@ -3,14 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_auth extends CI_Model {
 
- 
-
-
 // activation
 public function activateAccount($id = null)
 {
    $this->db->where('ref_link', $id);
-   $this->db->where('type !=',1);
+   $this->db->where('type',2);
    $this->db->update('admin', array('status'=> 2));      
    if($this->db->affected_rows() > 0){
       return true;
@@ -23,7 +20,7 @@ function can_login($email, $password)
 {
     $this->db->where('email', $email);  
     $this->db->where('status', '1'); 
-    $this->db->where('type !=',1); 
+    $this->db->where('type',2); 
     $result = $this->db->get('admin')->row_array();
     
     if (!empty($result['id'])) {
@@ -75,6 +72,12 @@ function can_login($email, $password)
   }else{
       return false;
   }
+  }
+
+
+  public function checkLogin($id='')
+  {
+    return $this->db->where('id', $id)->where('status',1)->get('admin')->row();
   }
  
 

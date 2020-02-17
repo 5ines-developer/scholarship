@@ -11,6 +11,10 @@ class Scholar extends CI_Controller {
         $this->load->model('m_scholar');
         if ($this->session->userdata('sfn_id') == '') { $this->session->set_flashdata('error','Please login and try again!'); }
         $this->load->library(array('email', 'upload', 'MY_Upload', 'excel'));
+
+        $this->adid = $this->session->userdata('sfn_id');
+        $this->load->library('sess_log');
+        $this->sess_log->check_auth($this->adid);
     }
 
 

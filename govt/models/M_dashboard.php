@@ -138,6 +138,8 @@ class M_dashboard extends CI_Model {
         return $this->db->get('reg_schools')->num_rows();        
     }
 
+
+
 	
 
 }
