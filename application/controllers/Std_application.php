@@ -443,26 +443,23 @@ class Std_application extends CI_Controller {
     }
 
 
-    //     // application generate
-    // public function applicationGenerate($id = null)
-    // {
-    //     $ids =  urldecode($id);
-    //     $apid = base64_decode($ids);
-    //     $data['result'] = $this->m_stdapplication->getApplication($this->sid);
-    //     // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-
-    //     require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
-
-    //     $mpdf = new \Mpdf\Mpdf([
-    //         'default_font_size' => 9,
-	   //      'default_font' => 'tunga'
-    //     ]);
-    //     $html = $this->load->view('student/application-detail', $data, TRUE);
+        // application generate
+    public function applicationGenerate($id = null)
+    {
         
-    //     $mpdf->WriteHTML($html);
-    //     $mpdf->Output();
-    //     exit;    
-    // }
+        $data['result'] = $this->m_stdapplication->getApplication($this->sid);
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+	        'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('site/download-apply', $data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;    
+    }
 
 
 }

@@ -30,7 +30,7 @@ $this->load->model('m_stdapplication');
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="card-title">Scholarship Application Detail
-                                    <!-- <a target="_blank" href="<?php echo base_url('std_application/applicationGenerate/'.$result->id.'') ?>" class="btn-small right mr10 green darken-3 waves-effect waves-light">Download</a> -->
+                                     <a target="_blank" href="<?php echo base_url('std_application/applicationGenerate/'.$result->id.'') ?>" class="btn-small right mr10 green darken-3 waves-effect waves-light">Download</a>
                                 </div>
 
                                 <div class="board-content">
@@ -186,7 +186,7 @@ $this->load->model('m_stdapplication');
                                                                 <div class="col s12 m6">
                                                                     <ul>
                                                                         <li>
-                                                                            <p class="app-item-content-head">parent / Guardian Name </p>
+                                                                            <p class="app-item-content-head">Parent / Guardian Name </p>
                                                                             <p class="app-item-content"><?php echo (!empty($result->pName))?$result->pName:'---'; ?></p>
                                                                         </li>
 
