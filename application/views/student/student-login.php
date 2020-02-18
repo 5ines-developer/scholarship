@@ -7,6 +7,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
     <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
@@ -49,7 +50,7 @@
                         </div>
                     </div>
 
-                    <div class="col s12 pull-m6 pull-l6 m6 l6 reg-left height352 valign-wrapper">
+                    <div class="col s12  pull-m6 pull-l6 m6 l6 reg-left height352 valign-wrapper hide-on-small-only">
                         <div class="reg-left-box ">
                             <div class="contents">
                                 <p>Welcome To</p>
@@ -68,16 +69,17 @@
     
   <?php $this->load->view('includes/footer'); ?>
               
-
-
 <!-- scripts -->
 
 <script>
     <?php $this->load->view('includes/message'); ?>
 </script>
 <script>
+   
     document.addEventListener('DOMContentLoaded', function() {
         var instances = M.FormSelect.init(document.querySelectorAll('select'));
+        var side = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(side);
     });
 
 

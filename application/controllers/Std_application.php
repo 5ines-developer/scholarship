@@ -429,7 +429,7 @@ class Std_application extends CI_Controller {
 
 
     //application list
-    public function list($id='')
+    public function list($id = '')
     {
     	if(!empty($id)){
     		$data['result'] = $this->m_stdapplication->getDeatil($this->sid,$id);
