@@ -567,9 +567,9 @@
                 border-left: 5px solid transparent;
                 border-right: 5px solid transparent;
                 border-bottom: 5px solid #2f2f2f;
-                right: 10%;
+                right: 2%;
                 top: 20px;
-                opacity: 0.5;
+                opacity: 0.7;
             }
             &:before {
                 position: absolute;
@@ -587,7 +587,7 @@
                 top: 50%;
                 right: 5px;
                 top: 50%;
-                opacity: 0.5;
+                opacity: 0;
                 transform: translateY(-50%);
             }
         }
@@ -722,9 +722,9 @@
                                 border-left: 5px solid transparent;
                                 border-right: 5px solid transparent;
                                 border-bottom: 5px solid #2f2f2f;
-                                right: 10%;
+                                right: 2%;
                                 top: 20px;
-                                opacity: 0.5;
+                                opacity: 0;
                             }
                             &:before {
                                 position: absolute;
@@ -800,9 +800,9 @@
                 border-left: 5px solid transparent;
                 border-right: 5px solid transparent;
                 border-bottom: 5px solid #2f2f2f;
-                right: 10%;
+                right: 5%;
                 top: 20px;
-                opacity: 0.5;
+                opacity: 0.7;
             }
             &:before {
                 position: absolute;
@@ -820,7 +820,7 @@
                 top: 50%;
                 right: 5px;
                 top: 50%;
-                opacity: 0.5;
+                opacity: 0;
                 transform: translateY(-50%);
             }
         }
@@ -862,9 +862,9 @@
                     border-left: 5px solid transparent;
                     border-right: 5px solid transparent;
                     border-bottom: 5px solid #2f2f2f;
-                    right: 10%;
+                    right: 2%;
                     top: 20px;
-                    opacity: 0.5;
+                    opacity: 0.7;
                 }
                 &:before {
                     position: absolute;
@@ -880,7 +880,7 @@
                     content: '\e5d7';
                     right: 5px;
                     top: 50%;
-                    opacity: 0.5;
+                    opacity: 0;
                     transform: translateY(-50%);
                 }
             }
@@ -958,7 +958,7 @@
                 min-height: 150px;
             }
             .app-detail-items {
-                margin: auto -25px;
+                margin: auto;
             }
         }
         
@@ -1025,7 +1025,7 @@
             text-shadow: none;
             background-color: transparent;
             .app-detail-items {
-                margin: auto -25px;
+                margin: auto;
             }
         }
         
@@ -1231,7 +1231,7 @@
         }
         
         table td {
-            padding: .625em;
+            padding: 15px 2px;
             text-align: center;
         }
         
@@ -1380,7 +1380,7 @@
         }
         
         table td {
-            padding: .625em;
+            padding: 15px 2px;
             text-align: center;
         }
         
@@ -1398,16 +1398,16 @@
             table caption {
                 font-size: 1.3em;
             }
-            table thead {
-                border: none;
-                clip: rect(0 0 0 0);
-                height: 1px;
-                margin: -1px;
-                overflow: hidden;
-                padding: 0;
-                position: absolute;
-                width: 1px;
-            }
+            // table thead {
+            //     border: none;
+            //     clip: rect(0 0 0 0);
+            //     height: 1px;
+            //     margin: -1px;
+            //     overflow: hidden;
+            //     padding: 0;
+            //     position: absolute;
+            //     width: 1px;
+            // }
             table tr {
                 border-bottom: 3px solid #ddd;
                 display: block;
@@ -1483,7 +1483,7 @@
         
         .hr-list .dataTable thead th,
         table.dataTable thead td {
-            padding: 4px 18px;
+            padding: 8px 18px;
         }
         
         .hr-list .dataTables_info {
@@ -1546,7 +1546,7 @@
                 content: '';
                 right: 5px;
                 top: 50%;
-                opacity: 0.5;
+                opacity: 0;
                 -webkit-transform: translateY(-50%);
                 transform: translateY(-50%);
             }
@@ -1689,7 +1689,7 @@
         }
         
         #short {
-            width: 16%;
+            width: 19%;
             float: right;
             position: relative;
             top: -1px;
@@ -1885,7 +1885,7 @@
         
         .hr-list .dataTable thead th,
         table.dataTable thead td {
-            padding: 4px 18px;
+            padding: 9px 18px;
         }
         
         .hr-list .dataTables_info {
@@ -1948,7 +1948,7 @@
                 content: '';
                 right: 5px;
                 top: 50%;
-                opacity: 0.5;
+                opacity: 0;
                 -webkit-transform: translateY(-50%);
                 transform: translateY(-50%);
             }
@@ -1966,7 +1966,7 @@
                 content: '';
                 right: 5px;
                 top: 50%;
-                opacity: 0.5;
+                opacity: 0;
                 -webkit-transform: translateY(-50%);
                 transform: translateY(-50%);
             }
@@ -2137,11 +2137,11 @@
                 }
             }
             #short {
-                width: 45%;
-                float: left;
-                position: relative;
-                top: -1px;
-                height: 10%
+                width: 40%;
+                position: absolute;
+                top: 8px;
+                height: 10%;
+                right: 9px;
             }
         }
         
@@ -2240,7 +2240,7 @@
             // hr add list
             .title-list {
                 border-bottom: 1px solid #e1e1e1;
-                padding-bottom: 50px;
+                padding-bottom: 20px;
             }
             .sel-hr ul {
                 width: 100% !important;
@@ -2419,6 +2419,7 @@
             }
             .list-title {
                 display: block;
+                margin-top: -3px;
             }
             .back-btn {
                 float: unset;
@@ -2858,6 +2859,46 @@
         }
         
         @media(max-width:767px) {
+            // 19-02-2020
+            // .rc-anchor-normal {
+            //     height: 74px;
+            //     width: 250px 1;
+            // }
+            .top-pp {
+                margin-top: 10px;
+                margin-right: 5px;
+            }
+            .board {
+                .card {
+                    margin-top: 20px;
+                }
+            }
+            .top-header img {
+                padding: 17px 0 0px 0px;
+            }
+            .p17 {
+                padding: 10px 0;
+            }
+            .board {
+                .card-title {
+                    text-align: center;
+                    padding: 10px;
+                }
+            }
+            .status-list {
+                padding-bottom: 17px;
+            }
+            thead tr {
+                background: #00437d !important;
+                color: white;
+            }
+            .sorting::before {
+                opacity: 0;
+            }
+            .sorting::after {
+                opacity: 0;
+            }
+            // end 19-2020
             .pay-date {
                 float: left;
                 padding-top: 0px;

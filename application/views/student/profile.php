@@ -23,7 +23,7 @@
                 <div class="row m0">
                       <?php $this->load->view('includes/student-sidebar.php'); ?> <!-- End menu-->
 
-                    <div class="col s12 m8">
+                    <div class="col s12 m12 l8">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <span class="card-title">Account Settings</span>

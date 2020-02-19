@@ -25,7 +25,7 @@
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                             <div>
-                                <a class="waves-effect waves-light hoverable btn-theme btn right capitalize" href="<?php echo base_url()  ?>staffs">  <i class="material-icons tiny left">arrow_back</i> Back</a>
+                                <a class="waves-effect waves-light hoverable btn-theme btn right capitalize top-pp" href="<?php echo base_url()  ?>staffs">  <i class="material-icons tiny left">arrow_back</i> Back</a>
                                 <span class="card-title">Add new verification staff</span>
                             </div>
                                 <div class="board-content">

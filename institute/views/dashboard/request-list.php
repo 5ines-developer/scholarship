@@ -27,20 +27,19 @@
                                 <span class="card-title">Scholarship  Application Request ({{tableRow.length}})</span>
                                 <div class="board-content">
                                     <div class="row m0">
-                                        <table class="vue-data-table row-click">
+                                        <table class="vue-data-table row-click responsive-table">
                                             <thead>
                                                 <tr>
                                                     <th @click="sorting(i)" v-for="(heading , i) in tableHeading" :class="{'sorting': heading.sorting}">{{heading.title}}</th>
                                                 </tr>
                                             </thead>
-                                            
                                             <tbody>
                                                 <tr v-for="(item , k) in tableRow" :key="k" @click="detail(item.id)">
-                                                    <td :data-label="tableHeading[0].title">{{k + 1}}</td>
-                                                    <td :data-label="tableHeading[1].title">{{item.name}}</td>
-                                                    <td :data-label="tableHeading[2].title">{{item.mark}}</td>
-                                                    <td :data-label="tableHeading[3].title">{{item.course}}{{item.class}}</td>
-                                                    <td :data-label="tableHeading[4].title"><a :href="'<?php echo base_url()?>student/'+item.id " class="waves-effect waves-light">view</a></td>
+                                                    <td >{{k + 1}}</td>
+                                                    <td >{{item.name}}</td>
+                                                    <td >{{item.mark}}</td>
+                                                    <td >{{item.course}}{{item.class}}</td>
+                                                    <td><a :href="'<?php echo base_url()?>student/'+item.id " class="waves-effect waves-light">view</a></td>
                                                 </tr>
                                                 <tr v-if="tableRow.length == 0">
                                                     <td colspan="5">No data found</td>

@@ -13,11 +13,10 @@
     <link rel="stylesheet " href="<?php echo base_url() ?>assets/dataTable/datatables.min.css ">
     <link rel="stylesheet " href="<?php echo base_url() ?>assets/dataTable/button/css/buttons.dataTables.css ">
     <style>
-        .vie-btn{
+        .vie-btn {
             padding-right: 12px;
             font-weight: 600;
         }
-        
     </style>
 </head>
 
@@ -29,10 +28,10 @@
         <section class="board ">
             <div class="container-wrap1 ">
                 <div class="row m0 ">
-                        <?php $this->load->view('includes/student-sidebar'); ?>
+                    <?php $this->load->view('includes/student-sidebar'); ?>
                     <!-- End menu-->
 
-                    <div class="col m9 l9  s12">
+                    <div class="col m12 l9  s12">
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
@@ -47,8 +46,8 @@
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">
-                                        <table id="dynamic" class="striped ">
-                                            <thead class="thead-list">
+                                        <table id="dynamic" class="striped responsive-table">
+                                            <thead class="">
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Instituite</th>
                                                 <th class="h5-para-p2">Industry</th>
@@ -63,22 +62,22 @@
                                                         $id = $value->id;
 
                                                     ?>
-                                                    <tr role="row" class="odd">
+                                                <tr role="row" class="odd">
 
                                                     <td><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
 
                                                     <td class="truncate"><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->school))?$value->school:'---'; ?></a></td>
 
-                                                    <td><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->industry))?$value->industry:'---'; ?></a></td>
+                                                    <td class=""><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->industry))?$value->industry:'---'; ?></a></td>
 
                                                     <td><a href="<?php echo base_url('application-list/').$id ?>"><?php echo (!empty($value->course))?$value->course:''; ?><?php echo (!empty($value->clss))?$value->clss:'---'; ?></a></td>
 
                                                     <td><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
 
                                                     <td class=""><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></a></td>
-                                                    
+
                                                     <td class="action-btn center-align">
-                                                        <a href="<?php echo base_url('student/application-list/').$id ?>" class="vie-btn blue-text waves-effect waves-light" > View </a>
+                                                        <a href="<?php echo base_url('student/application-list/').$id ?>" class="vie-btn blue-text waves-effect waves-light"> View </a>
                                                     </td>
                                                 </tr>
                                                 <?php    } } ?>
@@ -94,21 +93,21 @@
             </div>
         </section>
 
-        
+
         <!-- footer -->
-         <?php $this->load->view('includes/footer'); ?>
+        <?php $this->load->view('includes/footer'); ?>
         <!-- End footer -->
     </div>
 
 
 
-    
+
     <!-- scripts -->
     <script src="<?php echo base_url() ?>assets/js/jquery-3.4.1.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/vue.js "></script>
     <script src="<?php echo base_url() ?>assets/js/materialize.min.js "></script>
     <script src="<?php echo base_url() ?>assets/js/axios.min.js "></script>
-     <script src="<?php echo base_url() ?>assets/js/script.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/script.js"></script>
     <!-- data table -->
     <script type="text/javascript " src="<?php echo base_url() ?>assets/dataTable/datatables.min.js "></script>
     <script type="text/javascript " src="<?php echo base_url() ?>assets/dataTable/button/js/dataTables.buttons.min.js "></script>
@@ -144,16 +143,16 @@
         var app = new Vue({
             el: '#app',
             data: {
-                loader:false,
-                year:'<?php echo $this->input->get('year') ?>',
+                loader: false,
+                year: '<?php echo $this->input->get('
+                year ') ?>',
             },
-            methods:{
-                yearChange(){
-                    window.location.href = "<?php echo base_url('student/application-list?year=') ?>"+this.year;
+            methods: {
+                yearChange() {
+                    window.location.href = "<?php echo base_url('student/application-list?year=') ?>" + this.year;
                 },
             },
         })
-
     </script>
 </body>
 

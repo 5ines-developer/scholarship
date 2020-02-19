@@ -5,7 +5,7 @@
                         
                         <div class="col s4 m4 push-m4">
                             <div class="center">
-                                <img class="responsive-img" src="<?php echo base_url() ?>assets/image/logo.png" alt="Karnataka Labour Welfare Board">
+                                <a href="<?php echo base_url()?>"><img class="responsive-img" src="<?php echo base_url() ?>assets/image/logo.png" alt="Karnataka Labour Welfare Board"></a>
                             </div>
                         </div>
                         <div class="col s8 m4 pull-m4">
