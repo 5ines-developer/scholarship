@@ -35,7 +35,32 @@ class M_account extends CI_Model {
         }
         $this->db->where('mobile', $phone);
         $result = $this->db->get('industry_register');
-           if($result->num_rows() > 0){
+        if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function inmobile_check($phone='')
+    {
+        
+        $this->db->where('id !=', $this->session->userdata('scinds'));
+        $this->db->where('mobile', $phone);
+        $result = $this->db->get('industry_register');
+        if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function email_check($email='')
+    {
+        $this->db->where('id !=', $this->session->userdata('scinds'));
+        $this->db->where('email', $email);
+        $result = $this->db->get('industry_register');
+        if($result->num_rows() > 0){
             return true;
         }else{
             return false;

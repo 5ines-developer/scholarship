@@ -174,7 +174,7 @@
         <input type="file" id="profileimg" @change="upload" ref="fileInput" class="hide" accept="image/*">
         <!-- End Body form  -->
         <div id="edtModal" class="modal modal-fixed-footer">
-            <form action="<?php echo base_url() ?>dashboard/update" method="post">
+            <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>dashboard/update" method="post">
                 <div class="modal-content">
                     <h5>Edit Detail</h5>
                     <div class="row m0">
@@ -210,9 +210,18 @@
                             <input id="director" value="<?php echo (!empty($info->director))?$info->director:''; ?>" type="text" name="director" class="validate">
                             <label for="director">Director Name</label>
                         </div>
+
+                         <div class="input-field col m6">
+                            <input id="email" name="email" type="email" required class="validate" v-model="email"  @change="emailCheck()">
+                            <label for="email">Email</label>
+                            <span class="helper-text red-text">{{ emailError }}</span>
+
+                        </div>
+
                         <div class="input-field col m6">
-                            <input id="number" value="<?php echo (!empty($info->mobile))?$info->mobile:''; ?>" name="number" type="number" required class="validate">
+                            <input id="number" name="number" type="number" required class="validate" v-model="mobile"  @change="mobileCheck()">
                             <label for="number">Phone Number</label>
+                            <span class="helper-text red-text">{{mobileError}}</span>
                         </div>
 
                         <div class="input-field col m6 ">
@@ -272,7 +281,11 @@
                 loader:false,
                 pan: '<?php echo (!empty($info->pancard))?base_url().$info->pancard:''; ?>',
                 gst: '<?php echo (!empty($info->gst))?base_url().$info->gst:''; ?>',
-                certificate: '<?php echo (!empty($info->register_doc))?base_url().$info->register_doc:''; ?>'
+                certificate: '<?php echo (!empty($info->register_doc))?base_url().$info->register_doc:''; ?>',
+                mobile: '<?php echo (!empty($info->mobile))?$info->mobile:''; ?>',
+                email: '<?php echo (!empty($info->email))?$info->email:''; ?>',
+                emailError: '',
+                mobileError: '',
 
             },
             mounted() {
@@ -316,7 +329,55 @@
                         M.toast({html: msg, classes: 'red darken-4'});
                     })
 
+                },
+
+                                //check student email already exist
+            emailCheck(){
+                this.emailError='';
+                const formData = new FormData();
+                formData.append('email',this.email);
+                axios.post('<?php echo base_url('account/emailcheck') ?>',formData)
+                .then(response =>{
+                    if (response.data == '1') {
+                        this.emailError = 'This Email id already exist!';
+                    } else {
+                        this.emailError = '';
+                    }
+
+                }).catch(error => {
+                    if (error.response) {
+                        this.errormsg = error.response.data.error;
+                    }
+                })
+            },
+             //check student mobile already exist
+             mobileCheck(){
+                if(this.mobile.length != 10 ){
+                    this.mobileError = 'Phone number must be 10 digits.';
+                }else{
+                    this.mobileError='1';
+                    const formData = new FormData();
+                    formData.append('mobile',this.mobile);
+                    axios.post('<?php echo base_url('account/inmobile_check') ?>', formData)
+                    .then(response => {
+                        if (response.data == '1') {
+                            this.mobileError = 'This Mobile number already exist!';
+                        } else {
+                            this.mobileError = '';
+                        }
+
+                    }).catch(error =>{
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    } )
                 }
+            },
+            checkForm() {
+                if ((this.mobileError == '') && (this.emailError == '')) {
+                    this.$refs.form.submit();
+                }
+            }
             }
         })
     </script>
