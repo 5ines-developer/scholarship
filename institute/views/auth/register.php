@@ -156,7 +156,7 @@
 <!-- scripts -->
 
 <?php $this->load->view('include/msg'); ?>
-
+<script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
 <script>
 
 

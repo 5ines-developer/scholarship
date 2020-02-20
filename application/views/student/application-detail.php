@@ -26,7 +26,7 @@ $this->load->model('m_stdapplication');
                 <div class="row m0">
                 <?php $this->load->view('includes/student-sidebar.php'); ?> <!-- End menu-->
 
-                    <div class="col s12 m9">
+                    <div class="col s12 m12 l9">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="card-title">Scholarship Application Detail

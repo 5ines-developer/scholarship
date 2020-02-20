@@ -20,17 +20,16 @@
                     <div class="col s12 m3 hide-on-small-only">
                         <?php $this->load->view('include/menu'); ?>
                     </div> <!-- End menu-->
-
                     <div class="col s12 m9">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
-                            <div>
-                                <a class="waves-effect waves-light hoverable btn-theme btn right capitalize" href="<?php echo base_url()  ?>staffs/create">  <i class="material-icons tiny left">add</i> Add new staff</a>
+                            <div class="top-p">
+                                <a class="waves-effect waves-light hoverable btn-theme btn right capitalize top-pp" href="<?php echo base_url()  ?>staffs/create">  <i class="material-icons tiny left">add</i> Add new staff</a>
                                 <span class="card-title">Verification staffs</span>
                             </div>
                                 <div class="board-content">
                                     <div class="row m0">
-                                        <table class="vue-data-table row-click">
+                                        <table class="vue-data-table row-click responsive-table">
                                             <thead>
                                                 <tr>
                                                     <th>Sl No</th>

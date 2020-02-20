@@ -28,7 +28,7 @@
                                 <span class="card-title">Rejected Scholarship  Application  ({{tableRow.length}})</span>
                                 <div class="board-content">
                                     <div class="row m0">
-                                        <table class="vue-data-table row-click">
+                                        <table class="vue-data-table row-click responsive-table">
                                             <thead>
                                                 <tr>
                                                     <th @click="sorting(i)" v-for="(heading , i) in tableHeading" :class="{'sorting': heading.sorting}">{{heading.title}}</th>

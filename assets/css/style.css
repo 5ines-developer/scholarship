@@ -817,9 +817,15 @@ input[type=number] {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid #2f2f2f;
+<<<<<<< HEAD
   right: 10%;
   top: 20px;
   opacity: 0.5;
+=======
+  right: 2%;
+  top: 20px;
+  opacity: 0.7;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
 }
 
 .sorting:before {
@@ -838,7 +844,11 @@ input[type=number] {
   top: 50%;
   right: 5px;
   top: 50%;
+<<<<<<< HEAD
   opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
@@ -986,9 +996,15 @@ form .file-field .btn {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid #2f2f2f;
+<<<<<<< HEAD
   right: 10%;
   top: 20px;
   opacity: 0.5;
+=======
+  right: 2%;
+  top: 20px;
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
 }
 
 .app-detail-items .app-item-body ul li .sorting:before {
@@ -1064,9 +1080,15 @@ form .file-field .btn {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid #2f2f2f;
+<<<<<<< HEAD
   right: 10%;
   top: 20px;
   opacity: 0.5;
+=======
+  right: 5%;
+  top: 20px;
+  opacity: 0.7;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
 }
 
 .sorting:before {
@@ -1085,7 +1107,11 @@ form .file-field .btn {
   top: 50%;
   right: 5px;
   top: 50%;
+<<<<<<< HEAD
   opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
@@ -1130,9 +1156,15 @@ form .file-field .btn {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid #2f2f2f;
+<<<<<<< HEAD
   right: 10%;
   top: 20px;
   opacity: 0.5;
+=======
+  right: 2%;
+  top: 20px;
+  opacity: 0.7;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
 }
 
 .instreg .sorting:before {
@@ -1149,7 +1181,11 @@ form .file-field .btn {
   content: '\e5d7';
   right: 5px;
   top: 50%;
+<<<<<<< HEAD
   opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
@@ -1219,7 +1255,11 @@ form .file-field .btn {
     min-height: 150px;
   }
   .app-detail-items {
+<<<<<<< HEAD
     margin: auto -25px;
+=======
+    margin: auto;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   }
 }
 
@@ -1287,7 +1327,11 @@ form .file-field .btn {
 }
 
 .loading:not(:required) .app-detail-items {
+<<<<<<< HEAD
   margin: auto -25px;
+=======
+  margin: auto;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
 }
 
 .height352 {
@@ -1442,7 +1486,11 @@ table tr:hover {
 }
 
 table td {
+<<<<<<< HEAD
   padding: .625em;
+=======
+  padding: 15px 2px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   text-align: center;
 }
 
@@ -1544,7 +1592,11 @@ table tr:hover {
 }
 
 table td {
+<<<<<<< HEAD
   padding: .625em;
+=======
+  padding: 15px 2px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   text-align: center;
 }
 
@@ -1562,6 +1614,7 @@ table th {
   table caption {
     font-size: 1.3em;
   }
+<<<<<<< HEAD
   table thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -1572,6 +1625,8 @@ table th {
     position: absolute;
     width: 1px;
   }
+=======
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   table tr {
     border-bottom: 3px solid #ddd;
     display: block;
@@ -1645,7 +1700,11 @@ thead tr {
 
 .hr-list .dataTable thead th,
 table.dataTable thead td {
+<<<<<<< HEAD
   padding: 4px 18px;
+=======
+  padding: 8px 18px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
 }
 
 .hr-list .dataTables_info {
@@ -1705,7 +1764,11 @@ table.dataTable thead td {
   content: '';
   right: 5px;
   top: 50%;
+<<<<<<< HEAD
   opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
@@ -1845,7 +1908,11 @@ table.dataTable thead td {
 }
 
 #short {
+<<<<<<< HEAD
   width: 16%;
+=======
+  width: 19%;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   float: right;
   position: relative;
   top: -1px;
@@ -2041,7 +2108,11 @@ thead tr {
 
 .hr-list .dataTable thead th,
 table.dataTable thead td {
+<<<<<<< HEAD
   padding: 4px 18px;
+=======
+  padding: 9px 18px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
 }
 
 .hr-list .dataTables_info {
@@ -2101,7 +2172,11 @@ table.dataTable thead td {
   content: '';
   right: 5px;
   top: 50%;
+<<<<<<< HEAD
   opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
@@ -2120,7 +2195,11 @@ table.dataTable thead td {
   content: '';
   right: 5px;
   top: 50%;
+<<<<<<< HEAD
   opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
@@ -2286,11 +2365,19 @@ table.dataTable thead td {
     background: #00437d;
   }
   #short {
+<<<<<<< HEAD
     width: 45%;
     float: left;
     position: relative;
     top: -1px;
     height: 10%;
+=======
+    width: 40%;
+    position: absolute;
+    top: 8px;
+    height: 10%;
+    right: 9px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   }
 }
 
@@ -2388,7 +2475,11 @@ table.dataTable thead td {
   }
   .title-list {
     border-bottom: 1px solid #e1e1e1;
+<<<<<<< HEAD
     padding-bottom: 50px;
+=======
+    padding-bottom: 20px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   }
   .sel-hr ul {
     width: 100% !important;
@@ -2567,6 +2658,10 @@ table.dataTable thead td {
   }
   .list-title {
     display: block;
+<<<<<<< HEAD
+=======
+    margin-top: -3px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   }
   .back-btn {
     float: unset;
@@ -3023,6 +3118,39 @@ table.dataTable thead td {
 }
 
 @media (max-width: 767px) {
+<<<<<<< HEAD
+=======
+  .top-pp {
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+  .board .card {
+    margin-top: 20px;
+  }
+  .top-header img {
+    padding: 17px 0 0px 0px;
+  }
+  .p17 {
+    padding: 10px 0;
+  }
+  .board .card-title {
+    text-align: center;
+    padding: 10px;
+  }
+  .status-list {
+    padding-bottom: 17px;
+  }
+  thead tr {
+    background: #00437d !important;
+    color: white;
+  }
+  .sorting::before {
+    opacity: 0;
+  }
+  .sorting::after {
+    opacity: 0;
+  }
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
   .pay-date {
     float: left;
     padding-top: 0px;
@@ -3224,6 +3352,7 @@ table.striped > tbody > tr > td {
 .p20 {
   padding: 20px !important;
 }
+<<<<<<< HEAD
 
 .p5 {
   padding: 5px !important;
@@ -3235,4 +3364,6 @@ table.striped > tbody > tr > td {
   top: 4px;
   font-size: 17px;
 }
+=======
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
 /*# sourceMappingURL=style.css.map */

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Scholarship</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
 </head>
@@ -46,7 +47,7 @@
                             </div>
                         </div>
 
-                        <div class="col s12 pull-m6 pull-l6 m6 l6 reg-left height352 valign-wrapper">
+                        <div class="col s12 pull-m6 pull-l6 m6 l6 reg-left height352 valign-wrapper hide-on-small-only">
                             <div class="reg-left-box ">
                                 <div class="contents">
                                     <p>Welcome To</p>
