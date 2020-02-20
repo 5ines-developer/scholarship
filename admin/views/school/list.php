@@ -111,6 +111,13 @@
                                                        <option value="<?php echo $value->tallukId ?>" <?php if($value->tallukId == $tl){ echo 'selected="true"'; } ?>><?php echo $value->talluk ?></option>
                                                 <?php } } ?>
                                         </select>
+
+                                        <?php if ((isset($_GET["district"]) || isset($_GET["taluk"]) )) {
+                                            $item = $this->input->get('item');
+                                            ?>
+                                            <a href="<?php echo base_url('institute?item='.$item)?>" class="p5 grey white-text  waves-effect waves-light clear-filter">Clear All <i class="material-icons"> close </i></a> 
+                                        <?php } ?>
+                                        
                                     </div>
                                     </div>
 

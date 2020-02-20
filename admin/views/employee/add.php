@@ -29,6 +29,8 @@
                             <div class="card-content bord-right">
                                 <div class="title-list">
                                     <span class="list-title">Government Employee Add</span>
+                                        <a href="<?php echo base_url('employee') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a>
+
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">

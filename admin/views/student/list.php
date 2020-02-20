@@ -94,6 +94,7 @@
 
                                     <select class="browser-default" id="short" @change="yearChange()" v-model="year">
                                         <option value="">Choose Year</option>
+                                        <option value="">All Year</option>
                                         <?php
                                             for($i=2000; $i<= date('Y')+1 ; $i++){
                                                echo '<option value="'.($i - 1) .'-'.($i ).'" >'.($i - 1) .'-'.($i ).'</option>';

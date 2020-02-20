@@ -31,7 +31,8 @@
                         <div class="card ">
                             <div class="card-content bord-right">
                                 <div class="card-title">
-                                    Student Detail
+                                    <span>Student Detail</span>
+                                    <span><a href="<?php echo base_url('student') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a></span>
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">

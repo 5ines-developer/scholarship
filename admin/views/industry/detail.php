@@ -32,6 +32,7 @@
                             <div class="card-content bord-right">
                                 <div class="card-title">
                                     Institute Detail
+                                    <a href="<?php echo base_url('industry') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a>
                                 </div>
                                 <div class="board-content">
                                     <div class="row m0">

@@ -69,6 +69,7 @@
                                                             <td class=""><?php echo (!empty($value->phone))?date('d M, Y',strtotime($value->created_on)):''; ?></td>
                                                             <td class="">
                                                                 <?php
+                                                                $disb='';
                                                                 if ($value->status == 1) {
                                                                     $blc = 'display:block'; 
                                                                     $unbl = 'display:none'; 
@@ -87,13 +88,14 @@
                                                                 <?php } else{
                                                                     $blc = 'display:none'; 
                                                                     $unbl = 'display:block'; 
+                                                                    $disb   =   "disabled='disabled'";
                                                                 ?>
                                                                     <p class="status red">Inactive</p>
                                                                 <?php } ?> 
                                                             </td>
                                                             <td>
                                                             <a style="<?php echo $blc ?>" href="<?php echo base_url('employee/block?id='.$value->id.'') ?>"  class="btn-small right red darken-3 waves-effect waves-light white-text">Block</a>
-                                                            <a style="<?php echo $unbl ?>" href="<?php echo base_url('employee/unblock?id='.$value->id.'') ?>" class="btn-small right green darken-3 waves-effect waves-light white-text">Unblock</a>
+                                                            <a <?php echo $disb ?> style="<?php echo $unbl ?>" href="<?php echo base_url('employee/unblock?id='.$value->id.'') ?>" class="btn-small right green darken-3 waves-effect waves-light white-text">Unblock</a>
                                                         </td>
                                                         </tr>
                                                 <?php   }

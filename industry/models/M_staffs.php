@@ -28,7 +28,7 @@ class M_staffs extends CI_Model {
     //vue js phone check exist or not
     public function mobile_check($phone='')
     {
-        $this->db->where('phone', $phone);
+        $this->db->where('mobile', $phone);
         $result = $this->db->get('industry_register');
            if($result->num_rows() > 0){
             return true;

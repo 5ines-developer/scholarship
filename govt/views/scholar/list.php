@@ -139,6 +139,12 @@
                                             <option value="general" <?php if($this->input->get('caste') == 'general'){ echo 'selected="true"'; } ?>>General</option>
                                             <option value="obc" <?php if($this->input->get('caste') == 'obc'){ echo 'selected="true"'; } ?>>OBC</option>
                                         </select>
+
+                                        <?php if ((isset($_GET["district"]) || isset($_GET["taluk"]) || isset($_GET["caste"]) || isset($_GET["year"]) )) {
+                                            $item = $this->input->get('item');
+                                            ?>
+                                            <a href="<?php echo base_url('applications?item='.$item)?>" class="p5 grey white-text  waves-effect waves-light clear-filter">Clear All <i class="material-icons"> close </i></a> 
+                                        <?php } ?>
                                     </div>
                                     </div>
 
