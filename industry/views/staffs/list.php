@@ -26,10 +26,10 @@
                                 <a class="waves-effect waves-light hoverable btn-theme btn right capitalize" href="<?php echo base_url()  ?>staffs/create">  <i class="material-icons tiny left">add</i> Add new staff</a>
                                 <span class="card-title">Verification staffs</span>
                             </div>
-                                <div class="board-content">
+                                <div class="board-content hb">
                                     <div class="row m0">
                                         <table class="vue-data-table row-click ovrflw-tbl">
-                                            <thead>
+                                        <thead class="thead-list width-th">
                                                 <tr>
                                                     <th>Sl No</th>
                                                     <th>Name</th>
@@ -40,7 +40,7 @@
                                                     <th>Delete</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="tbody-list">
                                                 <?php 
                                                 $disb='';
                                                 foreach ($staffs as $key => $value) { 

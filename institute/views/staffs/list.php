@@ -27,10 +27,10 @@
                                 <a class="waves-effect waves-light hoverable btn-theme btn right capitalize top-pp" href="<?php echo base_url()  ?>staffs/create">  <i class="material-icons tiny left">add</i> Add new staff</a>
                                 <span class="card-title">Verification staffs</span>
                             </div>
-                                <div class="board-content">
+                                <div class="board-content hb">
                                     <div class="row m0">
-                                        <table class="vue-data-table row-click responsive-table">
-                                            <thead>
+                                        <table class="vue-data-table row-click">
+                                        <thead class="thead-list">
                                                 <tr>
                                                     <th>Sl No</th>
                                                     <th>Name</th>
@@ -40,7 +40,7 @@
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="tbody-list">
                                                 <?php foreach ($staffs as $key => $value) { 
                                                     if(empty($value->status)) { 
                                                         $sts    =  '<span class="red-text">Inactive</span>'; 
