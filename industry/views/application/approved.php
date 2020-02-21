@@ -50,6 +50,7 @@
                                                 <th id="a" class="h5-para-p2">NAME</th>
                                                 <th id="c" class="h5-para-p2">MARKS</th>
                                                 <th id="g" class="h5-para-p2">PRESENT CLASS</th>
+                                                <th id="g" class="h5-para-p2">Amount</th>
                                                 <th id="g" class="h5-para-p2">Action</th>
                                             </thead>
                                             <tbody class="tbody-list">
@@ -63,6 +64,7 @@
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->name.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->mark.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->course.$value->class.'</a></td>
+                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->amount.'</a></td>
                                                         <td class="center-align">
                                                             <a href="'.base_url('application/').$value->id.'" class="blue-text  waves-effect waves-light"> View</a>
                                                         </td></tr>';

@@ -62,7 +62,7 @@ class M_scholar extends CI_Model {
     public function make_query($filter='')
     {
 
-        $select_column = array('s.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district');
+        $select_column = array('s.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','fs.amount as amount');
         $order_column = array("s.name","a.school_id", "ind.name",null,"crs.course","a.application_year","a.application_state","a.status"); 
 
 
@@ -127,7 +127,9 @@ class M_scholar extends CI_Model {
         ->join('city cty', 'cty.id = am.ins_district', 'left')
         ->join('taluq tq', 'tq.id = am.ins_talluk', 'left')
         ->join('courses crs', 'crs.id = m.course', 'left')
-        ->join('class cls', 'cls.id = m.class', 'left');
+        ->join('class cls', 'cls.id = m.class', 'left')
+        ->join('gradution grd', 'grd.id = am.graduation', 'left')
+        ->join('fees fs', 'fs.class = grd.id', 'left');
 
         if(isset($_POST["search"]["value"])){
             $this->db->group_start();

@@ -157,6 +157,7 @@
                                                 <th id="g" class="h5-para-p2" style="width: 120px;">Present Class</th>
                                                 <th id="d" class="h5-para-p2" style="width: 120px;">Year</th>
                                                 <th id="d" class="h5-para-p2" style="width: 120px;">Adhaar No.</th>
+                                                <th id="d" class="h5-para-p2" style="width: 120px;">Amount</th>
                                                 <th id="e" class="h5-para-p2" style="width: 120px;">Applied Date</th>
                                                 <th id="f" class="h5-para-p2" style="width: 120px;">District</th>
                                                 <th id="g" class="h5-para-p2" style="width: 120px;">Talluk</th>

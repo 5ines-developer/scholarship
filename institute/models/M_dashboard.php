@@ -7,7 +7,6 @@ class M_dashboard extends CI_Model {
 
     public function getScholarshipRequest()
     {
-
         $in = array(1,2);
         if (!empty($year)) {
             $this->db->where('a.application_year', $year);
@@ -24,8 +23,12 @@ class M_dashboard extends CI_Model {
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
         $this->db->join('courses crs', 'crs.id = m.course', 'left');
-        $this->db->join('class cls', 'cls.id = m.class', 'left');
-        $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course');
+        $this->db->join('class cls', 'cls.id = m.class', 'left')
+        ->join('gradution grd', 'grd.id = m.graduation', 'left')
+        ->join('fees fs', 'fs.class = grd.id', 'left')
+        ->join('gradution grd', 'grd.id = am.graduation', 'left')
+        ->join('fees fs', 'fs.class = grd.id', 'left');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course,fs.amount');
         return $this->db->get()->result();  
     }
     
@@ -84,7 +87,7 @@ class M_dashboard extends CI_Model {
         }
          $school = $this->session->userdata('school');
         $this->db->where('a.school_id', $school);
-        $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course,fs.amount');
         $this->db->from('application a');
         $this->db->where('a.application_state',1);
         $this->db->where('a.status', 2);
@@ -92,7 +95,9 @@ class M_dashboard extends CI_Model {
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
         $this->db->join('courses crs', 'crs.id = m.course', 'left');
-        $this->db->join('class cls', 'cls.id = m.class', 'left');
+        $this->db->join('class cls', 'cls.id = m.class', 'left')
+        ->join('gradution grd', 'grd.id = m.graduation', 'left')
+        ->join('fees fs', 'fs.class = grd.id', 'left');
         return $this->db->get()->result();  
     }
 
@@ -105,7 +110,7 @@ class M_dashboard extends CI_Model {
         }
          $school = $this->session->userdata('school');
         $this->db->where('a.school_id', $school);
-        $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course,fs.amount');
         $this->db->from('application a');
         $this->db->order_by('id', 'desc');
         $this->db->group_start();
@@ -114,7 +119,9 @@ class M_dashboard extends CI_Model {
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
         $this->db->join('courses crs', 'crs.id = m.course', 'left');
-        $this->db->join('class cls', 'cls.id = m.class', 'left');
+        $this->db->join('class cls', 'cls.id = m.class', 'left')
+        ->join('gradution grd', 'grd.id = m.graduation', 'left')
+        ->join('fees fs', 'fs.class = grd.id', 'left');
         return $this->db->get()->result(); 
     }
 

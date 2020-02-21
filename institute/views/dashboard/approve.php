@@ -39,10 +39,11 @@
                                                     <td :data-label="tableHeading[1].title">{{item.name}}</td>
                                                     <td :data-label="tableHeading[2].title">{{item.mark}}</td>
                                                     <td :data-label="tableHeading[3].title">{{item.course}} {{item.class}}</td>
+                                                    <td :data-label="tableHeading[2].title">{{item.amount}}</td>
                                                     <td :data-label="tableHeading[4].title"><a :href="'<?php echo base_url()?>student/'+item.id " class="waves-effect waves-light">view</a></td>
                                                 </tr>
                                                 <tr v-if="tableRow.length == 0">
-                                                    <td colspan="5">No data found</td>
+                                                    <td colspan="6">No data found</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -98,6 +99,7 @@
                { title :'Name', sorting: false },
                { title :'Marks', sorting: false },
                { title :'Present Class', sorting: false },
+               { title :'Amount', sorting: false },
                { title :'Action', sorting: false },
            ],
            tableRow: [],
