@@ -40,14 +40,98 @@ $this->load->model('m_application');
 
                                     <?php } ?>
 
-                                    <!-- <?php
-
-                                    if (($result->application_state == 2)) { ?>
-                                    <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
-                                    <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1)? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
-                                <?php } ?> -->
+                                   
                                 </div>
                                 <div class="board-content">
+
+
+                                    <div class="row ad-stt-list">
+
+                                        <?php if ($result->pay_status == '1') { ?>
+                                        &nbsp;&nbsp;&nbsp;<a class="btn-small green darken-3 waves-effect waves-light" >Payment Success</a>
+                                     <?php }else if ($result->pay_status == '2') { 
+                                        echo '&nbsp;&nbsp;&nbsp;<a class="btn-small red darken-3 waves-effect waves-light" >Payment Failed -'.$result->pay_freason.'</a>';
+                                      } ?>
+                                      
+                                       <ul class="status-list">
+                                           <li class="center status-item">
+                                               <div>Application</div>
+                                               <div class="circle">1</div>
+                                               <?php if ((($result->application_state == 1) || ($result->application_state == 2) || ($result->application_state == 3) || (($result->application_state == 4)))) {
+                                                   echo '<div class="green-text">Submitted</div>';
+                                                }else{
+                                                    echo '<div class="blue-text">Pending</div>';
+                                                } ?>                                               
+                                           </li>
+                                           <li class="center status-item">
+                                               <div>Institution</div>
+                                               <div class="circle">2</div> 
+                                               <?php
+                                               if ((($result->application_state == 2) || ($result->application_state == 3) || (($result->application_state == 4)))) {
+                                                   echo '<div class="green-text">Approved</div>';
+                                                }else if (($result->status == 2) && ($result->application_state == 1) ){
+                                                    echo '<div class="red-text">Rejected</div>';                                                    
+                                                }else{
+                                                    echo '<div class="blue-text">Pending</div>';
+                                                } ?>  
+                                           </li>
+                                           <li class="center status-item">
+                                               <div>Industry</div>
+                                               <div class="circle">3</div>
+                                               <?php if ((($result->application_state == 3) || (($result->application_state == 4)))) {
+                                                   echo '<div class="green-text">Approved</div>';
+                                                }else if (($result->status == 2) && ($result->application_state == 2) ){
+                                                    echo '<div class="red-text">Rejected</div>';                                                    
+                                                }else{
+                                                    echo '<div class="blue-text">Pending</div>';
+                                                } ?> 
+                                           </li>
+                                           <li class="center status-item">
+                                               <div>Government</div>
+                                               <div class="circle">4</div>
+                                               <?php if (($result->status == 1) && (($result->application_state == 4))) {
+                                                   echo '<div class="green-text">Approved</div>';
+                                                }else if (($result->status == 2) && ($result->application_state == 4)){
+                                                    echo '<div class="red-text">Rejected</div>';                                                    
+                                                }else{
+                                                    echo '<div class="blue-text">Pending</div>';
+                                                } ?>
+                                           </li>
+                                       </ul> 
+                                            <?php 
+
+                                            switch ($result->application_state) {
+                                                case 1:
+                                                    $level = 'Institution';
+                                                    break;
+                                                case 2:
+                                                    $level = 'Industry';
+                                                    break;                                                
+                                                default:
+                                                    $level = 'Government';
+                                                    break;
+                                            }
+                                            
+                                            
+                                            if ($result->status == 2) {
+                                                echo '<div class="reason-reject">
+                                                <p class="center-align mb15">This application has been Rejected from '.$level.' level</p>
+                                                <table>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>'.$result->reject_reason.'</td>
+                                                    </tr>
+                                                </table>
+                                                </div>';
+                                            } ?>
+                                       
+                                       
+                                    </div>
+
+
+
+
+
                                     <div class="row m0">
                                         <div class="app-detail-items">
                                                 <div class="col s12">

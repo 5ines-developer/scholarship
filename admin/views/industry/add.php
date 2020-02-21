@@ -84,6 +84,9 @@
             <div class="modal-footer company-mf">
                 <form action="<?php echo base_url('upload-industry') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-file">
+                        <div class="left p5">
+                            <a href="<?php echo $this->config->item('web_url') ?>assets/docs/company-bulk-upload.xlsx">Download Sample excel</a>
+                        </div>
                         <div class="row">
                             <div class="col l12 s12 m12">
                                 <div class="file-field input-field col l12 m0 upload-fil">

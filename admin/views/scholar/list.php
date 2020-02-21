@@ -39,6 +39,8 @@
                     <div class="col s12 m9 l9 ">
 
 
+
+
                         <div class="row">
                         <div class="top-count">                     
                             <div class="col s12 m3">
@@ -104,8 +106,8 @@
                                             <option value="">Choose Year</option>
                                             <?php
                                                 $yr = $this->input->get('year');
-                                                for($i=2000; $i<= date('Y')+1 ; $i++){ 
-                                                $year = ($i - 1).'-'.($i);
+                                                 for($i=date('Y'); $i>= 2000; $i--){ 
+                                                $year = $i;
                                                 ?>
                                                    <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
                                             <?php } ?>
@@ -140,6 +142,12 @@
                                             <option value="general" <?php if($this->input->get('caste') == 'general'){ echo 'selected="true"'; } ?>>General</option>
                                             <option value="obc" <?php if($this->input->get('caste') == 'obc'){ echo 'selected="true"'; } ?>>OBC</option>
                                         </select>
+
+                                        <?php if ((isset($_GET["district"]) || isset($_GET["taluk"]) || isset($_GET["caste"]) || isset($_GET["year"]) )) {
+                                            $item = $this->input->get('item');
+                                            ?>
+                                            <a href="<?php echo base_url('applications?item='.$item)?>" class="p5 grey white-text  waves-effect waves-light clear-filter">Clear All <i class="material-icons"> close </i></a> 
+                                        <?php } ?>
                                     </div>
                                     </div>
                                     <div class="hr-list">

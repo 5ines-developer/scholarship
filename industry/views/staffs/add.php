@@ -93,12 +93,11 @@
             mobileError :'',
             mobile:'',
             email:'',
-          
         },  
         mounted(){
         },
         methods:{
-                            //check student email already exist
+            //check student email already exist
             emailCheck(){
                 this.emailError='';
                 const formData = new FormData();
@@ -119,23 +118,26 @@
             },
             //check student mobile already exist
              mobileCheck(){
+                if (this.mobile.length !=10) {
+                    this.mobileError = 'Mobile number must be 10 digits!';
+                }else{
+                    this.mobileError='';
+                    const formData = new FormData();
+                    formData.append('mobile',this.mobile);
+                    axios.post('<?php echo base_url('staffs/mobile_check') ?>', formData)
+                    .then(response => {
+                        if (response.data == '1') {
+                            this.mobileError = 'This Mobile number already exist!';
+                        } else {
+                            this.mobileError = '';
+                        }
 
-                this.mobileError='';
-                const formData = new FormData();
-                formData.append('mobile',this.mobile);
-                axios.post('<?php echo base_url('staffs/mobile_check') ?>', formData)
-                .then(response => {
-                    if (response.data == '1') {
-                        this.mobileError = 'This Mobile number already exist!';
-                    } else {
-                        this.mobileError = '';
-                    }
-
-                }).catch(error =>{
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                } )
+                    }).catch(error =>{
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    } )
+                }
             },
             checkForm() {
                 if ((this.mobileError == '') && (this.emailError == '')) {                   

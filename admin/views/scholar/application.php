@@ -31,6 +31,8 @@ $this->load->model('m_scholar');
                                 <div class="card-title">
                                     Scholarship Application Detail
 
+                                    <a href="<?php echo base_url('applications') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a>
+
                                     <?php if (($result->status == 2)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
                                     <?php }elseif ((($result->application_state == 4)) && ($result->status ==1)){ ?>

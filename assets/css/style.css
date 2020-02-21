@@ -811,6 +811,7 @@ input[type=number] {
 }
 
 .sorting:after {
+<<<<<<< HEAD
     position: absolute;
     content: '';
     width: 0px;
@@ -842,6 +843,49 @@ input[type=number] {
     opacity: 0;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
+=======
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #2f2f2f;
+<<<<<<< HEAD
+  right: 10%;
+  top: 20px;
+  opacity: 0.5;
+=======
+  right: 2%;
+  top: 20px;
+  opacity: 0.7;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+}
+
+.sorting:before {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #2f2f2f;
+  right: 10%;
+  bottom: 20px;
+  font-family: 'Material Icons';
+  content: '\e5d7';
+  right: 5px;
+  top: 50%;
+  right: 5px;
+  top: 50%;
+<<<<<<< HEAD
+  opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 
@@ -984,6 +1028,7 @@ form .file-field .btn {
 }
 
 .app-detail-items .app-item-body ul li .sorting:after {
+<<<<<<< HEAD
     position: absolute;
     width: 0px;
     height: 0px;
@@ -993,6 +1038,23 @@ form .file-field .btn {
     right: 2%;
     top: 20px;
     opacity: 0;
+=======
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #2f2f2f;
+<<<<<<< HEAD
+  right: 10%;
+  top: 20px;
+  opacity: 0.5;
+=======
+  right: 2%;
+  top: 20px;
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 .app-detail-items .app-item-body ul li .sorting:before {
@@ -1061,6 +1123,7 @@ form .file-field .btn {
 }
 
 .sorting:after {
+<<<<<<< HEAD
     position: absolute;
     content: '';
     width: 0px;
@@ -1092,6 +1155,49 @@ form .file-field .btn {
     opacity: 0;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
+=======
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #2f2f2f;
+<<<<<<< HEAD
+  right: 10%;
+  top: 20px;
+  opacity: 0.5;
+=======
+  right: 5%;
+  top: 20px;
+  opacity: 0.7;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+}
+
+.sorting:before {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #2f2f2f;
+  right: 10%;
+  bottom: 20px;
+  font-family: 'Material Icons';
+  content: '\e5d7';
+  right: 5px;
+  top: 50%;
+  right: 5px;
+  top: 50%;
+<<<<<<< HEAD
+  opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 
@@ -1130,6 +1236,7 @@ form .file-field .btn {
 }
 
 .instreg .sorting:after {
+<<<<<<< HEAD
     position: absolute;
     width: 0px;
     height: 0px;
@@ -1158,6 +1265,46 @@ form .file-field .btn {
     opacity: 0;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
+=======
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #2f2f2f;
+<<<<<<< HEAD
+  right: 10%;
+  top: 20px;
+  opacity: 0.5;
+=======
+  right: 2%;
+  top: 20px;
+  opacity: 0.7;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+}
+
+.instreg .sorting:before {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #2f2f2f;
+  right: 10%;
+  bottom: 20px;
+  font-family: 'Material Icons';
+  content: '\e5d7';
+  right: 5px;
+  top: 50%;
+<<<<<<< HEAD
+  opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 
@@ -1198,6 +1345,7 @@ form .file-field .btn {
 }
 
 @media (max-width: 600px) {
+<<<<<<< HEAD
     .mob-block {
         width: 100% !important;
     }
@@ -1229,6 +1377,43 @@ form .file-field .btn {
     .app-detail-items {
         margin: auto;
     }
+=======
+  .mob-block {
+    width: 100% !important;
+  }
+  .reg-block .reg-left {
+    color: #fff;
+    height: auto !important;
+  }
+  .reg-block .reg-block-content:before {
+    display: none;
+  }
+  .frt {
+    text-align: left !important;
+  }
+  .application-banner .parallax-container {
+    max-height: 220px;
+  }
+  .container-wrap1 {
+    width: 100%;
+  }
+  .reason-reject table {
+    width: 100%;
+  }
+  .board {
+    padding: 25px 0;
+  }
+  .app-item-body {
+    min-height: 150px;
+  }
+  .app-detail-items {
+<<<<<<< HEAD
+    margin: auto -25px;
+=======
+    margin: auto;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  }
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 .height352 {
@@ -1301,7 +1486,15 @@ form .file-field .btn {
 }
 
 .loading:not(:required) .app-detail-items {
+<<<<<<< HEAD
     margin: auto;
+=======
+<<<<<<< HEAD
+  margin: auto -25px;
+=======
+  margin: auto;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 .height352 {
@@ -1464,8 +1657,17 @@ table tr:hover {
 }
 
 table td {
+<<<<<<< HEAD
     padding: 15px 2px;
     text-align: center;
+=======
+<<<<<<< HEAD
+  padding: .625em;
+=======
+  padding: 15px 2px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  text-align: center;
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 table th {
@@ -1566,8 +1768,17 @@ table tr:hover {
 }
 
 table td {
+<<<<<<< HEAD
     padding: 15px 2px;
     text-align: center;
+=======
+<<<<<<< HEAD
+  padding: .625em;
+=======
+  padding: 15px 2px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  text-align: center;
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 table th {
@@ -1578,6 +1789,7 @@ table th {
 }
 
 @media screen and (max-width: 600px) {
+<<<<<<< HEAD
     table {
         border: 0;
     }
@@ -1604,6 +1816,47 @@ table th {
     table td:last-child {
         border-bottom: 0;
     }
+=======
+  table {
+    border: 0;
+  }
+  table caption {
+    font-size: 1.3em;
+  }
+<<<<<<< HEAD
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+=======
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 thead tr {
@@ -1657,7 +1910,15 @@ thead tr {
 
 .hr-list .dataTable thead th,
 table.dataTable thead td {
+<<<<<<< HEAD
     padding: 8px 18px;
+=======
+<<<<<<< HEAD
+  padding: 4px 18px;
+=======
+  padding: 8px 18px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 .hr-list .dataTables_info {
@@ -1704,6 +1965,7 @@ table.dataTable thead td {
 }
 
 .thead-list .sorting::before {
+<<<<<<< HEAD
     position: unset;
     content: '';
     width: unset;
@@ -1720,6 +1982,28 @@ table.dataTable thead td {
     opacity: 0;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
+=======
+  position: unset;
+  content: '';
+  width: unset;
+  height: unset;
+  border-left: unset;
+  border-right: unset;
+  border-top: unset;
+  right: 10%;
+  bottom: 20px;
+  font-family: 'Material Icons';
+  content: '';
+  right: 5px;
+  top: 50%;
+<<<<<<< HEAD
+  opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 .hr-list .dt-buttons .dt-button {
@@ -1857,11 +2141,23 @@ table.dataTable thead td {
 }
 
 #short {
+<<<<<<< HEAD
     width: 19%;
     float: right;
     position: relative;
     top: -1px;
     height: 10%;
+=======
+<<<<<<< HEAD
+  width: 16%;
+=======
+  width: 19%;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  float: right;
+  position: relative;
+  top: -1px;
+  height: 10%;
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 @media (max-width: 767px) {
@@ -2053,7 +2349,15 @@ thead tr {
 
 .hr-list .dataTable thead th,
 table.dataTable thead td {
+<<<<<<< HEAD
     padding: 9px 18px;
+=======
+<<<<<<< HEAD
+  padding: 4px 18px;
+=======
+  padding: 9px 18px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 .hr-list .dataTables_info {
@@ -2100,6 +2404,7 @@ table.dataTable thead td {
 }
 
 .thead-list .sorting::before {
+<<<<<<< HEAD
     position: unset;
     content: '';
     width: unset;
@@ -2135,6 +2440,51 @@ table.dataTable thead td {
     opacity: 0;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
+=======
+  position: unset;
+  content: '';
+  width: unset;
+  height: unset;
+  border-left: unset;
+  border-right: unset;
+  border-top: unset;
+  right: 10%;
+  bottom: 20px;
+  font-family: 'Material Icons';
+  content: '';
+  right: 5px;
+  top: 50%;
+<<<<<<< HEAD
+  opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.thead-list .sorting::after {
+  position: unset;
+  content: '';
+  width: unset;
+  height: unset;
+  border-left: unset;
+  border-right: unset;
+  border-top: unset;
+  right: 10%;
+  bottom: 20px;
+  font-family: 'Material Icons';
+  content: '';
+  right: 5px;
+  top: 50%;
+<<<<<<< HEAD
+  opacity: 0.5;
+=======
+  opacity: 0;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 .hr-list .dt-buttons .dt-button {
@@ -2253,6 +2603,7 @@ table.dataTable thead td {
 }
 
 @media (max-width: 600px) {
+<<<<<<< HEAD
     .cc-close {
         border-radius: 15px;
         font-size: 14px !important;
@@ -2304,6 +2655,67 @@ table.dataTable thead td {
         height: 10%;
         right: 9px;
     }
+=======
+  .cc-close {
+    border-radius: 15px;
+    font-size: 14px !important;
+    color: black;
+    width: 23px;
+    height: 23px;
+    line-height: 20px !important;
+    position: absolute;
+    right: 16px;
+    top: 15px;
+    border: 1px solid gray;
+  }
+  .ff-inp p {
+    text-align: left;
+    padding: 4px 0px;
+    margin: 0px;
+  }
+  .ff-inp b {
+    color: black;
+    margin-right: 10px;
+  }
+  .upload-fil {
+    padding-top: 15px !important;
+    margin: 0px !important;
+  }
+  .company-mf p {
+    text-align: left;
+    margin: 0px;
+    line-height: 25px;
+    color: #f15555;
+  }
+  .company-mf {
+    text-align: left;
+  }
+  .btn-sub {
+    background: #00437d;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    margin-top: 14px;
+  }
+  .btn-sub:focus {
+    background: #00437d;
+  }
+  #short {
+<<<<<<< HEAD
+    width: 45%;
+    float: left;
+    position: relative;
+    top: -1px;
+    height: 10%;
+=======
+    width: 40%;
+    position: absolute;
+    top: 8px;
+    height: 10%;
+    right: 9px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  }
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 @media (max-width: 767px) {
@@ -2379,6 +2791,7 @@ table.dataTable thead td {
 }
 
 @media (max-width: 500px) {
+<<<<<<< HEAD
     .modal.small {
         width: 90%;
     }
@@ -2406,6 +2819,39 @@ table.dataTable thead td {
         width: 100% !important;
         left: 0px !important;
     }
+=======
+  .modal.small {
+    width: 90%;
+  }
+  .back-btn {
+    background: #00437d;
+    border: navajowhite;
+    padding: 6px 23px;
+    color: white;
+    float: right;
+    cursor: pointer;
+  }
+  .back-btn a {
+    color: white;
+    cursor: pointer;
+  }
+  .back-btn:focus {
+    outline: none;
+    background-color: #00437d;
+  }
+  .title-list {
+    border-bottom: 1px solid #e1e1e1;
+<<<<<<< HEAD
+    padding-bottom: 50px;
+=======
+    padding-bottom: 20px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  }
+  .sel-hr ul {
+    width: 100% !important;
+    left: 0px !important;
+  }
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 .upload-btn {
@@ -2568,6 +3014,7 @@ table.dataTable thead td {
 }
 
 @media (max-width: 767px) {
+<<<<<<< HEAD
     .com-reg {
         padding-left: 10px;
         display: block;
@@ -2606,6 +3053,49 @@ table.dataTable thead td {
     .table-detail {
         padding: 0px 20px;
     }
+=======
+  .com-reg {
+    padding-left: 10px;
+    display: block;
+    padding: 0;
+    margin-top: 10px;
+  }
+  .payment-pp {
+    padding: 0px 5px;
+  }
+  .list-title {
+    display: block;
+<<<<<<< HEAD
+=======
+    margin-top: -3px;
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  }
+  .back-btn {
+    float: unset;
+  }
+  .add-btn {
+    margin-left: 10px;
+  }
+  .border-right {
+    border-right: unset;
+  }
+  .profile-ul {
+    -webkit-column-count: 1;
+            column-count: 1;
+  }
+  .res-p .card-content {
+    padding: 24px !important;
+  }
+  .table-detail .select-wrapper {
+    width: 100%;
+    float: unset;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  .table-detail {
+    padding: 0px 20px;
+  }
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 .capitalize {
@@ -3036,6 +3526,7 @@ table.dataTable thead td {
 }
 
 @media (max-width: 767px) {
+<<<<<<< HEAD
     .top-pp {
         margin-top: 10px;
         margin-right: 5px;
@@ -3088,6 +3579,63 @@ table.dataTable thead td {
         margin-bottom: 15px;
         margin-top: 10px;
     }
+=======
+<<<<<<< HEAD
+=======
+  .top-pp {
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+  .board .card {
+    margin-top: 20px;
+  }
+  .top-header img {
+    padding: 17px 0 0px 0px;
+  }
+  .p17 {
+    padding: 10px 0;
+  }
+  .board .card-title {
+    text-align: center;
+    padding: 10px;
+  }
+  .status-list {
+    padding-bottom: 17px;
+  }
+  thead tr {
+    background: #00437d !important;
+    color: white;
+  }
+  .sorting::before {
+    opacity: 0;
+  }
+  .sorting::after {
+    opacity: 0;
+  }
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+  .pay-date {
+    float: left;
+    padding-top: 0px;
+  }
+  .pay-form {
+    width: 100%;
+  }
+  .pb0 {
+    padding-bottom: 0px;
+  }
+  .receipt-detail b {
+    line-height: 38px;
+  }
+  .date-fund {
+    text-align: left;
+    padding-top: 10px;
+  }
+  .download {
+    text-align: right;
+    margin-bottom: 15px;
+    margin-top: 10px;
+  }
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba
 }
 
 #dynamic_wrapper {
@@ -3278,6 +3826,7 @@ table.striped>tbody>tr>td {
 .gb td {
     padding: 5px 10px;
 }
+<<<<<<< HEAD
 
 @media(max-width:767px) {
     .hb {
@@ -3285,3 +3834,20 @@ table.striped>tbody>tr>td {
         padding-bottom: 15px;
     }
 }
+=======
+<<<<<<< HEAD
+
+.p5 {
+  padding: 5px !important;
+}
+
+.clear-filter i {
+  line-height: 10px;
+  position: relative;
+  top: 4px;
+  font-size: 17px;
+}
+=======
+>>>>>>> 102416cc9bb104c8acba9e53b0202607082a6e3f
+/*# sourceMappingURL=style.css.map */
+>>>>>>> c5ee6a444d5ab31a5dec2a5bad63287c3fbe18ba

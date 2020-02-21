@@ -13,7 +13,10 @@
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institutes" class="<?php echo($this->uri->segment(1) == 'institutes') ? 'active' :'' ?>">All Institute</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute" class="<?php echo($this->uri->segment(1) == 'institute') ? 'active' :'' ?>">Registered Institute</a></span></div>
-              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute-request" class="<?php echo (($this->uri->segment(1) == 'institute-request') || ($this->uri->segment(1) == 'institute-add')) ? 'active' :'' ?>">Institute Add Request</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute-request" class="<?php echo (($this->uri->segment(1) == 'institute-request') ) ? 'active' :'' ?>">Institute Add Request</a></span></div>
+
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute-add" class="<?php echo (($this->uri->segment(1) == 'institute-add')) ? 'active' :'' ?>">Add New Institute</a></span></div>
+
             </li>
             <li class="sc-m">
               <div class="collapsible-header"><i class="material-icons">file_copy</i>Scholarship Management</div>
@@ -28,7 +31,10 @@
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industries" class="<?php echo($this->uri->segment(1) == 'industries') ? 'active' :'' ?>">All Industry</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry" class="<?php echo($this->uri->segment(1) == 'industry') ? 'active' :'' ?>">Registered Industry</a></span></div>
-              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-request" class="<?php echo (($this->uri->segment(1) == 'industry-request') || ($this->uri->segment(1) == 'industry-add')) ? 'active' :'' ?>">Industry Add Request</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-request" class="<?php echo (($this->uri->segment(1) == 'industry-request')) ? 'active' :'' ?>">Industry Add Request</a></span></div>
+
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-add" class="<?php echo (($this->uri->segment(1) == 'industry-add')) ? 'active' :'' ?>">Add New Industry</a></span></div>
+
             </li>
 
 

@@ -106,6 +106,9 @@
             <div class="modal-footer company-mf">
                 <form action="<?php echo base_url('application-status') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-file">
+                        <div class="left p5">
+                            <a href="<?php echo $this->config->item('web_url') ?>assets/docs/payment-status.xlsx">Download Sample excel</a>
+                        </div>
                         <div class="row">
                             <div class="col l12 s12 m12">
                                 <div class="file-field input-field col l12 m0 upload-fil">
@@ -181,6 +184,15 @@
                                             <option value="general" <?php if($this->input->get('caste') == 'general'){ echo 'selected="true"'; } ?>>General</option>
                                             <option value="obc" <?php if($this->input->get('caste') == 'obc'){ echo 'selected="true"'; } ?>>OBC</option>
                                         </select>
+
+
+
+                                        <?php if ((isset($_GET["district"]) || isset($_GET["taluk"]) || isset($_GET["caste"]) || isset($_GET["year"]) )) {
+                                            $item = $this->input->get('item');
+                                            ?>
+                                            <a href="<?php echo base_url('applications?item='.$item)?>" class="p5 grey white-text  waves-effect waves-light clear-filter">Clear All <i class="material-icons"> close </i></a> 
+                                        <?php } ?>
+                                        
                                     </div>
                                     </div>
 
