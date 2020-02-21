@@ -8,6 +8,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -71,9 +72,12 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
         <?php $this->load->view('include/msg') ?>
+
     <script>
-
-
+            document.addEventListener('DOMContentLoaded', function() {
+        var side = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(side);
+    });
 
         var app = new Vue({
             el: '#app',
