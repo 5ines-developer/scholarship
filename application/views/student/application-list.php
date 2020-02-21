@@ -44,10 +44,10 @@
                                         } ?>
                                     </select>
                                 </div>
-                                <div class="board-content ">
+                                <div class="board-content">
                                     <div class="hr-list">
-                                        <table id="dynamic" class="striped responsive-table">
-                                            <thead class="">
+                                        <table id="dynamic" class="striped">
+                                            <thead class="thead-list">
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Instituite</th>
                                                 <th class="h5-para-p2">Industry</th>

@@ -20,21 +20,20 @@
                     <div class="col s12 m3 hide-on-small-only">
                         <?php $this->load->view('include/menu'); ?>
                     </div> <!-- End menu-->
-
                     <div class="col s12 m12 l9">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <span class="card-title">Approved Scholarship  Application  ({{tableRow.length}})</span>
-                                <div class="board-content">
+                                <div class="board-content hb">
                                     <div class="row m0">
-                                        <table class="vue-data-table row-click responsive-table">
-                                            <thead>
+                                        <table class="vue-data-table row-click">
+                                        <thead class="thead-list">
                                                 <tr>
                                                     <th @click="sorting(i)" v-for="(heading , i) in tableHeading" :class="{'sorting': heading.sorting}">{{heading.title}}</th>
                                                 </tr>
                                             </thead>
                                             
-                                            <tbody>
+                                            <tbody class="tbody-list gb">
                                                 <tr v-for="(item , k) in tableRow" :key="k" @click="detail(item.id)">
                                                     <td :data-label="tableHeading[0].title">{{k + 1}}</td>
                                                     <td :data-label="tableHeading[1].title">{{item.name}}</td>
