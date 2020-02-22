@@ -104,8 +104,7 @@
 
                                         <select class="browser-default select-list" fname="year" id="short">
                                             <option value="">Choose Year</option>
-                                            <?php
-                                                $yr = $this->input->get('year');
+                                            <?php $yr = $this->input->get('year');
                                                  for($i=date('Y'); $i>= 2000; $i--){ 
                                                 $year = $i;
                                                 ?>

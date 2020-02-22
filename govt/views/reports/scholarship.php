@@ -40,13 +40,12 @@
                                     <span class="list-title ">Reports - All Scholarship List</span>
                                     <select class="browser-default select-list" fname="year" id="short">
                                         <option value="">Choose Year</option>
-                                        <?php
-                                            $yr = $this->input->get('year');
-                                            for($i=2000; $i<= date('Y')+1 ; $i++){ 
-                                            $year = ($i - 1).'-'.($i);
-                                            ?>
-                                               <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
-                                        <?php } ?>
+                                        <?php $yr = $this->input->get('year');
+                                                 for($i=date('Y'); $i>= 2000; $i--){ 
+                                                $year = $i;
+                                                ?>
+                                                   <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
+                                            <?php } ?>
                                     </select>
                                 </div>
                                 <div class="board-content ">

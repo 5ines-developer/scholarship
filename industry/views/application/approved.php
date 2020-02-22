@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->model('m_application');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,10 +40,12 @@
                                     <span class="list-title ">Scholarship Approved List (<?php echo (!empty($result))?count($result):'0'; ?>)</span>
                                     <select class="browser-default" id="short" name="years" @change="yearChange()" v-model="year">
                                     <option value="" >Select by Year</option>
-                                        <?php
-                                            for($i=2000; $i<= date('Y') ; $i++){
-                                               echo '<option value="'.$i.'" >'.$i.'</option>';
-                                        } ?>
+                                        <?php $yr = $this->input->get('year');
+                                                 for($i=date('Y'); $i>= 2000; $i--){ 
+                                                $year = $i;
+                                                ?>
+                                                   <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
+                                            <?php } ?>
                                 </select>
                                 </div>
                                 <div class="board-content ">
@@ -64,7 +70,7 @@
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->name.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->mark.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->course.$value->class.'</a></td>
-                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->amount.'</a></td>
+                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$this->ci->m_application->getamnt($value->application_year,$value->graduation).'</a></td>
                                                         <td class="center-align">
                                                             <a href="'.base_url('application/').$value->id.'" class="blue-text  waves-effect waves-light"> View</a>
                                                         </td></tr>';

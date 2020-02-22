@@ -78,7 +78,7 @@ class Scholar extends CI_Controller {
             $sub_array[] = $row->course.'-'.$row->clss;
             $sub_array[] = $row->application_year;  
             $sub_array[] = $row->adharcard_no;  
-            $sub_array[] = $row->amount;  
+            $sub_array[] = $this->m_scholar->getamnt($row->application_year,$row->graduation);  
             $sub_array[] = date('d M, Y',strtotime($row->date));  
             $sub_array[] = $row->district;  
             $sub_array[] = $row->taluk;  

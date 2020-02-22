@@ -62,8 +62,8 @@ class M_scholar extends CI_Model {
     public function make_query($filter='')
     {
 
-        $select_column = array('s.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','fs.amount as amount');
-        $order_column = array("s.name","a.school_id", "ind.name",null,"crs.course","a.application_year","a.application_state","a.status"); 
+        $select_column = array('ab.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','m.graduation');
+        $order_column = array("ab.name","a.school_id", "ind.name",null,"crs.course","a.application_year","a.application_state","a.status"); 
 
 
         $this->db->select($select_column);
@@ -73,6 +73,9 @@ class M_scholar extends CI_Model {
                 $stss = '1';
             }else if($filter['item'] =='rejected'){
                 $stss = '2';
+            }else if($filter['item'] =='pending'){
+                $stss = '0';
+                 $this->db->where('a.application_state', 4);
             }else{
                 $stss = '0';
             }
@@ -83,12 +86,8 @@ class M_scholar extends CI_Model {
 
 
         if (!empty($filter['year'])) {
-            $date  = explode("-",$filter['year']);
-            $sdate = $date[0];
-            $edate = $date[1];
             $this->db->group_start();
-                $this->db->where('a.application_year >=', $sdate);
-                $this->db->where('a.application_year <=', $edate); 
+                $this->db->where('a.application_year', $filter['year']);
             $this->db->group_end();
         }
 
@@ -109,9 +108,7 @@ class M_scholar extends CI_Model {
                 $this->db->where('am.ins_talluk', $filter['taluk']);
             $this->db->group_end();
         }
-
-
-
+        $this->db->group_by('a.application_year,a.Student_id');
         $this->db->order_by('a.id', 'desc')
         ->from('application a')
         ->join('applicant_marks m', 'm.application_id = a.id', 'left')
@@ -130,10 +127,9 @@ class M_scholar extends CI_Model {
         ->join('class cls', 'cls.id = m.class', 'left')
         ->join('gradution grd', 'grd.id = am.graduation', 'left')
         ->join('fees fs', 'fs.class = grd.id', 'left');
-
         if(isset($_POST["search"]["value"])){
             $this->db->group_start();
-                $this->db->like("s.name", $_POST["search"]["value"]);  
+                $this->db->like("ab.name", $_POST["search"]["value"]);  
                 $this->db->or_like("rs.school_address", $_POST["search"]["value"]);
                 $this->db->or_like("ind.name", $_POST["search"]["value"]);
                 $this->db->or_like("cls.clss", $_POST["search"]["value"]);
@@ -261,6 +257,11 @@ class M_scholar extends CI_Model {
         }else{
             return $this->db->insert('reg_schools', $insert);
         }
+    }
+
+    public function getamnt($year='',$grd='')
+    {
+       return $this->db->where('date', $year)->where('class',$grd)->get('fees')->row('amount');
     }
 
     

@@ -38,10 +38,12 @@
                                     <span class="list-title ">Scholarship  List</span>
                                     <select class="browser-default" id="short" @change="yearChange()" v-model="year">
                                         <option value="">Choose Year</option>
-                                        <?php
-                                            for($i=2000; $i<= date('Y')+1 ; $i++){
-                                               echo '<option value="'.($i - 1) .'-'.($i ).'" >'.($i - 1) .'-'.($i ).'</option>';
-                                        } ?>
+                                        <?php $yr = $this->input->get('year');
+                                                 for($i=date('Y'); $i>= 2000; $i--){ 
+                                                $year = $i;
+                                                ?>
+                                                   <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
+                                            <?php } ?>
                                     </select>
                                 </div>
                                 <div class="board-content">

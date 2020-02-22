@@ -6,9 +6,8 @@ class M_student extends CI_Model {
 	public function getStudent($year='',$id='')
 	{
 		if (!empty($year)) {
-			$date  = explode("-",$year);
-			$sdate = $date[0] . '-01-01';
-			$edate = $date[1] . '-01-01';
+			$sdate = $year . '-01-01';
+			$edate = $year . '-12-31';
 			$this->db->where('date >=', $sdate);
 			$this->db->where('date <=', $edate);
 		}

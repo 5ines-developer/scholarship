@@ -12,6 +12,7 @@ class M_application extends CI_Model {
         $sccomp = $this->session->userdata('sccomp');
         $this->db->where('a.company_id', $sccomp);
         $this->db->where('a.application_state',2);
+        $this->db->group_by('a.application_year,a.Student_id');
         
         $this->db->group_start();
             $this->db->where_not_in('a.status',$in );
@@ -23,8 +24,9 @@ class M_application extends CI_Model {
         $this->db->join('courses crs', 'crs.id = m.course', 'left');
         $this->db->join('class cls', 'cls.id = m.class', 'left')
         ->join('gradution grd', 'grd.id = m.graduation', 'left')
+        ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
         ->join('fees fs', 'fs.class = grd.id', 'left');
-        $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course,fs.amount');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount,m.graduation,a.application_year');
         return $this->db->get()->result();     
     }
 
@@ -35,18 +37,20 @@ class M_application extends CI_Model {
             $this->db->where('a.application_year', $year);
         }
         $sccomp = $this->session->userdata('sccomp');
-        $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course,fs.amount');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount,m.graduation,a.application_year');
         $this->db->from('application a');
         $this->db->where('a.company_id', $sccomp);        
         $this->db->order_by('id', 'desc');
         $this->db->group_start();
             $this->db->where_in('a.application_state',$in);
         $this->db->group_end();
+        $this->db->group_by('a.application_year,a.Student_id');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
         $this->db->join('courses crs', 'crs.id = m.course', 'left');
         $this->db->join('class cls', 'cls.id = m.class', 'left')
         ->join('gradution grd', 'grd.id = m.graduation', 'left')
+        ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
         ->join('fees fs', 'fs.class = grd.id', 'left');
         return $this->db->get()->result();     
     }
@@ -57,16 +61,18 @@ class M_application extends CI_Model {
             $this->db->where('a.application_year', $year);
         }
         $sccomp = $this->session->userdata('sccomp');
-        $this->db->select('m.prv_marks as mark, cls.clss as class, s.name, a.id,crs.course,fs.amount');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount,m.graduation,a.application_year');
         $this->db->from('application a');
         $this->db->where('a.company_id', $sccomp);
         $this->db->where('a.application_state !=',1);
         $this->db->where('a.status', 2);
+        $this->db->group_by('a.application_year,a.Student_id');
         $this->db->order_by('id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
         $this->db->join('courses crs', 'crs.id = m.course', 'left');
         $this->db->join('class cls', 'cls.id = m.class', 'left')
+        ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
         ->join('gradution grd', 'grd.id = m.graduation', 'left')
         ->join('fees fs', 'fs.class = grd.id', 'left');
         return $this->db->get()->result();     
@@ -162,6 +168,11 @@ class M_application extends CI_Model {
     {
         $result = $this->db->where('id', $id)->get('application')->row('Student_id');
         return $this->phoneGet($result);
+    }
+
+    public function getamnt($year='',$grd='')
+    {
+       return $this->db->where('date', $year)->where('class',$grd)->get('fees')->row('amount');
     }
 
 }

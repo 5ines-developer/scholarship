@@ -12,12 +12,8 @@ class M_reports extends CI_Model {
 	{
 
 		if (!empty($year)) {
-            $date  = explode("-",$year);
-            $sdate = $date[0];
-            $edate = $date[1];
             $this->db->group_start();
-                $this->db->where('a.application_year >=', $sdate);
-                $this->db->where('a.application_year <=', $edate); 
+                $this->db->where('a.application_year', $year);
             $this->db->group_end();
         }
 		if (!empty($district)) { 	$this->db->where('am.ins_district', $district); } 

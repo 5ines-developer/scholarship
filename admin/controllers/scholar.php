@@ -46,9 +46,6 @@ class Scholar extends CI_Controller {
         foreach($fetch_data as $row)  
         {  
             $btn = '<a href="'.base_url('applications/detail/').$row->id.'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
-
-            
-
             if($row->application_state == 3){
                 $state = 'Verification Officer';
             }else if ($row->application_state == 2) {
@@ -81,7 +78,7 @@ class Scholar extends CI_Controller {
             $sub_array[] = $row->course.'-'.$row->clss;
             $sub_array[] = $row->application_year;  
             $sub_array[] = $row->adharcard_no;  
-            $sub_array[] = $row->amount;  
+            $sub_array[] = $this->m_scholar->getamnt($row->application_year,$row->graduation);  
             $sub_array[] = date('d M, Y',strtotime($row->date));  
             $sub_array[] = $row->district;  
             $sub_array[] = $row->taluk;  

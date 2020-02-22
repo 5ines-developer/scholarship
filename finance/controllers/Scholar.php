@@ -85,7 +85,7 @@ class Scholar extends CI_Controller {
             $sub_array[] = $row->district;  
             $sub_array[] = $row->taluk;  
             $sub_array[] = $status;  
-            $sub_array[] = $row->amount; 
+            $sub_array[] = $this->m_scholar->getamnt($row->application_year,$row->graduation); 
             $sub_array[] = $row->holder;
             $sub_array[] = $row->acc_no;
             $sub_array[] = $row->ifsc;

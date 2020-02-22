@@ -244,12 +244,8 @@ class M_stdapplication extends CI_Model {
         $select_column = array('s.name','s.email','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district');
 
         if(!empty($year)){
-                if (!empty($year)) {
-                $date  = explode("-",$year);
-                $sdate = $date[0];
-                $edate = $date[1];
-                $this->db->where('a.application_year >=', $sdate);
-                $this->db->where('a.application_year <=', $edate);
+            if (!empty($year)) {
+                $this->db->where('a.application_year', $year);
             }
         }
         return $this->db->where('a.Student_id', $id)

@@ -40,10 +40,13 @@
                                     <select class="browser-default" id="short" @change="yearChange()" v-model="year">
                                         <option value="">Choose Year</option>
                                         <option value="">All Year</option>
-                                        <?php
-                                        for($i=2000; $i<= date('Y') ; $i++){
-                                        echo '<option value="'.$i.'" >'.($i ).'</option>';
-                                        } ?>
+                                        <?php 
+                                            $yr = $this->input->get('year');
+                                            for($i=date('Y'); $i>= 2000; $i--){ 
+                                            $year = $i;
+                                            ?>
+                                            <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                                 <div class="board-content ">
