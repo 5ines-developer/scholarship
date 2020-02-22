@@ -11,6 +11,7 @@ class M_fees extends CI_Model {
 	public function add($insert='')
 	{
 		$this->db->where('class', $insert['class']);
+		$this->db->where('date=', date('Y'));
 		$query = $this->db->get('fees')->row();
 		if(!empty($query)){
 			$this->db->where('class', $insert['class']);
@@ -20,15 +21,19 @@ class M_fees extends CI_Model {
 		}
 	}
 
-	public function feesGet($id='')
+	public function feesGet($id='',$year='')
 	{
-		if (!empty($id)) {
-			$this->db->where('f.id', $id);
+		if (!empty($id)) { $this->db->where('f.id', $id); }
+
+		if (!empty($year)) {
+			$this->db->where('f.date', $year);
 		}
-		$this->db->select('f.id as feesId,f.amount,f.class,g.title');
+
+		$this->db->select('f.id as feesId,f.amount,f.class,f.date,g.title');
+		$this->db->order_by('f.id', 'asc');
 		$this->db->from('fees f');
 		$this->db->join('gradution g', 'g.id = f.class', 'left');
-		return $this->db->get()->result();
+		return $this->db->order_by('f.id', 'asc')->get()->result();
 	}
 
 	public function update($data='',$id='')
