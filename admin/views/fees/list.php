@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div id="app ">
+    <div id="app">
     <?php $this->load->view('include/header'); ?>
 
         <!-- Body form  -->
@@ -37,6 +37,14 @@
                                     <span class="list-title ">Scholarship Amount List</span>
                                     <a href="<?php echo base_url() ?>fees/add" class="back-btn z-depth-1 waves-effect waves-ligh hoverable add-btn">
                                         <i class="material-icons add-icon ">add</i><span>Add New</span></a>
+                                    <select class="browser-default" id="short" @change="yearChange()" v-model="year">
+                                        <option value="">Choose Year</option>
+                                        <option value="">All Year</option>
+                                        <?php
+                                        for($i=2000; $i<= date('Y') ; $i++){
+                                        echo '<option value="'.$i.'" >'.($i ).'</option>';
+                                        } ?>
+                                    </select>
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">
@@ -44,22 +52,31 @@
                                             <thead class="thead-list">
                                                 <th class="h5-para-p2">Course</th>
                                                 <th class="h5-para-p2">Scholarship Amount</th>
+                                                <th class="h5-para-p2 sorting_asc">Year</th>
                                                 <th class="h5-para-p2">Action</th>
                                             </thead>
                                             <tbody class="tbody-list">
                                                 <?php
                                                 if (!empty($result)) {
-                                                    foreach ($result as $key => $value) { 
-                                                       
-
+                                                    foreach ($result as $key => $value) {
                                                     ?>
                                                         <tr role="row" class="odd">
                                                             <td><?php echo (!empty($value->title))?$value->title:''; ?></td>
                                                             <td><?php echo (!empty($value->amount))?$value->amount:''; ?></td>
+                                                            <td><?php echo (!empty($value->date))?$value->date:''; ?></td>
                                                             <td class="action-btn">
-                                                            <a href="<?php echo base_url('fees/edit/').$value->feesId ?>" class="vie-btn blue-text waves-effect waves-light left" > Edit </a>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <a onclick="return confirm('Are you sure you want to delete this item?');" href="<?php echo base_url('fees/delete/').$value->feesId ?>" class="red white-text center-align"> <i class="material-icons action-icon ">delete</i></a>
+                                                                <?php if ($value->date != date('Y')) { 
+
+                                                                    echo '<span class="red-text">You Cannot make changes on previour year data</span>';
+                                                                    
+                                                                }else{ ?>
+
+                                                                    <a href="<?php echo base_url('fees/edit/').$value->feesId ?>" class="vie-btn blue-text waves-effect waves-light left" > Edit </a>
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <a onclick="return confirm('Are you sure you want to delete this item?');" href="<?php echo base_url('fees/delete/').$value->feesId ?>" class="red white-text center-align"> <i class="material-icons action-icon ">delete</i></a>
+                                                                    
+                                                                <?php } ?>
+                                                            
                                                         </td>
                                                         </tr>
                                                 <?php   }
@@ -117,12 +134,28 @@
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'excel', 'pdf', 'csv'
-                ]
+                ],
+                "order": [[ 2, "desc" ]]
 
             });
             $('select').formSelect();
             $('.modal').modal();
         });
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                loader:false,
+                year:'<?php echo $this->input->get('year') ?>',
+            },
+            methods:{
+                yearChange(){
+                    window.location.href = "<?php echo base_url('fees/manage?year=') ?>"+this.year;
+                },
+            },
+        })
+
     </script>
 </body>
 

@@ -43,14 +43,14 @@ class Fees extends CI_Controller {
 
     public function manage($id='')
     {
+        $year = $this->input->get('year');
     	$data['title'] = 'Fees';
-    	$data['result'] = $this->m_fees->feesGet();
+    	$data['result'] = $this->m_fees->feesGet($id,$year);
     	$this->load->view('fees/list', $data, FALSE);
     }
 
     public function edit($id='')
     {
-
     	$data['title'] = 'Fees';
     	$data['result'] = $this->m_fees->feesGet($id);
     	$data['grad'] = $this->m_fees->getGrad();
