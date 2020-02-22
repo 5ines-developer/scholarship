@@ -120,6 +120,42 @@ class Employee extends CI_Controller {
         redirect('employee','refresh');
     }
 
+    public function mobile_check($value='')
+    {
+        $this->security->xss_clean($_POST);
+        $phone = $this->input->post('phone');
+        $id = $this->input->post('id');
+        $output = $this->M_employee->mobile_check($phone,$id);
+        echo  $output;
+    }
+
+
+    public function update($value='')
+    {
+        $id = $this->input->post('id');
+        $data   = array(
+            'phone'         => $this->input->post('phone'), 
+            'name'          => $this->input->post('em_name'),
+            'type'          => $this->input->post('designation'), 
+        );
+        if($this->M_employee->updateEmp($data,$id)){
+            $this->session->set_flashdata('success', 'staff details updated successfully');
+        } else{
+            $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
+        }
+        redirect('employee/edit/'.$id,'refresh');
+    }
+
+    public function delete($id='')
+    {
+        if($this->M_employee->delete($id)){
+            $this->session->set_flashdata('success', 'Employee deleted successfully');
+        } else{
+            $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
+        }
+        redirect('employee','refresh');
+    }
+
 
 
 }

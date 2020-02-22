@@ -34,5 +34,30 @@ class M_employee extends CI_Model {
     }
   }
 
+
+    public function mobile_check($phone='',$id='')
+    {
+        $this->db->where('phone', $phone);
+        $this->db->where('id !=', $id);
+        $result = $this->db->get('admin');
+           if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateEmp($data='',$id='')
+    {
+        return $this->db->where('id', $id)->update('admin', $data);
+    }
+
+    public function delete($id='')
+    {
+        return $this->db->where('id', $id)->delete('admin');
+    }
+
+
+
 }
 /* End of file M_employee.php */

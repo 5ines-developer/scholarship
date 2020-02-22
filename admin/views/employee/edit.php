@@ -34,7 +34,7 @@
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="col s12 m12 l12">
-                                            <form action="<?php echo base_url() ?>employee/add" method="post">
+                                            <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>employee/update" method="post">
                                                 <div class="input-field col m8">
                                                     <input id="em_name" name="em_name" required type="text" class="validate" value="<?php echo (!empty($result->name))?$result->name:''; ?>">
                                                     <label for="em_name">Employee Name</label>
@@ -45,8 +45,9 @@
                                                     <?php echo validation_errors(); ?>
                                                 </div>
                                                 <div class="input-field col m8">
-                                                    <input id="phone" name="phone" required type="number" class="validate" value="<?php echo (!empty($result->phone))?$result->phone:''; ?>">
+                                                    <input id="phone" name="phone" required type="number" class="validate" v-model="phone" @change="mobileCheck">
                                                     <label for="phone">Phone</label>
+                                                    <span class="helper-text red-text">{{mobileError}}</span><br>
                                                 </div>
                                                 <div class="col sel-hr s12 m8">
                                                     <label >Employee Designation</label>
@@ -61,6 +62,7 @@
                                                         </label>
                                                     </p>
                                                 </div>
+                                                <input type="hidden" name="id" value="<?php echo $result->id ?>">
                                                 <div class="input-field col s12">
                                                     
                                                     <button class="waves-effect waves-light hoverable btn-theme btn mr10">Submit</button>
@@ -91,6 +93,7 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
     <?php $this->load->view('include/msg'); ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -108,13 +111,9 @@
         var app = new Vue({
             el: '#app',
             data: {
-                student: {
-                    name: '',
-                    email: '',
-                    mobile: '',
-                    profile: '',
-                },
-                profilePic: '',
+                mobileError: '',
+                phone: '<?php echo (!empty($result->phone))?$result->phone:''; ?>',
+                id:'<?php echo (!empty($result->id))?$result->id:''; ?>',
 
             },
 
@@ -122,6 +121,36 @@
                 onFileChange(e) {
                     const file = e.target.files[0];
                     this.student.profile = URL.createObjectURL(file);
+                },
+                mobileCheck(){
+
+                    if (this.phone.length != 10) {
+                        this.mobileError = 'Mobile number must be 10 digits!';
+                    }else{
+                        this.mobileError='';
+                        const formData = new FormData();
+                        formData.append('phone',this.phone);
+                        formData.append('id',this.id);
+                        axios.post('<?php echo base_url('employee/mobile_check') ?>', formData)
+                        .then(response => {
+                            if (response.data == '1') {
+                                this.mobileError = 'This Mobile number already exist!';
+                            } else {
+                                this.mobileError = '';
+                            }
+
+                        }).catch(error =>{
+                            if (error.response) {
+                                this.errormsg = error.response.data.error;
+                            }
+                        } )
+                    }
+                        
+                },
+                checkForm() {
+                if ((this.mobileError == '')) {
+                        this.$refs.form.submit();
+                    }
                 }
             }
         })

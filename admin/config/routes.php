@@ -24,6 +24,8 @@ $route['update-password']           = 'dashboard/updatepassword';
 $route['employee']                  = 'employee';
 $route['employee/add']              = 'employee/add';
 $route['employee/edit/(:any)']      = 'employee/edit/$1';
+$route['employee/update']           = 'employee/update';
+$route['employee/delete/(:any)']    = 'employee/delete/$1';
 
 //student management
 $route['student']                  	= 'student/index';
