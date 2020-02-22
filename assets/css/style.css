@@ -3281,4 +3281,9 @@ table.striped > tbody > tr > td {
     text-align: left;
   }
 }
+
+.head-h {
+  padding: 0px 32px !important;
+  color: #1e1e1e !important;
+}
 /*# sourceMappingURL=style.css.map */

@@ -34,7 +34,7 @@
                     </div>
                     <!-- End menu-->
 
-                    <div class="col s12 m9 l9 ">
+                    <div class="col s12 m12 l9 ">
 
                         <div class="row">
                         <div class="top-count">                     

@@ -29,12 +29,12 @@
         <section class="board ">
             <div class="container-wrap1 ">
                 <div class="row m0 ">
-                    <div class="col m3 l3  s12hide-on-med-and-down ">
+                    <div class="col m3 l3  s12 hide-on-med-and-down ">
                         <?php $this->load->view('include/menu'); ?>
                     </div>
                     <!-- End menu-->
 
-                    <div class="col m9 l9  s12">
+                    <div class="col m12 l9  s12">
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">

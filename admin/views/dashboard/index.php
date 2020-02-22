@@ -314,8 +314,8 @@
             var instances = M.FormSelect.init(document.querySelectorAll('select'));
         });
         document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
+            var side = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(side);
             var gropDown = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
                 constrainWidth: false,
                 alignment: 'right'
