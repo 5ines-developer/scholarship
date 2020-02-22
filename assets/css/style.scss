@@ -3113,11 +3113,6 @@
                     padding: 5px 10px;
                 }
                 
-                .head-h {
-                    padding: 0px 32px;
-                    color: #1e1e1e !important;
-                }
-                
                 @media(max-width:767px) {
                     .hb {
                         overflow-x: scroll;
@@ -3135,4 +3130,9 @@
                     .tbody-list tr {
                         text-align: left;
                     }
+                }
+                
+                .head-h {
+                    padding: 0px 32px !important;
+                    color: #1e1e1e !important;
                 }

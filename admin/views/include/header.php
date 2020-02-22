@@ -50,16 +50,39 @@
                 <li class=""><a class="collapsible-header head-h black-text" tabindex="0">Institute Management<i class="material-icons drop-ar right">arrow_drop_down</i></a>
                     <div class="collapsible-body" style="">
                         <ul>
-                            <li><a href="mobile-apps-development-company-bangalore.php">App Development</a></li>
-                            <li><a href="digital-marketing-agency-bangalore.php">Digital Marketing</a></li>
-                            <li><a href="web-designing-company-bangalore.php">Web Design</a></li>
-                            <li><a href="web-development-company-bangalore.php">Web Development</a></li>
+                            <li><a href="<?php echo base_url() ?>institutes">All Institute</a></li>
+                            <li><a href="<?php echo base_url() ?>institute">Registered Institute</a></li>
+                            <li><a href="<?php echo base_url() ?>institute-request">Institute Add Request</a></li>
+                            <li><a href="<?php echo base_url() ?>institute-add">Add New Institute</a></li>
                         </ul>
                     </div>
                 </li>
                 </ul>
-                <li><a href="<?php echo base_url() ?>employee">Scholarship Management</a></li>
-                <li><a href="<?php echo base_url() ?>employee">Industry Management</a></li>
+                <ul class="collapsible ">
+                <li class=""><a class="collapsible-header head-h black-text" tabindex="0">Scholarship Managemnet<i class="material-icons drop-ar right">arrow_drop_down</i></a>
+                    <div class="collapsible-body" style="">
+                        <ul>
+                            <li><a href="<?php echo base_url() ?>applications">All Application</a></li>
+                            <li><a href="<?php echo base_url() ?>applications?item=approved">Approved Application</a></li>
+                            <li><a href="<?php echo base_url() ?>applications?item=rejected">Rejected Application</a></li>
+                            <li><a href="<?php echo base_url() ?>applications?item=pending">Pending Application</a></li>
+                        </ul>
+                    </div>
+                </li>
+                </ul>
+                <ul class="collapsible ">
+                <li class=""><a class="collapsible-header head-h black-text" tabindex="0">Reports<i class="material-icons drop-ar right">arrow_drop_down</i></a>
+                    <div class="collapsible-body" style="">
+                        <ul>
+                            <li><a href="<?php echo base_url() ?>reports">Total Scholarship Request</a></li>
+                            <li><a href="<?php echo base_url() ?>reports?item=pending">Total Pending Scholarship</a></li>
+                            <li><a href="<?php echo base_url() ?>reports?item=approved">Total Approved Scholarship</a></li>
+                            <li><a href="<?php echo base_url() ?>reports?item=rejected">Total Rejected Scholarship</a></li>
+                        </ul>
+                    </div>
+                </li>
+                </ul>
+               
                 <li><a href="<?php echo base_url('logout')?>">Logout</a></li>
         </ul>
 
