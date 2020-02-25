@@ -25,6 +25,7 @@ class Fees extends CI_Controller {
                 'class'         => $grad, 
                 'amount'        => $fees,
                 'added_by' 		=> $this->adid,
+                'date'          => date('Y'),
             );
             if($this->m_fees->add($data)){
                 $this->session->set_flashdata('success', 'Fees Amount added Successfully');

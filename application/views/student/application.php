@@ -286,6 +286,7 @@
                                             <div class="input-field col s12 m5">
                                                 <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
                                                 <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                                <span class="red-text">{{adhError}}</span>
                                             </div>
 
                                             <div class="clearfix"></div>
@@ -294,7 +295,6 @@
                                                 <div class="btn">
                                                     <span>File</span>
                                                     <input type="file" name="adhar"  ref="file2" @change="adhaarXerox" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
-                                                    <span class="red-text">{{adhError}}</span>
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
@@ -553,26 +553,29 @@
         },
         methods:{
             cardNumberSpace(){
-                var cardNumber = this.$refs.creditCardNumber.value;
-                var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
-                this.adhaar.number = result;
 
+                var cardNumber = this.$refs.creditCardNumber.value;
+
+                this.adhError = '';
+                if (cardNumber.length <16) {
+                    this.adhError = 'Aadhar Card number must be 16 digits.';
+                }else{
+
+                    var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
+                    this.adhaar.number = result;
                     var self= this;
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/adharcheck?adhar='+cardNumber)
                     .then(function (response) {
-
                         if(response.data !=  '0'){
                             M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
                             this.adhError = 'You are not eligible to apply for this scholarship';
                         }
-                        
                     })
                     .catch(function (error) {
                         this.errormsg = error.response.data.error;
                     })
-
-                    
+                }
             },
             markcard(){
                 this.file = this.$refs.file.files[0];

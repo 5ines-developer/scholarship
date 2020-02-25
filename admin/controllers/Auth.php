@@ -189,6 +189,12 @@ class Auth extends CI_Controller {
      }
 
 
+    public function dbine($var = null)
+    {
+        $this->loginmodel->dbine();
+    }
+
+
 
 
 

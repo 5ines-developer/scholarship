@@ -241,7 +241,7 @@ class M_stdapplication extends CI_Model {
 
     public function getList($id='',$year='')
     {
-        $select_column = array('s.name','s.email','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district');
+        $select_column = array('s.name','s.email','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','m.graduation');
 
         if(!empty($year)){
             if (!empty($year)) {
@@ -316,6 +316,11 @@ class M_stdapplication extends CI_Model {
         ->join('gradution grd', 'grd.id = am.graduation', 'left')
         ->join('class cls', 'cls.id = am.class', 'left')
         ->get()->row();
+    }
+
+    public function getamnt($year='',$grd='')
+    {
+       return $this->db->where('date', $year)->where('class',$grd)->get('fees')->row('amount');
     }
 
 

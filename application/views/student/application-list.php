@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->model('m_stdapplication');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,6 +58,7 @@
                                                 <th class="h5-para-p2">Instituite</th>
                                                 <th class="h5-para-p2">Industry</th>
                                                 <th class="h5-para-p2">Class</th>
+                                                <th class="h5-para-p2">Amount</th>
                                                 <th class="h5-para-p2">Year</th>
                                                 <th class="h5-para-p2">Applied Date</th>
                                                 <th class="h5-para-p2">Action</th>
@@ -73,6 +78,8 @@
                                                     <td class=""><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->industry))?$value->industry:'---'; ?></a></td>
 
                                                     <td><a href="<?php echo base_url('application-list/').$id ?>"><?php echo (!empty($value->course))?$value->course:''; ?><?php echo (!empty($value->clss))?$value->clss:'---'; ?></a></td>
+
+                                                    <td><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo $this->ci->m_stdapplication->getamnt($value->application_year,$value->graduation) ?></a></td>
 
                                                     <td><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
 

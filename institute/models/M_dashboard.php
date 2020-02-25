@@ -26,9 +26,7 @@ class M_dashboard extends CI_Model {
         $this->db->join('class cls', 'cls.id = m.class', 'left')
         ->join('gradution grd', 'grd.id = m.graduation', 'left')
         ->join('fees fs', 'fs.class = grd.id', 'left')
-        ->join('gradution grd', 'grd.id = am.graduation', 'left')
-        ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
-        ->join('fees fs', 'fs.class = grd.id', 'left');
+        ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left');
         $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount');
         return $this->db->get()->result();  
     }

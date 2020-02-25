@@ -42,9 +42,9 @@
                         </a>
                     </div>
                     <div class="comp">
-                        <h5>Electronic Payment and Application System of Scholarship</h5>
+                        <h5>Employer Fund Contribution  and  Student Scholarship Application System</h5>
                         <p>Karnataka Labour Welfare Board</p>
-                        <p>Government of Karnataka</p>
+                        <p>Department Of Labour, Government of Karnataka</p>
                     </div>
 
 
@@ -100,7 +100,7 @@
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link login-link" href="<?php echo base_url() ?>student/login" target="_blank"><i class="fas fa-home"></i>Official login</a>
+                        <a class="nav-link login-link" href="<?php echo base_url() ?>govt/login" target="_blank"><i class="fas fa-home"></i>Official login</a>
                     </li>
 
                 </ul>
@@ -202,14 +202,13 @@
                                <div class="about">
                                    <h4>About Us</h4>
                                    <p>
-                                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni aspernatur aliquam rerum, quibusdam, eligendi hic dolorem maiores sint sequi velit repudiandae, voluptates quidem tenetur ad ipsa sed minima vero labore.
+                                       The main agenda of this web application portal is for the students to claim the Education assistance online and the employer to contribute his company’s fund via online.
                                    </p>
                                    <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni aspernatur aliquam rerum, quibusdam, eligendi hic dolorem maiores sint sequi velit repudiandae, voluptates quidem tenetur ad ipsa sed minima vero labore.
-                                </p>
+                                    Where student will register in the portal and submit the request for Education assistance. Post request submitted it will be sent to the next level of approvals. Likewise employer will register in the portal and will contribute his company’s fund via online and will receive an acknowledgement after the payment in return via online. </p>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni aspernatur aliquam rerum, quibusdam, eligendi hic dolorem maiores sint sequi velit repudiandae, voluptates quidem tenetur ad ipsa sed minima vero labore.
-                                </p>
+                                    Each entity will have their own dashboard and use the same credentials through out there association with the Karnataka Labour Welfare Board. This web application software is developed using state of the art technology and is bundled with features.
+                                    Few of them are Automatic Remainder Systems, SMS alerts, E-Mail Alerts, Custom Reports etc. </p>
                                </div>
                             </div>
 
@@ -458,20 +457,20 @@
                     includeZero: false
                 },
                 axisX: {
-                    title: "Countries"
+                    title: "Data"
                 },
                 data: [{
                     type: "column",
                     yValueFormatString: "#,##0.0#" % "",
                     dataPoints: [
-                        { label: "Iraq", y: 10.09 },
-                        { label: "Turks & Caicos Islands", y: 9.40 },
-                        { label: "Nauru", y: 8.50 },
-                        { label: "Ethiopia", y: 7.96 },
-                        { label: "Uzbekistan", y: 7.80 },
-                        { label: "Nepal", y: 7.56 },
-                        { label: "Iceland", y: 7.20 },
-                        { label: "India", y: 7.1 }
+                        { label: "Applications", y: 10.09 },
+                        { label: "Institutes", y: 9.40 },
+                        { label: "Industries", y: 8.50 },
+                        { label: "Students", y: 7.96 },
+                        { label: "Male", y: 7.80 },
+                        { label: "Female", y: 7.56 },
+                        { label: "SC", y: 7.20 },
+                        { label: "ST", y: 7.1 }
 
                     ]
                 }]

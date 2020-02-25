@@ -346,7 +346,6 @@ class Std_application extends CI_Controller {
 
 	public function studentMail($data='',$apid='')
 	{
-		
         $this->load->config('email');
         $this->load->library('email');
         $from = $this->config->item('smtp_user');
@@ -392,7 +391,6 @@ class Std_application extends CI_Controller {
     **/
     public function getApplication($value='')
     {
-
     	if(empty($this->check)){
     		$this->session->set_flashdata('error', 'You have not applied to the scholarship.');			
 			redirect('student/application','refresh');
@@ -402,7 +400,6 @@ class Std_application extends CI_Controller {
 	  	 	$data['result'] = $this->m_stdapplication->getApplication($this->sid);
 	   		$this->load->view('student/application-detail', $data, FALSE);
     	}
-		
 	}
 	
 	/**
@@ -446,10 +443,8 @@ class Std_application extends CI_Controller {
         // application generate
     public function applicationGenerate($id = null)
     {
-        
         $data['result'] = $this->m_stdapplication->getApplication($this->sid);
-        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
 	        'default_font' => 'tunga'
