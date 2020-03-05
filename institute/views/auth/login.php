@@ -37,6 +37,12 @@
                                                 <label for="password">Password</label>
                                             </div>
 
+                                            <div class="input-field col s12">
+                                            <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
+                                            <span class="helper-text red-text">{{ captcha }}</span>
+                                        </div>
+
+
                                             <a href="<?php echo base_url() ?>forgot-password" class="col mt15 mb15">Forgot Password?</a>
                                             <div class="input-field col s12">
                                                 <button class="waves-effect waves-light hoverable btn-theme btn">Login</button>
@@ -71,6 +77,7 @@
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <?php $this->load->view('include/msg'); ?>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -93,7 +100,14 @@
         },
 
         methods:{
-            
+            checkForm() {
+
+                        if (grecaptcha.getResponse() == '') {
+                            this.captcha = 'Captcha is required';
+                        } else {
+                            this.$refs.form.submit();
+                        }
+                }
            
 
             

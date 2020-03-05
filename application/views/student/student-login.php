@@ -11,6 +11,7 @@
     <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
     <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
+     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 
@@ -28,7 +29,7 @@
                                 <div class="card-heading">
                                     <p class="m0">Student Login</p>
                                 </div>
-                                <form  action="<?php echo base_url('student/login-check') ?>" method="post" enctype="multipart/form-data" id="loginForm">
+                                <form  ref="form" @submit.prevent="checkForm"  action="<?php echo base_url('student/login-check') ?>" method="post" enctype="multipart/form-data" id="loginForm">
                                 <div class="card-body row m0 pt15 pb15">
                                     <div class="input-field col s12">
                                         <input  id="email"  name="email" v-model="email" type="text" class="validate" required>
@@ -38,6 +39,11 @@
                                     <div class="input-field col s12">
                                         <input  id="password" v-model="psw" name="pswd" type="password" class="validate" required>
                                         <label for="password">Password</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
+                                        <span class="helper-text red-text">{{ captcha }}</span>
                                     </div>
 
                                      <a href="<?php echo base_url('student/forgot-password') ?>" class="col mt15 mb15">Forgot Password?</a>
@@ -88,11 +94,20 @@
         data: {
             email: '',
             psw: '',
+            captcha:'',
 
             
         },
 
         methods:{
+            checkForm() {
+
+                        // if (grecaptcha.getResponse() == '') {
+                        //     this.captcha = 'Captcha is required';
+                        // } else {
+                            this.$refs.form.submit();
+                        // }
+                }
             
             
             

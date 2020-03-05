@@ -24,7 +24,7 @@
                                 <div class="card-heading">
                                     <p class="m0">Admin Login</p>
                                 </div>
-                                <form action="<?php echo base_url() ?>login" method="post">
+                                <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>login" method="post">
                                     <div class="card-body row m0 pt15 pb15">
                                         <div class="input-field col s12">
                                             <input id="email" name="email" @change="emailCheck()" v-model="email" type="email" class="validate" required>
@@ -34,6 +34,10 @@
                                         <div class="input-field col s12">
                                             <input id="password" name="pswd" type="password"  class="validate" required>
                                             <label for="password">Password</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
+                                            <span class="helper-text red-text">{{ captcha }}</span>
                                         </div>
                                         <a href="<?php echo base_url() ?>forgot-password" class="col mt15 mb15">Forgot Password?</a>
                                         <div class="input-field col s12">
@@ -68,6 +72,7 @@
 
 
     <!-- scripts -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
@@ -84,6 +89,7 @@
             data: {
                 email: '',
                 emailError: '',
+                captcha:'',
                
 
                 emailcheck: [{
@@ -102,6 +108,16 @@
                         }
                     }
                 },
+                checkForm() {
+                    if ((this.emailError == '')) {
+
+                        if (grecaptcha.getResponse() == '') {
+                            this.captcha = 'Captcha is required';
+                        } else {
+                            this.$refs.form.submit();
+                        }// 
+                    } else {}
+                }
 
             }
         })

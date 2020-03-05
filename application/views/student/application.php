@@ -289,7 +289,6 @@
                                                 <span class="red-text">{{adhError}}</span>
                                             </div>
 
-                                            <div class="clearfix"></div>
 
                                             <div class="file-field input-field col s12 m6">
                                                 <div class="btn">
@@ -300,6 +299,20 @@
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
                                                 </div>
                                                 <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                            </div>
+
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
+                                                <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                                <span class="red-text">{{adhError}}</span>
+                                            </div>
+
+
+                                            <div class="input-field col s12 m5">
+                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
+                                                <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                                <span class="red-text">{{adhError}}</span>
                                             </div>
                                             
                                         </div>
