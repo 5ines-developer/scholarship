@@ -10,6 +10,7 @@ class Std_account extends CI_Controller {
         if ($this->session->userdata('stlid') == '') { $this->session->set_flashdata('error','Please login and try again!'); redirect('student/login','refresh'); } 
         $this->load->model('m_stdaccount');
         $this->sid = $this->session->userdata('stlid');
+        $this->load->library('sc_check');
     }
 
     /**
@@ -49,6 +50,14 @@ class Std_account extends CI_Controller {
 
     public function addfile($output='')
     {
+
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail($this->session->userdata('slmail'));
+           }
+        }
+
     		$files = $_FILES;
 	        if (file_exists($_FILES['file']['tmp_name'])) {
 	            $config['upload_path'] = 'student-profile/';

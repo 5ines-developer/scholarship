@@ -21,6 +21,25 @@ class M_stdapplication extends CI_Model {
         ->get()->result();
     }
 
+    public function adharcheckf($adhar='')
+    {
+        $this->db->where('ab.f_adhar', $adhar);
+        $this->db->where('a.application_year !=', date('Y'));
+        $this->db->from('application a');
+        $this->db->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left');
+        return $this->db->get()->num_rows();
+    }
+
+    public function adharcheckm($adhar='')
+    {
+        $this->db->where('ab.m_adhar', $adhar);
+        $this->db->where('a.application_year !=', date('Y'));
+        $this->db->from('application a');
+        $this->db->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left');
+        return $this->db->get()->num_rows();
+    }
+
+
     public function adharcheck($adhar='')
     {
         $this->db->where('ab.adharcard_no', $adhar);
@@ -315,6 +334,7 @@ class M_stdapplication extends CI_Model {
         ->join('courses crs', 'crs.id = am.course', 'left')
         ->join('gradution grd', 'grd.id = am.graduation', 'left')
         ->join('class cls', 'cls.id = am.class', 'left')
+        ->order_by('a.id','desc')
         ->get()->row();
     }
 

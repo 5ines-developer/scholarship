@@ -10,6 +10,7 @@ class Student extends CI_Controller {
         parent::__construct();
         //Do your magic here
         $this->load->model('m_student');
+        $this->load->library('sc_check');
     }
 
 
@@ -247,11 +248,13 @@ class Student extends CI_Controller {
                         'stqstn'   => $result['qstn_status'],
                     ); 
 
-                    $this->session->set_userdata($session_data); 
+                    $this->session->set_userdata($session_data);
+                    $this->sc_check->loginSuccess();
                     redirect('student/dashboard'); 
                 } 
                 else 
                 {
+                    $this->sc_check->loginError($email);
                     $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                     redirect('student/login');
                 }

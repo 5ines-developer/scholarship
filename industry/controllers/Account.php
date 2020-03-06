@@ -11,6 +11,7 @@ class Account extends CI_Controller {
         if($this->session->userdata('scinds') == ''){ redirect('/','refresh'); }
         $this->inId = $this->session->userdata('sccomp');
         $this->reg = $this->session->userdata('scinds');
+        $this->load->library('sc_check'); 
     }
 
     public function index()
@@ -145,6 +146,13 @@ class Account extends CI_Controller {
     // update images
     public function industry_doc()
     {
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail($this->session->userdata('sinmail'));
+           }
+        }
+
         $key =  $this->input->post('type');
       
         $config['upload_path'] = './'.$key;

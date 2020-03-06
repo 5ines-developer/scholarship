@@ -11,6 +11,7 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $this->load->model('m_dashboard');
         if($this->session->userdata('scinst') == ''){ redirect('/','refresh'); }
+        
     }
     
 

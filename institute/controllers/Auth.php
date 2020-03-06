@@ -10,6 +10,7 @@ class auth extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('m_auth');
+        $this->load->library('sc_check');
         
     }
     
@@ -41,10 +42,12 @@ class auth extends CI_Controller {
                         );
 
                         $this->session->set_userdata($session_data); 
+                        $this->sc_check->loginSuccess();
                         redirect('dashboard'); 
                     } 
                     else 
                     {
+                        $this->sc_check->loginError($email);
                         $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                         redirect('/');
                     }
@@ -81,6 +84,17 @@ class auth extends CI_Controller {
         $this->form_validation->set_rules('iname', 'Institute', 'trim|required|is_unique[school.name]', array( 'is_unique'=> 'Institute already exists.' ));
         $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[school.email]', array( 'is_unique'=> 'This %s already exists.' ));
         $this->form_validation->set_rules('number', 'Phone number', 'trim|required|is_unique[school.phone]', array( 'is_unique'=> 'This %s already exists.' ));
+
+        $spemail = $this->input->post('email');
+
+
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail( $spemail);
+           }
+        }
+
         
         if ($this->form_validation->run() == TRUE ) {
             foreach ($_FILES as $key => $value) {
@@ -410,7 +424,7 @@ class auth extends CI_Controller {
         }
     }
 
-        public function submitRequest($var = null)
+    public function submitRequest($var = null)
     {
         $insert = array(
             'name'          => $this->input->post('name'),
@@ -421,6 +435,13 @@ class auth extends CI_Controller {
             'pincode'         => $this->input->post('c_pincode'),
             'address'        => $this->input->post('c_address'),
         );
+
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail($insert['email']);
+           }
+        }
 
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');

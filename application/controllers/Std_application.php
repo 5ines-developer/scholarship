@@ -12,6 +12,7 @@ class Std_application extends CI_Controller {
 		$this->sid = $this->session->userdata('stlid');
 		$this->slmail = $this->session->userdata('slmail');
 		$this->check = $this->m_stdapplication->checkApply($this->sid);
+		$this->load->library('sc_check'); 
     }
 
 	/**
@@ -108,6 +109,21 @@ class Std_application extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function adharcheckf($value='')
+	{
+		$adhar = $this->input->get('adharf');
+		$data = $this->m_stdapplication->adharcheckf($adhar);
+		echo json_encode($data);
+	}
+
+
+	public function adharcheckm($value='')
+	{
+		$adhar = $this->input->get('adharm');
+		$data = $this->m_stdapplication->adharcheckm($adhar);
+		echo json_encode($data);
+	}
+
 	/**
     * student application - insert application
     * @url      : student/submit-application
@@ -116,8 +132,15 @@ class Std_application extends CI_Controller {
     **/
     public function insertAppli($value='')
     {
-		$input = $this->input->post();
+    	foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg'){
+                $this->sc_check->sus_mail($this->session->userdata('slmail'));
+                die();
+           }
+        }
 
+		$input = $this->input->post();
 		if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
 		if(($this->input->post('clow') != '') && ($this->input->post('pmarks') < 45)){ echo 'error'; die(); }
     	$apply = array(
@@ -199,6 +222,32 @@ class Std_application extends CI_Controller {
 	        $adhar = 'student-adhar/'.$upload_data['file_name'];
 	    }
 
+	    if (empty($_FILES['axeroxm']['tmp_name'])) {
+		}else{
+    		$config['upload_path'] = 'father-adhar/';
+    		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
+	        $config['max_width'] = 0;
+	        $config['encrypt_name'] = true;
+	        $this->upload->initialize($config);
+	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+	        $this->upload->do_upload('axeroxm');
+	        $upload_data = $this->upload->data();
+	        $adharm = 'father-adhar/'.$upload_data['file_name'];
+	    }
+
+	    if (empty($_FILES['axeroxf']['tmp_name'])) {
+		}else{
+    		$config['upload_path'] = 'mother-adhar/';
+    		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
+	        $config['max_width'] = 0;
+	        $config['encrypt_name'] = true;
+	        $this->upload->initialize($config);
+	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+	        $this->upload->do_upload('axeroxf');
+	        $upload_data = $this->upload->data();
+	        $adharf = 'mother-adhar/'.$upload_data['file_name'];
+	    }
+
     	$insert = array(
     		'application_id'=> $apid, 
     		'name ' 		=> $this->input->post('sname'), 
@@ -207,12 +256,16 @@ class Std_application extends CI_Controller {
     		'address' 		=> $this->input->post('saddress'), 
     		'parent_phone' 	=> $this->input->post('sphone'), 
     		'is_scst' 		=> $this->input->post('clow'), 
-    		'adharcard_no' 	=> $this->input->post('anumber'), 
+    		'adharcard_no' 	=> trim($this->input->post('anumber')), 
+    		'f_adhar' 		=> trim($this->input->post('anumberf')), 
+    		'm_adhar' 		=> trim($this->input->post('anumberm')), 
             'gender'        => $this->input->post('gender'),
-            'cast_no'        => $this->input->post('cnumber'),
+            'cast_no'       => $this->input->post('cnumber'),
     	);
     	if (!empty($cast)) { $insert['cast_certificate'] = $cast; } 
 		if (!empty($adhar)) { $insert['adharcard_file'] = $adhar; }
+		if (!empty($adharf)) { $insert['f_adharfile'] = $adharf; }
+		if (!empty($adharm)) { $insert['m_adharfile'] = $adharm; }
 
 		if (!empty($insert['is_scst'])) {
 			$insert['category'] = $this->input->post('tcat');
@@ -241,6 +294,8 @@ class Std_application extends CI_Controller {
     		'type' 			=> $this->input->post('btype'), 
     		'holder' 		=> $this->input->post('bholder'), 
 		);
+
+
 		
 		if (empty($_FILES['bpassbook']['tmp_name'])) {
 		}else{

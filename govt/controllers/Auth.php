@@ -11,6 +11,7 @@ class auth extends CI_Controller {
         parent::__construct();
         $this->load->model('m_auth');
         $this->load->library('form_validation');  
+        $this->load->library('sc_check');
     }
     
 
@@ -35,10 +36,12 @@ class auth extends CI_Controller {
                             'sgt_type'      => $result['type']
                         ); 
                         $this->session->set_userdata($session_data); 
+                        $this->sc_check->loginSuccess();
                         redirect('dashboard'); 
                     } 
                     else 
                     {
+                        $this->sc_check->loginError($email);
                         $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                         redirect('/');
                     }

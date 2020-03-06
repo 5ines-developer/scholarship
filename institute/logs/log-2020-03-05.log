@@ -1,0 +1,520 @@
+INFO - 2020-03-05 17:01:56 --> Config Class Initialized
+INFO - 2020-03-05 17:01:56 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:01:56 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:01:56 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:01:56 --> URI Class Initialized
+DEBUG - 2020-03-05 17:01:56 --> No URI present. Default controller set.
+INFO - 2020-03-05 17:01:56 --> Router Class Initialized
+INFO - 2020-03-05 17:01:56 --> Output Class Initialized
+INFO - 2020-03-05 17:01:56 --> Security Class Initialized
+DEBUG - 2020-03-05 17:01:56 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:01:56 --> Input Class Initialized
+INFO - 2020-03-05 17:01:56 --> Language Class Initialized
+INFO - 2020-03-05 17:01:56 --> Loader Class Initialized
+INFO - 2020-03-05 17:01:56 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:01:56 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:01:57 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:01:57 --> Email Class Initialized
+DEBUG - 2020-03-05 17:01:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:01:57 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:01:57 --> Controller Class Initialized
+INFO - 2020-03-05 17:01:57 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:01:57 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:01:57 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:01:57 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+INFO - 2020-03-05 17:01:57 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\auth/login.php
+INFO - 2020-03-05 17:01:57 --> Final output sent to browser
+DEBUG - 2020-03-05 17:01:57 --> Total execution time: 0.2442
+INFO - 2020-03-05 17:02:01 --> Config Class Initialized
+INFO - 2020-03-05 17:02:01 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:01 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:01 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:01 --> URI Class Initialized
+DEBUG - 2020-03-05 17:02:01 --> No URI present. Default controller set.
+INFO - 2020-03-05 17:02:01 --> Router Class Initialized
+INFO - 2020-03-05 17:02:01 --> Output Class Initialized
+INFO - 2020-03-05 17:02:01 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:01 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:01 --> Input Class Initialized
+INFO - 2020-03-05 17:02:01 --> Language Class Initialized
+INFO - 2020-03-05 17:02:01 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:01 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:01 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:01 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:01 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:01 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:01 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:01 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:01 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:01 --> Helper loaded: form_helper
+INFO - 2020-03-05 17:02:01 --> Form Validation Class Initialized
+INFO - 2020-03-05 17:02:01 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-03-05 17:02:01 --> ---------------------Success -- Institute Logged in with prathwi@5ine.in and IP aaddress 127.0.0.1 --------------
+INFO - 2020-03-05 17:02:01 --> Config Class Initialized
+INFO - 2020-03-05 17:02:01 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:01 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:01 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:01 --> URI Class Initialized
+INFO - 2020-03-05 17:02:01 --> Router Class Initialized
+INFO - 2020-03-05 17:02:01 --> Output Class Initialized
+INFO - 2020-03-05 17:02:01 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:01 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:01 --> Input Class Initialized
+INFO - 2020-03-05 17:02:01 --> Language Class Initialized
+INFO - 2020-03-05 17:02:01 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:01 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:01 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:01 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:01 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:01 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:01 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:01 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:01 --> Model "M_dashboard" initialized
+INFO - 2020-03-05 17:02:01 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:02:01 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/menu.php
+INFO - 2020-03-05 17:02:01 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:02:01 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+INFO - 2020-03-05 17:02:01 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\dashboard/request-list.php
+INFO - 2020-03-05 17:02:01 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:01 --> Total execution time: 0.1843
+INFO - 2020-03-05 17:02:02 --> Config Class Initialized
+INFO - 2020-03-05 17:02:02 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:02 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:02 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:02 --> URI Class Initialized
+INFO - 2020-03-05 17:02:02 --> Router Class Initialized
+INFO - 2020-03-05 17:02:02 --> Output Class Initialized
+INFO - 2020-03-05 17:02:02 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:02 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:02 --> Input Class Initialized
+INFO - 2020-03-05 17:02:02 --> Language Class Initialized
+INFO - 2020-03-05 17:02:02 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:02 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:02 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:02 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:02 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:02 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:02 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:02 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:02 --> Model "M_dashboard" initialized
+INFO - 2020-03-05 17:02:02 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:02 --> Total execution time: 0.1111
+INFO - 2020-03-05 17:02:03 --> Config Class Initialized
+INFO - 2020-03-05 17:02:03 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:03 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:03 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:03 --> URI Class Initialized
+INFO - 2020-03-05 17:02:03 --> Router Class Initialized
+INFO - 2020-03-05 17:02:03 --> Output Class Initialized
+INFO - 2020-03-05 17:02:03 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:03 --> Input Class Initialized
+INFO - 2020-03-05 17:02:03 --> Language Class Initialized
+INFO - 2020-03-05 17:02:03 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:03 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:03 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:03 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:03 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:03 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:03 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:03 --> Model "M_account" initialized
+INFO - 2020-03-05 17:02:03 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:04 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:02:04 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/menu.php
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'school' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 41
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'reg_no' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 45
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'email' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 49
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'phone' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 53
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'principal' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 57
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'district' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 65
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'taluk' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 69
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'pin' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 73
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'address' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 77
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'school' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 167
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'reg_no' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 172
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'email' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 177
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'phone' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 183
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'principal' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 188
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'taluk' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 193
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'district' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 198
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'pin' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 203
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'address' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 209
+INFO - 2020-03-05 17:02:04 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:02:04 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'seal' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 244
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'priciple_signature' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 245
+ERROR - 2020-03-05 17:02:04 --> Severity: Notice --> Trying to get property 'reg_certification' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 246
+INFO - 2020-03-05 17:02:04 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\auth/account.php
+INFO - 2020-03-05 17:02:04 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:04 --> Total execution time: 0.2211
+INFO - 2020-03-05 17:02:13 --> Config Class Initialized
+INFO - 2020-03-05 17:02:13 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:13 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:13 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:13 --> URI Class Initialized
+INFO - 2020-03-05 17:02:13 --> Router Class Initialized
+INFO - 2020-03-05 17:02:13 --> Output Class Initialized
+INFO - 2020-03-05 17:02:13 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:13 --> Input Class Initialized
+INFO - 2020-03-05 17:02:13 --> Language Class Initialized
+INFO - 2020-03-05 17:02:13 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:13 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:13 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:13 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:13 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:13 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:13 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:13 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:13 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:13 --> Config Class Initialized
+INFO - 2020-03-05 17:02:13 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:13 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:13 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:13 --> URI Class Initialized
+DEBUG - 2020-03-05 17:02:13 --> No URI present. Default controller set.
+INFO - 2020-03-05 17:02:13 --> Router Class Initialized
+INFO - 2020-03-05 17:02:13 --> Output Class Initialized
+INFO - 2020-03-05 17:02:13 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:13 --> Input Class Initialized
+INFO - 2020-03-05 17:02:13 --> Language Class Initialized
+INFO - 2020-03-05 17:02:13 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:13 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:13 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:13 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:13 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:13 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:13 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:13 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:13 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:13 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:02:13 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:02:13 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+INFO - 2020-03-05 17:02:13 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\auth/login.php
+INFO - 2020-03-05 17:02:13 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:13 --> Total execution time: 0.0658
+INFO - 2020-03-05 17:02:17 --> Config Class Initialized
+INFO - 2020-03-05 17:02:17 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:17 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:17 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:17 --> URI Class Initialized
+DEBUG - 2020-03-05 17:02:17 --> No URI present. Default controller set.
+INFO - 2020-03-05 17:02:17 --> Router Class Initialized
+INFO - 2020-03-05 17:02:17 --> Output Class Initialized
+INFO - 2020-03-05 17:02:17 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:17 --> Input Class Initialized
+INFO - 2020-03-05 17:02:17 --> Language Class Initialized
+INFO - 2020-03-05 17:02:17 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:17 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:17 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:17 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:17 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:17 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:17 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:17 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:17 --> Helper loaded: form_helper
+INFO - 2020-03-05 17:02:17 --> Form Validation Class Initialized
+INFO - 2020-03-05 17:02:17 --> Language file loaded: language/english/form_validation_lang.php
+ERROR - 2020-03-05 17:02:17 --> ---------------------Failed -- Institute Log in Failed and tried login with joshi@shaadibaraati.com password and IP aaddress 127.0.0.1 --------------
+INFO - 2020-03-05 17:02:17 --> Config Class Initialized
+INFO - 2020-03-05 17:02:17 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:17 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:17 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:17 --> URI Class Initialized
+DEBUG - 2020-03-05 17:02:17 --> No URI present. Default controller set.
+INFO - 2020-03-05 17:02:17 --> Router Class Initialized
+INFO - 2020-03-05 17:02:17 --> Output Class Initialized
+INFO - 2020-03-05 17:02:17 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:17 --> Input Class Initialized
+INFO - 2020-03-05 17:02:17 --> Language Class Initialized
+INFO - 2020-03-05 17:02:17 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:17 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:17 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:17 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:17 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:17 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:17 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:17 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:17 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:02:17 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:02:17 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+INFO - 2020-03-05 17:02:17 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\auth/login.php
+INFO - 2020-03-05 17:02:17 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:17 --> Total execution time: 0.0913
+INFO - 2020-03-05 17:02:20 --> Config Class Initialized
+INFO - 2020-03-05 17:02:20 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:20 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:20 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:20 --> URI Class Initialized
+DEBUG - 2020-03-05 17:02:20 --> No URI present. Default controller set.
+INFO - 2020-03-05 17:02:20 --> Router Class Initialized
+INFO - 2020-03-05 17:02:20 --> Output Class Initialized
+INFO - 2020-03-05 17:02:20 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:20 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:20 --> Input Class Initialized
+INFO - 2020-03-05 17:02:20 --> Language Class Initialized
+INFO - 2020-03-05 17:02:20 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:20 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:20 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:20 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:20 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:20 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:20 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:20 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:20 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:20 --> Helper loaded: form_helper
+INFO - 2020-03-05 17:02:20 --> Form Validation Class Initialized
+INFO - 2020-03-05 17:02:20 --> Language file loaded: language/english/form_validation_lang.php
+ERROR - 2020-03-05 17:02:20 --> ---------------------Failed -- Institute Log in Failed and tried login with jainrohith9@gmail.com password and IP aaddress 127.0.0.1 --------------
+INFO - 2020-03-05 17:02:20 --> Config Class Initialized
+INFO - 2020-03-05 17:02:20 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:20 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:20 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:20 --> URI Class Initialized
+DEBUG - 2020-03-05 17:02:20 --> No URI present. Default controller set.
+INFO - 2020-03-05 17:02:20 --> Router Class Initialized
+INFO - 2020-03-05 17:02:20 --> Output Class Initialized
+INFO - 2020-03-05 17:02:20 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:20 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:20 --> Input Class Initialized
+INFO - 2020-03-05 17:02:20 --> Language Class Initialized
+INFO - 2020-03-05 17:02:20 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:20 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:20 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:20 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:20 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:20 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:20 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:20 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:20 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:20 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:02:20 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:02:20 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+INFO - 2020-03-05 17:02:20 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\auth/login.php
+INFO - 2020-03-05 17:02:20 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:20 --> Total execution time: 0.0748
+INFO - 2020-03-05 17:02:24 --> Config Class Initialized
+INFO - 2020-03-05 17:02:24 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:24 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:24 --> URI Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> No URI present. Default controller set.
+INFO - 2020-03-05 17:02:24 --> Router Class Initialized
+INFO - 2020-03-05 17:02:24 --> Output Class Initialized
+INFO - 2020-03-05 17:02:24 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:24 --> Input Class Initialized
+INFO - 2020-03-05 17:02:24 --> Language Class Initialized
+INFO - 2020-03-05 17:02:24 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:24 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:24 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:24 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:24 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:24 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:24 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:24 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:24 --> Helper loaded: form_helper
+INFO - 2020-03-05 17:02:24 --> Form Validation Class Initialized
+INFO - 2020-03-05 17:02:24 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-03-05 17:02:24 --> ---------------------Success -- Institute Logged in with prathwi@5ine.in and IP aaddress 127.0.0.1 --------------
+INFO - 2020-03-05 17:02:24 --> Config Class Initialized
+INFO - 2020-03-05 17:02:24 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:24 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:24 --> URI Class Initialized
+INFO - 2020-03-05 17:02:24 --> Router Class Initialized
+INFO - 2020-03-05 17:02:24 --> Output Class Initialized
+INFO - 2020-03-05 17:02:24 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:24 --> Input Class Initialized
+INFO - 2020-03-05 17:02:24 --> Language Class Initialized
+INFO - 2020-03-05 17:02:24 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:24 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:24 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:24 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:24 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:24 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:24 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:24 --> Model "M_dashboard" initialized
+INFO - 2020-03-05 17:02:24 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:02:24 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/menu.php
+INFO - 2020-03-05 17:02:24 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:02:24 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+INFO - 2020-03-05 17:02:24 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\dashboard/request-list.php
+INFO - 2020-03-05 17:02:24 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:24 --> Total execution time: 0.0798
+INFO - 2020-03-05 17:02:24 --> Config Class Initialized
+INFO - 2020-03-05 17:02:24 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:24 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:24 --> URI Class Initialized
+INFO - 2020-03-05 17:02:24 --> Router Class Initialized
+INFO - 2020-03-05 17:02:24 --> Output Class Initialized
+INFO - 2020-03-05 17:02:24 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:24 --> Input Class Initialized
+INFO - 2020-03-05 17:02:24 --> Language Class Initialized
+INFO - 2020-03-05 17:02:24 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:24 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:24 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:24 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:24 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:24 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:24 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:24 --> Model "M_dashboard" initialized
+INFO - 2020-03-05 17:02:24 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:24 --> Total execution time: 0.1243
+INFO - 2020-03-05 17:02:26 --> Config Class Initialized
+INFO - 2020-03-05 17:02:26 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:26 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:26 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:26 --> URI Class Initialized
+INFO - 2020-03-05 17:02:26 --> Router Class Initialized
+INFO - 2020-03-05 17:02:26 --> Output Class Initialized
+INFO - 2020-03-05 17:02:26 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:26 --> Input Class Initialized
+INFO - 2020-03-05 17:02:26 --> Language Class Initialized
+INFO - 2020-03-05 17:02:26 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:26 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:26 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:26 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:26 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:26 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:26 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:26 --> Model "M_account" initialized
+INFO - 2020-03-05 17:02:26 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:26 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:02:26 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/menu.php
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'school' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 41
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'reg_no' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 45
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'email' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 49
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'phone' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 53
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'principal' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 57
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'district' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 65
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'taluk' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 69
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'pin' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 73
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'address' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 77
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'school' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 167
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'reg_no' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 172
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'email' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 177
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'phone' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 183
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'principal' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 188
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'taluk' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 193
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'district' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 198
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'pin' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 203
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'address' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 209
+INFO - 2020-03-05 17:02:26 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:02:26 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'seal' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 244
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'priciple_signature' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 245
+ERROR - 2020-03-05 17:02:26 --> Severity: Notice --> Trying to get property 'reg_certification' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 246
+INFO - 2020-03-05 17:02:26 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\auth/account.php
+INFO - 2020-03-05 17:02:26 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:26 --> Total execution time: 0.1070
+INFO - 2020-03-05 17:02:42 --> Config Class Initialized
+INFO - 2020-03-05 17:02:42 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:42 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:42 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:42 --> URI Class Initialized
+INFO - 2020-03-05 17:02:42 --> Router Class Initialized
+INFO - 2020-03-05 17:02:42 --> Output Class Initialized
+INFO - 2020-03-05 17:02:42 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:42 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:42 --> Input Class Initialized
+INFO - 2020-03-05 17:02:42 --> Language Class Initialized
+INFO - 2020-03-05 17:02:42 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:42 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:42 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:42 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:42 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:42 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:42 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:42 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:42 --> Model "M_account" initialized
+INFO - 2020-03-05 17:02:42 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:42 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:02:42 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/menu.php
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'school' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 41
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'reg_no' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 45
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'email' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 49
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'phone' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 53
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'principal' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 57
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'district' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 65
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'taluk' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 69
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'pin' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 73
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'address' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 77
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'school' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 167
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'reg_no' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 172
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'email' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 177
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'phone' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 183
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'principal' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 188
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'taluk' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 193
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'district' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 198
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'pin' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 203
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'address' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 209
+INFO - 2020-03-05 17:02:42 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:02:42 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'seal' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 244
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'priciple_signature' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 245
+ERROR - 2020-03-05 17:02:42 --> Severity: Notice --> Trying to get property 'reg_certification' of non-object C:\xampp\htdocs\scholarship\institute\views\auth\account.php 246
+INFO - 2020-03-05 17:02:42 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\auth/account.php
+INFO - 2020-03-05 17:02:42 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:42 --> Total execution time: 0.1587
+INFO - 2020-03-05 17:02:45 --> Config Class Initialized
+INFO - 2020-03-05 17:02:45 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:45 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:45 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:45 --> URI Class Initialized
+INFO - 2020-03-05 17:02:45 --> Router Class Initialized
+INFO - 2020-03-05 17:02:45 --> Output Class Initialized
+INFO - 2020-03-05 17:02:45 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:45 --> Input Class Initialized
+INFO - 2020-03-05 17:02:45 --> Language Class Initialized
+INFO - 2020-03-05 17:02:45 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:45 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:45 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:45 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:45 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:45 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:45 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:45 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:45 --> Config Class Initialized
+INFO - 2020-03-05 17:02:45 --> Hooks Class Initialized
+DEBUG - 2020-03-05 17:02:45 --> UTF-8 Support Enabled
+INFO - 2020-03-05 17:02:45 --> Utf8 Class Initialized
+INFO - 2020-03-05 17:02:45 --> URI Class Initialized
+DEBUG - 2020-03-05 17:02:45 --> No URI present. Default controller set.
+INFO - 2020-03-05 17:02:45 --> Router Class Initialized
+INFO - 2020-03-05 17:02:45 --> Output Class Initialized
+INFO - 2020-03-05 17:02:45 --> Security Class Initialized
+DEBUG - 2020-03-05 17:02:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-05 17:02:45 --> Input Class Initialized
+INFO - 2020-03-05 17:02:45 --> Language Class Initialized
+INFO - 2020-03-05 17:02:45 --> Loader Class Initialized
+INFO - 2020-03-05 17:02:45 --> Helper loaded: url_helper
+INFO - 2020-03-05 17:02:45 --> Helper loaded: file_helper
+INFO - 2020-03-05 17:02:45 --> Database Driver Class Initialized
+INFO - 2020-03-05 17:02:45 --> Email Class Initialized
+DEBUG - 2020-03-05 17:02:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-05 17:02:45 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-05 17:02:45 --> Controller Class Initialized
+INFO - 2020-03-05 17:02:45 --> Model "M_auth" initialized
+INFO - 2020-03-05 17:02:45 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/header.php
+INFO - 2020-03-05 17:02:45 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/footer.php
+INFO - 2020-03-05 17:02:45 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\include/msg.php
+INFO - 2020-03-05 17:02:45 --> File loaded: C:\xampp\htdocs\scholarship\institute\views\auth/login.php
+INFO - 2020-03-05 17:02:45 --> Final output sent to browser
+DEBUG - 2020-03-05 17:02:45 --> Total execution time: 0.0649

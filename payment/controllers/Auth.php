@@ -11,6 +11,8 @@ class auth extends CI_Controller {
         parent::__construct();
         $this->load->model('m_auth');
         $this->load->library('form_validation');  
+        $this->load->library('sc_check');
+
     }
     
 
@@ -34,10 +36,12 @@ class auth extends CI_Controller {
                         ); 
 
                         $this->session->set_userdata($session_data); 
+                         $this->sc_check->loginSuccess();
                         redirect('dashboard'); 
                     } 
                     else 
                     {
+                        $this->sc_check->loginError($email);
                         $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                         redirect('/');
                     }
@@ -149,6 +153,14 @@ class auth extends CI_Controller {
             'industry_id'    => $this->input->post('company'),
             'type'          => 1,
         );
+
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail($insert['email']);
+           }
+        }
+
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
             redirect('register');
@@ -396,6 +408,13 @@ class auth extends CI_Controller {
             'address'        => $this->input->post('address'),
             'company'    => $this->input->post('company'),
         );
+
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail($insert['email']);
+           }
+        }
 
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');

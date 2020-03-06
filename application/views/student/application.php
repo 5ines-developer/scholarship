@@ -303,17 +303,42 @@
 
 
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
-                                                <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
-                                                <span class="red-text">{{adhError}}</span>
+                                                <input id="adhar_nof" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
+                                                <label for="adhar_nof"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                                <span class="red-text">{{adhErrorf}}</span>
+                                            </div>
+
+
+                                            <div class="file-field input-field col s12 m6">
+                                                <div class="btn">
+                                                    <span>File</span>
+                                                    <input type="file" name="adhar"  ref="file2f" @change="adhaarXeroxf" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
+                                                </div>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
                                             </div>
 
 
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
+                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
                                                 <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
-                                                <span class="red-text">{{adhError}}</span>
+                                                <span class="red-text">{{adhErrorm}}</span>
                                             </div>
+
+
+                                            <div class="file-field input-field col s12 m6">
+                                                <div class="btn">
+                                                    <span>File</span>
+                                                    <input type="file" name="adhar"  ref="file2m" @change="adhaarXeroxm" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
+                                                </div>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                            </div>
+
                                             
                                         </div>
                                         
@@ -544,6 +569,8 @@
             },
             adhaar:{
                 number:'',
+                fnumber:'',
+                numberm:'',
             },
             bank:{
                 name:'',
@@ -562,20 +589,21 @@
             trcategory:'sc',
             gncategory:'general',
             adhError:'',
+            adhErrorf:'',
+            adhErrorm:'',
 
         },
         methods:{
             cardNumberSpace(){
-
                 var cardNumber = this.$refs.creditCardNumber.value;
 
                 this.adhError = '';
-                if (cardNumber.length <16) {
+                if (cardNumber.length != 16) {
                     this.adhError = 'Aadhar Card number must be 16 digits.';
                 }else{
 
-                    var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
-                    this.adhaar.number = result;
+                    // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
+                    // this.adhaar.number = result;
                     var self= this;
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/adharcheck?adhar='+cardNumber)
@@ -590,6 +618,58 @@
                     })
                 }
             },
+
+            cardNumberSpacef(){
+                var cardNumber = this.$refs.creditCardNumberf.value;
+
+                this.adhErrorf = '';
+                if (cardNumber.length <16) {
+                    this.adhErrorf = 'Aadhar Card number must be 16 digits.';
+                }else{
+
+                    // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
+                    // this.adhaar.fnumber = result;
+                    var self= this;
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/adharcheckf?adharf='+cardNumber)
+                    .then(function (response) {
+                        if(response.data !=  '0'){
+                            M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                            this.adhErrorf = 'You are not eligible to apply for this scholarship';
+                        }
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                }
+            },
+
+
+             cardNumberSpacem(){
+                var cardNumber = this.$refs.creditCardNumberm.value;
+
+                this.adhErrorm = '';
+                if (cardNumber.length <16) {
+                    this.adhErrorm = 'Aadhar Card number must be 16 digits.';
+                }else{
+
+                    // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
+                    // this.adhaar.numberm = result;
+                    var self= this;
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/adharcheckm?adharm='+cardNumber)
+                    .then(function (response) {
+                        if(response.data !=  '0'){
+                            M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                            this.adhErrorm = 'You are not eligible to apply for this scholarship';
+                        }
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
+                }
+            },
+
             markcard(){
                 this.file = this.$refs.file.files[0];
                 
@@ -608,6 +688,14 @@
             },
             adhaarXerox(){
                 this.file2 = this.$refs.file2.files[0];
+                
+            },
+            adhaarXeroxf(){
+                this.file2f = this.$refs.file2f.files[0];
+                
+            },
+            adhaarXeroxm(){
+                this.file2m = this.$refs.file2m.files[0];
                 
             },
             bankPassbook(){
@@ -671,8 +759,15 @@
                     formData.append('intalluk', this.industry.talluk.tallukId);
                     formData.append('indistrict', this.industry.district.districtId);
                     formData.append('inname', this.industry.name.iId);
+
                     formData.append('anumber', this.adhaar.number);
                     formData.append('axerox', this.file2);
+                    formData.append('anumberm', this.adhaar.numberm);
+                    formData.append('axeroxm', this.file2m);
+                    formData.append('anumberf', this.adhaar.fnumber);
+                    formData.append('axeroxf', this.file2f);
+
+
                     formData.append('bname', this.bank.name);
                     formData.append('bname', this.bank.name);
                     formData.append('bname', this.bank.name);
@@ -684,8 +779,9 @@
                     formData.append('bholder', this.bank.holder);
                                               
                     formData.append('uniq', this.uniq);                          
-                    formData.append('aid', this.aid);                          
-                                            
+                    formData.append('aid', this.aid);
+
+
                     axios.post('<?php echo base_url() ?>student/submit-application', formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } })
                     .then(response => {
@@ -843,6 +939,9 @@
                         }else{
                             self.adhrpdf = "#";
                         }
+
+                        self.adhaar.numberm      = response.data.m_adhar;
+                        self.adhaar.fnumber      = response.data.f_adhar;
 
                         //bank details
                         self.bank.name          = response.data.name;

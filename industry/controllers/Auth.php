@@ -10,7 +10,8 @@ class auth extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('m_auth');
-        $this->load->library('form_validation');  
+        $this->load->library('form_validation'); 
+        $this->load->library('sc_check'); 
     }
     
 
@@ -33,10 +34,12 @@ class auth extends CI_Controller {
                             'scctype'    => $result['type'],
                         ); 
                         $this->session->set_userdata($session_data); 
+                        $this->sc_check->loginSuccess();
                         redirect('dashboard'); 
                     } 
                     else 
                     {
+                        $this->sc_check->loginError($email);
                         $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                         redirect('/');
                     }
@@ -164,6 +167,14 @@ class auth extends CI_Controller {
             'type'          => 1,
         );
 
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail($insert['email']);
+           }
+        }
+
+
         if ((!empty($_FILES['reg_doc']['tmp_name']))) {
             $config['upload_path'] = './reg-doc';
             $config['allowed_types'] = 'jpg|png|jpeg';
@@ -243,7 +254,6 @@ class auth extends CI_Controller {
             redirect('register');
         }
     }
-
 
     // Send activation
     public function sendActivation($insert = null)
@@ -460,6 +470,13 @@ class auth extends CI_Controller {
             'company'       => $this->input->post('company'),
             'act'           => $this->input->post('act'),
         );
+
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail($insert['email']);
+           }
+        }
 
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');

@@ -9,6 +9,7 @@ class Account extends CI_Controller {
         parent::__construct();
         $this->load->model('M_account');
         if($this->session->userdata('scinst') == ''){ redirect('/','refresh'); }
+        $this->load->library('sc_check');
     }
 
     public function index()
@@ -40,6 +41,14 @@ class Account extends CI_Controller {
     // update images
     public function institute_doc()
     {
+
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail($this->session->userdata('scmail'));
+           }
+        }
+
         $key =  $this->input->post('type');
       
         $config['upload_path'] = './'.$key;

@@ -11,6 +11,7 @@ class Account extends CI_Controller {
         if($this->session->userdata('pyId') == ''){ redirect('/','refresh'); }
         $this->inId = $this->session->userdata('pyComp');
         $this->reg = $this->session->userdata('pyId');
+        $this->load->library('sc_check'); 
     }
 
     public function index()
@@ -47,6 +48,13 @@ class Account extends CI_Controller {
     public function industry_doc()
     {
         $key =  $this->input->post('type');
+
+        foreach ($_FILES as $key => $value) {
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+                $this->sc_check->sus_mail($this->session->userdata('pyMal'));
+           }
+        }
       
         $config['upload_path'] = './'.$key;
         $config['allowed_types'] = 'jpg|png|jpeg';
