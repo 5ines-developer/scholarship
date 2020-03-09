@@ -183,7 +183,7 @@
                                                     <div class="file-path-wrapper">
                                                         <input class="file-path validate" type="text" placeholder="Upload cast certificate"  >
                                                     </div>
-                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span> </p>
+                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span> </p>
                                                 </div>
 
                                                 <div class="input-field col s6 ">
@@ -266,7 +266,7 @@
                                                         <input class="file-path validate" type="text" >
                                                     </div>
                                                     
-                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note :</span> <span class="red-text"> File Should be in pdf / jpg / png format. Size should be not more than 512KB. <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a>  </span></p>
+                                                    <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note : File Should be in pdf / jpg / png format. Size should be not more than 512KB. <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a>  </span></p>
                                                 </div>
                                             </div>
                                             
@@ -298,13 +298,13 @@
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
                                                 </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
                                             </div>
 
 
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_nof" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
-                                                <label for="adhar_nof"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                                <input id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
+                                                <label for="adhar_nof"> <span class="black-text">Enter Your Father Aadhar Card Number</span>   </label>
                                                 <span class="red-text">{{adhErrorf}}</span>
                                             </div>
 
@@ -317,13 +317,13 @@
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
                                                 </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
                                             </div>
 
 
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
-                                                <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                                <input id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
+                                                <label for="adhar_no"> <span class="black-text">Enter Your Mother Aadhar Card Number</span>   </label>
                                                 <span class="red-text">{{adhErrorm}}</span>
                                             </div>
 
@@ -336,7 +336,7 @@
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
                                                 </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
                                             </div>
 
                                             
@@ -353,7 +353,7 @@
 
                                             <div class="input-field col s12 m5 l5">
                                                 <select id="in_talluk"  required="" v-model="bank.type">
-                                                    <option value="" disabled selected>ಖಾತೆದಾರರು</option>
+                                                    <option value="">ಖಾತೆದಾರರು</option>
                                                     <option value="1">Parent</option>
                                                     <option value="2">Student</option>
                                                 </select>
@@ -396,7 +396,7 @@
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Passbook Front page" >
                                                 </div>
-                                                <span class="red-text helper-text" data-error="wrong"  data-success="right">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span><br><br>
+                                                <span class="black-text helper-text" data-error="wrong"  data-success="right">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span><br><br>
                                             </div>
                                             
                                         </div>

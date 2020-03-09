@@ -287,32 +287,90 @@ $this->load->model('m_stdapplication');
                                                 <p>Enter Student Aadhar Card Number and Attach the Xerox copy.</p>
                                                 <p>ವಿದ್ಯಾರ್ಥಿಯು ಆಧಾರ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ  (ಜೆರಾಕ್ಸ್ ಪ್ರತಿಯನ್ನು ಲಗತ್ತಿಸುವುದು). </p>
                                             </div>
-                                            
 
-                                            <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
-                                                <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                            <!-- student aadhar -->
+
+                                            <div class="row m0">
+                                                <div class="input-field col s12 m5">
+                                                    <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
+                                                        <a target="_blank" :href="adhrpdf">Aadhar Card</a>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="input-field col s12 m5">
+                                                    <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
+                                                    <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                                    <span class="red-text">{{ adhError }}</span>
+                                                </div>
+                                                <div class="file-field input-field col s12 m6">
+                                                    <div class="btn">
+                                                        <span>File</span>
+                                                        <input type="file" name="adhar"  ref="file2" @change="adhaarXerox">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
+                                                    </div>
+                                                    <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span></span>
+                                                </div> 
                                             </div>
-                                            <div class="clearfix"></div>
 
-                                            <div class="input-field col s12 m5">
-                                            <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt=""> 
-                                                <a target="_blank" :href="adhrpdf">Aadhar Card</a>
-                                            </p>
+                                            <!-- student aadhar -->
+
+                                            <!-- father aadhar -->
+
+
+                                            <div class="row m0">
+                                                <div class="input-field col s12 m5">
+                                                    <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
+                                                        <a target="_blank" :href="adhrpdf">Aadhar Card</a>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="input-field col s12 m5">
+                                                <input id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
+                                                <label for="adhar_nof"> <span class="black-text">Enter Your Father Aadhar Card Number</span>   </label>
+                                                <span class="red-text">{{adhErrorf}}</span>
                                             </div>
-                                            <div class="clearfix"></div>
-
-                                            <div class="file-field input-field col s12 m6">
+                                                <div class="file-field input-field col s12 m6">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="adhar"  ref="file2" @change="adhaarXerox">
+                                                    <input type="file" name="adhar"  ref="file2f" @change="adhaarXeroxf" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
                                                 </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: </span> <span class="red-text">File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="http://jpeg-optimizer.com/" target="_blank">click here to reduce the image size</a></span></span>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
                                             </div>
-                                            
+                                            </div>
+
+                                            <!-- father aadhar -->
+
+                                            <!-- mother aadhar -->
+
+                                            <div class="row m0">
+                                                <div class="input-field col s12 m5">
+                                                    <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
+                                                        <a target="_blank" :href="adhrpdf">Aadhar Card</a>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="input-field col s12 m5">
+                                                    <input id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
+                                                    <label for="adhar_no"> <span class="black-text">Enter Your Mother Aadhar Card Number</span>   </label>
+                                                    <span class="red-text">{{adhErrorm}}</span>
+                                                </div>
+                                                <div class="file-field input-field col s12 m6">
+                                                    <div class="btn">
+                                                        <span>File</span>
+                                                        <input type="file" name="adhar"  ref="file2m" @change="adhaarXeroxm" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
+                                                    </div>
+                                                    <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                </div>
+                                            </div>
+                                            <!-- mother aadhar -->
                                         </div>
                                         
                                         <!-- End Box-->
@@ -573,12 +631,36 @@ $this->load->model('m_stdapplication');
             castpdf:'',
             adhrpdf:'',
             bankpdf:'',
+            adhError:'',
+            adhError:'',
+            adhErrorf:'',
+            adhErrorm:'',
         },
         methods:{
             cardNumberSpace(){
                 var cardNumber = this.$refs.creditCardNumber.value;
-                var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
-                this.adhaar.number = result;
+                // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
+                // this.adhaar.number = result;
+
+                this.adhError = '';
+                if (cardNumber.length != 16) {
+                    this.adhError = 'Aadhar Card number must be 16 digits.';
+                }
+            },
+            cardNumberSpacef(){
+                var cardNumber = this.$refs.creditCardNumberf.value;
+                this.adhErrorf = '';
+                if (cardNumber.length <16) {
+                    this.adhErrorf = 'Aadhar Card number must be 16 digits.';
+                }
+            },
+
+            cardNumberSpacem(){
+                var cardNumber = this.$refs.creditCardNumberm.value;
+                this.adhErrorm = '';
+                if (cardNumber.length <16) {
+                    this.adhErrorm = 'Aadhar Card number must be 16 digits.';
+                }
             },
             markcard(){
                 this.file = this.$refs.file.files[0];
@@ -600,6 +682,16 @@ $this->load->model('m_stdapplication');
                 this.file2 = this.$refs.file2.files[0];
                 
             },
+
+            adhaarXeroxf(){
+                this.file2f = this.$refs.file2f.files[0];
+                
+            },
+            adhaarXeroxm(){
+                this.file2m = this.$refs.file2m.files[0];
+                
+            },
+            
             bankPassbook(){
                 this.file3 = this.$refs.file3.files[0];
                 
@@ -857,7 +949,14 @@ $this->load->model('m_stdapplication');
                         self.bank.branch        = response.data.branch;
                         self.bank.ifsc          = response.data.ifsc;
                         self.bank.account       = response.data.acc_no;
-                        self.bank.type          = response.data.type;
+
+                        if(response.data.type == '1'){
+                            self.bank.type = 'Parent';
+                        }else{
+                            self.bank.type = 'Student';
+                        }
+                        // self.bank.type          = response.data.type;
+
                         self.bank.holder        = response.data.holder;
                         if (response.data.passbook !=null) {
                             self.bankpdf  = "<?php echo base_url() ?>"+response.data.passbook;

@@ -291,10 +291,12 @@ class Std_application extends CI_Controller {
     		'branch' 		=> $this->input->post('branch'), 
     		'ifsc' 			=> $this->input->post('bifsc'), 
     		'acc_no' 		=> $this->input->post('baccount'), 
-    		'type' 			=> $this->input->post('btype'), 
     		'holder' 		=> $this->input->post('bholder'), 
 		);
 
+		if ($this->input->post('btype') == '1' || $this->input->post('btype') == '2') {
+			$insert['type'] =$this->input->post('btype');
+		}
 
 		
 		if (empty($_FILES['bpassbook']['tmp_name'])) {
