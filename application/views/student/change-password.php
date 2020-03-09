@@ -32,14 +32,14 @@
                                                         <label for="name">Current Password</label>
                                                         <span class="helper-text red-text">{{crpError}}</span>
                                                     </div>
-                                                    
+
                                                     <div class="input-field col s12">
                                                         <input id="email" type="password" v-on:change="samePass"  v-model="npsw" class="validate" name="npswd" required="">
                                                         <label for="email">New Password</label>
                                                         <span class="helper-text red-text">{{samepassError}}</span>
 
                                                     </div>
-                                                    
+                                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                     <div class="input-field col s12">
                                                         <input id="phone" v-model="cpsw" type="password" class="validate" name="cn_pswd" required="" v-on:change="checkCpsw">
                                                         <label for="phone">Confirm Password</label>
@@ -93,6 +93,7 @@
                 currntPass(){
                     const formData = new FormData();
                     formData.append('crpass', this.currentpsw);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url() ?>std_account/checkpsw', formData)
                     .then(response => {
                         if(response.data == ''){

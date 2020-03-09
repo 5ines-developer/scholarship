@@ -24,7 +24,12 @@ class Std_application extends CI_Controller {
 	public function index()
 	{
 		$data['title']  	= 'Student Application';
-		$item = $this->input->get('item');		
+		$item = $this->input->get('item');	
+		$this->security->xss_clean($_GET);
+		$csrf = array(
+	        'name' => $this->security->get_csrf_token_name(),
+	        'hash' => $this->security->get_csrf_hash()
+	    );
 		if (!empty($this->check) && (!empty($item)) ) {
 			$data['scholls'] = $this->m_stdapplication->getscholls($item); //get current institution details
 			$this->load->view('student/re_application', $data, FALSE);
@@ -38,6 +43,10 @@ class Std_application extends CI_Controller {
 
 	public function lastData($value='')
 	{
+		$csrf = array(
+	        'name' => $this->security->get_csrf_token_name(),
+	        'hash' => $this->security->get_csrf_hash()
+	    );
 		$data = $this->m_stdapplication->getlastData($this->sid);
 		echo json_encode($data);
 	}
@@ -132,13 +141,20 @@ class Std_application extends CI_Controller {
     **/
     public function insertAppli($value='')
     {
+    	$this->security->xss_clean($_POST);
+    	$csrf = array(
+	        'name' => $this->security->get_csrf_token_name(),
+	        'hash' => $this->security->get_csrf_hash()
+	    );
+
     	foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg'){
+           if($fl[1] =='js' && $fl[1] =='exe' && $fl[1] =='php'){
                 $this->sc_check->sus_mail($this->session->userdata('slmail'));
                 die();
            }
         }
+
 
 		$input = $this->input->post();
 		if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
@@ -193,7 +209,10 @@ class Std_application extends CI_Controller {
 
     public function applicantBasic($data='',$apid='')
     {
-
+    	$csrf = array(
+	        'name' => $this->security->get_csrf_token_name(),
+	        'hash' => $this->security->get_csrf_hash()
+	    );
     	$this->load->library('upload');
     	$files = $_FILES;
     	if (($this->input->post('clow') == '') &&  (empty($_FILES['cfile']['tmp_name'])) ) {
@@ -285,6 +304,11 @@ class Std_application extends CI_Controller {
 
     public function applicantAccount($data='',$apid='')
     {
+    	$csrf = array(
+	        'name' => $this->security->get_csrf_token_name(),
+	        'hash' => $this->security->get_csrf_hash()
+	    );
+
     	$insert = array(
     		'application_id'=> $apid, 
     		'name ' 		=> $this->input->post('bname'), 
@@ -349,6 +373,11 @@ class Std_application extends CI_Controller {
 
 	public function applicantSchool($data='',$apid='')
 	{
+		$csrf = array(
+	        'name' => $this->security->get_csrf_token_name(),
+	        'hash' => $this->security->get_csrf_hash()
+	    );
+
 		$insert = array(
     		'application_id'=> $apid, 
     		'ins_pin' 		=> $this->input->post('ipin'),

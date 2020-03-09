@@ -114,6 +114,9 @@
                                             <input  id="ans"  name="ans" type="text" class="validate" required>
                                             <label for="ans">Answer</label>
                                     </div>
+                                    
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn flft">Submit</button>
                                         <div class="forg-cgange">
@@ -149,8 +152,9 @@
                                         <div class="input-field col s12">
                                             <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate" required>
                                             <label for="email">Email ID</label>
-                                            <span class="helper-text red-text">{{ emailError }}</span>
+                                            <span class="helper-text red-text">{{ emailError }}</span><br>
                                         </div>
+                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                         <div class="input-field col s12">
                                             <button class="waves-effect waves-light hoverable btn-theme btn flft">Submit</button>
                                             <div class="forg-cgange">
@@ -211,6 +215,7 @@
                 this.emailError='';
                 const formData = new FormData();
                 formData.append('email',this.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('student/emailcheck') ?>',formData)
                 .then(response =>{
                     if (response.data == '') {
@@ -235,6 +240,7 @@
                     this.mobileError='';
                     const formData = new FormData();
                     formData.append('mobile',this.mobile);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('student/mobile_check') ?>', formData)
                     .then(response => {
                         if (response.data == '1') {

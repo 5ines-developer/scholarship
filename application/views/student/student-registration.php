@@ -35,6 +35,7 @@
                                 <div class="card-body row m0">
                                     <div class="input-field col s12">
                                         <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate">
+                                    
                                         <label for="email">Email ID (optional)</label>
                                         <span class="helper-text red-text">{{ emailError }}</span>
                                     </div>
@@ -44,6 +45,9 @@
                                         <label for="phone">Mobile No</label>
                                         <span class="helper-text red-text">{{mobileError}}</span><br>
                                     </div>
+
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
 
 
                                     <div class="input-field col s12">
@@ -134,6 +138,7 @@
                 this.emailError='';
                 const formData = new FormData();
                 formData.append('email',this.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('student/emailcheck') ?>',formData)
                 .then(response =>{
                     if (response.data == '1') {
@@ -159,6 +164,7 @@
                     this.mobileError='';
                     const formData = new FormData();
                     formData.append('mobile',this.mobile);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('student/mobile_check') ?>', formData)
                     .then(response => {
                         if (response.data == '1') {
@@ -187,11 +193,11 @@
             checkForm() {
                 if ((this.confError == '') && (this.mobileError == '') && (this.emailError == '')) {
 
-                    if (grecaptcha.getResponse() == '') {
-                        this.captcha = 'Captcha is required';
-                    } else {
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {
                         this.$refs.form.submit();
-                    }// 
+                    // } 
                 } else {}
             }
 

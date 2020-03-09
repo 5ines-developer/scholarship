@@ -106,6 +106,7 @@
                                         <div class="input-field col s12">
                                         <input  id="answer" name="answer" v-model="answer" type="text" class="validate" required>
                                         <label for="answer">Answer</label>
+                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     </div>
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>

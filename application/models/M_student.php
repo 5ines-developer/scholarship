@@ -161,6 +161,8 @@ class M_student extends CI_Model {
         }
     }
 
+
+
     /**
     * student login - security question get
     * @url      : student/security
@@ -184,6 +186,17 @@ class M_student extends CI_Model {
       }else{
         return false;
       }      
+    }
+
+    public function qst_resetpass($phone='',$password='')
+    {
+        $this->db->where('phone', $phone);
+        $this->db->update('student',array('password' => $password));
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function securityForgo($phone='',$qstn='',$ans='',$password='')

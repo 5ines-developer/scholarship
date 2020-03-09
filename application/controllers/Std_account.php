@@ -27,6 +27,12 @@ class Std_account extends CI_Controller {
 	
 	public function getProfile($output = null)
 	{
+        $this->security->xss_clean($_GET);
+        $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+        );
+
 		$output = $this->m_stdaccount->getProfile($this->sid);
         if (!empty($output['profile_pic'])) {
             $output['profile'] = base_url().$output['profile_pic'];
@@ -39,6 +45,13 @@ class Std_account extends CI_Controller {
 
     public function updateprofile($output='')
     {
+
+        $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $name = $this->input->post('name');
         $email = $this->input->post('email');
         $output = $this->m_stdaccount->updateProfile($email,$name,$this->sid);
@@ -50,10 +63,15 @@ class Std_account extends CI_Controller {
 
     public function addfile($output='')
     {
+        $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
         foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg'){
                 $this->sc_check->sus_mail($this->session->userdata('slmail'));
            }
         }
@@ -99,6 +117,12 @@ class Std_account extends CI_Controller {
     **/
 	public function update_pass($value='')
 	{
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+        );
+
 		$data['title']  = 'Student Change password - Scholarship';
 		$this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
         $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
@@ -126,6 +150,11 @@ class Std_account extends CI_Controller {
 	// psw check function
     public function checkpsw($psw='')
     {
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+        );
         $output = $this->m_stdaccount->checkpsw($this->input->post('crpass'));
         echo $output;
     }

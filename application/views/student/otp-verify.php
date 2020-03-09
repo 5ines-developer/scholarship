@@ -103,6 +103,7 @@
                                             <input  id="otp"  name="otp" type="text" v-model="otp" class="validate" required maxlength="6" minlength="6">
                                             <label for="otp">Enter 6 digit code</label>
                                         </div>
+                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn flft">Submit</button>
                                         <a href="#" @click="resend" class="col mt15 mb15">Resend OTP</a> 

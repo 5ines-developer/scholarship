@@ -89,8 +89,7 @@
                                 <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('student/reset-pass') ?>" method="post" enctype="multipart/form-data" id="forgotForm">
                                 <div class="card-body row m0 pt15 pb15">
                                     <div class="input-field col s12">
-                                            <input   name="phone" type="hidden" class="validate" value="<?php echo $mobile ?>">
-                                            
+                                        <input   name="phone" type="hidden" class="validate" value="<?php echo $mobile ?>">
                                     </div>
                                     <div class="input-field col s12">
                                         <input  id="password" v-model="psw" name="password" type="password" class="validate" required>
@@ -101,6 +100,7 @@
                                         <label for="cpassword">Confirm Password</label>
                                         <span class="helper-text red-text">{{confError}}</span><br>
                                     </div>
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
                                     <input type="hidden" name="qstn" value="<?php echo (!empty($qstn))?$qstn:''; ?>">
                                     <input type="hidden" name="ans" value="<?php echo (!empty($ans))?$ans:''; ?>">

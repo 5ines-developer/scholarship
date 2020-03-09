@@ -56,6 +56,8 @@
                                                     <input id="phone" autofocus="" readonly="" v-model="student.mobile" type="number" class="validate">
                                                     <label for="phone">Mobile Number</label>
                                                 </div>
+
+                                                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                 
                                                 <div class="input-field col s12">
                                                     <input type="file" id="profileimg" @change="upload()" onchange="putImage()" ref="fileInput" class="hide" accept="image/*">
@@ -125,6 +127,7 @@
                 this.fileInput = this.$refs.fileInput.files[0];
                 const formData = new FormData();
                 formData.append('file', this.fileInput);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url() ?>std_account/addfile', formData,
                     formData,
                         { 
@@ -153,6 +156,7 @@
                     const formData = new FormData();
                     formData.append('name', this.student.name);
                     formData.append('email', this.student.email);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url() ?>std_account/updateprofile', formData)
                     .then(response => {
                     this.loader=false;
@@ -171,8 +175,10 @@
 
                 },
             getData(){
+                const formData = new FormData();
                 this.loader=true;
-                axios.post('<?php echo base_url() ?>std_account/getProfile')
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                axios.post('<?php echo base_url() ?>std_account/getProfile',formData)
                 .then(response => {
                     this.loader=false;
 

@@ -781,6 +781,8 @@
                     formData.append('uniq', this.uniq);                          
                     formData.append('aid', this.aid);
 
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+
 
                     axios.post('<?php echo base_url() ?>student/submit-application', formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } })
@@ -902,6 +904,7 @@
                 getdata(){
                     var self= this;
                     const formData = new FormData();
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.get('<?php echo base_url() ?>std_application/lastData')
                     .then(function (response) {
                         //basic details
