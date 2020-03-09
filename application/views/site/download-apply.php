@@ -133,6 +133,18 @@ $this->load->model('m_stdapplication');
             <td colspan="1" align="left" style="border:1px solid gray;" >Aadhaar card File : <?php echo (!empty($result->adharcard_file))?'Submitted':'Not Submitted'; ?> </td>
           </tr>
 
+          <tr>
+            <td colspan="2" align="left" style="border:1px solid gray;" >Father's Aadhaar Number : <?php echo (!empty($result->f_adhar))?$result->f_adhar:'---'; ?></td>
+            <td colspan="1" align="left" style="border:1px solid gray;" >Father's Aadhaar card File : <?php echo (!empty($result->f_adharfile))?'Submitted':'Not Submitted'; ?> </td>
+          </tr>
+
+          <tr>
+            <td colspan="2" align="left" style="border:1px solid gray;" >Mother's Aadhaar  : <?php echo (!empty($result->m_adhar))?$result->m_adhar:'---'; ?></td>
+            <td colspan="1" align="left" style="border:1px solid gray;" >Mother's Aadhaar card File : <?php echo (!empty($result->m_adharfile))?'Submitted':'Not Submitted'; ?> </td>
+          </tr>
+
+
+
           <!-- Bank Details -->
           <tr>
             <th align="left" colspan="3" style="padding:25px;padding-left:15px;border:none;" >Bank Details</th>

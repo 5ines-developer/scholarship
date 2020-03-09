@@ -258,16 +258,43 @@ $this->load->model('m_dashboard');
                                                             <div class="row m0">
                                                                 <div class="col s12">
                                                                     <ul>
-                                                                        <li>
-                                                                            <p class="app-item-content-head">Adhaar</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->adharcard_no))?$result->adharcard_no:'___'; ?></p>
+                                                                        <li class="row">
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Aadhaar</p>
+                                                                                <p class="app-item-content"><?php echo (!empty($result->adharcard_no))?$result->adharcard_no:'---'; ?></p>
+                                                                            </div>
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Aadhaar card File</p>
+                                                                                <?php if (!empty($result->adharcard_file)) { ?>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->adharcard_file))?$this->config->item('web_url').$result->adharcard_file:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                            <?php } ?>
+                                                                            </div>
                                                                         </li>
-
-                                                                        <li>
-                                                                            <p class="app-item-content-head">Adhaar card File</p>
-                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->adharcard_file))?$this->config->item('web_url').$result->adharcard_file:'#'; ?>">Aadhar Xerox</a></p>
+                                                                        <li class="row">
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Father Aadhaar</p>
+                                                                                <p class="app-item-content"><?php echo (!empty($result->f_adhar))?$result->f_adhar:'---'; ?></p>
+                                                                            </div>
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Father Aadhaar card File</p>
+                                                                                <?php if (!empty($result->f_adharfile)) { ?>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->f_adharfile))?$this->config->item('web_url').$result->f_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                            <?php } ?>
+                                                                            </div>
                                                                         </li>
-                                                                    </ul>
+                                                                        <li class="row">
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Mother Aadhaar</p>
+                                                                                <p class="app-item-content"><?php echo (!empty($result->m_adhar))?$result->m_adhar:'---'; ?></p>
+                                                                            </div>
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Mother Aadhaar card File</p>
+                                                                                <?php if (!empty($result->m_adharfile)) { ?>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->m_adharfile))?$this->config->item('web_url').$result->m_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                            <?php } ?>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul> 
                                                                 </div>
                                                             </div>
                                                         </div>

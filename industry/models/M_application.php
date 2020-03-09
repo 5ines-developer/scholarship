@@ -82,7 +82,7 @@ class M_application extends CI_Model {
     public function singleStudent($id = null)
     {
         return $this->db->where('a.id', $id)            
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,,ab.f_adhar, ab.f_adharfile, ab.m_adhar, ab.m_adharfile')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
