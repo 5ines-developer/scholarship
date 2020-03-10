@@ -207,6 +207,7 @@
                     var self = this;
                     const formData = new FormData();
                    formData.append('id',this.id);
+                   formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                    axios.post('<?php echo base_url('Student/unblock') ?>',formData)
                    .then(response => {
                         self.block = false;
@@ -222,6 +223,7 @@
                     var self = this;
                    const formData = new FormData();
                    formData.append('id',this.id);
+                   formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                    axios.post('<?php echo base_url('Student/block') ?>',formData)
                    .then(response => {
                         self.block = true;

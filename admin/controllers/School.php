@@ -14,6 +14,13 @@ class School extends CI_Controller {
 
 	public function index($id='',$year='')
 	{
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
+
         $district = $this->input->get('district');
         $taluk    = $this->input->get('taluk');
 		$data['title']      = 'Institute Management';
@@ -31,8 +38,14 @@ class School extends CI_Controller {
 		}
     }
 
-    	public function block($value='')
+    public function block($value='')
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $id = $this->input->post('id');
         $status = '3';
         if($this->m_school->stasChange($id,$status)){
@@ -46,6 +59,13 @@ class School extends CI_Controller {
 
     public function unblock($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $id = $this->input->post('id');
         $status = '1';
         if($this->m_school->stasChange($id,$status)){
@@ -60,6 +80,13 @@ class School extends CI_Controller {
 
     public function add($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $data['title']      = 'Institute Management';
         if(!empty($this->input->post())){
 
@@ -91,6 +118,13 @@ class School extends CI_Controller {
 
     public function namecheck($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $name = $this->input->post('name');
         $output = $this->db->where('school_address', $name)->get('reg_schools')->row();
         if(!empty($output)){
@@ -103,6 +137,13 @@ class School extends CI_Controller {
 
     public function regcheck($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $regno = $this->input->post('regno');
         $output = $this->db->where('reg_no', $regno)->get('reg_schools')->row();
         if(!empty($output)){
@@ -152,6 +193,13 @@ class School extends CI_Controller {
 
     public function edit($id='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+    
         $data['title']      = 'Institute Management';
         if(!empty($this->input->post())){
 

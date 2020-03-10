@@ -49,6 +49,8 @@
                                                     <label for="phone">Phone</label>
                                                     <span class="helper-text red-text">{{mobileError}}</span><br>
                                                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                                 <div class="col sel-hr s12 m8">
                                                     <label >Employee Designation</label>
                                                     <p class="mb10 mt10">
@@ -131,6 +133,8 @@
                         const formData = new FormData();
                         formData.append('phone',this.phone);
                         formData.append('id',this.id);
+        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                        
                         axios.post('<?php echo base_url('employee/mobile_check') ?>', formData)
                         .then(response => {
                             if (response.data == '1') {

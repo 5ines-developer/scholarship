@@ -31,6 +31,8 @@
                                             <label for="email">Email ID</label>
                                             <span>{{ emailError }}</span>
                                         </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                        
                                         <div class="input-field col s12">
                                             <input id="password" name="pswd" type="password"  class="validate" required>
                                             <label for="password">Password</label>

@@ -21,6 +21,13 @@ class Employee extends CI_Controller {
 
     public function add($var = null)
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
        
         $data['title'] = 'Employee Add | Scholarship';
         if($this->input->post()){
@@ -97,6 +104,14 @@ class Employee extends CI_Controller {
 
     public function block($value='')
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
+
+
         $id = $this->input->get('id');
         $status = '3';
 
@@ -110,6 +125,13 @@ class Employee extends CI_Controller {
 
     public function unblock($value='')
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
+
+
         $id = $this->input->get('id');
         $status = '1';
         if($this->M_employee->stasChange($id,$status)){
@@ -122,6 +144,13 @@ class Employee extends CI_Controller {
 
     public function mobile_check($value='')
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $this->security->xss_clean($_POST);
         $phone = $this->input->post('phone');
         $id = $this->input->post('id');
@@ -132,6 +161,13 @@ class Employee extends CI_Controller {
 
     public function update($value='')
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+        
         $id = $this->input->post('id');
         $data   = array(
             'phone'         => $this->input->post('phone'), 

@@ -45,6 +45,8 @@
                                                     <label for="email">Email</label>
                                                     <?php echo validation_errors(); ?>
                                                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                                
                                                 <div class="input-field col m8">
                                                     <input id="phone" name="phone" required type="number" class="validate">
                                                     <label for="phone">Phone</label>

@@ -50,6 +50,9 @@
                                                 <input type="hidden" name="id" value="<?php echo (!empty($result->id))?$result->id:''; ?>">
                                                 <div class="clearfix"></div>
 
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                                
+
                                                 <div class="input-field col m8 l5">
                                                     <input id="phone" name="phone" type="text" required class="validate" value="<?php echo (!empty($result->phone))?$result->phone:''; ?>">
                                                     <label for="phone">Phone Number</label>

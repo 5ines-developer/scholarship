@@ -40,6 +40,12 @@ class Industry extends CI_Controller {
     **/
     public function getIndustry($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+    
     	$fetch_data   = $this->m_industry->getIndustry();
         $data = array();
         foreach($fetch_data as $row)  
@@ -98,6 +104,12 @@ class Industry extends CI_Controller {
     **/
     public function allindustry($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $fetch_data   = $this->m_industry->make_datatables();
         $data = array();
         foreach($fetch_data as $row)  
@@ -149,6 +161,13 @@ class Industry extends CI_Controller {
     **/
     public function add($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $data['title']      = 'Industry Management';
         if(!empty($this->input->post())){
             $insert = array(
@@ -177,6 +196,12 @@ class Industry extends CI_Controller {
     **/
     public function namecheck($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $name = $this->input->post('name');
         $output = $this->db->where('name', $name)->get('industry')->row();
         if(!empty($output)){
@@ -193,6 +218,12 @@ class Industry extends CI_Controller {
     **/
     public function regcheck($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $regno = $this->input->post('regno');
         $output = $this->db->where('reg_id', $regno)->get('industry')->row();
         if(!empty($output)){
@@ -208,6 +239,12 @@ class Industry extends CI_Controller {
     **/
     public function edit($id='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $data['title']      = 'Industry Management';
         if(!empty($this->input->post())){
 
@@ -237,6 +274,12 @@ class Industry extends CI_Controller {
     **/
     public function block($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $id = $this->input->post('id');
         $status = '2';
         if($this->m_industry->stasChange($id,$status)){
@@ -250,6 +293,12 @@ class Industry extends CI_Controller {
 
     public function unblock($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $id = $this->input->post('id');
         $status = '1';
         if($this->m_industry->stasChange($id,$status)){
@@ -267,6 +316,12 @@ class Industry extends CI_Controller {
     **/
     public function empblock($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_GET);
+
         $id = $this->input->get('id');
         $ind = $this->input->get('ind');
         $stat = '2';
@@ -280,6 +335,13 @@ class Industry extends CI_Controller {
 
     public function empunblock($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_GET);
+
         $id = $this->input->get('id');
         $ind = $this->input->get('ind');
         $stat = '1';

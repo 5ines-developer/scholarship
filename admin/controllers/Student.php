@@ -14,6 +14,7 @@ class Student extends CI_Controller {
 
 	public function index($id='')
 	{
+        $this->security->xss_clean($_GET);
 		$data['title']      = 'Student Management';
 		$year = $this->input->get('year');
 		if(!empty($id)){
@@ -29,6 +30,13 @@ class Student extends CI_Controller {
 
 	public function block($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $id = $this->input->post('id');
         $status = '2';
         if($this->m_student->stasChange($id,$status)){
@@ -42,6 +50,12 @@ class Student extends CI_Controller {
 
     public function unblock($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $id = $this->input->post('id');
         $status = '1';
         if($this->m_student->stasChange($id,$status)){
@@ -55,6 +69,12 @@ class Student extends CI_Controller {
 
     public function add($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $data['title'] = 'Add Student';
         if(!empty($this->input->post())){
             $phone = $this->input->post('phone');
@@ -90,6 +110,12 @@ class Student extends CI_Controller {
     **/
     public function mobile_check($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $this->security->xss_clean($_POST);
         $mobile = $this->input->post('phone');
         $output = $this->m_student->mobile_check($mobile);
@@ -102,6 +128,12 @@ class Student extends CI_Controller {
     **/
     public function emailcheck($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $this->security->xss_clean($_POST);
         $email = $this->input->post('email');
         $output = $this->m_student->email_check($email);
@@ -110,6 +142,12 @@ class Student extends CI_Controller {
 
     public function edit($id='',$year='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+    
         $data['title'] = 'Add Student';
         if(!empty($this->input->post())){
             $id     = $this->input->post('id');

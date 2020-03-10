@@ -30,7 +30,7 @@
                                 <div class="card-heading">
                                     <p class="m0">Set your password</p>
                                 </div>
-                                <form id="forgotForm" @submit="validateBeforeSubmit" method="post" action="<?php echo base_url() ?>set-password">
+                                <form id="forgotForm" @submit="validateBeforeSubmit" method="post" action="<?php echo base_url() ?>set-new-password">
                                 <div class="card-body row m0 pt15 pb15">
 
                                     <div class="input-field col s12">
@@ -44,7 +44,7 @@
                                     </div>
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     
-                                    <input type="hidden" name="key" value="<?php echo $key ?>">
+                                    <input type="hidden" name="key" value="<?php echo $refid ?>">
                                     <div class="col s12 red-text">{{error}}</div>
 
                                     <div class="input-field col s12">

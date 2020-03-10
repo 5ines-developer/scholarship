@@ -54,6 +54,9 @@
                                                     <label>Act Type</label>
                                                 </div>
 
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
+
 
                                                
                                                 <div class="input-field col s12">
@@ -127,6 +130,7 @@
                     this.nameError='';
                     const formData = new FormData();
                     formData.append('name',this.name);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('industry/namecheck') ?>',formData)
                     .then(response =>{
                         if(response.data == 1){
@@ -143,6 +147,7 @@
                     this.noError='';
                     const formData = new FormData();
                     formData.append('regno',this.regno);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('industry/regcheck') ?>',formData)
                     .then(response =>{
                         if(response.data == 1){

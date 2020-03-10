@@ -270,6 +270,9 @@
                 return rtn;
             }
 
+            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+            csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
             var dataTable = $('#dynamic').DataTable({
                   'processing' : true,
                   'serverSide' : true,
@@ -282,7 +285,7 @@
                     'url' : "<?php echo base_url(). 'scholar/allApplication' ?>",
                      'type' :'POST',
                      "data": {
-                        "year":  yar,"district":  dist,"taluk":  tal,"caste":  cas,"item":  item,
+                        "year":  yar,"district":  dist,"taluk":  tal,"caste":  cas,"item":  item,[csrfName]: csrfHash,
                     }
                   },
                   'columnDefs':[
@@ -319,6 +322,10 @@
             });
 
             $(document).on('click','#approve_select',function () {
+
+                var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+                csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
                if(confirm('Are you sure you want to approve all the selected applications?')){
                   var selected = [];
                      $('.indual:checked').each(function() {
@@ -328,7 +335,7 @@
                   $.ajax({
                         type: "post",
                         url: "<?php echo base_url() ?>scholar/approveSelect",
-                        data: {ids : selected},
+                        data: {ids : selected , [csrfName]: csrfHash },
                         dataType: "json",
                         success: function(response) {
                             M.toast({html: response, classes: 'green darken-4'});
@@ -343,6 +350,9 @@
             });
 
             $(document).on('click','#approve_all',function () {
+                var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+                csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
                if(confirm('Are you sure you want to approve all the applications?')){
                   var selected = [];
                      $('.indual').each(function() {
@@ -352,7 +362,7 @@
                   $.ajax({
                         type: "post",
                         url: "<?php echo base_url() ?>scholar/approveSelect",
-                        data: {ids : selected},
+                        data: {ids : selected , [csrfName]: csrfHash },
                         dataType: "json",
                         success: function(response) {
                             M.toast({html: response, classes: 'green darken-4'});

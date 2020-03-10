@@ -14,6 +14,13 @@ class Scholar extends CI_Controller {
 
     public function index($district='')
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
+
         $dist = $this->input->get('district');
         if (!empty($dist)) {
             $district = $this->m_scholar->distGet($dist);
@@ -27,6 +34,13 @@ class Scholar extends CI_Controller {
 
     public function allApplication($value='')
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $filt['year']   = $this->input->post('year');
         $dist           = $this->input->post('district');
         $tal            = $this->input->post('taluk');
@@ -109,6 +123,11 @@ class Scholar extends CI_Controller {
         // approve application
     public function approve($id = null,$msg='')
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
         
         $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
         $id = $this->input->post('id');
@@ -126,6 +145,12 @@ class Scholar extends CI_Controller {
         // Reject 
     public function reject()
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
        $id = $this->input->post('id');
        $data = array(
            'reject_reason' => $this->input->post('reason'),
@@ -133,7 +158,7 @@ class Scholar extends CI_Controller {
         );
         if($this->m_scholar->reject($data, $id)){
             $this->session->set_flashdata('success', 'Application rejected Successfully');
-            redirect('application/rejected','refresh');
+            redirect('applications?item=rejected','refresh');
         }else{
             $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
             redirect('applications/detail/'.$id,'refresh');
@@ -145,6 +170,12 @@ class Scholar extends CI_Controller {
 
     public function approveSelect($value='')
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
        $id = $this->input->post('ids');
        $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
        if(!empty($id)){

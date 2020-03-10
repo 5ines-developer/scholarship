@@ -51,6 +51,9 @@
                                                 </div>
                                                 <div class="clearfix"></div>
 
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
+
                                                 <div class="input-field col m8 l5">
                                                     <input id="phone" name="phone" type="text" required v-model="phone" class="validate" @change="mobileCheck">
                                                     <label for="phone">Phone Number</label>
@@ -123,6 +126,7 @@
                     this.mobileError='';
                     const formData = new FormData();
                     formData.append('phone',this.phone);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('student-mobile_check') ?>', formData)
                     .then(response => {
                         if (response.data == '1') {
@@ -142,6 +146,7 @@
                     this.emailError='';
                     const formData = new FormData();
                     formData.append('email',this.email);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('student-emailcheck') ?>',formData)
                     .then(response =>{
                         if (response.data == '1') {

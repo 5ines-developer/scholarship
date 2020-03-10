@@ -50,6 +50,8 @@
                                                     <input id="mtype" name="mtype" type="text" class="validate" value="<?php echo (!empty($result->management_type))?$result->management_type:''; ?>">
                                                     <label for="mtype">Management Type</label>
                                                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
 
                                                 <div class="input-field col m6">
                                                     <input id="sccat" name="sccat" type="text" class="validate" value="<?php echo (!empty($result->school_category))?$result->school_category:''; ?>">
@@ -161,6 +163,7 @@
                     this.nameError='';
                     const formData = new FormData();
                     formData.append('name',this.name);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('school/namecheck') ?>',formData)
                     .then(response =>{
                         if(response.data == 1){
@@ -177,6 +180,7 @@
                     this.noError='';
                     const formData = new FormData();
                     formData.append('regno',this.regno);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('school/regcheck') ?>',formData)
                     .then(response =>{
                         if(response.data == 1){

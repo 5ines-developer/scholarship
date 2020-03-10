@@ -158,6 +158,9 @@
     </script>
     <script>
         $(document).ready(function() {
+          var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+            csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+            
             var dataTable = $('#dynamic').DataTable({
                   'processing' : true,
                   'serverSide' : true,
@@ -168,7 +171,8 @@
                   'order' : [],
                   'ajax':{
                     'url' : "<?php echo base_url(). 'school/allschool' ?>",
-                     'type' :'POST'
+                     'type' :'POST',
+                     'data': { [csrfName]: csrfHash },
                   },
                   'columnDefs':[
                      {

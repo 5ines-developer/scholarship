@@ -46,6 +46,8 @@
                                                     </select>
                                                     <label for="graduation">Graduation</label>
                                                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                                
 
                                                 <div class="input-field col m8 l5">
                                                     <input id="fees_am" name="fees_am" required type="text" class="validate">

@@ -48,6 +48,8 @@
                                                     <label for="rno">Register Number</label>
                                                      <span class="helper-text red-text">{{noError}}</span>
                                                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                                 <div class="input-field col sel-hr s12 m6">
                                                     <select name="act" class="" required="">
                                                             <option value="" disabled selected>Choose Act Type</option>
@@ -98,6 +100,8 @@
                                         <input class="file-path validate" placeholder="Import the excel file here" type="text" required="">
                                     </div>
                                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                 <div class="col l12">
                                     <div class="ff-inp">
                                         <p><b>Note:</b>File should be in .csv / .xsl format Size should be not more than 200KB</p>
@@ -168,6 +172,7 @@
                     this.nameError='';
                     const formData = new FormData();
                     formData.append('name',this.name);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('industry/namecheck') ?>',formData)
                     .then(response =>{
                         if(response.data == 1){
@@ -184,6 +189,7 @@
                     this.noError='';
                     const formData = new FormData();
                     formData.append('regno',this.regno);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('industry/regcheck') ?>',formData)
                     .then(response =>{
                         if(response.data == 1){

@@ -1,0 +1,26 @@
+INFO - 2020-03-10 07:20:14 --> Config Class Initialized
+INFO - 2020-03-10 07:20:14 --> Hooks Class Initialized
+DEBUG - 2020-03-10 07:20:14 --> UTF-8 Support Enabled
+INFO - 2020-03-10 07:20:14 --> Utf8 Class Initialized
+INFO - 2020-03-10 07:20:14 --> URI Class Initialized
+INFO - 2020-03-10 07:20:14 --> Router Class Initialized
+INFO - 2020-03-10 07:20:14 --> Output Class Initialized
+INFO - 2020-03-10 07:20:14 --> Security Class Initialized
+DEBUG - 2020-03-10 07:20:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-10 07:20:14 --> CSRF cookie sent
+INFO - 2020-03-10 07:20:14 --> Input Class Initialized
+INFO - 2020-03-10 07:20:14 --> Language Class Initialized
+ERROR - 2020-03-10 07:20:14 --> 404 Page Not Found: Reg-doc/marks%20card.jfif
+INFO - 2020-03-10 07:20:24 --> Config Class Initialized
+INFO - 2020-03-10 07:20:24 --> Hooks Class Initialized
+DEBUG - 2020-03-10 07:20:24 --> UTF-8 Support Enabled
+INFO - 2020-03-10 07:20:24 --> Utf8 Class Initialized
+INFO - 2020-03-10 07:20:24 --> URI Class Initialized
+INFO - 2020-03-10 07:20:24 --> Router Class Initialized
+INFO - 2020-03-10 07:20:24 --> Output Class Initialized
+INFO - 2020-03-10 07:20:24 --> Security Class Initialized
+DEBUG - 2020-03-10 07:20:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-10 07:20:24 --> CSRF cookie sent
+INFO - 2020-03-10 07:20:24 --> Input Class Initialized
+INFO - 2020-03-10 07:20:24 --> Language Class Initialized
+ERROR - 2020-03-10 07:20:24 --> 404 Page Not Found: Reg-doc/marks%20card.jfif

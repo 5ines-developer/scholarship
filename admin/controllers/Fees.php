@@ -16,6 +16,13 @@ class Fees extends CI_Controller {
 
     public function add($value='')
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
     	$data['title'] = 'Add Fees';
         $this->load->helper('string');
         if($this->input->post()){
@@ -60,6 +67,14 @@ class Fees extends CI_Controller {
 
     public function update($value='')
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
+
     		$grad   = $this->input->post('graduation', true);
             $fees  = $this->input->post('fees_am', true);
             $id  = $this->input->post('id', true);
