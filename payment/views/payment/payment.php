@@ -78,6 +78,8 @@
                                                 	<p class="inregister"></p>
                                                 </div>
                                             </div>
+                                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
 
                                             <div class="col l5 m5 s12">
                                                 <div class="input-field">
@@ -192,6 +194,8 @@ $(document).ready(function() {
     });
 
      $(document).on('change','#company',function(){
+        var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+            csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
         var cmp = $(this).val();
         $('#c_comp').val(cmp);
 		var name  = $('#company option:selected').text();
@@ -199,7 +203,7 @@ $(document).ready(function() {
         $.ajax({
             type: "post",
             url: "<?php echo base_url('payments/companyChange') ?>",
-            data: { comp : cmp},
+            data: { comp : cmp, [csrfName]: csrfHash },
             dataType: "html",
             success: function (response) {
                 if (response !='') {

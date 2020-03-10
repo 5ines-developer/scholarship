@@ -33,6 +33,12 @@ class Payments extends CI_Controller {
 
     public function search($var = null)
     {
+        $this->security->xss_clean($_GET);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
         $term = $this->input->get('q[term]');
         $output = $this->m_payments->search($term);
         $result = [];
@@ -45,6 +51,13 @@ class Payments extends CI_Controller {
 
     public function companyChange($var = null)
     {
+
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
         $this->security->xss_clean($_POST);
         $company = $this->input->post('comp');
         $output = $this->m_payments->companyChange($company);

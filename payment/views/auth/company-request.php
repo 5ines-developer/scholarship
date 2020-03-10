@@ -41,6 +41,9 @@
                                         <label for="phone">Mobile No</label>
                                         <span class="helper-text red-text">{{mobileError}}</span>
                                     </div>
+
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                     
                                     <div class="input-field col s12 m6">
                                         <select id="taluk" name="taluk" required="" class="select2">
@@ -159,6 +162,7 @@
                 this.emailError='';
                 const formData = new FormData();
                 formData.append('email',this.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('auth/emailcheck') ?>',formData)
                 .then(response =>{
                     if (response.data == '1') {
@@ -179,6 +183,7 @@
                 this.mobileError='';
                 const formData = new FormData();
                 formData.append('mobile',this.mobile);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('auth/mobile_check') ?>', formData)
                 .then(response => {
                     if (response.data == '1') {
@@ -197,11 +202,11 @@
                 if ((this.mobileError == '') && (this.emailError == '')) {
 
 
-                    if (grecaptcha.getResponse() == '') {
-                        this.captcha = 'Captcha is required';
-                    } else {
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {
                         this.$refs.form.submit();
-                    }// 
+                    // }
                 } else {}
             }
 

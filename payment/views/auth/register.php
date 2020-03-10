@@ -84,6 +84,10 @@
                                             <p class="inregister"></p>
                                         </div>
                                     </div>
+
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
+
                                     <div class="row m0">  
                                         <div class="input-field col m6">
                                             <input id="c_conreg" type="text" readonly class="c_conreg validate" required="">
@@ -172,18 +176,23 @@ $(document).ready(function() {
     
     
     $(document).on('change','#company',function(){
+
+        var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+            csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
         var cmp = $(this).val();
         $('#c_comp').val(cmp);
         $.ajax({
             type: "post",
             url: "<?php echo base_url('auth/companyChange') ?>",
-            data: { comp : cmp},
+            data: { comp : cmp, [csrfName]: csrfHash },
             dataType: "html",
             success: function (response) {
 
                 if (response == 'exist') {
                     $('.inregister').append('<span class="helper-text red-text">Industry has been already registered</span>');
                 }else{
+                    $(".inregister>span").remove();
                    $('#c_conreg').val(response);
                     $(".crg").addClass('active'); 
                 }
@@ -225,6 +234,7 @@ $(document).ready(function() {
                 this.emailError='';
                 const formData = new FormData();
                 formData.append('email',this.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('auth/emailcheck') ?>',formData)
                 .then(response =>{
                     if (response.data == '1') {
@@ -245,6 +255,7 @@ $(document).ready(function() {
                 this.mobileError='';
                 const formData = new FormData();
                 formData.append('mobile',this.mobile);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('auth/mobile_check') ?>', formData)
                 .then(response => {
                     if (response.data == '1') {
@@ -262,11 +273,11 @@ $(document).ready(function() {
             checkForm() {
                 if ((this.mobileError == '') && (this.emailError == '')) {
 
-                    if (grecaptcha.getResponse() == '') {
-                        this.captcha = 'Captcha is required';
-                    } else {
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {
                         this.$refs.form.submit();
-                    }
+                    // }
                 } else {}
             }
 

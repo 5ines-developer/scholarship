@@ -205,6 +205,7 @@
                                 ?>
                             </select>
                             <label for="district">District</label>
+                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         </div>
                         <div class="input-field col m6">
                             <input id="director" value="<?php echo (!empty($info->director))?$info->director:''; ?>" type="text" name="director" class="validate">
@@ -311,7 +312,7 @@
                     else{
                         this.pan = URL.createObjectURL(file);
                     }
-                    
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url() ?>industry-doc', formData,{
                             headers: {
                             'Content-Type': 'multipart/form-data'
@@ -336,6 +337,7 @@
                 this.emailError='';
                 const formData = new FormData();
                 formData.append('email',this.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('account/emailcheck') ?>',formData)
                 .then(response =>{
                     if (response.data == '1') {
@@ -358,6 +360,7 @@
                     this.mobileError='1';
                     const formData = new FormData();
                     formData.append('mobile',this.mobile);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('account/inmobile_check') ?>', formData)
                     .then(response => {
                         if (response.data == '1') {

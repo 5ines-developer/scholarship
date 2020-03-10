@@ -16,6 +16,13 @@ class Account extends CI_Controller {
 
     public function index()
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $this->load->model('m_auth');
         $data['title'] = 'Industry account';
         $data['taluk'] = $this->m_auth->getTaluk();
@@ -53,6 +60,12 @@ class Account extends CI_Controller {
 
     public function update()
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $insert = array(
             'talluk'       => $this->input->post('taluk'),
             'district'     => $this->input->post('district'),
@@ -124,6 +137,12 @@ class Account extends CI_Controller {
 
     public function hrupdate($value='')
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $insert = array(
             'name'   => $this->input->post('name'),
             'email'  => $this->input->post('email'),
@@ -146,15 +165,20 @@ class Account extends CI_Controller {
     // update images
     public function industry_doc()
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
                 $this->sc_check->sus_mail($this->session->userdata('sinmail'));
            }
         }
 
         $key =  $this->input->post('type');
-      
         $config['upload_path'] = './'.$key;
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_width'] = 0;
@@ -193,6 +217,12 @@ class Account extends CI_Controller {
 
     public function checkPassword()
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $output = $this->M_account->checkpsw($this->input->post('crpass'));
         echo $output;
     }
@@ -200,8 +230,13 @@ class Account extends CI_Controller {
     // update password
     public function update_password()
     {
-        $this->load->library('form_validation');
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
         
+        $this->load->library('form_validation');
         $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
         $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
         $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');

@@ -26,6 +26,13 @@ class Account extends CI_Controller {
 
     public function update()
     {
+
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
         $insert = array(
             'talluk'       => $this->input->post('taluk'),
             'district'     => $this->input->post('district'),
@@ -47,11 +54,17 @@ class Account extends CI_Controller {
     // update images
     public function industry_doc()
     {
-        $key =  $this->input->post('type');
 
-        foreach ($_FILES as $key => $value) {
-           $fl =  explode('.', $value['name']);
-           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
+        $key =  $this->input->post('type');
+        foreach ($_FILES as $key1 => $value1) {
+           $fl =  explode('.', $value1['name']);
+           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
                 $this->sc_check->sus_mail($this->session->userdata('pyMal'));
            }
         }
@@ -94,6 +107,18 @@ class Account extends CI_Controller {
 
     public function checkPassword()
     {
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
         $output = $this->M_account->checkpsw($this->input->post('crpass'));
         echo $output;
     }
@@ -101,6 +126,13 @@ class Account extends CI_Controller {
     // update password
     public function update_password()
     {
+
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');

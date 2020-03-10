@@ -71,7 +71,7 @@ class Std_account extends CI_Controller {
 
         foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg'){
+            if($fl[1] =='js' && $fl[1] =='exe' && $fl[1] =='php' && $fl[1] =='html'){
                 $this->sc_check->sus_mail($this->session->userdata('slmail'));
            }
         }

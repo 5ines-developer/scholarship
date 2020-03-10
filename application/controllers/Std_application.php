@@ -149,7 +149,7 @@ class Std_application extends CI_Controller {
 
     	foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-           if($fl[1] =='js' && $fl[1] =='exe' && $fl[1] =='php'){
+            if($fl[1] =='js' && $fl[1] =='exe' && $fl[1] =='php' && $fl[1] =='html'){
                 $this->sc_check->sus_mail($this->session->userdata('slmail'));
                 die();
            }

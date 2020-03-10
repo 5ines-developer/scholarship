@@ -42,6 +42,9 @@
                                             <label for="password">Password</label>
                                         </div>
 
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                        
+
                                         <div class="input-field col s12">
                                             <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
                                             <span class="helper-text red-text">{{ captcha }}</span>

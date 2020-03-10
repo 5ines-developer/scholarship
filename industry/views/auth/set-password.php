@@ -45,6 +45,8 @@
                                     <input type="hidden" name="key" value="<?php echo $key ?>">
                                     <div class="col s12 red-text">{{error}}</div>
 
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                     </div>

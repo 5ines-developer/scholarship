@@ -105,11 +105,12 @@
                                     <div class="for-title">
                                         <p class="center-align">Enter your Email ID, and we'll send you instruction on how to reset your password.</p>
                                     </div>
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <div class="card-body row m0 pt15 pb15">
                                         <div class="input-field col s12">
                                             <input @change="emailCheck()" v-model="email" name="email" id="email" type="email" class="validate" required>
                                             <label for="email">Email ID</label>
-                                            <span class="helper-text red-text">{{ emailError }}</span>
+                                            <span class="helper-text red-text">{{ emailError }}</span><br>
                                         </div>
                                         <div class="input-field col s12">
                                             <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
@@ -159,6 +160,7 @@
                 this.emailError='';
                 const formData = new FormData();
                 formData.append('email',this.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('auth/emailcheck') ?>',formData)
                 .then(response =>{
                     if (response.data == '') {

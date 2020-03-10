@@ -88,6 +88,9 @@
                                                     <label for="company">Company Name</label>
                                                 </div>
                                             </div>
+
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                            
                                             <!-- <div class="col l3 m6 s12">
                                                 <div class="input-field">
                                                 <input id="district" readonly name="district" type="text" class="validate" required value="<?php echo (!empty($info->district))?$info->district:''; ?>">

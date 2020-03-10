@@ -41,6 +41,8 @@
                                             <input id="password" v-model="psw" type="password" name="psw" class="validate" required>
                                             <label for="password">Password</label>
                                         </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                         <div class="input-field col s12">
                                             <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
                                             <span class="helper-text red-text">{{ captcha }}</span>
@@ -105,6 +107,7 @@
                     this.emailError='';
                     const formData = new FormData();
                     formData.append('email',this.email);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('auth/emailcheck') ?>',formData)
                     .then(response =>{
                         if (response.data == '') {
@@ -122,11 +125,11 @@
                 checkForm() {
                     if ((this.emailError == '')) {
 
-                        if (grecaptcha.getResponse() == '') {
-                            this.captcha = 'Captcha is required';
-                        } else {
+                        // if (grecaptcha.getResponse() == '') {
+                        //     this.captcha = 'Captcha is required';
+                        // } else {
                             this.$refs.form.submit();
-                        }//
+                        // }
 
                     } else {}
                 }

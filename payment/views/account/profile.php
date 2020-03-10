@@ -194,6 +194,9 @@
                             </select>
                             <label for="taluk">Taluk</label>
                         </div>
+
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                         <div class="input-field col s12 m6">
                             <select name="district" required id="district">
                                 <option value="" disabled >Select District</option>
@@ -298,7 +301,8 @@
                     else{
                         this.pan = URL.createObjectURL(file);
                     }
-                    
+
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url() ?>industry-doc', formData,{
                             headers: {
                             'Content-Type': 'multipart/form-data'

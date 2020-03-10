@@ -17,6 +17,12 @@ class Application extends CI_Controller {
 
     public function index($year=null)
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
+
         $data['title'] = 'Scholarship';
         $year = $this->input->get('year');
         $data['result'] = $this->m_application->getScholarshipRequest($year);
@@ -26,6 +32,12 @@ class Application extends CI_Controller {
     // approve list
     public function approve_list($year = null)
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
         $data['title'] = 'Scholarship | Approved list';
         $year = $this->input->get('year');
         $data['result'] = $this->m_application->getScholarshipApproved($year);
@@ -35,6 +47,11 @@ class Application extends CI_Controller {
     // rejected list
     public function reject_list($year=null)
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
         $data['title'] = 'Scholarship | Rejected list';
         $year = $this->input->get('year');
         $data['result'] = $this->m_application->getScholarshipRejected($year);
@@ -52,6 +69,12 @@ class Application extends CI_Controller {
     // approve application
     public function approve($id = null,$msg='')
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to government for verification, we will notify the status via sms';
         $id = $this->input->post('id');
         if($this->m_application->approval($id)){
@@ -68,6 +91,13 @@ class Application extends CI_Controller {
     // Reject 
     public function reject()
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
        $id = $this->input->post('id');
        $data = array(
            'reject_reason' => $this->input->post('reason'),

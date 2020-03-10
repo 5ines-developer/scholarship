@@ -73,11 +73,11 @@ $this->load->model('m_stdapplication');
 
                                                     <td><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
 
-                                                    <td class="truncate"><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->school))?$value->school:'---'; ?></a></td>
+                                                    <td class=""><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->school))?$value->school:'---'; ?></a></td>
 
                                                     <td class=""><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->industry))?$value->industry:'---'; ?></a></td>
 
-                                                    <td><a href="<?php echo base_url('application-list/').$id ?>"><?php echo (!empty($value->course))?$value->course:''; ?><?php echo (!empty($value->clss))?$value->clss:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('application-list/').$id ?>"><?php echo (!empty($value->course))?$value->course:''; ?><?php echo (!empty($value->clss))?$value->clss:''; ?></a></td>
 
                                                     <td><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo $this->ci->m_stdapplication->getamnt($value->application_year,$value->graduation) ?></a></td>
 

@@ -43,6 +43,9 @@
                                                         <span class="helper-text red-text">{{samepassError}}</span>
 
                                                     </div>
+
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                                     
                                                     <div class="input-field col s12">
                                                         <input id="phone" v-model="cpsw" type="password" class="validate" name="cn_pswd" required="" v-on:change="checkCpsw">
@@ -93,6 +96,7 @@
                 currntPass(){
                     const formData = new FormData();
                     formData.append('crpass', this.currentpsw);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url() ?>account/checkPassword', formData)
                     .then(response => {
                         if(response.data == ''){

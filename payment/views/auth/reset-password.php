@@ -98,8 +98,11 @@
                                     <div class="input-field col s12">
                                         <input  id="cpassword" v-on:keyup="checkCpsw" name="cnpassword" v-model="cpsw" type="password" class="validate" required>
                                         <label for="cpassword">Confirm Password</label>
-                                        <span class="helper-text red-text">{{confError}}</span>
+                                        <span class="helper-text red-text">{{confError}}</span><br>
                                     </div>
+
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
 
                                     <input type="hidden" name="rid" value="<?php echo (!empty($newRegid))?$newRegid:''; ?>">
 

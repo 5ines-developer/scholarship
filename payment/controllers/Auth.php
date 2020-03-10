@@ -18,6 +18,14 @@ class auth extends CI_Controller {
 
     public function index()
     {
+
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
+
         if($this->session->userdata('pyId') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
                 $this->security->xss_clean($_POST);
@@ -71,6 +79,12 @@ class auth extends CI_Controller {
     public function mobile_check($value='')
     {
         $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
+        $this->security->xss_clean($_POST);
         $mobile = $this->input->post('mobile');
         $output = $this->m_auth->mobile_check($mobile);
         echo  $output;
@@ -83,6 +97,10 @@ class auth extends CI_Controller {
     public function emailcheck($value='')
     {
         $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $email = $this->input->post('email');
         $output = $this->m_auth->email_check($email);
         echo  $output;
@@ -95,6 +113,11 @@ class auth extends CI_Controller {
     public function companyChange($var = null)
     {
         $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        
         $company = $this->input->post('comp');
         $output = $this->m_auth->companyChange($company);
         echo  $output;
@@ -102,6 +125,12 @@ class auth extends CI_Controller {
 
     public function getCompany($var = null)
     {
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
        $act = $this->input->post('act');
        $data = $this->m_auth->getCompany($act);
        echo json_encode($data);       
@@ -110,6 +139,12 @@ class auth extends CI_Controller {
 
     public function search($var = null)
     {
+        $this->security->xss_clean($_GET);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
         $term = $this->input->get('q[term]');
         $output = $this->m_auth->search($term);
         $result = [];
@@ -142,6 +177,13 @@ class auth extends CI_Controller {
 
     public function regSubmit(Type $var = null)
     { 
+
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
 
         $insert = array(
             'email'          => $this->input->post('email'),
@@ -236,6 +278,13 @@ class auth extends CI_Controller {
    // Set password
     public function set_password($var = null)
     {
+
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
        $password = $this->bcrypt->hash_password($this->input->post('psw'));
        $key = $this->input->post('key');
        $this->load->helper('string');
@@ -262,8 +311,14 @@ class auth extends CI_Controller {
     **/
     public function forgot_pass($value='')
     {
+
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
         if ($this->session->userdata('pyId') == '') {
-            $this->security->xss_clean($_POST);
             $data['title'] = 'Forgot password';
             $input = $this->input->post();
             if (count($input) > 0) {
@@ -349,8 +404,15 @@ class auth extends CI_Controller {
     **/
     public function reset_password($value='')
     {
+
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
+
         if ($this->session->userdata('stlid') == '') {
-            $this->security->xss_clean($_POST);
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
             $this->form_validation->set_rules('cnpassword', 'Password Confirmation', 'trim|required|matches[password]');
             if ($this->form_validation->run() == true) {
@@ -387,6 +449,13 @@ class auth extends CI_Controller {
     public function requestAdd(Type $var = null)
     {
 
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
+
         if($this->session->userdata('pyId') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
            $this->submitRequest();
@@ -400,6 +469,13 @@ class auth extends CI_Controller {
 
     public function submitRequest($var = null)
     {
+
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        
         $insert = array(
             'email'          => $this->input->post('email'),
             'mobile'         => $this->input->post('phone'),
@@ -411,7 +487,7 @@ class auth extends CI_Controller {
 
         foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
                 $this->sc_check->sus_mail($insert['email']);
            }
         }

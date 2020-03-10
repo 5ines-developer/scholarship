@@ -112,6 +112,10 @@
                                             </div>
                                         </div> 
                                     </div>
+
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
+
                                     <div class="input-field col s12 m12">
                                         <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
@@ -183,12 +187,14 @@ $(document).ready(function() {
     
     
     $(document).on('change','#company',function(){
+        var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+            csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
         var cmp = $(this).val();
         $('#c_comp').val(cmp);
         $.ajax({
             type: "post",
             url: "<?php echo base_url('auth/companyChange') ?>",
-            data: { comp : cmp},
+            data: { comp : cmp, [csrfName]: csrfHash },
             dataType: "html",
             success: function (response) {
                 if (response == 'exist') {
@@ -244,7 +250,10 @@ $(document).ready(function() {
                 self.tlq = '';
                 self.instituteSelect = '';
                 self.institute = '';
-                axios.post('<?php echo base_url() ?>auth/talukFilter?filter='+this.district.id)
+                const formData = new FormData();
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                formData.append('filter',this.district.id);
+                axios.post('<?php echo base_url() ?>auth/talukFilter',formData)
                 .then(res => {
                     self.disabled = false;
                     self.taluk = res.data;
@@ -261,6 +270,7 @@ $(document).ready(function() {
                 this.emailError='';
                 const formData = new FormData();
                 formData.append('email',this.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('auth/emailcheck') ?>',formData)
                 .then(response =>{
                     if (response.data == '1') {
@@ -281,6 +291,7 @@ $(document).ready(function() {
                 this.mobileError='';
                 const formData = new FormData();
                 formData.append('mobile',this.mobile);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('auth/mobile_check') ?>', formData)
                 .then(response => {
                     if (response.data == '1') {
@@ -298,11 +309,11 @@ $(document).ready(function() {
             checkForm() {
                 if ((this.mobileError == '') && (this.emailError == '')) {
 
-                    if (grecaptcha.getResponse() == '') {
-                        this.captcha = 'Captcha is required';
-                    } else {
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {
                         this.$refs.form.submit();
-                     } 
+                    // } 
                 } else {}
             }
 

@@ -22,6 +22,13 @@ class Staffs extends CI_Controller {
     // create employee
     public function create($var = null)
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $data['title'] = 'Add Verification staffs';
         $this->load->helper('string');
         if($this->input->post()){
@@ -54,6 +61,13 @@ class Staffs extends CI_Controller {
     **/
     public function emailcheck($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $this->security->xss_clean($_POST);
         $email = $this->input->post('email');
         $output = $this->M_staffs->email_check($email);
@@ -66,6 +80,13 @@ class Staffs extends CI_Controller {
     **/
     public function mobile_check($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $this->security->xss_clean($_POST);
         $mobile = $this->input->post('mobile');
         $output = $this->M_staffs->mobile_check($mobile);
@@ -97,6 +118,13 @@ class Staffs extends CI_Controller {
 
     public function block($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_GET);
+
         $id = $this->input->get('id');
         $status = '2';
 
@@ -110,6 +138,12 @@ class Staffs extends CI_Controller {
 
     public function unblock($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_GET);
+
         $id = $this->input->get('id');
         $status = '1';
         if($this->M_staffs->stasChange($id,$status)){
@@ -122,6 +156,13 @@ class Staffs extends CI_Controller {
 
     public function delete($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_GET);
+
         $id = $this->input->get('id');
         if($this->M_staffs->delete($id)){
             $this->session->set_flashdata('success', 'Staff Deleted Successfully');
