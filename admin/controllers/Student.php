@@ -8,7 +8,9 @@ class Student extends CI_Controller {
         parent::__construct();
         //Do your magic here
         $this->load->model('m_student');
-        if ($this->session->userdata('said') == '') { $this->session->set_flashdata('error','Please login and try again!'); redirect('login','refresh'); }
+        if ($this->session->userdata('said') == '') { 
+        $this->session->set_flashdata('error','Please login and try again!'); 
+        redirect('login','refresh'); }
     }
 
 

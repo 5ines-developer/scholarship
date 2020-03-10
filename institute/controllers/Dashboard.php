@@ -32,6 +32,7 @@ class Dashboard extends CI_Controller {
     // single student data
     public function singleStudent($id = null)
     {
+        $id = base64_decode($id);
         $data['result'] = $this->m_dashboard->singleStudent($id);
         $this->load->view('dashboard/student-detail', $data, FALSE);
     }

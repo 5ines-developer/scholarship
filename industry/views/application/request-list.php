@@ -65,13 +65,16 @@ $this->load->model('m_application');
                                                     if (!empty($result)) {
                                                        foreach ($result as $key => $value) { 
                                                            $i++;
-                                                        echo '<tr role="row" class="odd"><td class="h5-para-p2"><a href="'.base_url('application/').$value->id.'">'.$i.'</a></td>
-                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->name.'</a></td>
-                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->mark.'</a></td>
-                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$value->course.$value->class.'</a></td>
-                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$value->id.'">'.$this->ci->m_application->getamnt($value->application_year,$value->graduation).'</a></td>
+
+                                                           $id = urlencode(base64_encode($value->id));
+                                                           
+                                                        echo '<tr role="row" class="odd"><td class="h5-para-p2"><a href="'.base_url('application/').$id.'">'.$i.'</a></td>
+                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.$value->name.'</a></td>
+                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.$value->mark.'</a></td>
+                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.$value->course.$value->class.'</a></td>
+                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.$this->ci->m_application->getamnt($value->application_year,$value->graduation).'</a></td>
                                                         <td class="center-align">
-                                                            <a href="'.base_url('application/').$value->id.'" class="blue-text waves-effect waves-light"> View</a>
+                                                            <a href="'.base_url('application/').$id.'" class="blue-text waves-effect waves-light"> View</a>
                                                         </td></tr>';
                                                     } } ?>                                                    
                                                 

@@ -61,6 +61,7 @@ class Application extends CI_Controller {
         // single student data
         public function singleStudent($id = null)
         {
+            $id =urldecode(base64_decode($id));
             $data['title'] = 'Scholarship | Request list';
             $data['result'] = $this->m_application->singleStudent($id);
             $this->load->view('application/student-detail', $data, FALSE);

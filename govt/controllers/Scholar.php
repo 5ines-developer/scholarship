@@ -53,7 +53,9 @@ class Scholar extends CI_Controller {
         $data = array();
         foreach($fetch_data as $row)  
         {  
-            $btn = '<a href="'.base_url('applications/detail/').$row->id.'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
+
+
+            $btn = '<a href="'.base_url('applications/detail/').urlencode(base64_encode($row->id)).'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
 
             if($row->application_state == 3){
                 $state = 'Verification Officer';
@@ -107,6 +109,7 @@ class Scholar extends CI_Controller {
     // single student data
     public function singleGet($id = null)
     {
+        $id =urldecode(base64_decode($id));
         $data['title'] = 'Scholarship Details';
         $data['result'] = $this->m_scholar->singleGet($id);
         $this->load->view('scholar/application', $data, FALSE);

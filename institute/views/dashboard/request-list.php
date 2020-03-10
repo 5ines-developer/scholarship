@@ -34,13 +34,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="tbody-list gb">
-                                                <tr v-for="(item , k) in tableRow" :key="k" @click="detail(item.id)">
-                                                    <td >{{k + 1}}</td>
-                                                    <td >{{item.name}}</td>
-                                                    <td >{{item.mark}}</td>
-                                                    <td >{{item.course}}{{item.class}}</td>
+                                                <tr v-for="(item , k) in tableRow" :key="k" @click="detail(urlenc(item.id))">
+                                                    <td>{{k + 1}}</td>
+                                                    <td>{{item.name}}</td>
+                                                    <td>{{item.mark}}</td>
+                                                    <td>{{item.course}}{{item.class}}</td>
                                                     <td :data-label="tableHeading[2].title">{{item.amount}}</td>
-                                                    <td><a :href="'<?php echo base_url()?>student/'+item.id " class="waves-effect waves-light">view</a></td>
+                                                    <td><a :href="'<?php echo base_url()?>student/'+urlenc(item.id) " class="waves-effect waves-light">view</a></td>
                                                 </tr>
                                                 <tr v-if="tableRow.length == 0">
                                                     <td colspan="6">No data found</td>
@@ -111,7 +111,10 @@
             sorting(key){
                 console.log(this.tableRow);
             },
-
+            urlenc(id){
+                var enc = btoa(id);
+                return enc;
+            },
             detail(id){
                 var url = '<?php echo base_url() ?>student/' + id;
                 window.location = url;

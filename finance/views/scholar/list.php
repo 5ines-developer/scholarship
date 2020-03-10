@@ -307,6 +307,9 @@
                 return rtn;
             }
 
+            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+            csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
             var dataTable = $('#dynamic').DataTable({
                 'processing': true,
                 'serverSide': true,

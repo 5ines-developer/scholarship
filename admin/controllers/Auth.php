@@ -80,8 +80,9 @@ class Auth extends CI_Controller {
      // Forgot password
     public function forgotPassword()
     {
+        if($this->session->userdata('said') != ''){ redirect('dashboard','refresh'); }else{
         $data['title'] = 'Forgot password | Scholarship';
-        $this->load->view('auth/forgot-password', $data, FALSE);   
+        $this->load->view('auth/forgot-password', $data, FALSE); }   
     }
 
     // check mail

@@ -34,13 +34,13 @@
                                             </thead>
                                             
                                             <tbody class="tbody-list gb">
-                                                <tr v-for="(item , k) in tableRow" :key="k" @click="detail(item.id)">
+                                                <tr v-for="(item , k) in tableRow" :key="k" @click="detail(urlenc(item.id))">
                                                     <td :data-label="tableHeading[0].title">{{k + 1}}</td>
                                                     <td :data-label="tableHeading[1].title">{{item.name}}</td>
                                                     <td :data-label="tableHeading[2].title">{{item.mark}}</td>
                                                     <td :data-label="tableHeading[3].title">{{item.course}} {{item.class}}</td>
                                                     <td :data-label="tableHeading[2].title">{{item.amount}}</td>
-                                                    <td :data-label="tableHeading[4].title"><a :href="'<?php echo base_url()?>student/'+item.id " class="waves-effect waves-light">view</a></td>
+                                                    <td :data-label="tableHeading[4].title"><a :href="'<?php echo base_url()?>student/'+urlenc(item.id)" class="waves-effect waves-light">view</a></td>
                                                 </tr>
                                                 <tr v-if="tableRow.length == 0">
                                                     <td colspan="6">No data found</td>
@@ -88,6 +88,10 @@
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
 <?php $this->load->view('include/msg'); ?>
 <script>
+
+
+    // alert(btoa("textile"));
+    // alert(atob("dGV4dGlsZQ=="));
    
 
 
@@ -116,8 +120,10 @@
                 var url = '<?php echo base_url() ?>student/' + id;
                 window.location = url;
             },
-
-            getData(){
+            urlenc(id){
+                var enc = btoa(id);
+                return enc;
+            },getData(){
                 var self= this;
                 axios.get('<?php echo base_url() ?>student-approved')
                 .then(function (response) {

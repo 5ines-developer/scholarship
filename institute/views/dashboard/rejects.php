@@ -36,13 +36,13 @@
                                             </thead>
                                             
                                             <tbody class="tbody-list gb">
-                                                <tr v-for="(item , k) in tableRow" :key="k" @click="detail(item.id)">
+                                                <tr v-for="(item , k) in tableRow" :key="k" @click="detail(urlenc(item.id))">
                                                     <td :data-label="tableHeading[0].title">{{k + 1}}</td>
                                                     <td :data-label="tableHeading[1].title">{{item.name}}</td>
                                                     <td :data-label="tableHeading[2].title">{{item.mark}}</td>
                                                     <td :data-label="tableHeading[3].title">{{item.course}} {{item.class}}</td>
                                                     <td :data-label="tableHeading[2].title">{{item.amount}}</td>
-                                                    <td :data-label="tableHeading[4].title"><a :href="'<?php echo base_url()?>student/'+item.id " class="waves-effect waves-light">view</a></td>
+                                                    <td :data-label="tableHeading[4].title"><a :href="'<?php echo base_url()?>student/'+urlenc(item.id) " class="waves-effect waves-light">view</a></td>
                                                 </tr>
                                                 <tr v-if="tableRow.length == 0">
                                                     <td colspan="6">No data found</td>
@@ -98,6 +98,11 @@
         methods:{
             sorting(key){
                 console.log(this.tableRow);
+            },
+
+            urlenc(id){
+                var enc = btoa(id);
+                return enc;
             },
 
             detail(id){

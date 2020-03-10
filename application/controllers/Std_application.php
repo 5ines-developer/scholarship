@@ -514,6 +514,8 @@ class Std_application extends CI_Controller {
     //application list
     public function list($id = '')
     {
+
+    	$id =urldecode(base64_decode($id));
     	if(!empty($id)){
     		$data['result'] = $this->m_stdapplication->getDeatil($this->sid,$id);
     		$this->load->view('student/application-detail', $data, FALSE);

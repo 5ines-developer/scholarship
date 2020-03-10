@@ -66,7 +66,7 @@ $this->load->model('m_stdapplication');
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
                                                     foreach ($result as $key => $value) { 
-                                                        $id = $value->id;
+                                                        $id = urlencode(base64_encode($value->id));
 
                                                     ?>
                                                 <tr role="row" class="odd">
@@ -84,6 +84,7 @@ $this->load->model('m_stdapplication');
                                                     <td><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
 
                                                     <td class=""><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></a></td>
+
 
                                                     <td class="action-btn center-align">
                                                         <a href="<?php echo base_url('student/application-list/').$id ?>" class="vie-btn blue-text waves-effect waves-light"> View </a>
