@@ -2235,3 +2235,60 @@ INFO - 2020-03-10 11:22:56 --> File loaded: C:\xampp\htdocs\scholarship\finance\
 INFO - 2020-03-10 11:22:56 --> File loaded: C:\xampp\htdocs\scholarship\finance\views\scholar/application.php
 INFO - 2020-03-10 11:22:56 --> Final output sent to browser
 DEBUG - 2020-03-10 11:22:56 --> Total execution time: 0.2176
+INFO - 2020-03-10 11:30:24 --> Config Class Initialized
+INFO - 2020-03-10 11:30:24 --> Hooks Class Initialized
+DEBUG - 2020-03-10 11:30:24 --> UTF-8 Support Enabled
+INFO - 2020-03-10 11:30:24 --> Utf8 Class Initialized
+INFO - 2020-03-10 11:30:24 --> URI Class Initialized
+INFO - 2020-03-10 11:30:24 --> Router Class Initialized
+INFO - 2020-03-10 11:30:24 --> Output Class Initialized
+INFO - 2020-03-10 11:30:24 --> Security Class Initialized
+DEBUG - 2020-03-10 11:30:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-10 11:30:24 --> Input Class Initialized
+INFO - 2020-03-10 11:30:24 --> Language Class Initialized
+INFO - 2020-03-10 11:30:24 --> Loader Class Initialized
+INFO - 2020-03-10 11:30:24 --> Helper loaded: url_helper
+INFO - 2020-03-10 11:30:24 --> Helper loaded: file_helper
+INFO - 2020-03-10 11:30:24 --> Helper loaded: text_helper
+INFO - 2020-03-10 11:30:24 --> Helper loaded: string_helper
+INFO - 2020-03-10 11:30:24 --> Database Driver Class Initialized
+INFO - 2020-03-10 11:30:24 --> Email Class Initialized
+DEBUG - 2020-03-10 11:30:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-10 11:30:24 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-10 11:30:24 --> Helper loaded: form_helper
+INFO - 2020-03-10 11:30:24 --> Form Validation Class Initialized
+INFO - 2020-03-10 11:30:24 --> Controller Class Initialized
+INFO - 2020-03-10 11:30:24 --> Model "M_auth" initialized
+DEBUG - 2020-03-10 11:30:24 --> Form_validation class already loaded. Second attempt ignored.
+INFO - 2020-03-10 11:30:24 --> Config Class Initialized
+INFO - 2020-03-10 11:30:24 --> Hooks Class Initialized
+DEBUG - 2020-03-10 11:30:24 --> UTF-8 Support Enabled
+INFO - 2020-03-10 11:30:24 --> Utf8 Class Initialized
+INFO - 2020-03-10 11:30:24 --> URI Class Initialized
+DEBUG - 2020-03-10 11:30:24 --> No URI present. Default controller set.
+INFO - 2020-03-10 11:30:24 --> Router Class Initialized
+INFO - 2020-03-10 11:30:24 --> Output Class Initialized
+INFO - 2020-03-10 11:30:24 --> Security Class Initialized
+DEBUG - 2020-03-10 11:30:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-10 11:30:24 --> Input Class Initialized
+INFO - 2020-03-10 11:30:24 --> Language Class Initialized
+INFO - 2020-03-10 11:30:24 --> Loader Class Initialized
+INFO - 2020-03-10 11:30:24 --> Helper loaded: url_helper
+INFO - 2020-03-10 11:30:25 --> Helper loaded: file_helper
+INFO - 2020-03-10 11:30:25 --> Helper loaded: text_helper
+INFO - 2020-03-10 11:30:25 --> Helper loaded: string_helper
+INFO - 2020-03-10 11:30:25 --> Database Driver Class Initialized
+INFO - 2020-03-10 11:30:25 --> Email Class Initialized
+DEBUG - 2020-03-10 11:30:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-10 11:30:25 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-10 11:30:25 --> Helper loaded: form_helper
+INFO - 2020-03-10 11:30:25 --> Form Validation Class Initialized
+INFO - 2020-03-10 11:30:25 --> Controller Class Initialized
+INFO - 2020-03-10 11:30:25 --> Model "M_auth" initialized
+DEBUG - 2020-03-10 11:30:25 --> Form_validation class already loaded. Second attempt ignored.
+INFO - 2020-03-10 11:30:25 --> File loaded: C:\xampp\htdocs\scholarship\finance\views\include/header.php
+INFO - 2020-03-10 11:30:25 --> File loaded: C:\xampp\htdocs\scholarship\finance\views\include/footer.php
+INFO - 2020-03-10 11:30:25 --> File loaded: C:\xampp\htdocs\scholarship\finance\views\include/msg.php
+INFO - 2020-03-10 11:30:25 --> File loaded: C:\xampp\htdocs\scholarship\finance\views\auth/login.php
+INFO - 2020-03-10 11:30:25 --> Final output sent to browser
+DEBUG - 2020-03-10 11:30:25 --> Total execution time: 0.0862

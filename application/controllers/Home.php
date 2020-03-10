@@ -5,6 +5,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		header("Access-Control-Allow-Origin: *");
 		$data['title'] = 'Scholarship | Karnataka Labour Welfare Board';
 		$this->load->view('site/index', $data, FALSE);
 		

@@ -10,6 +10,7 @@ class Staffs extends CI_Controller {
         $this->load->model('M_staffs');
         if($this->session->userdata('scinds') == ''){ redirect('/','refresh'); }
         if ($this->session->userdata('scctype') != '1') { redirect('dashboard','refresh');  }
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -23,32 +24,40 @@ class Staffs extends CI_Controller {
     public function create($var = null)
     {
 
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
         $data['title'] = 'Add Verification staffs';
         $this->load->helper('string');
         if($this->input->post()){
-            $name   = $this->input->post('name', true);
-            $email  = $this->input->post('email', true);
-            $phone  = $this->input->post('phone', true);
-            $data   = array(
-                'email'         => $email, 
-                'mobile'         => $phone, 
-                'industry_id'   => $this->session->userdata('sccomp'), 
-                'created_by'    => $this->session->userdata('scinds'), 
-                'ref_id'        => random_string('alnum', 40), 
-                'name'          => $name, 
-                'type'          => 2,
-            );
-            if($this->M_staffs->addEmp($data)){
-                $this->sendActivation($data);
-                $this->session->set_flashdata('success', 'New staff addedd successfully. <br> Activation link send to mail');
-            }
-            else{
+            $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric|max_length[10]|min_length[10]');
+            if ($this->form_validation->run() == true) {
+
+                $name   = $this->input->post('name', true);
+                $email  = $this->input->post('email', true);
+                $phone  = $this->input->post('phone', true);
+                $data   = array(
+                    'email'         => $email, 
+                    'mobile'         => $phone, 
+                    'industry_id'   => $this->session->userdata('sccomp'), 
+                    'created_by'    => $this->session->userdata('scinds'), 
+                    'ref_id'        => random_string('alnum', 40), 
+                    'name'          => $name, 
+                    'type'          => 2,
+                );
+                if($this->M_staffs->addEmp($data)){
+                    $this->sendActivation($data);
+                    $this->session->set_flashdata('success', 'New staff addedd successfully. <br> Activation link send to mail');
+                }
+                else{
+                    $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
+                }
+            }else{
                 $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
             }
         }   

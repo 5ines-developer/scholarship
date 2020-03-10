@@ -9,6 +9,7 @@ class Staffs extends CI_Controller {
         parent::__construct();
         $this->load->model('M_staffs');
         if($this->session->userdata('scinst') == ''){ redirect('/','refresh'); }
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -30,27 +31,39 @@ class Staffs extends CI_Controller {
 
         $data['title'] = 'Add Verification staffs';
         $this->load->helper('string');
-        if($this->input->post()){
-            $name   = $this->input->post('name', true);
-            $email  = $this->input->post('email', true);
-            $phone  = $this->input->post('phone', true);
-            $data   = array(
-                'email'         => $email, 
-                'phone'         => $phone, 
-                'school_id'     => $this->session->userdata('school'), 
-                'created_by'    => $this->session->userdata('scinst'), 
-                'ref_id'        => random_string('alnum', 40), 
-                'name'          => $name, 
-                'otp'           => date('sm'), 
-            );
-            if($this->M_staffs->addEmp($data)){
-                $this->sendActivation($data);
-                $this->session->set_flashdata('success', 'New staff addedd successfully. <br> Activation link send to mail');
-            }
-            else{
-                $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
-            }
-        }   
+
+        $this->security->xss_clean($_POST);
+            if($this->input->post()){
+                $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric|max_length[10]|min_length[10]');
+                if ($this->form_validation->run() == true) {
+
+                    $name   = $this->input->post('name', true);
+                    $email  = $this->input->post('email', true);
+                    $phone  = $this->input->post('phone', true);
+                    $data   = array(
+                        'email'         => $email, 
+                        'phone'         => $phone, 
+                        'school_id'     => $this->session->userdata('school'), 
+                        'created_by'    => $this->session->userdata('scinst'), 
+                        'ref_id'        => random_string('alnum', 40), 
+                        'name'          => $name, 
+                        'otp'           => date('sm'), 
+                    );
+                    if($this->M_staffs->addEmp($data)){
+                        $this->sendActivation($data);
+                        $this->session->set_flashdata('success', 'New staff addedd successfully. <br> Activation link send to mail');
+                    }
+                    else{
+                        $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
+                    }
+
+                }else{
+                    $this->session->set_flashdata('error', 'Something went wrong please try again later!');
+
+                }
+            }   
         $this->load->view('staffs/add', $data, FALSE);
     }
 

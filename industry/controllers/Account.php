@@ -12,6 +12,7 @@ class Account extends CI_Controller {
         $this->inId = $this->session->userdata('sccomp');
         $this->reg = $this->session->userdata('scinds');
         $this->load->library('sc_check'); 
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -65,29 +66,33 @@ class Account extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-
-        $insert = array(
-            'talluk'       => $this->input->post('taluk'),
-            'district'     => $this->input->post('district'),
-            'name'         => $this->input->post('director'),
-            'mobile'       => $this->input->post('number'),
-            'pan_no'       => $this->input->post('panno'),
-            'gst_no'       => $this->input->post('gstno'),
-            'address'      => $this->input->post('address'),
-        );
-        $email = $this->input->post('email');
-        
-        if($this->M_account->update($insert,$this->reg))
-        {
-            if($email != $this->session->userdata('sinmail')){
-                $this->verifyMail($email,$this->reg);
-                $this->session->set_flashdata('success', 'Your Profile has been updated <br> Please check your mail to verify the Email Id 🙂');
+        $this->form_validation->set_rules('director', 'Director Name', 'trim|alpha_numeric_spaces');
+        $this->form_validation->set_rules('number', 'Phone Number', 'trim|numeric|max_length[10]|min_length[10]');
+        if ($this->form_validation->run() == true) {
+            $insert = array(
+                'talluk'       => $this->input->post('taluk'),
+                'district'     => $this->input->post('district'),
+                'name'         => $this->input->post('director'),
+                'mobile'       => $this->input->post('number'),
+                'pan_no'       => $this->input->post('panno'),
+                'gst_no'       => $this->input->post('gstno'),
+                'address'      => $this->input->post('address'),
+            );
+            $email = $this->input->post('email');
+            if($this->M_account->update($insert,$this->reg))
+            {
+                if($email != $this->session->userdata('sinmail')){
+                    $this->verifyMail($email,$this->reg);
+                    $this->session->set_flashdata('success', 'Your Profile has been updated <br> Please check your mail to verify the Email Id 🙂');
+                }else{
+                    $this->session->set_flashdata('success', 'Profile details Updated Successfully 🙂');
+                }
+                
             }else{
-                $this->session->set_flashdata('success', 'Profile details Updated Successfully 🙂');
+                $this->session->set_flashdata('error', '😕 Server error occurred. Please try again later');             
             }
-            
         }else{
-            $this->session->set_flashdata('error', '😕 Server error occurred. Please try again later');             
+            $this->session->set_flashdata('error', 'Something went wrong please try again later!');
         }
         redirect('dashboard','refresh');
     }

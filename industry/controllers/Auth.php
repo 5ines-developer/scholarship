@@ -202,7 +202,7 @@ class auth extends CI_Controller {
 
         foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-            if($fl[1] =='js' && $fl[1] =='exe' && $fl[1] =='php' && $fl[1] =='html'){
+            if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
                 $this->sc_check->sus_mail($insert['email']);
            }
         }

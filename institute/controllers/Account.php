@@ -10,6 +10,7 @@ class Account extends CI_Controller {
         $this->load->model('M_account');
         if($this->session->userdata('scinst') == ''){ redirect('/','refresh'); }
         $this->load->library('sc_check');
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -30,19 +31,26 @@ class Account extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-
-        $schoolId = $this->session->userdata('school');
-        $data['schoolDetail'] = array(
-            'principal'         => $this->input->post('prname'),
-            'email'             => $this->input->post('email'),
-            'phone'             => $this->input->post('number'),
-        );
-        $data['school_address'] = array(
-            'address'   => $this->input->post('address'),
-        );
-        $this->M_account->update($data, $schoolId);
-        $this->session->set_flashdata('success', 'Updated Successfully 🙂');
-        redirect('account','refresh');
+        $this->form_validation->set_rules('prname', 'Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('number', 'Phone Number', 'trim|required|numeric|max_length[10]|min_length[10]');
+        if ($this->form_validation->run() == true) {
+            $schoolId = $this->session->userdata('school');
+            $data['schoolDetail'] = array(
+                'principal'         => $this->input->post('prname'),
+                'email'             => $this->input->post('email'),
+                'phone'             => $this->input->post('number'),
+            );
+            $data['school_address'] = array(
+                'address'   => $this->input->post('address'),
+            );
+            $this->M_account->update($data, $schoolId);
+            $this->session->set_flashdata('success', 'Updated Successfully 🙂');
+            redirect('account','refresh');
+        }else{
+            $this->session->set_flashdata('error','😕 Server error occurred. Please try again later');
+            redirect('account','refresh');
+        }
     }
 
     // update images

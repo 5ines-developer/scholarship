@@ -53,6 +53,11 @@
                                                 </div>
 
                                                 <div class="input-field col s12">
+                                                    <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
+                                                    <span class="helper-text red-text">{{ captcha }}</span>
+                                                </div>
+
+                                                <div class="input-field col s12">
                                                     <button type="submit" class="waves-effect waves-light hoverable btn-theme btn  capitalize">Submit</button>
                                                 </div>
                                             </div>
@@ -82,6 +87,8 @@
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
 <?php $this->load->view('include/msg'); ?>
 <script>
    
@@ -95,6 +102,7 @@
             mobileError :'',
             mobile:'',
             email:'',
+            captcha:'',
           
         },  
         mounted(){
@@ -123,27 +131,37 @@
             //check student mobile already exist
              mobileCheck(){
 
-                this.mobileError='';
-                const formData = new FormData();
-                formData.append('mobile',this.mobile);
-                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
-                axios.post('<?php echo base_url('staffs/mobile_check') ?>', formData)
-                .then(response => {
-                    if (response.data == '1') {
-                        this.mobileError = 'This Mobile number already exist!';
-                    } else {
-                        this.mobileError = '';
-                    }
+                if(this.mobile.length !=10){
+                    this.mobileError='Mobile Number must be 10 digits!';
+                }else{
+                    this.mobileError='';
+                    const formData = new FormData();
+                    formData.append('mobile',this.mobile);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                    axios.post('<?php echo base_url('staffs/mobile_check') ?>', formData)
+                    .then(response => {
+                        if (response.data == '1') {
+                            this.mobileError = 'This Mobile number already exist!';
+                        } else {
+                            this.mobileError = '';
+                        }
 
-                }).catch(error =>{
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                } )
+                    }).catch(error =>{
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    } )
+                }
+
+                
             },
             checkForm() {
-                if ((this.mobileError == '') && (this.emailError == '')) {                   
-                    this.$refs.form.submit();
+                if ((this.mobileError == '') && (this.emailError == '')) { 
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {                  
+                        this.$refs.form.submit();
+                    }
                 } else {}
             }
             

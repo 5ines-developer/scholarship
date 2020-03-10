@@ -11,6 +11,7 @@ class Std_account extends CI_Controller {
         $this->load->model('m_stdaccount');
         $this->sid = $this->session->userdata('stlid');
         $this->load->library('sc_check');
+        $this->load->library('form_validation');
     }
 
     /**
@@ -51,11 +52,18 @@ class Std_account extends CI_Controller {
         'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-
-        $name = $this->input->post('name');
-        $email = $this->input->post('email');
-        $output = $this->m_stdaccount->updateProfile($email,$name,$this->sid);
-        echo $output;           
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        if ($this->form_validation->run() == true) {
+            $name = $this->input->post('name');
+            $email = $this->input->post('email');
+            $output = $this->m_stdaccount->updateProfile($email,$name,$this->sid);
+        }else{
+            $error = validation_errors();
+            $this->session->set_flashdata('error', $error);
+            $output = '';
+        }
+        echo $output;
     }
 
 
@@ -71,7 +79,7 @@ class Std_account extends CI_Controller {
 
         foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-            if($fl[1] =='js' && $fl[1] =='exe' && $fl[1] =='php' && $fl[1] =='html'){
+            if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
                 $this->sc_check->sus_mail($this->session->userdata('slmail'));
            }
         }
