@@ -37,6 +37,9 @@
                                                     <label for="name">Full Name</label>
                                                 </div>
 
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
+
                                                 <div class="input-field col s12"> 
                                                     <input id="email" name="email" type="email" required class="validate" v-model="email" @change="emailCheck">
                                                     <label for="email">Email</label>
@@ -102,6 +105,7 @@
                 this.emailError='';
                 const formData = new FormData();
                 formData.append('email',this.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('staffs/emailcheck') ?>',formData)
                 .then(response =>{
                     if (response.data == '1') {
@@ -122,6 +126,7 @@
                 this.mobileError='';
                 const formData = new FormData();
                 formData.append('mobile',this.mobile);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('staffs/mobile_check') ?>', formData)
                 .then(response => {
                     if (response.data == '1') {

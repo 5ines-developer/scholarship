@@ -41,6 +41,13 @@ class Dashboard extends CI_Controller {
     // Reject 
     public function reject()
     {
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+
        $id = $this->input->post('id');
        $data = array(
            'reject_reason' => $this->input->post('reason'),
@@ -86,6 +93,12 @@ class Dashboard extends CI_Controller {
     // approve application
     public function approval($var = null)
     {
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+    
         if($this->m_dashboard->approval($this->input->post('id'))){
             $data = array('status' => 1, 'msg' => 'Approved successfully.');
         }else{

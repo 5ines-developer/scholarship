@@ -177,6 +177,7 @@
                             <input id="email" name="email" type="email" value="<?php echo $info->email ?>" required class="validate">
                             <label for="email">Email</label>
                         </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         
 
                         <div class="input-field col m6">
@@ -259,6 +260,8 @@
                 formData = new FormData();
                 formData.append('file', file);
                 formData.append('type', this.type);
+        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                
 
                 if(this.type == 'regfile'){
                     this.certificate = URL.createObjectURL(file);

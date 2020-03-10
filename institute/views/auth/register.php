@@ -56,6 +56,7 @@
                                         <input id="regno" :value="instituteSelect.reg_no" readonly required placeholder="Registration Number" name="regno" type="text" class="validate">
                                         <span class="red-text helper-text"></span>
                                     </div>
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
                                     <div class="input-field col m6">
                                         <input id="email" v-model="email" @change="checkEmailExist" name="email" type="email" required class="validate">
@@ -190,7 +191,10 @@
                 self.tlq = '';
                 self.instituteSelect = '';
                 self.institute = '';
-                axios.post('<?php echo base_url() ?>auth/talukFilter?filter='+this.district.id)
+                const formData = new FormData();
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                formData.append('filter',self.district.id);
+                axios.post('<?php echo base_url() ?>auth/talukFilter',formData)
                 .then(res => {
                     self.disabled = false;
                     self.taluk = res.data;
@@ -204,7 +208,10 @@
                 var self = this;
                 self.instituteSelect = '';
                 self.institute = '';
-                axios.post('<?php echo base_url() ?>auth/instituteFilter?filter='+this.tlq.id)
+                const formData = new FormData();
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                formData.append('filter',self.tlq.id);
+                axios.post('<?php echo base_url() ?>auth/instituteFilter',formData)
                 .then(res => {
                     self.disabled1 = false;
                     self.institute = res.data;
@@ -216,7 +223,10 @@
             },
             checkInstituteExist(){
                 var self = this;
-                axios.post('<?php echo base_url() ?>auth/checkInstituteExist?filter='+this.instituteSelect.id)
+                const formData = new FormData();
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                formData.append('filter',self.instituteSelect.id);
+                axios.post('<?php echo base_url() ?>auth/checkInstituteExist',formData)
                 .then(res => {
                     self.instituteError = '';
                     self.type = 'submit';
@@ -228,7 +238,10 @@
             },
             checkEmailExist(){
                 var self = this;
-                axios.post('<?php echo base_url() ?>auth/checkEmailExist?filter='+this.email)
+                const formData = new FormData();
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                formData.append('filter',this.email);
+                axios.post('<?php echo base_url() ?>auth/checkEmailExist',formData)
                 .then(res => {
                     self.emailError = '';
                     self.type = 'submit';
@@ -240,7 +253,10 @@
             },
             checkPhoneExist(){
                 var self = this;
-                axios.post('<?php echo base_url() ?>auth/checkPhoneExist?filter='+this.phone)
+                const formData = new FormData();
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                formData.append('filter',this.phone);
+                axios.post('<?php echo base_url() ?>auth/checkPhoneExist',formData)
                 .then(res => {
                     self.phoneError = '';
                     self.type = 'submit';

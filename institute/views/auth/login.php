@@ -42,6 +42,9 @@
                                             <span class="helper-text red-text">{{ captcha }}</span>
                                         </div>
 
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                        
+
 
                                             <a href="<?php echo base_url() ?>forgot-password" class="col mt15 mb15">Forgot Password?</a>
                                             <div class="input-field col s12">
@@ -102,11 +105,11 @@
         methods:{
             checkForm() {
 
-                        if (grecaptcha.getResponse() == '') {
-                            this.captcha = 'Captcha is required';
-                        } else {
+                        // if (grecaptcha.getResponse() == '') {
+                        //     this.captcha = 'Captcha is required';
+                        // } else {
                             this.$refs.form.submit();
-                        }
+                        // }
                 }
            
 

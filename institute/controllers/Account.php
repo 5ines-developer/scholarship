@@ -24,6 +24,13 @@ class Account extends CI_Controller {
 
     public function update()
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $schoolId = $this->session->userdata('school');
         $data['schoolDetail'] = array(
             'principal'         => $this->input->post('prname'),
@@ -41,10 +48,14 @@ class Account extends CI_Controller {
     // update images
     public function institute_doc()
     {
-
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
         foreach ($_FILES as $key => $value) {
-           $fl =  explode('.', $value['name']);
-           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+        $fl =  explode('.', $value['name']);
+        if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
                 $this->sc_check->sus_mail($this->session->userdata('scmail'));
            }
         }
@@ -95,8 +106,14 @@ class Account extends CI_Controller {
     // update password
     public function update_password()
     {
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+    
         $this->load->library('form_validation');
-        
         $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
         $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
         $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');

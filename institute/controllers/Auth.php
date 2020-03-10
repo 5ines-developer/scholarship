@@ -17,6 +17,12 @@ class auth extends CI_Controller {
 
     public function index()
     {
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+
         if($this->session->userdata('scinst') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
             $this->load->library('form_validation');
@@ -66,6 +72,11 @@ class auth extends CI_Controller {
 
     public function registration()
     {
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
         if($this->session->userdata('scinst') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
            $this->regSubmit();
@@ -79,6 +90,12 @@ class auth extends CI_Controller {
 
     public function regSubmit(Type $var = null)
     {
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('iname', 'Institute', 'trim|required|is_unique[school.name]', array( 'is_unique'=> 'Institute already exists.' ));
@@ -90,7 +107,7 @@ class auth extends CI_Controller {
 
         foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+        if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
                 $this->sc_check->sus_mail( $spemail);
            }
         }
@@ -210,6 +227,13 @@ class auth extends CI_Controller {
     // Set password
     public function set_password($var = null)
     {
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+
        $password = $this->bcrypt->hash_password($this->input->post('psw'));
        $key = $this->input->post('key');
        $this->load->helper('string');
@@ -260,6 +284,12 @@ class auth extends CI_Controller {
     // check forgot password
     public function forgot_password_check(Type $var = null)
     {
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+
         $email = $this->input->post('email');
         if($result = $this->m_auth->checkMail($email)){
             $this->sendForgot($result);
@@ -307,6 +337,13 @@ class auth extends CI_Controller {
     
     public function set_new_password()
     {
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+
         $password = $this->bcrypt->hash_password($this->input->post('psw'));
         $key = $this->input->post('key');
         $this->load->helper('string');
@@ -329,7 +366,14 @@ class auth extends CI_Controller {
     // taluk filter based on selected district
     public function talukFilter()
     {
-        $district = $this->input->get('filter');
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
+
+        $district = $this->input->post('filter');
         $result = $this->m_auth->getTalukFiletr($district);
         echo json_encode($result);
     }
@@ -337,7 +381,14 @@ class auth extends CI_Controller {
     // institute filter
     public function instituteFilter()
     {
-        $taluk = $this->input->get('filter');
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_GET);
+
+        $taluk = $this->input->post('filter');
         $result = $this->m_auth->instituteFilter($taluk);
         echo json_encode($result);
     }
@@ -345,7 +396,14 @@ class auth extends CI_Controller {
     // institute filter
     public function checkInstituteExist()
     {
-        $id = $this->input->get('filter');
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_GET);
+
+        $id = $this->input->post('filter');
         if($this->m_auth->checkInstituteExist($id)){
             echo json_encode(array('status' => 1, 'msg' =>''));
         }else{
@@ -357,7 +415,14 @@ class auth extends CI_Controller {
     // institute filter
     public function checkEmailExist()
     {
-        $id = $this->input->get('filter');
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_GET);
+
+        $id = $this->input->post('filter');
         if($this->m_auth->checkEmailExist($id)){
             echo json_encode(array('status' => 1, 'msg' =>''));
         }else{
@@ -369,7 +434,14 @@ class auth extends CI_Controller {
     // institute filter
     public function checkPhoneExist()
     {
-        $id = $this->input->get('filter');
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_GET);
+
+        $id = $this->input->post('filter');
         if($this->m_auth->checkPhoneExist($id)){
             echo json_encode(array('status' => 1, 'msg' =>''));
         }else{
@@ -401,6 +473,13 @@ class auth extends CI_Controller {
 
     public function instititeCheck($value='')
     {
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_GET);
+
        $ins =  $this->input->get('filter');
        $output = $this->m_auth->instititeCheck($ins);
        if(!empty($output)){
@@ -413,6 +492,11 @@ class auth extends CI_Controller {
 
     public function requestAdd(Type $var = null)
     {
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
         if($this->session->userdata('scinst') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
            $this->submitRequest();
@@ -426,6 +510,13 @@ class auth extends CI_Controller {
 
     public function submitRequest($var = null)
     {
+
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+
         $insert = array(
             'name'          => $this->input->post('name'),
             'mobile'         => $this->input->post('number'),
@@ -438,7 +529,7 @@ class auth extends CI_Controller {
 
         foreach ($_FILES as $key => $value) {
            $fl =  explode('.', $value['name']);
-           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
                 $this->sc_check->sus_mail($insert['email']);
            }
         }

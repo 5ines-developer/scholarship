@@ -30,6 +30,8 @@
                                         <div class="for-title">
                                             <h6 class="center-align">Enter your register Email ID, and we'll send you instruction on how to reset your password.</h6>
                                         </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                     <div class="input-field col s12">
                                         <input  id="email" type="email" v-model="email" name="email" class="validate" required @change="checkMail">
                                         <label for="email">Enter Register email ID</label>
@@ -72,6 +74,8 @@
         checkMail(){
             const formData = new FormData();
             formData.append('mail', this.email);
+        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+            
             axios.post('<?php echo base_url() ?>checkEmail', formData)
             .then(response => {
                 if(response.data == ''){

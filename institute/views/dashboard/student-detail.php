@@ -380,6 +380,8 @@ $this->load->model('m_dashboard');
                         <span class="helper-text" data-error="wrong" data-success="right">eg: some document is missing</span>
                     </div>
                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                
             </div>
             <div class="modal-footer">
                 <button  class="modal-close waves-effect waves-green btn-flat">Submit</button>
@@ -428,6 +430,7 @@ $this->load->model('m_dashboard');
                 const formData = new FormData();
                 formData.append('id', id);
                 self.loader = true;
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url() ?>approval', formData)
                 .then(function (response) {
                     var msg = response.data.msg;
