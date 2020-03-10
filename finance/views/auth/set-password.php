@@ -38,6 +38,9 @@
                                         <label for="password">Password</label>
                                     </div>
 
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                    
+
                                     <div class="input-field col s12">
                                         <input  id="cpassword" type="password" v-model="cpsw" name="cpsw" class="validate" required>
                                         <label for="cpassword">Confirm Password</label>

@@ -21,6 +21,13 @@ class Scholar extends CI_Controller {
 
     public function index($district='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_GET);
+
         $dist = $this->input->get('district');
         if (!empty($dist)) {
             $district = $this->m_scholar->distGet($dist);
@@ -34,6 +41,13 @@ class Scholar extends CI_Controller {
 
     public function allApplication($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $filt['year']   = $this->input->post('year');
         $dist           = $this->input->post('district');
         $tal            = $this->input->post('taluk');
@@ -134,6 +148,13 @@ class Scholar extends CI_Controller {
         // Reject 
     public function reject()
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
        $id = $this->input->post('id');
        $data = array(
            'reject_reason' => $this->input->post('reason'),
@@ -197,6 +218,13 @@ class Scholar extends CI_Controller {
 
     public function payStatus($value='')
     {
+
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+    
        $pay_stats = $this->input->post('pay_stats');
        $id = $this->input->post('payid');
        $data = array(

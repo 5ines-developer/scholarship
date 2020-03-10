@@ -120,6 +120,8 @@
                                         <input class="file-path validate" placeholder="Import the excel file here" type="text" required="" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                     </div>
                                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                 <div class="col l12">
                                     <div class="ff-inp">
                                         <p><b>Note:</b>File should be in .csv / .xsl format Size should be not more than 200KB</p>
@@ -322,6 +324,7 @@
                         "taluk": tal,
                         "caste": cas,
                         "item": item,
+                        'data': { [csrfName]: csrfHash },
                     }
                 },
                 'columnDefs': [{

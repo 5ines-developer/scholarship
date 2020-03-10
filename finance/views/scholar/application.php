@@ -486,6 +486,8 @@ $this->load->model('m_scholar');
                         <label for="textarea1">Enter the reason</label>
                         <span class="helper-text" data-error="wrong" data-success="right">eg: some document is missing</span>
                     </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -508,6 +510,8 @@ $this->load->model('m_scholar');
                             <option value="1">Success</option>
                             <option value="2">Failed</option>
                         </select>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                        
                     </div>
                         <input type="hidden" name="payid" value="<?php echo $result->aid ?>">
                     <div class="input-field col s12" v-if="seen">

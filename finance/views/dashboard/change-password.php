@@ -33,6 +33,8 @@
                                                         <label for="name">Current Password</label>
                                                         <span class="helper-text red-text">{{crpError}}</span>
                                                     </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                                    
                                                     
                                                     <div class="input-field col s12">
                                                         <input id="email" type="password" v-on:keyup="samePass"  v-model="npsw" class="validate" name="npswd" required="">
@@ -94,6 +96,7 @@
                 currntPass(){
                     const formData = new FormData();
                     formData.append('crpass', this.currentpsw);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url() ?>dashboard/checkpsw', formData)
                     .then(response => {
                         if(response.data == ''){

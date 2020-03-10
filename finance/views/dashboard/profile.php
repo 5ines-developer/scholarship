@@ -40,6 +40,8 @@
                                                     <input id="email" readonly required type="email" class="validate" value="<?php echo (!empty($result->email))?$result->email:''; ?>" name="email">
                                                     <label for="email">Email Id</label>
                                                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                                
                                                 
                                                 <div class="input-field col s12">
                                                     <input id="phone" required type="number" class="validate" value="<?php echo (!empty($result->phone))?$result->phone:''; ?>" name="phone">
