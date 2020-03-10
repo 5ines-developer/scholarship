@@ -17,6 +17,12 @@ class auth extends CI_Controller {
 
     public function index()
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         if($this->session->userdata('sgt_id') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
                 $this->security->xss_clean($_POST);
@@ -91,6 +97,12 @@ class auth extends CI_Controller {
    // Set password
     public function set_password($var = null)
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
        $password = $this->bcrypt->hash_password($this->input->post('psw'));
        $key = $this->input->post('key');
        $this->load->helper('string');
@@ -133,6 +145,12 @@ class auth extends CI_Controller {
      // check forgot password
     public function forgot_password_check(Type $var = null)
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $email = $this->input->post('email');
         if($result = $this->m_auth->checkMail($email)){
             $this->sendForgot($result);
@@ -180,6 +198,12 @@ class auth extends CI_Controller {
 
     public function set_new_password()
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+    
         $password = $this->bcrypt->hash_password($this->input->post('psw'));
         $key = $this->input->post('key');
         $this->load->helper('string');

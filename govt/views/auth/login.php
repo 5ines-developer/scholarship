@@ -40,6 +40,8 @@
                                             <input id="password" v-model="psw" type="password" name="psw" class="validate" required>
                                             <label for="password">Password</label>
                                         </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                         <a href="<?php echo base_url('forgot-password') ?>" class="col mt15 mb15">Forgot Password?</a>
                                         <div class="input-field col s12">
                                             <button class="waves-effect waves-light hoverable btn-theme btn">Login</button>
@@ -98,6 +100,8 @@
                     this.emailError='';
                     const formData = new FormData();
                     formData.append('email',this.email);
+        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                    
                     axios.post('<?php echo base_url('auth/emailcheck') ?>',formData)
                     .then(response =>{
                         if (response.data == '') {

@@ -45,6 +45,12 @@ class Dashboard extends CI_Controller {
 
     public function updateprofile($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
     	$insert   = array(
             'name'    => $this->input->post('name'), 
             'phone'  => $this->input->post('phone'), 
@@ -68,12 +74,24 @@ class Dashboard extends CI_Controller {
         // psw check function
     public function checkpsw($psw='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+
         $output = $this->m_dashboard->checkpsw($this->input->post('crpass'));
         echo $output;
     }
 
     public function updatepassword($value='')
     {
+            $csrf = array(
+        'name' => $this->security->get_csrf_token_name(),
+        'hash' => $this->security->get_csrf_hash()
+    );
+    $this->security->xss_clean($_POST);
+    
         $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
         $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
         $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');

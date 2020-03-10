@@ -35,6 +35,8 @@
                                         <label for="email">Enter Register email ID</label>
                                         <div class="red-text">{{crpError}}</div>
                                     </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                     <div class="input-field col s12">
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                     </div>
@@ -73,6 +75,7 @@
         checkMail(){
             const formData = new FormData();
             formData.append('mail', this.email);
+            formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
             axios.post('<?php echo base_url() ?>checkEmail', formData)
             .then(response => {
                 if(response.data == ''){

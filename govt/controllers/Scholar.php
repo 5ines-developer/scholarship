@@ -29,6 +29,12 @@ class Scholar extends CI_Controller {
 
     public function allApplication($value='')
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         $filt['year']   = $this->input->post('year');
         $dist           = $this->input->post('district');
         $tal            = $this->input->post('taluk');
@@ -109,6 +115,13 @@ class Scholar extends CI_Controller {
         // approve application
     public function approve($id = null,$msg='')
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
         
         $id = $this->input->post('id');
         if($this->m_scholar->approval($id)){
@@ -123,6 +136,13 @@ class Scholar extends CI_Controller {
         // Reject 
     public function reject()
     {
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
        $id = $this->input->post('id');
        $data = array(
            'reject_reason' => $this->input->post('reason'),

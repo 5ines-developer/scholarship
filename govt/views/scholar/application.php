@@ -477,6 +477,8 @@ $this->load->model('m_scholar');
                         <span class="helper-text" data-error="wrong" data-success="right">eg: some document is missing</span>
                     </div>
                 </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
             </div>
             <div class="modal-footer">
                 <button type="submit" class="modal-close btn waves-effect waves-green indigo darken-4 btn-float">Submit</button>
@@ -524,6 +526,7 @@ $this->load->model('m_scholar');
                 var self = this;
                 const formData = new FormData();
                 formData.append('id', id);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url() ?>application-approve', formData)
                 .then(function (response) {
                     var msg = response.data.msg;
