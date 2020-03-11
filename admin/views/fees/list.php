@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->library('encryption');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,7 +80,7 @@
                                                                     
                                                                 }else{ ?>
 
-                                                                    <a href="<?php echo base_url('fees/edit/').$value->feesId ?>" class="vie-btn blue-text waves-effect waves-light left" > Edit </a>
+                                                                    <a href="<?php echo base_url('fees/edit/').$this->encryption_url->safe_b64encode($value->feesId) ?>" class="vie-btn blue-text waves-effect waves-light left" > Edit </a>
                                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                                     <a onclick="return confirm('Are you sure you want to delete this item?');" href="<?php echo base_url('fees/delete/').$value->feesId ?>" class="red white-text center-align"> <i class="material-icons action-icon ">delete</i></a>
                                                                     

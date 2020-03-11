@@ -1,6 +1,7 @@
 <?php
 $this->ci =& get_instance();
 $this->load->model('m_stdapplication');
+$this->load->library('encryption');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +31,7 @@ $this->load->model('m_stdapplication');
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
                                 <div class="card-title">Scholarship Application Detail
-                                     <a target="_blank" href="<?php echo base_url('std_application/applicationGenerate/'.$result->id.'') ?>" class="btn-small right mr10 green darken-3 waves-effect waves-light">Download</a>
+                                     <a target="_blank" href="<?php echo base_url('std_application/applicationGenerate/'.$this->ci->encryption_url->safe_b64encode($result->id).'') ?>" class="btn-small right mr10 green darken-3 waves-effect waves-light">Download</a>
                                 </div>
 
                                 <div class="board-content">

@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->library('encryption');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -134,16 +138,18 @@
                                             </thead>
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
-                                                    foreach ($result as $key => $value) { ?>
+                                                    foreach ($result as $key => $value) { 
+                                                        $id = $this->ci->encryption_url->safe_b64encode($value->id);
+                                                    ?>
                                                     <tr role="row" class="odd">
-                                                    <td class="truncate"><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->school_address))?$value->school_address:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->reg_no))?$value->reg_no:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->management_type))?$value->management_type:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->title))?$value->title:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('institute/').$value->id ?>"><?php echo (!empty($value->district))?$value->district:'---'; ?></a></td>
+                                                    <td class="truncate"><a href="<?php echo base_url('institute/').$id ?>"><?php echo (!empty($value->school_address))?$value->school_address:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('institute/').$id ?>"><?php echo (!empty($value->reg_no))?$value->reg_no:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('institute/').$id ?>"><?php echo (!empty($value->management_type))?$value->management_type:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('institute/').$id ?>"><?php echo (!empty($value->title))?$value->title:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('institute/').$id ?>"><?php echo (!empty($value->district))?$value->district:'---'; ?></a></td>
 
                                                     
-                                                    <td class=""><a href="<?php echo base_url('institute/').$value->id ?>">
+                                                    <td class=""><a href="<?php echo base_url('institute/').$id ?>">
                                                         <?php
                                                         if($value->status==1){
                                                             echo '<p class="status darken-2">Active</p>';
@@ -155,7 +161,7 @@
                                                         ?></a>
                                                     </td>
                                                     <td class="action-btn center-align">
-                                                        <a href="<?php echo base_url('institute/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light"> View</a>
+                                                        <a href="<?php echo base_url('institute/').$id ?>" class="vie-btn blue-text waves-effect waves-light"> View</a>
                                                         <a onclick="return confirm('Are you sure you want to delete this item?');" href="<?php echo base_url('institute-delete/').$value->id ?>" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
                                                     </td>
                                                 </tr>

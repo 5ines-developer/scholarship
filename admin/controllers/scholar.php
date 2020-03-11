@@ -72,7 +72,7 @@ class Scholar extends CI_Controller {
         $data = array();
         foreach($fetch_data as $row)  
         {  
-            $btn = '<a href="'.base_url('applications/detail/').$row->id.'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
+            $btn = '<a href="'.base_url('applications/detail/').$this->encryption_url->safe_b64encode($row->id).'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
             if($row->application_state == 3){
                 $state = 'Verification Officer';
             }else if ($row->application_state == 2) {
@@ -128,6 +128,7 @@ class Scholar extends CI_Controller {
     // single student data
     public function singleGet($id = null)
     {
+        $id = $this->encryption_url->safe_b64decode($id);
         $data['title'] = 'Scholarship Details';
         $data['result'] = $this->m_scholar->singleGet($id);
         $this->load->view('scholar/application', $data, FALSE);
@@ -174,7 +175,7 @@ class Scholar extends CI_Controller {
             redirect('applications?item=rejected','refresh');
         }else{
             $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
-            redirect('applications/detail/'.$id,'refresh');
+            redirect('applications/detail/'.$this->encryption_url->safe_b64encode($id),'refresh');
         }
     }
 

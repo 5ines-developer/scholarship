@@ -32,6 +32,7 @@ class Student extends CI_Controller {
 		$data['title']      = 'Student Management';
 		$year = $this->input->get('year');
 		if(!empty($id)){
+            $id = $this->encryption_url->safe_b64decode($id);
 			$data['result']= $this->m_student->getStudent($year,$id);
 			$data['apply']= $this->m_student->getscholar($id);
 			$this->load->view('student/detail.php', $data, FALSE);
@@ -156,11 +157,11 @@ class Student extends CI_Controller {
 
     public function edit($id='',$year='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
     
         $data['title'] = 'Add Student';
         if(!empty($this->input->post())){
@@ -179,13 +180,14 @@ class Student extends CI_Controller {
             );
             if($this->m_student->update($insert,$id)){
                 $this->session->set_flashdata('success', 'Student updated Successfully');
-                redirect('student-edit/'.$id,'refresh');
+                redirect('student-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
             }
             else{
                 $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
-                redirect('student-edit/'.$id,'refresh');
+                redirect('student-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
             }
         }else{
+            $id = $this->encryption_url->safe_b64decode($id);
             $data['result']= $this->m_student->edit($id);
             $this->load->view('student/edit.php', $data, FALSE);
         }

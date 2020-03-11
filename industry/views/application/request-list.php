@@ -1,6 +1,7 @@
 <?php
 $this->ci =& get_instance();
 $this->load->model('m_application');
+$this->load->library('encryption');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +67,8 @@ $this->load->model('m_application');
                                                        foreach ($result as $key => $value) { 
                                                            $i++;
 
-                                                           $id = urlencode(base64_encode($value->id));
+                                                           // $id = urlencode(base64_encode($value->id));
+                                                           $id = $this->ci->encryption_url->safe_b64encode($value->id);
                                                            
                                                         echo '<tr role="row" class="odd"><td class="h5-para-p2"><a href="'.base_url('application/').$id.'">'.$i.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.$value->name.'</a></td>

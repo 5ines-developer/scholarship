@@ -38,6 +38,7 @@ class School extends CI_Controller {
         $taluk    = $this->input->get('taluk');
 		$data['title']      = 'Institute Management';
 		if(!empty($id)){
+            $id = $this->encryption_url->safe_b64decode($id);
 			$data['result']= $this->m_school->getSchool($id);
             $data['apply']= $this->m_school->getscholar($id);
 			$data['emp']= $this->m_school->getEmployee($id);
@@ -181,7 +182,7 @@ class School extends CI_Controller {
         $data = array();
         foreach($fetch_data as $row)  
         {  
-            $edit = '<a href="'.base_url('institute-edit/').$row->id .'" class="vie-btn blue-text waves-effect waves-light"> Edit</a>';
+            $edit = '<a href="'.base_url('institute-edit/').$this->encryption_url->safe_b64encode($row->id) .'" class="vie-btn blue-text waves-effect waves-light"> Edit</a>';
             $sub_array = array();
             $sub_array[] = character_limiter($row->school_address, 9);
             $sub_array[] = $row->reg_no;  
@@ -206,12 +207,13 @@ class School extends CI_Controller {
 
     public function edit($id='')
     {
+        $id = $this->encryption_url->safe_b64decode($id);
 
             $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
     
         $data['title']      = 'Institute Management';
         if(!empty($this->input->post())){
@@ -232,7 +234,7 @@ class School extends CI_Controller {
             }else{
                 $this->session->set_flashdata('error','Please login and try again!');
             }
-            redirect('institute-edit/'.$id,'refresh');
+            redirect('institute-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
         }else{
             $data['taluk'] = $this->m_school->getTalluk();
             $data['district'] = $this->m_school->getDistrict();
@@ -246,6 +248,7 @@ class School extends CI_Controller {
     {
         $data['title']      = 'Institute Management';
         if(!empty($id)){
+            $id = $this->encryption_url->safe_b64decode($id);
             $data['result']= $this->m_school->requestLists($id);
             $this->load->view('school/request-detail.php', $data, FALSE);
         }else{

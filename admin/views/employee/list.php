@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->library('encryption');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,8 +103,9 @@
 
                                                             <a <?php echo $disb ?> style="<?php echo $unbl ?>" href="<?php echo base_url('employee/unblock?id='.$value->id.'') ?>" class="btn-small right green darken-3 waves-effect waves-light white-text">Unblock</a>
                                                         </td>
+
                                                         <td class="action-btn center-align">
-                                                            <a href="<?php echo base_url('employee/edit/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light left" > Edit </a>
+                                                            <a href="<?php echo base_url('employee/edit/').$this->ci->encryption_url->safe_b64encode($value->id) ?>" class="vie-btn blue-text waves-effect waves-light left" > Edit </a>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                                             <a onclick="return confirm('Are you sure you want to delete this item?');" href="<?php echo base_url('employee/delete/').$value->id ?>" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
                                                     </td>

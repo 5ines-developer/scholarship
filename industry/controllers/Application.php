@@ -74,8 +74,10 @@ class Application extends CI_Controller {
         public function singleStudent($id = null)
         {
 
-            $id = urldecode($id);
-            $id = base64_decode($id);
+            // $id = urldecode($id);
+            // $id = base64_decode($id);
+
+            $id = $this->encryption_url->safe_b64decode($id);
 
             $data['title'] = 'Scholarship | Request list';
             $data['result'] = $this->m_application->singleStudent($id);

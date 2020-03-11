@@ -1,6 +1,7 @@
 <?php
 $this->ci =& get_instance();
 $this->load->model('m_stdapplication');
+$this->load->library('encryption');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,14 +67,18 @@ $this->load->model('m_stdapplication');
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
                                                     foreach ($result as $key => $value) { 
-                                                        $id = urlencode(base64_encode($value->id));
+                                                        // $id = urlencode(base64_encode($value->id));
+
+
+                                                $id = $this->ci->encryption_url->safe_b64encode($value->id);
+
 
                                                     ?>
                                                 <tr role="row" class="odd">
 
                                                     <td><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
 
-                                                    <td class=""><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->school))?$value->school:'---'; ?></a></td>
+                                                    <td class="truncate"><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->school))?$value->school:'---'; ?></a></td>
 
                                                     <td class=""><a href="<?php echo base_url('student/application-list/').$id ?>"><?php echo (!empty($value->industry))?$value->industry:'---'; ?></a></td>
 

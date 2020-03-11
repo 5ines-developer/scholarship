@@ -34,6 +34,7 @@ class Industry extends CI_Controller {
 	{
 		$data['title']      = 'Industry Management';
         if(!empty($id)){
+            $id = $this->encryption_url->safe_b64decode($id);
             $data['result']= $this->m_industry->getCompany($id);
             $data['apply']= $this->m_industry->getscholar($id);
             $data['emp']= $this->m_industry->getEmployee($id);
@@ -78,7 +79,7 @@ class Industry extends CI_Controller {
                 $status = '<p class="status blue darken-2">Inactive</p>';
             }
 
-            $detail = '<a href="'.base_url('industry/detail/').$row->industryId .'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
+            $detail = '<a href="'.base_url('industry/detail/').$this->encryption_url->safe_b64encode($row->industryId).'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
             $sub_array = array();
             $sub_array[] = character_limiter($row->name, 9);
             $sub_array[] = $row->reg_id;  
@@ -127,7 +128,8 @@ class Industry extends CI_Controller {
         $data = array();
         foreach($fetch_data as $row)  
         {  
-            $edit = '<a href="'.base_url('industry-edit/').$row->id .'" class="vie-btn blue-text waves-effect waves-light"> Edit</a>';
+
+            $edit = '<a href="'.base_url('industry-edit/').$this->encryption_url->safe_b64encode($row->id).'" class="vie-btn blue-text waves-effect waves-light"> Edit</a>';
 
             if($row->act == '1'){
                 $act = 'Labour Act';
@@ -161,6 +163,7 @@ class Industry extends CI_Controller {
     {
         $data['title']      = 'Industry Management';
         if(!empty($id)){
+            $id = $this->encryption_url->safe_b64decode($id);
             $data['result']= $this->m_industry->requestLists($id);
             $this->load->view('industry/request-detail.php', $data, FALSE);
         }else{
@@ -252,11 +255,12 @@ class Industry extends CI_Controller {
     **/
     public function edit($id='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $id = $this->encryption_url->safe_b64decode($id);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
         $data['title']      = 'Industry Management';
         if(!empty($this->input->post())){
@@ -272,7 +276,7 @@ class Industry extends CI_Controller {
             }else{
                 $this->session->set_flashdata('error','Please login and try again!');
             }
-            redirect('industry-edit/'.$id,'refresh');
+            redirect('industry-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
         }else{
             $data['taluk'] = $this->m_school->getTalluk();
             $data['district'] = $this->m_school->getDistrict();

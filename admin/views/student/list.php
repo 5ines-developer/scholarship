@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->library('encryption');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,13 +130,17 @@
                                             </thead>
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
-                                                    foreach ($result as $key => $value) { ?>
+                                                    foreach ($result as $key => $value) { 
+
+                                                        $id = $this->ci->encryption_url->safe_b64encode($value->id);
+
+                                                    ?>
                                                     <tr role="row" class="odd">
-                                                    <td><a href="<?php echo base_url('student/').$value->id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
-                                                    <td class="truncate"><a href="<?php echo base_url('student/').$value->id ?>"><?php echo (!empty($value->email))?$value->email:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('student/').$value->id ?>"><?php echo (!empty($value->phone))?$value->phone:'---'; ?></a></td>
-                                                    <td class=""><a href="<?php echo base_url('student/').$value->id ?>"><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></a></td>
-                                                    <td class=""><a href="<?php echo base_url('student/').$value->id ?>">
+                                                    <td><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
+                                                    <td class="truncate"><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->email))?$value->email:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->phone))?$value->phone:'---'; ?></a></td>
+                                                    <td class=""><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></a></td>
+                                                    <td class=""><a href="<?php echo base_url('student/').$id ?>">
                                                         <?php
                                                         if($value->status==1){
                                                             echo '<p class="status darken-2">Active</p>';
@@ -144,8 +152,8 @@
                                                         ?></a>
                                                     </td>
                                                     <td class="action-btn center-align">
-                                                        <a href="<?php echo base_url('student/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light" > View </a>
-                                                        <a href="<?php echo base_url('student-edit/').$value->id ?>" class="vie-btn blue-text waves-effect waves-light left" > Edit </a>
+                                                        <a href="<?php echo base_url('student/').$id ?>" class="vie-btn blue-text waves-effect waves-light" > View </a>
+                                                        <a href="<?php echo base_url('student-edit/').$id ?>" class="vie-btn blue-text waves-effect waves-light left" > Edit </a>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                                         <a onclick="return confirm('Are you sure you want to delete this item?');" href="<?php echo base_url('student-delete/').$value->id ?>" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
                                                     </td>

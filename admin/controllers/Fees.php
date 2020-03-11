@@ -71,6 +71,7 @@ class Fees extends CI_Controller {
 
     public function edit($id='')
     {
+        $id= $this->encryption_url->safe_b64decode($id);
     	$data['title'] = 'Fees';
     	$data['result'] = $this->m_fees->feesGet($id);
     	$data['grad'] = $this->m_fees->getGrad();
@@ -102,7 +103,7 @@ class Fees extends CI_Controller {
                 $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
             }
 
-            redirect('fees/edit/'.$id,'refresh');
+            redirect('fees/edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
     }
 
     public function delete($id='')

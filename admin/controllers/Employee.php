@@ -105,6 +105,7 @@ class Employee extends CI_Controller {
 
     public function edit($id='')
     {
+        $id = $this->encryption_url->safe_b64decode($id);
         $data['title'] = 'Employee List | Scholarship';
         $data['result'] = $this->M_employee->singleEmployee($id);
         $this->load->view('employee/edit', $data, FALSE);
@@ -188,7 +189,7 @@ class Employee extends CI_Controller {
         } else{
             $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
         }
-        redirect('employee/edit/'.$id,'refresh');
+        redirect('employee/edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
     }
 
     public function delete($id='')
