@@ -10,6 +10,15 @@ class Employee extends CI_Controller {
         parent::__construct();
         $this->load->model('M_employee');
         if($this->session->userdata('said') == ''){ redirect('/','refresh'); }
+        header_remove("X-Powered-By"); 
+        header("X-Frame-Options: DENY");
+        header("X-XSS-Protection: 1; mode=block");
+        header("X-Content-Type-Options: nosniff");
+        header("Strict-Transport-Security: max-age=31536000");
+        // header("Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';");
+        header("Referrer-Policy: origin-when-cross-origin");
+        header("Expect-CT: max-age=7776000, enforce");
+        header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://hirewit.com/pkp-report"');
     }
 
     public function index()

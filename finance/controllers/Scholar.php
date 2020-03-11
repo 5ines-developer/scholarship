@@ -19,6 +19,18 @@ class Scholar extends CI_Controller {
         $this->adid = $this->session->userdata('sfn_id');
         $this->load->library('sess_log');
         $this->sess_log->check_auth($this->adid);
+        header_remove("X-Powered-By"); 
+        header("X-Frame-Options: DENY");
+        header("X-XSS-Protection: 1; mode=block");
+        header("X-Content-Type-Options: nosniff");
+        header("Strict-Transport-Security: max-age=31536000");
+        header("Content-Security-Policy: frame-ancestors none");
+        // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
+        // header("Referrer-Policy: origin-when-cross-origin");
+        header("Referrer-Policy: no-referrer-when-downgrade");
+        header("Expect-CT: max-age=7776000, enforce");
+        header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
 
@@ -127,7 +139,8 @@ class Scholar extends CI_Controller {
     // single student data
     public function singleGet($id = null)
     {
-        $id =urldecode(base64_decode($id));
+        $id = urldecode($id);
+        $id = base64_decode($id);
         $data['title'] = 'Scholarship Details';
         $data['result'] = $this->m_scholar->singleGet($id);
         $this->load->view('scholar/application', $data, FALSE);
