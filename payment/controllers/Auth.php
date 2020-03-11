@@ -209,11 +209,14 @@ class auth extends CI_Controller {
         );
 
         foreach ($_FILES as $key => $value) {
-           $fl =  explode('.', $value['name']);
-           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+            $pos = strrpos($value['name'], '.');
+            $fl = substr($value['name'], $pos+1);
+            if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
                 $this->sc_check->sus_mail($insert['email']);
+                die();
            }
         }
+
 
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
@@ -497,12 +500,17 @@ class auth extends CI_Controller {
             'company'    => $this->input->post('company'),
         );
 
+        
+
         foreach ($_FILES as $key => $value) {
-           $fl =  explode('.', $value['name']);
-           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
+            $pos = strrpos($value['name'], '.');
+            $fl = substr($value['name'], $pos+1);
+            if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
                 $this->sc_check->sus_mail($insert['email']);
+                die();
            }
         }
+        
 
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');

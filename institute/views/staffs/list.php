@@ -42,10 +42,12 @@
                                             </thead>
                                             <tbody class="tbody-list">
                                                 <?php foreach ($staffs as $key => $value) { 
+                                                    $disb   ='';
                                                     if(empty($value->status)) { 
                                                         $sts    =  '<span class="red-text">Inactive</span>'; 
                                                         $block  =   "display:block";
                                                         $un     =   "display:none";
+                                                        $disb   =   "disabled='disabled'";
                                                     }else if((!empty($value->status)) && ($value->status == 1)) {
                                                         $sts    =  '<span class="green-text">Active</span>'; 
                                                         $block  =   "display:block";
@@ -63,7 +65,7 @@
                                                         <td><?php echo $value->phone ?></td>
                                                         <td> <?php echo $sts ?> </td>
                                                         <td>
-                                                            <a style="<?php echo $block ?>" href="<?php echo base_url('staffs/block?id='.$value->id.'') ?>"  class="btn-small right red darken-3 waves-effect waves-light">Block</a>
+                                                            <a <?php echo $disb ?> style="<?php echo $block ?>" href="<?php echo base_url('staffs/block?id='.$value->id.'') ?>"  class="btn-small right red darken-3 waves-effect waves-light">Block</a>
                                                             <a style="<?php echo $un ?>" href="<?php echo base_url('staffs/unblock?id='.$value->id.'') ?>" class="btn-small right green darken-3 waves-effect waves-light">Unblock</a>
                                                         </td>
                                                     </tr>      

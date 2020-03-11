@@ -36,35 +36,35 @@
                                         <div class="col s12 m12 l12">
                                             <form ref="form" @submit.prevent="formSubmit" action="<?php echo base_url('institute-edit/').$this->uri->segment(2); ?>" method="post">
                                                 <div class="input-field col m6">
-                                                    <input id="name" name="name" type="text" class="validate" v-model="name" @change="namecheck()">
+                                                    <input id="name" name="name" type="text" class="validate" v-model="name" @change="namecheck()" required="">
                                                     <label for="name">Institute Name</label>
                                                     <span class="helper-text red-text">{{nameError}}</span>
                                                 </div>
                                                 <div class="input-field col m6">
-                                                    <input id="rno" name="rno" type="text" class="validate" v-model="regno" @change="regnocheck()">
+                                                    <input id="rno" name="rno" type="text" class="validate" v-model="regno" @change="regnocheck()" required="">
                                                     <label for="rno">Register Number</label>
                                                      <span class="helper-text red-text">{{noError}}</span>
                                                 </div>
 
                                                 <div class="input-field col m6">
-                                                    <input id="mtype" name="mtype" type="text" class="validate" value="<?php echo (!empty($result->management_type))?$result->management_type:''; ?>">
+                                                    <input id="mtype" name="mtype" type="text" class="validate" value="<?php echo (!empty($result->management_type))?$result->management_type:''; ?>" required="">
                                                     <label for="mtype">Management Type</label>
                                                 </div>
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
 
                                                 <div class="input-field col m6">
-                                                    <input id="sccat" name="sccat" type="text" class="validate" value="<?php echo (!empty($result->school_category))?$result->school_category:''; ?>">
+                                                    <input id="sccat" name="sccat" type="text" class="validate" value="<?php echo (!empty($result->school_category))?$result->school_category:''; ?>" required="">
                                                     <label for="sccat">School Category</label>
                                                 </div>
 
                                                 <div class="input-field col m6">
-                                                    <input id="sctype" name="sctype" type="text" class="validate" value="<?php echo (!empty($result->school_type))?$result->school_type:''; ?>">
+                                                    <input id="sctype" name="sctype" type="text" class="validate" value="<?php echo (!empty($result->school_type))?$result->school_type:''; ?>" required="">
                                                     <label for="sctype">School Type</label>
                                                 </div>
 
                                                 <div class="input-field col sel-hr s12 m6">
-                                                    <select name="rural" class="">
+                                                    <select name="rural" class="" required="">
                                                             <option value="" disabled selected>Choose Region Type</option>
                                                             <option value="Urban" <?php echo ($result->urban_rural == 'Urban')?'selected':''; ?> >Urban</option>
                                                             <option value="Rural" <?php echo ($result->urban_rural == 'Rural')?'selected':''; ?>>Rural</option>
@@ -72,7 +72,7 @@
                                                     <label>Region Type</label>
                                                 </div>
                                                 <div class="input-field col sel-hr s12 m6">
-                                                    <select name="district" class="">
+                                                    <select name="district" class="" required="">
                                                             <option value="" disabled selected>Choose your option</option>
                                                             <?php
                                                             if (!empty($district)) {
@@ -84,7 +84,7 @@
                                                     <label>District</label>
                                                 </div>
                                                 <div class="input-field col sel-hr s12 m6">
-                                                    <select name="taluk" class="">
+                                                    <select name="taluk" class="" required="">
                                                             <option value="" disabled selected>Choose your option</option>
                                                             <?php if (!empty($taluk)) {
                                                                foreach ($taluk as $key => $value) { ?> 

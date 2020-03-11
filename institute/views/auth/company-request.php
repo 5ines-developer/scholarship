@@ -207,11 +207,11 @@
             checkForm() {
                 if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '')) {
 
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // }
+                    }
                 } else {}
             }
         }

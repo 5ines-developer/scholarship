@@ -11,6 +11,7 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -41,6 +42,11 @@
                                             <label for="password">Password</label>
                                         </div>
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
+                                    <div class="input-field col s12">
+                                        <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
+                                        <span class="helper-text red-text">{{ captcha }}</span>
+                                    </div>
 
                                         <a href="<?php echo base_url('forgot-password') ?>" class="col mt15 mb15">Forgot Password?</a>
                                         <div class="input-field col s12">
@@ -93,6 +99,7 @@
                 psw: '',
                 cpsw: '',
                 emailError: '',
+                captcha:'',
             },
 
             methods: {
@@ -119,7 +126,11 @@
                 checkForm() {
                     if ((this.emailError == '')) {
 
-                        this.$refs.form.submit();
+                        if (grecaptcha.getResponse() == '') {
+                            this.captcha = 'Captcha is required';
+                        } else {
+                            this.$refs.form.submit();
+                        }
 
                     } else {}
                 }

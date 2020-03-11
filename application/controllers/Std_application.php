@@ -20,9 +20,11 @@ class Std_application extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
-        header("Expect-CT: max-age=7776000, enforce");
-        header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
+        // header("Referrer-Policy: origin-when-cross-origin");
+        // header("Expect-CT: max-age=7776000, enforce");
+        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
+        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
 	/**
@@ -156,64 +158,68 @@ class Std_application extends CI_Controller {
 	        'name' => $this->security->get_csrf_token_name(),
 	        'hash' => $this->security->get_csrf_hash()
 	    );
-
     	foreach ($_FILES as $key => $value) {
-           $fl =  explode('.', $value['name']);
-            if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
+    		$pos = strrpos($value['name'], '.');
+    		$fl = substr($value['name'], $pos+1);
+            if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
                 $this->sc_check->sus_mail($this->session->userdata('slmail'));
                 die();
            }
         }
-
-
-		$input = $this->input->post();
-		if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
-		if(($this->input->post('clow') != '') && ($this->input->post('pmarks') < 45)){ echo 'error'; die(); }
-    	$apply = array(
-    		'application_year' 	=> date('Y') , 
-    		'Student_id' 		=> $this->sid , 
-    		'uniq' 				=> random_string('alnum',10) , 
-    		'application_state '=> '1', 
-		);
-		
-		if (!empty($this->input->post('aid'))) {
-			$apply['status'] = '0';
-		}
-
-		if ($this->input->post('iname') != 'undefined') {
-			$apply['school_id'] =$this->input->post('iname');
-		}
-
-		if ($this->input->post('inname') != 'undefined') {
-			$apply['company_id'] =$this->input->post('inname');
-		}
-
-		$result = $this->m_stdapplication->insertAppli($apply);
-
-		
-		$output = '';
-    	if (!empty($result)) {
-    		if($this->applicantBasic($this->input->post(),$result))
-	    	{
-				if($this->applicantAccount($this->input->post(),$result))
-				{
-					if($this->applicantCompany($this->input->post(),$result))
-					{
-						if($this->applicantSchool($this->input->post(),$result))
-						{
-							$this->studentMail($this->input->post(),$result);
-							$this->studentSms($this->input->post(),$result);
-							$output = 1;
-						}
-					}
-				}
+        $this->form_validation->set_rules('sname', 'Student Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('sphone', 'Student Phone', 'trim|numeric|max_length[10]|min_length[10]');
+        $this->form_validation->set_rules('sfather', 'Father Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('smother', 'Mother Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('saddress', 'Mother Name', 'trim|required');
+        $this->form_validation->set_rules('gender', 'Gender', 'trim|required');
+        $this->form_validation->set_rules('ipclass', 'Present Class', 'trim|required');
+        $this->form_validation->set_rules('ipin', 'Institute Pin Code', 'trim|required');
+        $this->form_validation->set_rules('iname', 'Institute Name', 'trim|required');
+        $this->form_validation->set_rules('italluk', 'Institute Talluk', 'trim|required');
+        $this->form_validation->set_rules('idistrict', 'Institute district', 'trim|required');
+        $this->form_validation->set_rules('cnumber', 'Caste Certificate Number', 'trim|alpha_numeric');
+        $this->form_validation->set_rules('pclass', 'Previous Class', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('pmarks', 'Previous ClassMarks', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('anumber', 'Student adhaar number', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('anumberm', 'Mother adhaar number', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('anumberf', 'Father adhaar number', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('bname', 'Bank Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('branch', 'Branch', 'trim|required');
+        $this->form_validation->set_rules('bifsc', 'IFSC Code', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('baccount', 'Account Number', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('btype', 'Account Holder', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('inpname', 'Parent Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('insalary', 'Parent Salary', 'trim|required|numeric');
+        $this->form_validation->set_rules('inrelation', 'Parent Student Relation', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('inpin', 'Industry Pin Code', 'trim|required|alpha_numeric_spaces');
+        if ($this->form_validation->run() == true) {
+        	$input = $this->input->post();
+			if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
+			if(($this->input->post('clow') != '') && ($this->input->post('pmarks') < 45)){ echo 'error'; die(); }
+	    	$apply = array('application_year' 	=> date('Y') , 'Student_id' => $this->sid , 'uniq' 	=> random_string('alnum',10) , 'application_state '=> '1', ); 
+	    	if (!empty($this->input->post('aid'))) {$apply['status'] = '0'; }
+			if ($this->input->post('iname') != 'undefined') {$apply['school_id'] =$this->input->post('iname'); }
+			if ($this->input->post('inname') != 'undefined') {$apply['company_id'] =$this->input->post('inname'); }
+			$result = $this->m_stdapplication->insertAppli($apply);
+			$output = '';
+	    	if (!empty($result)) {
+	    		if($this->applicantBasic($this->input->post(),$result)) {
+	    			if($this->applicantAccount($this->input->post(),$result)) {
+	    				if($this->applicantCompany($this->input->post(),$result)) {
+	    					if($this->applicantSchool($this->input->post(),$result)) {
+	    						$this->studentMail($this->input->post(),$result); 
+	    						$this->studentSms($this->input->post(),$result); 
+	    						$output = 1; 
+	    					} 
+	    				} 
+	    			} 
+	    		} 
 	    	}
-		}
-		echo $output;
+        }else{
+        	$output = validation_errors();
+        }
 
-    	
-
-
+        echo $output;
     }
 
 

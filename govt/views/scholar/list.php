@@ -273,7 +273,7 @@
                         "taluk": tal,
                         "caste": cas,
                         "item": item,
-                        'data': { [csrfName]: csrfHash },
+                        [csrfName]: csrfHash,
                     }
                 },
                 'columnDefs': [{

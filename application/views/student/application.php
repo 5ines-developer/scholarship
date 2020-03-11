@@ -434,7 +434,7 @@
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="id_msal" type="text" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" @change="salaryCheck()" v-model="industry.salary">
+                                                <input id="id_msal" type="number" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" @change="salaryCheck()" v-model="industry.salary">
                                                 <label for="id_msal"> <span class="black-text">Monthly Salary</span>   </label>
                                                 <span class="helper-text red-text">{{salError}}</span>
                                             </div>
@@ -769,8 +769,6 @@
 
 
                     formData.append('bname', this.bank.name);
-                    formData.append('bname', this.bank.name);
-                    formData.append('bname', this.bank.name);
                     formData.append('branch', this.bank.branch);
                     formData.append('bifsc', this.bank.ifsc);
                     formData.append('baccount', this.bank.account);
@@ -793,8 +791,10 @@
                         }else if(response.data == '1'){
                             M.toast({html: 'Your application has been submitted successfully, <br> you\'ll get notify once its get approved.', classes: 'green', displayLength : 5000 });
                             window.location.href = "<?php echo base_url('student/application-detail') ?>";
-                        }else{
+                        }else if(response.data == ''){
                             M.toast({html: 'Something went wrong!, please try again Later', classes: 'red', displayLength : 5000 });
+                        }else{
+                            M.toast({html: response.data, classes: 'red', displayLength : 8000 });
                         }
                     })
                     .catch(error => {

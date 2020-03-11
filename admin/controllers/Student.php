@@ -17,12 +17,12 @@ class Student extends CI_Controller {
         header("X-Content-Type-Options: nosniff");
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
+        header("Referrer-Policy: no-referrer-when-downgrade");
         // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
         // header("Referrer-Policy: origin-when-cross-origin");
-        header("Referrer-Policy: no-referrer-when-downgrade");
-        header("Expect-CT: max-age=7776000, enforce");
-        header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        // header("Expect-CT: max-age=7776000, enforce");
+        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
+        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
 
@@ -92,27 +92,34 @@ class Student extends CI_Controller {
 
         $data['title'] = 'Add Student';
         if(!empty($this->input->post())){
-            $phone = $this->input->post('phone');
-            $email = $this->input->post('email');
-            $name = $this->input->post('name');
-            $password =$this->input->post('password');
-            $hash = $this->bcrypt->hash_password($password);
-            $insert = array(
-                'email' => $email, 
-                'phone' => $phone, 
-                'password' => $hash, 
-                'status' => 1, 
-                'name' => $name,
-            );
-            if($this->m_student->add($insert)){
-                $this->session->set_flashdata('success', 'Student added Successfully');
-                redirect('student','refresh');
-            }
-            else{
+            $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('phone', 'phone', 'trim|required|numeric');
+            if ($this->form_validation->run() == true) {
+                $phone = $this->input->post('phone');
+                $email = $this->input->post('email');
+                $name = $this->input->post('name');
+                $password =$this->input->post('password');
+                $hash = $this->bcrypt->hash_password($password);
+                $insert = array(
+                    'email' => $email, 
+                    'phone' => $phone, 
+                    'password' => $hash, 
+                    'status' => 1, 
+                    'name' => $name,
+                );
+                if($this->m_student->add($insert)){
+                    $this->session->set_flashdata('success', 'Student added Successfully');
+                    redirect('student','refresh');
+                }
+                else{
+                    $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+                    redirect('student-add','refresh');
+                }
+            }else{
                 $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
                 redirect('student-add','refresh');
             }
-
         }else{
             $this->load->view('student/add', $data, FALSE);
         }

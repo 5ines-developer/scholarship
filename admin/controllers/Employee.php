@@ -15,10 +15,13 @@ class Employee extends CI_Controller {
         header("X-XSS-Protection: 1; mode=block");
         header("X-Content-Type-Options: nosniff");
         header("Strict-Transport-Security: max-age=31536000");
-        // header("Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';");
-        header("Referrer-Policy: origin-when-cross-origin");
-        header("Expect-CT: max-age=7776000, enforce");
-        header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://hirewit.com/pkp-report"');
+        header("Content-Security-Policy: frame-ancestors none");
+        header("Referrer-Policy: no-referrer-when-downgrade");
+        // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
+        // header("Referrer-Policy: origin-when-cross-origin");
+        // header("Expect-CT: max-age=7776000, enforce");
+        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
+        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
     public function index()
@@ -43,6 +46,7 @@ class Employee extends CI_Controller {
             $this->load->helper('string');
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<p class="red-text">', '</p>');
+            $this->form_validation->set_rules('em_name', 'Name', 'trim|required|alpha_numeric_spaces');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[admin.email]');
             $this->form_validation->set_rules('phone', 'Phone', 'trim|required|is_unique[admin.phone]');
             if ($this->form_validation->run() == True){
@@ -66,8 +70,10 @@ class Employee extends CI_Controller {
                 else{
                     $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
                 }
+            }else{
+                $this->session->set_flashdata('error', 'Something went wrong. <br>Please try agin later');
+                $this->load->view('employee/add', $data, false);
             }
-            $this->load->view('employee/add', $data, false);
         }else{
             $this->load->view('employee/add', $data, false);
         }

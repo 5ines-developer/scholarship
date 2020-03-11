@@ -268,6 +268,16 @@ class Scholar extends CI_Controller {
     public function importPaystatus($value='')
     {
 
+        foreach ($_FILES as $key => $value) {
+            $pos = strrpos($value['name'], '.');
+            $fl = substr($value['name'], $pos+1);
+            if($fl !='csv' && $fl !='xsl' && $fl!='xlsx' && $fl !='xlsm' && $fl !='xltm' && $fl !='xltx'){
+                $this->session->set_flashdata('error', 'Please Upload the excel file');
+                redirect('applications?item=approved', 'refresh');
+                die();
+           }
+        }
+
         if ($_FILES["file"]["type"] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
             if (isset($_FILES["file"]["name"])) {
                 $path = $_FILES["file"]["tmp_name"];

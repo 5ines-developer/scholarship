@@ -169,6 +169,9 @@
      	<?php $this->load->view('include/msg'); ?>
 $(document).ready(function() {
 
+    var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+            csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
 
     $('#company').select2({
         placeholder: 'Select a company',
@@ -179,7 +182,7 @@ $(document).ready(function() {
             quietMillis: 250,
             data: function (term, page) {
                 return {
-                    q: term, // search term
+                    q: term,[csrfName]: csrfHash // search term
                 };
             },
             processResults: function (data) {

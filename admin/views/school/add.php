@@ -39,33 +39,33 @@
                                         <div class="col s12 m12 l12">
                                             <form ref="form" @submit.prevent="formSubmit" action="<?php echo base_url('institute-add') ?>" method="post">
                                                 <div class="input-field col m6">
-                                                    <input id="name" name="name" type="text" class="validate" v-model="name" @change="namecheck()">
+                                                    <input id="name" name="name" type="text" class="validate" v-model="name" @change="namecheck()" required="">
                                                     <label for="name">Institute Name</label>
                                                     <span class="helper-text red-text">{{nameError}}</span>
                                                 </div>
                                                 <div class="input-field col m6">
-                                                    <input id="rno" name="rno" type="text" class="validate" v-model="regno" @change="regnocheck()">
+                                                    <input id="rno" name="rno" type="text" class="validate" v-model="regno" @change="regnocheck()" required="">
                                                     <label for="rno">Register Number</label>
                                                      <span class="helper-text red-text">{{noError}}</span>
                                                 </div>
 
                                                 <div class="input-field col m6">
-                                                    <input id="mtype" name="mtype" type="text" class="validate">
+                                                    <input id="mtype" name="mtype" type="text" class="validate" required="">
                                                     <label for="mtype">Management Type</label>
                                                 </div>
 
                                                 <div class="input-field col m6">
-                                                    <input id="sccat" name="sccat" type="text" class="validate">
+                                                    <input id="sccat" name="sccat" type="text" class="validate" required="">
                                                     <label for="sccat">School Category</label>
                                                 </div>
 
                                                 <div class="input-field col m6">
-                                                    <input id="sctype" name="sctype" type="text" class="validate">
+                                                    <input id="sctype" name="sctype" type="text" class="validate" required="">
                                                     <label for="sctype">School Type</label>
                                                 </div>
 
                                                 <div class="input-field col sel-hr s12 m6">
-                                                    <select name="rural" class="">
+                                                    <select name="rural" class="" required="">
                                                             <option value="" disabled selected>Choose Region Type</option>
                                                             <option value="Urban">Urban</option>
                                                             <option value="Rural">Rural</option>

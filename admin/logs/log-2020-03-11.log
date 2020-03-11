@@ -7071,3 +7071,35 @@ INFO - 2020-03-11 08:46:07 --> File loaded: C:\xampp\htdocs\scholarship\admin\vi
 INFO - 2020-03-11 08:46:07 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\student/list.php
 INFO - 2020-03-11 08:46:07 --> Final output sent to browser
 DEBUG - 2020-03-11 08:46:07 --> Total execution time: 0.1116
+INFO - 2020-03-11 16:20:18 --> Config Class Initialized
+INFO - 2020-03-11 16:20:18 --> Hooks Class Initialized
+DEBUG - 2020-03-11 16:20:18 --> UTF-8 Support Enabled
+INFO - 2020-03-11 16:20:18 --> Utf8 Class Initialized
+INFO - 2020-03-11 16:20:18 --> URI Class Initialized
+DEBUG - 2020-03-11 16:20:18 --> No URI present. Default controller set.
+INFO - 2020-03-11 16:20:18 --> Router Class Initialized
+INFO - 2020-03-11 16:20:18 --> Output Class Initialized
+INFO - 2020-03-11 16:20:18 --> Security Class Initialized
+DEBUG - 2020-03-11 16:20:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-03-11 16:20:18 --> CSRF cookie sent
+INFO - 2020-03-11 16:20:18 --> Input Class Initialized
+INFO - 2020-03-11 16:20:18 --> Language Class Initialized
+INFO - 2020-03-11 16:20:18 --> Loader Class Initialized
+INFO - 2020-03-11 16:20:18 --> Helper loaded: url_helper
+INFO - 2020-03-11 16:20:18 --> Helper loaded: file_helper
+INFO - 2020-03-11 16:20:18 --> Helper loaded: text_helper
+INFO - 2020-03-11 16:20:18 --> Helper loaded: string_helper
+INFO - 2020-03-11 16:20:18 --> Database Driver Class Initialized
+INFO - 2020-03-11 16:20:18 --> Email Class Initialized
+DEBUG - 2020-03-11 16:20:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-03-11 16:20:18 --> Session: Class initialized using 'files' driver.
+INFO - 2020-03-11 16:20:18 --> Helper loaded: form_helper
+INFO - 2020-03-11 16:20:18 --> Form Validation Class Initialized
+INFO - 2020-03-11 16:20:18 --> Controller Class Initialized
+INFO - 2020-03-11 16:20:18 --> Model "M_auth" initialized
+INFO - 2020-03-11 16:20:18 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/header.php
+INFO - 2020-03-11 16:20:18 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/footer.php
+INFO - 2020-03-11 16:20:18 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/msg.php
+INFO - 2020-03-11 16:20:18 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\auth/login.php
+INFO - 2020-03-11 16:20:18 --> Final output sent to browser
+DEBUG - 2020-03-11 16:20:18 --> Total execution time: 0.2783

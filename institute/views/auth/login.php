@@ -25,7 +25,7 @@
                                         <p class="m0">Institute Login</p>
                                     </div>
                                     <div class="card-body row m0 pt15 pb15">
-                                        <form action="<?php echo base_url() ?>" method="post">
+                                        <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>" method="post">
                                             <div class="input-field col s12">
                                                 <input  id="email" name="email" type="email" class="validate" required>
                                                 <label for="email">Email ID</label>
@@ -98,6 +98,7 @@
             cpsw: '',
             emailError: '',
             mobileError: '',
+            captcha:'',
 
             
         },
@@ -105,11 +106,11 @@
         methods:{
             checkForm() {
 
-                        // if (grecaptcha.getResponse() == '') {
-                        //     this.captcha = 'Captcha is required';
-                        // } else {
+                        if (grecaptcha.getResponse() == '') {
+                            this.captcha = 'Captcha is required';
+                        } else {
                             this.$refs.form.submit();
-                        // }
+                        }
                 }
            
 
