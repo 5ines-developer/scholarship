@@ -242,9 +242,9 @@
         data: {
           type : '',
           file: '',
-          seal: '<?php echo base_url().$info->seal ?>',
-          signature: '<?php echo base_url().$info->priciple_signature ?>',
-          certificate:'<?php echo base_url().$info->reg_certification ?>'
+          seal: '<?php echo base_url('show-images/').$info->seal ?>',
+          signature: '<?php echo base_url('show-images/').$info->priciple_signature ?>',
+          certificate:'<?php echo base_url('show-images/').$info->reg_certification ?>'
 
         },  
         mounted(){

@@ -12,18 +12,20 @@ class auth extends CI_Controller {
         $this->load->model('m_auth');
         $this->load->library('form_validation');  
         $this->load->library('sc_check');
+        $this->load->helper('captcha');
         header_remove("X-Powered-By"); 
         header("X-Frame-Options: DENY");
         header("X-XSS-Protection: 1; mode=block");
         header("X-Content-Type-Options: nosniff");
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
+        header("Referrer-Policy: no-referrer-when-downgrade");
         // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
         // header("Referrer-Policy: origin-when-cross-origin");
-        header("Referrer-Policy: no-referrer-when-downgrade");
-        header("Expect-CT: max-age=7776000, enforce");
-        header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        // header("Expect-CT: max-age=7776000, enforce");
+        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
+        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        limitRequests($this->input->ip_address());
 
     }
     
@@ -40,7 +42,9 @@ class auth extends CI_Controller {
 
         if($this->session->userdata('pyId') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
-                $this->security->xss_clean($_POST);
+                $inputCaptcha = $this->input->post('captcha');
+            $sessCaptcha = $this->session->userdata('captchaCode');
+            if($sessCaptcha == $inputCaptcha){
                 $this->form_validation->set_rules('email', 'Email Id', 'required');
                 $this->form_validation->set_rules('psw', 'Password', 'trim|required|min_length[5]');
                 if ($this->form_validation->run() == True){
@@ -70,8 +74,14 @@ class auth extends CI_Controller {
                     $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                     redirect('/');
                 }
+
+            }else{
+                $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
+                redirect('/');
+            }
         }else{
-            $this->load->view('auth/login');
+            $data['captchaImg'] = $this->sc_check->img_catcha();
+            $this->load->view('auth/login',$data);
         }
     }
 
@@ -209,14 +219,11 @@ class auth extends CI_Controller {
         );
 
         foreach ($_FILES as $key => $value) {
-            $pos = strrpos($value['name'], '.');
-            $fl = substr($value['name'], $pos+1);
-            if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
+           $fl =  explode('.', $value['name']);
+           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
                 $this->sc_check->sus_mail($insert['email']);
-                die();
            }
         }
-
 
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
@@ -500,17 +507,12 @@ class auth extends CI_Controller {
             'company'    => $this->input->post('company'),
         );
 
-        
-
         foreach ($_FILES as $key => $value) {
-            $pos = strrpos($value['name'], '.');
-            $fl = substr($value['name'], $pos+1);
-            if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
+           $fl =  explode('.', $value['name']);
+           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
                 $this->sc_check->sus_mail($insert['email']);
-                die();
            }
         }
-        
 
         if ((empty($_FILES['reg_doc']['tmp_name']))) {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
@@ -583,6 +585,19 @@ class auth extends CI_Controller {
         $mpdf->Output();
         exit;    
     }
+
+            function show_images($folder='',$file='') {
+        if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '' || $this->session->userdata('pyId')) {
+        $img_path = $folder.'/'.$file;
+        $fp = fopen($img_path,'rb');
+        header('Content-Type: image/png');
+        header('Content-length: ' . filesize($img_path));
+        fpassthru($fp);
+        }else{
+        redirect('/','refresh');
+        }
+
+        }
 
 
 

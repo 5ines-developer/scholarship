@@ -85,4 +85,9 @@ $route['student/application-list'] 		= 'Std_application/list';
 $route['student/application-list/(:any)'] 		= 'Std_application/list/$1';
 
 
+$route['show-image/(:any)'] 		= 'home/show_image/$1';
+$route['show-image/(:any)/(:any)'] 		= 'home/show_image/$1/$2';
+
+
+
 

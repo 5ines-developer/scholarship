@@ -54,12 +54,13 @@ class Dashboard extends CI_Controller {
     // Reject 
     public function reject()
     {
+        $this->sc_check->limitRequests();
 
-            $csrf = array(
-                'name' => $this->security->get_csrf_token_name(),
-                'hash' => $this->security->get_csrf_hash()
-            );
-            $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
        $id = $this->input->post('id');
        $data = array(

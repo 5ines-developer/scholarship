@@ -11,6 +11,7 @@ class Student extends CI_Controller {
         //Do your magic here
         $this->load->model('m_student');
         $this->load->library('sc_check');
+        $this->load->helper('captcha');
         header_remove("X-Powered-By"); 
         header("X-Frame-Options: DENY");
         header("X-XSS-Protection: 1; mode=block");
@@ -35,6 +36,7 @@ class Student extends CI_Controller {
     {
         if ($this->session->userdata('stlid') == '') {
             $data['title']      = 'Student Login';
+            $data['captchaImg'] = $this->sc_check->img_catcha();
             $this->load->view('student/student-login.php', $data, FALSE);
         }else{
             redirect('student/profile','refresh');
@@ -260,39 +262,47 @@ class Student extends CI_Controller {
         'hash' => $this->security->get_csrf_hash()
         );
         if(!empty($this->input->post())){
-            if ($this->session->userdata('stlid') == '') {
-            $this->form_validation->set_rules('email', 'Email Id', 'required');
-            $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[5]');
-                if ($this->form_validation->run() == True){
-                    $email = $this->input->post('email'); 
-                    $password = $this->input->post('pswd');
-                    if($result = $this->m_student->can_login($email, $password)) 
-                    {
-                        $session_data = array(
-                            'slmail' => $email,
-                            'stlid'  => $result['id'],
-                            'stqstn' => $result['qstn_status'],
-                        );
-                        $this->session->set_userdata($session_data);
-                        $this->sc_check->loginSuccess();
-                        redirect('student/dashboard'); 
-                    } 
-                    else 
-                    {
-                        $this->sc_check->loginError($email);
-                        $this->session->set_flashdata('error', 'Invalid Username or Password'); 
-                        redirect('student/login');
+
+            $inputCaptcha = $this->input->post('captcha');
+            $sessCaptcha = $this->session->userdata('captchaCode');
+
+            if($sessCaptcha == $inputCaptcha){
+                if ($this->session->userdata('stlid') == '') {
+                $this->form_validation->set_rules('email', 'Email Id', 'required');
+                $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[5]');
+                    if ($this->form_validation->run() == True){
+                        $email = $this->input->post('email'); 
+                        $password = $this->input->post('pswd');
+                        if($result = $this->m_student->can_login($email, $password)) 
+                        {
+                            $session_data = array(
+                                'slmail' => $email,
+                                'stlid'  => $result['id'],
+                                'stqstn' => $result['qstn_status'],
+                            );
+                            $this->session->set_userdata($session_data);
+                            $this->sc_check->loginSuccess();
+                            redirect('student/dashboard'); 
+                        } 
+                        else 
+                        {
+                            $this->sc_check->loginError($email);
+                            $this->session->set_flashdata('error', 'Invalid Username or Password'); 
+                            redirect('student/login');
+                        }
+                    }else{
+                        $error = validation_errors();
+                        $this->session->set_flashdata('error', $error);
+                        redirect('student/login','refresh');
                     }
+
                 }else{
-                    $error = validation_errors();
-                    $this->session->set_flashdata('error', $error);
-                    redirect('student/login','refresh');
+                    redirect('student/profile','refresh');
                 }
-
             }else{
-                redirect('student/profile','refresh');
+                $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
+                redirect('student/login','refresh');
             }
-
         }else{
             redirect('student/login','refresh');
         }
@@ -325,6 +335,7 @@ class Student extends CI_Controller {
             $qstn   = $this->input->post('qstn');
             $answer = $this->input->post('answer');
             $stdid  = $this->session->userdata('stlid');
+            
             if($this->m_student->securityqstn($qstn, $answer, $stdid)){
                 redirect('student/profile','refresh');
            }else{
@@ -547,6 +558,12 @@ class Student extends CI_Controller {
         }else{
            redirect('student/forgot-password');
         }
+    }
+
+
+    public function refresh(){
+        $captcha['image'] = $this->sc_check->cap_refresh();
+        echo $captcha['image'];
     }
 
 

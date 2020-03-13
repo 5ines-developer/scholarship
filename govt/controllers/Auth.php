@@ -12,6 +12,7 @@ class auth extends CI_Controller {
         $this->load->model('m_auth');
         $this->load->library('form_validation');  
         $this->load->library('sc_check');
+        $this->load->helper('captcha');
         header_remove("X-Powered-By"); 
         header("X-Frame-Options: DENY");
         header("X-XSS-Protection: 1; mode=block");
@@ -37,7 +38,11 @@ class auth extends CI_Controller {
 
         if($this->session->userdata('sgt_id') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
-                $this->security->xss_clean($_POST);
+
+            $inputCaptcha = $this->input->post('captcha');
+            $sessCaptcha = $this->session->userdata('captchaCode');
+            if($sessCaptcha == $inputCaptcha){
+
                 $this->form_validation->set_rules('email', 'Email Id', 'required');
                 $this->form_validation->set_rules('psw', 'Password', 'trim|required|min_length[5]');
                 if ($this->form_validation->run() == True){
@@ -68,8 +73,15 @@ class auth extends CI_Controller {
                     $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                     redirect('/');
                 }
+
+            }else{
+                $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
+                redirect('/');
+
+            }
         }else{
-            $this->load->view('auth/login');
+            $data['captchaImg'] = $this->sc_check->img_catcha();
+            $this->load->view('auth/login',$data);
         }
     }
 
@@ -233,6 +245,11 @@ class auth extends CI_Controller {
             $this->session->set_flashdata('error', 'Activation link has been expired');
             redirect('/','refresh');
         }
+    }
+
+    public function refresh(){
+        $captcha['image'] = $this->sc_check->cap_refresh();
+        echo $captcha['image'];
     }
 
 

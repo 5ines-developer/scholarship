@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-header_remove("X-Powered-By"); 
+        header_remove("X-Powered-By"); 
         header("X-Frame-Options: DENY");
         header("X-XSS-Protection: 1; mode=block");
         header("X-Content-Type-Options: nosniff");
@@ -22,6 +22,22 @@ class Home extends CI_Controller {
 		$this->load->view('site/index', $data, FALSE);
 		
 	}
+
+         function show_image($folder='',$file='') {
+
+                if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '') {
+                $img_path = $folder.'/'.$file;
+                $fp = fopen($img_path,'rb');
+                header('Content-Type: image/png');
+                header('Content-length: ' . filesize($img_path));
+                fpassthru($fp);
+                }else{
+                redirect('/','refresh');
+
+                }
+
+               
+        }
 
 }
 

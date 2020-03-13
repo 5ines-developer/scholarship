@@ -57,24 +57,33 @@ class Dashboard extends CI_Controller {
 
     public function updateprofile($value='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
 
-    	$insert   = array(
-            'name'    => $this->input->post('name'), 
-            'phone'  => $this->input->post('phone'), 
-        );        
-    	$result = $this->m_dashboard->updateprofile($insert);
-    	if (!empty($result )) {
-    		$this->session->set_flashdata('success', 'Profile updated succesfully');
-    	}else{
+        $this->sc_check->limitRequests();
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+        $this->form_validation->set_rules('name', 'Name', 'required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric');
+        if ($this->form_validation->run() == True){
+            $insert   = array(
+                'name'    => $this->input->post('name'), 
+                'phone'  => $this->input->post('phone'), 
+            );        
+            $result = $this->m_dashboard->updateprofile($insert);
+            if (!empty($result )) {
+                $this->session->set_flashdata('success', 'Profile updated succesfully');
+            }else{
+                $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
+            }
+            redirect('profile','refresh');
+        }else{
             $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
-    	}
+            redirect('profile','refresh'); 
+        }
 
-    	redirect('profile','refresh');
+    	
     }
 
     public function changepassword($value='')
@@ -98,6 +107,9 @@ class Dashboard extends CI_Controller {
 
     public function updatepassword($value='')
     {
+
+        $this->sc_check->limitRequests();
+        
             $csrf = array(
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()

@@ -215,7 +215,7 @@ $this->load->model('m_scholar');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Marks Card Copy</p>
-                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->prv_marks))?$this->config->item('web_url').$result->prv_markcard:'#'; ?>"> markscard </a></p>
+                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->prv_marks))?$this->config->item('web_url').'show-image/'.$result->prv_markcard:'#'; ?>"> markscard </a></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -248,7 +248,7 @@ $this->load->model('m_scholar');
                                                                             <p class="app-item-content-head">Caste Certificate File/ Number</p>
                                                                                 <?php if (!empty($result->is_scst)) { ?>
                                                                                     <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> 
-                                                                                    <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?base_url().$result->cast_certificate:'#'; ?>"> Caste-certificate
+                                                                                    <a target="_blank" href="<?php echo (!empty($result->cast_certificate))?$this->config->item('web_url').'show-image/'.$result->cast_certificate:'#'; ?>"> Caste-certificate
                                                                                     </a>
                                                                                     <?php echo (!empty($result->cast_no))?'-'.$result->cast_no:''; ?>
                                                                                     </p>
@@ -340,7 +340,7 @@ $this->load->model('m_scholar');
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Aadhaar card File</p>
                                                                                 <?php if (!empty($result->adharcard_file)) { ?>
-                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->adharcard_file))?$this->config->item('web_url').$result->adharcard_file:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->adharcard_file))?$this->config->item('web_url').'show-image/'.$result->adharcard_file:'#'; ?>">Aadhaar Xerox</a></p>
                                                                             <?php } ?>
                                                                             </div>
                                                                         </li>
@@ -354,7 +354,7 @@ $this->load->model('m_scholar');
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Father Aadhaar card File</p>
                                                                                 <?php if (!empty($result->f_adharfile)) { ?>
-                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->f_adharfile))?$this->config->item('web_url').$result->f_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->f_adharfile))?$this->config->item('web_url').'show-image/'.$result->f_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
                                                                             <?php } ?>
                                                                             </div>
                                                                         </li>
@@ -367,7 +367,7 @@ $this->load->model('m_scholar');
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Mother Aadhaar card File</p>
                                                                                 <?php if (!empty($result->m_adharfile)) { ?>
-                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->m_adharfile))?$this->config->item('web_url').$result->m_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->m_adharfile))?$this->config->item('web_url').'show-image/'.$result->m_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
                                                                             <?php } ?>
                                                                             </div>
                                                                         </li>
@@ -424,7 +424,7 @@ $this->load->model('m_scholar');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Passbook Front Page Copy</p>
-                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->passbook))?$this->config->item('web_url').$result->passbook:'#'; ?>">Passbook</a></p>
+                                                                            <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->passbook))?$this->config->item('web_url').'show-image/'.$result->passbook:'#'; ?>">Passbook</a></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>

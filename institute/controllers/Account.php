@@ -38,6 +38,8 @@ class Account extends CI_Controller {
     public function update()
     {
 
+        $this->sc_check->limitRequests();
+
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -130,12 +132,13 @@ class Account extends CI_Controller {
     // update password
     public function update_password()
     {
+        $this->sc_check->limitRequests();
 
-            $csrf = array(
-                'name' => $this->security->get_csrf_token_name(),
-                'hash' => $this->security->get_csrf_hash()
-            );
-            $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
     
         $this->load->library('form_validation');
         $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
@@ -158,6 +161,9 @@ class Account extends CI_Controller {
             redirect('change-password','refresh');
         }
     }
+
+
+
 
 }
 

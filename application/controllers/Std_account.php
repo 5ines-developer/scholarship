@@ -50,7 +50,7 @@ class Std_account extends CI_Controller {
 
 		$output = $this->m_stdaccount->getProfile($this->sid);
         if (!empty($output['profile_pic'])) {
-            $output['profile'] = base_url().$output['profile_pic'];
+            $output['profile'] = base_url('show-image/').$output['profile_pic'];
         }else{
             $output['profile'] = '';
         }
@@ -61,6 +61,7 @@ class Std_account extends CI_Controller {
     public function updateprofile($output='')
     {
 
+        $this->sc_check->limitRequests();
         $csrf = array(
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()
@@ -141,6 +142,7 @@ class Std_account extends CI_Controller {
     **/
 	public function update_pass($value='')
 	{
+        $this->sc_check->limitRequests();
         $this->security->xss_clean($_POST);
         $csrf = array(
         'name' => $this->security->get_csrf_token_name(),

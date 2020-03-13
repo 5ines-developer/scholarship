@@ -8,6 +8,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+<script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
+<script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
 </head>
 <body>
     <div id="app">
@@ -38,9 +42,15 @@
                                             </div>
 
                                             <div class="input-field col s12">
-                                            <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
-                                            <span class="helper-text red-text">{{ captcha }}</span>
-                                        </div>
+                                            <p id="captImg"><?php echo $captchaImg; ?></p>
+                                            <p>Can't read the image? click <a href="javascript:void(0);" class="refreshCaptcha">here</a> to refresh.</p>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input id="cap" type="text" name="captcha" value="" v-model="captcha"/>
+                                        <label for="cap">Enter the text from above image</label>
+                                        <span class="red-text">{{captchaError}}</span>
+                                    </div>
 
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                         
@@ -74,13 +84,18 @@
         <?php $this->load->view('include/footer'); ?>
     </div>
               
-
+<script>
+$(document).ready(function(){
+    $('.refreshCaptcha').on('click', function(){
+        $.get('<?php echo base_url().'auth/refresh'; ?>', function(data){
+            $('#captImg').html(data);
+        });
+    });
+});
+</script>
 
 <!-- scripts -->
-<script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
-<script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
-<script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <?php $this->load->view('include/msg'); ?>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -98,7 +113,8 @@
             cpsw: '',
             emailError: '',
             mobileError: '',
-            captcha:'',
+           captcha:'',
+            captchaError:'',
 
             
         },
@@ -106,8 +122,9 @@
         methods:{
             checkForm() {
 
-                        if (grecaptcha.getResponse() == '') {
-                            this.captcha = 'Captcha is required';
+                    this.captchaError ="";
+                        if (this.captcha == '') {
+                            this.captchaError = 'Captcha is required';
                         } else {
                             this.$refs.form.submit();
                         }

@@ -12,6 +12,7 @@ class auth extends CI_Controller {
         $this->load->model('m_auth');
         $this->load->library('form_validation'); 
         $this->load->library('sc_check');
+        $this->load->helper('captcha');
         header_remove("X-Powered-By"); 
         header("X-Frame-Options: DENY");
         header("X-XSS-Protection: 1; mode=block");
@@ -24,6 +25,7 @@ class auth extends CI_Controller {
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
         // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        limitRequests($this->input->ip_address());
     }
     
 
@@ -37,6 +39,11 @@ class auth extends CI_Controller {
 
         if($this->session->userdata('scinds') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
+
+            $inputCaptcha = $this->input->post('captcha');
+            $sessCaptcha = $this->session->userdata('captchaCode');
+            if($sessCaptcha == $inputCaptcha){
+
                 $this->form_validation->set_rules('email', 'Email Id', 'required');
                 $this->form_validation->set_rules('psw', 'Password', 'trim|required|min_length[5]');
                 if ($this->form_validation->run() == True){
@@ -65,8 +72,15 @@ class auth extends CI_Controller {
                     $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                     redirect('/');
                 }
+
+                }else{
+                $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
+                redirect('/');
+            }
+            
         }else{
-            $this->load->view('auth/login');
+            $data['captchaImg'] = $this->sc_check->img_catcha();
+            $this->load->view('auth/login',$data);
         }
     }
 
@@ -200,8 +214,23 @@ class auth extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
 
+        foreach ($_FILES as $key => $value) {
+            $pos = strrpos($value['name'], '.');
+            $fl = substr($value['name'], $pos+1);
+            if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
+                $this->sc_check->sus_mail($insert['email']);
+                die();
+           }
+        }
 
-        $insert = array(
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('phone', 'Phone number', 'trim|required|numeric');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required|alpha_dash');
+        if ($this->form_validation->run() == TRUE ) {
+
+
+            $insert = array(
             'email'          => $this->input->post('email'),
             'mobile'         => $this->input->post('phone'),
             'talluk'          => $this->input->post('taluk'),
@@ -212,14 +241,7 @@ class auth extends CI_Controller {
             'type'          => 1,
         );
 
-        foreach ($_FILES as $key => $value) {
-            $pos = strrpos($value['name'], '.');
-            $fl = substr($value['name'], $pos+1);
-            if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
-                $this->sc_check->sus_mail($insert['email']);
-                die();
-           }
-        }
+        
 
 
         if ((!empty($_FILES['reg_doc']['tmp_name']))) {
@@ -300,6 +322,19 @@ class auth extends CI_Controller {
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
             redirect('register');
         }
+
+
+        }else{
+
+            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+            redirect('register');
+
+
+        }
+
+
+        
     }
 
     // Send activation
@@ -633,6 +668,27 @@ class auth extends CI_Controller {
         $mpdf->WriteHTML($html);
         $mpdf->Output();
         exit;    
+    }
+
+    function show_images($folder='',$file='') {
+
+    
+if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '') {
+$img_path = $folder.'/'.$file;
+$fp = fopen($img_path,'rb');
+header('Content-Type: image/png');
+header('Content-length: ' . filesize($img_path));
+fpassthru($fp);
+}else{
+redirect('/','refresh');
+}
+
+}
+
+
+    public function refresh(){
+        $captcha['image'] = $this->sc_check->cap_refresh();
+        echo $captcha['image'];
     }
 
 

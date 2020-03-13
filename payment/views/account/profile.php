@@ -273,9 +273,9 @@
                 type: '',
                 file: '',
                 loader:false,
-                pan: '<?php echo (!empty($info->pancard))?base_url().$info->pancard:''; ?>',
-                gst: '<?php echo (!empty($info->gst))?base_url().$info->gst:''; ?>',
-                certificate: '<?php echo (!empty($info->register_doc))?base_url().$info->register_doc:''; ?>'
+                pan: '<?php echo (!empty($info->pancard))?base_url('show-images/').$info->pancard:''; ?>',
+                gst: '<?php echo (!empty($info->gst))?base_url('show-images/').$info->gst:''; ?>',
+                certificate: '<?php echo (!empty($info->register_doc))?base_url('show-images/').$info->register_doc:''; ?>'
 
             },
             mounted() {

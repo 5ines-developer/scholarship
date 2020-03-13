@@ -11,6 +11,7 @@ class Auth extends CI_Controller {
         parent::__construct();
         $this->load->model('M_auth');
         $this->load->library('sc_check');
+        $this->load->helper('captcha');
        header_remove("X-Powered-By"); 
         header("X-Frame-Options: DENY");
         header("X-XSS-Protection: 1; mode=block");
@@ -23,12 +24,14 @@ class Auth extends CI_Controller {
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
         // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        limitRequests($this->input->ip_address());
     }
     
 
     public function index()
     {
         $data['title'] = 'Scholarship | Admin';
+        $data['captchaImg'] = $this->sc_check->img_catcha();
         $this->load->view('auth/login', $data);
     }
 
@@ -44,6 +47,11 @@ class Auth extends CI_Controller {
         if($this->session->userdata('said') != ''){ redirect('dashboard','refresh'); }
         $this->load->library('form_validation');
         if ($this->session->userdata('said') == '') { 
+
+            $inputCaptcha = $this->input->post('captcha');
+            $sessCaptcha = $this->session->userdata('captchaCode');
+            if($sessCaptcha == $inputCaptcha){
+
             $this->security->xss_clean($_POST);
             $this->form_validation->set_rules('email', 'Email Id', 'required');
             $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[6]');
@@ -76,6 +84,12 @@ class Auth extends CI_Controller {
                 $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                 redirect('/');
             }
+
+            }else{
+                $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
+                redirect('/');
+            }
+
         }else{
             redirect('dashboard');
         }
@@ -238,6 +252,12 @@ class Auth extends CI_Controller {
     {
         $this->loginmodel->dbine();
     }
+
+        public function refresh(){
+        $captcha['image'] = $this->sc_check->cap_refresh();
+        echo $captcha['image'];
+    }
+
 
 
 

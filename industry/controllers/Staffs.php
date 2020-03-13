@@ -23,6 +23,7 @@ class Staffs extends CI_Controller {
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
         // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        
     }
 
     public function index()
@@ -45,6 +46,7 @@ class Staffs extends CI_Controller {
         $data['title'] = 'Add Verification staffs';
         $this->load->helper('string');
         if($this->input->post()){
+            $this->sc_check->limitRequests();
             $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
             $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric|max_length[10]|min_length[10]');

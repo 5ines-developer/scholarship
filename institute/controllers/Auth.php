@@ -11,6 +11,7 @@ class auth extends CI_Controller {
         parent::__construct();
         $this->load->model('m_auth');
         $this->load->library('sc_check');
+        $this->load->helper('captcha');
         header_remove("X-Powered-By"); 
         header("X-Frame-Options: DENY");
         header("X-XSS-Protection: 1; mode=block");
@@ -38,8 +39,12 @@ class auth extends CI_Controller {
         if($this->session->userdata('scinst') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
             $this->load->library('form_validation');
-            if ($this->session->userdata('scinst') == '') { 
-                $this->security->xss_clean($_POST);
+            if ($this->session->userdata('scinst') == '') {
+
+            $inputCaptcha = $this->input->post('captcha');
+            $sessCaptcha = $this->session->userdata('captchaCode');
+            if($sessCaptcha == $inputCaptcha){
+
                 $this->form_validation->set_rules('email', 'Email Id', 'required');
                 $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[6]');
                 if ($this->form_validation->run() == True){
@@ -74,11 +79,18 @@ class auth extends CI_Controller {
                     $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                     redirect('/');
                 }
+
+                }else{
+                $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
+                redirect('/');
+            }
+
             }else{
                 redirect('dashboard');
             }
         }else{
-            $this->load->view('auth/login');
+            $data['captchaImg'] = $this->sc_check->img_catcha();
+            $this->load->view('auth/login',$data);
         }
     }
 
@@ -109,10 +121,7 @@ class auth extends CI_Controller {
             );
             $this->security->xss_clean($_POST);
         
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('iname', 'Institute', 'trim|required|is_unique[school.name]', array( 'is_unique'=> 'Institute already exists.' ));
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[school.email]', array( 'is_unique'=> 'This %s already exists.' ));
-        $this->form_validation->set_rules('number', 'Phone number', 'trim|required|is_unique[school.phone]', array( 'is_unique'=> 'This %s already exists.' ));
+        
 
         $spemail = $this->input->post('email');
 
@@ -125,7 +134,10 @@ class auth extends CI_Controller {
            }
         }
 
-        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('iname', 'Institute', 'trim|required|is_unique[school.name]', array( 'is_unique'=> 'Institute already exists.' ));
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[school.email]', array( 'is_unique'=> 'This %s already exists.' ));
+        $this->form_validation->set_rules('number', 'Phone number', 'trim|required|is_unique[school.phone]', array( 'is_unique'=> 'This %s already exists.' ));
         if ($this->form_validation->run() == TRUE ) {
             foreach ($_FILES as $key => $value) {
                 if (!empty($value)) {
@@ -601,6 +613,25 @@ class auth extends CI_Controller {
         {
             return false;
         }
+    }
+
+
+        function show_images($folder='',$file='') {
+        if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '') {
+        $img_path = $folder.'/'.$file;
+        $fp = fopen($img_path,'rb');
+        header('Content-Type: image/png');
+        header('Content-length: ' . filesize($img_path));
+        fpassthru($fp);
+        }else{
+        redirect('/','refresh');
+        }
+
+        }
+
+    public function refresh(){
+        $captcha['image'] = $this->sc_check->cap_refresh();
+        echo $captcha['image'];
     }
 
 

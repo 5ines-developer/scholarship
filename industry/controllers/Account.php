@@ -25,6 +25,7 @@ class Account extends CI_Controller {
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
         // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        
     }
 
     public function index()
@@ -73,6 +74,8 @@ class Account extends CI_Controller {
 
     public function update()
     {
+        $this->sc_check->limitRequests();
+
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -82,7 +85,7 @@ class Account extends CI_Controller {
         $this->form_validation->set_rules('number', 'Phone Number', 'trim|numeric|max_length[10]|min_length[10]');
         $this->form_validation->set_rules('gst_no', 'GST Number', 'trim|alpha_numeric_spaces');
         $this->form_validation->set_rules('pan_no', 'Pancard Number', 'trim|alpha_numeric_spaces');
-
+        $this->form_validation->set_rules('address', 'Address', 'trim|alpha_dash');
         if ($this->form_validation->run() == true) {
             $insert = array(
                 'talluk'       => $this->input->post('taluk'),
@@ -160,13 +163,19 @@ class Account extends CI_Controller {
 
     public function hrupdate($value='')
     {
+        $this->sc_check->limitRequests();
+
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
 
-        $insert = array(
+        $this->form_validation->set_rules('name', 'Name', 'trim|alpha_numeric_spaces');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|numeric');
+        if ($this->form_validation->run() == true) {
+            $insert = array(
             'name'   => $this->input->post('name'),
             'email'  => $this->input->post('email'),
             'mobile' => $this->input->post('phone'),
@@ -179,6 +188,19 @@ class Account extends CI_Controller {
             $this->session->set_flashdata('error', '😕 Server error occurred. Please try again later');             
         }
         redirect('dashboard','refresh');
+
+
+
+        }else{
+
+            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+            redirect('dashboard','refresh');
+
+
+        }
+
+        
     }
 
 
@@ -255,6 +277,8 @@ class Account extends CI_Controller {
     // update password
     public function update_password()
     {
+        $this->sc_check->limitRequests();
+        
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -282,6 +306,9 @@ class Account extends CI_Controller {
             redirect('change-password','refresh');
         }
     }
+
+
+
 
 }
 

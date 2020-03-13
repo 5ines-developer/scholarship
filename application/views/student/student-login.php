@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- jQuery library -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/vue.js"></script>
     <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
@@ -44,9 +46,20 @@
                                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
                                     <div class="input-field col s12">
+                                            <p id="captImg"><?php echo $captchaImg; ?></p>
+                                            <p>Can't read the image? click <a href="javascript:void(0);" class="refreshCaptcha">here</a> to refresh.</p>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input id="cap" type="text" name="captcha" value="" v-model="captcha"/>
+                                        <label for="cap">Enter the text from above image</label>
+                                        <span class="red-text">{{captchaError}}</span>
+                                    </div>
+
+                                    <!-- <div class="input-field col s12">
                                         <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
-                                    </div>
+                                    </div> -->
 
                                      <a href="<?php echo base_url('student/forgot-password') ?>" class="col mt15 mb15">Forgot Password?</a>
                                     <div class="input-field col s12">
@@ -82,6 +95,20 @@
 <script>
     <?php $this->load->view('includes/message'); ?>
 </script>
+
+
+
+<!-- captcha refresh code -->
+<script>
+$(document).ready(function(){
+    $('.refreshCaptcha').on('click', function(){
+        $.get('<?php echo base_url().'student/refresh'; ?>', function(data){
+            $('#captImg').html(data);
+        });
+    });
+});
+</script>
+
 <script>
    
     document.addEventListener('DOMContentLoaded', function() {
@@ -97,22 +124,20 @@
             email: '',
             psw: '',
             captcha:'',
+            captchaError:'',
 
             
         },
 
         methods:{
             checkForm() {
-
-                        if (grecaptcha.getResponse() == '') {
-                            this.captcha = 'Captcha is required';
-                        } else {
-                            this.$refs.form.submit();
-                        }
+                this.captchaError ="";
+                if (this.captcha == '') {
+                    this.captchaError = 'Captcha is required';
+                } else {
+                    this.$refs.form.submit();
                 }
-            
-            
-            
+            }
         },
     })
 </script>

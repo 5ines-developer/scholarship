@@ -153,6 +153,8 @@ class Std_application extends CI_Controller {
     **/
     public function insertAppli($value='')
     {
+    	$this->sc_check->limitRequests();
+    	
     	$this->security->xss_clean($_POST);
     	$csrf = array(
 	        'name' => $this->security->get_csrf_token_name(),
@@ -170,7 +172,7 @@ class Std_application extends CI_Controller {
         $this->form_validation->set_rules('sphone', 'Student Phone', 'trim|numeric|max_length[10]|min_length[10]');
         $this->form_validation->set_rules('sfather', 'Father Name', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('smother', 'Mother Name', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('saddress', 'Mother Name', 'trim|required');
+        $this->form_validation->set_rules('saddress', 'Student Address', 'trim|required|alpha_dash');
         $this->form_validation->set_rules('gender', 'Gender', 'trim|required');
         $this->form_validation->set_rules('ipclass', 'Present Class', 'trim|required');
         $this->form_validation->set_rules('ipin', 'Institute Pin Code', 'trim|required');
@@ -184,10 +186,11 @@ class Std_application extends CI_Controller {
         $this->form_validation->set_rules('anumberm', 'Mother adhaar number', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('anumberf', 'Father adhaar number', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('bname', 'Bank Name', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('branch', 'Branch', 'trim|required');
+        $this->form_validation->set_rules('branch', 'Branch', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('bifsc', 'IFSC Code', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('baccount', 'Account Number', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('btype', 'Account Holder', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('baccount', 'Account Number', 'trim|required|numeric');
+        $this->form_validation->set_rules('btype', 'Account Holder Type', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('bholder', 'Account Holder Name', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('inpname', 'Parent Name', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('insalary', 'Parent Salary', 'trim|required|numeric');
         $this->form_validation->set_rules('inrelation', 'Parent Student Relation', 'trim|required|alpha_numeric_spaces');
@@ -257,7 +260,7 @@ class Std_application extends CI_Controller {
 	        $adhar = 'student-adhar/'.$upload_data['file_name'];
 	    }
 
-	    if (empty($_FILES['axeroxm']['tmp_name'])) {
+	    if (empty($_FILES['axeroxf']['tmp_name'])) {
 		}else{
     		$config['upload_path'] = 'father-adhar/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
@@ -265,12 +268,12 @@ class Std_application extends CI_Controller {
 	        $config['encrypt_name'] = true;
 	        $this->upload->initialize($config);
 	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-	        $this->upload->do_upload('axeroxm');
+	        $this->upload->do_upload('axeroxf');
 	        $upload_data = $this->upload->data();
 	        $adharm = 'father-adhar/'.$upload_data['file_name'];
 	    }
 
-	    if (empty($_FILES['axeroxf']['tmp_name'])) {
+	    if (empty($_FILES['axeroxm']['tmp_name'])) {
 		}else{
     		$config['upload_path'] = 'mother-adhar/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
@@ -278,7 +281,7 @@ class Std_application extends CI_Controller {
 	        $config['encrypt_name'] = true;
 	        $this->upload->initialize($config);
 	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-	        $this->upload->do_upload('axeroxf');
+	        $this->upload->do_upload('axeroxm');
 	        $upload_data = $this->upload->data();
 	        $adharf = 'mother-adhar/'.$upload_data['file_name'];
 	    }

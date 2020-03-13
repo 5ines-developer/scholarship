@@ -129,7 +129,7 @@ $this->load->library('encryption');
             var table = $('table').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'excel', 'pdf', 'csv'
+                    'excel', 'pdf',
                 ]
 
             });

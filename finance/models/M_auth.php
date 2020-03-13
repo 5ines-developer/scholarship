@@ -81,6 +81,70 @@ function can_login($email, $password)
     {
         return $this->db->where('id', $id)->where('status',1)->get('admin')->row();
     }
+
+
+        public function throttle_insert($insert='')
+    {
+        $this->db->where('ip', $insert['ip'])->where('created_at',$insert['created_at']);
+        $result = $this->db->get('throttles')->row();
+        if (!empty($result)) {
+            $this->db->where('ip', $insert['ip'])->where('created_at',$insert['created_at']);
+            $this->db->update('throttles',array('type' => '1'));
+            if ($this->db->affected_rows() > 0) {
+                return $result->type;
+            }else{
+                return false;
+            }
+
+        }else{
+            $this->db->insert('throttles', $insert);
+            if ($this->db->affected_rows() > 0) {
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+    }
+
+    public function throttle_update($ips='',$up='')
+    {
+        $today = date('Y-m-d');
+        $this->db->where('ip', $ips)->where('created_at',$today);
+        $this->db->update('throttles', array('type' => $up));
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function throttle_get($ips='',$current_time='')
+    {
+        $today = date('Y-m-d');
+        $this->db->where('ip', $ips)->where('created_at',$today);
+        $result = $this->db->get('throttles')->row();
+        if (!empty($result)) {
+            $date1  = date_create($current_time);  
+            $date2  = date_create($result->updated_at);
+            $diff   = date_diff($date1,$date2);
+            $days   = $diff->format("%R%a");
+            $min    = $diff->format('%i');
+            if($min <= 1){ 
+                return $result->type;
+            }else{
+                $this->db->where('ip', $ips)->where('created_at',$today);
+                $this->db->update('throttles',array('type' => '1'));
+               if ($this->db->affected_rows() > 0) {
+                return $result->type;
+                }else{
+                    return false;
+                }
+            }
+        }else{
+            return false;
+        }
+    }
  
 
 }

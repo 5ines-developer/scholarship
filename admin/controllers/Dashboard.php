@@ -23,6 +23,8 @@ class Dashboard extends CI_Controller {
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
         // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        $this->load->library('sc_check');
+        
     }
 
     public function index()
@@ -55,6 +57,7 @@ class Dashboard extends CI_Controller {
 
     public function updateprofile($value='')
     {
+        $this->sc_check->limitRequests();
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -90,6 +93,8 @@ class Dashboard extends CI_Controller {
 
     public function updatepassword($value='')
     {
+        $this->sc_check->limitRequests();
+        
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

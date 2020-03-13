@@ -11,7 +11,7 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -44,9 +44,15 @@
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
                                         <div class="input-field col s12">
-                                            <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
-                                            <span class="helper-text red-text">{{ captcha }}</span>
-                                        </div>
+                                            <p id="captImg"><?php echo $captchaImg; ?></p>
+                                            <p>Can't read the image? click <a href="javascript:void(0);" class="refreshCaptcha">here</a> to refresh.</p>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input id="cap" type="text" name="captcha" value="" v-model="captcha"/>
+                                        <label for="cap">Enter the text from above image</label>
+                                        <span class="red-text">{{captchaError}}</span>
+                                    </div>
                                         <a href="<?php echo base_url('forgot-password') ?>" class="col mt15 mb15">Forgot Password?</a>
                                         <div class="input-field col s12">
                                             <button class="waves-effect waves-light hoverable btn-theme btn">Login</button>
@@ -79,7 +85,15 @@
 
 
 
-
+<script>
+$(document).ready(function(){
+    $('.refreshCaptcha').on('click', function(){
+        $.get('<?php echo base_url().'auth/refresh'; ?>', function(data){
+            $('#captImg').html(data);
+        });
+    });
+});
+</script>
     <!-- scripts -->
     <script>
         <?php $this->load->view('include/msg'); ?>
@@ -99,7 +113,8 @@
                 psw: '',
                 cpsw: '',
                 emailError: '',
-                captcha:'',
+                  captcha:'',
+            captchaError:'',
             },
 
             methods: {
@@ -125,11 +140,12 @@
                 checkForm() {
                     if ((this.emailError == '')) {
 
-                        // if (grecaptcha.getResponse() == '') {
-                        //     this.captcha = 'Captcha is required';
-                        // } else {
+                         this.captchaError ="";
+                        if (this.captcha == '') {
+                            this.captchaError = 'Captcha is required';
+                        } else {
                             this.$refs.form.submit();
-                        // }
+                        }
 
                     } else {}
                 }
