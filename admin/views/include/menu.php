@@ -4,7 +4,7 @@
         <li><a href="<?php echo base_url() ?>employee" class="<?php echo($this->uri->segment(1) == 'employee') ? 'active' :'' ?>"><i class="material-icons"> perm_identity </i>Employee Management</a></li>
         <li><a href="<?php echo base_url() ?>student" class="<?php echo($this->uri->segment(1) == 'student') ? 'active' :'' ?>"><i class="material-icons">supervisor_account</i>Student Management</a></li>
 
-        <li><a href="<?php echo base_url() ?>fees/manage" class="<?php echo($this->uri->segment(1) == 'fees') ? 'active' :'' ?>"><i class="material-icons"> attach_money </i>Scholarship Amount</a></li>
+        <li><a href="<?php echo base_url() ?>fees/manage" class="<?php echo($this->uri->segment(1) == 'fees') ? 'active' :'' ?>"><span class="cust-icon">&#8377; </span>Scholarship Amount</a></li>
 
 
         <ul class="collapsible men-lft">

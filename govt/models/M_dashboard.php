@@ -55,6 +55,7 @@ class M_dashboard extends CI_Model {
     */
     public function getordergraph($startdate)
     {    
+        $newData = array();
         $this->db->select('date');
         $cyear    = date("Y");
         $this->db->where('application_year <=', $cyear);

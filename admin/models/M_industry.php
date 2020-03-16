@@ -43,7 +43,7 @@ class M_industry extends CI_Model {
         }  
         else  
         {  
-            $this->db->order_by('ind.name', 'ASC');  
+            $this->db->order_by('ind.id', 'ASC');  
         }  
     }
 
@@ -157,7 +157,7 @@ class M_industry extends CI_Model {
         }  
         else  
         {  
-            $this->db->order_by('ind.name', 'ASC');  
+            $this->db->order_by('ind.id', 'ASC');  
         }  
     }
 

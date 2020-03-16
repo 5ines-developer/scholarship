@@ -154,14 +154,15 @@ class M_scholar extends CI_Model {
     }
 
 
-    function get_filtered_data(){  
-        $this->make_query();  
+    function get_filtered_data($filter){  
+        $this->make_query($filter);  
         $query = $this->db->get();  
         return $query->num_rows();  
     } 
 
-    function get_all_data()  
+    function get_all_data($filter)  
     {  
+        $this->make_query($filter);  
         $this->db->from('application');
         return $this->db->count_all_results();
     }

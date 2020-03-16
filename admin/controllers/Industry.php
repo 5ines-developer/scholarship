@@ -55,11 +55,11 @@ class Industry extends CI_Controller {
     **/
     public function getIndustry($value='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
     
     	$fetch_data   = $this->m_industry->getIndustry();
         $data = array();
@@ -82,6 +82,7 @@ class Industry extends CI_Controller {
 
             $detail = '<a href="'.base_url('industry/detail/').$this->encryption_url->safe_b64encode($row->industryId).'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
             $sub_array = array();
+            $sub_array[] = $row->industryId;  
             $sub_array[] = character_limiter($row->name, 9);
             $sub_array[] = $row->reg_id;  
             $sub_array[] = $act;
@@ -139,6 +140,7 @@ class Industry extends CI_Controller {
             }
 
             $sub_array = array();
+            $sub_array[] = $row->id;  
             $sub_array[] = character_limiter($row->name, 12);
             $sub_array[] = $row->reg_id;  
             $sub_array[] = $act;

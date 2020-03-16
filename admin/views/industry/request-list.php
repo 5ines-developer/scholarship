@@ -47,6 +47,7 @@ $this->load->library('encryption');
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
+                                                <th class="h5-para-p2">SL No.</th>
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Act</th>
                                                 <th class="h5-para-p2">Email</th>
@@ -58,12 +59,14 @@ $this->load->library('encryption');
                                             </thead>
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
+                                                    $sl=0;
                                                     foreach ($result as $key => $value) {
-
-                                                    $id = $this->ci->encryption_url->safe_b64encode($value->id); 
-
-                                                        ?>
+                                                        $id = $this->ci->encryption_url->safe_b64encode($value->id);
+                                                        $sl++;
+                                                    ?>
                                                     <tr role="row" class="odd">
+                                                        <td><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo  $sl; ?></a></td>
+
                                                     <td><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo (!empty($value->company))?$value->company:'---'; ?></a></td>
                                                     <td><a href="<?php echo base_url('industry-request/').$id ?>"><?php if($result[0]->act == '1'){echo "Factory Act"; }else{echo "Labour Act"; } ?></a></td>
                                                     <td class="truncate"><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo (!empty($value->email))?$value->email:'---'; ?></a></td>

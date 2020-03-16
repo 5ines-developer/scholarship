@@ -34,7 +34,7 @@
                     <?php if ($this->session->userdata('sfn_id') == '') { ?>
                         <li><a href="<?php echo base_url('login')?>">Login</a></li>
                     <?php }else{ ?>
-                        <li><a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a></li>
+                        <li><a href="#!" class="dropdown-trigger my-prof" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> <span>My Profile</span></a></li>
                     <?php } ?> 
                 </ul>
             </div>

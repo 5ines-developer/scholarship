@@ -33,7 +33,7 @@
 
             <ul id="nav-mobile" class="right hide-on-med-and-down" style="position:relative">
               <?php if($this->session->userdata('scinst') != ''){ ?>
-                <li><a href="#!" class="dropdown-trigger" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> </a></li>
+                <li><a href="#!" class="dropdown-trigger my-prof" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> <span>My Profile</span></a></li>
               <?php } else{ ?>
                 <li><a href="<?php echo base_url() ?>">Login</a></li>
                 <li><a href="<?php echo base_url() ?>register">Registration</a></li>

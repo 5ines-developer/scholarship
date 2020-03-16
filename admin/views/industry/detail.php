@@ -35,7 +35,7 @@ $this->load->library('encryption');
                         <div class="card ">
                             <div class="card-content bord-right">
                                 <div class="card-title">
-                                    Institute Detail
+                                    Industry Detail
                                     <a href="<?php echo base_url('industry') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a>
                                 </div>
                                 <div class="board-content">
@@ -132,7 +132,7 @@ $this->load->library('encryption');
                                                                     } ?>
 
                                                             <li>
-                                                                <p class="app-item-content-head">Principal Seal</p>
+                                                                <p class="app-item-content-head">Director Seal</p>
                                                                 <a target="_blank" href="<?php echo $seal ?>"><img src="<?php echo  $seal ?>" alt="" class="circle responsive-img" width="100px"></a>
                                                             </li>
 
@@ -265,14 +265,15 @@ $this->load->library('encryption');
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js "></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
-    <!-- data table -->
-    <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.js "></script>
-    <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/dataTables.buttons.min.js "></script>
-    <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/buttons.flash.min.js "></script>
-    <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/buttons.html5.min.js "></script>
-    <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/pdfmake.min.js "></script>
-    <script type="text/javascript " src="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/js/vfs_fonts.js "></script>
-    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js "></script>
+            <!-- data table -->
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
     <!-- data table -->
     <?php $this->load->view('include/msg'); ?>
     <script>

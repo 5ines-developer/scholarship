@@ -185,6 +185,7 @@ class School extends CI_Controller {
         {  
             $edit = '<a href="'.base_url('institute-edit/').$this->encryption_url->safe_b64encode($row->id) .'" class="vie-btn blue-text waves-effect waves-light"> Edit</a>';
             $sub_array = array();
+            $sub_array[] = $row->id;  
             $sub_array[] = character_limiter($row->school_address, 9);
             $sub_array[] = $row->reg_no;  
             $sub_array[] = $row->management_type;
@@ -195,7 +196,6 @@ class School extends CI_Controller {
 
             $data[] = $sub_array;  
         }
-
         $output = array(  
             "draw"                =>     intval($_POST["draw"]),  
             "recordsTotal"        =>      $this->m_school->get_all_data(),  

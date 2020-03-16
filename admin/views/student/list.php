@@ -121,6 +121,7 @@ $this->load->library('encryption');
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list std-list">
+                                                <th class="h5-para-p2">Sl No.</th>
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Email</th>
                                                 <th class="h5-para-p2">Phone No</th>
@@ -130,12 +131,14 @@ $this->load->library('encryption');
                                             </thead>
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
+                                                    $sl = 0;
                                                     foreach ($result as $key => $value) { 
+                                                        $sl++;
 
                                                         $id = $this->ci->encryption_url->safe_b64encode($value->id);
-
                                                     ?>
                                                     <tr role="row" class="odd">
+                                                        <td><a href="<?php echo base_url('student/').$id ?>"><?php echo $sl; ?></a></td>
                                                     <td><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
                                                     <td class="truncate"><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->email))?$value->email:'---'; ?></a></td>
                                                     <td><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->phone))?$value->phone:'---'; ?></a></td>

@@ -125,7 +125,7 @@
                     this.student.profile = URL.createObjectURL(file);
                 },
                 mobileCheck(){
-
+                    this.mobileError='';
                     if (this.phone.length != 10) {
                         this.mobileError = 'Mobile number must be 10 digits!';
                     }else{

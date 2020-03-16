@@ -128,6 +128,7 @@ $this->load->library('encryption');
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
+                                                <th class="h5-para-p2">SL No.</th>
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Reg No.</th>
                                                 <th class="h5-para-p2">Mangement Type</th>
@@ -138,10 +139,14 @@ $this->load->library('encryption');
                                             </thead>
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
+                                                    $sl = 0;
                                                     foreach ($result as $key => $value) { 
+                                                        $sl++;
                                                         $id = $this->ci->encryption_url->safe_b64encode($value->id);
                                                     ?>
                                                     <tr role="row" class="odd">
+                                                        <td><a href="<?php echo base_url('institute/').$id ?>"><?php echo $sl; ?></a></td>
+
                                                     <td class="truncate"><a href="<?php echo base_url('institute/').$id ?>"><?php echo (!empty($value->school_address))?$value->school_address:'---'; ?></a></td>
                                                     <td><a href="<?php echo base_url('institute/').$id ?>"><?php echo (!empty($value->reg_no))?$value->reg_no:'---'; ?></a></td>
                                                     <td><a href="<?php echo base_url('institute/').$id ?>"><?php echo (!empty($value->management_type))?$value->management_type:'---'; ?></a></td>

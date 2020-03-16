@@ -91,6 +91,7 @@ class Scholar extends CI_Controller {
             $status =  '<p class="status '.$color.' darken-2">'.$sttus.' '.$state.'</p>';
 
             $sub_array = array();
+            $sub_array[] = $row->id;
             $sub_array[] = $row->name;
             $sub_array[] = character_limiter($row->school, 10);
             $sub_array[] = character_limiter($row->industry, 10);  
@@ -109,8 +110,8 @@ class Scholar extends CI_Controller {
 
         $output = array(  
             "draw"                =>     intval($_POST["draw"]),  
-            "recordsTotal"        =>      $this->m_scholar->get_all_data(),  
-            "recordsFiltered"     =>     $this->m_scholar->get_filtered_data(),  
+            "recordsTotal"        =>      $this->m_scholar->get_all_data($filt),  
+            "recordsFiltered"     =>     $this->m_scholar->get_filtered_data($filt),  
             "data"                =>     $data  
         );
         echo json_encode($output);

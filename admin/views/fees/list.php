@@ -59,6 +59,7 @@ $this->load->library('encryption');
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
+                                                <th class="h5-para-p2">Sl No.</th>
                                                 <th class="h5-para-p2">Course</th>
                                                 <th class="h5-para-p2">Scholarship Amount</th>
                                                 <th class="h5-para-p2 sorting_asc">Year</th>
@@ -67,9 +68,13 @@ $this->load->library('encryption');
                                             <tbody class="tbody-list">
                                                 <?php
                                                 if (!empty($result)) {
+                                                    $sl = 0;
+
                                                     foreach ($result as $key => $value) {
+                                                        $sl++;
                                                     ?>
                                                         <tr role="row" class="odd">
+                                                            <td><?php echo $sl; ?></td>
                                                             <td><?php echo (!empty($value->title))?$value->title:''; ?></td>
                                                             <td><?php echo (!empty($value->amount))?$value->amount:''; ?></td>
                                                             <td><?php echo (!empty($value->date))?$value->date:''; ?></td>
@@ -145,7 +150,7 @@ $this->load->library('encryption');
                 buttons: [
                     'excel', 'pdf',
                 ],
-                "order": [[ 2, "desc" ]]
+                // "order": [[ 2, "desc" ]]
 
             });
             $('select').formSelect();

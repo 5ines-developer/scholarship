@@ -46,6 +46,7 @@ $this->load->library('encryption');
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
+                                                <th class="h5-para-p2">SL No.</th>
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Email</th>
                                                 <th class="h5-para-p2">Phone No</th>
@@ -58,15 +59,18 @@ $this->load->library('encryption');
                                             <tbody class="tbody-list">
                                                 <?php
                                                 if (!empty($result)) {
+                                                    $sl = 0;
                                                     foreach ($result as $key => $value) { 
                                                         if ($value->type == '2') {
                                                             $ty = 'verification Department';
                                                         }else{
                                                             $ty = 'Finance Department';
                                                         }
+                                                        $sl++;
 
                                                     ?>
                                                         <tr role="row" class="odd">
+                                                            <td><?php echo $sl; ?></td>
                                                             <td><?php echo (!empty($value->name))?$value->name:''; ?></td>
                                                             <td class="truncate"><?php echo (!empty($value->email))?$value->email:''; ?></td>
                                                             <td><?php echo (!empty($value->phone))?$value->phone:''; ?></td>

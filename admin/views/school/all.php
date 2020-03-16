@@ -96,7 +96,8 @@
                                         <table id="dynamic" class="striped">
                                             <thead class="thead-list">
                                                 <tr class="tt">
-                                                <th class="h5-para-p2">Name</th>
+                                                <th class="h5-para-p2">SL No.</th>
+                                                <th class="h5-para-p2" style="width: 200px;">Name</th>
                                                 <th class="h5-para-p2">Reg No.</th>
                                                 <th class="h5-para-p2">Mangement Type</th>
                                                 <th class="h5-para-p2">School Category</th>
@@ -169,7 +170,7 @@
                   'buttons': [
                     'excel', 'pdf',
                 ],
-                  'order' : [],
+                  // "order": [[ 0, "asc" ]],
                   'ajax':{
                     'url' : "<?php echo base_url(). 'school/allschool' ?>",
                      'type' :'POST',

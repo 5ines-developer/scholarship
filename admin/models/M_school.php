@@ -19,7 +19,7 @@ class M_school extends CI_Model {
     public function make_query($value='')
     {
         $select_column = array('reg.id','reg.reg_no','reg.school_address','reg.management_type','reg.school_category','reg.school_type','reg.urban_rural','reg.taluk','reg.status','tq.title','cty.title as district');
-        $order_column = array("reg.school_address","reg.reg_no", "reg.management_type", "tq.title", "cty.title","reg.status",null );  
+        $order_column = array("reg.id","reg.school_address","reg.reg_no", "reg.management_type", "tq.title", "cty.title","reg.status",null );  
 
         $this->db->select($select_column);
         $this->db->from('reg_schools reg');
@@ -45,7 +45,7 @@ class M_school extends CI_Model {
         }  
         else  
         {  
-            $this->db->order_by('reg.school_address', 'ASC');  
+            $this->db->order_by('reg.id', 'ASC');  
         }  
     }
 

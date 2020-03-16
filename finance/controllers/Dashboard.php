@@ -44,7 +44,7 @@ class Dashboard extends CI_Controller {
 	**/
 	public function getordergraph()
 	{
-		$startdate 	= '2000'; //start date of the year (jan first)
+		$startdate 	= '2020'; //start date of the year (jan first)
 		$result		= $this->m_dashboard->getordergraph($startdate);
 		echo json_encode($result);
 	}

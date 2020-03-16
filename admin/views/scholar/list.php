@@ -160,6 +160,7 @@
                                                 </label>
                                                 </th>
                                             <?php } ?>
+                                                <th id="a" class="h5-para-p2" style="width: 120px;">SL NO.</th>
                                                 <th id="a" class="h5-para-p2" style="width: 120px;">Name</th>
                                                 <th id="c" class="h5-para-p2" style="width: 120px;">Institute</th>
                                                 <th id="c" class="h5-para-p2" style="width: 120px;">Industry</th>
@@ -169,7 +170,7 @@
                                                 <th id="h" class="h5-para-p2" style="width: 120px;">Amount</th>
                                                 <th id="e" class="h5-para-p2" style="width: 120px;">Applied Date</th>
                                                 <th id="f" class="h5-para-p2" style="width: 120px;">District</th>
-                                                <th id="g" class="h5-para-p2" style="width: 120px;">Talluk</th>
+                                                <th id="g" class="h5-para-p2" style="width: 120px;">Taluk</th>
                                                 <th id="h" class="h5-para-p2" style="width: 120px;">Status</th>
                                                 <th id="i" class="h5-para-p2" style="width: 120px;">Action</th>
                                             </thead>

@@ -96,6 +96,7 @@
                                         <table id="dynamic" class="striped">
                                             <thead class="thead-list">
                                                 <tr class="tt">
+                                                <th class="h5-para-p2">SL NO.</th>
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Reg No.</th>
                                                 <th class="h5-para-p2">Act</th>

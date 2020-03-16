@@ -108,6 +108,7 @@ class Scholar extends CI_Controller {
             $status =  '<p class="status '.$color.' darken-2">'.$sttus.' '.$state.'</p>';
 
             $sub_array = array();
+            $sub_array[] = $row->id;
             $sub_array[] = $row->name;
             $sub_array[] = $row->course.'-'.$row->clss;
             $sub_array[] = $row->application_year;  

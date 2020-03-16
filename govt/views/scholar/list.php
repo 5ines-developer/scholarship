@@ -150,6 +150,7 @@
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
+                                                <th id="a" class="h5-para-p2" style="width: 120px;">SL No.</th>
                                                 <th id="a" class="h5-para-p2" style="width: 120px;">Name</th>
                                                 <th id="c" class="h5-para-p2" style="width: 120px;">Institute</th>
                                                 <th id="c" class="h5-para-p2" style="width: 120px;">Industry</th>

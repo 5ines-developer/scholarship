@@ -54,7 +54,8 @@ class M_dashboard extends CI_Model {
     *
     */
     public function getordergraph($startdate)
-    {    
+    { 
+        $newData  = array();
         $this->db->select('date');
         $cyear    = date("Y");
         $this->db->where('application_year <=', $cyear);
@@ -65,7 +66,7 @@ class M_dashboard extends CI_Model {
         }
         $vals = array_count_values($newData);
         $counts = array();
-        for ($m=2010; $m<= $cyear; $m++) {
+        for ($m=2020; $m<= $cyear; $m++) {
             if(!empty($vals[$m])){
                 $counts[]= array("values"=>$vals[$m] , "year"=>$m);
             }else{

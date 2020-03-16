@@ -878,7 +878,8 @@
                     axios.get('<?php echo base_url() ?>std_application/courseGet?id='+self.institute.grad.id)
                     .then(function (response) { 
                         self.courseSelect = response.data;
-                        if (self.institute.grad.id == 1) {
+                        alert(self.institute.grad.id)
+                        if (self.institute.grad.id == 1 || self.institute.grad.id == 6) {
                             self.crse = true;
                         }else{
                             self.crse = false;

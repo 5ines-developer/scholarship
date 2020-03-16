@@ -35,7 +35,7 @@
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="col s12 m12 l12">
-                                            <form action="<?php echo base_url() ?>employee/add" method="post">
+                                            <form  ref="form" @submit.prevent="checkForm"  action="<?php echo base_url() ?>employee/add" method="post">
                                                 <div class="input-field col m8">
                                                     <input id="em_name" name="em_name" required type="text" class="validate">
                                                     <label for="em_name">Employee Name</label>
@@ -48,8 +48,9 @@
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                 
                                                 <div class="input-field col m8">
-                                                    <input id="phone" name="phone" required type="number" class="validate">
+                                                    <input id="phone" name="phone" required type="number" class="validate" v-model="phone" @change="mobileCheck">
                                                     <label for="phone">Phone</label>
+                                                    <span class="helper-text red-text">{{mobileError}}</span><br>
                                                 </div>
                                                 <div class="col sel-hr s12 m8">
                                                     <label >Employee Designation</label>
@@ -94,6 +95,7 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
     <?php $this->load->view('include/msg'); ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -111,20 +113,42 @@
         var app = new Vue({
             el: '#app',
             data: {
-                student: {
-                    name: '',
-                    email: '',
-                    mobile: '',
-                    profile: '',
-                },
-                profilePic: '',
+               mobileError: '',
+               phone: '',
 
             },
 
             methods: {
-                onFileChange(e) {
-                    const file = e.target.files[0];
-                    this.student.profile = URL.createObjectURL(file);
+                 mobileCheck(){
+                    this.mobileError='';
+                    if (this.phone.length != 10) {
+                        this.mobileError = 'Mobile number must be 10 digits!';
+                    }else{
+                        this.mobileError='';
+                        const formData = new FormData();
+                        formData.append('phone',this.phone);
+                        formData.append('id',this.id);
+        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                        
+                        axios.post('<?php echo base_url('employee/mobile_check') ?>', formData)
+                        .then(response => {
+                            if (response.data == '1') {
+                                this.mobileError = 'This Mobile number already exist!';
+                            } else {
+                                this.mobileError = '';
+                            }
+
+                        }).catch(error =>{
+                            if (error.response) {
+                                this.errormsg = error.response.data.error;
+                            }
+                        } )
+                    }
+                },
+                checkForm() {
+                if ((this.mobileError == '')) {
+                        this.$refs.form.submit();
+                    }
                 }
             }
         })

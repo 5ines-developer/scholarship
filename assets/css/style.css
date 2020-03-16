@@ -3291,4 +3291,22 @@ table.striped > tbody > tr > td {
   max-width: 100%;
   overflow: hidden;
 }
+
+.my-prof {
+  line-height: 0;
+  top: -10px;
+  position: relative;
+}
+
+.my-prof:hover {
+  background: none;
+}
+
+.cust-icon {
+  width: 2rem;
+  font-size: 1.6rem;
+  display: inline-block;
+  text-align: center;
+  margin-right: 1rem;
+}
 /*# sourceMappingURL=style.css.map */
