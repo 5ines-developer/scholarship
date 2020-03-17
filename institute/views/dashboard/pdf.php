@@ -77,8 +77,8 @@
                     <p>ದೂರವಾಣಿ ಸಂಖ್ಯೆ (STD CODE ಸಹಿತ): <span class="dashed-line"> <?php echo $info->parent_phone  ?> </span></p>
                 </div>
                 <div class="col s12 m5 push-m2 foo-address left">
-                    <img src="<?php echo $info->priciple_signature ?>" width="80px" class="mr30" alt="">
-                    <img src="<?php echo $info->seal ?>g" width="80px" alt="">
+                    <img src="<?php echo base_url().$img->priciple_signature ?>" width="80px" class="mr30" alt="">
+                    <img src="<?php echo base_url().$img->seal ?>" width="80px" alt="">
                     <p class="mt10">ಮುಖ್ಯೋಪಾಧ್ಯಾರ/ಪ್ರಾಂಶುಪಾಲರ ಸಹಿ ಹಾಗು ಮೊಹರು</p>
                     <br><br>
                 </div>

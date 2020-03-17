@@ -171,6 +171,10 @@
                     'excel', 'pdf',
                 ],
                   // "order": [[ 0, "asc" ]],
+                  'language': {
+                        'search': '<i class="material-icons dp48">search</i>',
+                        'searchPlaceholder': 'Search Items'
+                    },
                   'ajax':{
                     'url' : "<?php echo base_url(). 'school/allschool' ?>",
                      'type' :'POST',

@@ -209,6 +209,10 @@ class M_school extends CI_Model {
 
             $this->db->where('name', $id);
             $this->db->delete('school');
+
+            $this->db->where('school_id', $id);
+            $this->db->delete('application');
+            
             
         }else{
             return false;

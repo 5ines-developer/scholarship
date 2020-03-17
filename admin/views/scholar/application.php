@@ -433,7 +433,32 @@ $this->load->model('m_scholar');
                                                     </div>
                                                 </div><!-- End-->
 
-                                                <div class="col s12 l6">
+                                                 <?php 
+                                                 $dis1 = '';
+
+                                            switch ($result->application_state) {
+                                                case 1:
+                                                    $display = 'none';
+                                                    break;
+                                                case 2:
+                                                    $display = 'block';
+                                                    $dis1 = 'none';
+                                                    break; 
+                                                case 3:
+                                                    $display = 'block';
+                                                    break;
+                                                case 4:
+                                                    $display = 'block';
+                                                    break;                                                 
+                                                default:
+                                                    $display = 'none';
+                                                    break;
+                                            }
+
+
+                                            ?>
+
+                                                <div class="col s12 l6" style="display: <?php echo $display ?>">
                                                     <div class="app-detail-item">
                                                         <div class="app-item-heading">
                                                             <p>Confirmation Report</p>
@@ -448,7 +473,7 @@ $this->load->model('m_scholar');
                                                                             <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo $this->config->item('web_url').'institute/student/institute-certificate/'.urlencode(base64_encode($result->aid)) ?>">PDF</a></p>
                                                                         </li>
 
-                                                                        <li>
+                                                                        <li style="display: <?php echo  $dis1  ?>">
                                                                             <p class="app-item-content-head">Industry Confirmation Report</p>
                                                                             <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo $this->config->item('web_url').'industry/industry-certificate/'.urlencode(base64_encode($result->aid)) ?>">PDF</a></p>
                                                                         </li>

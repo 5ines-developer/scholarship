@@ -216,6 +216,10 @@ $this->load->library('encryption');
                 buttons: [
                     'excel', 'pdf',
                 ],
+                language: {
+                    search: '<i class="material-icons dp48">search</i>',
+                    searchPlaceholder: 'Search Items'
+                }
 
             });
             $('select').formSelect();

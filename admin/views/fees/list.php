@@ -150,7 +150,11 @@ $this->load->library('encryption');
                 buttons: [
                     'excel', 'pdf',
                 ],
-                // "order": [[ 2, "desc" ]]
+
+                language: {
+                    search: '<i class="material-icons dp48">search</i>',
+                    searchPlaceholder: 'Search Items'
+                }
 
             });
             $('select').formSelect();

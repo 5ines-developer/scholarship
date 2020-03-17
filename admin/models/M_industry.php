@@ -6,6 +6,7 @@ class M_industry extends CI_Model {
 	public function getIndustry($id='',$district='',$taluk='')
 	{
         $this->get_query();  
+        $this->db->where('ireg.status', '1');
         if($_POST["length"] != -1)  
         {  
              $this->db->limit($_POST['length'], $_POST['start']);  
@@ -241,6 +242,21 @@ class M_industry extends CI_Model {
         }else{
             return $this->db->insert('industry', $insert);
             
+        }
+    }
+
+    public function delete($id='')
+    {
+        $this->db->where('industry_id', $id);
+        if($this->db->delete('industry_register')){
+
+            $this->db->where('company_id', $id);
+            $this->db->delete('application');
+
+
+            return true;
+        }else{
+            return false;
         }
     }
 

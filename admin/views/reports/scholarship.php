@@ -238,7 +238,11 @@
                   'dom': 'Bfrtip',
                   'buttons': [
                      'copy', 'csv', 'pdf'
-                  ], 
+                  ],
+                  'language': {
+                        'search': '<i class="material-icons dp48">search</i>',
+                        'searchPlaceholder': 'Search Items'
+                    }, 
                })
 
 

@@ -166,6 +166,10 @@
                   'processing' : true,
                   'serverSide' : true,
                   'dom': 'Bfrtip',
+                  'language': {
+                        'search': '<i class="material-icons dp48">search</i>',
+                        'searchPlaceholder': 'Search Items'
+                    },
                   'buttons': [
                     'excel', 'pdf',
                 ],

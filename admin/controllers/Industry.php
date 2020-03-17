@@ -62,6 +62,7 @@ class Industry extends CI_Controller {
         $this->security->xss_clean($_POST);
     
     	$fetch_data   = $this->m_industry->getIndustry();
+       
         $data = array();
         foreach($fetch_data as $row)  
         {  
@@ -80,7 +81,11 @@ class Industry extends CI_Controller {
                 $status = '<p class="status blue darken-2">Inactive</p>';
             }
 
-            $detail = '<a href="'.base_url('industry/detail/').$this->encryption_url->safe_b64encode($row->industryId).'" class="vie-btn blue-text waves-effect waves-light"> View</a>';
+            
+            $detail = '<div class="action-btn"><a href="'.base_url('industry/detail/').$this->encryption_url->safe_b64encode($row->industryId).'" class="vie-btn blue-text waves-effect waves-light"> View</a>
+                <a onclick="deleteAlert('.$row->industryId.');"class="red white-text tooltipped" data-position="bottom" data-tooltip="All the Data of Industry will be lost<br>Make Sure before you delete"> <i class="material-icons action-icon " style="cursor: pointer;">delete</i></a>
+            </div>
+            '; 
             $sub_array = array();
             $sub_array[] = $row->industryId;  
             $sub_array[] = character_limiter($row->name, 9);
@@ -445,10 +450,18 @@ class Industry extends CI_Controller {
                 $this->session->set_flashdata('success', 'Industry added  Successfully');
             }
             redirect('industry-add', 'refresh');
-
-
         }
+    }
 
+    public function delete($id='')
+    {
+        if($this->m_industry->delete($id))
+        {
+            $this->session->set_flashdata('success','Industry deleted Successfully');
+        }else{
+            $this->session->set_flashdata('error','Some error occured <br> please try again.');
+        }
+        redirect('industry','refresh');
     }
 
 

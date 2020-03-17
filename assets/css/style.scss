@@ -1446,6 +1446,8 @@
                     padding: 6px 23px;
                     color: white;
                     float: right;
+                    height: 35px;
+                    line-height: 26px;
                     cursor: pointer;
                     a {
                         color: white;
@@ -3158,4 +3160,9 @@
                     display: inline-block;
                     text-align: center;
                     margin-right: 1rem;
+                }
+                
+                .dataTables_filter .material-icons.dp48 {
+                    position: relative;
+                    top: 10px;
                 }

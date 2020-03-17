@@ -170,7 +170,13 @@ $this->load->library('encryption');
                 dom: 'Bfrtip',
                 buttons: [
                     'excel', 'pdf',
-                ]
+                ],
+                // sDom: '<"row-fluid"<"span6"l><"span6"f>r>t<"row-fluid"<"span6"i><"span6"p>>',
+                // oLanguage: { 'sSearch': '<i class="material-icons dp48">search</i>' }
+                language: {
+                    search: '<i class="material-icons dp48">search</i>',
+                    searchPlaceholder: 'Search Items'
+                }
 
             });
             $('select').formSelect();

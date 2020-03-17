@@ -66,6 +66,7 @@ $route['industry-request/(:any)']       = 'industry/requestLists/$1';
 $route['industry-add']                 	= 'industry/add';
 $route['industry-edit/(:any)']         	= 'industry/edit/$1';
 $route['upload-industry']         		= 'industry/import_excel';
+$route['industry-delete/(:any)']       = 'industry/delete/$1';
 
 // fees managemnet
 $route['fees/add']                  	= 'fees/add';

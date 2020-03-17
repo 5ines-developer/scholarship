@@ -167,7 +167,12 @@ $this->load->library('encryption');
                                                     </td>
                                                     <td class="action-btn center-align">
                                                         <a href="<?php echo base_url('institute/').$id ?>" class="vie-btn blue-text waves-effect waves-light"> View</a>
-                                                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="<?php echo base_url('institute-delete/').$value->id ?>" class="red white-text"> <i class="material-icons action-icon ">delete</i></a>
+                                                            <!-- href="<?php 
+                                                            // echo 
+                                                            // base_url('institute-delete/').$value->id ?>"  -->
+
+                                                        <a onclick="deleteAlert('<?php echo $value->id ?>');" 
+                                                            class="red white-text tooltipped" data-position="bottom" data-tooltip="All the Data of School will be lost<br>Make Sure before you delete"> <i class="material-icons action-icon " style="cursor: pointer;">delete</i></a>
                                                     </td>
                                                 </tr>
                                                 <?php    } } ?>
@@ -234,6 +239,7 @@ $this->load->library('encryption');
             });
             $('select').formSelect();
             $('.modal').modal();
+            $('.tooltipped').tooltip();
 
             $('.select-list').change(function(){
                 if(window.location.href.indexOf("?") < 0){
@@ -270,7 +276,27 @@ $this->load->library('encryption');
             }
 
 
+            
+
+
         });
+
+        function deleteAlert(id) {
+                // e.preventDefault();
+                if (!confirm('Are You sure to want to delete this item')) 
+                  {
+                    return false;
+                  }else{
+
+                    if (!confirm('Data Will be deleted permanently<br> You\'ll be not able to recover the data')) 
+                    {
+                        return false;
+                    }else{
+                        window.location.href = "<?php echo base_url('institute-delete/') ?>"+id;
+                    }
+
+                  }
+            }
 
         var app = new Vue({
             el: '#app',

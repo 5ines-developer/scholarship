@@ -282,6 +282,10 @@
                   'buttons': [
                     'excel', 'pdf',
                 ], 
+                'language': {
+                        'search': '<i class="material-icons dp48">search</i>',
+                        'searchPlaceholder': 'Search Items'
+                    },
                   'order' : [],
                   'ajax':{
                     'url' : "<?php echo base_url(). 'scholar/allApplication' ?>",

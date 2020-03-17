@@ -119,7 +119,7 @@ $this->load->library('encryption');
                                                                     } ?>
 
                                                             <li>
-                                                                <p class="app-item-content-head">Director Signature</p>
+                                                                <p class="app-item-content-head">Director/ Authorized Signature</p>
                                                                 <a target="_blank" href="<?php echo $sign ?>"><img src="<?php echo  $sign ?>" alt="" class="circle responsive-img" width="100px"></a>
                                                             </li>
 

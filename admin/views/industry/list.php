@@ -193,6 +193,10 @@
                   'processing' : true,
                   'serverSide' : true,
                   'dom': 'Bfrtip',
+                  'language': {
+                        'search': '<i class="material-icons dp48">search</i>',
+                        'searchPlaceholder': 'Search Items'
+                    },
                   'buttons': [
                     'excel', 'pdf',
                 ],
@@ -248,6 +252,24 @@
 
 
         });
+
+
+        function deleteAlert(id) {
+        // e.preventDefault();
+        if (!confirm('Are You sure to want to delete this item')) 
+          {
+            return false;
+          }else{
+
+            if (!confirm('Data Will be deleted permanently\n You\'ll be not able to recover the data')) 
+            {
+                return false;
+            }else{
+                window.location.href = "<?php echo base_url('industry-delete/') ?>"+id;
+            }
+
+          }
+        }
 
         var app = new Vue({
             el: '#app',
