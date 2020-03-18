@@ -73,9 +73,9 @@ class Reports extends CI_Controller {
                 $value->approved = $this->m_reports->approved($district,$taluk,$value->year,$school,$company,$caste,$items);
                 $value->rejected = $this->m_reports->rejceted($district,$taluk,$value->year,$school,$company,$caste,$items);
                 $value->pending = $this->m_reports->pending($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->amount = $this->m_reports->amount($district,$taluk,$value->year,$school,$company,$caste,$items);
             }
         }
-
         $data['result'] = $years;
 		$this->load->view('reports/scholarship', $data, FALSE);
 	}

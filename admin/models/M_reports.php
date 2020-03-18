@@ -184,6 +184,27 @@ class M_reports extends CI_Model {
 		return $this->db->get()->num_rows();
 	}
 
+
+	public function amount($district='',$taluk='',$year='',$school='',$company='',$caste='',$item='')
+	{
+		if (!empty($year)) { 		$this->db->where('a.application_year', $year); 	 } 
+		if (!empty($district)) { 	$this->db->where('am.ins_district', $district); } 
+		if (!empty($taluk)) { 		$this->db->where('am.ins_talluk', $taluk); 	 } 
+		if (!empty($school)) { 		$this->db->where('a.school_id', $school);   } 
+		if (!empty($company)) { 	$this->db->where('a.company_id', $company);  } 
+		if (!empty($caste)) { 	$this->db->where('ab.category', $caste);  } 
+		$this->db->where('a.status', '1');
+		$this->db->where('fs.date', $year);
+		$this->db->where('a.application_state', '4');
+		$this->db->select_sum('fs.amount');
+		$this->db->from('application a');
+		$this->db->join('applicant_marks am', 'am.application_id = a.id', 'left');
+		$this->db->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left');
+		$this->db->join('gradution gr', 'gr.id = am.graduation', 'left');
+		$this->db->join('fees fs', 'fs.class = gr.id', 'left');
+		return $this->db->get()->row();
+	}
+
 	
 
 

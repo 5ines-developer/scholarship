@@ -109,40 +109,60 @@
                                             </div>
                                             <p class="box-title "></p>
 
-                                            
-                                            <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_district" :value="institute.district.districtId"> <v-select  v-model="institute.district"  as="district::districtId" placeholder="Select District" @input="tallukget" tagging :from="districtSelect" />
+                                            <div class="row m0">
+                                                <div class="input-field col s12 m5">
+                                                    <div>
+                                                        <input type="hidden" name="in_district" :value="institute.district.districtId"> 
+                                                        <v-select  v-model="institute.district"  as="district::districtId" placeholder="Select District" @input="tallukget" tagging :from="districtSelect" />
+                                                    </div>
+                                                    <br><span class="red-text">{{inDistError}}</span>
+                                                </div>
+
+                                                <div class="input-field col s12 m5">
+                                                    <div>
+                                                        <input type="hidden" name="in_talluk" :value="institute.talluk.tallukId">       
+                                                        <v-select  v-model="institute.talluk"  as="talluk::tallukId" placeholder="Select Taluk" @input="schoolget" tagging :from="tallukSelect" />
+                                                    </div>
+                                                    <br><span class="red-text">{{intalError}}</span>
+                                                </div>
                                             </div>
 
-                                            <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_talluk" :value="institute.talluk.tallukId">       
-                                                <v-select  v-model="institute.talluk"  as="talluk::tallukId" placeholder="Select Taluk" @input="schoolget" tagging :from="tallukSelect" />
+                                            <div class="row m0">
+                                                <div class="input-field col s12 m5">
+                                                    <div>
+                                                        <input type="hidden" name="in_school" :value="institute.name.sId">       
+                                                        <v-select  v-model="institute.name"  as="sName::sId" placeholder="Select Present Institution"  tagging :from="schoolSelect" />
+                                                    </div>
+                                                    <br><span class="red-text">{{inpresentError}}</span>
+                                                </div>
+                                                <div class="input-field col s12 m5">
+                                                    <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" v-model="institute.pin">
+                                                    <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
+                                                </div>
                                             </div>
 
-                                            <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_school" :value="institute.name.sId">       
-                                                <v-select  v-model="institute.name"  as="sName::sId" placeholder="Select Present Institution"  tagging :from="schoolSelect" />
-                                            </div>
-                                            
-                                            
-                                            <div class="input-field col s12 m5">
-                                                <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" v-model="institute.pin">
-                                                <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
-                                            </div>
+                                            <div class="row m0">
+                                                <div class="input-field col s12 m5">
+                                                    <div>
+                                                        <input type="hidden" name="in_grad" :value="institute.grad.id">       
+                                                        <v-select  v-model="institute.grad"  as="title::id" placeholder="Select Your graduation" @input="courseGet"  tagging :from="gardSelect" />
+                                                    </div>
+                                                    <br><span class="red-text">{{gradError}}</span>
+                                                </div>
 
-                                            <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_grad" :value="institute.grad.id">       
-                                                <v-select  v-model="institute.grad"  as="title::id" placeholder="Select Your graduation" @input="courseGet"  tagging :from="gardSelect" />
-                                            </div>
-
-                                            <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_course" :value="institute.course.id">       
-                                                <v-select  v-model="institute.course"  as="course::id" placeholder="Select Your Course" @input="classGet"  tagging :from="courseSelect" />
+                                                <div class="input-field col s12 m5">
+                                                    <div>
+                                                        <input type="hidden" name="in_course" :value="institute.course.id">       
+                                                        <v-select  v-model="institute.course"  as="course::id" placeholder="Select Your Course" @input="classGet"  tagging :from="courseSelect" />
+                                                    </div>
+                                                    <br><span class="red-text">{{courseError}}</span>
+                                                </div>
                                             </div>
 
                                             <div class="input-field col s12 m5" v-bind:class="{ hide: crse }">
                                                 <input type="hidden" name="in_sem" :value="institute.pclass.id" >       
                                                 <v-select  v-model="institute.pclass"  as="clss::id" placeholder="Select Your Present Class"tagging :from="classSelect" />
+                                            <span class="red-text">{{classError}}</span>
                                             </div>
 
                                         </div>
@@ -358,6 +378,7 @@
                                                     <option value="2">Student</option>
                                                 </select>
                                                 <label for="in_talluk">Account Holder</label>
+                                                <span class="red-text">{{actypeError}}</span>
                                             </div>
 
                                             <div class="input-field col s12 m5">
@@ -448,19 +469,28 @@
                                                 <input id="id_pin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="id_pin" required="" v-model="industry.pin" >
                                                 <label for="id_pin"> <span class="black-text">Pin Code</span>   </label>
                                             </div>
-                                            <div class="input-field col s12 m5">
-                                                <input type="hidden" name="id_district" :value="industry.district.districtId">       
-                                                <v-select  v-model="industry.district"  as="district::districtId" placeholder="Select District" @input="tallukgets" tagging :from="districtSelect" />
-                                            </div>
+                                            <div class="row m0">
+                                                <div class="input-field col s12 m5">
+                                                    <div>
+                                                        <input type="hidden" name="id_district" :value="industry.district.districtId">       
+                                                        <v-select  v-model="industry.district"  as="district::districtId" placeholder="Select District" @input="tallukgets" tagging :from="districtSelect" />
+                                                    </div><br>
+                                                    <span class="red-text">{{inddistError}}</span>
+                                                </div>
 
-                                            <div class="input-field col s12 m5">
-                                                <input type="hidden" name="id_talluk" :value="industry.talluk.tallukId"> <v-select  v-model="industry.talluk"  as="talluk::tallukId" placeholder="Select Taluk" tagging :from="tallukSelects" />
+                                                <div class="input-field col s12 m5">
+                                                    <div>
+                                                        <input type="hidden" name="id_talluk" :value="industry.talluk.tallukId"> <v-select  v-model="industry.talluk"  as="talluk::tallukId" placeholder="Select Taluk" tagging :from="tallukSelects" />
+                                                    </div><br>
+                                                    <span class="red-text">{{indtalError}}</span>
+                                                </div>
                                             </div>
 
                                             <div class="input-field col s12 m12">
                                                 <input type="hidden" name="id_name" :value="industry.name.iId"> 
                                                 <v-select  v-model="industry.name"  as="iName::iId" placeholder="Parent Industry Name" tagging :from="industrySelects" />
                                             </div>
+                                            <span class="red-text">{{indnameError}}</span>
                                         </div>
                                         
                                         <!-- End Box-->
@@ -591,6 +621,16 @@
             adhError:'',
             adhErrorf:'',
             adhErrorm:'',
+            inDistError:'',
+            intalError:'',
+            inpresentError:'',
+            gradError:'',
+            courseError:'',
+            classError:'',
+            inddistError:'',
+            indtalError:'',
+            actypeError:'',
+            indnameError:'',
 
         },
         methods:{
@@ -726,7 +766,37 @@
             },
            formSubmit(e){
                 e.preventDefault();
-                if ((this.markError == '') && (this.salError=='') && (this.adhError=='') ){
+
+                this.inDistError    ='';
+                this.intalError     ='';
+                this.inpresentError ='';
+                this.gradError      ='';
+                this.courseError    ='';
+                this.classError     ='';
+                this.inddistError   ='';
+                this.indtalError    ='';
+                this.actypeError    ='';
+                this.indnameError   ='';
+
+                alert(this.bank.type)
+
+
+                if((this.institute.district.districtId ==null) || (this.institute.district.districtId == 'undefined')){ 
+                    this.inDistError = 'Please Select the District'; 
+                }
+                if((this.institute.talluk.tallukId ==null) || (this.institute.talluk.tallukId =='undefined')){ this.intalError = 'Please Select the Talluk';  } 
+                if((this.institute.name.sId ==null) || (this.institute.name.sId =='undefined')){ this.inpresentError = 'Please Select your institution';  }
+                if((this.institute.grad.id ==null) || (this.institute.grad.id =='undefined')){ this.gradError = 'Please Select your graduation';  }
+                if((this.institute.course.id ==null) || (this.institute.course.id =='undefined')){ this.courseError = 'Please Select your course';  }
+                if((this.institute.pclass.id ==null) || (this.institute.pclass.id =='undefined')){ this.classError = 'Please Select your Present class';  }
+                if((this.bank.type =='') || (this.bank.type =='undefined')){ this.actypeError = 'Please Select the bank holder type';  }
+                if((this.industry.talluk.tallukId ==null) || (this.industry.talluk.tallukId =='undefined')){ this.indtalError = 'Please Select the Talluk';  }
+                if((this.industry.district.districtId ==null) || (this.industry.district.districtId =='undefined')){ this.inddistError = 'Please Select the District';  }
+                if((this.industry.name.iId ==null) || (this.industry.name.iId =='undefined')){ this.indnameError = 'Please Select your industry';  }
+
+                console.log(this.actypeError)
+
+                if ((this.markError == '') && (this.salError=='') && (this.adhError=='') && (this.inDistError=='') && (this.intalError=='') && (this.inpresentError=='') && (this.gradError=='') && (this.courseError=='') && (this.actypeError=='') && (this.indtalError=='') && (this.inddistError=='') && (this.indnameError=='') ){
                     this.loader=true;
                     const formData = new FormData();
                     formData.append('sname', this.student.name);
@@ -878,7 +948,6 @@
                     axios.get('<?php echo base_url() ?>std_application/courseGet?id='+self.institute.grad.id)
                     .then(function (response) { 
                         self.courseSelect = response.data;
-                        alert(self.institute.grad.id)
                         if (self.institute.grad.id == 1 || self.institute.grad.id == 6) {
                             self.crse = true;
                         }else{
@@ -959,17 +1028,11 @@
                         }else{
                             self.bankpdf = "#";
                         }
-
-
                     })
                     .catch(function (error) {
 
                     })
-
-
                 }
-
- 
         },
         mounted:function(){
                this.getDistrict();

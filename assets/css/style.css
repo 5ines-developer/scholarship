@@ -3316,4 +3316,8 @@ table.striped > tbody > tr > td {
   position: relative;
   top: 10px;
 }
+
+.striped.dataTable th {
+  width: 150px !important;
+}
 /*# sourceMappingURL=style.css.map */

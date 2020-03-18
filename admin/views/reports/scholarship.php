@@ -96,6 +96,7 @@
                                                 <th id="d" class="h5-para-p2" style="width: 100px;">General</th>
                                                 <th id="e" class="h5-para-p2" style="width: 100px;">Male</th>
                                                 <th id="e" class="h5-para-p2" style="width: 100px;">FeMale</th>
+                                                <th id="e" class="h5-para-p2" style="width: 100px;">Amount</th>
 
                                                 <?php if ($this->input->get('item') =='approved' || $this->input->get('item') =='') {?>
                                                     <th id="f" class="h5-para-p2" style="width: 100px;">Approved</th>
@@ -120,6 +121,7 @@
                                                         <td><?php echo $value->gen ?></td>
                                                         <td><?php echo $value->male ?></td>
                                                         <td><?php echo $value->female ?></td>
+                                                        <td><?php echo (!empty($value->amount->amount))?$value->amount->amount:'0'; ?></td>
 
                                                         <?php if ($this->input->get('item') =='approved' || $this->input->get('item') =='') {?>
                                                             <td><?php echo $value->approved ?></td>
