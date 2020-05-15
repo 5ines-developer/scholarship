@@ -1,0 +1,33 @@
+INFO - 2020-04-03 13:52:50 --> Config Class Initialized
+INFO - 2020-04-03 13:52:50 --> Hooks Class Initialized
+DEBUG - 2020-04-03 13:52:50 --> UTF-8 Support Enabled
+INFO - 2020-04-03 13:52:50 --> Utf8 Class Initialized
+INFO - 2020-04-03 13:52:50 --> URI Class Initialized
+INFO - 2020-04-03 13:52:50 --> Router Class Initialized
+INFO - 2020-04-03 13:52:50 --> Output Class Initialized
+INFO - 2020-04-03 13:52:50 --> Security Class Initialized
+DEBUG - 2020-04-03 13:52:50 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-04-03 13:52:50 --> Input Class Initialized
+INFO - 2020-04-03 13:52:50 --> Language Class Initialized
+INFO - 2020-04-03 13:52:50 --> Loader Class Initialized
+INFO - 2020-04-03 13:52:50 --> Helper loaded: url_helper
+INFO - 2020-04-03 13:52:50 --> Helper loaded: file_helper
+INFO - 2020-04-03 13:52:50 --> Helper loaded: text_helper
+INFO - 2020-04-03 13:52:50 --> Helper loaded: string_helper
+INFO - 2020-04-03 13:52:50 --> Database Driver Class Initialized
+INFO - 2020-04-03 13:52:50 --> Email Class Initialized
+DEBUG - 2020-04-03 13:52:50 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-04-03 13:52:50 --> Session: Class initialized using 'files' driver.
+INFO - 2020-04-03 13:52:50 --> Helper loaded: form_helper
+INFO - 2020-04-03 13:52:50 --> Form Validation Class Initialized
+INFO - 2020-04-03 13:52:50 --> Controller Class Initialized
+INFO - 2020-04-03 13:52:50 --> Model "M_auth" initialized
+DEBUG - 2020-04-03 13:52:50 --> Form_validation class already loaded. Second attempt ignored.
+DEBUG - 2020-04-03 13:52:50 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-04-03 13:52:50 --> Helper loaded: captcha_helper
+INFO - 2020-04-03 13:52:50 --> File loaded: C:\xampp\htdocs\scholarship\govt\views\include/header.php
+INFO - 2020-04-03 13:52:50 --> File loaded: C:\xampp\htdocs\scholarship\govt\views\include/footer.php
+INFO - 2020-04-03 13:52:51 --> File loaded: C:\xampp\htdocs\scholarship\govt\views\include/msg.php
+INFO - 2020-04-03 13:52:51 --> File loaded: C:\xampp\htdocs\scholarship\govt\views\auth/login.php
+INFO - 2020-04-03 13:52:51 --> Final output sent to browser
+DEBUG - 2020-04-03 13:52:51 --> Total execution time: 0.5409

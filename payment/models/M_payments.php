@@ -21,12 +21,64 @@ class M_payments extends CI_Model {
 
     public function companyChange($id = null)
     {
-      $query =  $this->db->where('industry_id', $id)->where('type','1')->get('industry_register');
+        $query =  $this->db->where('industry_id', $id)->where('type','1')->get('industry_register');
         if($query->num_rows() > 0){
           return $query->row('industry_id');
         }else{
           return false;
         }
+    }
+
+    public function checkpayment($reg_no='',$year='')
+    {
+        return $this->db->where('comp_reg_id', $reg_no)
+        ->where('year', $year)
+        ->get('payment')->row();
+    }
+
+    public function submit_pay($insert='')
+    {
+        $query = $this->db->where('comp_reg_id', $insert['comp_reg_id'])
+        ->where('year', $insert['year'])
+        ->get('payment')->row();
+        if (!empty($query)) {
+            return false;
+        }else{
+            return $this->db->insert('payment', $insert);
+        }
+    }
+
+    public function getind($reg_no='')
+    {
+        $this->db->select('ir.email,ir.mobile,i.name');
+        $this->db->where('ir.type', 1);
+        $this->db->where('i.reg_id', $reg_no);
+        $this->db->from('industry i');
+        $this->db->join('industry_register ir', 'ir.industry_id = i.id', 'left');
+        return $this->db->get()->row();
+    }
+
+    public function payList($regId='')
+    {
+        $this->db->select('i.*,i.name as comp,ir.*,ir.name as Names,p.*');
+        $this->db->where('i.reg_id', $regId);
+        $this->db->where('ir.type', 1);
+        $this->db->from('payment p');
+        $this->db->join('industry i', 'i.reg_id = p.comp_reg_id', 'inner');
+        $this->db->join('industry_register ir', 'ir.industry_id = i.id', 'inner');
+        return $this->db->get()->result();
+    }
+
+    public function singlepay($id='',$regId='')
+    {
+        $this->db->select('i.*,i.name as comp,ir.*,ir.name as Names,p.*');
+        $this->db->where('i.reg_id', $regId);
+        $this->db->where('p.id', $id);
+        $this->db->where('ir.type', 1);
+        $this->db->from('payment p');
+        $this->db->join('industry i', 'i.reg_id = p.comp_reg_id', 'inner');
+        $this->db->join('industry_register ir', 'ir.industry_id = i.id', 'inner');
+        return $this->db->get()->row();
     }
     
 

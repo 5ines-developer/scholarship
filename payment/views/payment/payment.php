@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="<?php echo $this->config->item('web_url') ?>assets/css/select2.css" rel="stylesheet" />
+
+    <!-- scripts -->
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 </head>
 
 <body>
@@ -43,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="under-line"></div>
-                            <form action="" method="POST">
+                            <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post" enctype="multipart/form-data" id="payment">
                                 <div class="pay-form z-depth-1">
                                     <div class="pay-ff">
                                         <p style="font-style: italic;font-weight: 700;">Payment Form</p>
@@ -52,54 +59,65 @@
                                         <div class="row">
                                             <div class="col l5 m6 s12">
                                                 <div class="input-field">
-                                                    <select name="p_cc" class="select">
+                                                    <select id="category" name="category" class="select" class="validate" required v-model='category'>
 	                                                    <option value="" disabled selected>Company Category</option>
-	                                                    <option value="1">Labour Act</option>
-	                                            		<option value="2">Factory Act</option> 
+	                                                    <option value="1">Shops and Commercial Act</option>
+                                                        <option value="2">Factory Act</option> 
+	                                            		<option value="3">Others</option> 
+                                                        <span class="helper-text red-text">{{cat_error}}</span>
                                                 	</select>
                                                 </div>
                                             </div>
                                             <div class="col l5 m5 s12">
                                                 <div class="input-field">
-                                                    <select name="p_year" v-model="year" class="select" @change="countPrice()">
+                                                    <select name="p_year" v-model="year" class="select" @change="checkpayment()">
                                                     <option value="" disabled selected>Year</option>
                                                     <?php for ($i=2000; $i <= date('Y') ; $i++) {
                                                         echo '<option value="15-1-'.$i.'">'.$i.'</option>';
                                                     } ?>
                                                     </select>
+                                                    <span class="helper-text red-text">{{pay_check}}</span>
                                                 </div>
                                             </div>
                                             <div class="col l10 m10 s12">
                                                 <div class="input-field">
-                                                    <select id="company" name="company">
+                                                    <select id="company" name="company" v-model="company">
                                                     <option value="" disabled >Select Your Industry</option>
                                                     
                                                 	</select>
                                                 	<p class="inregister"></p>
+                                                    <span class="helper-text red-text">{{comError}}</span>
                                                 </div>
+
                                             </div>
                                             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
 
                                             <div class="col l5 m5 s12">
                                                 <div class="input-field">
-                                                    <input id="c_conreg" type="text" readonly class="c_conreg validate" required="">
-		                                            <input id="c_comp" type="hidden" name="c_comp" >
+                                                    <input id="c_conreg" type="text" readonly name="reg_no" class="c_conreg validate" required="" >
+		                                            <input id="c_comp" type="hidden" name="c_comp" v-model="reg_no" >
 		                                            <label class="crg" for="c_conreg">Industry Reg No</label>
+                                                    <span class="helper-text red-text">{{regError}}</span>
                                                 </div>
                                             </div>
 
                                             
                                             <div class="col l5 m5 s12">
                                                 <div class="input-field">
-                                                    <input id="p_cmale" name="p_cmale" type="number" @change="countPrice()" class="validate" required v-model="male">
+                                                    <input id="p_cmale" name="p_cmale" type="number" @change="checkpayment()" class="validate" required v-model="male">
                                                     <label for="p_cmale">Male Employees</label>
+                                                    <span class="helper-text red-text">{{maleError}}</span>
                                                 </div>
                                             </div>
                                             <div class="col l5 m5 s12">
                                                 <div class="input-field">
-                                                    <input id="p_cfemale" name="p_cfemale" type="number" @change="countPrice()"  class="validate" required v-model="female">
+                                                    <input id="p_cfemale" name="p_cfemale" type="number" @change="checkpayment()"  class="validate" required v-model="female">
                                                     <label for="p_cfemale">Female Employees</label>
+                                                    <span class="helper-text red-text">{{FemaleError}}</span>
+                                                    <input type="hidden" name="price" v-model="vprice">
+                                                    <input type="hidden" name="interest" v-model="vinterest">
+                                                    <input type="hidden" name="pyear" v-model="pyear">
                                                 </div>
                                             </div>
                                         </div>
@@ -131,9 +149,9 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div class="btn-pay">
+                                            <div class="btn-pay" v-bind:class="{ hide: hidden }">
                                                 <button type="reset" class="btn-sub btn-p rest z-depth-1 waves-effect waves-light">Reset</button>
-                                                <button type="submit" class="btn-sub btn-p  z-depth-1 waves-effect waves-light"> Pay now</button>
+                                                <button name="submit-pay" id="submit-pay" type="submit" class="btn-sub btn-p  z-depth-1 waves-effect waves-light"> Pay now</button>
                                             </div>
                                         </div>
                                     </div>
@@ -158,18 +176,70 @@
     </div>
 
 
+ <?php
+ 
 
-    <!-- scripts -->
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+    if(isset($_POST['submit-pay']))
+    {
+        $category  = $_POST['category'];
+        $p_cfemale = $_POST['p_cfemale'];
+        $p_cmale   = $_POST['p_cmale'];
+        $pyear    = $_POST['pyear'];
+        $reg_no    = $_POST['reg_no'];
+        $price     = round($_POST['price']);
+        $interest  = $_POST['interest'];
+
+        ?>
+        <form action="<?php echo base_url('payments/submit_pay') ?>" method="post" enctype="multipart/form-data">
+            <input name="category"  type="hidden"  value=" <?php echo $category?>">
+            <input name="p_cfemale" type="hidden"  value=" <?php echo $p_cfemale?>">
+            <input name="p_cmale" type="hidden" value=" <?php echo $p_cmale?>">
+            <input name="p_year" type="hidden" value=" <?php echo $pyear?>">
+            <input name="reg_no" value=" <?php echo $reg_no?>" type="hidden">
+            <input name="prices" value=" <?php echo $price?>" type="hidden">
+            <input name="interests" value=" <?php echo $interest?>" type="hidden">
+           
+            
+            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+            
+                <script  src="https://checkout.razorpay.com/v1/checkout.js"
+                    data-key="rzp_test_V8wTCHMWOy9hfl"
+                    data-buttontext="Pay with Razorpay"
+                    data-name="5ine Web Solutions Pvt. Ltd."
+                    data-description="Enhancing Bussiness with Pioneering Thoughts..."
+                    data-image="<?php echo base_url('assets/images/logo.png')?>"
+                    data-amount="<?php echo $price.'00' ?>"
+                    data-prefill.contact="9876543210"
+                    data-prefill.name="testing"
+                    data-prefill.email="prathwi@5ine.in"
+                    data-theme.color="#ef7920"
+                ></script>
+            <input type="hidden" value="Hidden Element" name="hidden">
+        </form>
+        <!--   rzp_test_V8wTCHMWOy9hfl -->
+            <!--   rzp_live_gzxNI1eiSwtWSH -->
+        <!-- <script type="text/javascript"> 
+            window.onload = function(){
+                document.getElementsByClassName('razorpay-payment-button').click();
+            }
+        </script> -->
+<?php   } ?>
+
+
+<?php if(isset($_POST['submit-pay'])) {  ?>
+<script type="text/javascript">
+    $(function(){
+        $('.razorpay-payment-button').attr('name','razorpay-payment-button');
+        $('.razorpay-payment-button').click();
+    });
+</script>
+<?php } ?>
      <script>
      	<?php $this->load->view('include/msg'); ?>
 $(document).ready(function() {
 
-    var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+    var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
             csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
 
 
@@ -239,6 +309,7 @@ $(document).ready(function() {
         var app = new Vue({
             el: '#app',
             data: {
+                category:'',
                 male:'',
                 female:'',
                 employees:'',
@@ -247,6 +318,18 @@ $(document).ready(function() {
                 interest:'',
                 total:'',
                 year:'',
+                hidden:false,
+                cat_error:'',
+                regError:'',
+                pay_check:'',
+                comError:'',
+                maleError:'',
+                FemaleError:'',
+                vprice:'',
+                vinterest:'',
+                company:'',
+                reg_no:'',
+                pyear:'',
 
             },
             
@@ -284,7 +367,6 @@ $(document).ready(function() {
                         var days = day - selday;
                     }
 
-
                     var price  = emp * 60;
 
                     if(months <= 3 && days >= 1){ 
@@ -294,13 +376,44 @@ $(document).ready(function() {
                     }else{
                         var interest = '';
                     }
-
-                    
                     this.employees = emp;
                     this.amount  =  emp * 60;
                     this.interest  =  interest;
                     this.total   =  interest + price;
-                }
+                    this.vprice = this.total;
+                    this.vinterest = this.interest;
+                    this.pyear = selyear;
+                },
+                checkpayment(){
+
+                    var reg_no = document.getElementById('c_conreg');
+                    this.pay_check='';
+                    var self=this;
+                    var selDate = this.year;
+                    var today = new Date();
+                    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();                  
+                    var spl = selDate.split("-");
+                    var selyear = spl['2'];
+
+                    const formData = new FormData();
+                    formData.append('reg_no', reg_no.value);
+                    formData.append('year', selyear);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                    axios.post('<?php echo base_url() ?>payments/checkpayment', formData)
+                    .then(response => {
+                        if(response.data != ''){
+                           this.hidden=true;
+                           this.pay_check = 'You have already paid the contribution for the selected year';
+                        }else{
+                            this.hidden=false;
+                            this.countPrice();
+                        }
+                    }).catch(error => {
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+                },
                 
                 
                     

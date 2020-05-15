@@ -249,7 +249,7 @@ class Auth extends CI_Controller {
 
     public function dbine($var = null)
     {
-        $this->loginmodel->dbine();
+        $this->M_auth->dbine();
     }
 
         public function refresh(){

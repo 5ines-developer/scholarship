@@ -19,6 +19,7 @@ class Payments extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
+        $this->load->library('form_validation');
         // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
@@ -40,7 +41,6 @@ class Payments extends CI_Controller {
             $data['taluk'] = $this->m_auth->getTaluk();
             $data['district'] = $this->m_auth->getDistrict();            
             $this->load->view('payment/payment', $data, FALSE);
-
         }
     }
 
@@ -80,17 +80,142 @@ class Payments extends CI_Controller {
     public function payList($value='')
     {
         $data['title']  = 'Payment List | Scholarship';
+        $data['result'] = $this->m_payments->payList($this->inId);
         $this->load->view('payment/payment-list.php', $data, FALSE);
     }
 
-    public function receipt($value='')
+    public function receipt($id='')
     {
-        $this->load->view('payment/formd');
+        $id = $this->encryption_url->safe_b64decode($id);
+        $data['result'] = $this->m_payments->singlepay($id,$this->inId);
+        $this->load->view('payment/reciept',$data);
     }
 
     public function formd($value='')
     {
-        $this->load->view('payment/reciept');
+        $this->load->view('payment/formd');
+    }
+
+    public function checkpayment($value='')
+    {
+        $reg_no = $this->input->post('reg_no');
+        $year   = $this->input->post('year');
+        $output = $this->m_payments->checkpayment($reg_no,$year);
+        echo $output;
+    }
+
+    public function submit_pay($value='')
+    {
+
+        
+        // $data['result'] = $this->input->post();
+        // $this->load->view('payment/gateway.php', $data, FALSE);
+        $this->security->xss_clean($_POST);
+        $this->form_validation->set_rules('category', 'Category', 'trim|required');
+        $this->form_validation->set_rules('p_cfemale', 'Female Employees', 'trim|required');
+        $this->form_validation->set_rules('p_cmale', 'Male Employees',  'trim|required');
+        $this->form_validation->set_rules('p_year', 'Year', 'trim|required');
+        $this->form_validation->set_rules('reg_no', 'Register Number', 'trim|required');
+        $this->form_validation->set_rules('prices', 'Price', 'trim|required');
+        $this->form_validation->set_rules('interests', 'Interest', 'trim|required');
+        if ($this->form_validation->run() == TRUE) {
+
+           $female      =  $this->input->post('p_cfemale');
+           $male        =  $this->input->post('p_cmale');
+           $reg_no      =  $this->input->post('reg_no');
+           $year        =  $this->input->post('p_year');
+           $pay_id      =  $this->input->post('razorpay_payment_id');
+           $price       =  $this->input->post('prices');
+           $interest    =  $this->input->post('interests');
+           $emails      =  $this->input->post('emails');
+           $phones      =  $this->input->post('phones');
+           $company      =  $this->input->post('company');
+
+           $insert = array(
+                'female'        => $female, 
+                'male'          => $male, 
+                'comp_reg_id'   => $reg_no, 
+                'year'          => $year, 
+                'pay_id'        => $pay_id, 
+                'price'         => $price, 
+                'interest'      => $interest,  
+            );
+
+           $result = $this->m_payments->submit_pay($insert);
+
+
+           if (!empty($result)) {
+            $emails='';
+            $phones='';
+            $company='';
+                $ind = $this->m_payments->getind($reg_no);
+               if (!empty($ind)) {
+                   $emails = $ind->email;
+                   $phones = $ind->mobile;
+                   $company = $ind->name;
+               }
+
+                $this->sendmail($insert,$emails,$phones,$company);
+                $this->sendadmin($insert,$emails,$phones,$company);
+                $this->session->set_flashdata('success', 'Your contribution has been paid successfully');
+                redirect('make-payment','refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Something Went wrong, please try again later!');
+                redirect('make-payment','refresh');
+            }
+        }else{
+            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+            redirect('make-payment','refresh');
+        }
+    }
+
+    public function sendmail($insert='',$emails='',$phone='',$company='')
+    {
+        
+        $data['result'] = $insert;
+        $data['company'] = $company;
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/payment', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($emails);
+        $this->email->subject('Contribution Success'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+    }
+
+    public function sendadmin($insert='',$emails='',$phone='',$company='')
+    {
+        
+        $data['result'] = $insert;
+        $data['company'] = $company;
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/admin-payment', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to('prathwi@5ine.in');
+        $this->email->subject('Industry Contribution Success'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
     }
 
 

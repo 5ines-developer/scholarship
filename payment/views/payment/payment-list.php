@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->library('Encryption_url');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,16 +48,25 @@
                                                 <th id="c" class="h5-para-p2">Receipt</th>
                                             </thead>
                                             <tbody class="tbody-list">
-                                                <tr role="row" class="odd">
-                                                    <td class="truncate">ISRTC Solution Pvt Ltd</td>
-                                                    <td>2019</td>
-                                                    <td>50</td>
-                                                    <td>50</td>
-                                                    <td>100</td>
-                                                    <td>6000</td>
-                                                    <td class=""><a class="green-text" href="#">Download</a></td>
-                                                    <td class=""><a class="green-text" href="#">View</a></td>
-                                                </tr>
+
+                                                <?php if (!empty($result)) {
+                                                    foreach ($result as $key => $value) { 
+                                                        $id = $this->ci->encryption_url->safe_b64encode($value->id);
+                                                    ?>
+                                                    <tr role="row" class="odd">
+                                                        <td class="truncate"><?php echo !empty($value->comp)?$value->comp:''; ?></td>
+                                                        <td><?php echo !empty($value->year)?$value->year:''; ?></td>
+                                                        <td><?php echo !empty($value->male)?$value->male:''; ?></td>
+                                                        <td><?php echo !empty($value->female)?$value->female:''; ?></td>
+                                                        <td><?php echo $value->male + $value->female; ?></td>
+                                                        <td><?php echo !empty($value->price)?$value->price:''; ?></td>
+                                                        <td class=""><a class="green-text" href="#">Download</a></td>
+                                                        <td class=""><a class="green-text" href="<?php echo base_url('receipt/').$id; ?>">View</a></td>
+                                                    </tr>
+                                                <?php   } } ?>
+
+
+                                                
                                             </tbody>
                                         </table>
                                     </div>

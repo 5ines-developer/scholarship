@@ -68,6 +68,13 @@ $route['industry-edit/(:any)']         	= 'industry/edit/$1';
 $route['upload-industry']         		= 'industry/import_excel';
 $route['industry-delete/(:any)']       = 'industry/delete/$1';
 
+// payment
+$route['industry-payment']         		= 'payments/index';
+$route['pending-payment']         		= 'payments/pend_payment';
+
+
+
+
 // fees managemnet
 $route['fees/add']                  	= 'fees/add';
 $route['fees/edit/(:any)']              = 'fees/edit/$1';

@@ -67,9 +67,10 @@
                                     </div>
                                     <div class="input-field col s12 m6">
                                         <select id="act" name="act" required="" class="select2" v-model="act">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Labour Act</option>
-                                            <option value="2">Factory Act</option>                                            
+                                            <option value="" disabled selected>Choose Act Type</option>
+                                            <option value="1">Shops and Commercial Act</option>
+                                            <option value="2">Factory ACt</option>
+                                            <option value="3">Others</option>                                          
                                         </select>
                                         <label for="act">Industry Type</label>
                                     </div>

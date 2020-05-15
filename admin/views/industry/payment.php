@@ -41,42 +41,53 @@ $this->load->library('encryption');
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
-                                    <span class="list-title ">Institute Request List</span>
+                                    <span class="list-title ">Industry Contribution Payment List</span>
+
+                                    <select class="browser-default select-list" fname="year" id="short" @change="yearChange()" v-model="year">
+                                            <option value="">Choose Year</option>
+                                            <?php $yr = $this->input->get('year');
+                                                 for($i=date('Y'); $i>= 2000; $i--){ 
+                                                $year = $i;
+                                                ?>
+                                                   <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
+                                            <?php } ?>
+                                        </select>
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
                                             <thead class="thead-list">
                                                 <th class="h5-para-p2">SL No.</th>
-                                                <th class="h5-para-p2">Name</th>
+                                                <th class="h5-para-p2">Industry Name</th>
                                                 <th class="h5-para-p2">Act</th>
-                                                <th class="h5-para-p2">Email</th>
-                                                <th class="h5-para-p2">Phone No</th>
-                                                <th class="h5-para-p2">District</th>
-                                                <th class="h5-para-p2">Taluk</th>
-                                                <th class="h5-para-p2">Date</th>
-                                                <th class="h5-para-p2">Action</th>
+                                                <th class="h5-para-p2">Register id</th>
+                                                <th class="h5-para-p2">Year</th>
+                                                <th class="h5-para-p2">Payment Id</th>
+                                                <th class="h5-para-p2">Male Employees</th>
+                                                <th class="h5-para-p2">Female Employees</th>
+                                                <th class="h5-para-p2">Amount</th>
+                                                <th class="h5-para-p2">Interest</th>
+                                                <th class="h5-para-p2">Paid On</th>
                                             </thead>
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
                                                     $sl=0;
                                                     foreach ($result as $key => $value) {
-                                                        $id = $this->ci->encryption_url->safe_b64encode($value->id);
                                                         $sl++;
                                                     ?>
                                                     <tr role="row" class="odd">
-                                                        <td><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo  $sl; ?></a></td>
+                                                        <td><?php echo  $sl; ?></td>
 
-                                                    <td><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo (!empty($value->company))?$value->company:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('industry-request/').$id ?>"><?php if($result[0]->act == '1'){echo "Shops and Commercial Act"; }else if($result[0]->act == '2'){echo "Factory Act"; }else{echo "others"; } ?></a></td> <td class="truncate"><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo (!empty($value->email))?$value->email:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo (!empty($value->mobile))?$value->mobile:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo (!empty($value->district))?$value->district:'---'; ?></a></td>
-                                                    <td><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo (!empty($value->taluk))?$value->taluk:'---'; ?></a></td>
-                                                    <td class=""><a href="<?php echo base_url('industry-request/').$id ?>"><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></a></td>
-                                                    <td class="action-btn center-align">
-                                                        <a href="<?php echo base_url('industry-request/').$id ?>" class="vie-btn blue-text waves-effect waves-light" > View </a>
-                                                        <!-- <a onclick="return confirm('Are you sure you want to delete this item?');" href="" class="red white-text"> <i class="material-icons action-icon ">delete</i></a> -->
-                                                    </td>
+                                                    <td><?php echo (!empty($value->name))?$value->name:'---'; ?></td>
+                                                    <td><?php if($value->act == '1'){echo "Shops and Commercial Act"; }else if($value->act == '2'){echo "Factory Act"; }else{echo "others"; } ?></td> 
+                                                    <td class="truncate"><?php echo (!empty($value->reg_id))?$value->reg_id:'---'; ?></td>
+                                                    <td><?php echo (!empty($value->year))?$value->year:'---'; ?></td>
+                                                    <td><?php echo (!empty($value->pay_id))?$value->pay_id:'---'; ?></td>
+                                                    <td><?php echo (!empty($value->male))?$value->male:'---'; ?></td>
+                                                    <td class=""><?php echo (!empty($value->female))?$value->female:'---'; ?></td>
+                                                    <td class=""><?php echo (!empty($value->price))?$value->price:'---'; ?></td>  
+                                                    <td class=""><?php echo (!empty($value->interest))?$value->interest:'---'; ?></td> 
+                                                    <td class=""><?php echo (!empty($value->payed_on))?date('d M, Y',strtotime($value->payed_on)):'---'; ?></td>
                                                 </tr>
                                                 <?php    } } ?>
                                             </tbody>
@@ -119,7 +130,7 @@ $this->load->library('encryption');
     <?php $this->load->view('include/msg'); ?>
     <script>
         $(document).ready(function() {
-            $('.sid-m >.collapsible-body').css({
+            $('.cpay-m >.collapsible-body').css({
                 display: 'block',
             });
         });
@@ -152,8 +163,12 @@ $this->load->library('encryption');
             el: '#app',
             data: {
                 loader:false,
+                year:'<?php echo $this->input->get('year') ?>',
             },
             methods:{
+                yearChange(){
+                    window.location.href = "<?php echo base_url('industry-payment?year=') ?>"+this.year;
+                },
                 
             },
         })

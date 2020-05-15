@@ -48,8 +48,9 @@
                                                 <div class="input-field col sel-hr s12 m6">
                                                     <select name="act" class="" v-model="act" required="">
                                                             <option value="" disabled selected>Choose Act Type</option>
-                                                            <option value="1">Labour ACt</option>
+                                                            <option value="1">Shops and Commercial Act</option>
                                                             <option value="2">Factory ACt</option>
+                                                            <option value="3">Others</option>
                                                         </select>
                                                     <label>Act Type</label>
                                                 </div>

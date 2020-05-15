@@ -60,9 +60,11 @@
                                                             <li>
                                                                 <p class="app-item-content-head">Act</p>
                                                                 <p class="app-item-content"><?php if($result[0]->act == '1'){
+                                                                        echo "Shops and Commercial Act";
+                                                                    }else if($result[0]->act == '2'){
                                                                         echo "Factory Act";
                                                                     }else{
-                                                                        echo "Labour Act";
+                                                                        echo "others";
                                                                     }
 
                                                                 ?></p>

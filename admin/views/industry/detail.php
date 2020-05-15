@@ -80,7 +80,14 @@ $this->load->library('encryption');
                                                             </li>
                                                             <li>
                                                                 <p class="app-item-content-head">Act</p>
-                                                                <p class="app-item-content"><?php echo (!empty($result[0]->act ) && $result[0]->act == '1')?'Labour Act':'Factory Act'; ?></p>
+                                                                <p class="app-item-content"><?php
+                                                                if($result[0]->act == '1'){
+                                                                    echo "Shops and Commercial Act";
+                                                                }else if($result[0]->act == '2'){
+                                                                    echo "Factory Act";
+                                                                }else{
+                                                                    echo "others";
+                                                                } ?></p>
                                                             </li>
                                                             <li>
                                                                 <p class="app-item-content-head">Register Number</p>

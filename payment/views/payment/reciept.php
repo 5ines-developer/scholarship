@@ -28,16 +28,16 @@
                                 <h6>Payment Receipt</h6>
                             </div>
                             <div class="date-fund">
-                                <p>ISRTC Pvt Ltd <b>Office</b></p>
+                                <p>Karnataka Labour Welfare Board <b>Office</b></p>
                                 <p><b>Place : </b>Bangalore</p>
-                                <p><b>Date : </b>12-12-2019</p>
+                                <p><b>Date : </b><?php echo date('d M, Y') ?></p>
                             </div>
                             <div class="receipt-detail">
-                                <b>_________________________
-                                    <span>For this</span>___________________________________________________
-                                    <span>Rupees</span>_____________________________________
-                                    <span>From them we have received adn each Book</span> ___________________________
-                                    <span>No. Page</span>______<span>Baby</span>______________________<span>Day Deposited</span></b>
+                                <b><span style="text-decoration:underline">Karnataka Labour Welfare Board scholarship contribution</span>
+                                    <span>For this</span> <span style="text-decoration:underline"><?php echo (!empty($result->price))?$result->price:''; ?></span>
+                                    <span>Rupees</span> <span style="text-decoration:underline"><?php echo (!empty($result->price))?$result->price:''; ?></span>
+                                    <span>From them we have received and each Book</span> <span style="text-decoration:underline"><?php echo (!empty($result->comp))?$result->comp:''; ?></span>
+                                    <span>No. Page</span>______<span>baaby</span><span style="text-decoration:underline"><?php echo (!empty($result->payed_on))?date('d M, Y',strtotime($result->payed_on)):''; ?></span><span>Day Deposited</span></b>
                             </div>
                             <div class="office-ex">
                                 <p>Office Executive</p>

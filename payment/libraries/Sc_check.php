@@ -56,7 +56,7 @@ class Sc_check {
             'img_url'       => base_url().'captcha_images/',
             'font_path'     => $this->ci->config->item('web_url').'system/fonts/texb.ttf',
             'img_width'     => '350',
-            'img_height'    => 80,
+            'img_height'    => 70,
             'word_length'   => 6,
             'font_size'     => 28,
             'colors'        => array(

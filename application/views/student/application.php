@@ -1008,9 +1008,9 @@
                         //adhar card
                         self.adhaar.number      = response.data.adharcard_no;
                         if (response.data.adharcard_file !=null) {
-                            self.adhrpdf  = "<?php echo base_url() ?>"+response.data.adharcard_file;
+                            self.file2  = "<?php echo base_url() ?>"+response.data.adharcard_file;
                         }else{
-                            self.adhrpdf = "#";
+                            self.file2 = "#";
                         }
 
                         self.adhaar.numberm      = response.data.m_adhar;

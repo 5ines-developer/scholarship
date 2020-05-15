@@ -65,13 +65,15 @@ class Industry extends CI_Controller {
        
         $data = array();
         foreach($fetch_data as $row)  
-        {  
+        { 
 
         	if ($row->act == '1') {
-        		$act = 'Labour Act';
-        	}else{
+        		$act = 'Shops and Commercial Act';
+        	}else if ($row->act == '2'){
         		$act = 'Factory Act';
-        	}
+        	}else{
+                $act = 'Others';
+            }
 
             if ($row->status == '1') {
                 $status = '<p class="status green darken-2">Active</p>';
@@ -126,9 +128,9 @@ class Industry extends CI_Controller {
     public function allindustry($value='')
     {
             $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
     $this->security->xss_clean($_POST);
 
         $fetch_data   = $this->m_industry->make_datatables();
@@ -138,12 +140,13 @@ class Industry extends CI_Controller {
 
             $edit = '<a href="'.base_url('industry-edit/').$this->encryption_url->safe_b64encode($row->id).'" class="vie-btn blue-text waves-effect waves-light"> Edit</a>';
 
-            if($row->act == '1'){
-                $act = 'Labour Act';
-            }else{
+            if ($row->act == '1') {
+                $act = 'Shops and Commercial Act';
+            }else if ($row->act == '2'){
                 $act = 'Factory Act';
+            }else{
+                $act = 'Others';
             }
-
             $sub_array = array();
             $sub_array[] = $row->id;  
             $sub_array[] = character_limiter($row->name, 12);
@@ -417,10 +420,15 @@ class Industry extends CI_Controller {
                     $regno  = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
                     $act  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
 
-                    if($act == 'Labour Act' || $act == 'labour act' || $act == 'Labour act'){
+
+                    
+
+                    if($act == 'Shops and Commercial Act' || $act == 'shops and commercial act' || $act == 'Shops and commercial Act'){
                         $acts = '1';
-                    }else{
+                    } else if($act == 'Factory Act' || $act == 'factory act' || $act == 'Factory act'){
                         $acts = '2';
+                    }else{
+                        $acts = '3';
                     }
                     
                     $insert = array(
@@ -463,6 +471,9 @@ class Industry extends CI_Controller {
         }
         redirect('industry','refresh');
     }
+
+
+
 
 
 

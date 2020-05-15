@@ -249,16 +249,15 @@ class M_industry extends CI_Model {
     {
         $this->db->where('industry_id', $id);
         if($this->db->delete('industry_register')){
-
             $this->db->where('company_id', $id);
             $this->db->delete('application');
-
-
             return true;
         }else{
             return false;
         }
     }
+
+
 
 }
 

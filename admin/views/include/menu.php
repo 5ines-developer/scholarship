@@ -38,8 +38,15 @@
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-add" class="<?php echo (($this->uri->segment(1) == 'industry-add')) ? 'active' :'' ?>">Add New Industry</a></span></div>
 
+              
+
             </li>
 
+            <li class="cpay-m">
+              <div class="collapsible-header"><i class="material-icons">card_membership</i>Contribution Payment</div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-payment" class="<?php echo (($this->uri->segment(1) == 'industry-payment')) ? 'active' :'' ?>">Industry Contribution</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>pending-payment" class="<?php echo (($this->uri->segment(1) == 'pending-payment')) ? 'active' :'' ?>">Contribution Pending</a></span></div>
+            </li>
 
             <li class="rpt-m">
               <div class="collapsible-header"><i class="material-icons">report</i>Reports</div>

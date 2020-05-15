@@ -31,6 +31,7 @@ $route['update-password']           = 'account/update_password';
 //payments
 $route['make-payment']              = 'payments/index'; //make payment
 $route['payment-list']              = 'payments/payList'; //make payment
+$route['receipt/(:any)']            = 'payments/receipt/$1'; //make payment
 
 
 
