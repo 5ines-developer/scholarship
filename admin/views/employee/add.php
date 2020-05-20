@@ -63,6 +63,10 @@
                                                             <input class="with-gap" name="designation" value="3" type="radio"  />
                                                             <span>Financial</span>
                                                         </label>
+                                                        <label class="ml20">
+                                                            <input class="with-gap" name="designation" value="4" type="radio"  />
+                                                            <span>Payment Officer</span>
+                                                        </label>
                                                     </p>
                                                 </div>
                                                 <div class="input-field col s12">

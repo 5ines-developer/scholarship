@@ -36,6 +36,25 @@
                         <li><a href="<?php echo base_url('login')?>">Login</a></li>
                         <li><a href="<?php echo base_url('register')?>">Registration</a></li>
                     <?php }else{ ?>
+                        <li><a class="noti-link dropdown-trigger" data-target='dropdown2' href="<?php echo base_url('notification')?>">
+                        <span class="material-icons"> notification_important </span>
+                        <?php $noti = count(pay_reminder($this->session->userdata('pyComp')));
+                        if (!empty($noti)) {
+                            echo '<span class="noti-badge">'.$noti.'</span>';
+                        } ?>
+                    </a>
+
+                    <?php $notis = pay_reminders($this->session->userdata('pyComp')); ?>
+
+                    <ul id='dropdown2' class='dropdown-content'>
+                        <?php if (!empty($notis)) {
+                            foreach ($notis as $key => $value) { ?>
+                                <li><a href="<?php echo base_url('notification') ?>"><?php echo 'Payment Reminder for '.$value->difference.' days'; ?></a></li>
+                            <?php } } ?>
+                    </ul>
+                   <?php ?>
+                </li>
+
                         <li><a href="#!" class="dropdown-trigger my-prof" data-target='dropdown1'> <i class="material-icons user-nav-btn">account_circle</i> <span>My Profile</span></a></li>
                     <?php } ?> 
                 </ul>

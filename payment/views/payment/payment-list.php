@@ -60,7 +60,7 @@ $this->load->library('Encryption_url');
                                                         <td><?php echo !empty($value->female)?$value->female:''; ?></td>
                                                         <td><?php echo $value->male + $value->female; ?></td>
                                                         <td><?php echo !empty($value->price)?$value->price:''; ?></td>
-                                                        <td class=""><a class="green-text" href="#">Download</a></td>
+                                                        <td class=""><a class="green-text" href="<?php echo base_url('formd-download/').$id; ?>">Download</a></td>
                                                         <td class=""><a class="green-text" href="<?php echo base_url('receipt/').$id; ?>">View</a></td>
                                                     </tr>
                                                 <?php   } } ?>

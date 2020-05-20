@@ -1,3 +1,7 @@
+<?php
+$this->ci =& get_instance();
+$this->load->library('Encryption_url');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +24,7 @@
                 <div class="row m0">
                     <div class="col offset-l1 s12 m10 l10">
                         <div class="download">
-                            <button class="rec-down waves-effect waves-light">Download</button>
+                            <a href="<?php $id = $this->ci->encryption_url->safe_b64encode($result->id); echo base_url('payments/receipts/').$id ?>" class="rec-down waves-effect waves-light">Download</a>
                         </div>
                         <div class="fund-reg">
                             <div class="title-track">

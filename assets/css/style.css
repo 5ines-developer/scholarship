@@ -3320,4 +3320,21 @@ table.striped > tbody > tr > td {
 .striped.dataTable th {
   width: 150px !important;
 }
+
+.noti-link .material-icons {
+  font-size: 32px;
+}
+
+.noti-badge {
+  width: 20px;
+  background-color: red;
+  border-radius: 50%;
+  padding: 1px 7px;
+}
+
+#dropdown2.dropdown-content {
+  width: 244.017px !important;
+  left: 849.1px !important;
+  top: 65px !important;
+}
 /*# sourceMappingURL=style.css.map */

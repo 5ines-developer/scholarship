@@ -91,10 +91,49 @@ class Payments extends CI_Controller {
         $this->load->view('payment/reciept',$data);
     }
 
+         // application generate
+    public function receipts($id = null)
+    {
+        $id = $this->encryption_url->safe_b64decode($id);
+        $data['result'] = $this->m_payments->singlepay($id,$this->inId);
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+            'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('payment/reciept_download.php',$data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;    
+    }
+
+
     public function formd($value='')
     {
         $this->load->view('payment/formd');
     }
+
+         // application generate
+    public function formds($id = null)
+    {
+        $id = $this->encryption_url->safe_b64decode($id);
+        $data['result'] = $this->m_payments->singlepay($id,$this->inId);
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+            'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('payment/formd_download.php',$data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;    
+    }
+
+    
 
     public function checkpayment($value='')
     {
@@ -129,7 +168,7 @@ class Payments extends CI_Controller {
            $interest    =  $this->input->post('interests');
            $emails      =  $this->input->post('emails');
            $phones      =  $this->input->post('phones');
-           $company      =  $this->input->post('company');
+           $company     =  $this->input->post('company');
 
            $insert = array(
                 'female'        => $female, 
@@ -216,6 +255,57 @@ class Payments extends CI_Controller {
         {
             return false;
         }
+    }
+
+    public function reminder($value='')
+    {
+
+        // $today  = date('Y-m-d');
+        // $due    = date('Y')."-01-15";
+        $today  = "2019-12-16";
+        $due    = date('Y')."-01-15";
+        $your_date = strtotime($today);
+        $datediff = strtotime($due) - $your_date;
+        $diffr = round($datediff / (60 * 60 * 24));
+
+        if ($diffr == '30') {
+            $this->sendreminder($diffr);
+        }elseif ($diffr == '15') {
+            $this->sendreminder($diffr);
+        }elseif ($diffr == '1') {
+            $this->sendreminder($diffr);
+        }
+    }
+
+    public function sendreminder($diffr='')
+    {
+        $result = $this->m_payments->getemail();
+        if (!empty($result)) {
+            foreach ($result as $key => $value) {
+                $noti = $this->m_payments->insertreminder($value->reg_id,$diffr);
+                if (!empty($noti)) {
+                    $this->load->config('email');
+                    $this->load->library('email');
+                    $from = $this->config->item('smtp_user');
+                    $msg = $this->load->view('mail/reminder',$result, true);
+                    $this->email->set_newline("\r\n");
+                    $this->email->from($from , 'Karnataka Labour Welfare Board');
+                    $this->email->to($value->email);
+                    $this->email->subject('Contribution reminder'); 
+                    $this->email->message($msg);
+                    $this->email->send();
+                }
+            }
+        }
+    }
+
+    public function notification($value='')
+    {
+        $data['title'] = 'Payment Reminder';
+        $this->m_payments->changeSeen($this->inId);
+        $data['result'] = $this->m_payments->pay_reminders($this->inId);
+        $this->load->view('payment/notification', $data, FALSE);
+
     }
 
 

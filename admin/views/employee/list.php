@@ -63,8 +63,10 @@ $this->load->library('encryption');
                                                     foreach ($result as $key => $value) { 
                                                         if ($value->type == '2') {
                                                             $ty = 'verification Department';
-                                                        }else{
+                                                        }else if ($value->type == '3'){
                                                             $ty = 'Finance Department';
+                                                        }else{
+                                                            $ty = 'Payment Officer';
                                                         }
                                                         $sl++;
 

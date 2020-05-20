@@ -32,6 +32,15 @@ $route['update-password']           = 'account/update_password';
 $route['make-payment']              = 'payments/index'; //make payment
 $route['payment-list']              = 'payments/payList'; //make payment
 $route['receipt/(:any)']            = 'payments/receipt/$1'; //make payment
+$route['formd-download/(:any)']     = 'payments/formds/$1'; //make payment
+
+$route['reminder']              	= 'payments/reminder'; //make payment
+$route['notification']              = 'payments/notification'; //make payment
+
+
+
+
+
 
 
 

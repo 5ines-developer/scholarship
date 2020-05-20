@@ -62,6 +62,10 @@
                                                             <input class="with-gap" name="designation" value="3" type="radio"  <?php echo ($result->type == '3')?'checked':''; ?>/>
                                                             <span>Financial</span>
                                                         </label>
+                                                        <label class="ml20">
+                                                            <input class="with-gap" name="designation" value="4" type="radio" <?php echo ($result->type == '4')?'checked':''; ?> />
+                                                            <span>Payment Officer</span>
+                                                        </label>
                                                     </p>
                                                 </div>
                                                 <input type="hidden" name="id" value="<?php echo $result->id ?>">

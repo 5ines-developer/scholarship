@@ -80,6 +80,49 @@ class M_payments extends CI_Model {
         $this->db->join('industry_register ir', 'ir.industry_id = i.id', 'inner');
         return $this->db->get()->row();
     }
+
+    public function getemail($value='')
+    {
+        $this->db->select('i.reg_id,ir.email');
+        $this->db->where('ir.type', 1);
+        $this->db->from('industry_register ir');
+        $this->db->join('industry i', 'i.reg_id = ir.industry_id', 'left');
+        return $this->db->get()->result();
+    }
+
+    public function insertreminder($reg_id='',$diffr='')
+    {
+        $this->db->where('reg_id', $reg_id);
+        $this->db->where('difference', $diffr);
+        $this->db->where('year', date('Y'));
+        $result = $this->db->get('reminder_noti')->row();
+        if (!empty($result)) {
+            return false;
+        }else{
+
+            $insert = array('reg_id' => $reg_id,'difference' => $diffr ,'year'=>date('Y'));
+            return $this->db->insert('reminder_noti', $insert);
+        }
+    }
+
+    public function pay_reminder($regId='')
+    {
+        $this->db->where('reg_id', $regId);
+        $this->db->where('seen', 0);
+        return $this->db->get('reminder_noti')->result();
+    }
+
+    public function pay_reminders($regId='')
+    {
+        $this->db->where('reg_id', $regId);
+        return $this->db->get('reminder_noti')->result();
+    }
+
+    public function changeSeen($regid='')
+    {
+        $this->db->where('reg_id', $regid);
+        return $this->db->update('reminder_noti', array('seen' => 1));
+    }
     
 
 }

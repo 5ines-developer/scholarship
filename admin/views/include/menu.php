@@ -38,8 +38,6 @@
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-add" class="<?php echo (($this->uri->segment(1) == 'industry-add')) ? 'active' :'' ?>">Add New Industry</a></span></div>
 
-              
-
             </li>
 
             <li class="cpay-m">
