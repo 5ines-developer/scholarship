@@ -20,6 +20,30 @@
 </head>
 
 <body>
+
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h6>Lorem ipsum </h6>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad hic ut quae, magni iure. Eaque expedita doloremque tenetur hic recusandae, voluptatum reprehenderit. Saepe alias eius quo, dicta ea? Quia, fuga.</p>
+            <form ref="c_forms" @submit.prevent="contForm"  action="#" method="post">
+                <p>
+                  <label>
+                    <input v-model="terms"  type="checkbox" name="terms" value="terms" required="" />
+                    <span>I agree the Terms & Conditions</span>
+                  </label>
+                </p>
+                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                <span class="helper-text red-text">{{termError}}</span>
+                <div class="btn-pay">
+                    <button name="agree-pay" id="agree-pay" type="submit" class="btn-sub left m0 z-depth-1 waves-effect waves-light">Submit</button><br>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
     <div id="app">
        <?php $this->load->view('include/header'); ?>
         <!-- Body form  -->
@@ -50,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="under-line"></div>
-                            <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post" enctype="multipart/form-data" id="payment">
+                            <form action="#" method="post" enctype="multipart/form-data" id="payment">
                                 <div class="pay-form z-depth-1">
                                     <div class="pay-ff">
                                         <p style="font-style: italic;font-weight: 700;">Payment Form</p>
@@ -59,8 +83,8 @@
                                         <div class="row">
                                             <div class="col l5 m6 s12">
                                                 <div class="input-field">
-                                                    <select id="category" name="category" class="select" class="validate" required v-model='category'>
-	                                                    <option value="" disabled selected>Company Category</option>
+                                                    <select id="category" name="category" class="select" required v-model='category'>
+	                                                    <option value="" disabled>Company Category</option>
 	                                                    <option value="1">Shops and Commercial Act</option>
                                                         <option value="2">Factory Act</option> 
 	                                            		<option value="3">Others</option> 
@@ -70,13 +94,14 @@
                                             </div>
                                             <div class="col l5 m5 s12">
                                                 <div class="input-field">
-                                                    <select name="p_year" v-model="year" class="select" @change="checkpayment()">
-                                                    <option value="" disabled selected>Year</option>
+                                                    <select id="p_year" name="p_year" v-model="year" class="select" @change="checkpayment()" required="" >
+                                                    <option value="" disabled>Year</option>
                                                     <?php for ($i=2000; $i <= date('Y') ; $i++) {
                                                         echo '<option value="15-1-'.$i.'">'.$i.'</option>';
                                                     } ?>
                                                     </select>
                                                     <span class="helper-text red-text">{{pay_check}}</span>
+                                                    <span class="helper-text red-text yearError"></span>
                                                 </div>
                                             </div>
                                             <div class="col l10 m10 s12">
@@ -177,7 +202,7 @@
 
 
  <?php
- 
+    
 
 
     if(isset($_POST['submit-pay']))
@@ -189,6 +214,7 @@
         $reg_no    = $_POST['reg_no'];
         $price     = round($_POST['price']);
         $interest  = $_POST['interest'];
+        $terms  = $_POST['terms'];
 
         ?>
         <form action="<?php echo base_url('payments/submit_pay') ?>" method="post" enctype="multipart/form-data">
@@ -199,6 +225,7 @@
             <input name="reg_no" value=" <?php echo $reg_no?>" type="hidden">
             <input name="prices" value=" <?php echo $price?>" type="hidden">
             <input name="interests" value=" <?php echo $interest?>" type="hidden">
+            <input name="terms" value=" <?php echo $terms?>" type="hidden">
            
             
             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
@@ -224,23 +251,45 @@
                 document.getElementsByClassName('razorpay-payment-button').click();
             }
         </script> -->
-<?php   } ?>
+<?php   }else if(empty($_POST['terms']))
+    { 
+        ?>
+        <script>
+
+        $(window).on('load', function () {
+            var Modalelem = document.querySelector('.modal');
+            var instance = M.Modal.init(Modalelem,{ dismissible: false });
+            instance.open();
+       });
+        </script>
+
+  <?php  }
+
+   ?>
 
 
 <?php if(isset($_POST['submit-pay'])) {  ?>
 <script type="text/javascript">
     $(function(){
-        $('.razorpay-payment-button').attr('name','razorpay-payment-button');
+                $('.razorpay-payment-button').attr('name','razorpay-payment-button');
         $('.razorpay-payment-button').click();
     });
 </script>
 <?php } ?>
      <script>
-     	<?php $this->load->view('include/msg'); ?>
-$(document).ready(function() {
 
-    var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
-            csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
+       
+
+        $(document).ready(function($) {
+            $(".select").css({display: "inline", height: 0, padding: 0, width: 0});
+            // $('.modal').modal();
+        });
+
+     	<?php $this->load->view('include/msg'); ?>
+        $(document).ready(function() {
+        var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
+        csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
 
 
     $('#company').select2({
@@ -302,7 +351,6 @@ $(document).ready(function() {
             var instances = M.Modal.init(elems, {
                 preventScrolling: false
             });
-
             var instances = M.FormSelect.init(document.querySelectorAll('.select'));
         });
 
@@ -330,11 +378,24 @@ $(document).ready(function() {
                 company:'',
                 reg_no:'',
                 pyear:'',
+                terms:'',
+                termError:'',
 
             },
             
             methods: {
-
+                contForm(e){
+                    e.preventDefault();
+                    this.termError = '';
+                    if (this.terms == '') {
+                       this.termError = 'Please agree the Terms & Conditions to make the payment'; 
+                    }else{
+                        var Modalelem = document.querySelector('.modal');
+                        var instance = M.Modal.init(Modalelem,{ dismissible: false });
+                        instance.close();
+                        this.$refs.c_forms.submit();
+                    }
+                },
                 countPrice(){
                     let emp ='';
                     let male = parseInt(this.male);

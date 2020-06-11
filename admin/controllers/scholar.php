@@ -18,12 +18,6 @@ class Scholar extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
-        // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
-        // header("Referrer-Policy: origin-when-cross-origin");
-        // header("Expect-CT: max-age=7776000, enforce");
-        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
-        
     }
 
     public function index($district='')
@@ -254,6 +248,24 @@ class Scholar extends CI_Controller {
         $server_output = curl_exec($ch);
         curl_close($ch);
         return $server_output;
+    }
+
+         // application generate
+    public function applicationGenerate($id = null)
+    {
+        $id = $this->encryption_url->safe_b64decode($id);
+        $data['result'] = $this->m_scholar->singleGet($id);
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+            'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('scholar/application-download', $data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;    
     }
 
 

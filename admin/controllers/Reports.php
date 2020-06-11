@@ -19,11 +19,6 @@ class Reports extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
-        // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
-        // header("Referrer-Policy: origin-when-cross-origin");
-        // header("Expect-CT: max-age=7776000, enforce");
-        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
     /*
@@ -64,21 +59,63 @@ class Reports extends CI_Controller {
         $years = $this->m_reports->getScholar($district,$taluk,$year,$school,$company,$caste,$items);
         if (!empty($years)) {
             foreach ($years as $key => $value) {
-                $value->sc  = $this->m_reports->scGet($district,$taluk,$value->year,$school,$company,$caste,$items);
-                $value->st  = $this->m_reports->stGet($district,$taluk,$value->year,$school,$company,$caste,$items);
-                $value->obc = $this->m_reports->obcGet($district,$taluk,$value->year,$school,$company,$caste,$items);
-                $value->gen = $this->m_reports->genGet($district,$taluk,$value->year,$school,$company,$caste,$items);
-                $value->male = $this->m_reports->maleGet($district,$taluk,$value->year,$school,$company,$caste,$items);
-                $value->female = $this->m_reports->femaleGet($district,$taluk,$value->year,$school,$company,$caste,$items);
-                $value->approved = $this->m_reports->approved($district,$taluk,$value->year,$school,$company,$caste,$items);
-                $value->rejected = $this->m_reports->rejceted($district,$taluk,$value->year,$school,$company,$caste,$items);
-                $value->pending = $this->m_reports->pending($district,$taluk,$value->year,$school,$company,$caste,$items);
-                $value->amount = $this->m_reports->amount($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->sc          = $this->m_reports->scGet($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->st          = $this->m_reports->stGet($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->obc         = $this->m_reports->obcGet($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->gen         = $this->m_reports->genGet($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->male        = $this->m_reports->maleGet($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->female      = $this->m_reports->femaleGet($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->approved    = $this->m_reports->approved($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->rejected    = $this->m_reports->rejceted($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->pending     = $this->m_reports->pending($district,$taluk,$value->year,$school,$company,$caste,$items);
+                $value->amount      = $this->m_reports->amount($district,$taluk,$value->year,$school,$company,$caste,$items);
             }
         }
         $data['result'] = $years;
 		$this->load->view('reports/scholarship', $data, FALSE);
 	}
+
+
+    public function contribution($year='')
+    {
+        $year = $this->input->get('year');
+        $data['title'] = 'Reports | Scholarship';
+        $years = $this->m_reports->getcontribution($year);
+        if (!empty($years)) {
+            foreach ($years as $key => $value) {
+                $value->completed   = $this->m_reports->cont_completed($value->year);
+                $value->pending     = $this->m_reports->cont_pending($value->year);
+                $value->amount      = $this->m_reports->cont_amount($value->year);
+            }
+        }
+        $data['result'] = $years;
+        $this->load->view('reports/contribution', $data, FALSE);
+    }
+
+    // contribution dashboard
+    public function dashboard($value='')
+    {
+        $year = $this->input->get('year');
+        if (!empty($year)) {
+            $data['years']       = $year;
+        }else{
+            $data['years']       = date('Y');
+        }
+        
+        $data['title']      = 'Contribution | Scholarship';
+        $data['completed']  = $this->m_reports->cont_completed($data['years']);
+        $data['pending']    = $this->m_reports->cont_pending($data['years']);
+        $data['amount']     = $this->m_reports->cont_amount($data['years']);
+        $data['total']      = $this->m_reports->tot_amount();
+        $this->load->view('dashboard/contribution-dashboard.php', $data, FALSE);
+    }
+
+    public function getordergraph($value='')
+    {
+        $startdate  = '2019'; //start date of the year (jan first)
+        $result     = $this->m_reports->getordergraph($startdate);
+        echo json_encode($result);
+    }
 
 }
 

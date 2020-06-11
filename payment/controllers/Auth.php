@@ -20,12 +20,6 @@ class auth extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
-        // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
-        // header("Referrer-Policy: origin-when-cross-origin");
-        // header("Expect-CT: max-age=7776000, enforce");
-        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
-
     }
     
 
@@ -176,6 +170,20 @@ class auth extends CI_Controller {
         echo json_encode($json);
     }
 
+         // taluk filter based on selected district
+    public function talukFilter()
+    {
+        $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
+        $district = $this->input->post('filter');
+        $result = $this->m_auth->getTalukFiletr($district);
+        echo json_encode($result);
+    }
+
     /**
      * industry registration-> load view and insert data
      * url : register
@@ -218,30 +226,83 @@ class auth extends CI_Controller {
         );
 
         foreach ($_FILES as $key => $value) {
-           $fl =  explode('.', $value['name']);
-           if($fl !='png' && $fl !='pdf' && $fl !='jpg' && $fl !='jpeg'){
+           $pos = strrpos($value['name'], '.');
+            $fl = substr($value['name'], $pos+1);
+           if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
                 $this->sc_check->sus_mail($insert['email']);
            }
         }
 
-        if ((empty($_FILES['reg_doc']['tmp_name']))) {
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
-            redirect('register');
-        }else{
+        if ((!empty($_FILES['reg_doc']['tmp_name']))) {
             $config['upload_path'] = './reg-doc';
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_width'] = 0;
             $config['encrypt_name'] = true;
             $this->load->library('upload');
             $this->upload->initialize($config);
+            if (!is_dir($config['upload_path'])) { mkdir($config['upload_path'], 0777, true); }
+            if (!$this->upload->do_upload('reg_doc')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('register');
+            } else {
+                $this->upload->do_upload('reg_doc');
+                $upload_data = $this->upload->data();
+                $reg = 'reg-doc/'.$upload_data['file_name'];
+                $insert['register_doc'] = $reg;
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            redirect('register');
+        }
+
+
+        if ((!empty($_FILES['seal']['tmp_name']))) {
+            $config['upload_path'] = './seal-doc';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_width'] = 0;
+            $config['encrypt_name'] = true;
+            $this->load->library('upload');
+            $this->upload->initialize($config);
             if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-            $this->upload->do_upload('reg_doc');
-            $upload_data = $this->upload->data();
-            $reg = 'reg-doc/'.$upload_data['file_name'];
+            if (!$this->upload->do_upload('seal')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('register');
+            } else {
+                $this->upload->do_upload('seal');
+                $upload_data = $this->upload->data();
+                $seal = 'seal-doc/'.$upload_data['file_name'];
+                $insert['seal'] = $seal;
+            }
 
-            $insert['register_doc'] = $reg;
+        }else{
+             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            redirect('register');
+        }
 
-        }    
+        if ((!empty($_FILES['sign']['tmp_name']))) {
+            $config['upload_path'] = './sign-doc';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_width'] = 0;
+            $config['encrypt_name'] = true;
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+            if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+            if (!$this->upload->do_upload('sign')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('register');
+            } else {
+                $this->upload->do_upload('sign');
+                $upload_data = $this->upload->data();
+                $sign = 'sign-doc/'.$upload_data['file_name'];
+                $insert['sign'] = $sign;
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            redirect('register');
+        }  
 
         
         $output = $this->m_auth->addCompany($insert);
@@ -507,8 +568,9 @@ class auth extends CI_Controller {
         );
 
         foreach ($_FILES as $key => $value) {
-           $fl =  explode('.', $value['name']);
-           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
+           $pos = strrpos($value['name'], '.');
+            $fl = substr($value['name'], $pos+1);
+           if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
                 $this->sc_check->sus_mail($insert['email']);
            }
         }
@@ -585,7 +647,7 @@ class auth extends CI_Controller {
         exit;    
     }
 
-            function show_images($folder='',$file='') {
+    function show_images($folder='',$file='') {
         if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '' || $this->session->userdata('pyId')) {
         $img_path = $folder.'/'.$file;
         $fp = fopen($img_path,'rb');
@@ -593,10 +655,14 @@ class auth extends CI_Controller {
         header('Content-length: ' . filesize($img_path));
         fpassthru($fp);
         }else{
-        redirect('/','refresh');
+            redirect('/','refresh');
         }
+    }
 
-        }
+        public function refresh(){
+        $captcha['image'] = $this->sc_check->cap_refresh();
+        echo $captcha['image'];
+    }
 
 
 

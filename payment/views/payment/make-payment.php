@@ -53,7 +53,7 @@
                             <div class="under-line"></div>
                             <!-- ref="form" @submit.prevent="formSubmit"  -->
 
-                            <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post" enctype="multipart/form-data" id="payment">
+                            <form action="#" method="post" enctype="multipart/form-data" id="payment">
                                 <div class="pay-form z-depth-1">
                                     <div class="pay-ff">
                                         <p style="font-style: italic;font-weight: 700;">Payment Form</p>
@@ -76,8 +76,8 @@
                                             </div>
                                             <div class="col l3 m5 s12">
                                                 <div class="input-field">
-                                                    <select name="p_year" v-model="year"  @change="checkpayment()">
-                                                    <option value="" disabled selected>Year</option>
+                                                    <select id="p_year" name="p_year" v-model="year"  @change="checkpayment()" required="" >
+                                                    <option value="" disabled>Year</option>
                                                     <?php
                                                     for ($i=2000; $i <= date('Y') ; $i++) { 
                                                         echo '<option value="15-1-'.$i.'">'.$i.'</option>';
@@ -86,6 +86,7 @@
                                                     ?>
                                                     </select>
                                                     <span class="helper-text red-text">{{pay_check}}</span>
+                                                    <span class="helper-text red-text yearError"></span>
                                                 </div>
                                             </div>
                                             <div class="col l11 m10 s12">
@@ -184,7 +185,7 @@
         $company   = $_POST['company'];
         $pyear    = $_POST['pyear'];
         $reg_no    = $_POST['reg_no'];
-        $price     = $_POST['price'];
+        $price     = round($_POST['price']);
         $interest  = $_POST['interest'];
 
         ?>
@@ -230,6 +231,12 @@
     <?php if(isset($_POST['submit-pay'])) {  ?>
     <script type="text/javascript">
         $(function(){
+            alert('0k')
+            $yearError = '';
+            $year = $('#p_year').val();
+            if ($year == '') {
+                $('.yearError').append('<span>Please Select the Year</span>');
+            }
             $('.razorpay-payment-button').attr('name','razorpay-payment-button');
             $('.razorpay-payment-button').click();
         });
@@ -245,6 +252,10 @@
             var instances = M.Modal.init(elems, {
                 preventScrolling: false
             });
+        });
+
+        $(document).ready(function($) {
+            $("select[required]").css({display: "inline", height: 0, padding: 0, width: 0});
         });
 
         var app = new Vue({

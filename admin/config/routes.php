@@ -55,6 +55,8 @@ $route['institute-request']         	= 'school/requestLists';
 $route['institute-request/(:any)']      = 'school/requestLists/$1';
 $route['upload-institute']         		= 'school/import_excel';
 $route['institute-delete/(:any)']       = 'school/delete/$1';
+$route['institute-non']         		= 'school/nonRegister';
+
 
 
 //industry management
@@ -66,14 +68,15 @@ $route['industry-request/(:any)']       = 'industry/requestLists/$1';
 $route['industry-add']                 	= 'industry/add';
 $route['industry-edit/(:any)']         	= 'industry/edit/$1';
 $route['upload-industry']         		= 'industry/import_excel';
-$route['industry-delete/(:any)']       = 'industry/delete/$1';
+$route['industry-delete/(:any)']       	= 'industry/delete/$1';
+$route['industry-non']         			= 'industry/nonRegister';
+
+
 
 // payment
 $route['industry-payment']         		= 'payments/index';
 $route['pending-payment']         		= 'payments/pend_payment';
-
-
-
+$route['receipt/(:any)']            	= 'payments/receipt/$1'; //make payment
 
 // fees managemnet
 $route['fees/add']                  	= 'fees/add';
@@ -82,6 +85,8 @@ $route['fees/manage']            		= 'fees/manage';
 $route['fees/delete/(:any)']            = 'fees/delete/$1';
 // Reports
 $route['reports']                  		= 'reports/index';
+$route['contribution-report']           = 'reports/contribution';
+$route['contribution-dashboard']        = 'reports/dashboard';
 
 
 

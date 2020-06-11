@@ -109,7 +109,7 @@ class M_scholar extends CI_Model {
             $this->db->group_end();
         }
         $this->db->group_by('a.application_year,a.Student_id');
-        $this->db->order_by('a.id', 'desc')
+        $this->db->order_by('a.id', 'asc')
         ->from('application a')
         ->join('applicant_marks m', 'm.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')

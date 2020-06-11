@@ -102,6 +102,7 @@
                                     <input type="hidden" name="rid" value="<?php echo (!empty($newRegid))?$newRegid:''; ?>">
 
                                     <div class="input-field col s12">
+                                        <br>
                                         <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
                                     </div>
                                 </div>

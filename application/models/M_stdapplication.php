@@ -65,6 +65,16 @@ class M_stdapplication extends CI_Model {
 
     }
 
+    public function accnochange($acc='')
+    {
+        $this->db->where('a.Student_id !=', $this->session->userdata('stlid'));
+        $this->db->where('ac.acc_no', $acc);
+        $this->db->from('applicant_account ac');
+        $this->db->join('application a', 'a.id = ac.application_id', 'left');
+        return $this->db->get()->row();
+
+    }
+
     /**
     * get talluk
     * @data     : company data,

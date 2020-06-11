@@ -37,6 +37,8 @@
                                         <input  id="password" minlength=6  name="psw" v-model="psw" type="password" class="validate" required>
                                         <label for="password">Password</label>
                                     </div>
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                    
 
                                     <div class="input-field col s12">
                                         <input  id="cpassword" type="password" v-model="cpsw" name="cpsw" class="validate" required>

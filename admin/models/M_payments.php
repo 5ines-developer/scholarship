@@ -10,6 +10,7 @@ class M_payments extends CI_Model {
         }else{
              $this->db->where('year', date('Y'));
         }
+        $this->db->select('p.*,i.*,p.id as payid');
         $this->db->from('payment p');
         $this->db->join('industry i', 'i.reg_id = p.comp_reg_id', 'inner');
         return $this->db->get()->result();
@@ -32,13 +33,26 @@ class M_payments extends CI_Model {
 
     public function getpaid($year='')
     {
+        $output=array();
         $this->db->select('comp_reg_id');
         $this->db->where('year', $year);
         $result = $this->db->get('payment')->result();
         foreach ($result as $key => $value) {
             $output[] = $value->comp_reg_id;
         }
+        
         return $output;
+    }
+
+    public function singlepay($id='')
+    {
+        $this->db->select('i.*,i.name as comp,ir.*,ir.name as Names,p.*');
+        $this->db->where('p.id', $id);
+        $this->db->where('ir.type', 1);
+        $this->db->from('payment p');
+        $this->db->join('industry i', 'i.reg_id = p.comp_reg_id', 'inner');
+        $this->db->join('industry_register ir', 'ir.industry_id = i.id', 'inner');
+        return $this->db->get()->row();
     }
 
 	

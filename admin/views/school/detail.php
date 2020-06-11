@@ -35,7 +35,7 @@ $this->load->library('encryption');
                         <div class="card ">
                             <div class="card-content bord-right">
                                 <div class="card-title">
-                                    Institute Detail
+                                    Institute Details
 
                                     <a href="<?php echo base_url('institute') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a>
                                 </div>
@@ -61,7 +61,7 @@ $this->load->library('encryption');
                                                             <div class=" col s12 l8 ">
                                                                 <div class="block-de">
                                                                     <p class=""><?php if(!empty($apply)){ echo count($apply); } ?></p>
-                                                                    <p>total Number Of Applied Scholarship</p>
+                                                                    <p>total Numbers Of Applied Scholarship</p>
                                                                     <a class="btn-small gap-m red darken-3 waves-effect waves-light" :disabled="block" @click="stdBlock">Block</a>
                                                                     <a class="btn-small green darken-3 waves-effect waves-light " @click="unBlock" :disabled="unblock">Unblock</a>
                                                                 </div>
@@ -170,8 +170,8 @@ $this->load->library('encryption');
                                                                             <tr role="row" class="odd">
                                                                                 <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value))?$key:'---'; ?></a></td>
                                                                                 <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->class))?$value->class:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->mark))?$value->mark.' %':'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->clss))?$value->course.' '.$value->clss:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->mark))?$value->mark.'%':'---'; ?></a></td>
                                                                                 <td class=""><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
                                                                                 <td class="action-btn center-align">
                                                                                     <a href="<?php echo base_url('applications/detail/').$id ?>" class="blue-text"> View</a>

@@ -20,12 +20,6 @@ class Payments extends CI_Controller {
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
         $this->load->library('form_validation');
-        // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
-        // header("Referrer-Policy: origin-when-cross-origin");
-        // header("Expect-CT: max-age=7776000, enforce");
-        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
-        
     }
 
     // make payment
@@ -120,8 +114,8 @@ class Payments extends CI_Controller {
     {
         $id = $this->encryption_url->safe_b64decode($id);
         $data['result'] = $this->m_payments->singlepay($id,$this->inId);
-        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
             'default_font' => 'tunga'
@@ -184,6 +178,7 @@ class Payments extends CI_Controller {
 
 
            if (!empty($result)) {
+            $insert['insert_id'] = $result;
             $emails='';
             $phones='';
             $company='';
@@ -211,6 +206,20 @@ class Payments extends CI_Controller {
 
     public function sendmail($insert='',$emails='',$phone='',$company='')
     {
+
+        $data['result'] = $this->m_payments->singlepay($insert['insert_id'],$this->inId);
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+            'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('payment/reciept_download.php',$data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $content = $mpdf->Output('', 'S');
+        $filename = "Contribution-reciept.pdf";
+
         
         $data['result'] = $insert;
         $data['company'] = $company;
@@ -221,7 +230,8 @@ class Payments extends CI_Controller {
         $this->email->set_newline("\r\n");
         $this->email->from($from , 'Karnataka Labour Welfare Board');
         $this->email->to($emails);
-        $this->email->subject('Contribution Success'); 
+        $this->email->subject('Contribution Success');
+        $this->email->attach($content, 'attachment', $filename, 'application/pdf'); 
         $this->email->message($msg);
         if($this->email->send())  
         {
@@ -259,21 +269,20 @@ class Payments extends CI_Controller {
 
     public function reminder($value='')
     {
-
-        // $today  = date('Y-m-d');
-        // $due    = date('Y')."-01-15";
-        $today  = "2019-12-16";
+        $today  = date('Y-m-d');
         $due    = date('Y')."-01-15";
         $your_date = strtotime($today);
         $datediff = strtotime($due) - $your_date;
         $diffr = round($datediff / (60 * 60 * 24));
 
-        if ($diffr == '30') {
-            $this->sendreminder($diffr);
-        }elseif ($diffr == '15') {
-            $this->sendreminder($diffr);
-        }elseif ($diffr == '1') {
-            $this->sendreminder($diffr);
+        if ($today < $due) {
+            if ($diffr == '30') {
+                $this->sendreminder($diffr);
+            }elseif ($diffr == '15') {
+                $this->sendreminder($diffr);
+            }elseif ($diffr == '1') {
+                $this->sendreminder($diffr);
+            }
         }
     }
 
@@ -299,13 +308,49 @@ class Payments extends CI_Controller {
         }
     }
 
+
+    public function send_due($value='')
+    {
+        $today      = date('Y-m-d');
+        $due        = date('Y')."-01-15";
+        $your_date  = strtotime($today);
+        $datediff   = strtotime($due) - $your_date;
+        $diffr      = round($datediff / (60 * 60 * 24));
+
+        if ($today > $due) {
+            $this->send_duemail($diffr);
+        }
+    }
+
+    public function send_duemail($diffr='')
+    {
+        $result = $this->m_payments->getemail();
+        if (!empty($result)) {
+            foreach ($result as $key => $value) {
+                $noti = $this->m_payments->insertreminder($value->reg_id,$diffr);
+                if (!empty($noti)) {
+                    $this->load->config('email');
+                    $this->load->library('email');
+                    $from = $this->config->item('smtp_user');
+                    $msg = $this->load->view('mail/reminder',$result, true);
+                    $this->email->set_newline("\r\n");
+                    $this->email->from($from , 'Karnataka Labour Welfare Board');
+                    $this->email->to($value->email);
+                    $this->email->subject('Contribution Due Notification'); 
+                    $this->email->message($msg);
+                    $this->email->send();
+                }
+            }
+        }
+    }
+
+
     public function notification($value='')
     {
         $data['title'] = 'Payment Reminder';
         $this->m_payments->changeSeen($this->inId);
         $data['result'] = $this->m_payments->pay_reminders($this->inId);
         $this->load->view('payment/notification', $data, FALSE);
-
     }
 
 

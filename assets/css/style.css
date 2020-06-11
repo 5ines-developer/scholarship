@@ -2497,10 +2497,10 @@ table.dataTable thead td {
 }
 
 .block-de p {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   padding-bottom: 15px;
-  color: gray;
+  color: #222121;
 }
 
 .per-dd {
@@ -3078,6 +3078,9 @@ table.dataTable thead td {
 
 .top-count .card {
   border-radius: 4px;
+  min-height: 130px;
+  overflow: hidden;
+  max-height: 130px;
 }
 
 .top-count .card-content {
@@ -3336,5 +3339,22 @@ table.striped > tbody > tr > td {
   width: 244.017px !important;
   left: 849.1px !important;
   top: 65px !important;
+}
+
+.top-count .card-action {
+  padding: 10px 10px 10px 10px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.x_content.das-chart.chrt-width2 {
+  max-width: 100%;
+  min-width: 100%;
+  overflow-x: scroll;
+}
+
+.receipt-detail li {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 8px;
 }
 /*# sourceMappingURL=style.css.map */

@@ -35,7 +35,7 @@ $this->load->library('encryption');
                         <div class="card ">
                             <div class="card-content bord-right">
                                 <div class="card-title">
-                                    Industry Detail
+                                    Industry Details
                                     <a href="<?php echo base_url('industry') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a>
                                 </div>
                                 <div class="board-content">
@@ -60,7 +60,7 @@ $this->load->library('encryption');
                                                             <div class=" col s12 l8 ">
                                                                 <div class="block-de">
                                                                     <p class=""><?php if(!empty($apply)){ echo count($apply); } ?></p>
-                                                                    <p>total Number Of Applied Scholarship</p>
+                                                                    <p>Total Numbers Of Applied Scholarship</p>
                                                                     <a class="btn-small gap-m red darken-3 waves-effect waves-light" :disabled="block" @click="stdBlock">Block</a>
                                                                     <a class="btn-small green darken-3 waves-effect waves-light " @click="unBlock" :disabled="unblock">Unblock</a>
                                                                 </div>

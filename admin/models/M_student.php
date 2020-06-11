@@ -133,6 +133,15 @@ class M_student extends CI_Model {
   }
 	
 
+  public function getAadhar($id='')
+  {
+    $this->db->where('a.Student_id', $id);
+    $this->db->select('ab.adharcard_no');
+    $this->db->from('application a');
+    $this->db->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left');
+    return $this->db->get()->row('adharcard_no');
+  }
+
 }
 
 /* End of file M_student.php */

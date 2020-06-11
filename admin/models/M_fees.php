@@ -27,8 +27,9 @@ class M_fees extends CI_Model {
 
 		if (!empty($year)) {
 			$this->db->where('f.date', $year);
+		}else{
+			$this->db->where('f.date', date('Y'));
 		}
-
 		$this->db->select('f.id as feesId,f.amount,f.class,f.date,g.title');
 		$this->db->order_by('f.id', 'asc');
 		$this->db->from('fees f');

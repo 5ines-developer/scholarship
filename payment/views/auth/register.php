@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
     <link href="<?php echo $this->config->item('web_url') ?>assets/css/select2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
 </head>
 
 <body>
@@ -44,33 +46,23 @@
                                         <label for="phone">Mobile No</label>
                                         <span class="helper-text red-text">{{mobileError}}</span>
                                     </div>
-                                    
+
                                     <div class="input-field col s12 m6">
-                                        <select id="taluk" name="taluk" required="" class="select2">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <?php if (!empty($taluk)) {
-                                                foreach ($taluk as $key => $value) {
-                                                    echo '<option value="'.$value->id.'">'.$value->title.'</option>';
-                                            } } ?>
-                                        </select>
-                                        <label for="taluk">Taluk</label>
+                                        <input type="hidden" name="district" :value="district.id">       
+                                        <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
                                     </div>
+
                                     <div class="input-field col s12 m6">
-                                        <select id="district" name="district" required="" class="select2">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <?php if (!empty($district)) {
-                                                foreach ($district as $key => $value) {
-                                                    echo '<option value="'.$value->id.'">'.$value->title.'</option>';
-                                            } } ?>
-                                        </select>
-                                        <label for="district">District</label>
+                                        <input type="hidden" name="taluk" :value="tlq.id">       
+                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk"  tagging :from="taluk" />
                                     </div>
+                                   
                                     <div class="input-field col s12 m6">
                                         <select id="act" name="act" required="" class="select2" v-model="act" >
                                             <option value="" disabled selected>Choose Act Type</option>
-                                            <option value="1">Shops and Commercial Act</option>
-                                            <option value="2">Factory ACt</option>
-                                            <option value="3">Others</option>                                          
+                                                            <option value="1">Shops and Commercial Act</option>
+                                                            <option value="2">Factory ACt</option>
+                                                            <option value="3">Others</option>                                            
                                         </select>
                                         <label for="act">Industry Type</label>
                                     </div>
@@ -82,13 +74,9 @@
                                                     {{ comp.name }}
                                                 </option>                                            -->
                                             </select>
-                                            <p class="inregister"></p>
+                                             <p class="inregister"></p>
                                         </div>
                                     </div>
-
-        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-
-
                                     <div class="row m0">  
                                         <div class="input-field col m6">
                                             <input id="c_conreg" type="text" readonly class="c_conreg validate" required="">
@@ -105,7 +93,30 @@
                                             </div>
                                         </div> 
                                     </div>
-                                    
+                                    <div class="row m0">
+                                        <div class="file-field input-field col s12 m6">
+                                            <div class="btn ">
+                                                <span>File</span>
+                                                <input type="file" name="seal" required="">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" placeholder="Upload Industry Seal" type="text">
+                                            </div>
+                                        </div> 
+                                        <div class="file-field input-field col s12 m6">
+                                            <div class="btn ">
+                                                <span>File</span>
+                                                <input type="file" name="sign" required="">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" placeholder="Upload Director Signature" type="text">
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
+
                                     <div class="input-field col s12 m12">
                                         <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
@@ -169,7 +180,7 @@ $(document).ready(function() {
             };
 
             },
-                            cache: true
+                cache: true
             },
                
     
@@ -177,10 +188,8 @@ $(document).ready(function() {
     
     
     $(document).on('change','#company',function(){
-
         var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
             csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
-
         var cmp = $(this).val();
         $('#c_comp').val(cmp);
         $.ajax({
@@ -189,7 +198,6 @@ $(document).ready(function() {
             data: { comp : cmp, [csrfName]: csrfHash },
             dataType: "html",
             success: function (response) {
-
                 if (response == 'exist') {
                     $('.inregister').append('<span class="helper-text red-text">Industry has been already registered</span>');
                 }else{
@@ -197,8 +205,6 @@ $(document).ready(function() {
                    $('#c_conreg').val(response);
                     $(".crg").addClass('active'); 
                 }
-
-                
                 
             }
         });
@@ -213,6 +219,9 @@ $(document).ready(function() {
 
         var app = new Vue({
             el: '#app',
+            components: {
+            vSelect: VueSelect.vSelect,
+        },
             data: {
                 mobile: '',
                 email: '',
@@ -225,10 +234,37 @@ $(document).ready(function() {
                 act:'',
                 // companies:[],
                 loader:false,
+                districtSelect: <?php echo json_encode($district) ?>,
+                district: '',
+                taluk: [],
+                tlq:'',
+                disabled: true,
+                disabled1: true,
 
             },
 
             methods: {
+
+                talukFilter(){
+                var self = this;
+                self.taluk = '';
+                self.tlq = '';
+                self.instituteSelect = '';
+                self.institute = '';
+                const formData = new FormData();
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                formData.append('filter',this.district.id);
+                axios.post('<?php echo base_url() ?>auth/talukFilter',formData)
+                .then(res => {
+                    self.disabled = false;
+                    self.taluk = res.data;
+                })
+                .catch(err => {
+                    console.error(err); 
+                    self.disabled = true;
+                })
+            },
+
 
                             //check student email already exist
             emailCheck(){
@@ -273,12 +309,11 @@ $(document).ready(function() {
             },
             checkForm() {
                 if ((this.mobileError == '') && (this.emailError == '')) {
-
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // }
+                    } 
                 } else {}
             }
 

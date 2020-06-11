@@ -63,6 +63,93 @@ class M_industry extends CI_Model {
         return $this->db->count_all_results();
     }
 
+
+
+    public function getnonRegister($value='')
+    {
+        $this->make_nonquery();  
+        if($_POST["length"] != -1)  
+        {  
+             $this->db->limit($_POST['length'], $_POST['start']);  
+        }  
+        $query = $this->db->get(); 
+        return $query->result();
+    }
+
+    public function make_nonquery($value='')
+    {
+       $industry_id = array();
+        $this->db->group_start();
+            $this->db->where('type', 1);
+        $this->db->group_end();
+        $this->db->select('industry_id');
+        $query = $this->db->get('industry_register')->result();
+
+        if (!empty($query)) {
+            foreach ($query as $key => $value) {
+                $industry_id[] = $value->industry_id;
+            }
+        }
+
+        $order_column = array("name","reg_id", "act");  
+        $select = array("id","created_on","name","reg_id", "act");
+        $this->db->where_not_in('id', $industry_id);
+        $this->db->from('industry');
+        $this->db->select($select);
+
+        if(isset($_POST["search"]["value"])){
+            $this->db->group_start();
+            $this->db->like("name", $_POST["search"]["value"]);  
+            $this->db->or_like("reg_id", $_POST["search"]["value"]);
+            $this->db->or_like("act", $_POST["search"]["value"]);
+            $this->db->group_end();
+        }
+
+        if(isset($_POST["order"]))  
+        {  
+            $this->db->order_by($order_column[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);  
+        }  
+        else  
+        {  
+            $this->db->order_by('id', 'ASC');  
+        }
+    }
+
+
+    public function get_all_non($value='')
+    {
+       $industry_id = array();
+        $this->db->group_start();
+            $this->db->where('type', 1);
+        $this->db->group_end();
+        $this->db->select('industry_id');
+        $query = $this->db->get('industry_register')->result();
+
+        if (!empty($query)) {
+            foreach ($query as $key => $value) {
+                $industry_id[] = $value->industry_id;
+            }
+        }
+
+        $this->db->group_start();
+            $this->db->where_not_in('id', $industry_id);
+        $this->db->group_end();
+       
+        $query = $this->db->get('industry')->result();
+        
+        return count($query);
+    }
+
+    public function get_non_filtered($value='')
+    {
+       $this->make_nonquery();  
+        $query = $this->db->get();  
+        return $query->num_rows(); 
+    }
+
+    
+
+
     public function industrycount($year='')
     {
         $year = date('Y');

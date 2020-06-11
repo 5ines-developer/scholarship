@@ -75,7 +75,8 @@ class Account extends CI_Controller {
 
         }else{
 
-            $this->session->set_flashdata('error', '😕 Server error occurred. Please try again later');
+            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
             redirect('dashboard','refresh');
 
         }
@@ -97,8 +98,9 @@ class Account extends CI_Controller {
 
         $key =  $this->input->post('type');
         foreach ($_FILES as $key1 => $value1) {
-           $fl =  explode('.', $value1['name']);
-           if($fl[1] !='png' && $fl[1] !='pdf' && $fl[1] !='jpg' && $fl[1] !='jpeg' && $fl[1] !='svg' && $fl[1] !='gif' && $fl[1] !='JPG' && $fl[1] !='JPEG' && $fl[1] !='PNG' && $fl[1] !='png'){
+           $pos = strrpos($value['name'], '.');
+            $fl = substr($value['name'], $pos+1);
+           if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
                 $this->sc_check->sus_mail($this->session->userdata('pyMal'));
            }
         }

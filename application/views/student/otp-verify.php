@@ -160,6 +160,7 @@
                 formData.append('phone', this.phone);
                 formData.append('refid', this.refid);
                 formData.append('otp', this.otp);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url() ?>student/otp-verify', formData)
                 .then(response => {
                     if(response.data == ''){
@@ -178,6 +179,7 @@
                 const formData = new FormData();
                 formData.append('phone', this.phone);
                 formData.append('refid', this.refid);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url() ?>student/resendOtp', formData)
                 .then(response => {
                     if(response.data == '1'){

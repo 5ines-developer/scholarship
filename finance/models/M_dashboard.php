@@ -108,6 +108,23 @@ class M_dashboard extends CI_Model {
        return $this->db->get('application')->num_rows();
     }
 
+    public function pendApplication($value='')
+    {
+        $this->db->where('pay_status', 0);
+        $this->db->where('application_state', 4);
+        $this->db->where('status', 1);
+        return $this->db->get('application')->result();
+    }
+
+    public function compApplication($value='')
+    {
+        $this->db->where('pay_status', 1);
+        $this->db->where('application_state', 4);
+        $this->db->where('status', 1);
+        return $this->db->get('application')->result();
+    }
+
+
     public function tot_app($var = null)
     {
         return $this->db->get('application')->num_rows();

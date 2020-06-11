@@ -31,6 +31,8 @@ $this->load->model('m_scholar');
                                 <div class="card-title">
                                     Scholarship Application Detail
 
+                                    <a target="_blank" href="<?php echo base_url('scholar/applicationGenerate/'.$this->ci->encryption_url->safe_b64encode($result->id).'') ?>" class="btn-small right ml5 mr5 green darken-3 waves-effect waves-light">Download</a>
+
                                     <a href="<?php echo base_url('applications') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a>
 
                                     <?php if (($result->status == 2)) { ?>

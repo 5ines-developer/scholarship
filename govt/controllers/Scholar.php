@@ -172,4 +172,23 @@ class Scholar extends CI_Controller {
             redirect('applications/detail/'.$id,'refresh');
         }
     }
+
+
+             // application generate
+    public function applicationGenerate($id = null)
+    {
+        $id = $this->encryption_url->safe_b64decode($id);
+        $data['result'] = $this->m_scholar->singleGet($id);
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+            'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('scholar/application-download', $data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;    
+    }
 }

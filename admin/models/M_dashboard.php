@@ -81,14 +81,14 @@ class M_dashboard extends CI_Model {
     * @url      : dashboard
     * @param    :null
     **/
-    public function dashcounts($var = null)
+    public function dashcounts($year = '')
     {
-        $data['tot_app']        = $this->tot_app();
-        $data['cr_count']       = $this->thisy_count();
-        $data['acti_inst']      = $this->active_inst();
-        $data['ac_inds']        = $this->active_indstry();
-        $data['pay_comp']       = $this->pay_completed();
-        $data['pay_pend']       = $this->pay_pending();
+        $data['tot_app']        = $this->tot_app($year);
+        $data['cr_count']       = $this->thisy_count($year);
+        $data['acti_inst']      = $this->active_inst($year);
+        $data['ac_inds']        = $this->active_indstry($year);
+        $data['pay_comp']       = $this->pay_completed($year);
+        $data['pay_pend']       = $this->pay_pending($year);
         return $data;
     }
 
@@ -113,19 +113,19 @@ class M_dashboard extends CI_Model {
         return $this->db->get('application')->num_rows();
     }
 
-    public function thisy_count(Type $var = null)
+    public function thisy_count($var = null)
     {
         $year = date('Y');
         $this->db->where('application_year', $year);
         return $this->db->get('application')->num_rows();
     }
 
-    public function active_inst(Type $var = null)
+    public function active_inst($var = null)
     {
         return $this->db->get('school')->num_rows();
     }
 
-    public function active_indstry(Type $var = null)
+    public function active_indstry($var = null)
     {
         $this->db->where('type', '1');
         return $this->db->get('industry_register')->num_rows();
@@ -151,10 +151,13 @@ class M_dashboard extends CI_Model {
         return $data;
     }
 
-    public function tot_insti(Type $var = null)
+    public function tot_insti($var = null)
     {
         return $this->db->get('reg_schools')->num_rows();        
     }
+
+
+    
 
 	
 

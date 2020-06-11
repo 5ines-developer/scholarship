@@ -13,8 +13,8 @@
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institutes" class="<?php echo($this->uri->segment(1) == 'institutes') ? 'active' :'' ?>">All Institute</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute" class="<?php echo($this->uri->segment(1) == 'institute') ? 'active' :'' ?>">Registered Institute</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute-non" class="<?php echo($this->uri->segment(1) == 'institute-non') ? 'active' :'' ?>">NON Registered Institute</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute-request" class="<?php echo (($this->uri->segment(1) == 'institute-request') ) ? 'active' :'' ?>">Institute Add Request</a></span></div>
-
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>institute-add" class="<?php echo (($this->uri->segment(1) == 'institute-add')) ? 'active' :'' ?>">Add New Institute</a></span></div>
 
             </li>
@@ -34,6 +34,9 @@
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industries" class="<?php echo($this->uri->segment(1) == 'industries') ? 'active' :'' ?>">All Industry</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry" class="<?php echo($this->uri->segment(1) == 'industry') ? 'active' :'' ?>">Registered Industry</a></span></div>
+
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-non" class="<?php echo($this->uri->segment(1) == 'industry-non') ? 'active' :'' ?>">NON Registered Industry</a></span></div>
+
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-request" class="<?php echo (($this->uri->segment(1) == 'industry-request')) ? 'active' :'' ?>">Industry Add Request</a></span></div>
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-add" class="<?php echo (($this->uri->segment(1) == 'industry-add')) ? 'active' :'' ?>">Add New Industry</a></span></div>
@@ -41,13 +44,15 @@
             </li>
 
             <li class="cpay-m">
-              <div class="collapsible-header"><i class="material-icons">card_membership</i>Contribution Payment</div>
-              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-payment" class="<?php echo (($this->uri->segment(1) == 'industry-payment')) ? 'active' :'' ?>">Industry Contribution</a></span></div>
+              <div class="collapsible-header"><i class="material-icons">card_membership</i>Contribution</div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>contribution-dashboard" class="<?php echo (($this->uri->segment(1) == 'contribution-dashboard')) ? 'active' :'' ?>">Contribution Dashboard</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>industry-payment" class="<?php echo (($this->uri->segment(1) == 'industry-payment')) ? 'active' :'' ?>">Industry Contribution Processed</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>pending-payment" class="<?php echo (($this->uri->segment(1) == 'pending-payment')) ? 'active' :'' ?>">Contribution Pending</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>contribution-report" class="<?php echo (($this->uri->segment(1) == 'contribution-report')) ? 'active' :'' ?>">Contribution Report</a></span></div>
             </li>
 
             <li class="rpt-m">
-              <div class="collapsible-header"><i class="material-icons">report</i>Reports</div>
+              <div class="collapsible-header"><i class="material-icons">report</i>Schema Reports</div>
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports" class="<?php echo($this->uri->segment(1) == 'reports' && (empty($this->input->get('item'))) ) ? 'active' :'' ?>">Total Scholarship Request</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports?item=pending" class="<?php echo($this->input->get('item') == 'pending') ? 'active' :'' ?>">Total Pending Scholarship</a></span></div>

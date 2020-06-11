@@ -34,7 +34,7 @@
                                 <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('student/submit-register') ?>" method="post" enctype="multipart/form-data" id="registerForm">
                                 <div class="card-body row m0">
                                     <div class="input-field col s12">
-                                        <input  id="email" @change="emailCheck()" name="email" v-model="email" type="email" class="validate">
+                                        <input  id="email" @change="emailCheck()" name="email" :required="emailRequired" v-model="email" type="email" class="validate">
                                     
                                         <label for="email">Email ID (optional)</label>
                                         <span class="helper-text red-text">{{ emailError }}</span>
@@ -51,7 +51,7 @@
 
 
                                     <div class="input-field col s12">
-                                        <select name="verify" id="verify" required="" >
+                                        <select name="verify" id="verify" required="" v-model="verify" @change="methodcheck()" >
                                             <option value="">ಪರಿಶೀಲನೆ ವಿಧಾನ</option>
                                             <option value="1">Mobile Verification</option>
                                             <option value="2">Email Verification</option>
@@ -107,6 +107,7 @@
 
 
 <!-- scripts -->
+<script src="<?php echo base_url() ?>assets/js/jquery-3.4.1.min.js"></script>
 
 <script>
     <?php $this->load->view('includes/message'); ?>
@@ -115,6 +116,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         var instances = M.FormSelect.init(document.querySelectorAll('select'));
     });
+
+    $(document).ready(function($) {
+            $("select").css({display: "inline", height: 0, padding: 0, width: 0});
+            // $('.modal').modal();
+        });
 
 
     var app = new Vue({
@@ -129,6 +135,9 @@
             mobileError: '',
             confError:'',
             captcha:'',
+            emailRequired:'',
+            verify:'',
+            emailRequired:false,
         },
 
         methods:{
@@ -190,13 +199,22 @@
                     this.confError = '';
                 }
             },
+            methodcheck(){
+                this.emailRequired='';
+                if (this.verify == '2') {
+                    this.emailRequired = true;
+                }else{
+                    this.emailRequired = false;
+                }
+
+            },
             checkForm() {
                 if ((this.confError == '') && (this.mobileError == '') && (this.emailError == '')) {
-                    if (grecaptcha.getResponse() == '') {
-                        this.captcha = 'Captcha is required';
-                    } else {
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {
                         this.$refs.form.submit();
-                    } 
+                    // } 
                 } else {}
             }
 

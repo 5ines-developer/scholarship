@@ -26,12 +26,7 @@ class Scholar extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
-        // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
-        // header("Referrer-Policy: origin-when-cross-origin");
-        // header("Expect-CT: max-age=7776000, enforce");
-        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
-        
+               
     }
 
 
@@ -39,11 +34,11 @@ class Scholar extends CI_Controller {
     public function index($district='')
     {
 
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_GET);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
 
         $dist = $this->input->get('district');
         if (!empty($dist)) {
@@ -107,11 +102,29 @@ class Scholar extends CI_Controller {
             }
             $status =  '<p class="status '.$color.' darken-2">'.$sttus.' '.$state.'</p>';
 
+
+            if ($row->pay_status == '1') {
+                $pay_status = 'Payment Success';
+                $pay_color = 'green';
+            }else if ($row->pay_status == '2'){
+                $pay_status = 'Payment Rejected';
+                $pay_color = 'red';
+            }else{
+                $pay_status = 'Payment Pending';
+                $pay_color = 'blue';
+            }
+
+            $paymentStatus =  '<p class="status '.$pay_color.' darken-2">'.$pay_status.'</p>';
+
+
             $sub_array = array();
             $sub_array[] = $row->id;
             $sub_array[] = $row->name;
             $sub_array[] = $row->course.'-'.$row->clss;
-            $sub_array[] = $row->application_year;  
+            $sub_array[] = $row->application_year;
+
+            $sub_array[] = $paymentStatus;
+
             $sub_array[] = $row->adharcard_no;  
             $sub_array[] = date('d M, Y',strtotime($row->date));  
             $sub_array[] = $row->district;  

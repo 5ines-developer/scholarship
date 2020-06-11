@@ -36,6 +36,24 @@ class Payments extends CI_Controller {
         $this->load->view('industry/pend_payment.php', $data, FALSE);
     }
 
+         // application generate
+    public function receipt($id = null)
+    {
+        $id = $this->encryption_url->safe_b64decode($id);
+        $data['result'] = $this->m_payments->singlepay($id);
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+            'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('industry/reciept_download.php',$data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;    
+    }
+
 }
 
 /* End of file Payments.php */

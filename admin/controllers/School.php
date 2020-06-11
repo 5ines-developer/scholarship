@@ -53,6 +53,8 @@ class School extends CI_Controller {
 		}
     }
 
+
+
     public function block($value='')
     {
         $csrf = array(
@@ -200,6 +202,42 @@ class School extends CI_Controller {
             "draw"                =>     intval($_POST["draw"]),  
             "recordsTotal"        =>      $this->m_school->get_all_data(),  
             "recordsFiltered"     =>     $this->m_school->get_filtered_data(),  
+            "data"                =>     $data  
+        );
+        echo json_encode($output);
+    }
+
+
+    public function nonRegister($year='')
+    {
+        $district = $this->input->get('district');
+        $taluk    = $this->input->get('taluk');
+        $data['count'] = $this->m_school->schoolcount($year);
+        $data['taluk'] = $this->m_school->getTalluk($district);
+        $data['district'] = $this->m_school->getDistrict();
+        $this->load->view('school/non-register.php', $data, FALSE);
+    }
+
+    public function getnonRegister($value='')
+    {
+        $fetch_data   = $this->m_school->getnonRegister();
+        $data = array();
+        foreach($fetch_data as $row)  
+        {  
+            $sub_array = array();
+            $sub_array[] = $row->id;  
+            $sub_array[] = character_limiter($row->school_address, 9);
+            $sub_array[] = $row->reg_no;  
+            $sub_array[] = $row->management_type;
+            $sub_array[] = $row->school_category;  
+            $sub_array[] = $row->district;  
+            $sub_array[] = $row->title;  
+            $data[] = $sub_array;  
+        }
+        $output = array(  
+            "draw"                =>     intval($_POST["draw"]),  
+            "recordsTotal"        =>      $this->m_school->get_all_non(),  
+            "recordsFiltered"     =>     $this->m_school->get_filtered_non(),  
             "data"                =>     $data  
         );
         echo json_encode($output);

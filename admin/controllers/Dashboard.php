@@ -29,10 +29,16 @@ class Dashboard extends CI_Controller {
 
     public function index()
     {
+        $year = $this->input->get('year');
+        if (!empty($year)) {
+            $data['years']       = $year;
+        }else{
+            $data['years']       = date('Y');
+        }
         $data['title']      = 'Dashboard | admin';
-        $data['count']      = $this->m_dashboard->dashcounts();
-        $data['indcount']   = $this->m_dashboard->industry_counts();
-        $data['inscount']   = $this->m_dashboard->insti_counts();
+        $data['count']      = $this->m_dashboard->dashcounts( $data['years'] );
+        $data['indcount']   = $this->m_dashboard->industry_counts( $data['years'] );
+        $data['inscount']   = $this->m_dashboard->insti_counts( $data['years'] );
         $this->load->view('dashboard/index', $data, FALSE);
     }
 

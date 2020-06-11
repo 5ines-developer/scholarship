@@ -40,37 +40,54 @@
                                                     <tr>
                                                         <td>1</td>
                                                         <td>Name & Address of the Establishment Total no. of units to be mentioned</td>
-                                                        <td>Answer.....................</td>
+                                                        <td><?php echo (!empty($result->comp))?$result->comp:''; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>2</td>
                                                         <td>Name of the Employers</td>
-                                                        <td>Answer.....................</td>
+                                                        <td><?php echo (!empty($result->name))?$result->name:''; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>3</td>
                                                         <td>Total No. of the Employees Whose Name & stand in the Establishment Register as on 31<sup>st</sup>December</td>
-                                                        <td>Answer.....................</td>
+                                                        <td><?php echo (!empty($result->male) && !empty($result->female))?$result->male+$result->female:'0'; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>4</td>
                                                         <td>Employees Contribution @Rs.20</td>
-                                                        <td>Answer.....................</td>
+                                                        <td><?php
+                                                        $totemp=0;
+                                                        if (!empty($result->male) || !empty($result->female) ) {
+                                                            $totemp = $result->male+$result->female;
+                                                        }
+                                                        $twenty = $totemp*20;
+                                                        echo $twenty;
+                                                        ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>5</td>
                                                         <td>Employer's Contribution @Rs. 40</td>
-                                                        <td>Answer.....................</td>
+                                                        <td><?php
+                                                        $totemp=0;
+                                                        if (!empty($result->male) || !empty($result->female) ) {
+                                                            $totemp = $result->male+$result->female;
+                                                        }
+                                                        $fourty = $totemp*40;
+                                                        echo $fourty;
+                                                        ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>6</td>
                                                         <td>Total No. of the Items 4 & 5</td>
-                                                        <td>Answer.....................</td>
+                                                        <td><?php echo $twenty + $fourty; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>7</td>
                                                         <td>Wether the Contribution is sent by Payment in favour of the Welfare Commissioner, Banglore</td>
-                                                        <td>Answer.....................</td>
+                                                        <td>
+                                                            <span>Amount(Including Interest) : <?php echo (!empty($result->price))?$result->price:''; ?></span><br><br>
+                                                            <span>Payment ID : <?php echo (!empty($result->pay_id))?$result->pay_id:''; ?></span>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -79,13 +96,34 @@
                                                 <div class="col l6 m6 s12">
                                                     <div class="place-date">
                                                         <p><b>Place :</b> Banglore</p>
-                                                        <p><b>Date :</b> 12-12-2019</p>
+                                                        <p><b>Date :</b> <?php echo (!empty($result->pay_id))?$result->pay_id:''; ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col l6 m6 s12">
                                                     <div class="sign-emp">
-                                                        <img src="<?php echo $this->config->item('web_url') ?>assets/image/sign.png" class="img-responsive sign-w
-                                                        " alt="">
+                                                        <?php
+
+                                                       $img =  base_url('show-images/').$result->seal;
+
+                                                        if (!empty($img)) {
+                                                            $img = $img;
+                                                        }else{
+                                                            $img = $this->config->item('web_url').'show-images/'.$result->seal;
+                                                        }
+
+
+                                                        $img2 =  base_url('show-images/').$result->sign;
+
+                                                        if (!empty($img2)) {
+                                                            $img2 = $img2;
+                                                        }else{
+                                                            $img2 = $this->config->item('web_url').'show-images/'.$result->sign;
+                                                        }
+
+
+                                                        ?>
+                                                        <img src="<?php echo $img; ?>" class="img-responsive sign-w " alt="">
+                                                        <img src="<?php echo $img; ?>" class="img-responsive sign-w " alt="">
                                                         <h2>Signature of Employer And seal</h2>
                                                     </div>
                                                 </div>

@@ -13,9 +13,6 @@ class M_school extends CI_Model {
         return $query->result();  
     }
 
-
-
-
     public function make_query($value='')
     {
         $select_column = array('reg.id','reg.reg_no','reg.school_address','reg.management_type','reg.school_category','reg.school_type','reg.urban_rural','reg.taluk','reg.status','tq.title','cty.title as district');
@@ -64,6 +61,93 @@ class M_school extends CI_Model {
         return $this->db->count_all_results();
     }
 
+    public function getnonRegister($value='')
+    {
+        $this->make_nonquery();  
+        if($_POST["length"] != -1)  
+        {  
+             $this->db->limit($_POST['length'], $_POST['start']);  
+        }  
+        $query = $this->db->get(); 
+        return $query->result();
+    }
+
+    public function make_nonquery($value='')
+    {
+
+        $reg_no = array();
+        $this->db->select('reg_no');
+        $query = $this->db->get('school')->result();
+
+        if (!empty($query)) {
+            foreach ($query as $key => $value) {
+                $reg_no[] = $value->reg_no;
+            }
+        }
+        $this->db->where_not_in('reg.reg_no', $reg_no);
+
+        $select_column = array('reg.id','reg.reg_no','reg.school_address','reg.management_type','reg.school_category','reg.school_type','reg.urban_rural','reg.taluk','reg.status','tq.title','cty.title as district');
+
+        $order_column = array("reg.id","reg.school_address","reg.reg_no", "reg.management_type", "tq.title", "cty.title","reg.status",null );  
+
+        $this->db->select($select_column);
+        $this->db->from('reg_schools reg');
+        $this->db->join('taluq tq', 'tq.id = reg.taluk', 'left');
+        $this->db->join('city cty', 'cty.id = tq.city_id', 'left');
+
+        if(isset($_POST["search"]["value"])){
+            $this->db->group_start();
+            $this->db->like("reg.reg_no", $_POST["search"]["value"]);  
+            $this->db->or_like("reg.school_address", $_POST["search"]["value"]);
+            $this->db->or_like("reg.management_type", $_POST["search"]["value"]);
+            $this->db->or_like("reg.school_category", $_POST["search"]["value"]);
+            $this->db->or_like("reg.school_type", $_POST["search"]["value"]);
+            $this->db->or_like("tq.title", $_POST["search"]["value"]);
+            $this->db->or_like("reg.urban_rural", $_POST["search"]["value"]);
+            $this->db->or_like("reg.status", $_POST["search"]["value"]);
+            $this->db->group_end();
+        }
+
+        if(isset($_POST["order"]))  
+        {  
+            $this->db->order_by($order_column[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);  
+        }  
+        else  
+        {  
+            $this->db->order_by('reg.id', 'ASC');  
+        }
+    }
+
+    public function get_all_non($value='')
+    {
+        $this->make_nonquery();  
+        $query = $this->db->get();  
+        return $query->num_rows();
+    }
+
+    public function get_filtered_non($value='')
+    {
+       $reg_no = array();
+        $this->db->select('reg_no');
+        $query = $this->db->get('school')->result();
+
+        if (!empty($query)) {
+            foreach ($query as $key => $value) {
+                $reg_no[] = $value->reg_no;
+            }
+        }
+        $this->db->group_start();
+            $this->db->where_not_in('reg_no', $reg_no);
+        $this->db->group_end();
+       
+        $query = $this->db->get('reg_schools')->result();
+        
+        return count($query);
+    }
+
+
+
+
 
 
 	public function getSchool($id='',$district='',$taluk='')
@@ -84,12 +168,15 @@ class M_school extends CI_Model {
 
 	public function getscholar($id='')
     {
-        $this->db->select('m.prv_marks as mark, m.class, s.name, a.id,a.application_year');
+        $this->db->select('m.prv_marks as mark, m.class, s.name, a.id,a.application_year,gd.title as graduation,cr.course,c.clss');
         $this->db->from('application a');
         $this->db->where('a.school_id', $id);        
         $this->db->order_by('a.id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
         $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
+        $this->db->join('class c', 'c.id = m.class', 'left');
+        $this->db->join('courses cr', 'cr.id = m.course', 'left');
+        $this->db->join('gradution gd', 'gd.id = m.graduation', 'left');
         return $this->db->get()->result();     
     }
 

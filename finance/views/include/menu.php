@@ -6,7 +6,10 @@
                                 </li>
                                 
                                 <li>
-                                <a href="<?php echo base_url() ?>applications?item=approved" class="<?php echo($this->input->get('item') == 'approved') ? 'active' :'' ?>">Approved Application</a>
+                                <a href="<?php echo base_url() ?>applications?item=approved" class="<?php echo($this->input->get('item') == 'approved') ? 'active' :'' ?>">Payment Completed Application</a>
+                                </li>
+                                <li>
+                                <a href="<?php echo base_url() ?>applications?item=pending" class="<?php echo($this->input->get('item') == 'pending') ? 'active' :'' ?>">Payment Pending Application</a>
                                 </li>
                                 
                             </ul>

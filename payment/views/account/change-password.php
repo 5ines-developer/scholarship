@@ -96,7 +96,8 @@
                 currntPass(){
                     const formData = new FormData();
                     formData.append('crpass', this.currentpsw);
-                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                    
                     axios.post('<?php echo base_url() ?>account/checkPassword', formData)
                     .then(response => {
                         if(response.data == ''){
@@ -127,7 +128,7 @@
 
                 },
                 checkForm() {
-                    if ((this.confError == '') && (this.samepassError == '')  && (this.samepassError == '')) {
+                    if ((this.confError == '') && (this.samepassError == '')  && (this.crpError == '')) {
                         this.$refs.form.submit()
                     }
                 }

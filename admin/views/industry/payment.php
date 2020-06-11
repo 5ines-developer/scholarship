@@ -68,12 +68,15 @@ $this->load->library('encryption');
                                                 <th class="h5-para-p2">Amount</th>
                                                 <th class="h5-para-p2">Interest</th>
                                                 <th class="h5-para-p2">Paid On</th>
+                                                <th class="h5-para-p2">Reciept</th>
                                             </thead>
                                             <tbody class="tbody-list">
                                                 <?php if(!empty($result)){
                                                     $sl=0;
                                                     foreach ($result as $key => $value) {
+                                                        
                                                         $sl++;
+                                                        $id = $this->ci->encryption_url->safe_b64encode($value->payid);
                                                     ?>
                                                     <tr role="row" class="odd">
                                                         <td><?php echo  $sl; ?></td>
@@ -88,6 +91,8 @@ $this->load->library('encryption');
                                                     <td class=""><?php echo (!empty($value->price))?$value->price:'---'; ?></td>  
                                                     <td class=""><?php echo (!empty($value->interest))?$value->interest:'---'; ?></td> 
                                                     <td class=""><?php echo (!empty($value->payed_on))?date('d M, Y',strtotime($value->payed_on)):'---'; ?></td>
+                                                    <td class=""><a class="green-text" href="<?php echo base_url('receipt/').$id; ?>">Download</a></td>
+
                                                 </tr>
                                                 <?php    } } ?>
                                             </tbody>

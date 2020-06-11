@@ -60,8 +60,9 @@
                                             </div>
                                             
                                             <div class="input-field col s12 m5">
-                                                <input id="mobile" type="number"  maxlength="10"  placeholder="ವಿದ್ಯಾರ್ಥಿ/ಪೋಷಕರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" class="validate" v-model="student.phone" required="">
+                                                <input id="mobile" type="number"  maxlength="10"  placeholder="ವಿದ್ಯಾರ್ಥಿ/ಪೋಷಕರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" class="validate" v-model="student.phone" @change="phonenum()" required="">
                                                 <label for="mobile"> <span class="black-text">Mobile Number</span>  </label>
+                                                <span class="red-text">{{phnError}}</span>
                                             </div>
 
                                             <div class="input-field col s12 m5">
@@ -304,7 +305,7 @@
                                             
 
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
+                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @change="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
                                                 <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
                                                 <span class="red-text">{{adhError}}</span>
                                             </div>
@@ -323,8 +324,14 @@
 
 
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
+                                                <input id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="fatherrequire" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
                                                 <label for="adhar_nof"> <span class="black-text">Enter Your Father Aadhar Card Number</span>   </label>
+                                                <p>
+                                                  <label>
+                                                    <input type="checkbox" name="not_applicable" v-model="not_applicable1" value="1" @change="not_applicable('father')" />
+                                                    <span>Not Applicable</span>
+                                                  </label>
+                                                </p>
                                                 <span class="red-text">{{adhErrorf}}</span>
                                             </div>
 
@@ -342,8 +349,14 @@
 
 
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
+                                                <input id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="motherrequire" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
                                                 <label for="adhar_no"> <span class="black-text">Enter Your Mother Aadhar Card Number</span>   </label>
+                                                <p>
+                                                  <label>
+                                                    <input type="checkbox" name="not_applicable" v-model="not_applicable2" value="1" @change="not_applicable('mother')"/>
+                                                    <span>Not Applicable</span>
+                                                  </label>
+                                                </p>
                                                 <span class="red-text">{{adhErrorm}}</span>
                                             </div>
 
@@ -400,8 +413,9 @@
                                             </div>
                 
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_acc" type="text" placeholder="ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ" class="validate" name="bn_acc" required="" v-model="bank.account">
+                                                <input id="bn_acc" type="text" placeholder="ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ" class="validate" name="bn_acc" required="" v-model="bank.account" @change="accnochange()">
                                                 <label for="bn_acc"> <span class="black-text">Saving Account Number</span></label>
+                                                <span class="red-text">{{accError}}</span>
                                             </div>
 
                                             <div class="file-field input-field col s12 m6">
@@ -631,9 +645,29 @@
             indtalError:'',
             actypeError:'',
             indnameError:'',
+            phnError:'',
+            accError:'',
+            not_applicable1:false,
+            not_applicable2:false,
+            motherrequire:true,
+            fatherrequire:true,
 
         },
         methods:{
+            not_applicable(not_apply){
+                if (not_apply !='' && not_apply=='mother') {
+                    this.not_applicable2 =true;
+                    this.not_applicable1 =false;
+                    this.motherrequire = false;
+                    this.fatherrequire = true;
+                }else if(not_apply !='' && not_apply=='father'){
+                    this.not_applicable1 =true;
+                    this.not_applicable2 =false;
+                    this.fatherrequire = false;
+                    this.motherrequire = true;
+                }
+
+            },
             cardNumberSpace(){
                 var cardNumber = this.$refs.creditCardNumber.value;
 
@@ -658,7 +692,31 @@
                     })
                 }
             },
+            phonenum(){
+                this.phnError = '';
+                var phone = this.student.phone;
+                if (phone.length !=10) {
+                    this.phnError = 'Phone Number Must be 10 digits!';
+                }
+            },
+            accnochange(){
+                this.accError ='';
+                var account = this.bank.account;
+                const formData = new FormData();
+                axios.get('<?php echo base_url() ?>std_application/accnochange?acc='+account)
+                .then(function (response) {
+                    if(response.data ==  ''){
+                        M.toast({html: 'Account Number Already exist!', classes: 'red', displayLength : 5000 });
+                        this.accError = 'Account Number Already exist!';
+                    }
+                })
+                .catch(function (error) {
+                    this.errormsg = error.response.data.error;
+                })
 
+            
+
+            },
             cardNumberSpacef(){
                 var cardNumber = this.$refs.creditCardNumberf.value;
 
@@ -778,7 +836,6 @@
                 this.actypeError    ='';
                 this.indnameError   ='';
 
-                alert(this.bank.type)
 
 
                 if((this.institute.district.districtId ==null) || (this.institute.district.districtId == 'undefined')){ 
@@ -794,9 +851,8 @@
                 if((this.industry.district.districtId ==null) || (this.industry.district.districtId =='undefined')){ this.inddistError = 'Please Select the District';  }
                 if((this.industry.name.iId ==null) || (this.industry.name.iId =='undefined')){ this.indnameError = 'Please Select your industry';  }
 
-                console.log(this.actypeError)
 
-                if ((this.markError == '') && (this.salError=='') && (this.adhError=='') && (this.inDistError=='') && (this.intalError=='') && (this.inpresentError=='') && (this.gradError=='') && (this.courseError=='') && (this.actypeError=='') && (this.indtalError=='') && (this.inddistError=='') && (this.indnameError=='') ){
+                if ((this.markError == '') && (this.salError=='') && (this.adhError=='') && (this.inDistError=='') && (this.intalError=='') && (this.inpresentError=='') && (this.gradError=='') && (this.courseError=='') && (this.actypeError=='') && (this.indtalError=='') && (this.inddistError=='') && (this.indnameError=='') && (this.phnError=='') && (this.accError=='') ){
                     this.loader=true;
                     const formData = new FormData();
                     formData.append('sname', this.student.name);

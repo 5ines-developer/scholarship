@@ -31,7 +31,7 @@
                         <div class="card ">
                             <div class="card-content bord-right">
                                 <div class="card-title">
-                                    Institute Add Request Detail
+                                    Institute Add Request Details
                                     <a href="<?php echo base_url('institute') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a>
                                 </div>
                                 <div class="board-content">

@@ -48,6 +48,10 @@ $this->load->library('encryption');
                                                                 <div class="col s12 l4">
                                                                     <ul>
                                                                         <li>
+                                                                            <p class="app-item-content-head">Application Number</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->aId))?$result->aId:'---'; ?></p>
+                                                                        </li>
+                                                                        <li>
                                                                             <p class="app-item-content-head">Name</p>
                                                                             <p class="app-item-content"><?php echo (!empty($result->name))?$result->name:'---'; ?></p>
                                                                         </li>

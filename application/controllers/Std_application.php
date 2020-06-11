@@ -69,6 +69,13 @@ class Std_application extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function accnochange($value='')
+	{
+		$acc = $this->input->get('acc');
+		$data = $this->m_stdapplication->accnochange($acc);
+		echo json_encode($data);
+	}
+
 	/**
     * student application - get district
     * @url      : student/application
@@ -172,7 +179,7 @@ class Std_application extends CI_Controller {
         $this->form_validation->set_rules('sphone', 'Student Phone', 'trim|numeric|max_length[10]|min_length[10]');
         $this->form_validation->set_rules('sfather', 'Father Name', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('smother', 'Mother Name', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('saddress', 'Student Address', 'trim|required|alpha_dash');
+        $this->form_validation->set_rules('saddress', 'Student Address', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('gender', 'Gender', 'trim|required');
         $this->form_validation->set_rules('ipclass', 'Present Class', 'trim|required');
         $this->form_validation->set_rules('ipin', 'Institute Pin Code', 'trim|required');
@@ -183,8 +190,8 @@ class Std_application extends CI_Controller {
         $this->form_validation->set_rules('pclass', 'Previous Class', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('pmarks', 'Previous ClassMarks', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('anumber', 'Student adhaar number', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('anumberm', 'Mother adhaar number', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('anumberf', 'Father adhaar number', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('anumberm', 'Mother adhaar number', 'trim|alpha_numeric_spaces');
+        $this->form_validation->set_rules('anumberf', 'Father adhaar number', 'trim|alpha_numeric_spaces');
         $this->form_validation->set_rules('bname', 'Bank Name', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('branch', 'Branch', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('bifsc', 'IFSC Code', 'trim|required|alpha_numeric_spaces');
@@ -531,7 +538,7 @@ class Std_application extends CI_Controller {
 
 
     //application list
-    public function list($id = '')
+    public function list($id= '')
     {
 
     	// $id = urldecode($id);

@@ -1,6 +1,7 @@
 <?php
 $this->ci =& get_instance();
 $this->load->library('encryption');
+$this->load->model('m_student');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,6 +126,7 @@ $this->load->library('encryption');
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Email</th>
                                                 <th class="h5-para-p2">Phone No</th>
+                                                <th class="h5-para-p2">Aadhar No</th>
                                                 <th class="h5-para-p2">Reg Date</th>
                                                 <th class="h5-para-p2">Status</th>
                                                 <th class="h5-para-p2">Action</th>
@@ -142,6 +144,7 @@ $this->load->library('encryption');
                                                     <td><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
                                                     <td class="truncate"><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->email))?$value->email:'---'; ?></a></td>
                                                     <td><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->phone))?$value->phone:'---'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('student/').$id ?>"><?php echo $this->ci->m_student->getAadhar($value->id); ?></a></td>
                                                     <td class=""><a href="<?php echo base_url('student/').$id ?>"><?php echo (!empty($value->date))?date('d M, Y',strtotime($value->date)):'---'; ?></a></td>
                                                     <td class=""><a href="<?php echo base_url('student/').$id ?>">
                                                         <?php

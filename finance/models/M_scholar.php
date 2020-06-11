@@ -63,7 +63,7 @@ class M_scholar extends CI_Model {
     public function make_query($filter='')
     {
 
-        $select_column = array('ab.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','fs.amount','acnt.name as bank','acnt.branch','acnt.acc_no','acnt.ifsc','acnt.holder','m.graduation');
+        $select_column = array('ab.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','fs.amount','acnt.name as bank','acnt.branch','acnt.acc_no','acnt.ifsc','acnt.holder','m.graduation','a.pay_status');
         $order_column = array("ab.name","a.school_id", "ind.name",null,"crs.course","a.application_year","a.application_state","a.status"); 
 
 
@@ -72,8 +72,15 @@ class M_scholar extends CI_Model {
         if (!empty($filter['item'])) {
             if($filter['item'] =='approved'){
                 $this->db->group_start();
-                 $this->db->where('a.application_state', 4);
-                 $this->db->where('a.status', 1);
+                    $this->db->where('a.application_state', 4);
+                    $this->db->where('a.status', 1);
+                    $this->db->where('a.pay_status', 1);
+                $this->db->group_end();
+            }else if($filter['item'] =='pending'){
+                $this->db->group_start();
+                    $this->db->where('a.application_state', 4);
+                    $this->db->where('a.status', 1);
+                    $this->db->where('a.pay_status', 0);
                 $this->db->group_end();
             }
             
@@ -104,7 +111,7 @@ class M_scholar extends CI_Model {
             $this->db->group_end();
         }
         $this->db->group_by('a.application_year,Student_id');
-        $this->db->order_by('a.id', 'desc')
+        $this->db->order_by('a.id', 'asc')
         ->from('application a')
         ->join('applicant_marks m', 'm.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')

@@ -44,7 +44,9 @@ class M_payments extends CI_Model {
         if (!empty($query)) {
             return false;
         }else{
-            return $this->db->insert('payment', $insert);
+            $this->db->insert('payment', $insert);
+            $insert_id = $this->db->insert_id(); 
+            return  $insert_id;
         }
     }
 
