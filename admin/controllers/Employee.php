@@ -21,7 +21,7 @@ class Employee extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         $this->load->library('sc_check');
         
     }
@@ -45,13 +45,13 @@ class Employee extends CI_Controller {
 
        
         $data['title'] = 'Employee Add | Scholarship';
-        if($this->input->post()){
+        if(!empty($this->input->post())){
             $this->load->helper('string');
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<p class="red-text">', '</p>');
             $this->form_validation->set_rules('em_name', 'Name', 'trim|required|alpha_numeric_spaces');
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[admin.email]');
-            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|is_unique[admin.phone]');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[admin.email]|valid_email');
+            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|is_unique[admin.phone]|numeric|max_length[10]|min_length[10]');
             if ($this->form_validation->run() == True){
                 $name   = $this->input->post('em_name', true);
                 $email  = $this->input->post('email', true);
@@ -124,23 +124,25 @@ class Employee extends CI_Controller {
 
     public function block($value='')
     {
-
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_GET);
 
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $id = $this->input->get('id');
+            $status = '3';
 
-        $id = $this->input->get('id');
-        $status = '3';
-
-        if($this->M_employee->stasChange($id,$status)){
-            $this->session->set_flashdata('success', 'Employee Blocked Successfully');
+            if($this->M_employee->stasChange($id,$status)){
+                $this->session->set_flashdata('success', 'Employee Blocked Successfully');
+            }else{
+                $this->session->set_flashdata('Error', 'Something went wrong please try again!');
+            }
         }else{
             $this->session->set_flashdata('Error', 'Something went wrong please try again!');
         }
-       redirect('employee','refresh');
+        redirect('employee','refresh');
     }
 
     public function unblock($value='')
@@ -152,12 +154,16 @@ class Employee extends CI_Controller {
         $this->security->xss_clean($_GET);
 
 
-        $id = $this->input->get('id');
-        $status = '1';
-        if($this->M_employee->stasChange($id,$status)){
-            $this->session->set_flashdata('success', 'Employee Unblocked Successfully');
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $id = $this->input->get('id');
+            $status = '1';
+            if($this->M_employee->stasChange($id,$status)){
+                $this->session->set_flashdata('success', 'Employee Unblocked Successfully');
+            }else{
+                $this->session->set_flashdata('error', 'Something went wrong please try again!');
+            }
         }else{
-            $this->session->set_flashdata('error', 'Something went wrong please try again!');
+            $this->session->set_flashdata('Error', 'Something went wrong please try again!');
         }
         redirect('employee','refresh');
     }
@@ -169,13 +175,15 @@ class Employee extends CI_Controller {
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->security->xss_clean($_POST);
-
-        $this->security->xss_clean($_POST);
-        $phone = $this->input->post('phone');
-        $id = $this->input->post('id');
-        $output = $this->M_employee->mobile_check($phone,$id);
-        echo  $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->security->xss_clean($_POST);
+            $phone = $this->input->post('phone');
+            $id = $this->input->post('id');
+            $output = $this->M_employee->mobile_check($phone,$id);
+            echo  $output;
+        }else{
+            echo true;
+        }
     }
 
 
@@ -188,16 +196,38 @@ class Employee extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-        
+
         $id = $this->input->post('id');
-        $data   = array(
-            'phone'         => $this->input->post('phone'), 
-            'name'          => $this->input->post('em_name'),
-            'type'          => $this->input->post('designation'), 
-        );
-        if($this->M_employee->updateEmp($data,$id)){
-            $this->session->set_flashdata('success', 'staff details updated successfully');
-        } else{
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters('<p class="red-text">', '</p>');
+            $this->form_validation->set_rules('em_name', 'Name', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[admin.email]|valid_email');
+            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|is_unique[admin.phone]|numeric|max_length[10]|min_length[10]');
+            $this->form_validation->set_rules('designation', 'Designation', 'trim|alpha_numeric_spaces');
+            if ($this->form_validation->run() == True){
+
+            $data   = array(
+                'phone'         => $this->input->post('phone'), 
+                'name'          => $this->input->post('em_name'),
+                'type'          => $this->input->post('designation'), 
+            );
+            if($this->M_employee->updateEmp($data,$id)){
+                $this->session->set_flashdata('success', 'staff details updated successfully');
+            } else{
+                $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
+            }
+        }else{
+            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+             redirect('employee','refresh');
+        }
+
+
+
+        }else{
             $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
         }
         redirect('employee/edit/'.$this->encryption_url->safe_b64encode($id),'refresh');

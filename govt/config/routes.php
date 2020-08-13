@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // authentication
 $route['default_controller']        = 'auth';
-$route['login']                     = 'auth';
+$route['login']                     = 'auth/index';
 $route['logout']                    = 'auth/logout';
 $route['forgot-password']           = 'auth/forgotPassword';
 $route['checkEmail']                = 'auth/checkEmail';

@@ -220,7 +220,7 @@ class M_student extends CI_Model {
     }
     public function resendOtp($refid='',$phone='',$otp='')
     {
-        $this->db->where('phone', $phone)->where('ref_id',$refid)->update('student',array('otp'=> random_string('nozero',6)));
+        $this->db->where('phone', $phone)->where('ref_id',$refid)->update('student',array('otp'=> $otp));
         if ($this->db->affected_rows() > 0) {
             return true;
         }else{

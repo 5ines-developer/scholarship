@@ -23,13 +23,14 @@ class auth extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         
     }
     
 
     public function index()
     {
+        
             $csrf = array(
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
@@ -39,13 +40,12 @@ class auth extends CI_Controller {
         if($this->session->userdata('scinst') != ''){ redirect('dashboard','refresh'); }
         if($this->input->post()){
             $this->load->library('form_validation');
-            if ($this->session->userdata('scinst') == '') {
 
             $inputCaptcha = $this->input->post('captcha');
             $sessCaptcha = $this->session->userdata('captchaCode');
             if($sessCaptcha == $inputCaptcha){
 
-                $this->form_validation->set_rules('email', 'Email Id', 'required');
+                $this->form_validation->set_rules('email', 'Email Id', 'required|valid_email');
                 $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[6]');
                 if ($this->form_validation->run() == True){
                     $email = $this->input->post('email'); 
@@ -85,9 +85,7 @@ class auth extends CI_Controller {
                 redirect('/');
             }
 
-            }else{
-                redirect('dashboard');
-            }
+        
         }else{
             $data['captchaImg'] = $this->sc_check->img_catcha();
             $this->load->view('auth/login',$data);
@@ -130,14 +128,23 @@ class auth extends CI_Controller {
             $fl = substr($value['name'], $pos+1);
             if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
                 $this->sc_check->sus_mail($spemail);
+                redirect('register');
                 die();
+
            }
         }
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('iname', 'Institute', 'trim|required|is_unique[school.name]', array( 'is_unique'=> 'Institute already exists.' ));
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[school.email]', array( 'is_unique'=> 'This %s already exists.' ));
-        $this->form_validation->set_rules('number', 'Phone number', 'trim|required|is_unique[school.phone]', array( 'is_unique'=> 'This %s already exists.' ));
+        $this->form_validation->set_rules('iname', 'Institute', 'trim|required|is_unique[school.name]|alpha_numeric_spaces', array( 'is_unique'=> 'Institute already exists.' ));
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[school.email]|valid_email', array( 'is_unique'=> 'This %s already exists.' ));
+        $this->form_validation->set_rules('number', 'Phone number', 'trim|required|is_unique[school.phone]|numeric|exact_length[10]', array( 'is_unique'=> 'This %s already exists.' ));
+
+        $this->form_validation->set_rules('regno', 'Register no', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('prname', 'principal Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('pin', 'Pincode', 'trim|required|alpha_numeric_spaces');
+
         if ($this->form_validation->run() == TRUE ) {
             foreach ($_FILES as $key => $value) {
                 if (!empty($value)) {
@@ -259,23 +266,28 @@ class auth extends CI_Controller {
             );
             $this->security->xss_clean($_POST);
 
-       $password = $this->bcrypt->hash_password($this->input->post('psw'));
-       $key = $this->input->post('key');
-       $this->load->helper('string');
-       
-       $data = array(
-           'psw'    => $password, 
-           'ref_id' => random_string('alnum', 30), 
-           'status' => 1, 
-        );
-        if($this->m_auth->set_password($data, $key)){
-            $this->session->set_flashdata('success', 'Email verification successfully completed.<br> Now you can login.');
-            redirect('/','refresh');
-        }
-        else{
-            $this->session->set_flashdata('error', 'Activation link has been expired');
-            redirect('register','refresh');
-        }
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+               $password = $this->bcrypt->hash_password($this->input->post('psw'));
+               $key = $this->input->post('key');
+               $this->load->helper('string');
+               
+               $data = array(
+                   'psw'    => $password, 
+                   'ref_id' => random_string('alnum', 30), 
+                   'status' => 1, 
+                );
+                if($this->m_auth->set_password($data, $key)){
+                    $this->session->set_flashdata('success', 'Email verification successfully completed.<br> Now you can login.');
+                    redirect('/','refresh');
+                }
+                else{
+                    $this->session->set_flashdata('error', 'Activation link has been expired');
+                    redirect('register','refresh');
+                }
+            }else{
+                $this->session->set_flashdata('error', 'Some error occured, please try again!');
+                redirect('register','refresh');
+            }
     }
 
     // logout
@@ -298,7 +310,7 @@ class auth extends CI_Controller {
     public function checkEmail()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('mail', 'mail', 'required|is_unique[school_auth.email]');
+        $this->form_validation->set_rules('mail', 'mail', 'required|is_unique[school_auth.email]|valid_email');
         if($this->form_validation->run() === false){
             echo json_encode(1);
         }else{
@@ -315,15 +327,20 @@ class auth extends CI_Controller {
             );
             $this->security->xss_clean($_POST);
 
-        $email = $this->input->post('email');
-        if($result = $this->m_auth->checkMail($email)){
-            $this->sendForgot($result);
-            $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
-            redirect('forgot-password','refresh');
-        }else{
-            $this->session->set_flashdata('error', 'Invalid email address');
-            redirect('forgot-password','refresh');
-        }
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $email = $this->input->post('email');
+                if($result = $this->m_auth->checkMail($email)){
+                    $this->sendForgot($result);
+                    $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
+                    redirect('forgot-password','refresh');
+                }else{
+                    $this->session->set_flashdata('error', 'Invalid email address');
+                    redirect('forgot-password','refresh');
+                }
+            }else{
+                $this->session->set_flashdata('error', 'Some error occured, please try again!');
+                redirect('forgot-password','refresh');
+            }
     }
 
     function sendForgot($insert='')
@@ -369,23 +386,27 @@ class auth extends CI_Controller {
             );
             $this->security->xss_clean($_POST);
 
-        $password = $this->bcrypt->hash_password($this->input->post('psw'));
-        $key = $this->input->post('key');
-        $this->load->helper('string');
-       
-       $data = array(
-           'psw'    => $password, 
-           'ref_id' => random_string('alnum', 30), 
-           'status' => 1, 
-        );
-        if($this->m_auth->set_password($data, $key)){
-            $this->session->set_flashdata('success', 'Successfully password changed.');
-            redirect('/','refresh');
-        }
-        else{
-            $this->session->set_flashdata('error', 'Activation link has been expired');
-            redirect('/','refresh');
-        }
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $password = $this->bcrypt->hash_password($this->input->post('psw'));
+                $key = $this->input->post('key');
+                $this->load->helper('string');
+               
+               $data = array(
+                   'psw'    => $password, 
+                   'ref_id' => random_string('alnum', 30), 
+                   'status' => 1, 
+                );
+                if($this->m_auth->set_password($data, $key)){
+                    $this->session->set_flashdata('success', 'Successfully password changed.');
+                    redirect('/','refresh');
+                }
+                else{
+                    $this->session->set_flashdata('error', 'Activation link has been expired');
+                    redirect('/','refresh');
+                }
+            }else{
+                $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            }
     }
 
     // taluk filter based on selected district
@@ -396,7 +417,7 @@ class auth extends CI_Controller {
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->security->xss_clean($_GET);
+        $this->security->xss_clean($_POST);
 
         $district = $this->input->post('filter');
         $result = $this->m_auth->getTalukFiletr($district);
@@ -411,7 +432,7 @@ class auth extends CI_Controller {
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
             );
-            $this->security->xss_clean($_GET);
+            $this->security->xss_clean($_POST);
 
         $taluk = $this->input->post('filter');
         $result = $this->m_auth->instituteFilter($taluk);
@@ -426,7 +447,7 @@ class auth extends CI_Controller {
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
             );
-            $this->security->xss_clean($_GET);
+            $this->security->xss_clean($_POST);
 
         $id = $this->input->post('filter');
         if($this->m_auth->checkInstituteExist($id)){
@@ -445,7 +466,7 @@ class auth extends CI_Controller {
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
             );
-            $this->security->xss_clean($_GET);
+            $this->security->xss_clean($_POST);
 
         $id = $this->input->post('filter');
         if($this->m_auth->checkEmailExist($id)){
@@ -464,7 +485,7 @@ class auth extends CI_Controller {
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
             );
-            $this->security->xss_clean($_GET);
+            $this->security->xss_clean($_POST);
 
         $id = $this->input->post('filter');
         if($this->m_auth->checkPhoneExist($id)){
@@ -541,52 +562,64 @@ class auth extends CI_Controller {
                 'hash' => $this->security->get_csrf_hash()
             );
             $this->security->xss_clean($_POST);
+        $this->form_validation->set_rules('name', 'principal Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('number', 'Phone number', 'trim|required|numeric|exact_length[10]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('c_pincode', 'Pincode', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('c_address', 'Address', 'trim|required|alpha_numeric_spaces');
+        if ($this->form_validation->run() == true) {
+            $insert = array(
+                'name'          => $this->input->post('name'),
+                'mobile'         => $this->input->post('number'),
+                'email'         => $this->input->post('email'),
+                'district'       => $this->input->post('district'),
+                'taluk'         => $this->input->post('taluk'),
+                'pincode'         => $this->input->post('c_pincode'),
+                'address'        => $this->input->post('c_address'),
+            );
+            foreach ($_FILES as $key => $value) {
+                $pos = strrpos($value['name'], '.');
+                $fl = substr($value['name'], $pos+1);
+                if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
+                    $this->sc_check->sus_mail($insert['email']);
+                    die();
+               }
+            }
 
-        $insert = array(
-            'name'          => $this->input->post('name'),
-            'mobile'         => $this->input->post('number'),
-            'email'         => $this->input->post('email'),
-            'district'       => $this->input->post('district'),
-            'taluk'         => $this->input->post('taluk'),
-            'pincode'         => $this->input->post('c_pincode'),
-            'address'        => $this->input->post('c_address'),
-        );
+            if ((empty($_FILES['reg_doc']['tmp_name']))) {
+                $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+                 redirect('institute-request');
+            }else{
+                $config['upload_path'] = './regfile';
+                $config['allowed_types'] = 'jpg|png|jpeg';
+                $config['max_width'] = 0;
+                $config['encrypt_name'] = true;
+                $this->load->library('upload');
+                $this->upload->initialize($config);
+                if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+                $this->upload->do_upload('reg_doc');
+                $upload_data = $this->upload->data();
+                $reg = 'regfile/'.$upload_data['file_name'];
 
-        foreach ($_FILES as $key => $value) {
-            $pos = strrpos($value['name'], '.');
-            $fl = substr($value['name'], $pos+1);
-            if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
-                $this->sc_check->sus_mail($insert['email']);
-                die();
-           }
-        }
+                $insert['register_doc'] = $reg;
+            }
 
-        if ((empty($_FILES['reg_doc']['tmp_name']))) {
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
-             redirect('institute-request');
+            $output = $this->m_auth->addRequest($insert);
+
+            
+            if(!empty($output)){
+                $this->sendRequest($insert);
+                $this->session->set_flashdata('success', 'Your Request has been Successfully submitted.');
+            }else{
+                $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            }
+
+
         }else{
-            $config['upload_path'] = './regfile';
-            $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_width'] = 0;
-            $config['encrypt_name'] = true;
-            $this->load->library('upload');
-            $this->upload->initialize($config);
-            if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-            $this->upload->do_upload('reg_doc');
-            $upload_data = $this->upload->data();
-            $reg = 'regfile/'.$upload_data['file_name'];
-
-            $insert['register_doc'] = $reg;
-        }
-
-        $output = $this->m_auth->addRequest($insert);
-
-        
-        if(!empty($output)){
-            $this->sendRequest($insert);
-            $this->session->set_flashdata('success', 'Your Request has been Successfully submitted.');
-        }else{
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
         }
 
         redirect('institute-request');

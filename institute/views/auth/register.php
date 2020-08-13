@@ -7,10 +7,10 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
+    <link  rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/material-icons.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/vue-select.css">
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
+    <script type="text/javascript" src="<?php echo $this->config->item('web_url') ?>assets/js/vue-select.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url')?>assets/js/axios.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>

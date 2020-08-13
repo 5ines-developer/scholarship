@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // authentication
 $route['default_controller']        = 'auth';
-$route['login']                     = 'auth';
+$route['login']                     = 'auth/index';
 $route['register']                  = 'auth/registration';
 $route['register1']                 = 'auth/register1';
 $route['account-activation/(:any)'] = 'auth/account_activation/$1';
@@ -36,6 +36,8 @@ $route['formd-download/(:any)']     = 'payments/formds/$1'; //make payment
 
 $route['reminder']              	= 'payments/reminder'; //make payment
 $route['notification']              = 'payments/notification'; //make payment
+$route['show-images/(:any)'] = 'auth/show_images/$1';
+$route['show-images/(:any)/(:any)'] = 'auth/show_images/$1/$2';
 
 
 

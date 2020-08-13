@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Scholarship</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
 <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
@@ -29,7 +29,7 @@
                                         <p class="m0">Institute Login</p>
                                     </div>
                                     <div class="card-body row m0 pt15 pb15">
-                                        <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>" method="post">
+                                        <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url('auth/index') ?>" method="post">
                                             <div class="input-field col s12">
                                                 <input  id="email" name="email" type="email" class="validate" required>
                                                 <label for="email">Email ID</label>

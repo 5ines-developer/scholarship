@@ -24,7 +24,7 @@ class Std_account extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
 
@@ -66,19 +66,24 @@ class Std_account extends CI_Controller {
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()
         );
-        $this->security->xss_clean($_POST);
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        if ($this->form_validation->run() == true) {
-            $name = $this->input->post('name');
-            $email = $this->input->post('email');
-            $output = $this->m_stdaccount->updateProfile($email,$name,$this->sid);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->security->xss_clean($_POST);
+            $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            if ($this->form_validation->run() == true) {
+                $name = $this->input->post('name');
+                $email = $this->input->post('email');
+                $output = $this->m_stdaccount->updateProfile($email,$name,$this->sid);
+            }else{
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                $output = '';
+            }
+            echo $output;
         }else{
-            $error = validation_errors();
-            $this->session->set_flashdata('error', $error);
-            $output = '';
+            echo null;
         }
-        echo $output;
     }
 
 
@@ -149,40 +154,47 @@ class Std_account extends CI_Controller {
         'hash' => $this->security->get_csrf_hash()
         );
 
-		$data['title']  = 'Student Change password - Scholarship';
-		$this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
-        $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
-        $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
-        if ($this->form_validation->run() == true) {
-        	$hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
-        	$datas = array('password' => $hash );
-        	if ($this->m_stdaccount->changePassword($datas)) {
-               	$this->session->set_flashdata('success', 'Your password has been updated successfully');
-               	redirect('student/change-password', 'refresh');
-            } else {
-               	$this->session->set_flashdata('error', 'Something went wrong please try again later!');
-               	redirect('student/change-password', 'refresh');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    		$data['title']  = 'Student Change password - Scholarship';
+    		$this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
+            $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
+            $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
+            if ($this->form_validation->run() == true) {
+            	$hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
+            	$datas = array('password' => $hash );
+            	if ($this->m_stdaccount->changePassword($datas)) {
+                   	$this->session->set_flashdata('success', 'Your password has been updated successfully');
+                   	redirect('student/change-password', 'refresh');
+                } else {
+                   	$this->session->set_flashdata('error', 'Something went wrong please try again later!');
+                   	redirect('student/change-password', 'refresh');
+                }
+            }else{
+            	$this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                redirect('student/change-password','refresh'); 
             }
 
         }else{
-
-        	$error = validation_errors();
-            $this->session->set_flashdata('error', $error);
-            redirect('student/change-password','refresh');
-
+             $this->session->set_flashdata('error', 'Some error occured, please try again!');
+             redirect('student/change-password','refresh');
         }
 	}
 
 	// psw check function
     public function checkpsw($psw='')
     {
-        $this->security->xss_clean($_POST);
-        $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-        );
-        $output = $this->m_stdaccount->checkpsw($this->input->post('crpass'));
-        echo $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->security->xss_clean($_POST);
+            $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+            );
+            $output = $this->m_stdaccount->checkpsw($this->input->post('crpass'));
+            echo $output;
+        }else{
+            echo null; 
+        }
     }
 
 

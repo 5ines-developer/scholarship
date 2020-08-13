@@ -13,7 +13,7 @@ $this->load->library('encryption');
     <title><?php echo $title ?></title>
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/css/style.css ">
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css ">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
+    <link  rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/material-icons.css">
     <!-- data table -->
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.css ">
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/css/buttons.dataTables.css ">

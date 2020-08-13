@@ -160,6 +160,7 @@
                 this.emailError='';
                 const formData = new FormData();
                 formData.append('email',this.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('auth/emailcheck') ?>',formData)
                 .then(response =>{
                     if (response.data == '1') {
@@ -180,6 +181,7 @@
                 this.mobileError='';
                 const formData = new FormData();
                 formData.append('mobile',this.mobile);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 axios.post('<?php echo base_url('auth/mobile_check') ?>', formData)
                 .then(response => {
                     if (response.data == '1') {

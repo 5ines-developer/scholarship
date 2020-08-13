@@ -43,6 +43,8 @@ class M_stdapplication extends CI_Model {
     public function adharcheck($adhar='')
     {
         $this->db->where('ab.adharcard_no', $adhar);
+        $this->db->where('ab.m_adhar !=', $adhar);
+        $this->db->where('ab.f_adhar !=', $adhar);
         $this->db->where('a.application_year !=', date('Y'));
         $this->db->from('application a');
         $this->db->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left');

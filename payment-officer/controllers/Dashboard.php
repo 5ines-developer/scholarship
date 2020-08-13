@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         
     }
 
@@ -61,6 +62,8 @@ class Dashboard extends CI_Controller {
     );
     $this->security->xss_clean($_POST);
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
                 $this->form_validation->set_rules('name', 'Name', 'required|alpha_numeric_spaces');
                 $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric');
                 if ($this->form_validation->run() == True){
@@ -81,6 +84,10 @@ class Dashboard extends CI_Controller {
                     $this->session->set_flashdata('error', '😕 Some error occurred. Please try again later');
                     redirect('profile','refresh');
                 }
+            }else{
+                $this->session->set_flashdata('error', '😕 Some error occurred. Please try again later');
+                    redirect('profile','refresh');
+            }
     }
 
     public function changepassword($value='')
@@ -92,44 +99,52 @@ class Dashboard extends CI_Controller {
         // psw check function
     public function checkpsw($psw='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
-        $output = $this->m_dashboard->checkpsw($this->input->post('crpass'));
-        echo $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $output = $this->m_dashboard->checkpsw($this->input->post('crpass'));
+            echo $output;
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+        }
     }
 
     public function updatepassword($value='')
     {
         $this->sc_check->limitRequests();
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
-    
-        $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
-        $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
-        $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
-        if ($this->form_validation->run() == true) {
-            $hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
-            $datas = array('psw' => $hash );
-            if ($this->m_dashboard->changePassword($datas)) {
-                $this->session->set_flashdata('success', 'Your password has been updated successfully');
-                redirect('change-password', 'refresh');
-            } else {
-                $this->session->set_flashdata('error', 'Something went wrong please try again later!');
-                redirect('change-password', 'refresh');
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
+            $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
+            $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
+            if ($this->form_validation->run() == true) {
+                $hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
+                $datas = array('psw' => $hash );
+                if ($this->m_dashboard->changePassword($datas)) {
+                    $this->session->set_flashdata('success', 'Your password has been updated successfully');
+                    redirect('change-password', 'refresh');
+                } else {
+                    $this->session->set_flashdata('error', 'Something went wrong please try again later!');
+                    redirect('change-password', 'refresh');
+                }
+            }else{
+                $error = validation_errors();
+                $this->session->set_flashdata('error', $error);
+                redirect('change-password','refresh');
             }
-
         }else{
-            $error = validation_errors();
-            $this->session->set_flashdata('error', $error);
-            redirect('change-password','refresh');
-
+            $this->session->set_flashdata('error', 'Something went wrong please try again later!');
+            redirect('change-password', 'refresh');
         }
     }
 

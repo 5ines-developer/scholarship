@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+header_remove("X-Powered-By"); 
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +9,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
     <!-- jQuery library -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/vue.js"></script>

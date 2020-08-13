@@ -1,0 +1,13 @@
+INFO - 2020-08-04 09:46:51 --> Config Class Initialized
+INFO - 2020-08-04 09:46:51 --> Hooks Class Initialized
+DEBUG - 2020-08-04 09:46:51 --> UTF-8 Support Enabled
+INFO - 2020-08-04 09:46:51 --> Utf8 Class Initialized
+INFO - 2020-08-04 09:46:51 --> URI Class Initialized
+INFO - 2020-08-04 09:46:51 --> Router Class Initialized
+INFO - 2020-08-04 09:46:51 --> Output Class Initialized
+INFO - 2020-08-04 09:46:51 --> Security Class Initialized
+DEBUG - 2020-08-04 09:46:51 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-04 09:46:51 --> CSRF cookie sent
+INFO - 2020-08-04 09:46:51 --> Input Class Initialized
+INFO - 2020-08-04 09:46:51 --> Language Class Initialized
+ERROR - 2020-08-04 09:46:51 --> 404 Page Not Found: Assets/images

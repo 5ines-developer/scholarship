@@ -2,3 +2,13 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
+
+Options -Indexes
+
+Header set X-Frame-Options DENY
+Header set X-Frame-Options "sameorigin"
+Header unset X-Powered-By
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^([a-zA-Z0-9-_]{1,20}.){0,3}localhost$ 
+RewriteRule ^(.*)$ http://localhost/ [R=301,L]

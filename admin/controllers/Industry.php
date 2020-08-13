@@ -19,6 +19,7 @@ class Industry extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
     /** industry- get registered industry
@@ -247,21 +248,34 @@ class Industry extends CI_Controller {
         $data['title']      = 'Industry Management';
         if(!empty($this->input->post())){
             $this->sc_check->limitRequests();
-            
-            $insert = array(
-                'name'   => $this->input->post('name'), 
-                'reg_id' => $this->input->post('rno'), 
-                'act'    => $this->input->post('act'), 
-               
-            );
-            if($this->m_industry->add($insert))
-            {
-                $this->session->set_flashdata('success','industry added Successfully');
-                redirect('industries','refresh');
-            }else{
-                $this->session->set_flashdata('error','Please login and try again!');
-                redirect('industry-add','refresh');
-            }
+
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('name', 'Name', 'required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('rno', 'Reg No.', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('act', 'Act.', 'trim|alpha_numeric_spaces');
+            if ($this->form_validation->run() == True){
+                    $insert = array(
+                        'name'   => $this->input->post('name'), 
+                        'reg_id' => $this->input->post('rno'), 
+                        'act'    => $this->input->post('act'), 
+                       
+                    );
+                    if($this->m_industry->add($insert))
+                    {
+                        $this->session->set_flashdata('success','industry added Successfully');
+                        redirect('industries','refresh');
+                    }else{
+                        $this->session->set_flashdata('error','Please login and try again!');
+                        redirect('industry-add','refresh');
+                    }
+
+                }else{
+                    $this->form_validation->set_error_delimiters('', '<br>');
+                    $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                    $data['taluk'] = $this->m_school->getTalluk();
+                    $data['district'] = $this->m_school->getDistrict();
+                    $this->load->view('industry/add', $data, FALSE);
+                }
         }else{
             $data['taluk'] = $this->m_school->getTalluk();
             $data['district'] = $this->m_school->getDistrict();
@@ -275,15 +289,19 @@ class Industry extends CI_Controller {
     public function namecheck($value='')
     {
             $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
 
-        $name = $this->input->post('name');
-        $output = $this->db->where('name', $name)->get('industry')->row();
-        if(!empty($output)){
-            $ret = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = $this->input->post('name');
+            $output = $this->db->where('name', $name)->get('industry')->row();
+            if(!empty($output)){
+                $ret = 1;
+            }else{
+                $ret = '';
+            }
         }else{
             $ret = '';
         }
@@ -301,11 +319,15 @@ class Industry extends CI_Controller {
         'hash' => $this->security->get_csrf_hash()
     );
     $this->security->xss_clean($_POST);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $regno = $this->input->post('regno');
         $output = $this->db->where('reg_id', $regno)->get('industry')->row();
         if(!empty($output)){
             $ret = 1;
+        }else{
+            $ret = '';
+        }
         }else{
             $ret = '';
         }
@@ -328,16 +350,25 @@ class Industry extends CI_Controller {
         if(!empty($this->input->post())){
             $this->sc_check->limitRequests();
 
-            $insert = array(
-                'name'   => $this->input->post('name'), 
-                'reg_id' => $this->input->post('rno'), 
-                'act'    => $this->input->post('act'),
-            );
-            if($this->m_industry->update($id,$insert))
-            {
-                $this->session->set_flashdata('success','Industry updated Successfully');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('name', 'Name', 'required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('rno', 'Reg No.', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('act', 'Act.', 'trim|alpha_numeric_spaces');
+            if ($this->form_validation->run() == True){
+                $insert = array(
+                    'name'   => $this->input->post('name'), 
+                    'reg_id' => $this->input->post('rno'), 
+                    'act'    => $this->input->post('act'),
+                );
+                if($this->m_industry->update($id,$insert))
+                {
+                    $this->session->set_flashdata('success','Industry updated Successfully');
+                }else{
+                    $this->session->set_flashdata('error','Please login and try again!');
+                }
             }else{
-                $this->session->set_flashdata('error','Please login and try again!');
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
             }
             redirect('industry-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
         }else{
@@ -354,16 +385,21 @@ class Industry extends CI_Controller {
     **/
     public function block($value='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
-        $id = $this->input->post('id');
-        $status = '2';
-        if($this->m_industry->stasChange($id,$status)){
-             $data = array('status' => 1, 'msg' => '🙂 Industry Blocked Successfully ');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $this->input->post('id');
+            $status = '2';
+            if($this->m_industry->stasChange($id,$status)){
+                 $data = array('status' => 1, 'msg' => '🙂 Industry Blocked Successfully ');
+            }else{
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+            }
         }else{
             $this->output->set_status_header('400');
             $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
@@ -378,12 +414,17 @@ class Industry extends CI_Controller {
         'hash' => $this->security->get_csrf_hash()
     );
     $this->security->xss_clean($_POST);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $id = $this->input->post('id');
         $status = '1';
         if($this->m_industry->stasChange($id,$status)){
              $data = array('status' => 1, 'msg' => '🙂 Institute Unblocked  Successfully ');
         }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+        }
+         }else{
             $this->output->set_status_header('400');
             $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
         }
@@ -396,11 +437,13 @@ class Industry extends CI_Controller {
     **/
     public function empblock($value='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_GET);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
         $id = $this->input->get('id');
         $ind = $this->input->get('ind');
@@ -410,23 +453,30 @@ class Industry extends CI_Controller {
         }else{
             $this->session->set_flashdata('error','🙂 Server error occurred. Please try again later');
         }
+        }else{
+            $this->session->set_flashdata('error','🙂 Server error occurred. Please try again later');
+        }
        redirect('industry/detail/'.$ind,'refresh');
     }
 
     public function empunblock($value='')
     {
 
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_GET);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
 
         $id = $this->input->get('id');
         $ind = $this->input->get('ind');
-        $stat = '1';
-        if($this->m_industry->empstasChange($id,$stat)){
-             $this->session->set_flashdata('success','🙂 HR Un blocked Successfully');
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $stat = '1';
+            if($this->m_industry->empstasChange($id,$stat)){
+                 $this->session->set_flashdata('success','🙂 HR Un blocked Successfully');
+            }else{
+                $this->session->set_flashdata('error','🙂 Server error occurred. Please try again later');
+            }
         }else{
             $this->session->set_flashdata('error','🙂 Server error occurred. Please try again later');
         }

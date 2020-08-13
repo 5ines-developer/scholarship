@@ -1,0 +1,48 @@
+INFO - 2020-08-04 10:25:18 --> Config Class Initialized
+INFO - 2020-08-04 10:25:18 --> Hooks Class Initialized
+DEBUG - 2020-08-04 10:25:18 --> UTF-8 Support Enabled
+INFO - 2020-08-04 10:25:18 --> Utf8 Class Initialized
+INFO - 2020-08-04 10:25:18 --> URI Class Initialized
+INFO - 2020-08-04 10:25:18 --> Config Class Initialized
+INFO - 2020-08-04 10:25:18 --> Router Class Initialized
+INFO - 2020-08-04 10:25:18 --> Output Class Initialized
+INFO - 2020-08-04 10:25:18 --> Hooks Class Initialized
+INFO - 2020-08-04 10:25:18 --> Security Class Initialized
+DEBUG - 2020-08-04 10:25:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-04 10:25:18 --> Input Class Initialized
+INFO - 2020-08-04 10:25:18 --> Language Class Initialized
+ERROR - 2020-08-04 10:25:18 --> 404 Page Not Found: Assets/image
+DEBUG - 2020-08-04 10:25:18 --> UTF-8 Support Enabled
+INFO - 2020-08-04 10:25:18 --> Utf8 Class Initialized
+INFO - 2020-08-04 10:25:18 --> URI Class Initialized
+INFO - 2020-08-04 10:25:18 --> Router Class Initialized
+INFO - 2020-08-04 10:25:18 --> Output Class Initialized
+INFO - 2020-08-04 10:25:18 --> Security Class Initialized
+DEBUG - 2020-08-04 10:25:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-04 10:25:18 --> Input Class Initialized
+INFO - 2020-08-04 10:25:18 --> Language Class Initialized
+ERROR - 2020-08-04 10:25:18 --> 404 Page Not Found: Assets/images
+INFO - 2020-08-04 10:36:53 --> Config Class Initialized
+INFO - 2020-08-04 10:36:53 --> Hooks Class Initialized
+DEBUG - 2020-08-04 10:36:53 --> UTF-8 Support Enabled
+INFO - 2020-08-04 10:36:53 --> Utf8 Class Initialized
+INFO - 2020-08-04 10:36:53 --> URI Class Initialized
+INFO - 2020-08-04 10:36:53 --> Config Class Initialized
+INFO - 2020-08-04 10:36:53 --> Hooks Class Initialized
+DEBUG - 2020-08-04 10:36:53 --> UTF-8 Support Enabled
+INFO - 2020-08-04 10:36:53 --> Utf8 Class Initialized
+INFO - 2020-08-04 10:36:53 --> Router Class Initialized
+INFO - 2020-08-04 10:36:53 --> URI Class Initialized
+INFO - 2020-08-04 10:36:53 --> Router Class Initialized
+INFO - 2020-08-04 10:36:53 --> Output Class Initialized
+INFO - 2020-08-04 10:36:53 --> Security Class Initialized
+INFO - 2020-08-04 10:36:53 --> Output Class Initialized
+INFO - 2020-08-04 10:36:53 --> Security Class Initialized
+DEBUG - 2020-08-04 10:36:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-04 10:36:53 --> Input Class Initialized
+INFO - 2020-08-04 10:36:53 --> Language Class Initialized
+ERROR - 2020-08-04 10:36:53 --> 404 Page Not Found: Assets/image
+DEBUG - 2020-08-04 10:36:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-04 10:36:53 --> Input Class Initialized
+INFO - 2020-08-04 10:36:53 --> Language Class Initialized
+ERROR - 2020-08-04 10:36:53 --> 404 Page Not Found: Assets/images

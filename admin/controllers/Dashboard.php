@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         $this->load->library('sc_check');
         
     }
@@ -69,17 +69,30 @@ class Dashboard extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    	 $insert   = array(
-            'name'    => $this->input->post('name'), 
-            'phone'  => $this->input->post('phone'), 
-        );
-    	$result = $this->m_dashboard->updateprofile($insert);
-    	if (!empty($result )) {
-    		$this->session->set_flashdata('success', 'Profile updated succesfully');
-    	}else{
-            $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
-    	}
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('name', 'Name', 'required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('phone', 'Phone No.', 'trim|numeric|max_length[10]|min_length[10]');
+            if ($this->form_validation->run() == True){
+                $insert   = array(
+                    'name'    => $this->input->post('name'), 
+                    'phone'  => $this->input->post('phone'), 
+                );
+                $result = $this->m_dashboard->updateprofile($insert);
+                if (!empty($result )) {
+                    $this->session->set_flashdata('success', 'Profile updated succesfully');
+                }else{
+                    $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
+                }
+            }else{
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+            }
+        	
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+        }
 
     	redirect('profile','refresh');
     }
@@ -107,25 +120,30 @@ class Dashboard extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
-        $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
-        $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
-        $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
-        if ($this->form_validation->run() == true) {
-            $hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
-            $datas = array('psw' => $hash );
-            if ($this->m_dashboard->changePassword($datas)) {
-                $this->session->set_flashdata('success', 'Your password has been updated successfully');
-                redirect('change-password', 'refresh');
-            } else {
-                $this->session->set_flashdata('error', 'Something went wrong please try again later!');
-                redirect('change-password', 'refresh');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
+            $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
+            $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
+            if ($this->form_validation->run() == true) {
+                $hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
+                $datas = array('psw' => $hash );
+                if ($this->m_dashboard->changePassword($datas)) {
+                    $this->session->set_flashdata('success', 'Your password has been updated successfully');
+                    redirect('change-password', 'refresh');
+                } else {
+                    $this->session->set_flashdata('error', 'Something went wrong please try again later!');
+                    redirect('change-password', 'refresh');
+                }
+
+            }else{
+                $error = validation_errors();
+                $this->session->set_flashdata('error', $error);
+                redirect('change-password','refresh');
+
             }
-
         }else{
-            $error = validation_errors();
-            $this->session->set_flashdata('error', $error);
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('change-password','refresh');
-
         }
     }
 

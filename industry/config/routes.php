@@ -46,6 +46,9 @@ $route['staffs/account-activation/(:any)'] = 'staffs/account_activation/$1';
 $route['staffs/create']             = 'staffs/create';
 
 $route['industry-certificate/(:any)'] = 'auth/applicationGenerate/$1';
+$route['show-images/(:any)'] = 'auth/show_images/$1';
+$route['show-images/(:any)/(:any)'] = 'auth/show_images/$1/$2';
+
 
 
 

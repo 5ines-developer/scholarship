@@ -23,7 +23,7 @@ class Auth extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
     
 
@@ -37,60 +37,65 @@ class Auth extends CI_Controller {
     public function login()
     {
 
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
-        if($this->session->userdata('said') != ''){ redirect('dashboard','refresh'); }
-        $this->load->library('form_validation');
-        if ($this->session->userdata('said') == '') { 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if($this->session->userdata('said') != ''){ redirect('dashboard','refresh'); }
+            $this->load->library('form_validation');
+            if ($this->session->userdata('said') == '') { 
 
-            $inputCaptcha = $this->input->post('captcha');
-            $sessCaptcha = $this->session->userdata('captchaCode');
-            if($sessCaptcha == $inputCaptcha){
+                $inputCaptcha = $this->input->post('captcha');
+                $sessCaptcha = $this->session->userdata('captchaCode');
+                if($sessCaptcha == $inputCaptcha){
 
-            $this->security->xss_clean($_POST);
-            $this->form_validation->set_rules('email', 'Email Id', 'required');
-            $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[6]');
-            if ($this->form_validation->run() == True){
-                $email = $this->input->post('email'); 
-                $password = $this->input->post('pswd');
-                
-                if($result = $this->M_auth->can_login($email, $password)) 
-                {
-                    $session_data = array(
-                        'samail'    => $email,
-                        'said'      => $result['id'],
-                        'sastatus'  => $result['status'],
-                        'saname'    => $result['name'],
-                        'type'      => $result['type']
-                    ); 
-                    $this->session->set_userdata($session_data); 
+                $this->security->xss_clean($_POST);
+                $this->form_validation->set_rules('email', 'Email Id', 'required|valid_email');
+                $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[6]');
+                if ($this->form_validation->run() == True){
+                    $email = $this->input->post('email'); 
+                    $password = $this->input->post('pswd');
+                    
+                    if($result = $this->M_auth->can_login($email, $password)) 
+                    {
+                        $session_data = array(
+                            'samail'    => $email,
+                            'said'      => $result['id'],
+                            'sastatus'  => $result['status'],
+                            'saname'    => $result['name'],
+                            'type'      => $result['type']
+                        ); 
+                        $this->session->set_userdata($session_data); 
 
-                    $this->sc_check->loginSuccess();
-                    redirect('dashboard'); 
-                } 
-                else 
-                {
-                    $this->sc_check->loginError($email);
+                        $this->sc_check->loginSuccess();
+                        redirect('dashboard'); 
+                    } 
+                    else 
+                    {
+                        $this->sc_check->loginError($email);
+                        $this->session->set_flashdata('error', 'Invalid Username or Password'); 
+                        redirect('/');
+                    }
+                    
+                }else{
                     $this->session->set_flashdata('error', 'Invalid Username or Password'); 
                     redirect('/');
                 }
-                
-            }else{
-                $this->session->set_flashdata('error', 'Invalid Username or Password'); 
-                redirect('/');
-            }
+
+                }else{
+                    $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
+                    redirect('/');
+                }
 
             }else{
-                $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
-                redirect('/');
+                redirect('dashboard');
             }
-
         }else{
-            redirect('dashboard');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            redirect('/');
         }
     }
 
@@ -125,20 +130,24 @@ class Auth extends CI_Controller {
     // check forgot password
     public function forgot_password_check(Type $var = null)
     {
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
 
-        $csrf = array(
-            'name' => $this->security->get_csrf_token_name(),
-            'hash' => $this->security->get_csrf_hash()
-        );
-        $this->security->xss_clean($_POST);
-
-        $email = $this->input->post('email');
-        if($result = $this->M_auth->checkMail($email)){
-            $this->sendForgot($result);
-            $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
-            redirect('forgot-password','refresh');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $this->input->post('email');
+            if($result = $this->M_auth->checkMail($email)){
+                $this->sendForgot($result);
+                $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
+                redirect('forgot-password','refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Invalid email address');
+                redirect('forgot-password','refresh');
+            }
         }else{
-            $this->session->set_flashdata('error', 'Invalid email address');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('forgot-password','refresh');
         }
     }
@@ -180,27 +189,32 @@ class Auth extends CI_Controller {
     public function set_new_password()
     {
 
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
-
-        $password = $this->bcrypt->hash_password($this->input->post('psw'));
-        $key = $this->input->post('key');
-        $this->load->helper('string');
-       
-       $data = array(
-           'psw'    => $password, 
-           'ref_link' => random_string('alnum', 30), 
-           'status' => 1, 
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
         );
-        if($this->M_auth->set_password($data, $key)){
-            $this->session->set_flashdata('success', 'Successfully password changed.');
-            redirect('/','refresh');
-        }
-        else{
-            $this->session->set_flashdata('error', 'Activation link has been expired');
+        $this->security->xss_clean($_POST);
+
+         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $password = $this->bcrypt->hash_password($this->input->post('psw'));
+            $key = $this->input->post('key');
+            $this->load->helper('string');
+           
+           $data = array(
+               'psw'    => $password, 
+               'ref_link' => random_string('alnum', 30), 
+               'status' => 1, 
+            );
+            if($this->M_auth->set_password($data, $key)){
+                $this->session->set_flashdata('success', 'Successfully password changed.');
+                redirect('/','refresh');
+            }
+            else{
+                $this->session->set_flashdata('error', 'Activation link has been expired');
+                redirect('/','refresh');
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('/','refresh');
         }
     }
@@ -222,28 +236,33 @@ class Auth extends CI_Controller {
      {
 
             $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
 
-        $password = $this->bcrypt->hash_password($this->input->post('psw'));
-        $key = $this->input->post('key');
-        $this->load->helper('string');
-        
-        $data = array(
-            'psw'    => $password, 
-            'ref_link' => random_string('alnum', 30), 
-            'status' => 1, 
-         );
-         if($this->M_auth->set_password($data, $key)){
-             $this->session->set_flashdata('success', 'Email verification successfully completed.<br> Now you can login.');
-             redirect('/','refresh');
-         }
-         else{
-             $this->session->set_flashdata('error', 'Activation link has been expired');
-             redirect('/','refresh');
-         }
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $password = $this->bcrypt->hash_password($this->input->post('psw'));
+                $key = $this->input->post('key');
+                $this->load->helper('string');
+                
+                $data = array(
+                    'psw'    => $password, 
+                    'ref_link' => random_string('alnum', 30), 
+                    'status' => 1, 
+                 );
+                 if($this->M_auth->set_password($data, $key)){
+                     $this->session->set_flashdata('success', 'Email verification successfully completed.<br> Now you can login.');
+                     redirect('/','refresh');
+                 }
+                 else{
+                     $this->session->set_flashdata('error', 'Activation link has been expired');
+                     redirect('/','refresh');
+                 }
+            }else{
+                $this->session->set_flashdata('error', 'Some error occured, please try again!');
+                 redirect('/','refresh');
+             }
      }
 
 

@@ -22,7 +22,7 @@ class Account extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
     public function index()
@@ -45,22 +45,38 @@ class Account extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-        $this->form_validation->set_rules('prname', 'Name', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('number', 'Phone Number', 'trim|required|numeric|max_length[10]|min_length[10]');
-        if ($this->form_validation->run() == true) {
-            $schoolId = $this->session->userdata('school');
-            $data['schoolDetail'] = array(
-                'principal'         => $this->input->post('prname'),
-                'email'             => $this->input->post('email'),
-                'phone'             => $this->input->post('number'),
-            );
-            $data['school_address'] = array(
-                'address'   => $this->input->post('address'),
-            );
-            $this->M_account->update($data, $schoolId);
-            $this->session->set_flashdata('success', 'Updated Successfully 🙂');
-            redirect('account','refresh');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->form_validation->set_rules('prname', 'Name', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('number', 'Phone Number', 'trim|required|numeric|max_length[10]|min_length[10]');
+            $this->form_validation->set_rules('address', 'Address', 'trim|required|alpha_numeric_spaces');
+
+            $this->form_validation->set_rules('regno', 'Register no', 'alpha_numeric_spaces');
+            $this->form_validation->set_rules('iname', 'Institute Name', 'alpha_numeric_spaces');
+            $this->form_validation->set_rules('taluk', 'Taluk', 'alpha_numeric_spaces');
+            $this->form_validation->set_rules('district', 'District', 'alpha_numeric_spaces');
+            $this->form_validation->set_rules('pin', 'Pincode', 'alpha_numeric_spaces');
+
+
+            if ($this->form_validation->run() == true) {
+                $schoolId = $this->session->userdata('school');
+                $data['schoolDetail'] = array(
+                    'principal'         => $this->input->post('prname'),
+                    'email'             => $this->input->post('email'),
+                    'phone'             => $this->input->post('number'),
+                );
+                $data['school_address'] = array(
+                    'address'   => $this->input->post('address'),
+                );
+                $this->M_account->update($data, $schoolId);
+                $this->session->set_flashdata('success', 'Updated Successfully 🙂');
+                redirect('account','refresh');
+            }else{
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                redirect('account','refresh');
+            }
         }else{
             $this->session->set_flashdata('error','😕 Server error occurred. Please try again later');
             redirect('account','refresh');
@@ -125,8 +141,12 @@ class Account extends CI_Controller {
 
     public function checkPassword()
     {
-        $output = $this->M_account->checkpsw($this->input->post('crpass'));
-        echo $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $output = $this->M_account->checkpsw($this->input->post('crpass'));
+            echo $output;
+        }else{
+            echo null;
+        }
     }
 
     // update password
@@ -139,25 +159,30 @@ class Account extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-    
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
-        $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
-        $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
-        if ($this->form_validation->run() == true) {
-        	$hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
-        	$datas = array('psw' => $hash );
-        	if ($this->M_account->changePassword($datas)) {
-               	$this->session->set_flashdata('success', '🙂 Your password has been updated successfully');
-               	redirect('change-password', 'refresh');
-            } else {
-               	$this->session->set_flashdata('error', '😕 Something went wrong please try again later!');
-               	redirect('change-password', 'refresh');
-            }
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
+            $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
+            $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
+            if ($this->form_validation->run() == true) {
+            	$hash  = $this->bcrypt->hash_password($this->input->post('npswd'));
+            	$datas = array('psw' => $hash );
+            	if ($this->M_account->changePassword($datas)) {
+                   	$this->session->set_flashdata('success', '🙂 Your password has been updated successfully');
+                   	redirect('change-password', 'refresh');
+                } else {
+                   	$this->session->set_flashdata('error', '😕 Something went wrong please try again later!');
+                   	redirect('change-password', 'refresh');
+                }
+
+            }else{
+            	$this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                redirect('change-password','refresh');
+            }
         }else{
-        	$error = validation_errors();
-            $this->session->set_flashdata('error', $error);
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('change-password','refresh');
         }
     }

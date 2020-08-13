@@ -8,7 +8,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
 </head>
 
 <body>
@@ -132,8 +132,7 @@
                         const formData = new FormData();
                         formData.append('phone',this.phone);
                         formData.append('id',this.id);
-        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
-                        
+                        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                         axios.post('<?php echo base_url('employee/mobile_check') ?>', formData)
                         .then(response => {
                             if (response.data == '1') {

@@ -24,7 +24,7 @@ class Account extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         
     }
 
@@ -52,24 +52,36 @@ class Account extends CI_Controller {
 
     public function mobile_check($value='')
     {
-        $mobile =  $this->input->post('mobile');
-        $output = $this->M_account->mobile_check($mobile);
-        echo  $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $mobile =  $this->input->post('mobile');
+            $output = $this->M_account->mobile_check($mobile);
+            echo  $output;
+        }else{
+            echo null;
+        }
     }
 
     public function inmobile_check($value='')
     {
-        $mobile =  $this->input->post('mobile');
-        $output = $this->M_account->inmobile_check($mobile);
-        echo  $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $mobile =  $this->input->post('mobile');
+            $output = $this->M_account->inmobile_check($mobile);
+            echo  $output;
+        }else{
+            echo null;
+        }
     }
 
     public function emailcheck($value='')
     {
-        $this->security->xss_clean($_POST);
-        $email = $this->input->post('email');
-        $output = $this->M_account->email_check($email);
-        echo  $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->security->xss_clean($_POST);
+            $email = $this->input->post('email');
+            $output = $this->M_account->email_check($email);
+            echo  $output;
+        }else{
+            echo null;
+        }
     }
 
     public function update()
@@ -81,11 +93,20 @@ class Account extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $this->form_validation->set_rules('iname', 'Industry Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
+
         $this->form_validation->set_rules('director', 'Director Name', 'trim|alpha_numeric_spaces');
         $this->form_validation->set_rules('number', 'Phone Number', 'trim|numeric|max_length[10]|min_length[10]');
-        $this->form_validation->set_rules('gst_no', 'GST Number', 'trim|alpha_numeric_spaces');
-        $this->form_validation->set_rules('pan_no', 'Pancard Number', 'trim|alpha_numeric_spaces');
-        $this->form_validation->set_rules('address', 'Address', 'trim|alpha_dash');
+        $this->form_validation->set_rules('gstno', 'GST Number', 'trim|alpha_numeric_spaces');
+        $this->form_validation->set_rules('panno', 'Pancard Number', 'trim|alpha_numeric_spaces');
+        $this->form_validation->set_rules('address', 'Address', 'trim|alpha_numeric_spaces');
+        $this->form_validation->set_rules('email', 'Email', 'trim|valid_email');
+
+
         if ($this->form_validation->run() == true) {
             $insert = array(
                 'talluk'       => $this->input->post('taluk'),
@@ -111,6 +132,11 @@ class Account extends CI_Controller {
             }
         }else{
             $this->session->set_flashdata('error', 'Something went wrong please try again later!');
+        }
+
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            
         }
         redirect('dashboard','refresh');
     }
@@ -171,36 +197,33 @@ class Account extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
-        $this->form_validation->set_rules('name', 'Name', 'trim|alpha_numeric_spaces');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|numeric');
-        if ($this->form_validation->run() == true) {
-            $insert = array(
-            'name'   => $this->input->post('name'),
-            'email'  => $this->input->post('email'),
-            'mobile' => $this->input->post('phone'),
-        );
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->form_validation->set_rules('name', 'Name', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('phone', 'Phone Number', 'trim|numeric');
+            if ($this->form_validation->run() == true) {
+                $insert = array(
+                'name'   => $this->input->post('name'),
+                'email'  => $this->input->post('email'),
+                'mobile' => $this->input->post('phone'),
+            );
 
-        if($this->M_account->update($insert, $this->reg))
-        {
-            $this->session->set_flashdata('success', 'Profile details Updated Successfully 🙂');
+            if($this->M_account->update($insert, $this->reg))
+            {
+                $this->session->set_flashdata('success', 'Profile details Updated Successfully 🙂');
+            }else{
+                $this->session->set_flashdata('error', '😕 Server error occurred. Please try again later');             
+            }
+             redirect('dashboard','refresh');
+            }else{
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                redirect('dashboard','refresh');
+            }
         }else{
-            $this->session->set_flashdata('error', '😕 Server error occurred. Please try again later');             
-        }
-        redirect('dashboard','refresh');
-
-
-
-        }else{
-
-            $this->form_validation->set_error_delimiters('', '<br>');
-            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+            $this->session->set_flashdata('error', '😕 Server error occurred. Please try again later'); 
             redirect('dashboard','refresh');
-
-
         }
-
-        
     }
 
 
@@ -270,8 +293,12 @@ class Account extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
-        $output = $this->M_account->checkpsw($this->input->post('crpass'));
-        echo $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $output = $this->M_account->checkpsw($this->input->post('crpass'));
+            echo $output;
+        }else{
+            echo null;
+        }
     }
 
     // update password
@@ -284,25 +311,30 @@ class Account extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-        
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
-        $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
-        $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
-        if ($this->form_validation->run() == true) {
-        	$hash  =  $this->bcrypt->hash_password($this->input->post('npswd'));
-            $datas = array('password' => $hash );
-        	if ($this->M_account->changePassword($datas)) {
-               	$this->session->set_flashdata('success', '🙂 Your password has been updated successfully');
-               	redirect('change-password', 'refresh');
-            } else {
-               	$this->session->set_flashdata('error', '😕 Something went wrong please try again later!');
-               	redirect('change-password', 'refresh');
-            }
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
+            $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
+            $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
+            if ($this->form_validation->run() == true) {
+            	$hash  =  $this->bcrypt->hash_password($this->input->post('npswd'));
+                $datas = array('password' => $hash );
+            	if ($this->M_account->changePassword($datas)) {
+                   	$this->session->set_flashdata('success', '🙂 Your password has been updated successfully');
+                   	redirect('change-password', 'refresh');
+                } else {
+                   	$this->session->set_flashdata('error', '😕 Something went wrong please try again later!');
+                   	redirect('change-password', 'refresh');
+                }
+
+            }else{
+            	$error = validation_errors();
+                $this->session->set_flashdata('error', $error);
+                redirect('change-password','refresh');
+            }
         }else{
-        	$error = validation_errors();
-            $this->session->set_flashdata('error', $error);
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('change-password','refresh');
         }
     }

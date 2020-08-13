@@ -22,7 +22,7 @@ class Student extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
 
@@ -52,33 +52,46 @@ class Student extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
-        $id = $this->input->post('id');
-        $status = '2';
-        if($this->m_student->stasChange($id,$status)){
-             $data = array('status' => 1, 'msg' => '🙂 Student Blocked Successfully ');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $this->input->post('id');
+            $status = '2';
+            if($this->m_student->stasChange($id,$status)){
+                 $data = array('status' => 1, 'msg' => '🙂 Student Blocked Successfully ');
+            }else{
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+            }
         }else{
-            $this->output->set_status_header('400');
-            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
         }
         echo json_encode($data);
     }
 
     public function unblock($value='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
-        $id = $this->input->post('id');
-        $status = '1';
-        if($this->m_student->stasChange($id,$status)){
-             $data = array('status' => 1, 'msg' => '🙂 Student Unblocked  Successfully ');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $this->input->post('id');
+            $status = '1';
+            if($this->m_student->stasChange($id,$status)){
+                 $data = array('status' => 1, 'msg' => '🙂 Student Unblocked  Successfully ');
+            }else{
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+            }
+
         }else{
-            $this->output->set_status_header('400');
-            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
         }
+
         echo json_encode($data);
     }
 
@@ -141,10 +154,13 @@ class Student extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
-        $this->security->xss_clean($_POST);
-        $mobile = $this->input->post('phone');
-        $output = $this->m_student->mobile_check($mobile);
-        echo  $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $mobile = $this->input->post('phone');
+            $output = $this->m_student->mobile_check($mobile);
+            echo  $output;
+        }else{
+            echo null;
+        }
     }
 
     /**
@@ -153,16 +169,19 @@ class Student extends CI_Controller {
     **/
     public function emailcheck($value='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
-
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $this->security->xss_clean($_POST);
-        $email = $this->input->post('email');
-        $output = $this->m_student->email_check($email);
-        echo  $output;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $this->input->post('email');
+            $output = $this->m_student->email_check($email);
+            echo  $output;
+        }else{
+            echo null;
+        }
     }
 
     public function edit($id='',$year='')
@@ -178,27 +197,40 @@ class Student extends CI_Controller {
 
             $this->sc_check->limitRequests();
 
-            $id     = $this->input->post('id');
-            $phone = $this->input->post('phone');
-            $email = $this->input->post('email');
-            $name = $this->input->post('name');
-            $password =$this->input->post('password');
-            $hash = $this->bcrypt->hash_password($password);
-            $insert = array(
-                'email' => $email, 
-                'phone' => $phone, 
-                'password' => $hash, 
-                'status' => 1,
-                'name' => $name, 
-            );
-            if($this->m_student->update($insert,$id)){
-                $this->session->set_flashdata('success', 'Student updated Successfully');
+            $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('phone', 'phone', 'trim|required|numeric');
+            if ($this->form_validation->run() == true) {
+
+                    $id     = $this->input->post('id');
+                    $phone = $this->input->post('phone');
+                    $email = $this->input->post('email');
+                    $name = $this->input->post('name');
+                    $password =$this->input->post('password');
+                    $hash = $this->bcrypt->hash_password($password);
+                    $insert = array(
+                        'email' => $email, 
+                        'phone' => $phone, 
+                        'password' => $hash, 
+                        'status' => 1,
+                        'name' => $name, 
+                    );
+                    if($this->m_student->update($insert,$id)){
+                        $this->session->set_flashdata('success', 'Student updated Successfully');
+                        redirect('student-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
+                    }
+                    else{
+                        $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+                        redirect('student-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
+                    }
+
+            }else{
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
                 redirect('student-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
             }
-            else{
-                $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
-                redirect('student-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
-            }
+
+            
         }else{
             $id = $this->encryption_url->safe_b64decode($id);
             $data['result']= $this->m_student->edit($id);

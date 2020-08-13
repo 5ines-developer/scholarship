@@ -37,13 +37,12 @@ class auth extends CI_Controller {
         );
 
         if($this->session->userdata('scinds') != ''){ redirect('dashboard','refresh'); }
-        if($this->input->post()){
-
+        if(!empty($this->input->post())){
             $inputCaptcha = $this->input->post('captcha');
             $sessCaptcha = $this->session->userdata('captchaCode');
             if($sessCaptcha == $inputCaptcha){
 
-                $this->form_validation->set_rules('email', 'Email Id', 'required');
+                $this->form_validation->set_rules('email', 'Email Id', 'required|valid_email');
                 $this->form_validation->set_rules('psw', 'Password', 'trim|required|min_length[5]');
                 if ($this->form_validation->run() == True){
                     $email = $this->input->post('email'); 
@@ -103,9 +102,14 @@ class auth extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-        $mobile = $this->input->post('mobile');
-        $output = $this->m_auth->mobile_check($mobile);
-        echo  $output;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $mobile = $this->input->post('mobile');
+            $output = $this->m_auth->mobile_check($mobile);
+            echo  $output;
+        }else{
+            echo null;
+        }
     }
 
     /**
@@ -120,9 +124,13 @@ class auth extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-        $email = $this->input->post('email');
-        $output = $this->m_auth->email_check($email);
-        echo  $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $this->input->post('email');
+            $output = $this->m_auth->email_check($email);
+            echo  $output;
+        }else{
+            echo null;
+        }
     }
 
     /**
@@ -177,7 +185,7 @@ class auth extends CI_Controller {
         );
 
         if($this->session->userdata('scinds') != ''){ redirect('dashboard','refresh'); }
-        if($this->input->post()){
+        if(!empty($this->input->post())){
            $this->regSubmit();
         }else{
             $data['title'] = 'Industry Registration';
@@ -217,15 +225,25 @@ class auth extends CI_Controller {
             $pos = strrpos($value['name'], '.');
             $fl = substr($value['name'], $pos+1);
             if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
-                $this->sc_check->sus_mail($insert['email']);
+                $this->sc_check->sus_mail($this->input->post('email'));
+                $this->session->set_flashdata('error', 'Invalid file types.');
+                redirect('register');
                 die();
            }
         }
 
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {  $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+            redirect('register'); }
+
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('phone', 'Phone number', 'trim|required|numeric');
-        $this->form_validation->set_rules('address', 'Address', 'trim|required|alpha_dash');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required|alpha_numeric_spaces');
+
+        $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('company', 'Company', 'trim|required|alpha_numeric_spaces');
+
         if ($this->form_validation->run() == TRUE ) {
 
 
@@ -388,17 +406,23 @@ class auth extends CI_Controller {
        $key = $this->input->post('key');
        $this->load->helper('string');
 
-        $data = array(
-           'password'    => $password, 
-           'ref_id' => random_string('alnum', 30), 
-           'status' => 1, 
-        );
-        if($this->m_auth->setPassword($data, $key)){
-            $this->session->set_flashdata('success', 'Email verification successfully completed.<br> Now you can login.');
-            redirect('/','refresh');
-        }
-        else{
-            $this->session->set_flashdata('error', 'Activation link has been expired');
+       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $data = array(
+               'password'    => $password, 
+               'ref_id' => random_string('alnum', 30), 
+               'status' => 1, 
+            );
+            if($this->m_auth->setPassword($data, $key)){
+                $this->session->set_flashdata('success', 'Email verification successfully completed.<br> Now you can login.');
+                redirect('/','refresh');
+            }
+            else{
+                $this->session->set_flashdata('error', 'Activation link has been expired');
+                redirect('register','refresh');
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('register','refresh');
         }
     }
@@ -511,28 +535,35 @@ class auth extends CI_Controller {
         );
 
         if ($this->session->userdata('stlid') == '') {
-            $this->security->xss_clean($_POST);
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
-            $this->form_validation->set_rules('cnpassword', 'Password Confirmation', 'trim|required|matches[password]');
-            if ($this->form_validation->run() == true) {
-                $ref_id = random_string('alnum', 16);
-                $rid = $this->input->post('rid');
-                $npass = $this->input->post('password');
-                $datas = array(
-                    'ref_id' => $ref_id,
-                    'password' => $this->bcrypt->hash_password($npass),
-                );
-                if ($this->m_auth->setPassword($datas, $rid)) {
-                    $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
-                    redirect('login');
-                } else {
-                    $this->session->set_flashdata('error', 'Something went wrong, Please try again Later!');
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $this->security->xss_clean($_POST);
+                $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
+                $this->form_validation->set_rules('cnpassword', 'Password Confirmation', 'trim|required|matches[password]');
+                if ($this->form_validation->run() == true) {
+                    $ref_id = random_string('alnum', 16);
+                    $rid = $this->input->post('rid');
+                    $npass = $this->input->post('password');
+                    $datas = array(
+                        'ref_id' => $ref_id,
+                        'password' => $this->bcrypt->hash_password($npass),
+                    );
+                    if ($this->m_auth->setPassword($datas, $rid)) {
+                        $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
+                        redirect('login');
+                    } else {
+                        $this->session->set_flashdata('error', 'Something went wrong, Please try again Later!');
+                        redirect('forgot-password');
+                    }
+                }else{
+                    $error = validation_errors();
+                    $this->session->set_flashdata('error',  $error );
                     redirect('forgot-password');
                 }
             }else{
-                $error = validation_errors();
-                $this->session->set_flashdata('error',  $error );
-                redirect('forgot-password');
+                $this->session->set_flashdata('error', 'Some error occured, please try again!');
+                redirect('dashboard','refresh');
+
             }
         }else{
             redirect('dashboard','refresh');
@@ -556,7 +587,7 @@ class auth extends CI_Controller {
 
 
         if($this->session->userdata('scinds') != ''){ redirect('dashboard','refresh'); }
-        if($this->input->post()){
+        if(!empty($this->input->post())){
            $this->submitRequest();
         }else{
             $data['title'] = 'Industry Add Request';
@@ -574,55 +605,67 @@ class auth extends CI_Controller {
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        
-        $insert = array(
-            'email'          => $this->input->post('email'),
-            'mobile'         => $this->input->post('phone'),
-            'talluk'         => $this->input->post('taluk'),
-            'district'       => $this->input->post('district'),
-            'address'        => $this->input->post('address'),
-            'company'       => $this->input->post('company'),
-            'act'           => $this->input->post('act'),
-        );
-        
-        foreach ($_FILES as $key => $value) {
-            $pos = strrpos($value['name'], '.');
-            $fl = substr($value['name'], $pos+1);
-            if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
-                $this->sc_check->sus_mail($insert['email']);
-                die();
-           }
-        }
 
-        if ((empty($_FILES['reg_doc']['tmp_name']))) {
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
-            redirect('register');
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('phone', 'Phone number', 'trim|required|numeric');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required|alpha_numeric_spaces');
+
+        $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('company', 'Company', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('act', 'Act', 'trim|required|alpha_numeric_spaces');
+
+        if ($this->form_validation->run() == TRUE ) {
+                $insert = array(
+                    'email'          => $this->input->post('email'),
+                    'mobile'         => $this->input->post('phone'),
+                    'talluk'         => $this->input->post('taluk'),
+                    'district'       => $this->input->post('district'),
+                    'address'        => $this->input->post('address'),
+                    'company'       => $this->input->post('company'),
+                    'act'           => $this->input->post('act'),
+                );
+                foreach ($_FILES as $key => $value) {
+                    $pos = strrpos($value['name'], '.');
+                    $fl = substr($value['name'], $pos+1);
+                    if($fl !='png' && $fl !='pdf' && $fl!='jpg' && $fl !='jpeg' && $fl !='svg' && $fl !='gif' && $fl !='JPG' && $fl !='JPEG' && $fl !='PNG' && $fl !='png'){
+                        $this->sc_check->sus_mail($insert['email']);
+                        die();
+                   }
+                }
+
+                if ((empty($_FILES['reg_doc']['tmp_name']))) {
+                    $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+                    redirect('register');
+                }else{
+                    $config['upload_path'] = './reg-doc';
+                    $config['allowed_types'] = 'jpg|png|jpeg';
+                    $config['max_width'] = 0;
+                    $config['encrypt_name'] = true;
+                    $this->load->library('upload');
+                    $this->upload->initialize($config);
+                    if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+                    $this->upload->do_upload('reg_doc');
+                    $upload_data = $this->upload->data();
+                    $reg = 'reg-doc/'.$upload_data['file_name'];
+
+                    $insert['register_doc'] = $reg;
+                }
+                $output = $this->m_auth->addRequest($insert);
+                if(!empty($output)){
+                    $this->sendRequest($insert);
+                    $this->session->set_flashdata('success', 'Your request has been submitted successfully to our team.');
+                }else{
+                    $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
+                }
+
         }else{
-            $config['upload_path'] = './reg-doc';
-            $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_width'] = 0;
-            $config['encrypt_name'] = true;
-            $this->load->library('upload');
-            $this->upload->initialize($config);
-            if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-            $this->upload->do_upload('reg_doc');
-            $upload_data = $this->upload->data();
-            $reg = 'reg-doc/'.$upload_data['file_name'];
-
-            $insert['register_doc'] = $reg;
+            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
         }
-        $output = $this->m_auth->addRequest($insert);
-
-        
-        if(!empty($output)){
-            $this->sendRequest($insert);
-            $this->session->set_flashdata('success', 'Your request has been submitted successfully to our team.');
-        }else{
-            $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
-        }
-
         redirect('company-request');
-
     }
 
     public function sendRequest($insert = null)

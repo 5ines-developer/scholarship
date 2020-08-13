@@ -11,7 +11,7 @@
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
 </head>
 
 <body>
@@ -127,6 +127,7 @@ $(document).ready(function(){
                     this.emailError='';
                     const formData = new FormData();
                     formData.append('email',this.email);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url('auth/emailcheck') ?>',formData)
                     .then(response =>{
                         if (response.data == '') {

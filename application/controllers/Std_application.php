@@ -24,7 +24,7 @@ class Std_application extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
 	/**
@@ -42,6 +42,7 @@ class Std_application extends CI_Controller {
 	        'name' => $this->security->get_csrf_token_name(),
 	        'hash' => $this->security->get_csrf_hash()
 	    );
+	    
 		if (!empty($this->check) && (!empty($item)) ) {
 			$data['scholls'] = $this->m_stdapplication->getscholls($item); //get current institution details
 			$this->load->view('student/re_application', $data, FALSE);
@@ -167,6 +168,9 @@ class Std_application extends CI_Controller {
 	        'name' => $this->security->get_csrf_token_name(),
 	        'hash' => $this->security->get_csrf_hash()
 	    );
+
+	    if ($_SERVER['REQUEST_METHOD'] != 'POST') { echo  null; die(); }
+
     	foreach ($_FILES as $key => $value) {
     		$pos = strrpos($value['name'], '.');
     		$fl = substr($value['name'], $pos+1);
@@ -180,12 +184,12 @@ class Std_application extends CI_Controller {
         $this->form_validation->set_rules('sfather', 'Father Name', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('smother', 'Mother Name', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('saddress', 'Student Address', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('gender', 'Gender', 'trim|required');
-        $this->form_validation->set_rules('ipclass', 'Present Class', 'trim|required');
-        $this->form_validation->set_rules('ipin', 'Institute Pin Code', 'trim|required');
-        $this->form_validation->set_rules('iname', 'Institute Name', 'trim|required');
-        $this->form_validation->set_rules('italluk', 'Institute Talluk', 'trim|required');
-        $this->form_validation->set_rules('idistrict', 'Institute district', 'trim|required');
+        $this->form_validation->set_rules('gender', 'Gender', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('ipclass', 'Present Class', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('ipin', 'Institute Pin Code', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('iname', 'Institute Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('italluk', 'Institute Talluk', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('idistrict', 'Institute district', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('cnumber', 'Caste Certificate Number', 'trim|alpha_numeric');
         $this->form_validation->set_rules('pclass', 'Previous Class', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('pmarks', 'Previous ClassMarks', 'trim|required|alpha_numeric_spaces');

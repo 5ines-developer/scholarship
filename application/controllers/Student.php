@@ -12,7 +12,7 @@ class Student extends CI_Controller {
         $this->load->model('m_student');
         $this->load->library('sc_check');
         $this->load->helper('captcha');
-        header_remove("X-Powered-By"); 
+        header_remove("X-Powered-By");
         header("X-Frame-Options: DENY");
         header("X-XSS-Protection: 1; mode=block");
         header("X-Content-Type-Options: nosniff");
@@ -23,7 +23,7 @@ class Student extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
     }
 
 
@@ -66,10 +66,14 @@ class Student extends CI_Controller {
     **/
     public function mobile_check($value='')
     {
-        $this->security->xss_clean($_POST);
-        $mobile = $this->input->post('mobile');
-        $output = $this->m_student->mobile_check($mobile);
-        echo  $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->security->xss_clean($_POST);
+            $mobile = $this->input->post('mobile');
+            $output = $this->m_student->mobile_check($mobile);
+            echo  $output;
+        }else{
+            echo true;
+        }
     }
 
     /**
@@ -78,14 +82,18 @@ class Student extends CI_Controller {
     **/
     public function emailcheck($value='')
     {
-        $csrf = array(
-            'name' => $this->security->get_csrf_token_name(),
-            'hash' => $this->security->get_csrf_hash()
-        );
-        $this->security->xss_clean($_POST);
-        $email = $this->input->post('email');
-        $output = $this->m_student->email_check($email);
-        echo  $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+            $email = $this->input->post('email');
+            $output = $this->m_student->email_check($email);
+            echo  $output;
+        }else{
+            echo true;
+        }
     }
     
     
@@ -102,81 +110,100 @@ class Student extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
         if ($this->session->userdata('stlid') == '') {
-        $this->form_validation->set_rules('email', 'Email', 'is_unique[student.email]',array('is_unique' => 'This %s is already exist'));
-        $this->form_validation->set_rules('mobile', 'Mobile No.', 'required|is_unique[student.phone]',array('is_unique' => 'This %s is already exist'));
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
-        $this->form_validation->set_rules('cnpassword', 'Password Confirmation', 'trim|required|matches[password]');
-        if ($this->form_validation->run() == false) {
-            $error = validation_errors();
-            $this->session->set_flashdata('error', $error);
-            redirect('student/register','refresh');
-        }else{
+            $this->form_validation->set_rules('email', 'Email', 'valid_email|is_unique[student.email]',array('is_unique' => 'This %s is already exist'));
+            $this->form_validation->set_rules('mobile', 'Mobile No.', 'required|is_unique[student.phone]|numeric|exact_length[10]',array('is_unique' => 'This %s is already exist'));
+            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
+            $this->form_validation->set_rules('cnpassword', 'Password Confirmation', 'trim|required|matches[password]');
+            if ($this->form_validation->run() == false) {
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                redirect('student/register','refresh');
+            }else{
 
-            $insert = array(
-                'email'     =>  $this->input->post('email'), 
-                'phone'     =>  $this->input->post('mobile'),
-                'password'  =>  $this->bcrypt->hash_password($this->input->post('password')),
-                'otp'       =>  random_string('nozero',6), 
-                'ref_id'    =>  random_string('alnum',20),
-            );
+                $insert = array(
+                    'email'     =>  $this->input->post('email'), 
+                    'phone'     =>  $this->input->post('mobile'),
+                    'password'  =>  $this->bcrypt->hash_password($this->input->post('password')),
+                    'otp'       =>  random_string('nozero',6), 
+                    'ref_id'    =>  random_string('alnum',20),
+                );
 
-           $verifyMethod = $this->input->post('verify');
-            if(!empty($insert['email'])){
-                $name = explode("@",$insert['email']);
-                $insert['name'] =  $name[0];
-            }
+               $verifyMethod = $this->input->post('verify');
+                if(!empty($insert['email'])){
+                    $name = explode("@",$insert['email']);
+                    $insert['name'] =  $name[0];
+                }
 
-            if ($this->m_student->register($insert)) {
-                if ($verifyMethod == '1') {
-                    if($this->studentOtp($insert))
-                    {
-                        $this->session->set_flashdata('success', 'We have sent a OTP to your mobile number '.$insert['phone'].' <br> Enter the OTP and activate your account.');
-                        $this->load->view('student/otp-verify',$insert);
+                if ($this->m_student->register($insert)) {
+                    if ($verifyMethod == '1') {
+                        if($this->studentOtp($insert))
+                        {
+                            $this->session->set_flashdata('success', 'We have sent a OTP to your mobile number '.$insert['phone'].' <br> Enter the OTP and activate your account.');
+                            $this->load->view('student/otp-verify',$insert);
+                        }else{
+                            $this->db->where('ref_id', $insert['ref_id'])->delete('student');
+                            $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
+                            redirect('student/register','refresh');
+                        }
                     }else{
-                        $this->db->where('ref_id', $insert['ref_id'])->delete('student');
-                        $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
+                        if($this->sendregister($insert))
+                        {
+                            $this->session->set_flashdata('success', 'We have sent a activation link to your mail id <br> please verify and activate your account');
+                        }else{
+                            $this->db->where('ref_id', $insert['ref_id'])->delete('student');
+                            $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
+                        }
                         redirect('student/register','refresh');
                     }
                 }else{
-                    if($this->sendregister($insert))
-                    {
-                        $this->session->set_flashdata('success', 'We have sent a activation link to your mail id <br> please verify and activate your account');
-                    }else{
-                        $this->db->where('ref_id', $insert['ref_id'])->delete('student');
-                        $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
-                    }
+                    $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
                     redirect('student/register','refresh');
                 }
-            }else{
-                $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
-                redirect('student/register','refresh');
+                
+               
             }
-            
-           
-        }
+            }else{
+                redirect('student/profile','refresh');
+            }
         }else{
-            redirect('student/profile','refresh');
+            $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
+            redirect('student/register','refresh');
         }
     }
 
     public function otpVerify($value='')
     {
-        $refid = $this->input->post('refid');
-        $phone = $this->input->post('phone');
-        $otp = $this->input->post('otp');
-        $output = $this->m_student->otpVerify($refid,$phone,$otp);
-        echo $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $refid = $this->input->post('refid');
+            $phone = $this->input->post('phone');
+            $otp = $this->input->post('otp');
+            $output = $this->m_student->otpVerify($refid,$phone,$otp);
+            echo $output;
+        }else{
+            echo null;
+        }
     }
 
 
     public function resendOtp($value='')
     {
-        $refid  = $this->input->post('refid');
-        $phone  = $this->input->post('phone');
-        $otp    = random_string('nozero',6);
-        $output = $this->m_student->resendOtp($refid,$phone,$otp);
-        echo $output;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $refid  = $this->input->post('refid');
+            $phone  = $this->input->post('phone');
+            $otp    = random_string('nozero',6);
+            $output = $this->m_student->resendOtp($refid,$phone,$otp);
+            $data = array(
+                'phone' => $phone, 
+                'otp' => $otp, 
+            );
+            $this->studentOtp($data);
+            echo $output;
+        }else{
+            echo null;
+        }
     }
 
 
@@ -261,49 +288,55 @@ class Student extends CI_Controller {
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()
         );
-        if(!empty($this->input->post())){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $inputCaptcha = $this->input->post('captcha');
-            $sessCaptcha = $this->session->userdata('captchaCode');
+            if(!empty($this->input->post())){
 
-            if($sessCaptcha == $inputCaptcha){
-                if ($this->session->userdata('stlid') == '') {
-                $this->form_validation->set_rules('email', 'Email Id', 'required');
-                $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[5]');
-                    if ($this->form_validation->run() == True){
-                        $email = $this->input->post('email'); 
-                        $password = $this->input->post('pswd');
-                        if($result = $this->m_student->can_login($email, $password)) 
-                        {
-                            $session_data = array(
-                                'slmail' => $email,
-                                'stlid'  => $result['id'],
-                                'stqstn' => $result['qstn_status'],
-                            );
-                            $this->session->set_userdata($session_data);
-                            $this->sc_check->loginSuccess();
-                            redirect('student/dashboard'); 
-                        } 
-                        else 
-                        {
-                            $this->sc_check->loginError($email);
-                            $this->session->set_flashdata('error', 'Invalid Username or Password'); 
-                            redirect('student/login');
+                $inputCaptcha = $this->input->post('captcha');
+                $sessCaptcha = $this->session->userdata('captchaCode');
+
+                if($sessCaptcha == $inputCaptcha){
+                    if ($this->session->userdata('stlid') == '') {
+                    $this->form_validation->set_rules('email', 'Email Id', 'required');
+                    $this->form_validation->set_rules('pswd', 'Password', 'trim|required|min_length[5]');
+                        if ($this->form_validation->run() == True){
+                            $email = $this->input->post('email'); 
+                            $password = $this->input->post('pswd');
+                            if($result = $this->m_student->can_login($email, $password)) 
+                            {
+                                $session_data = array(
+                                    'slmail' => $email,
+                                    'stlid'  => $result['id'],
+                                    'stqstn' => $result['qstn_status'],
+                                );
+                                $this->session->set_userdata($session_data);
+                                $this->sc_check->loginSuccess();
+                                redirect('student/dashboard'); 
+                            } 
+                            else 
+                            {
+                                $this->sc_check->loginError($email);
+                                $this->session->set_flashdata('error', 'Invalid Username or Password'); 
+                                redirect('student/login');
+                            }
+                        }else{
+                            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                            redirect('student/login','refresh');
                         }
-                    }else{
-                        $error = validation_errors();
-                        $this->session->set_flashdata('error', $error);
-                        redirect('student/login','refresh');
-                    }
 
+                    }else{
+                        redirect('student/profile','refresh');
+                    }
                 }else{
-                    redirect('student/profile','refresh');
+                    $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
+                    redirect('student/login','refresh');
                 }
             }else{
-                $this->session->set_flashdata('error', 'Please Enter the Correct captcha text');
                 redirect('student/login','refresh');
             }
         }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('student/login','refresh');
         }
     }
@@ -331,24 +364,26 @@ class Student extends CI_Controller {
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()
         );
-        if(!empty($this->input->post())){
-            $qstn   = $this->input->post('qstn');
-            $answer = $this->input->post('answer');
-            $stdid  = $this->session->userdata('stlid');
-            
-            if($this->m_student->securityqstn($qstn, $answer, $stdid)){
-                redirect('student/profile','refresh');
-           }else{
-            $this->session->set_flashdata('error', 'Something error occured, please try again!');
-            redirect('student/dashboard','refresh');
-           }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!empty($this->input->post())){
+                $qstn   = $this->input->post('qstn');
+                $answer = $this->input->post('answer');
+                $stdid  = $this->session->userdata('stlid');
+                
+                if($this->m_student->securityqstn($qstn, $answer, $stdid)){
+                    redirect('student/profile','refresh');
+               }else{
+                $this->session->set_flashdata('error', 'Something error occured, please try again!');
+                redirect('student/dashboard','refresh');
+               }
+            }else{
+                $this->session->set_flashdata('error', 'Something error occured, please try again!');
+                redirect('student/dashboard','refresh');
+            }
         }else{
-            $this->session->set_flashdata('error', 'Something error occured, please try again!');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('student/dashboard','refresh');
         }
-
-
-        
     }
 
     /**
@@ -378,6 +413,8 @@ class Student extends CI_Controller {
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()
         );
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
         if ($this->session->userdata('stlid') == '') {
             $data['title'] = 'Forgot password';
             $input = $this->input->post();
@@ -403,6 +440,11 @@ class Student extends CI_Controller {
             }
         }else{
             redirect('student/profile','refresh');
+        }
+
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            redirect('student/forgot-password','refresh');
         }
     }
 
@@ -476,32 +518,37 @@ class Student extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-        if ($this->session->userdata('stlid') == '') {
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
-            $this->form_validation->set_rules('cnpassword', 'Password Confirmation', 'trim|required|matches[password]');
-            if ($this->form_validation->run() == true) {
-                $ref_id = random_string('alnum', 16);
-                $rid = $this->input->post('rid');
-                $npass = $this->bcrypt->hash_password($this->input->post('password'));
-                $datas = array(
-                    'ref_id' => $ref_id,
-                    'password' => $npass,
-                );
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($this->session->userdata('stlid') == '') {
+                $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
+                $this->form_validation->set_rules('cnpassword', 'Password Confirmation', 'trim|required|matches[password]');
+                if ($this->form_validation->run() == true) {
+                    $ref_id = random_string('alnum', 16);
+                    $rid = $this->input->post('rid');
+                    $npass = $this->bcrypt->hash_password($this->input->post('password'));
+                    $datas = array(
+                        'ref_id' => $ref_id,
+                        'password' => $npass,
+                    );
 
-                if ($this->m_student->setPassword($datas, $rid)) {
-                    $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
-                    redirect('student/login');
-                } else {
-                    $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method reset your password');
+                    if ($this->m_student->setPassword($datas, $rid)) {
+                        $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
+                        redirect('student/login');
+                    } else {
+                        $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method reset your password');
+                        redirect('student/forgot-password');
+                    }
+                }else{
+                    $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
                     redirect('student/forgot-password');
                 }
             }else{
-                $error = validation_errors();
-                $this->session->set_flashdata('error',  $error );
-                redirect('student/forgot-password');
+                redirect('student/profile','refresh');
             }
         }else{
-            redirect('student/profile','refresh');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            redirect('student/forgot-password','refresh');
         }
     }
 
@@ -518,19 +565,24 @@ class Student extends CI_Controller {
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()
         );
-        if(!empty($this->input->post())){
-            $data['qstn']    =  $this->input->post('qstn');
-            $data['ans']     =  $this->input->post('ans');
-            $data['mobile']  =  $this->input->post('mobile');
-            if($this->m_student->verifyQstns($data['qstn'],$data['mobile'],$data['ans']))
-            {
-                $this->load->view('student/qstn-resetpass', $data, FALSE);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!empty($this->input->post())){
+                $data['qstn']    =  $this->input->post('qstn');
+                $data['ans']     =  $this->input->post('ans');
+                $data['mobile']  =  $this->input->post('mobile');
+                if($this->m_student->verifyQstns($data['qstn'],$data['mobile'],$data['ans']))
+                {
+                    $this->load->view('student/qstn-resetpass', $data, FALSE);
+                }else{
+                    $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method to get a reset link on your mail');
+                    redirect('student/forgot-password');
+                }
             }else{
-                $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method to get a reset link on your mail');
-                redirect('student/forgot-password');
+               redirect('student/forgot-password');
             }
         }else{
-           redirect('student/forgot-password');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            redirect('student/forgot-password','refresh');
         }
     }
 
@@ -542,21 +594,26 @@ class Student extends CI_Controller {
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()
         );
-        if(!empty($this->input->post())){
-            $phone      = $this->input->post('phone');
-            $password   = $this->bcrypt->hash_password($this->input->post('password'));
-            $qstn       = $this->input->post('qstn');
-            $ans        = $this->input->post('ans');
-            $output = $this->m_student->qst_resetpass($phone,$password);
-            if (!empty($output)) {
-                $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
-                redirect('student/login');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!empty($this->input->post())){
+                $phone      = $this->input->post('phone');
+                $password   = $this->bcrypt->hash_password($this->input->post('password'));
+                $qstn       = $this->input->post('qstn');
+                $ans        = $this->input->post('ans');
+                $output = $this->m_student->qst_resetpass($phone,$password);
+                if (!empty($output)) {
+                    $this->session->set_flashdata('success', 'Your password has been updated successfully, <br> you can login now with the new password!');
+                    redirect('student/login');
+                }else{
+                    $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method to get a reset link on your mail');
+                    redirect('student/forgot-password');
+                }
             }else{
-                $this->session->set_flashdata('error', 'Something went wrong, Please try again Later! <br> or use another method to get a reset link on your mail');
-                redirect('student/forgot-password');
+               redirect('student/forgot-password');
             }
         }else{
-           redirect('student/forgot-password');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            redirect('student/forgot-password','refresh');
         }
     }
 

@@ -68,9 +68,7 @@ if(!function_exists('limitRequests')) {
 
             $requests = $CI->cache->get($cache_key);
 
-            echo "<pre>";
-            print_r ($requests);
-            echo "</pre>";exit();
+            
             if($requests > $max_requests){
                 header("HTTP/1.0 429 Too Many Requests");
                 exit;

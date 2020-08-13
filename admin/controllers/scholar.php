@@ -18,6 +18,8 @@ class Scholar extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        
     }
 
     public function index($district='')
@@ -138,16 +140,22 @@ class Scholar extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-        
-        $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
-        $id = $this->input->post('id');
-        if($this->m_scholar->approval($id)){
-            $this->approveMail($id);
-            $this->studentSms($msg,$id);
-            $data = array('status' => 1, 'msg' => 'Scholarship Approved successfully.');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
+            $id = $this->input->post('id');
+            if($this->m_scholar->approval($id)){
+                $this->approveMail($id);
+                $this->studentSms($msg,$id);
+                $data = array('status' => 1, 'msg' => 'Scholarship Approved successfully.');
+            }else{
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
+            }
+
         }else{
             $this->output->set_status_header('400');
-            $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
+              $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
         }
         echo json_encode($data);
     }
@@ -164,6 +172,8 @@ class Scholar extends CI_Controller {
         $this->security->xss_clean($_POST);
 
        $id = $this->input->post('id');
+       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
        $data = array(
            'reject_reason' => $this->input->post('reason'),
            'status' => 2,
@@ -174,6 +184,11 @@ class Scholar extends CI_Controller {
         }else{
             $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
             redirect('applications/detail/'.$this->encryption_url->safe_b64encode($id),'refresh');
+        }
+
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            redirect('applications?item=rejected','refresh');
         }
     }
 
@@ -188,19 +203,23 @@ class Scholar extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
-       $id = $this->input->post('ids');
-       $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
-       if(!empty($id)){
-        for($i=0; $i<count($id); $i++){
-            $output = $this->m_scholar->approveSelect($id[$i]);
-            if(!empty($output)){
-                $this->approveMail($id[$i]);
-                $this->studentSms($msg,$id[$i]);
-            }
-            }
-         }
-        $data = 'Applications approved Successfully';
-        echo json_encode($data);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+           $id = $this->input->post('ids');
+           $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
+           if(!empty($id)){
+            for($i=0; $i<count($id); $i++){
+                $output = $this->m_scholar->approveSelect($id[$i]);
+                if(!empty($output)){
+                    $this->approveMail($id[$i]);
+                    $this->studentSms($msg,$id[$i]);
+                }
+                }
+             }
+            $data = 'Applications approved Successfully';
+            echo json_encode($data);
+        }else{
+            echo null;
+        }
     }
 
 

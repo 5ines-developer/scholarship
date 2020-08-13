@@ -23,7 +23,7 @@ class Fees extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         
     }
 
@@ -37,31 +37,43 @@ class Fees extends CI_Controller {
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
+        	$data['title'] = 'Add Fees';
+            $this->load->helper('string');
+            if(!empty($this->input->post())){
 
-    	$data['title'] = 'Add Fees';
-        $this->load->helper('string');
-        if($this->input->post()){
-        	$grad   = $this->input->post('graduation', true);
-            $fees  = $this->input->post('fees_am', true);
-            $data   = array(
-                'class'         => $grad, 
-                'amount'        => $fees,
-                'added_by' 		=> $this->adid,
-                'date'          => date('Y'),
-            );
-            if($this->m_fees->add($data)){
-                $this->session->set_flashdata('success', 'Fees Amount added Successfully');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('graduation', 'graduation', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('fees_am', 'fees_am', 'trim|required|alpha_numeric_spaces');
+            if ($this->form_validation->run() == True){
+
+                    $grad   = $this->input->post('graduation', true);
+                $fees  = $this->input->post('fees_am', true);
+                $data   = array(
+                    'class'         => $grad, 
+                    'amount'        => $fees,
+                    'added_by'      => $this->adid,
+                    'date'          => date('Y'),
+                );
+                if($this->m_fees->add($data)){
+                    $this->session->set_flashdata('success', 'Fees Amount added Successfully');
+                }
+                else{
+                    $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+                }
+
+                redirect('fees/manage','refresh');
+
+            }else{
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                $data['grad'] = $this->m_fees->getGrad();
+                $this->load->view('fees/add', $data, FALSE);
             }
-            else{
-                $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+
+            }else{
+            	$data['grad'] = $this->m_fees->getGrad();
+        		$this->load->view('fees/add', $data, FALSE);
             }
-
-            redirect('fees/manage','refresh');
-
-        }else{
-        	$data['grad'] = $this->m_fees->getGrad();
-    		$this->load->view('fees/add', $data, FALSE);
-        }
     }
 
     public function manage($id='')
@@ -91,23 +103,39 @@ class Fees extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
+        $id  = $this->input->post('id', true);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    		$grad   = $this->input->post('graduation', true);
-            $fees  = $this->input->post('fees_am', true);
-            $id  = $this->input->post('id', true);
-            $data   = array(
-                'class'         => $grad, 
-                'amount'        => $fees,
-                'added_by' 		=> $this->adid,
-            );
-            if($this->m_fees->update($data,$id)){
-                $this->session->set_flashdata('success', 'Fees Amount Updated Successfully');
-            }
-            else{
-                $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
-            }
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('graduation', 'graduation', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('fees_am', 'fees_am', 'trim|required|alpha_numeric_spaces');
+            if ($this->form_validation->run() == True){
+            		$grad   = $this->input->post('graduation', true);
+                    $fees  = $this->input->post('fees_am', true);
+                    $data   = array(
+                        'class'         => $grad, 
+                        'amount'        => $fees,
+                        'added_by' 		=> $this->adid,
+                    );
+                    if($this->m_fees->update($data,$id)){
+                        $this->session->set_flashdata('success', 'Fees Amount Updated Successfully');
+                    }
+                    else{
+                        $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+                    }
 
-            redirect('fees/edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
+                }else{
+
+                    $this->form_validation->set_error_delimiters('', '<br>');
+                    $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                    $data['grad'] = $this->m_fees->getGrad();
+                    $this->load->view('fees/add', $data, FALSE);
+                }
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+        }
+
+        redirect('fees/edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
     }
 
     public function delete($id='')

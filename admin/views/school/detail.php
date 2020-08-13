@@ -15,7 +15,7 @@ $this->load->library('encryption');
     <!-- data table -->
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/datatables.min.css ">
     <link rel="stylesheet " href="<?php echo $this->config->item('web_url') ?>assets/dataTable/button/css/buttons.dataTables.css ">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
 </head>
 
 <body>

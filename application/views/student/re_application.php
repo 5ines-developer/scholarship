@@ -11,7 +11,7 @@ $this->load->model('m_stdapplication');
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
 
 </head>

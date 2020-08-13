@@ -7,7 +7,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link  rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/material-icons.css">
 </head>
 <body>
     <div id="app">
@@ -154,11 +154,11 @@
             },
             checkForm() {
                 if ((this.mobileError == '') && (this.emailError == '')) {  
-                    if (grecaptcha.getResponse() == '') {
-                        this.captcha = 'Captcha is required';
-                    } else {                 
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {                 
                         this.$refs.form.submit();
-                    }
+                    // }
                 } else {}
             }
             

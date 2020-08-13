@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         
     }
     
@@ -62,14 +62,19 @@ class Dashboard extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
-       $id = $this->input->post('id');
-       $data = array(
-           'reject_reason' => $this->input->post('reason'),
-           'status' => 2,
-        );
-        if($this->m_dashboard->reject($data, $id)){
-            $this->session->set_flashdata('success', 'Application rejected');
-            redirect('reject-list','refresh');
+        $id = $this->input->post('id');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+           $data = array(
+               'reject_reason' => $this->input->post('reason'),
+               'status' => 2,
+            );
+            if($this->m_dashboard->reject($data, $id)){
+                $this->session->set_flashdata('success', 'Application rejected');
+                redirect('reject-list','refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
+                redirect('student/'.$id,'refresh');
+            }
         }else{
             $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
             redirect('student/'.$id,'refresh');
@@ -107,22 +112,31 @@ class Dashboard extends CI_Controller {
     // approve application
     public function approval($var = null)
     {
-            $csrf = array(
-                'name' => $this->security->get_csrf_token_name(),
-                'hash' => $this->security->get_csrf_hash()
-            );
-            $this->security->xss_clean($_POST);
-    
-        if($this->m_dashboard->approval($this->input->post('id'))){
-            $data = array('status' => 1, 'msg' => 'Approved successfully.');
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
+            if($this->m_dashboard->approval($this->input->post('id'))){
+                $data = array('status' => 1, 'msg' => 'Approved successfully.');
+            }else{
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
+            }
+           
+                $this->sendmailApplication($this->input->post('id'));
+                $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to industry for verification, we will notify the status via sms';
+                $this->studentSms($msg,$this->input->post('id'));
+
         }else{
             $this->output->set_status_header('400');
             $data = array('status' => 0, 'msg' => 'Server error occurred. Please try again');
         }
+
         echo json_encode($data);
-        $this->sendmailApplication($this->input->post('id'));
-        $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to industry for verification, we will notify the status via sms';
-        $this->studentSms($msg,$this->input->post('id'));
     }
 
     // Send a application pdf file

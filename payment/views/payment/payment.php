@@ -8,7 +8,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
     <link href="<?php echo $this->config->item('web_url') ?>assets/css/select2.css" rel="stylesheet" />
 
     <!-- scripts -->

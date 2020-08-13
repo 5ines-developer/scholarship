@@ -21,7 +21,7 @@ class Staffs extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         $this->load->library('sc_check');
     }
 
@@ -47,7 +47,7 @@ class Staffs extends CI_Controller {
         $this->load->helper('string');
 
         $this->security->xss_clean($_POST);
-            if($this->input->post()){
+            if(!empty($this->input->post())){
                 $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[school_auth.email]');
             $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric|max_length[10]|min_length[10]');
@@ -138,38 +138,46 @@ class Staffs extends CI_Controller {
     public function block($value='')
     {
 
-            $csrf = array(
-                'name' => $this->security->get_csrf_token_name(),
-                'hash' => $this->security->get_csrf_hash()
-            );
-            $this->security->xss_clean($_GET);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
 
         $id = $this->input->get('id');
         $status = '3';
 
-        if($this->M_staffs->stasChange($id,$status)){
-            $this->session->set_flashdata('success', 'Staff Blocked Successfully');
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if($this->M_staffs->stasChange($id,$status)){
+                $this->session->set_flashdata('success', 'Staff Blocked Successfully');
+            }else{
+                $this->session->set_flashdata('error', 'Something went wrong please try again!');
+            }
         }else{
-            $this->session->set_flashdata('Error', 'Something went wrong please try again!');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
         }
+
        redirect('staffs','refresh');
     }
 
     public function unblock($value='')
     {
-
         $csrf = array(
-                'name' => $this->security->get_csrf_token_name(),
-                'hash' => $this->security->get_csrf_hash()
-            );
-            $this->security->xss_clean($_GET);
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
 
-        $id = $this->input->get('id');
-        $status = '1';
-        if($this->M_staffs->stasChange($id,$status)){
-            $this->session->set_flashdata('success', 'Staff Unblocked Successfully');
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $id = $this->input->get('id');
+            $status = '1';
+            if($this->M_staffs->stasChange($id,$status)){
+                $this->session->set_flashdata('success', 'Staff Unblocked Successfully');
+            }else{
+                $this->session->set_flashdata('error', 'Something went wrong please try again!');
+            }
         }else{
-            $this->session->set_flashdata('error', 'Something went wrong please try again!');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
         }
         redirect('staffs','refresh');
     }
@@ -183,15 +191,18 @@ class Staffs extends CI_Controller {
     {
 
         $csrf = array(
-                'name' => $this->security->get_csrf_token_name(),
-                'hash' => $this->security->get_csrf_hash()
-            );
-            $this->security->xss_clean($_POST);
-
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $this->security->xss_clean($_POST);
-        $email = $this->input->post('email');
-        $output = $this->M_staffs->email_check($email);
-        echo  $output;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $this->input->post('email');
+            $output = $this->M_staffs->email_check($email);
+            echo  $output;
+        }else{
+            echo true;
+        }
     }
 
     /**
@@ -200,16 +211,20 @@ class Staffs extends CI_Controller {
     **/
     public function mobile_check($value='')
     {
-         $csrf = array(
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $csrf = array(
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
             );
             $this->security->xss_clean($_POST);
-            
-        $this->security->xss_clean($_POST);
-        $mobile = $this->input->post('mobile');
-        $output = $this->M_staffs->mobile_check($mobile);
-        echo  $output;
+                
+            $this->security->xss_clean($_POST);
+            $mobile = $this->input->post('mobile');
+            $output = $this->M_staffs->mobile_check($mobile);
+            echo  $output;
+        }else{
+            echo true;
+        }
     }
 
 }

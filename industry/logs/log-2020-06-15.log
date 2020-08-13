@@ -1,0 +1,3043 @@
+INFO - 2020-06-15 11:20:00 --> Config Class Initialized
+INFO - 2020-06-15 11:20:00 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:20:00 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:00 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:00 --> URI Class Initialized
+DEBUG - 2020-06-15 11:20:00 --> No URI present. Default controller set.
+INFO - 2020-06-15 11:20:00 --> Router Class Initialized
+INFO - 2020-06-15 11:20:00 --> Output Class Initialized
+INFO - 2020-06-15 11:20:00 --> Security Class Initialized
+DEBUG - 2020-06-15 11:20:01 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:01 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:01 --> Input Class Initialized
+INFO - 2020-06-15 11:20:01 --> Language Class Initialized
+INFO - 2020-06-15 11:20:01 --> Loader Class Initialized
+INFO - 2020-06-15 11:20:01 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:20:01 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:20:01 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:20:01 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:20:01 --> Email Class Initialized
+DEBUG - 2020-06-15 11:20:01 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:20:01 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:20:01 --> Controller Class Initialized
+INFO - 2020-06-15 11:20:01 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:20:01 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:20:01 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:20:01 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:20:01 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:20:01 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:20:01 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:20:01 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:20:01 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/login.php
+INFO - 2020-06-15 11:20:01 --> Final output sent to browser
+DEBUG - 2020-06-15 11:20:01 --> Total execution time: 0.6627
+INFO - 2020-06-15 11:20:07 --> Config Class Initialized
+INFO - 2020-06-15 11:20:07 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:20:07 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:07 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:07 --> URI Class Initialized
+INFO - 2020-06-15 11:20:07 --> Router Class Initialized
+INFO - 2020-06-15 11:20:07 --> Output Class Initialized
+INFO - 2020-06-15 11:20:07 --> Security Class Initialized
+DEBUG - 2020-06-15 11:20:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:07 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:14 --> Config Class Initialized
+INFO - 2020-06-15 11:20:14 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:20:14 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:14 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:14 --> URI Class Initialized
+INFO - 2020-06-15 11:20:14 --> Router Class Initialized
+INFO - 2020-06-15 11:20:14 --> Output Class Initialized
+INFO - 2020-06-15 11:20:14 --> Security Class Initialized
+DEBUG - 2020-06-15 11:20:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:14 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:14 --> CSRF token verified
+INFO - 2020-06-15 11:20:14 --> Input Class Initialized
+INFO - 2020-06-15 11:20:14 --> Language Class Initialized
+INFO - 2020-06-15 11:20:14 --> Loader Class Initialized
+INFO - 2020-06-15 11:20:14 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:20:14 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:20:14 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:20:14 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:20:14 --> Email Class Initialized
+DEBUG - 2020-06-15 11:20:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:20:14 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:20:14 --> Controller Class Initialized
+INFO - 2020-06-15 11:20:14 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:20:14 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:20:14 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:20:14 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:20:14 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:20:14 --> Config Class Initialized
+INFO - 2020-06-15 11:20:14 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:20:14 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:14 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:15 --> URI Class Initialized
+DEBUG - 2020-06-15 11:20:15 --> No URI present. Default controller set.
+INFO - 2020-06-15 11:20:15 --> Router Class Initialized
+INFO - 2020-06-15 11:20:15 --> Output Class Initialized
+INFO - 2020-06-15 11:20:15 --> Security Class Initialized
+DEBUG - 2020-06-15 11:20:15 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:15 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:15 --> Input Class Initialized
+INFO - 2020-06-15 11:20:15 --> Language Class Initialized
+INFO - 2020-06-15 11:20:15 --> Loader Class Initialized
+INFO - 2020-06-15 11:20:15 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:20:15 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:20:15 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:20:15 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:20:15 --> Email Class Initialized
+DEBUG - 2020-06-15 11:20:15 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:20:15 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:20:15 --> Controller Class Initialized
+INFO - 2020-06-15 11:20:15 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:20:15 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:20:15 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:20:15 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:20:15 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:20:15 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:20:15 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:20:15 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:20:15 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/login.php
+INFO - 2020-06-15 11:20:15 --> Final output sent to browser
+DEBUG - 2020-06-15 11:20:15 --> Total execution time: 0.9183
+INFO - 2020-06-15 11:20:36 --> Config Class Initialized
+INFO - 2020-06-15 11:20:36 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:20:36 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:36 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:36 --> URI Class Initialized
+INFO - 2020-06-15 11:20:36 --> Router Class Initialized
+INFO - 2020-06-15 11:20:36 --> Output Class Initialized
+INFO - 2020-06-15 11:20:36 --> Security Class Initialized
+DEBUG - 2020-06-15 11:20:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:36 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:44 --> Config Class Initialized
+INFO - 2020-06-15 11:20:44 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:20:44 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:44 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:44 --> URI Class Initialized
+INFO - 2020-06-15 11:20:44 --> Router Class Initialized
+INFO - 2020-06-15 11:20:44 --> Output Class Initialized
+INFO - 2020-06-15 11:20:44 --> Security Class Initialized
+DEBUG - 2020-06-15 11:20:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:44 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:44 --> CSRF token verified
+INFO - 2020-06-15 11:20:44 --> Input Class Initialized
+INFO - 2020-06-15 11:20:44 --> Language Class Initialized
+INFO - 2020-06-15 11:20:44 --> Loader Class Initialized
+INFO - 2020-06-15 11:20:44 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:20:44 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:20:44 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:20:44 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:20:44 --> Email Class Initialized
+DEBUG - 2020-06-15 11:20:44 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:20:44 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:20:44 --> Controller Class Initialized
+INFO - 2020-06-15 11:20:44 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:20:44 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:20:44 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:20:44 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:20:44 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:20:44 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-06-15 11:20:44 --> ---------------------Success -- Industry Logged in with prathwi@5ine.in and IP aaddress ::1 --------------
+INFO - 2020-06-15 11:20:44 --> Config Class Initialized
+INFO - 2020-06-15 11:20:44 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:20:44 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:44 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:44 --> URI Class Initialized
+INFO - 2020-06-15 11:20:44 --> Router Class Initialized
+INFO - 2020-06-15 11:20:44 --> Output Class Initialized
+INFO - 2020-06-15 11:20:44 --> Security Class Initialized
+DEBUG - 2020-06-15 11:20:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:44 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:44 --> Input Class Initialized
+INFO - 2020-06-15 11:20:44 --> Language Class Initialized
+INFO - 2020-06-15 11:20:44 --> Loader Class Initialized
+INFO - 2020-06-15 11:20:44 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:20:44 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:20:44 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:20:44 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:20:45 --> Email Class Initialized
+DEBUG - 2020-06-15 11:20:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:20:45 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:20:45 --> Controller Class Initialized
+INFO - 2020-06-15 11:20:45 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:20:45 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:20:45 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:20:45 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:20:45 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:20:45 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:20:45 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:20:45 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:20:45 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:20:45 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:20:45 --> Final output sent to browser
+DEBUG - 2020-06-15 11:20:45 --> Total execution time: 0.8058
+INFO - 2020-06-15 11:20:45 --> Config Class Initialized
+INFO - 2020-06-15 11:20:45 --> Config Class Initialized
+INFO - 2020-06-15 11:20:45 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:20:45 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:45 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:45 --> URI Class Initialized
+INFO - 2020-06-15 11:20:45 --> Router Class Initialized
+INFO - 2020-06-15 11:20:45 --> Config Class Initialized
+INFO - 2020-06-15 11:20:45 --> Hooks Class Initialized
+INFO - 2020-06-15 11:20:45 --> Output Class Initialized
+INFO - 2020-06-15 11:20:45 --> Security Class Initialized
+DEBUG - 2020-06-15 11:20:45 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:45 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:45 --> URI Class Initialized
+INFO - 2020-06-15 11:20:45 --> Hooks Class Initialized
+INFO - 2020-06-15 11:20:45 --> Router Class Initialized
+DEBUG - 2020-06-15 11:20:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:45 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:45 --> Output Class Initialized
+INFO - 2020-06-15 11:20:45 --> Input Class Initialized
+INFO - 2020-06-15 11:20:45 --> Language Class Initialized
+INFO - 2020-06-15 11:20:45 --> Security Class Initialized
+ERROR - 2020-06-15 11:20:45 --> 404 Page Not Found: Show-images/gst
+DEBUG - 2020-06-15 11:20:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:45 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:45 --> Input Class Initialized
+INFO - 2020-06-15 11:20:45 --> Language Class Initialized
+DEBUG - 2020-06-15 11:20:45 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:20:45 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:20:45 --> URI Class Initialized
+INFO - 2020-06-15 11:20:45 --> Router Class Initialized
+ERROR - 2020-06-15 11:20:45 --> 404 Page Not Found: Show-images/regfile
+INFO - 2020-06-15 11:20:45 --> Output Class Initialized
+INFO - 2020-06-15 11:20:45 --> Security Class Initialized
+DEBUG - 2020-06-15 11:20:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:20:45 --> CSRF cookie sent
+INFO - 2020-06-15 11:20:45 --> Input Class Initialized
+INFO - 2020-06-15 11:20:45 --> Language Class Initialized
+ERROR - 2020-06-15 11:20:45 --> 404 Page Not Found: Show-images/pan
+INFO - 2020-06-15 11:21:26 --> Config Class Initialized
+INFO - 2020-06-15 11:21:26 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:21:26 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:21:26 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:21:26 --> URI Class Initialized
+INFO - 2020-06-15 11:21:26 --> Router Class Initialized
+INFO - 2020-06-15 11:21:26 --> Output Class Initialized
+INFO - 2020-06-15 11:21:26 --> Security Class Initialized
+DEBUG - 2020-06-15 11:21:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:21:26 --> CSRF cookie sent
+INFO - 2020-06-15 11:21:26 --> CSRF token verified
+INFO - 2020-06-15 11:21:26 --> Input Class Initialized
+INFO - 2020-06-15 11:21:26 --> Language Class Initialized
+INFO - 2020-06-15 11:21:26 --> Loader Class Initialized
+INFO - 2020-06-15 11:21:26 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:21:26 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:21:26 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:21:27 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:21:27 --> Email Class Initialized
+DEBUG - 2020-06-15 11:21:27 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:21:27 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:21:27 --> Controller Class Initialized
+INFO - 2020-06-15 11:21:27 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:21:27 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:21:27 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:21:27 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:21:27 --> Upload Class Initialized
+INFO - 2020-06-15 11:21:27 --> Final output sent to browser
+DEBUG - 2020-06-15 11:21:27 --> Total execution time: 0.3430
+INFO - 2020-06-15 11:21:28 --> Config Class Initialized
+INFO - 2020-06-15 11:21:28 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:21:28 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:21:28 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:21:28 --> URI Class Initialized
+INFO - 2020-06-15 11:21:28 --> Router Class Initialized
+INFO - 2020-06-15 11:21:28 --> Output Class Initialized
+INFO - 2020-06-15 11:21:28 --> Security Class Initialized
+DEBUG - 2020-06-15 11:21:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:21:28 --> CSRF cookie sent
+INFO - 2020-06-15 11:21:28 --> Input Class Initialized
+INFO - 2020-06-15 11:21:28 --> Language Class Initialized
+INFO - 2020-06-15 11:21:28 --> Loader Class Initialized
+INFO - 2020-06-15 11:21:28 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:21:28 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:21:28 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:21:28 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:21:28 --> Email Class Initialized
+DEBUG - 2020-06-15 11:21:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:21:28 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:21:28 --> Controller Class Initialized
+INFO - 2020-06-15 11:21:28 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:21:28 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:21:28 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:21:28 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:21:28 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:21:28 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:21:28 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:21:28 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:21:28 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:21:28 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:21:28 --> Final output sent to browser
+DEBUG - 2020-06-15 11:21:28 --> Total execution time: 0.4958
+INFO - 2020-06-15 11:21:29 --> Config Class Initialized
+INFO - 2020-06-15 11:21:29 --> Config Class Initialized
+INFO - 2020-06-15 11:21:29 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:21:29 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:21:29 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:21:29 --> URI Class Initialized
+INFO - 2020-06-15 11:21:29 --> Router Class Initialized
+INFO - 2020-06-15 11:21:29 --> Config Class Initialized
+INFO - 2020-06-15 11:21:29 --> Hooks Class Initialized
+INFO - 2020-06-15 11:21:29 --> Output Class Initialized
+INFO - 2020-06-15 11:21:29 --> Hooks Class Initialized
+INFO - 2020-06-15 11:21:29 --> Security Class Initialized
+DEBUG - 2020-06-15 11:21:29 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:21:29 --> Utf8 Class Initialized
+DEBUG - 2020-06-15 11:21:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:21:29 --> CSRF cookie sent
+INFO - 2020-06-15 11:21:29 --> Input Class Initialized
+INFO - 2020-06-15 11:21:29 --> URI Class Initialized
+INFO - 2020-06-15 11:21:29 --> Language Class Initialized
+ERROR - 2020-06-15 11:21:29 --> 404 Page Not Found: Show-images/regfile
+INFO - 2020-06-15 11:21:29 --> Router Class Initialized
+DEBUG - 2020-06-15 11:21:29 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:21:29 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:21:29 --> URI Class Initialized
+INFO - 2020-06-15 11:21:29 --> Router Class Initialized
+INFO - 2020-06-15 11:21:29 --> Output Class Initialized
+INFO - 2020-06-15 11:21:29 --> Output Class Initialized
+INFO - 2020-06-15 11:21:29 --> Security Class Initialized
+DEBUG - 2020-06-15 11:21:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:21:29 --> CSRF cookie sent
+INFO - 2020-06-15 11:21:29 --> Input Class Initialized
+INFO - 2020-06-15 11:21:29 --> Language Class Initialized
+ERROR - 2020-06-15 11:21:29 --> 404 Page Not Found: Show-images/pan
+INFO - 2020-06-15 11:21:29 --> Security Class Initialized
+DEBUG - 2020-06-15 11:21:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:21:29 --> CSRF cookie sent
+INFO - 2020-06-15 11:21:29 --> Input Class Initialized
+INFO - 2020-06-15 11:21:29 --> Language Class Initialized
+ERROR - 2020-06-15 11:21:29 --> 404 Page Not Found: Show-images/gst
+INFO - 2020-06-15 11:21:49 --> Config Class Initialized
+INFO - 2020-06-15 11:21:49 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:21:49 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:21:49 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:21:49 --> URI Class Initialized
+INFO - 2020-06-15 11:21:49 --> Router Class Initialized
+INFO - 2020-06-15 11:21:49 --> Output Class Initialized
+INFO - 2020-06-15 11:21:49 --> Security Class Initialized
+DEBUG - 2020-06-15 11:21:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:21:49 --> CSRF cookie sent
+INFO - 2020-06-15 11:21:49 --> CSRF token verified
+INFO - 2020-06-15 11:21:49 --> Input Class Initialized
+INFO - 2020-06-15 11:21:49 --> Language Class Initialized
+INFO - 2020-06-15 11:21:49 --> Loader Class Initialized
+INFO - 2020-06-15 11:21:49 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:21:49 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:21:49 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:21:49 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:21:49 --> Email Class Initialized
+DEBUG - 2020-06-15 11:21:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:21:49 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:21:49 --> Controller Class Initialized
+INFO - 2020-06-15 11:21:49 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:21:49 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:21:49 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:21:49 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:21:49 --> Upload Class Initialized
+INFO - 2020-06-15 11:21:49 --> Final output sent to browser
+DEBUG - 2020-06-15 11:21:49 --> Total execution time: 0.3878
+INFO - 2020-06-15 11:21:56 --> Config Class Initialized
+INFO - 2020-06-15 11:21:56 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:21:56 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:21:56 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:21:56 --> URI Class Initialized
+INFO - 2020-06-15 11:21:56 --> Router Class Initialized
+INFO - 2020-06-15 11:21:56 --> Output Class Initialized
+INFO - 2020-06-15 11:21:56 --> Security Class Initialized
+DEBUG - 2020-06-15 11:21:56 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:21:56 --> CSRF cookie sent
+INFO - 2020-06-15 11:21:56 --> CSRF token verified
+INFO - 2020-06-15 11:21:56 --> Input Class Initialized
+INFO - 2020-06-15 11:21:56 --> Language Class Initialized
+INFO - 2020-06-15 11:21:56 --> Loader Class Initialized
+INFO - 2020-06-15 11:21:56 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:21:56 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:21:56 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:21:56 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:21:56 --> Email Class Initialized
+DEBUG - 2020-06-15 11:21:56 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:21:56 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:21:56 --> Controller Class Initialized
+INFO - 2020-06-15 11:21:56 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:21:56 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:21:56 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:21:56 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:21:56 --> Upload Class Initialized
+INFO - 2020-06-15 11:21:56 --> Final output sent to browser
+DEBUG - 2020-06-15 11:21:57 --> Total execution time: 0.4051
+INFO - 2020-06-15 11:22:00 --> Config Class Initialized
+INFO - 2020-06-15 11:22:00 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:22:00 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:22:00 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:22:00 --> URI Class Initialized
+INFO - 2020-06-15 11:22:00 --> Router Class Initialized
+INFO - 2020-06-15 11:22:00 --> Output Class Initialized
+INFO - 2020-06-15 11:22:00 --> Security Class Initialized
+DEBUG - 2020-06-15 11:22:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:22:00 --> CSRF cookie sent
+INFO - 2020-06-15 11:22:00 --> CSRF token verified
+INFO - 2020-06-15 11:22:00 --> Input Class Initialized
+INFO - 2020-06-15 11:22:00 --> Language Class Initialized
+INFO - 2020-06-15 11:22:00 --> Loader Class Initialized
+INFO - 2020-06-15 11:22:00 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:22:00 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:22:00 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:22:00 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:22:00 --> Email Class Initialized
+DEBUG - 2020-06-15 11:22:00 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:22:00 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:22:00 --> Controller Class Initialized
+INFO - 2020-06-15 11:22:00 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:22:00 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:22:00 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:22:00 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:22:00 --> Upload Class Initialized
+INFO - 2020-06-15 11:22:00 --> Final output sent to browser
+DEBUG - 2020-06-15 11:22:00 --> Total execution time: 0.3327
+INFO - 2020-06-15 11:22:02 --> Config Class Initialized
+INFO - 2020-06-15 11:22:02 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:22:02 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:22:02 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:22:02 --> URI Class Initialized
+INFO - 2020-06-15 11:22:02 --> Router Class Initialized
+INFO - 2020-06-15 11:22:02 --> Output Class Initialized
+INFO - 2020-06-15 11:22:02 --> Security Class Initialized
+DEBUG - 2020-06-15 11:22:02 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:22:02 --> CSRF cookie sent
+INFO - 2020-06-15 11:22:02 --> Input Class Initialized
+INFO - 2020-06-15 11:22:02 --> Language Class Initialized
+INFO - 2020-06-15 11:22:02 --> Loader Class Initialized
+INFO - 2020-06-15 11:22:02 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:22:03 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:22:03 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:22:03 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:22:03 --> Email Class Initialized
+DEBUG - 2020-06-15 11:22:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:22:03 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:22:03 --> Controller Class Initialized
+INFO - 2020-06-15 11:22:03 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:22:03 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:22:03 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:22:03 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:22:03 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:22:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:22:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:22:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:22:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:22:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:22:03 --> Final output sent to browser
+DEBUG - 2020-06-15 11:22:03 --> Total execution time: 0.4793
+INFO - 2020-06-15 11:22:03 --> Config Class Initialized
+INFO - 2020-06-15 11:22:03 --> Config Class Initialized
+INFO - 2020-06-15 11:22:03 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:22:03 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:22:03 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:22:03 --> Config Class Initialized
+INFO - 2020-06-15 11:22:03 --> URI Class Initialized
+INFO - 2020-06-15 11:22:03 --> Hooks Class Initialized
+INFO - 2020-06-15 11:22:03 --> Hooks Class Initialized
+INFO - 2020-06-15 11:22:03 --> Router Class Initialized
+DEBUG - 2020-06-15 11:22:03 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:22:03 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:22:03 --> Output Class Initialized
+INFO - 2020-06-15 11:22:03 --> URI Class Initialized
+INFO - 2020-06-15 11:22:03 --> Security Class Initialized
+DEBUG - 2020-06-15 11:22:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:22:03 --> Router Class Initialized
+INFO - 2020-06-15 11:22:03 --> CSRF cookie sent
+INFO - 2020-06-15 11:22:03 --> Input Class Initialized
+INFO - 2020-06-15 11:22:03 --> Language Class Initialized
+INFO - 2020-06-15 11:22:03 --> Output Class Initialized
+ERROR - 2020-06-15 11:22:03 --> 404 Page Not Found: Show-images/gst
+INFO - 2020-06-15 11:22:03 --> Security Class Initialized
+DEBUG - 2020-06-15 11:22:03 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2020-06-15 11:22:03 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:22:03 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:22:03 --> URI Class Initialized
+INFO - 2020-06-15 11:22:03 --> Router Class Initialized
+INFO - 2020-06-15 11:22:03 --> CSRF cookie sent
+INFO - 2020-06-15 11:22:03 --> Output Class Initialized
+INFO - 2020-06-15 11:22:03 --> Security Class Initialized
+DEBUG - 2020-06-15 11:22:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:22:03 --> CSRF cookie sent
+INFO - 2020-06-15 11:22:03 --> Input Class Initialized
+INFO - 2020-06-15 11:22:03 --> Language Class Initialized
+INFO - 2020-06-15 11:22:03 --> Input Class Initialized
+ERROR - 2020-06-15 11:22:03 --> 404 Page Not Found: Show-images/pan
+INFO - 2020-06-15 11:22:03 --> Language Class Initialized
+ERROR - 2020-06-15 11:22:03 --> 404 Page Not Found: Show-images/regfile
+INFO - 2020-06-15 11:33:20 --> Config Class Initialized
+INFO - 2020-06-15 11:33:20 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:33:20 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:33:20 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:33:20 --> URI Class Initialized
+INFO - 2020-06-15 11:33:20 --> Router Class Initialized
+INFO - 2020-06-15 11:33:20 --> Output Class Initialized
+INFO - 2020-06-15 11:33:20 --> Security Class Initialized
+DEBUG - 2020-06-15 11:33:20 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:33:20 --> CSRF cookie sent
+INFO - 2020-06-15 11:33:20 --> CSRF token verified
+INFO - 2020-06-15 11:33:20 --> Input Class Initialized
+INFO - 2020-06-15 11:33:20 --> Language Class Initialized
+INFO - 2020-06-15 11:33:20 --> Loader Class Initialized
+INFO - 2020-06-15 11:33:20 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:33:20 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:33:20 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:33:20 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:33:20 --> Email Class Initialized
+DEBUG - 2020-06-15 11:33:20 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:33:20 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:33:20 --> Controller Class Initialized
+INFO - 2020-06-15 11:33:20 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:33:20 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:33:20 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:33:20 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:33:20 --> Upload Class Initialized
+INFO - 2020-06-15 11:33:20 --> Final output sent to browser
+DEBUG - 2020-06-15 11:33:20 --> Total execution time: 0.3459
+INFO - 2020-06-15 11:38:58 --> Config Class Initialized
+INFO - 2020-06-15 11:38:58 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:38:58 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:38:58 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:38:58 --> URI Class Initialized
+INFO - 2020-06-15 11:38:58 --> Router Class Initialized
+INFO - 2020-06-15 11:38:58 --> Output Class Initialized
+INFO - 2020-06-15 11:38:58 --> Security Class Initialized
+DEBUG - 2020-06-15 11:38:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:38:58 --> CSRF cookie sent
+INFO - 2020-06-15 11:38:58 --> Input Class Initialized
+INFO - 2020-06-15 11:38:58 --> Language Class Initialized
+INFO - 2020-06-15 11:38:58 --> Loader Class Initialized
+INFO - 2020-06-15 11:38:58 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:38:58 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:38:58 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:38:58 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:38:58 --> Email Class Initialized
+DEBUG - 2020-06-15 11:38:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:38:58 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:38:58 --> Controller Class Initialized
+INFO - 2020-06-15 11:38:58 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:38:58 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:38:58 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:38:58 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:38:58 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:38:58 --> Config Class Initialized
+INFO - 2020-06-15 11:38:58 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:38:58 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:38:58 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:38:58 --> URI Class Initialized
+DEBUG - 2020-06-15 11:38:58 --> No URI present. Default controller set.
+INFO - 2020-06-15 11:38:58 --> Router Class Initialized
+INFO - 2020-06-15 11:38:58 --> Output Class Initialized
+INFO - 2020-06-15 11:38:58 --> Security Class Initialized
+DEBUG - 2020-06-15 11:38:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:38:58 --> CSRF cookie sent
+INFO - 2020-06-15 11:38:58 --> Input Class Initialized
+INFO - 2020-06-15 11:38:58 --> Language Class Initialized
+INFO - 2020-06-15 11:38:58 --> Loader Class Initialized
+INFO - 2020-06-15 11:38:58 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:38:58 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:38:58 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:38:58 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:38:58 --> Email Class Initialized
+DEBUG - 2020-06-15 11:38:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:38:58 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:38:58 --> Controller Class Initialized
+INFO - 2020-06-15 11:38:58 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:38:58 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:38:58 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:38:58 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:38:58 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:38:58 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:38:58 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:38:58 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:38:58 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/login.php
+INFO - 2020-06-15 11:38:58 --> Final output sent to browser
+DEBUG - 2020-06-15 11:38:58 --> Total execution time: 0.3153
+INFO - 2020-06-15 11:39:01 --> Config Class Initialized
+INFO - 2020-06-15 11:39:01 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:01 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:01 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:01 --> URI Class Initialized
+INFO - 2020-06-15 11:39:01 --> Router Class Initialized
+INFO - 2020-06-15 11:39:01 --> Output Class Initialized
+INFO - 2020-06-15 11:39:01 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:01 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:01 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:01 --> Input Class Initialized
+INFO - 2020-06-15 11:39:01 --> Language Class Initialized
+INFO - 2020-06-15 11:39:01 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:01 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:01 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:01 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:01 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:01 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:01 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:01 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:01 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:01 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:01 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:01 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:01 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:01 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:01 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:39:01 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:39:01 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:39:01 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/register.php
+INFO - 2020-06-15 11:39:01 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:01 --> Total execution time: 0.3558
+INFO - 2020-06-15 11:39:05 --> Config Class Initialized
+INFO - 2020-06-15 11:39:05 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:05 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:05 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:05 --> URI Class Initialized
+INFO - 2020-06-15 11:39:05 --> Router Class Initialized
+INFO - 2020-06-15 11:39:06 --> Output Class Initialized
+INFO - 2020-06-15 11:39:06 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:06 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:06 --> CSRF token verified
+INFO - 2020-06-15 11:39:06 --> Input Class Initialized
+INFO - 2020-06-15 11:39:06 --> Language Class Initialized
+INFO - 2020-06-15 11:39:06 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:06 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:06 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:06 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:06 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:06 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:06 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:06 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:06 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:06 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:06 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:06 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:06 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:06 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:06 --> Total execution time: 0.3529
+INFO - 2020-06-15 11:39:07 --> Config Class Initialized
+INFO - 2020-06-15 11:39:07 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:07 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:07 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:07 --> URI Class Initialized
+INFO - 2020-06-15 11:39:07 --> Router Class Initialized
+INFO - 2020-06-15 11:39:07 --> Output Class Initialized
+INFO - 2020-06-15 11:39:07 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:07 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:07 --> CSRF token verified
+INFO - 2020-06-15 11:39:07 --> Input Class Initialized
+INFO - 2020-06-15 11:39:07 --> Language Class Initialized
+INFO - 2020-06-15 11:39:07 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:07 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:07 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:07 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:07 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:07 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:07 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:07 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:07 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:07 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:07 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:07 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:07 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:07 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:07 --> Total execution time: 0.3653
+INFO - 2020-06-15 11:39:09 --> Config Class Initialized
+INFO - 2020-06-15 11:39:09 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:09 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:09 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:09 --> URI Class Initialized
+INFO - 2020-06-15 11:39:09 --> Router Class Initialized
+INFO - 2020-06-15 11:39:09 --> Output Class Initialized
+INFO - 2020-06-15 11:39:09 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:09 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:09 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:09 --> CSRF token verified
+INFO - 2020-06-15 11:39:09 --> Input Class Initialized
+INFO - 2020-06-15 11:39:09 --> Language Class Initialized
+INFO - 2020-06-15 11:39:09 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:09 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:09 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:09 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:09 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:09 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:09 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:09 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:09 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:09 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:09 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:09 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:09 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:09 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:09 --> Total execution time: 0.2788
+INFO - 2020-06-15 11:39:14 --> Config Class Initialized
+INFO - 2020-06-15 11:39:14 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:14 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:14 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:14 --> URI Class Initialized
+INFO - 2020-06-15 11:39:14 --> Router Class Initialized
+INFO - 2020-06-15 11:39:14 --> Output Class Initialized
+INFO - 2020-06-15 11:39:14 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:14 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:14 --> Input Class Initialized
+INFO - 2020-06-15 11:39:14 --> Language Class Initialized
+INFO - 2020-06-15 11:39:14 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:14 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:14 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:14 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:14 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:14 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:14 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:14 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:14 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:14 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:14 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:14 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:14 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:14 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:14 --> Total execution time: 0.3524
+INFO - 2020-06-15 11:39:20 --> Config Class Initialized
+INFO - 2020-06-15 11:39:20 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:20 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:20 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:20 --> URI Class Initialized
+INFO - 2020-06-15 11:39:20 --> Router Class Initialized
+INFO - 2020-06-15 11:39:20 --> Output Class Initialized
+INFO - 2020-06-15 11:39:20 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:20 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:20 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:20 --> CSRF token verified
+INFO - 2020-06-15 11:39:20 --> Input Class Initialized
+INFO - 2020-06-15 11:39:20 --> Language Class Initialized
+INFO - 2020-06-15 11:39:20 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:20 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:20 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:20 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:20 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:20 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:20 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:20 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:20 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:20 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:20 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:20 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:20 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:20 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:20 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:20 --> Total execution time: 0.4060
+INFO - 2020-06-15 11:39:23 --> Config Class Initialized
+INFO - 2020-06-15 11:39:23 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:23 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:23 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:23 --> URI Class Initialized
+INFO - 2020-06-15 11:39:23 --> Router Class Initialized
+INFO - 2020-06-15 11:39:23 --> Output Class Initialized
+INFO - 2020-06-15 11:39:23 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:23 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:23 --> Input Class Initialized
+INFO - 2020-06-15 11:39:23 --> Language Class Initialized
+INFO - 2020-06-15 11:39:24 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:24 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:24 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:24 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:24 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:24 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:24 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:24 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:24 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:24 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:24 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:24 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:24 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:24 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:24 --> Total execution time: 0.3531
+INFO - 2020-06-15 11:39:30 --> Config Class Initialized
+INFO - 2020-06-15 11:39:30 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:30 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:30 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:30 --> URI Class Initialized
+INFO - 2020-06-15 11:39:30 --> Router Class Initialized
+INFO - 2020-06-15 11:39:30 --> Output Class Initialized
+INFO - 2020-06-15 11:39:30 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:30 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:30 --> CSRF token verified
+INFO - 2020-06-15 11:39:30 --> Input Class Initialized
+INFO - 2020-06-15 11:39:30 --> Language Class Initialized
+INFO - 2020-06-15 11:39:30 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:30 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:30 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:30 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:30 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:30 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:30 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:30 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:30 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:30 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:30 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:30 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:30 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:30 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:30 --> Total execution time: 0.3255
+INFO - 2020-06-15 11:39:36 --> Config Class Initialized
+INFO - 2020-06-15 11:39:36 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:36 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:36 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:36 --> URI Class Initialized
+INFO - 2020-06-15 11:39:36 --> Router Class Initialized
+INFO - 2020-06-15 11:39:36 --> Output Class Initialized
+INFO - 2020-06-15 11:39:36 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:36 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:36 --> Input Class Initialized
+INFO - 2020-06-15 11:39:36 --> Language Class Initialized
+INFO - 2020-06-15 11:39:36 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:36 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:36 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:36 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:36 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:36 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:36 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:36 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:36 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:36 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:36 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:36 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:36 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:36 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:36 --> Config Class Initialized
+INFO - 2020-06-15 11:39:36 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:36 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:36 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:36 --> URI Class Initialized
+INFO - 2020-06-15 11:39:36 --> Router Class Initialized
+INFO - 2020-06-15 11:39:36 --> Output Class Initialized
+INFO - 2020-06-15 11:39:36 --> Security Class Initialized
+INFO - 2020-06-15 11:39:36 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:36 --> Total execution time: 0.3704
+DEBUG - 2020-06-15 11:39:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:36 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:36 --> Input Class Initialized
+INFO - 2020-06-15 11:39:36 --> Language Class Initialized
+INFO - 2020-06-15 11:39:36 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:36 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:36 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:36 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:36 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:36 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:36 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:36 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:36 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:36 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:36 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:36 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:36 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:36 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:36 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:36 --> Total execution time: 0.2579
+INFO - 2020-06-15 11:39:38 --> Config Class Initialized
+INFO - 2020-06-15 11:39:38 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:39:38 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:39:38 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:39:38 --> URI Class Initialized
+INFO - 2020-06-15 11:39:38 --> Router Class Initialized
+INFO - 2020-06-15 11:39:38 --> Output Class Initialized
+INFO - 2020-06-15 11:39:38 --> Security Class Initialized
+DEBUG - 2020-06-15 11:39:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:39:38 --> CSRF cookie sent
+INFO - 2020-06-15 11:39:38 --> CSRF token verified
+INFO - 2020-06-15 11:39:38 --> Input Class Initialized
+INFO - 2020-06-15 11:39:38 --> Language Class Initialized
+INFO - 2020-06-15 11:39:38 --> Loader Class Initialized
+INFO - 2020-06-15 11:39:38 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:39:38 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:39:38 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:39:38 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:39:38 --> Email Class Initialized
+DEBUG - 2020-06-15 11:39:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:39:38 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:39:38 --> Controller Class Initialized
+INFO - 2020-06-15 11:39:38 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:39:38 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:39:38 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:39:38 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:39:38 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:39:38 --> Final output sent to browser
+DEBUG - 2020-06-15 11:39:38 --> Total execution time: 0.3623
+INFO - 2020-06-15 11:40:21 --> Config Class Initialized
+INFO - 2020-06-15 11:40:21 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:40:21 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:40:21 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:40:21 --> URI Class Initialized
+INFO - 2020-06-15 11:40:21 --> Router Class Initialized
+INFO - 2020-06-15 11:40:21 --> Output Class Initialized
+INFO - 2020-06-15 11:40:21 --> Security Class Initialized
+DEBUG - 2020-06-15 11:40:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:40:21 --> CSRF cookie sent
+INFO - 2020-06-15 11:40:21 --> Input Class Initialized
+INFO - 2020-06-15 11:40:21 --> Language Class Initialized
+INFO - 2020-06-15 11:40:21 --> Loader Class Initialized
+INFO - 2020-06-15 11:40:21 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:40:21 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:40:21 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:40:21 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:40:21 --> Email Class Initialized
+DEBUG - 2020-06-15 11:40:21 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:40:21 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:40:21 --> Controller Class Initialized
+INFO - 2020-06-15 11:40:21 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:40:21 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:40:21 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:40:21 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:40:21 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:40:21 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:40:21 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:40:21 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:40:21 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/register.php
+INFO - 2020-06-15 11:40:21 --> Final output sent to browser
+DEBUG - 2020-06-15 11:40:21 --> Total execution time: 0.3298
+INFO - 2020-06-15 11:40:25 --> Config Class Initialized
+INFO - 2020-06-15 11:40:25 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:40:25 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:40:25 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:40:25 --> URI Class Initialized
+INFO - 2020-06-15 11:40:25 --> Router Class Initialized
+INFO - 2020-06-15 11:40:25 --> Output Class Initialized
+INFO - 2020-06-15 11:40:25 --> Security Class Initialized
+DEBUG - 2020-06-15 11:40:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:40:25 --> CSRF cookie sent
+INFO - 2020-06-15 11:40:25 --> CSRF token verified
+INFO - 2020-06-15 11:40:25 --> Input Class Initialized
+INFO - 2020-06-15 11:40:25 --> Language Class Initialized
+INFO - 2020-06-15 11:40:25 --> Loader Class Initialized
+INFO - 2020-06-15 11:40:25 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:40:25 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:40:25 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:40:25 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:40:25 --> Email Class Initialized
+DEBUG - 2020-06-15 11:40:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:40:25 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:40:25 --> Controller Class Initialized
+INFO - 2020-06-15 11:40:25 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:40:25 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:40:25 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:40:25 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:40:25 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:40:25 --> Final output sent to browser
+DEBUG - 2020-06-15 11:40:25 --> Total execution time: 0.3235
+INFO - 2020-06-15 11:40:26 --> Config Class Initialized
+INFO - 2020-06-15 11:40:26 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:40:26 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:40:26 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:40:26 --> URI Class Initialized
+INFO - 2020-06-15 11:40:26 --> Router Class Initialized
+INFO - 2020-06-15 11:40:26 --> Output Class Initialized
+INFO - 2020-06-15 11:40:26 --> Security Class Initialized
+DEBUG - 2020-06-15 11:40:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:40:26 --> CSRF cookie sent
+INFO - 2020-06-15 11:40:26 --> CSRF token verified
+INFO - 2020-06-15 11:40:26 --> Input Class Initialized
+INFO - 2020-06-15 11:40:26 --> Language Class Initialized
+INFO - 2020-06-15 11:40:26 --> Loader Class Initialized
+INFO - 2020-06-15 11:40:26 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:40:26 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:40:26 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:40:26 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:40:26 --> Email Class Initialized
+DEBUG - 2020-06-15 11:40:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:40:26 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:40:26 --> Controller Class Initialized
+INFO - 2020-06-15 11:40:26 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:40:26 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:40:26 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:40:26 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:40:26 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:40:26 --> Final output sent to browser
+DEBUG - 2020-06-15 11:40:26 --> Total execution time: 0.3239
+INFO - 2020-06-15 11:40:27 --> Config Class Initialized
+INFO - 2020-06-15 11:40:27 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:40:27 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:40:27 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:40:27 --> URI Class Initialized
+INFO - 2020-06-15 11:40:27 --> Router Class Initialized
+INFO - 2020-06-15 11:40:27 --> Output Class Initialized
+INFO - 2020-06-15 11:40:27 --> Security Class Initialized
+DEBUG - 2020-06-15 11:40:27 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:40:27 --> CSRF cookie sent
+INFO - 2020-06-15 11:40:27 --> CSRF token verified
+INFO - 2020-06-15 11:40:27 --> Input Class Initialized
+INFO - 2020-06-15 11:40:27 --> Language Class Initialized
+INFO - 2020-06-15 11:40:27 --> Loader Class Initialized
+INFO - 2020-06-15 11:40:27 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:40:27 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:40:27 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:40:27 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:40:27 --> Email Class Initialized
+DEBUG - 2020-06-15 11:40:27 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:40:27 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:40:27 --> Controller Class Initialized
+INFO - 2020-06-15 11:40:27 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:40:27 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:40:27 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:40:27 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:40:27 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:40:27 --> Final output sent to browser
+DEBUG - 2020-06-15 11:40:27 --> Total execution time: 0.4425
+INFO - 2020-06-15 11:40:32 --> Config Class Initialized
+INFO - 2020-06-15 11:40:32 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:40:32 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:40:32 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:40:33 --> URI Class Initialized
+INFO - 2020-06-15 11:40:33 --> Router Class Initialized
+INFO - 2020-06-15 11:40:33 --> Output Class Initialized
+INFO - 2020-06-15 11:40:33 --> Security Class Initialized
+DEBUG - 2020-06-15 11:40:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:40:33 --> CSRF cookie sent
+INFO - 2020-06-15 11:40:33 --> Input Class Initialized
+INFO - 2020-06-15 11:40:33 --> Language Class Initialized
+INFO - 2020-06-15 11:40:33 --> Loader Class Initialized
+INFO - 2020-06-15 11:40:33 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:40:33 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:40:33 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:40:33 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:40:33 --> Email Class Initialized
+DEBUG - 2020-06-15 11:40:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:40:33 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:40:33 --> Controller Class Initialized
+INFO - 2020-06-15 11:40:33 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:40:33 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:40:33 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:40:33 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:40:33 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:40:33 --> Final output sent to browser
+DEBUG - 2020-06-15 11:40:33 --> Total execution time: 0.4651
+INFO - 2020-06-15 11:40:50 --> Config Class Initialized
+INFO - 2020-06-15 11:40:50 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:40:50 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:40:50 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:40:50 --> URI Class Initialized
+INFO - 2020-06-15 11:40:50 --> Router Class Initialized
+INFO - 2020-06-15 11:40:50 --> Output Class Initialized
+INFO - 2020-06-15 11:40:50 --> Security Class Initialized
+DEBUG - 2020-06-15 11:40:50 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:40:50 --> CSRF cookie sent
+INFO - 2020-06-15 11:40:50 --> CSRF token verified
+INFO - 2020-06-15 11:40:50 --> Input Class Initialized
+INFO - 2020-06-15 11:40:50 --> Language Class Initialized
+INFO - 2020-06-15 11:40:50 --> Loader Class Initialized
+INFO - 2020-06-15 11:40:50 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:40:50 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:40:50 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:40:50 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:40:50 --> Email Class Initialized
+DEBUG - 2020-06-15 11:40:50 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:40:50 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:40:50 --> Controller Class Initialized
+INFO - 2020-06-15 11:40:50 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:40:50 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:40:50 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:40:50 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:40:50 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:40:50 --> Final output sent to browser
+DEBUG - 2020-06-15 11:40:50 --> Total execution time: 0.2953
+INFO - 2020-06-15 11:40:57 --> Config Class Initialized
+INFO - 2020-06-15 11:40:57 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:40:58 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:40:58 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:40:58 --> URI Class Initialized
+INFO - 2020-06-15 11:40:58 --> Router Class Initialized
+INFO - 2020-06-15 11:40:58 --> Output Class Initialized
+INFO - 2020-06-15 11:40:58 --> Security Class Initialized
+DEBUG - 2020-06-15 11:40:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:40:58 --> CSRF cookie sent
+INFO - 2020-06-15 11:40:58 --> Input Class Initialized
+INFO - 2020-06-15 11:40:58 --> Language Class Initialized
+INFO - 2020-06-15 11:40:58 --> Loader Class Initialized
+INFO - 2020-06-15 11:40:58 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:40:58 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:40:58 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:40:58 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:40:58 --> Email Class Initialized
+DEBUG - 2020-06-15 11:40:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:40:58 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:40:58 --> Controller Class Initialized
+INFO - 2020-06-15 11:40:58 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:40:58 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:40:58 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:40:58 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:40:58 --> Config Class Initialized
+INFO - 2020-06-15 11:40:58 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:40:58 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:40:58 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:40:58 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:40:58 --> URI Class Initialized
+INFO - 2020-06-15 11:40:58 --> Router Class Initialized
+INFO - 2020-06-15 11:40:58 --> Output Class Initialized
+INFO - 2020-06-15 11:40:58 --> Security Class Initialized
+INFO - 2020-06-15 11:40:58 --> Final output sent to browser
+DEBUG - 2020-06-15 11:40:58 --> Total execution time: 0.3510
+DEBUG - 2020-06-15 11:40:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:40:58 --> CSRF cookie sent
+INFO - 2020-06-15 11:40:58 --> Input Class Initialized
+INFO - 2020-06-15 11:40:58 --> Language Class Initialized
+INFO - 2020-06-15 11:40:58 --> Loader Class Initialized
+INFO - 2020-06-15 11:40:58 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:40:58 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:40:58 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:40:58 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:40:58 --> Email Class Initialized
+DEBUG - 2020-06-15 11:40:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:40:58 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:40:58 --> Controller Class Initialized
+INFO - 2020-06-15 11:40:58 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:40:58 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:40:58 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:40:58 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:40:58 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:40:58 --> Final output sent to browser
+DEBUG - 2020-06-15 11:40:58 --> Total execution time: 0.2782
+INFO - 2020-06-15 11:41:00 --> Config Class Initialized
+INFO - 2020-06-15 11:41:00 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:41:00 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:41:00 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:41:00 --> URI Class Initialized
+INFO - 2020-06-15 11:41:00 --> Router Class Initialized
+INFO - 2020-06-15 11:41:00 --> Output Class Initialized
+INFO - 2020-06-15 11:41:00 --> Security Class Initialized
+DEBUG - 2020-06-15 11:41:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:41:00 --> CSRF cookie sent
+INFO - 2020-06-15 11:41:00 --> CSRF token verified
+INFO - 2020-06-15 11:41:00 --> Input Class Initialized
+INFO - 2020-06-15 11:41:01 --> Language Class Initialized
+INFO - 2020-06-15 11:41:01 --> Loader Class Initialized
+INFO - 2020-06-15 11:41:01 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:41:01 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:41:01 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:41:01 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:41:01 --> Email Class Initialized
+DEBUG - 2020-06-15 11:41:01 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:41:01 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:41:01 --> Controller Class Initialized
+INFO - 2020-06-15 11:41:01 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:41:01 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:41:01 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:41:01 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:41:01 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:41:01 --> Final output sent to browser
+DEBUG - 2020-06-15 11:41:01 --> Total execution time: 0.2598
+INFO - 2020-06-15 11:41:20 --> Config Class Initialized
+INFO - 2020-06-15 11:41:20 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:41:20 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:41:20 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:41:20 --> URI Class Initialized
+INFO - 2020-06-15 11:41:20 --> Router Class Initialized
+INFO - 2020-06-15 11:41:20 --> Output Class Initialized
+INFO - 2020-06-15 11:41:20 --> Security Class Initialized
+DEBUG - 2020-06-15 11:41:20 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:41:20 --> CSRF cookie sent
+INFO - 2020-06-15 11:41:20 --> CSRF token verified
+INFO - 2020-06-15 11:41:20 --> Input Class Initialized
+INFO - 2020-06-15 11:41:20 --> Language Class Initialized
+INFO - 2020-06-15 11:41:20 --> Loader Class Initialized
+INFO - 2020-06-15 11:41:20 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:41:20 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:41:20 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:41:20 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:41:20 --> Email Class Initialized
+DEBUG - 2020-06-15 11:41:20 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:41:20 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:41:20 --> Controller Class Initialized
+INFO - 2020-06-15 11:41:20 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:41:20 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:41:20 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:41:20 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:41:20 --> Helper loaded: captcha_helper
+DEBUG - 2020-06-15 11:41:20 --> Form_validation class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:41:20 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-06-15 11:41:20 --> Upload Class Initialized
+DEBUG - 2020-06-15 11:41:20 --> Upload class already loaded. Second attempt ignored.
+DEBUG - 2020-06-15 11:41:20 --> Upload class already loaded. Second attempt ignored.
+DEBUG - 2020-06-15 11:41:20 --> Config file loaded: C:\xampp\htdocs\scholarship\industry\config/email.php
+DEBUG - 2020-06-15 11:41:20 --> Email class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:41:20 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\mail/reg-verify.php
+INFO - 2020-06-15 11:41:23 --> Language file loaded: language/english/email_lang.php
+INFO - 2020-06-15 11:41:29 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:41:29 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:41:29 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/reg-thank.php
+INFO - 2020-06-15 11:41:29 --> Final output sent to browser
+DEBUG - 2020-06-15 11:41:29 --> Total execution time: 8.6388
+INFO - 2020-06-15 11:41:29 --> Config Class Initialized
+INFO - 2020-06-15 11:41:29 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:41:29 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:41:29 --> Config Class Initialized
+INFO - 2020-06-15 11:41:29 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:41:29 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:41:29 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:41:29 --> URI Class Initialized
+INFO - 2020-06-15 11:41:29 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:41:29 --> Router Class Initialized
+INFO - 2020-06-15 11:41:29 --> Output Class Initialized
+INFO - 2020-06-15 11:41:29 --> Security Class Initialized
+DEBUG - 2020-06-15 11:41:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:41:29 --> CSRF cookie sent
+INFO - 2020-06-15 11:41:29 --> Input Class Initialized
+INFO - 2020-06-15 11:41:29 --> URI Class Initialized
+INFO - 2020-06-15 11:41:29 --> Language Class Initialized
+ERROR - 2020-06-15 11:41:29 --> 404 Page Not Found: Assets/js
+INFO - 2020-06-15 11:41:29 --> Router Class Initialized
+INFO - 2020-06-15 11:41:29 --> Output Class Initialized
+INFO - 2020-06-15 11:41:29 --> Security Class Initialized
+DEBUG - 2020-06-15 11:41:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:41:29 --> CSRF cookie sent
+INFO - 2020-06-15 11:41:29 --> Input Class Initialized
+INFO - 2020-06-15 11:41:29 --> Language Class Initialized
+ERROR - 2020-06-15 11:41:29 --> 404 Page Not Found: Assets/js
+INFO - 2020-06-15 11:41:29 --> Config Class Initialized
+INFO - 2020-06-15 11:41:29 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:41:29 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:41:29 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:41:29 --> URI Class Initialized
+INFO - 2020-06-15 11:41:29 --> Router Class Initialized
+INFO - 2020-06-15 11:41:29 --> Output Class Initialized
+INFO - 2020-06-15 11:41:29 --> Security Class Initialized
+DEBUG - 2020-06-15 11:41:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:41:29 --> CSRF cookie sent
+INFO - 2020-06-15 11:41:29 --> Input Class Initialized
+INFO - 2020-06-15 11:41:29 --> Language Class Initialized
+ERROR - 2020-06-15 11:41:29 --> 404 Page Not Found: Assets/js
+INFO - 2020-06-15 11:42:54 --> Config Class Initialized
+INFO - 2020-06-15 11:42:54 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:42:54 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:42:54 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:42:54 --> URI Class Initialized
+INFO - 2020-06-15 11:42:54 --> Router Class Initialized
+INFO - 2020-06-15 11:42:54 --> Output Class Initialized
+INFO - 2020-06-15 11:42:55 --> Security Class Initialized
+DEBUG - 2020-06-15 11:42:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:42:55 --> CSRF cookie sent
+INFO - 2020-06-15 11:42:55 --> Input Class Initialized
+INFO - 2020-06-15 11:42:55 --> Language Class Initialized
+INFO - 2020-06-15 11:42:55 --> Loader Class Initialized
+INFO - 2020-06-15 11:42:55 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:42:55 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:42:55 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:42:55 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:42:55 --> Email Class Initialized
+DEBUG - 2020-06-15 11:42:55 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:42:55 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:42:55 --> Controller Class Initialized
+INFO - 2020-06-15 11:42:55 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:42:55 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:42:55 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:42:55 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:42:55 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:42:55 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:42:55 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:42:55 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:42:55 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/set-password.php
+INFO - 2020-06-15 11:42:55 --> Final output sent to browser
+DEBUG - 2020-06-15 11:42:55 --> Total execution time: 0.5736
+INFO - 2020-06-15 11:43:04 --> Config Class Initialized
+INFO - 2020-06-15 11:43:04 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:43:04 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:43:04 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:43:04 --> URI Class Initialized
+INFO - 2020-06-15 11:43:04 --> Router Class Initialized
+INFO - 2020-06-15 11:43:04 --> Output Class Initialized
+INFO - 2020-06-15 11:43:04 --> Security Class Initialized
+DEBUG - 2020-06-15 11:43:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:43:04 --> CSRF cookie sent
+INFO - 2020-06-15 11:43:04 --> CSRF token verified
+INFO - 2020-06-15 11:43:04 --> Input Class Initialized
+INFO - 2020-06-15 11:43:04 --> Language Class Initialized
+INFO - 2020-06-15 11:43:04 --> Loader Class Initialized
+INFO - 2020-06-15 11:43:04 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:43:04 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:43:04 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:43:04 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:43:04 --> Email Class Initialized
+DEBUG - 2020-06-15 11:43:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:43:04 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:43:04 --> Controller Class Initialized
+INFO - 2020-06-15 11:43:04 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:43:04 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:43:04 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:43:04 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:43:04 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:43:04 --> Config Class Initialized
+INFO - 2020-06-15 11:43:04 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:43:04 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:43:04 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:43:04 --> URI Class Initialized
+DEBUG - 2020-06-15 11:43:04 --> No URI present. Default controller set.
+INFO - 2020-06-15 11:43:04 --> Router Class Initialized
+INFO - 2020-06-15 11:43:04 --> Output Class Initialized
+INFO - 2020-06-15 11:43:04 --> Security Class Initialized
+DEBUG - 2020-06-15 11:43:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:43:04 --> CSRF cookie sent
+INFO - 2020-06-15 11:43:04 --> Input Class Initialized
+INFO - 2020-06-15 11:43:04 --> Language Class Initialized
+INFO - 2020-06-15 11:43:04 --> Loader Class Initialized
+INFO - 2020-06-15 11:43:04 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:43:04 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:43:04 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:43:04 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:43:04 --> Email Class Initialized
+DEBUG - 2020-06-15 11:43:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:43:04 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:43:04 --> Controller Class Initialized
+INFO - 2020-06-15 11:43:04 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:43:04 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:43:04 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:43:04 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:43:04 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:43:04 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:43:04 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:43:04 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:43:04 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/login.php
+INFO - 2020-06-15 11:43:04 --> Final output sent to browser
+DEBUG - 2020-06-15 11:43:04 --> Total execution time: 0.3481
+INFO - 2020-06-15 11:43:10 --> Config Class Initialized
+INFO - 2020-06-15 11:43:10 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:43:10 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:43:10 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:43:10 --> URI Class Initialized
+INFO - 2020-06-15 11:43:10 --> Router Class Initialized
+INFO - 2020-06-15 11:43:10 --> Output Class Initialized
+INFO - 2020-06-15 11:43:10 --> Security Class Initialized
+DEBUG - 2020-06-15 11:43:10 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:43:10 --> CSRF cookie sent
+INFO - 2020-06-15 11:43:16 --> Config Class Initialized
+INFO - 2020-06-15 11:43:16 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:43:16 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:43:16 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:43:16 --> URI Class Initialized
+INFO - 2020-06-15 11:43:16 --> Router Class Initialized
+INFO - 2020-06-15 11:43:16 --> Output Class Initialized
+INFO - 2020-06-15 11:43:16 --> Security Class Initialized
+DEBUG - 2020-06-15 11:43:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:43:16 --> CSRF cookie sent
+INFO - 2020-06-15 11:43:16 --> CSRF token verified
+INFO - 2020-06-15 11:43:16 --> Input Class Initialized
+INFO - 2020-06-15 11:43:16 --> Language Class Initialized
+INFO - 2020-06-15 11:43:16 --> Loader Class Initialized
+INFO - 2020-06-15 11:43:16 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:43:17 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:43:17 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:43:17 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:43:17 --> Email Class Initialized
+DEBUG - 2020-06-15 11:43:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:43:17 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:43:17 --> Controller Class Initialized
+INFO - 2020-06-15 11:43:17 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:43:17 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:43:17 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:43:17 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:43:17 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:43:17 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-06-15 11:43:17 --> ---------------------Success -- Industry Logged in with prathwi@5ine.in and IP aaddress ::1 --------------
+INFO - 2020-06-15 11:43:17 --> Config Class Initialized
+INFO - 2020-06-15 11:43:17 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:43:17 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:43:17 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:43:17 --> URI Class Initialized
+INFO - 2020-06-15 11:43:17 --> Router Class Initialized
+INFO - 2020-06-15 11:43:17 --> Output Class Initialized
+INFO - 2020-06-15 11:43:17 --> Security Class Initialized
+DEBUG - 2020-06-15 11:43:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:43:17 --> CSRF cookie sent
+INFO - 2020-06-15 11:43:17 --> Input Class Initialized
+INFO - 2020-06-15 11:43:17 --> Language Class Initialized
+INFO - 2020-06-15 11:43:17 --> Loader Class Initialized
+INFO - 2020-06-15 11:43:17 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:43:17 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:43:17 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:43:17 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:43:17 --> Email Class Initialized
+DEBUG - 2020-06-15 11:43:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:43:17 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:43:17 --> Controller Class Initialized
+INFO - 2020-06-15 11:43:17 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:43:17 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:43:17 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:43:17 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:43:17 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:43:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:43:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:43:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:43:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:43:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:43:17 --> Final output sent to browser
+DEBUG - 2020-06-15 11:43:17 --> Total execution time: 0.2963
+INFO - 2020-06-15 11:43:17 --> Config Class Initialized
+INFO - 2020-06-15 11:43:17 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:43:17 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:43:17 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:43:17 --> URI Class Initialized
+INFO - 2020-06-15 11:43:17 --> Router Class Initialized
+INFO - 2020-06-15 11:43:17 --> Output Class Initialized
+INFO - 2020-06-15 11:43:17 --> Security Class Initialized
+DEBUG - 2020-06-15 11:43:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:43:17 --> CSRF cookie sent
+INFO - 2020-06-15 11:43:17 --> Input Class Initialized
+INFO - 2020-06-15 11:43:17 --> Language Class Initialized
+ERROR - 2020-06-15 11:43:17 --> 404 Page Not Found: Show-images/reg-doc
+INFO - 2020-06-15 11:45:34 --> Config Class Initialized
+INFO - 2020-06-15 11:45:34 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:45:34 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:45:34 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:45:34 --> URI Class Initialized
+INFO - 2020-06-15 11:45:34 --> Router Class Initialized
+INFO - 2020-06-15 11:45:34 --> Output Class Initialized
+INFO - 2020-06-15 11:45:34 --> Security Class Initialized
+DEBUG - 2020-06-15 11:45:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:45:34 --> CSRF cookie sent
+INFO - 2020-06-15 11:45:34 --> Input Class Initialized
+INFO - 2020-06-15 11:45:34 --> Language Class Initialized
+INFO - 2020-06-15 11:45:34 --> Loader Class Initialized
+INFO - 2020-06-15 11:45:34 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:45:34 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:45:34 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:45:34 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:45:34 --> Email Class Initialized
+DEBUG - 2020-06-15 11:45:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:45:34 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:45:34 --> Controller Class Initialized
+INFO - 2020-06-15 11:45:34 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:45:34 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:45:34 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:45:34 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:45:34 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:45:34 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:45:34 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:45:34 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:45:34 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:45:34 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:45:34 --> Final output sent to browser
+DEBUG - 2020-06-15 11:45:34 --> Total execution time: 0.3427
+INFO - 2020-06-15 11:45:35 --> Config Class Initialized
+INFO - 2020-06-15 11:45:35 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:45:35 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:45:35 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:45:35 --> URI Class Initialized
+INFO - 2020-06-15 11:45:35 --> Router Class Initialized
+INFO - 2020-06-15 11:45:35 --> Output Class Initialized
+INFO - 2020-06-15 11:45:35 --> Security Class Initialized
+DEBUG - 2020-06-15 11:45:35 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:45:35 --> CSRF cookie sent
+INFO - 2020-06-15 11:45:35 --> Input Class Initialized
+INFO - 2020-06-15 11:45:35 --> Language Class Initialized
+ERROR - 2020-06-15 11:45:35 --> 404 Page Not Found: Show-images/reg-doc
+INFO - 2020-06-15 11:45:49 --> Config Class Initialized
+INFO - 2020-06-15 11:45:49 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:45:49 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:45:49 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:45:49 --> URI Class Initialized
+INFO - 2020-06-15 11:45:49 --> Router Class Initialized
+INFO - 2020-06-15 11:45:49 --> Output Class Initialized
+INFO - 2020-06-15 11:45:49 --> Security Class Initialized
+DEBUG - 2020-06-15 11:45:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:45:49 --> CSRF cookie sent
+INFO - 2020-06-15 11:45:49 --> Input Class Initialized
+INFO - 2020-06-15 11:45:49 --> Language Class Initialized
+ERROR - 2020-06-15 11:45:49 --> 404 Page Not Found: Show-images/reg-doc
+INFO - 2020-06-15 11:45:52 --> Config Class Initialized
+INFO - 2020-06-15 11:45:52 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:45:52 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:45:52 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:45:52 --> URI Class Initialized
+INFO - 2020-06-15 11:45:52 --> Router Class Initialized
+INFO - 2020-06-15 11:45:52 --> Output Class Initialized
+INFO - 2020-06-15 11:45:52 --> Security Class Initialized
+DEBUG - 2020-06-15 11:45:52 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:45:52 --> CSRF cookie sent
+INFO - 2020-06-15 11:45:52 --> Input Class Initialized
+INFO - 2020-06-15 11:45:52 --> Language Class Initialized
+INFO - 2020-06-15 11:45:52 --> Loader Class Initialized
+INFO - 2020-06-15 11:45:52 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:45:52 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:45:52 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:45:52 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:45:52 --> Email Class Initialized
+DEBUG - 2020-06-15 11:45:52 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:45:52 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:45:52 --> Controller Class Initialized
+INFO - 2020-06-15 11:45:52 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:45:52 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:45:52 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:45:52 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:45:52 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:45:52 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:45:52 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:45:52 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:45:52 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:45:52 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:45:52 --> Final output sent to browser
+DEBUG - 2020-06-15 11:45:52 --> Total execution time: 0.3437
+INFO - 2020-06-15 11:45:53 --> Config Class Initialized
+INFO - 2020-06-15 11:45:53 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:45:53 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:45:53 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:45:53 --> URI Class Initialized
+INFO - 2020-06-15 11:45:53 --> Router Class Initialized
+INFO - 2020-06-15 11:45:53 --> Output Class Initialized
+INFO - 2020-06-15 11:45:53 --> Security Class Initialized
+DEBUG - 2020-06-15 11:45:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:45:53 --> CSRF cookie sent
+INFO - 2020-06-15 11:45:53 --> Input Class Initialized
+INFO - 2020-06-15 11:45:53 --> Language Class Initialized
+ERROR - 2020-06-15 11:45:53 --> 404 Page Not Found: Show-images/reg-doc
+INFO - 2020-06-15 11:47:29 --> Config Class Initialized
+INFO - 2020-06-15 11:47:29 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:47:29 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:47:29 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:47:29 --> URI Class Initialized
+INFO - 2020-06-15 11:47:29 --> Router Class Initialized
+INFO - 2020-06-15 11:47:29 --> Output Class Initialized
+INFO - 2020-06-15 11:47:29 --> Security Class Initialized
+DEBUG - 2020-06-15 11:47:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:47:29 --> CSRF cookie sent
+INFO - 2020-06-15 11:47:29 --> Input Class Initialized
+INFO - 2020-06-15 11:47:29 --> Language Class Initialized
+ERROR - 2020-06-15 11:47:29 --> 404 Page Not Found: Show-images/reg-doc
+INFO - 2020-06-15 11:47:32 --> Config Class Initialized
+INFO - 2020-06-15 11:47:32 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:47:32 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:47:32 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:47:32 --> URI Class Initialized
+INFO - 2020-06-15 11:47:32 --> Router Class Initialized
+INFO - 2020-06-15 11:47:32 --> Output Class Initialized
+INFO - 2020-06-15 11:47:32 --> Security Class Initialized
+DEBUG - 2020-06-15 11:47:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:47:32 --> CSRF cookie sent
+INFO - 2020-06-15 11:47:32 --> Input Class Initialized
+INFO - 2020-06-15 11:47:32 --> Language Class Initialized
+INFO - 2020-06-15 11:47:32 --> Loader Class Initialized
+INFO - 2020-06-15 11:47:32 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:47:32 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:47:32 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:47:32 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:47:32 --> Email Class Initialized
+DEBUG - 2020-06-15 11:47:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:47:32 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:47:32 --> Controller Class Initialized
+INFO - 2020-06-15 11:47:32 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:47:32 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:47:32 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:47:32 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:47:32 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:47:32 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:47:32 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:47:32 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:47:32 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:47:32 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:47:32 --> Final output sent to browser
+DEBUG - 2020-06-15 11:47:32 --> Total execution time: 0.3393
+INFO - 2020-06-15 11:47:33 --> Config Class Initialized
+INFO - 2020-06-15 11:47:33 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:47:33 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:47:33 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:47:33 --> URI Class Initialized
+INFO - 2020-06-15 11:47:33 --> Router Class Initialized
+INFO - 2020-06-15 11:47:33 --> Output Class Initialized
+INFO - 2020-06-15 11:47:33 --> Security Class Initialized
+DEBUG - 2020-06-15 11:47:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:47:33 --> CSRF cookie sent
+INFO - 2020-06-15 11:47:33 --> Input Class Initialized
+INFO - 2020-06-15 11:47:33 --> Language Class Initialized
+ERROR - 2020-06-15 11:47:33 --> 404 Page Not Found: Show-images/reg-doc
+INFO - 2020-06-15 11:48:10 --> Config Class Initialized
+INFO - 2020-06-15 11:48:10 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:48:10 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:48:10 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:48:10 --> URI Class Initialized
+INFO - 2020-06-15 11:48:10 --> Router Class Initialized
+INFO - 2020-06-15 11:48:10 --> Output Class Initialized
+INFO - 2020-06-15 11:48:10 --> Security Class Initialized
+DEBUG - 2020-06-15 11:48:10 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:48:10 --> CSRF cookie sent
+INFO - 2020-06-15 11:48:10 --> Input Class Initialized
+INFO - 2020-06-15 11:48:10 --> Language Class Initialized
+ERROR - 2020-06-15 11:48:10 --> 404 Page Not Found: Show-images/reg-doc
+INFO - 2020-06-15 11:48:32 --> Config Class Initialized
+INFO - 2020-06-15 11:48:32 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:48:32 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:48:32 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:48:32 --> URI Class Initialized
+INFO - 2020-06-15 11:48:32 --> Router Class Initialized
+INFO - 2020-06-15 11:48:32 --> Output Class Initialized
+INFO - 2020-06-15 11:48:32 --> Security Class Initialized
+DEBUG - 2020-06-15 11:48:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:48:32 --> CSRF cookie sent
+INFO - 2020-06-15 11:48:32 --> Input Class Initialized
+INFO - 2020-06-15 11:48:32 --> Language Class Initialized
+ERROR - 2020-06-15 11:48:32 --> 404 Page Not Found: Show-images/reg-doc
+INFO - 2020-06-15 11:49:03 --> Config Class Initialized
+INFO - 2020-06-15 11:49:03 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:03 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:03 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:03 --> URI Class Initialized
+INFO - 2020-06-15 11:49:03 --> Router Class Initialized
+INFO - 2020-06-15 11:49:03 --> Output Class Initialized
+INFO - 2020-06-15 11:49:03 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:03 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:03 --> Input Class Initialized
+INFO - 2020-06-15 11:49:03 --> Language Class Initialized
+INFO - 2020-06-15 11:49:03 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:03 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:03 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:03 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:03 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:03 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:03 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:03 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:03 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:03 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:04 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:04 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:04 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:04 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:04 --> Total execution time: 0.4496
+INFO - 2020-06-15 11:49:06 --> Config Class Initialized
+INFO - 2020-06-15 11:49:06 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:06 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:06 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:06 --> URI Class Initialized
+INFO - 2020-06-15 11:49:06 --> Router Class Initialized
+INFO - 2020-06-15 11:49:06 --> Output Class Initialized
+INFO - 2020-06-15 11:49:06 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:06 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:06 --> Input Class Initialized
+INFO - 2020-06-15 11:49:06 --> Language Class Initialized
+INFO - 2020-06-15 11:49:06 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:06 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:06 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:06 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:06 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:06 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:06 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:06 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:06 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:49:06 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:06 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:06 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:49:06 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:06 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:49:06 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:49:06 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:49:06 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:49:07 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:49:07 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:07 --> Total execution time: 0.3860
+INFO - 2020-06-15 11:49:07 --> Config Class Initialized
+INFO - 2020-06-15 11:49:07 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:07 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:07 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:07 --> URI Class Initialized
+INFO - 2020-06-15 11:49:07 --> Router Class Initialized
+INFO - 2020-06-15 11:49:07 --> Output Class Initialized
+INFO - 2020-06-15 11:49:07 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:07 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:07 --> Input Class Initialized
+INFO - 2020-06-15 11:49:07 --> Language Class Initialized
+INFO - 2020-06-15 11:49:07 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:07 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:07 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:07 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:07 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:07 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:07 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:07 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:07 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:07 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:07 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:07 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:07 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:07 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:07 --> Total execution time: 0.3886
+INFO - 2020-06-15 11:49:16 --> Config Class Initialized
+INFO - 2020-06-15 11:49:16 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:16 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:16 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:16 --> URI Class Initialized
+INFO - 2020-06-15 11:49:16 --> Router Class Initialized
+INFO - 2020-06-15 11:49:16 --> Output Class Initialized
+INFO - 2020-06-15 11:49:16 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:16 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:16 --> CSRF token verified
+INFO - 2020-06-15 11:49:16 --> Input Class Initialized
+INFO - 2020-06-15 11:49:16 --> Language Class Initialized
+INFO - 2020-06-15 11:49:16 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:16 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:16 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:16 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:16 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:16 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:16 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:16 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:16 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:16 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:49:16 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:16 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:16 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:49:16 --> Upload Class Initialized
+INFO - 2020-06-15 11:49:16 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:16 --> Total execution time: 0.3296
+INFO - 2020-06-15 11:49:17 --> Config Class Initialized
+INFO - 2020-06-15 11:49:17 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:17 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:17 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:17 --> URI Class Initialized
+INFO - 2020-06-15 11:49:17 --> Router Class Initialized
+INFO - 2020-06-15 11:49:17 --> Output Class Initialized
+INFO - 2020-06-15 11:49:17 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:17 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:17 --> Input Class Initialized
+INFO - 2020-06-15 11:49:17 --> Language Class Initialized
+INFO - 2020-06-15 11:49:17 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:17 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:17 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:17 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:17 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:17 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:17 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:17 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:17 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:49:17 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:17 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:17 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:49:17 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:49:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:49:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:49:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:49:17 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:49:17 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:17 --> Total execution time: 0.3382
+INFO - 2020-06-15 11:49:17 --> Config Class Initialized
+INFO - 2020-06-15 11:49:17 --> Config Class Initialized
+INFO - 2020-06-15 11:49:17 --> Hooks Class Initialized
+INFO - 2020-06-15 11:49:17 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:17 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:17 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:17 --> URI Class Initialized
+INFO - 2020-06-15 11:49:17 --> Router Class Initialized
+INFO - 2020-06-15 11:49:17 --> Output Class Initialized
+DEBUG - 2020-06-15 11:49:17 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:17 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:17 --> URI Class Initialized
+INFO - 2020-06-15 11:49:17 --> Router Class Initialized
+INFO - 2020-06-15 11:49:17 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:17 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:17 --> Input Class Initialized
+INFO - 2020-06-15 11:49:17 --> Language Class Initialized
+INFO - 2020-06-15 11:49:17 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:17 --> Output Class Initialized
+INFO - 2020-06-15 11:49:17 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:17 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:17 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:17 --> Security Class Initialized
+INFO - 2020-06-15 11:49:17 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:17 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:17 --> Session: Class initialized using 'files' driver.
+DEBUG - 2020-06-15 11:49:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:17 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:17 --> Input Class Initialized
+INFO - 2020-06-15 11:49:17 --> Language Class Initialized
+INFO - 2020-06-15 11:49:17 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:17 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:17 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:17 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:17 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:17 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:17 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:18 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:49:18 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:18 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:18 --> Sc_check class already loaded. Second attempt ignored.
+DEBUG - 2020-06-15 11:49:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:18 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:18 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:18 --> Total execution time: 0.1661
+INFO - 2020-06-15 11:49:18 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:18 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:18 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:18 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:18 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:18 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:18 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:18 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:18 --> Total execution time: 0.3033
+INFO - 2020-06-15 11:49:21 --> Config Class Initialized
+INFO - 2020-06-15 11:49:21 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:21 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:21 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:21 --> URI Class Initialized
+INFO - 2020-06-15 11:49:21 --> Router Class Initialized
+INFO - 2020-06-15 11:49:21 --> Output Class Initialized
+INFO - 2020-06-15 11:49:21 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:21 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:21 --> CSRF token verified
+INFO - 2020-06-15 11:49:21 --> Input Class Initialized
+INFO - 2020-06-15 11:49:21 --> Language Class Initialized
+INFO - 2020-06-15 11:49:21 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:21 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:21 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:21 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:21 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:21 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:21 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:21 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:21 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:21 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:49:21 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:21 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:21 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:49:21 --> Upload Class Initialized
+INFO - 2020-06-15 11:49:21 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:21 --> Total execution time: 0.3813
+INFO - 2020-06-15 11:49:22 --> Config Class Initialized
+INFO - 2020-06-15 11:49:22 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:22 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:22 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:22 --> URI Class Initialized
+INFO - 2020-06-15 11:49:22 --> Router Class Initialized
+INFO - 2020-06-15 11:49:22 --> Output Class Initialized
+INFO - 2020-06-15 11:49:22 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:22 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:22 --> Input Class Initialized
+INFO - 2020-06-15 11:49:22 --> Language Class Initialized
+INFO - 2020-06-15 11:49:22 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:22 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:22 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:22 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:22 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:22 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:22 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:22 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:22 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:49:22 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:22 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:22 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:49:22 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:22 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:49:22 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:49:22 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:49:23 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:49:23 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:49:23 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:23 --> Total execution time: 0.3557
+INFO - 2020-06-15 11:49:23 --> Config Class Initialized
+INFO - 2020-06-15 11:49:23 --> Config Class Initialized
+INFO - 2020-06-15 11:49:23 --> Config Class Initialized
+INFO - 2020-06-15 11:49:23 --> Hooks Class Initialized
+INFO - 2020-06-15 11:49:23 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:23 --> UTF-8 Support Enabled
+DEBUG - 2020-06-15 11:49:23 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:23 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:23 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:23 --> URI Class Initialized
+INFO - 2020-06-15 11:49:23 --> URI Class Initialized
+INFO - 2020-06-15 11:49:23 --> Hooks Class Initialized
+INFO - 2020-06-15 11:49:23 --> Router Class Initialized
+INFO - 2020-06-15 11:49:23 --> Router Class Initialized
+INFO - 2020-06-15 11:49:23 --> Output Class Initialized
+INFO - 2020-06-15 11:49:23 --> Output Class Initialized
+INFO - 2020-06-15 11:49:23 --> Security Class Initialized
+INFO - 2020-06-15 11:49:23 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:23 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:23 --> Input Class Initialized
+DEBUG - 2020-06-15 11:49:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:23 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:23 --> Input Class Initialized
+INFO - 2020-06-15 11:49:23 --> Language Class Initialized
+INFO - 2020-06-15 11:49:23 --> Language Class Initialized
+DEBUG - 2020-06-15 11:49:23 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:23 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:23 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:23 --> URI Class Initialized
+INFO - 2020-06-15 11:49:23 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:23 --> Router Class Initialized
+INFO - 2020-06-15 11:49:23 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:23 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:23 --> Output Class Initialized
+INFO - 2020-06-15 11:49:23 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:23 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:23 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:23 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:23 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:23 --> Email Class Initialized
+INFO - 2020-06-15 11:49:23 --> Helper loaded: string_helper
+DEBUG - 2020-06-15 11:49:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:23 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:23 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:23 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:23 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:23 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:23 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:23 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:23 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:23 --> Email Class Initialized
+INFO - 2020-06-15 11:49:23 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:23 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:23 --> Total execution time: 0.1036
+DEBUG - 2020-06-15 11:49:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:23 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:23 --> Input Class Initialized
+INFO - 2020-06-15 11:49:23 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:23 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:23 --> Language Class Initialized
+INFO - 2020-06-15 11:49:23 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:23 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:23 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:23 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:23 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:23 --> Total execution time: 0.1320
+INFO - 2020-06-15 11:49:23 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:23 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:23 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:23 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:23 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:23 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:23 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:23 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:23 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:23 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:23 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:23 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:23 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:23 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:23 --> Total execution time: 0.3909
+INFO - 2020-06-15 11:49:25 --> Config Class Initialized
+INFO - 2020-06-15 11:49:25 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:25 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:25 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:25 --> URI Class Initialized
+INFO - 2020-06-15 11:49:25 --> Router Class Initialized
+INFO - 2020-06-15 11:49:25 --> Output Class Initialized
+INFO - 2020-06-15 11:49:25 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:25 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:25 --> CSRF token verified
+INFO - 2020-06-15 11:49:25 --> Input Class Initialized
+INFO - 2020-06-15 11:49:25 --> Language Class Initialized
+INFO - 2020-06-15 11:49:25 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:25 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:25 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:25 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:25 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:25 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:26 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:26 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:26 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:49:26 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:26 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:26 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:49:26 --> Upload Class Initialized
+INFO - 2020-06-15 11:49:26 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:26 --> Total execution time: 0.4251
+INFO - 2020-06-15 11:49:27 --> Config Class Initialized
+INFO - 2020-06-15 11:49:27 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:27 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:27 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:27 --> URI Class Initialized
+INFO - 2020-06-15 11:49:27 --> Router Class Initialized
+INFO - 2020-06-15 11:49:27 --> Output Class Initialized
+INFO - 2020-06-15 11:49:27 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:27 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:27 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:27 --> Input Class Initialized
+INFO - 2020-06-15 11:49:27 --> Language Class Initialized
+INFO - 2020-06-15 11:49:27 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:27 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:27 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:27 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:27 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:27 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:27 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:27 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:27 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:27 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:49:27 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:27 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:27 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:49:27 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:27 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:49:27 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:49:27 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:49:27 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:49:27 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:49:27 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:27 --> Total execution time: 0.3355
+INFO - 2020-06-15 11:49:28 --> Config Class Initialized
+INFO - 2020-06-15 11:49:28 --> Config Class Initialized
+INFO - 2020-06-15 11:49:28 --> Hooks Class Initialized
+INFO - 2020-06-15 11:49:28 --> Config Class Initialized
+INFO - 2020-06-15 11:49:28 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:28 --> Utf8 Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:28 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:28 --> URI Class Initialized
+INFO - 2020-06-15 11:49:28 --> URI Class Initialized
+INFO - 2020-06-15 11:49:28 --> Router Class Initialized
+INFO - 2020-06-15 11:49:28 --> Router Class Initialized
+INFO - 2020-06-15 11:49:28 --> Hooks Class Initialized
+INFO - 2020-06-15 11:49:28 --> Output Class Initialized
+INFO - 2020-06-15 11:49:28 --> Output Class Initialized
+INFO - 2020-06-15 11:49:28 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:28 --> Security Class Initialized
+INFO - 2020-06-15 11:49:28 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:28 --> Input Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:28 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:28 --> Input Class Initialized
+INFO - 2020-06-15 11:49:28 --> Language Class Initialized
+INFO - 2020-06-15 11:49:28 --> Language Class Initialized
+INFO - 2020-06-15 11:49:28 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:28 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:28 --> Helper loaded: url_helper
+DEBUG - 2020-06-15 11:49:28 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:28 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:28 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:28 --> URI Class Initialized
+INFO - 2020-06-15 11:49:28 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:28 --> Router Class Initialized
+INFO - 2020-06-15 11:49:28 --> Output Class Initialized
+INFO - 2020-06-15 11:49:28 --> Security Class Initialized
+INFO - 2020-06-15 11:49:28 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:28 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:28 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:28 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:28 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:28 --> Database Driver Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:28 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:28 --> Input Class Initialized
+INFO - 2020-06-15 11:49:28 --> Language Class Initialized
+INFO - 2020-06-15 11:49:28 --> Email Class Initialized
+INFO - 2020-06-15 11:49:28 --> Loader Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:28 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:28 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:28 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:28 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:28 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:28 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:28 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:28 --> Email Class Initialized
+INFO - 2020-06-15 11:49:28 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:28 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:28 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:28 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2020-06-15 11:49:28 --> Total execution time: 0.1542
+INFO - 2020-06-15 11:49:28 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:28 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:28 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:28 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:28 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:28 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:28 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:28 --> Total execution time: 0.3013
+INFO - 2020-06-15 11:49:28 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:28 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:28 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:28 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:28 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:28 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:28 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:28 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:28 --> Total execution time: 0.4031
+INFO - 2020-06-15 11:49:37 --> Config Class Initialized
+INFO - 2020-06-15 11:49:37 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:37 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:37 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:37 --> URI Class Initialized
+INFO - 2020-06-15 11:49:37 --> Router Class Initialized
+INFO - 2020-06-15 11:49:37 --> Output Class Initialized
+INFO - 2020-06-15 11:49:37 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:37 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:37 --> Input Class Initialized
+INFO - 2020-06-15 11:49:37 --> Language Class Initialized
+INFO - 2020-06-15 11:49:37 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:37 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:37 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:37 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:37 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:37 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:37 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:37 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:37 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:37 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:37 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:37 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:37 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:37 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:37 --> Total execution time: 0.4536
+INFO - 2020-06-15 11:49:44 --> Config Class Initialized
+INFO - 2020-06-15 11:49:44 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:44 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:44 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:44 --> URI Class Initialized
+INFO - 2020-06-15 11:49:44 --> Router Class Initialized
+INFO - 2020-06-15 11:49:44 --> Output Class Initialized
+INFO - 2020-06-15 11:49:44 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:44 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:44 --> Input Class Initialized
+INFO - 2020-06-15 11:49:44 --> Language Class Initialized
+INFO - 2020-06-15 11:49:44 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:44 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:44 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:44 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:44 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:44 --> Email Class Initialized
+DEBUG - 2020-06-15 11:49:44 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:44 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:44 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:44 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:49:44 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:44 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:44 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:49:44 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:44 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:49:44 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:49:44 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:49:44 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:49:44 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:49:44 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:44 --> Total execution time: 0.3149
+INFO - 2020-06-15 11:49:45 --> Config Class Initialized
+INFO - 2020-06-15 11:49:45 --> Config Class Initialized
+INFO - 2020-06-15 11:49:45 --> Hooks Class Initialized
+INFO - 2020-06-15 11:49:45 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:45 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:45 --> URI Class Initialized
+INFO - 2020-06-15 11:49:45 --> Router Class Initialized
+INFO - 2020-06-15 11:49:45 --> Output Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:45 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:45 --> Config Class Initialized
+INFO - 2020-06-15 11:49:45 --> Hooks Class Initialized
+INFO - 2020-06-15 11:49:45 --> URI Class Initialized
+INFO - 2020-06-15 11:49:45 --> Router Class Initialized
+INFO - 2020-06-15 11:49:45 --> Output Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:49:45 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:49:45 --> Security Class Initialized
+INFO - 2020-06-15 11:49:45 --> URI Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:45 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:45 --> Input Class Initialized
+INFO - 2020-06-15 11:49:45 --> Language Class Initialized
+INFO - 2020-06-15 11:49:45 --> Router Class Initialized
+INFO - 2020-06-15 11:49:45 --> Output Class Initialized
+INFO - 2020-06-15 11:49:45 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:45 --> Security Class Initialized
+INFO - 2020-06-15 11:49:45 --> Security Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:45 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:45 --> Input Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:49:45 --> CSRF cookie sent
+INFO - 2020-06-15 11:49:45 --> Language Class Initialized
+INFO - 2020-06-15 11:49:45 --> Input Class Initialized
+INFO - 2020-06-15 11:49:45 --> Language Class Initialized
+INFO - 2020-06-15 11:49:45 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:45 --> Loader Class Initialized
+INFO - 2020-06-15 11:49:45 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:45 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:45 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:45 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:45 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:49:45 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:45 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:49:45 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:45 --> Email Class Initialized
+INFO - 2020-06-15 11:49:45 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:49:45 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:49:45 --> Helper loaded: string_helper
+DEBUG - 2020-06-15 11:49:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:45 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:45 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:45 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:45 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:45 --> Email Class Initialized
+INFO - 2020-06-15 11:49:45 --> Database Driver Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:49:45 --> Email Class Initialized
+INFO - 2020-06-15 11:49:45 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2020-06-15 11:49:45 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:45 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:45 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:45 --> Total execution time: 0.1858
+INFO - 2020-06-15 11:49:45 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:45 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:45 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:45 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:45 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:45 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:45 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:45 --> Total execution time: 0.3715
+INFO - 2020-06-15 11:49:45 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:49:45 --> Controller Class Initialized
+INFO - 2020-06-15 11:49:45 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:49:45 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:49:45 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:49:45 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:49:45 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:49:45 --> Final output sent to browser
+DEBUG - 2020-06-15 11:49:45 --> Total execution time: 0.5535
+INFO - 2020-06-15 11:50:57 --> Config Class Initialized
+INFO - 2020-06-15 11:50:57 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:50:57 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:50:57 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:50:57 --> URI Class Initialized
+INFO - 2020-06-15 11:50:57 --> Router Class Initialized
+INFO - 2020-06-15 11:50:57 --> Output Class Initialized
+INFO - 2020-06-15 11:50:57 --> Security Class Initialized
+DEBUG - 2020-06-15 11:50:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:50:57 --> CSRF cookie sent
+INFO - 2020-06-15 11:50:57 --> CSRF token verified
+INFO - 2020-06-15 11:50:57 --> Input Class Initialized
+INFO - 2020-06-15 11:50:57 --> Language Class Initialized
+INFO - 2020-06-15 11:50:57 --> Loader Class Initialized
+INFO - 2020-06-15 11:50:58 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:50:58 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:50:58 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:50:58 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:50:58 --> Email Class Initialized
+DEBUG - 2020-06-15 11:50:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:50:58 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:50:58 --> Controller Class Initialized
+INFO - 2020-06-15 11:50:58 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:50:58 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:50:58 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:50:58 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:50:58 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:50:58 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-06-15 11:50:58 --> Config Class Initialized
+INFO - 2020-06-15 11:50:58 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:50:58 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:50:58 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:50:58 --> URI Class Initialized
+INFO - 2020-06-15 11:50:58 --> Router Class Initialized
+INFO - 2020-06-15 11:50:58 --> Output Class Initialized
+INFO - 2020-06-15 11:50:58 --> Security Class Initialized
+DEBUG - 2020-06-15 11:50:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:50:58 --> CSRF cookie sent
+INFO - 2020-06-15 11:50:58 --> Input Class Initialized
+INFO - 2020-06-15 11:50:58 --> Language Class Initialized
+INFO - 2020-06-15 11:50:58 --> Loader Class Initialized
+INFO - 2020-06-15 11:50:58 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:50:58 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:50:58 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:50:58 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:50:58 --> Email Class Initialized
+DEBUG - 2020-06-15 11:50:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:50:58 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:50:58 --> Controller Class Initialized
+INFO - 2020-06-15 11:50:58 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:50:58 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:50:58 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:50:58 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:50:58 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:50:58 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:50:58 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:50:58 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:50:58 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:50:58 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:50:58 --> Final output sent to browser
+DEBUG - 2020-06-15 11:50:58 --> Total execution time: 0.3635
+INFO - 2020-06-15 11:50:58 --> Config Class Initialized
+INFO - 2020-06-15 11:50:59 --> Config Class Initialized
+INFO - 2020-06-15 11:50:59 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:50:59 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:50:59 --> URI Class Initialized
+INFO - 2020-06-15 11:50:59 --> Config Class Initialized
+INFO - 2020-06-15 11:50:59 --> Hooks Class Initialized
+INFO - 2020-06-15 11:50:59 --> Router Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:50:59 --> Output Class Initialized
+INFO - 2020-06-15 11:50:59 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:50:59 --> URI Class Initialized
+INFO - 2020-06-15 11:50:59 --> Security Class Initialized
+INFO - 2020-06-15 11:50:59 --> Router Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:50:59 --> Hooks Class Initialized
+INFO - 2020-06-15 11:50:59 --> CSRF cookie sent
+INFO - 2020-06-15 11:50:59 --> Input Class Initialized
+INFO - 2020-06-15 11:50:59 --> Language Class Initialized
+INFO - 2020-06-15 11:50:59 --> Output Class Initialized
+INFO - 2020-06-15 11:50:59 --> Security Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:50:59 --> CSRF cookie sent
+INFO - 2020-06-15 11:50:59 --> Loader Class Initialized
+INFO - 2020-06-15 11:50:59 --> Input Class Initialized
+INFO - 2020-06-15 11:50:59 --> Language Class Initialized
+INFO - 2020-06-15 11:50:59 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:50:59 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:50:59 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:50:59 --> Loader Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:50:59 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:50:59 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:50:59 --> URI Class Initialized
+INFO - 2020-06-15 11:50:59 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:50:59 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:50:59 --> Router Class Initialized
+INFO - 2020-06-15 11:50:59 --> Output Class Initialized
+INFO - 2020-06-15 11:50:59 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:50:59 --> Email Class Initialized
+INFO - 2020-06-15 11:50:59 --> Database Driver Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:50:59 --> Email Class Initialized
+INFO - 2020-06-15 11:50:59 --> Security Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:50:59 --> CSRF cookie sent
+INFO - 2020-06-15 11:50:59 --> Input Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:50:59 --> Language Class Initialized
+INFO - 2020-06-15 11:50:59 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:50:59 --> Controller Class Initialized
+INFO - 2020-06-15 11:50:59 --> Loader Class Initialized
+INFO - 2020-06-15 11:50:59 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:50:59 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:50:59 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:50:59 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:50:59 --> Final output sent to browser
+DEBUG - 2020-06-15 11:50:59 --> Total execution time: 0.1099
+INFO - 2020-06-15 11:50:59 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:50:59 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:50:59 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:50:59 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:50:59 --> Controller Class Initialized
+INFO - 2020-06-15 11:50:59 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:50:59 --> Email Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:50:59 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:50:59 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:50:59 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:50:59 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:50:59 --> Final output sent to browser
+DEBUG - 2020-06-15 11:50:59 --> Total execution time: 0.2412
+INFO - 2020-06-15 11:50:59 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:50:59 --> Controller Class Initialized
+INFO - 2020-06-15 11:50:59 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:50:59 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:50:59 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:50:59 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:50:59 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:50:59 --> Final output sent to browser
+DEBUG - 2020-06-15 11:50:59 --> Total execution time: 0.3652
+INFO - 2020-06-15 11:51:03 --> Config Class Initialized
+INFO - 2020-06-15 11:51:03 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:51:03 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:51:03 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:51:03 --> URI Class Initialized
+INFO - 2020-06-15 11:51:03 --> Router Class Initialized
+INFO - 2020-06-15 11:51:03 --> Output Class Initialized
+INFO - 2020-06-15 11:51:03 --> Security Class Initialized
+DEBUG - 2020-06-15 11:51:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:51:03 --> CSRF cookie sent
+INFO - 2020-06-15 11:51:03 --> CSRF token verified
+INFO - 2020-06-15 11:51:03 --> Input Class Initialized
+INFO - 2020-06-15 11:51:03 --> Language Class Initialized
+INFO - 2020-06-15 11:51:03 --> Loader Class Initialized
+INFO - 2020-06-15 11:51:03 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:51:03 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:51:03 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:51:03 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:51:03 --> Email Class Initialized
+DEBUG - 2020-06-15 11:51:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:51:03 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:51:03 --> Controller Class Initialized
+INFO - 2020-06-15 11:51:03 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:51:03 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:51:03 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:51:03 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:51:03 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:51:03 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-06-15 11:51:03 --> Config Class Initialized
+INFO - 2020-06-15 11:51:03 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:51:03 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:51:03 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:51:03 --> URI Class Initialized
+INFO - 2020-06-15 11:51:03 --> Router Class Initialized
+INFO - 2020-06-15 11:51:03 --> Output Class Initialized
+INFO - 2020-06-15 11:51:03 --> Security Class Initialized
+DEBUG - 2020-06-15 11:51:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:51:03 --> CSRF cookie sent
+INFO - 2020-06-15 11:51:03 --> Input Class Initialized
+INFO - 2020-06-15 11:51:03 --> Language Class Initialized
+INFO - 2020-06-15 11:51:03 --> Loader Class Initialized
+INFO - 2020-06-15 11:51:03 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:51:03 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:51:03 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:51:03 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:51:03 --> Email Class Initialized
+DEBUG - 2020-06-15 11:51:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:51:03 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:51:03 --> Controller Class Initialized
+INFO - 2020-06-15 11:51:03 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:51:03 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:51:03 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:51:03 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:51:03 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:51:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:51:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:51:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:51:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:51:03 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/profile.php
+INFO - 2020-06-15 11:51:03 --> Final output sent to browser
+DEBUG - 2020-06-15 11:51:03 --> Total execution time: 0.3401
+INFO - 2020-06-15 11:51:04 --> Config Class Initialized
+INFO - 2020-06-15 11:51:04 --> Config Class Initialized
+INFO - 2020-06-15 11:51:04 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:51:04 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:51:04 --> URI Class Initialized
+INFO - 2020-06-15 11:51:04 --> Router Class Initialized
+INFO - 2020-06-15 11:51:04 --> Hooks Class Initialized
+INFO - 2020-06-15 11:51:04 --> Output Class Initialized
+INFO - 2020-06-15 11:51:04 --> Config Class Initialized
+INFO - 2020-06-15 11:51:04 --> Hooks Class Initialized
+INFO - 2020-06-15 11:51:04 --> Security Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> UTF-8 Support Enabled
+DEBUG - 2020-06-15 11:51:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:51:04 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:51:04 --> CSRF cookie sent
+INFO - 2020-06-15 11:51:04 --> Input Class Initialized
+INFO - 2020-06-15 11:51:04 --> URI Class Initialized
+INFO - 2020-06-15 11:51:04 --> Language Class Initialized
+INFO - 2020-06-15 11:51:04 --> Router Class Initialized
+INFO - 2020-06-15 11:51:04 --> Loader Class Initialized
+INFO - 2020-06-15 11:51:04 --> Output Class Initialized
+INFO - 2020-06-15 11:51:04 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:51:04 --> Security Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:51:04 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:51:04 --> URI Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:51:04 --> CSRF cookie sent
+INFO - 2020-06-15 11:51:04 --> Input Class Initialized
+INFO - 2020-06-15 11:51:04 --> Router Class Initialized
+INFO - 2020-06-15 11:51:04 --> Language Class Initialized
+INFO - 2020-06-15 11:51:04 --> Output Class Initialized
+INFO - 2020-06-15 11:51:04 --> Security Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:51:04 --> CSRF cookie sent
+INFO - 2020-06-15 11:51:04 --> Input Class Initialized
+INFO - 2020-06-15 11:51:04 --> Loader Class Initialized
+INFO - 2020-06-15 11:51:04 --> Language Class Initialized
+INFO - 2020-06-15 11:51:04 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:51:04 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:51:04 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:51:04 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:51:04 --> Loader Class Initialized
+INFO - 2020-06-15 11:51:04 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:51:04 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:51:04 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:51:04 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:51:04 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:51:04 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:51:04 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:51:04 --> Email Class Initialized
+INFO - 2020-06-15 11:51:04 --> Email Class Initialized
+INFO - 2020-06-15 11:51:04 --> Email Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2020-06-15 11:51:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:51:04 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:51:04 --> Controller Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:51:04 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:51:04 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:51:04 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:51:04 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:51:04 --> Final output sent to browser
+DEBUG - 2020-06-15 11:51:04 --> Total execution time: 0.2364
+INFO - 2020-06-15 11:51:04 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:51:04 --> Controller Class Initialized
+INFO - 2020-06-15 11:51:04 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:51:04 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:51:04 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:51:04 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:51:04 --> Final output sent to browser
+DEBUG - 2020-06-15 11:51:04 --> Total execution time: 0.3512
+INFO - 2020-06-15 11:51:04 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:51:04 --> Controller Class Initialized
+INFO - 2020-06-15 11:51:04 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:51:04 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:51:04 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:51:04 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:51:04 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:51:04 --> Final output sent to browser
+DEBUG - 2020-06-15 11:51:04 --> Total execution time: 0.4656
+INFO - 2020-06-15 11:51:36 --> Config Class Initialized
+INFO - 2020-06-15 11:51:36 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:51:36 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:51:36 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:51:36 --> URI Class Initialized
+INFO - 2020-06-15 11:51:36 --> Router Class Initialized
+INFO - 2020-06-15 11:51:36 --> Output Class Initialized
+INFO - 2020-06-15 11:51:36 --> Security Class Initialized
+DEBUG - 2020-06-15 11:51:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:51:36 --> CSRF cookie sent
+INFO - 2020-06-15 11:51:36 --> Input Class Initialized
+INFO - 2020-06-15 11:51:36 --> Language Class Initialized
+INFO - 2020-06-15 11:51:36 --> Loader Class Initialized
+INFO - 2020-06-15 11:51:37 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:51:37 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:51:37 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:51:37 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:51:37 --> Email Class Initialized
+DEBUG - 2020-06-15 11:51:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:51:37 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:51:37 --> Controller Class Initialized
+INFO - 2020-06-15 11:51:37 --> Model "M_staffs" initialized
+INFO - 2020-06-15 11:51:37 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:51:37 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:51:37 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:51:37 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:51:37 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:51:37 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:51:37 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\staffs/list.php
+INFO - 2020-06-15 11:51:37 --> Final output sent to browser
+DEBUG - 2020-06-15 11:51:37 --> Total execution time: 0.3022
+INFO - 2020-06-15 11:51:38 --> Config Class Initialized
+INFO - 2020-06-15 11:51:38 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:51:38 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:51:38 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:51:38 --> URI Class Initialized
+INFO - 2020-06-15 11:51:38 --> Router Class Initialized
+INFO - 2020-06-15 11:51:38 --> Output Class Initialized
+INFO - 2020-06-15 11:51:38 --> Security Class Initialized
+DEBUG - 2020-06-15 11:51:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:51:38 --> CSRF cookie sent
+INFO - 2020-06-15 11:51:38 --> Input Class Initialized
+INFO - 2020-06-15 11:51:38 --> Language Class Initialized
+INFO - 2020-06-15 11:51:38 --> Loader Class Initialized
+INFO - 2020-06-15 11:51:38 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:51:38 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:51:38 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:51:38 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:51:38 --> Email Class Initialized
+DEBUG - 2020-06-15 11:51:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:51:38 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:51:38 --> Controller Class Initialized
+INFO - 2020-06-15 11:51:38 --> Model "M_staffs" initialized
+INFO - 2020-06-15 11:51:38 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:51:38 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:51:38 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:51:38 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:51:38 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:51:38 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:51:38 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\staffs/add.php
+INFO - 2020-06-15 11:51:38 --> Final output sent to browser
+DEBUG - 2020-06-15 11:51:38 --> Total execution time: 0.3390
+INFO - 2020-06-15 11:51:45 --> Config Class Initialized
+INFO - 2020-06-15 11:51:45 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:51:45 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:51:45 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:51:45 --> URI Class Initialized
+INFO - 2020-06-15 11:51:45 --> Router Class Initialized
+INFO - 2020-06-15 11:51:45 --> Output Class Initialized
+INFO - 2020-06-15 11:51:45 --> Security Class Initialized
+DEBUG - 2020-06-15 11:51:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:51:45 --> CSRF cookie sent
+INFO - 2020-06-15 11:51:45 --> CSRF token verified
+INFO - 2020-06-15 11:51:45 --> Input Class Initialized
+INFO - 2020-06-15 11:51:45 --> Language Class Initialized
+INFO - 2020-06-15 11:51:45 --> Loader Class Initialized
+INFO - 2020-06-15 11:51:45 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:51:45 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:51:45 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:51:45 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:51:45 --> Email Class Initialized
+DEBUG - 2020-06-15 11:51:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:51:45 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:51:45 --> Controller Class Initialized
+INFO - 2020-06-15 11:51:45 --> Model "M_staffs" initialized
+INFO - 2020-06-15 11:51:45 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:51:45 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:51:45 --> Final output sent to browser
+DEBUG - 2020-06-15 11:51:45 --> Total execution time: 0.2780
+INFO - 2020-06-15 11:51:48 --> Config Class Initialized
+INFO - 2020-06-15 11:51:48 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:51:48 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:51:48 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:51:48 --> URI Class Initialized
+INFO - 2020-06-15 11:51:48 --> Router Class Initialized
+INFO - 2020-06-15 11:51:48 --> Output Class Initialized
+INFO - 2020-06-15 11:51:48 --> Security Class Initialized
+DEBUG - 2020-06-15 11:51:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:51:48 --> CSRF cookie sent
+INFO - 2020-06-15 11:51:48 --> CSRF token verified
+INFO - 2020-06-15 11:51:48 --> Input Class Initialized
+INFO - 2020-06-15 11:51:48 --> Language Class Initialized
+INFO - 2020-06-15 11:51:48 --> Loader Class Initialized
+INFO - 2020-06-15 11:51:48 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:51:48 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:51:48 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:51:48 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:51:48 --> Email Class Initialized
+DEBUG - 2020-06-15 11:51:48 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:51:48 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:51:48 --> Controller Class Initialized
+INFO - 2020-06-15 11:51:48 --> Model "M_staffs" initialized
+INFO - 2020-06-15 11:51:48 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:51:48 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:51:48 --> Final output sent to browser
+DEBUG - 2020-06-15 11:51:48 --> Total execution time: 0.2802
+INFO - 2020-06-15 11:52:05 --> Config Class Initialized
+INFO - 2020-06-15 11:52:05 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:52:05 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:52:05 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:52:05 --> URI Class Initialized
+INFO - 2020-06-15 11:52:05 --> Router Class Initialized
+INFO - 2020-06-15 11:52:05 --> Output Class Initialized
+INFO - 2020-06-15 11:52:05 --> Security Class Initialized
+DEBUG - 2020-06-15 11:52:05 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:52:05 --> CSRF cookie sent
+INFO - 2020-06-15 11:52:05 --> CSRF token verified
+INFO - 2020-06-15 11:52:05 --> Input Class Initialized
+INFO - 2020-06-15 11:52:05 --> Language Class Initialized
+INFO - 2020-06-15 11:52:05 --> Loader Class Initialized
+INFO - 2020-06-15 11:52:05 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:52:05 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:52:05 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:52:05 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:52:05 --> Email Class Initialized
+DEBUG - 2020-06-15 11:52:05 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:52:05 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:52:05 --> Controller Class Initialized
+INFO - 2020-06-15 11:52:05 --> Model "M_staffs" initialized
+INFO - 2020-06-15 11:52:05 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:52:05 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:52:05 --> Final output sent to browser
+DEBUG - 2020-06-15 11:52:05 --> Total execution time: 0.3344
+INFO - 2020-06-15 11:52:32 --> Config Class Initialized
+INFO - 2020-06-15 11:52:32 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:52:32 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:52:32 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:52:32 --> URI Class Initialized
+INFO - 2020-06-15 11:52:32 --> Router Class Initialized
+INFO - 2020-06-15 11:52:32 --> Output Class Initialized
+INFO - 2020-06-15 11:52:32 --> Security Class Initialized
+DEBUG - 2020-06-15 11:52:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:52:32 --> CSRF cookie sent
+INFO - 2020-06-15 11:52:32 --> Input Class Initialized
+INFO - 2020-06-15 11:52:32 --> Language Class Initialized
+INFO - 2020-06-15 11:52:32 --> Loader Class Initialized
+INFO - 2020-06-15 11:52:32 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:52:32 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:52:33 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:52:33 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:52:33 --> Email Class Initialized
+DEBUG - 2020-06-15 11:52:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:52:33 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:52:33 --> Controller Class Initialized
+INFO - 2020-06-15 11:52:33 --> Model "M_staffs" initialized
+INFO - 2020-06-15 11:52:33 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:52:33 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:52:33 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:52:33 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:52:33 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:52:33 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:52:33 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\staffs/add.php
+INFO - 2020-06-15 11:52:33 --> Final output sent to browser
+DEBUG - 2020-06-15 11:52:33 --> Total execution time: 0.3619
+INFO - 2020-06-15 11:52:38 --> Config Class Initialized
+INFO - 2020-06-15 11:52:38 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:52:38 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:52:38 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:52:38 --> URI Class Initialized
+INFO - 2020-06-15 11:52:38 --> Router Class Initialized
+INFO - 2020-06-15 11:52:38 --> Output Class Initialized
+INFO - 2020-06-15 11:52:38 --> Security Class Initialized
+DEBUG - 2020-06-15 11:52:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:52:38 --> CSRF cookie sent
+INFO - 2020-06-15 11:52:38 --> CSRF token verified
+INFO - 2020-06-15 11:52:38 --> Input Class Initialized
+INFO - 2020-06-15 11:52:38 --> Language Class Initialized
+INFO - 2020-06-15 11:52:38 --> Loader Class Initialized
+INFO - 2020-06-15 11:52:38 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:52:38 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:52:38 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:52:38 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:52:38 --> Email Class Initialized
+DEBUG - 2020-06-15 11:52:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:52:38 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:52:38 --> Controller Class Initialized
+INFO - 2020-06-15 11:52:38 --> Model "M_staffs" initialized
+INFO - 2020-06-15 11:52:38 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:52:38 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:52:38 --> Final output sent to browser
+DEBUG - 2020-06-15 11:52:38 --> Total execution time: 0.3008
+INFO - 2020-06-15 11:52:42 --> Config Class Initialized
+INFO - 2020-06-15 11:52:42 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:52:42 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:52:42 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:52:42 --> URI Class Initialized
+INFO - 2020-06-15 11:52:42 --> Router Class Initialized
+INFO - 2020-06-15 11:52:42 --> Output Class Initialized
+INFO - 2020-06-15 11:52:42 --> Security Class Initialized
+DEBUG - 2020-06-15 11:52:42 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:52:43 --> CSRF cookie sent
+INFO - 2020-06-15 11:52:43 --> CSRF token verified
+INFO - 2020-06-15 11:52:43 --> Input Class Initialized
+INFO - 2020-06-15 11:52:43 --> Language Class Initialized
+INFO - 2020-06-15 11:52:43 --> Loader Class Initialized
+INFO - 2020-06-15 11:52:43 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:52:43 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:52:43 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:52:43 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:52:43 --> Email Class Initialized
+DEBUG - 2020-06-15 11:52:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:52:43 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:52:43 --> Controller Class Initialized
+INFO - 2020-06-15 11:52:43 --> Model "M_staffs" initialized
+INFO - 2020-06-15 11:52:43 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:52:43 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:52:43 --> Final output sent to browser
+DEBUG - 2020-06-15 11:52:43 --> Total execution time: 0.3985
+INFO - 2020-06-15 11:52:45 --> Config Class Initialized
+INFO - 2020-06-15 11:52:45 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:52:45 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:52:45 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:52:45 --> URI Class Initialized
+INFO - 2020-06-15 11:52:45 --> Router Class Initialized
+INFO - 2020-06-15 11:52:45 --> Output Class Initialized
+INFO - 2020-06-15 11:52:45 --> Security Class Initialized
+DEBUG - 2020-06-15 11:52:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:52:45 --> CSRF cookie sent
+INFO - 2020-06-15 11:52:45 --> CSRF token verified
+INFO - 2020-06-15 11:52:45 --> Input Class Initialized
+INFO - 2020-06-15 11:52:45 --> Language Class Initialized
+INFO - 2020-06-15 11:52:45 --> Loader Class Initialized
+INFO - 2020-06-15 11:52:45 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:52:45 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:52:45 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:52:45 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:52:45 --> Email Class Initialized
+DEBUG - 2020-06-15 11:52:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:52:45 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:52:45 --> Controller Class Initialized
+INFO - 2020-06-15 11:52:45 --> Model "M_staffs" initialized
+INFO - 2020-06-15 11:52:45 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:52:45 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:52:45 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:52:45 --> Language file loaded: language/english/form_validation_lang.php
+DEBUG - 2020-06-15 11:52:45 --> Config file loaded: C:\xampp\htdocs\scholarship\industry\config/email.php
+DEBUG - 2020-06-15 11:52:45 --> Email class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:52:45 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\mail/staff-reg-verify.php
+INFO - 2020-06-15 11:52:47 --> Language file loaded: language/english/email_lang.php
+INFO - 2020-06-15 11:52:53 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:52:53 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:52:53 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:52:53 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:52:53 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\staffs/add.php
+INFO - 2020-06-15 11:52:53 --> Final output sent to browser
+DEBUG - 2020-06-15 11:52:53 --> Total execution time: 8.4894
+INFO - 2020-06-15 11:53:25 --> Config Class Initialized
+INFO - 2020-06-15 11:53:25 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:53:25 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:53:25 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:53:25 --> URI Class Initialized
+INFO - 2020-06-15 11:53:25 --> Router Class Initialized
+INFO - 2020-06-15 11:53:25 --> Output Class Initialized
+INFO - 2020-06-15 11:53:25 --> Security Class Initialized
+DEBUG - 2020-06-15 11:53:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:53:25 --> CSRF cookie sent
+INFO - 2020-06-15 11:53:25 --> Input Class Initialized
+INFO - 2020-06-15 11:53:25 --> Language Class Initialized
+INFO - 2020-06-15 11:53:25 --> Loader Class Initialized
+INFO - 2020-06-15 11:53:25 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:53:25 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:53:25 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:53:25 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:53:25 --> Email Class Initialized
+DEBUG - 2020-06-15 11:53:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:53:25 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:53:25 --> Controller Class Initialized
+INFO - 2020-06-15 11:53:25 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:53:25 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:53:25 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:53:25 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:53:25 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:53:25 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:53:25 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:53:25 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:53:25 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/set-password.php
+INFO - 2020-06-15 11:53:25 --> Final output sent to browser
+DEBUG - 2020-06-15 11:53:25 --> Total execution time: 0.3665
+INFO - 2020-06-15 11:53:37 --> Config Class Initialized
+INFO - 2020-06-15 11:53:37 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:53:37 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:53:38 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:53:38 --> URI Class Initialized
+INFO - 2020-06-15 11:53:38 --> Router Class Initialized
+INFO - 2020-06-15 11:53:38 --> Output Class Initialized
+INFO - 2020-06-15 11:53:38 --> Security Class Initialized
+DEBUG - 2020-06-15 11:53:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:53:38 --> CSRF cookie sent
+INFO - 2020-06-15 11:53:38 --> Input Class Initialized
+INFO - 2020-06-15 11:53:38 --> Language Class Initialized
+INFO - 2020-06-15 11:53:38 --> Loader Class Initialized
+INFO - 2020-06-15 11:53:38 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:53:38 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:53:38 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:53:38 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:53:38 --> Email Class Initialized
+DEBUG - 2020-06-15 11:53:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:53:38 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:53:38 --> Controller Class Initialized
+INFO - 2020-06-15 11:53:38 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:53:38 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:53:38 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:53:38 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:53:38 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:53:38 --> Config Class Initialized
+INFO - 2020-06-15 11:53:38 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:53:38 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:53:38 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:53:38 --> URI Class Initialized
+DEBUG - 2020-06-15 11:53:38 --> No URI present. Default controller set.
+INFO - 2020-06-15 11:53:38 --> Router Class Initialized
+INFO - 2020-06-15 11:53:38 --> Output Class Initialized
+INFO - 2020-06-15 11:53:38 --> Security Class Initialized
+DEBUG - 2020-06-15 11:53:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:53:38 --> CSRF cookie sent
+INFO - 2020-06-15 11:53:38 --> Input Class Initialized
+INFO - 2020-06-15 11:53:38 --> Language Class Initialized
+INFO - 2020-06-15 11:53:38 --> Loader Class Initialized
+INFO - 2020-06-15 11:53:38 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:53:38 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:53:38 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:53:38 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:53:38 --> Email Class Initialized
+DEBUG - 2020-06-15 11:53:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:53:38 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:53:38 --> Controller Class Initialized
+INFO - 2020-06-15 11:53:38 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:53:38 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:53:38 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:53:38 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:53:38 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:53:38 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:53:38 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:53:38 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:53:38 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/login.php
+INFO - 2020-06-15 11:53:38 --> Final output sent to browser
+DEBUG - 2020-06-15 11:53:38 --> Total execution time: 0.3732
+INFO - 2020-06-15 11:53:40 --> Config Class Initialized
+INFO - 2020-06-15 11:53:40 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:53:40 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:53:40 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:53:40 --> URI Class Initialized
+INFO - 2020-06-15 11:53:40 --> Router Class Initialized
+INFO - 2020-06-15 11:53:40 --> Output Class Initialized
+INFO - 2020-06-15 11:53:40 --> Security Class Initialized
+DEBUG - 2020-06-15 11:53:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:53:40 --> CSRF cookie sent
+INFO - 2020-06-15 11:53:41 --> Input Class Initialized
+INFO - 2020-06-15 11:53:41 --> Language Class Initialized
+INFO - 2020-06-15 11:53:41 --> Loader Class Initialized
+INFO - 2020-06-15 11:53:41 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:53:41 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:53:41 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:53:41 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:53:41 --> Email Class Initialized
+DEBUG - 2020-06-15 11:53:41 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:53:41 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:53:41 --> Controller Class Initialized
+INFO - 2020-06-15 11:53:41 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:53:41 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:53:41 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:53:41 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:53:41 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:53:41 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:53:41 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:53:41 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:53:41 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/set-password.php
+INFO - 2020-06-15 11:53:41 --> Final output sent to browser
+DEBUG - 2020-06-15 11:53:41 --> Total execution time: 0.4024
+INFO - 2020-06-15 11:53:57 --> Config Class Initialized
+INFO - 2020-06-15 11:53:57 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:53:57 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:53:57 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:53:57 --> URI Class Initialized
+INFO - 2020-06-15 11:53:57 --> Router Class Initialized
+INFO - 2020-06-15 11:53:57 --> Output Class Initialized
+INFO - 2020-06-15 11:53:57 --> Security Class Initialized
+DEBUG - 2020-06-15 11:53:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:53:57 --> CSRF cookie sent
+INFO - 2020-06-15 11:53:57 --> CSRF token verified
+INFO - 2020-06-15 11:53:57 --> Input Class Initialized
+INFO - 2020-06-15 11:53:57 --> Language Class Initialized
+INFO - 2020-06-15 11:53:57 --> Loader Class Initialized
+INFO - 2020-06-15 11:53:57 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:53:57 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:53:57 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:53:57 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:53:57 --> Email Class Initialized
+DEBUG - 2020-06-15 11:53:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:53:57 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:53:57 --> Controller Class Initialized
+INFO - 2020-06-15 11:53:57 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:53:57 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:53:57 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:53:57 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:53:57 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:53:57 --> Config Class Initialized
+INFO - 2020-06-15 11:53:57 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:53:57 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:53:57 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:53:57 --> URI Class Initialized
+DEBUG - 2020-06-15 11:53:57 --> No URI present. Default controller set.
+INFO - 2020-06-15 11:53:57 --> Router Class Initialized
+INFO - 2020-06-15 11:53:57 --> Output Class Initialized
+INFO - 2020-06-15 11:53:57 --> Security Class Initialized
+DEBUG - 2020-06-15 11:53:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:53:57 --> CSRF cookie sent
+INFO - 2020-06-15 11:53:57 --> Input Class Initialized
+INFO - 2020-06-15 11:53:57 --> Language Class Initialized
+INFO - 2020-06-15 11:53:57 --> Loader Class Initialized
+INFO - 2020-06-15 11:53:57 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:53:57 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:53:57 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:53:57 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:53:57 --> Email Class Initialized
+DEBUG - 2020-06-15 11:53:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:53:57 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:53:57 --> Controller Class Initialized
+INFO - 2020-06-15 11:53:57 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:53:57 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:53:57 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:53:57 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:53:57 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:53:57 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:53:57 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:53:57 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:53:57 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\auth/login.php
+INFO - 2020-06-15 11:53:57 --> Final output sent to browser
+DEBUG - 2020-06-15 11:53:57 --> Total execution time: 0.3839
+INFO - 2020-06-15 11:54:14 --> Config Class Initialized
+INFO - 2020-06-15 11:54:15 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:54:15 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:54:15 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:54:15 --> URI Class Initialized
+INFO - 2020-06-15 11:54:15 --> Router Class Initialized
+INFO - 2020-06-15 11:54:15 --> Output Class Initialized
+INFO - 2020-06-15 11:54:15 --> Security Class Initialized
+DEBUG - 2020-06-15 11:54:15 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:54:15 --> CSRF cookie sent
+INFO - 2020-06-15 11:54:22 --> Config Class Initialized
+INFO - 2020-06-15 11:54:22 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:54:22 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:54:22 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:54:22 --> URI Class Initialized
+INFO - 2020-06-15 11:54:22 --> Router Class Initialized
+INFO - 2020-06-15 11:54:22 --> Output Class Initialized
+INFO - 2020-06-15 11:54:22 --> Security Class Initialized
+DEBUG - 2020-06-15 11:54:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:54:22 --> CSRF cookie sent
+INFO - 2020-06-15 11:54:22 --> CSRF token verified
+INFO - 2020-06-15 11:54:22 --> Input Class Initialized
+INFO - 2020-06-15 11:54:22 --> Language Class Initialized
+INFO - 2020-06-15 11:54:22 --> Loader Class Initialized
+INFO - 2020-06-15 11:54:22 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:54:22 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:54:22 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:54:22 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:54:22 --> Email Class Initialized
+DEBUG - 2020-06-15 11:54:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:54:22 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:54:22 --> Controller Class Initialized
+INFO - 2020-06-15 11:54:22 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:54:22 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:54:22 --> Form Validation Class Initialized
+DEBUG - 2020-06-15 11:54:22 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:54:22 --> Helper loaded: captcha_helper
+INFO - 2020-06-15 11:54:22 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-06-15 11:54:22 --> ---------------------Success -- Industry Logged in with prathwiek.5ine@gmail.com and IP aaddress ::1 --------------
+INFO - 2020-06-15 11:54:22 --> Config Class Initialized
+INFO - 2020-06-15 11:54:22 --> Hooks Class Initialized
+DEBUG - 2020-06-15 11:54:22 --> UTF-8 Support Enabled
+INFO - 2020-06-15 11:54:22 --> Utf8 Class Initialized
+INFO - 2020-06-15 11:54:22 --> URI Class Initialized
+INFO - 2020-06-15 11:54:22 --> Router Class Initialized
+INFO - 2020-06-15 11:54:22 --> Output Class Initialized
+INFO - 2020-06-15 11:54:22 --> Security Class Initialized
+DEBUG - 2020-06-15 11:54:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-06-15 11:54:22 --> CSRF cookie sent
+INFO - 2020-06-15 11:54:22 --> Input Class Initialized
+INFO - 2020-06-15 11:54:22 --> Language Class Initialized
+INFO - 2020-06-15 11:54:22 --> Loader Class Initialized
+INFO - 2020-06-15 11:54:22 --> Helper loaded: url_helper
+INFO - 2020-06-15 11:54:22 --> Helper loaded: file_helper
+INFO - 2020-06-15 11:54:22 --> Helper loaded: string_helper
+INFO - 2020-06-15 11:54:22 --> Database Driver Class Initialized
+INFO - 2020-06-15 11:54:22 --> Email Class Initialized
+DEBUG - 2020-06-15 11:54:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-06-15 11:54:22 --> Session: Class initialized using 'files' driver.
+INFO - 2020-06-15 11:54:22 --> Controller Class Initialized
+INFO - 2020-06-15 11:54:22 --> Model "M_account" initialized
+DEBUG - 2020-06-15 11:54:22 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-06-15 11:54:22 --> Helper loaded: form_helper
+INFO - 2020-06-15 11:54:22 --> Form Validation Class Initialized
+INFO - 2020-06-15 11:54:22 --> Model "M_auth" initialized
+INFO - 2020-06-15 11:54:22 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/header.php
+INFO - 2020-06-15 11:54:22 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/menu.php
+INFO - 2020-06-15 11:54:22 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/footer.php
+INFO - 2020-06-15 11:54:22 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\include/msg.php
+INFO - 2020-06-15 11:54:22 --> File loaded: C:\xampp\htdocs\scholarship\industry\views\account/hr-profile.php
+INFO - 2020-06-15 11:54:23 --> Final output sent to browser
+DEBUG - 2020-06-15 11:54:23 --> Total execution time: 0.3645

@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         
     }
 
@@ -60,12 +60,13 @@ class Dashboard extends CI_Controller {
     public function updateprofile($value='')
     {
         $this->sc_check->limitRequests();
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+                $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $this->form_validation->set_rules('name', 'Name', 'required|alpha_numeric_spaces');
                 $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric');
                 if ($this->form_validation->run() == True){
@@ -86,6 +87,10 @@ class Dashboard extends CI_Controller {
                     $this->session->set_flashdata('error', '😕 Some error occurred. Please try again later');
                     redirect('profile','refresh');
                 }
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            redirect('profile','refresh');
+        }
     }
 
     public function changepassword($value='')
@@ -97,25 +102,29 @@ class Dashboard extends CI_Controller {
         // psw check function
     public function checkpsw($psw='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
-
-        $output = $this->m_dashboard->checkpsw($this->input->post('crpass'));
-        echo $output;
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $output = $this->m_dashboard->checkpsw($this->input->post('crpass'));
+            echo $output;
+        }else{
+            echo null;
+        }
     }
 
     public function updatepassword($value='')
     {
         $this->sc_check->limitRequests();
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
-    
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $this->form_validation->set_rules('cpswd', 'Current Password', 'trim|required');
         $this->form_validation->set_rules('npswd', 'Password', 'trim|required|min_length[5]');
         $this->form_validation->set_rules('cn_pswd', 'Password Confirmation', 'trim|required|matches[npswd]');
@@ -134,9 +143,15 @@ class Dashboard extends CI_Controller {
             $error = validation_errors();
             $this->session->set_flashdata('error', $error);
             redirect('change-password','refresh');
-
         }
+
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
+            redirect('change-password','refresh');
+        }
+
     }
+
 
 }
 

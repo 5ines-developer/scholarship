@@ -1,0 +1,141 @@
+INFO - 2020-08-13 11:24:55 --> Config Class Initialized
+INFO - 2020-08-13 11:24:55 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:24:55 --> UTF-8 Support Enabled
+INFO - 2020-08-13 11:24:55 --> Utf8 Class Initialized
+INFO - 2020-08-13 11:24:55 --> URI Class Initialized
+DEBUG - 2020-08-13 11:24:55 --> No URI present. Default controller set.
+INFO - 2020-08-13 11:24:55 --> Router Class Initialized
+INFO - 2020-08-13 11:24:55 --> Output Class Initialized
+INFO - 2020-08-13 11:24:55 --> Security Class Initialized
+DEBUG - 2020-08-13 11:24:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-13 11:24:55 --> CSRF cookie sent
+INFO - 2020-08-13 11:24:55 --> Input Class Initialized
+INFO - 2020-08-13 11:24:55 --> Language Class Initialized
+INFO - 2020-08-13 11:24:55 --> Loader Class Initialized
+INFO - 2020-08-13 11:24:55 --> Helper loaded: url_helper
+INFO - 2020-08-13 11:24:55 --> Helper loaded: file_helper
+INFO - 2020-08-13 11:24:55 --> Helper loaded: text_helper
+INFO - 2020-08-13 11:24:55 --> Helper loaded: string_helper
+INFO - 2020-08-13 11:24:55 --> Database Driver Class Initialized
+INFO - 2020-08-13 11:24:55 --> Email Class Initialized
+DEBUG - 2020-08-13 11:24:55 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-13 11:24:55 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-13 11:24:55 --> Helper loaded: form_helper
+INFO - 2020-08-13 11:24:55 --> Form Validation Class Initialized
+INFO - 2020-08-13 11:24:55 --> Controller Class Initialized
+INFO - 2020-08-13 11:24:55 --> Model "M_auth" initialized
+DEBUG - 2020-08-13 11:24:55 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-08-13 11:24:55 --> Helper loaded: captcha_helper
+INFO - 2020-08-13 11:24:55 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/header.php
+INFO - 2020-08-13 11:24:55 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/footer.php
+INFO - 2020-08-13 11:24:55 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/msg.php
+INFO - 2020-08-13 11:24:55 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\auth/login.php
+INFO - 2020-08-13 11:24:55 --> Final output sent to browser
+DEBUG - 2020-08-13 11:24:55 --> Total execution time: 0.5655
+INFO - 2020-08-13 11:24:55 --> Config Class Initialized
+INFO - 2020-08-13 11:24:55 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:24:55 --> UTF-8 Support Enabled
+INFO - 2020-08-13 11:24:55 --> Utf8 Class Initialized
+INFO - 2020-08-13 11:24:55 --> URI Class Initialized
+INFO - 2020-08-13 11:24:55 --> Router Class Initialized
+INFO - 2020-08-13 11:24:55 --> Output Class Initialized
+INFO - 2020-08-13 11:24:55 --> Security Class Initialized
+DEBUG - 2020-08-13 11:24:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-13 11:24:55 --> CSRF cookie sent
+INFO - 2020-08-13 11:24:55 --> Input Class Initialized
+INFO - 2020-08-13 11:24:55 --> Language Class Initialized
+ERROR - 2020-08-13 11:24:55 --> 404 Page Not Found: Assets/css
+INFO - 2020-08-13 11:24:59 --> Config Class Initialized
+INFO - 2020-08-13 11:24:59 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:24:59 --> UTF-8 Support Enabled
+INFO - 2020-08-13 11:24:59 --> Utf8 Class Initialized
+INFO - 2020-08-13 11:24:59 --> URI Class Initialized
+DEBUG - 2020-08-13 11:24:59 --> No URI present. Default controller set.
+INFO - 2020-08-13 11:24:59 --> Router Class Initialized
+INFO - 2020-08-13 11:24:59 --> Output Class Initialized
+INFO - 2020-08-13 11:24:59 --> Security Class Initialized
+DEBUG - 2020-08-13 11:24:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-13 11:24:59 --> CSRF cookie sent
+INFO - 2020-08-13 11:24:59 --> Input Class Initialized
+INFO - 2020-08-13 11:24:59 --> Language Class Initialized
+INFO - 2020-08-13 11:24:59 --> Loader Class Initialized
+INFO - 2020-08-13 11:24:59 --> Helper loaded: url_helper
+INFO - 2020-08-13 11:24:59 --> Helper loaded: file_helper
+INFO - 2020-08-13 11:24:59 --> Helper loaded: text_helper
+INFO - 2020-08-13 11:24:59 --> Helper loaded: string_helper
+INFO - 2020-08-13 11:24:59 --> Database Driver Class Initialized
+INFO - 2020-08-13 11:24:59 --> Email Class Initialized
+DEBUG - 2020-08-13 11:24:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-13 11:24:59 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-13 11:24:59 --> Helper loaded: form_helper
+INFO - 2020-08-13 11:24:59 --> Form Validation Class Initialized
+INFO - 2020-08-13 11:24:59 --> Controller Class Initialized
+INFO - 2020-08-13 11:24:59 --> Model "M_auth" initialized
+DEBUG - 2020-08-13 11:24:59 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-08-13 11:24:59 --> Helper loaded: captcha_helper
+INFO - 2020-08-13 11:24:59 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/header.php
+INFO - 2020-08-13 11:24:59 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/footer.php
+INFO - 2020-08-13 11:24:59 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/msg.php
+INFO - 2020-08-13 11:24:59 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\auth/login.php
+INFO - 2020-08-13 11:24:59 --> Final output sent to browser
+DEBUG - 2020-08-13 11:24:59 --> Total execution time: 0.4133
+INFO - 2020-08-13 11:24:59 --> Config Class Initialized
+INFO - 2020-08-13 11:24:59 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:24:59 --> UTF-8 Support Enabled
+INFO - 2020-08-13 11:24:59 --> Utf8 Class Initialized
+INFO - 2020-08-13 11:24:59 --> URI Class Initialized
+INFO - 2020-08-13 11:24:59 --> Router Class Initialized
+INFO - 2020-08-13 11:24:59 --> Output Class Initialized
+INFO - 2020-08-13 11:24:59 --> Security Class Initialized
+DEBUG - 2020-08-13 11:24:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-13 11:24:59 --> CSRF cookie sent
+INFO - 2020-08-13 11:24:59 --> Input Class Initialized
+INFO - 2020-08-13 11:24:59 --> Language Class Initialized
+ERROR - 2020-08-13 11:24:59 --> 404 Page Not Found: Assets/css
+INFO - 2020-08-13 11:25:09 --> Config Class Initialized
+INFO - 2020-08-13 11:25:09 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:25:09 --> UTF-8 Support Enabled
+INFO - 2020-08-13 11:25:09 --> Utf8 Class Initialized
+INFO - 2020-08-13 11:25:09 --> URI Class Initialized
+DEBUG - 2020-08-13 11:25:09 --> No URI present. Default controller set.
+INFO - 2020-08-13 11:25:09 --> Router Class Initialized
+INFO - 2020-08-13 11:25:09 --> Output Class Initialized
+INFO - 2020-08-13 11:25:09 --> Security Class Initialized
+DEBUG - 2020-08-13 11:25:09 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-13 11:25:09 --> CSRF cookie sent
+INFO - 2020-08-13 11:25:09 --> Input Class Initialized
+INFO - 2020-08-13 11:25:09 --> Language Class Initialized
+INFO - 2020-08-13 11:25:09 --> Loader Class Initialized
+INFO - 2020-08-13 11:25:09 --> Helper loaded: url_helper
+INFO - 2020-08-13 11:25:09 --> Helper loaded: file_helper
+INFO - 2020-08-13 11:25:09 --> Helper loaded: text_helper
+INFO - 2020-08-13 11:25:09 --> Helper loaded: string_helper
+INFO - 2020-08-13 11:25:09 --> Database Driver Class Initialized
+INFO - 2020-08-13 11:25:09 --> Email Class Initialized
+DEBUG - 2020-08-13 11:25:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-13 11:25:09 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-13 11:25:09 --> Helper loaded: form_helper
+INFO - 2020-08-13 11:25:09 --> Form Validation Class Initialized
+INFO - 2020-08-13 11:25:09 --> Controller Class Initialized
+INFO - 2020-08-13 11:25:09 --> Model "M_auth" initialized
+DEBUG - 2020-08-13 11:25:09 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-08-13 11:25:09 --> Helper loaded: captcha_helper
+INFO - 2020-08-13 11:25:09 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/header.php
+INFO - 2020-08-13 11:25:09 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/footer.php
+INFO - 2020-08-13 11:25:09 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/msg.php
+INFO - 2020-08-13 11:25:09 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\auth/login.php
+INFO - 2020-08-13 11:25:09 --> Final output sent to browser
+DEBUG - 2020-08-13 11:25:09 --> Total execution time: 0.4406
+INFO - 2020-08-13 11:25:09 --> Config Class Initialized
+INFO - 2020-08-13 11:25:09 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:25:09 --> UTF-8 Support Enabled
+INFO - 2020-08-13 11:25:09 --> Utf8 Class Initialized
+INFO - 2020-08-13 11:25:09 --> URI Class Initialized
+INFO - 2020-08-13 11:25:09 --> Router Class Initialized
+INFO - 2020-08-13 11:25:09 --> Output Class Initialized
+INFO - 2020-08-13 11:25:09 --> Security Class Initialized
+DEBUG - 2020-08-13 11:25:09 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-13 11:25:09 --> CSRF cookie sent
+INFO - 2020-08-13 11:25:09 --> Input Class Initialized
+INFO - 2020-08-13 11:25:09 --> Language Class Initialized
+ERROR - 2020-08-13 11:25:09 --> 404 Page Not Found: Assets/css

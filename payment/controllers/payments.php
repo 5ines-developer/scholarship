@@ -19,6 +19,7 @@ class Payments extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         $this->load->library('form_validation');
     }
 
@@ -131,26 +132,43 @@ class Payments extends CI_Controller {
 
     public function checkpayment($value='')
     {
-        $reg_no = $this->input->post('reg_no');
-        $year   = $this->input->post('year');
-        $output = $this->m_payments->checkpayment($reg_no,$year);
-        echo $output;
+
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $reg_no = $this->input->post('reg_no');
+            $year   = $this->input->post('year');
+            $output = $this->m_payments->checkpayment($reg_no,$year);
+            echo $output;
+        }else{
+            $this->output->set_status_header('400');
+            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+        }
     }
 
     public function submit_pay($value='')
     {
 
         
-        // $data['result'] = $this->input->post();
-        // $this->load->view('payment/gateway.php', $data, FALSE);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $this->security->xss_clean($_POST);
-        $this->form_validation->set_rules('category', 'Category', 'trim|required');
-        $this->form_validation->set_rules('p_cfemale', 'Female Employees', 'trim|required');
-        $this->form_validation->set_rules('p_cmale', 'Male Employees',  'trim|required');
-        $this->form_validation->set_rules('p_year', 'Year', 'trim|required');
-        $this->form_validation->set_rules('reg_no', 'Register Number', 'trim|required');
-        $this->form_validation->set_rules('prices', 'Price', 'trim|required');
-        $this->form_validation->set_rules('interests', 'Interest', 'trim|required');
+
+         if ($_SERVER['REQUEST_METHOD'] != 'POST') { $this->session->set_flashdata('error', 'Some error occured, please try again!');redirect('make-payment'); }
+
+        $this->form_validation->set_rules('category', 'Category', 'trim|requiredalpha_numeric_spaces');
+        $this->form_validation->set_rules('p_cfemale', 'Female Employees', 'trim|requiredalpha_numeric_spaces');
+        $this->form_validation->set_rules('p_cmale', 'Male Employees',  'trim|requiredalpha_numeric_spaces');
+        $this->form_validation->set_rules('p_year', 'Year', 'trim|requiredalpha_numeric_spaces');
+        $this->form_validation->set_rules('reg_no', 'Register Number', 'trim|requiredalpha_numeric_spaces');
+        $this->form_validation->set_rules('prices', 'Price', 'trim|requiredalpha_numeric_spaces');
+        $this->form_validation->set_rules('interests', 'Interest', 'trim|requiredalpha_numeric_spaces');
         if ($this->form_validation->run() == TRUE) {
 
            $female      =  $this->input->post('p_cfemale');
@@ -332,7 +350,7 @@ class Payments extends CI_Controller {
                     $this->load->config('email');
                     $this->load->library('email');
                     $from = $this->config->item('smtp_user');
-                    $msg = $this->load->view('mail/reminder',$result, true);
+                    $msg = $this->load->view('mail/due_noti',$result, true);
                     $this->email->set_newline("\r\n");
                     $this->email->from($from , 'Karnataka Labour Welfare Board');
                     $this->email->to($value->email);

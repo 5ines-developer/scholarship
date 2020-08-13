@@ -26,6 +26,11 @@ class Scholar extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
+        // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
+        // header("Referrer-Policy: origin-when-cross-origin");
+        // header("Expect-CT: max-age=7776000, enforce");
+        // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
                
     }
 
@@ -53,12 +58,11 @@ class Scholar extends CI_Controller {
 
     public function allApplication($value='')
     {
-
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
 
         $filt['year']   = $this->input->post('year');
         $dist           = $this->input->post('district');
@@ -164,7 +168,7 @@ class Scholar extends CI_Controller {
         // approve application
     public function approve($id = null,$msg='')
     {
-        
+
         $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
         $id = $this->input->post('id');
         if($this->m_scholar->approval($id)){
@@ -252,11 +256,11 @@ class Scholar extends CI_Controller {
     public function payStatus($value='')
     {
 
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
     
        $pay_stats = $this->input->post('pay_stats');
        $id = $this->input->post('payid');
@@ -267,15 +271,18 @@ class Scholar extends CI_Controller {
        if($pay_stats == '2'){
             $data['pay_freason'] = $this->input->post('failreason');
        }
-       
 
-       $output = $this->m_scholar->payStatus($data, $id);
-       if(!empty($output)){
-            $this->paymail($output,$data);
-            $this->paysms($output,$data);
-            $this->session->set_flashdata('success', 'Payment status updated Successfully');
+       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $output = $this->m_scholar->payStatus($data, $id);
+           if(!empty($output)){
+                $this->paymail($output,$data);
+                $this->paysms($output,$data);
+                $this->session->set_flashdata('success', 'Payment status updated Successfully');
+            }else{
+                $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
+            }
         }else{
-            $this->session->set_flashdata('error', 'Server error occurred.<br> Please try agin later');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
         }
         redirect('applications/detail/'.$this->encryption_url->safe_b64encode($id) ,'refresh');
     }

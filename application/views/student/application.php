@@ -7,8 +7,8 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select/dist/vue-select.css">
+    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/vue-select.css">
 
 </head>
 <body>
@@ -540,7 +540,7 @@
 <script src="<?php echo base_url() ?>assets/js/materialize.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/script.js"></script>
 <script src="<?php echo base_url()?>assets/js/axios.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@desislavsd/vue-select"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/js/vue-select.js"></script>
 
 <script>
    document.addEventListener('DOMContentLoaded', function() {

@@ -22,7 +22,7 @@ class School extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         
     }
 
@@ -63,10 +63,15 @@ class School extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
-        $id = $this->input->post('id');
-        $status = '3';
-        if($this->m_school->stasChange($id,$status)){
-             $data = array('status' => 1, 'msg' => '🙂 Institute Blocked Successfully ');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $this->input->post('id');
+            $status = '3';
+            if($this->m_school->stasChange($id,$status)){
+                 $data = array('status' => 1, 'msg' => '🙂 Institute Blocked Successfully ');
+            }else{
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+            }
         }else{
             $this->output->set_status_header('400');
             $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
@@ -78,18 +83,23 @@ class School extends CI_Controller {
     {
 
             $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $id = $this->input->post('id');
-        $status = '1';
-        if($this->m_school->stasChange($id,$status)){
-             $data = array('status' => 1, 'msg' => '🙂 Institute Unblocked  Successfully ');
+            $id = $this->input->post('id');
+            $status = '1';
+            if($this->m_school->stasChange($id,$status)){
+                 $data = array('status' => 1, 'msg' => '🙂 Institute Unblocked  Successfully ');
+            }else{
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+            }
         }else{
-            $this->output->set_status_header('400');
-            $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
+                $this->output->set_status_header('400');
+                $data = array('status' => 0, 'msg' => '😕 Server error occurred. Please try again later ');
         }
         echo json_encode($data);
     }
@@ -107,24 +117,44 @@ class School extends CI_Controller {
         if(!empty($this->input->post())){
             $this->sc_check->limitRequests();
 
-            $insert = array(
-                'reg_no'            => $this->input->post('rno'), 
-                'school_address'    => $this->input->post('name'), 
-                'management_type'   => $this->input->post('mtype'), 
-                'school_category'   => $this->input->post('sccat'), 
-                'school_type'       => $this->input->post('sctype'), 
-                'urban_rural'       => $this->input->post('rural'), 
-                'taluk'             => $this->input->post('taluk'), 
-                'status'            => '1' , 
-            );
-            if($this->m_school->add($insert))
-            {
-                $this->session->set_flashdata('success','institute added Successfully');
-                redirect('institutes','refresh');
+
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('reg_no', 'Reg No.', 'required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('school_address', 'Address', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('management_type', 'Management Type', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('school_category', 'school category', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('school_type', 'school type', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('urban_rural', 'urban rural type', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('taluk', 'taluk', 'trim|alpha_numeric_spaces');
+            if ($this->form_validation->run() == True){
+                $insert = array(
+                    'reg_no'            => $this->input->post('rno'), 
+                    'school_address'    => $this->input->post('name'), 
+                    'management_type'   => $this->input->post('mtype'), 
+                    'school_category'   => $this->input->post('sccat'), 
+                    'school_type'       => $this->input->post('sctype'), 
+                    'urban_rural'       => $this->input->post('rural'), 
+                    'taluk'             => $this->input->post('taluk'), 
+                    'status'            => '1' , 
+                );
+                if($this->m_school->add($insert))
+                {
+                    $this->session->set_flashdata('success','institute added Successfully');
+                    redirect('institutes','refresh');
+                }else{
+                    $this->session->set_flashdata('error','Please login and try again!');
+                    redirect('institute-add','refresh');
+                }
+
             }else{
-                $this->session->set_flashdata('error','Please login and try again!');
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
                 redirect('institute-add','refresh');
+
             }
+
+
+            
         }else{
             $data['taluk'] = $this->m_school->getTalluk();
             $data['district'] = $this->m_school->getDistrict();
@@ -142,10 +172,14 @@ class School extends CI_Controller {
         );
         $this->security->xss_clean($_POST);
 
-        $name = $this->input->post('name');
-        $output = $this->db->where('school_address', $name)->get('reg_schools')->row();
-        if(!empty($output)){
-            $ret = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = $this->input->post('name');
+            $output = $this->db->where('school_address', $name)->get('reg_schools')->row();
+            if(!empty($output)){
+                $ret = 1;
+            }else{
+                $ret = '';
+            }
         }else{
             $ret = '';
         }
@@ -161,6 +195,8 @@ class School extends CI_Controller {
     );
     $this->security->xss_clean($_POST);
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
         $regno = $this->input->post('regno');
         $output = $this->db->where('reg_no', $regno)->get('reg_schools')->row();
         if(!empty($output)){
@@ -168,6 +204,11 @@ class School extends CI_Controller {
         }else{
             $ret = '';
         }
+
+        }else{
+            $ret = '';
+        }
+        
         echo json_encode($ret);
     }
 
@@ -258,23 +299,42 @@ class School extends CI_Controller {
         if(!empty($this->input->post())){
             $this->sc_check->limitRequests();
 
-            $insert = array(
-                'reg_no'            => $this->input->post('rno'), 
-                'school_address'    => $this->input->post('name'), 
-                'management_type'   => $this->input->post('mtype'), 
-                'school_category'   => $this->input->post('sccat'), 
-                'school_type'       => $this->input->post('sctype'), 
-                'urban_rural'       => $this->input->post('rural'), 
-                'taluk'             => $this->input->post('taluk'), 
-                'status'            => '1' , 
-            );
-            if($this->m_school->update($id,$insert))
-            {
-                $this->session->set_flashdata('success','institute updated Successfully');
-            }else{
-                $this->session->set_flashdata('error','Please login and try again!');
-            }
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('reg_no', 'Reg No.', 'required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('school_address', 'Address', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('management_type', 'Management Type', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('school_category', 'school category', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('school_type', 'school type', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('urban_rural', 'urban rural type', 'trim|alpha_numeric_spaces');
+            $this->form_validation->set_rules('taluk', 'taluk', 'trim|alpha_numeric_spaces');
+            if ($this->form_validation->run() == True){
+
+
+                $insert = array(
+                    'reg_no'            => $this->input->post('rno'), 
+                    'school_address'    => $this->input->post('name'), 
+                    'management_type'   => $this->input->post('mtype'), 
+                    'school_category'   => $this->input->post('sccat'), 
+                    'school_type'       => $this->input->post('sctype'), 
+                    'urban_rural'       => $this->input->post('rural'), 
+                    'taluk'             => $this->input->post('taluk'), 
+                    'status'            => '1' , 
+                );
+                if($this->m_school->update($id,$insert))
+                {
+                    $this->session->set_flashdata('success','institute updated Successfully');
+                }else{
+                    $this->session->set_flashdata('error','Please login and try again!');
+                }
+
+        }else{
+            $this->form_validation->set_error_delimiters('', '<br>');
+            $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+
+        }
+
             redirect('institute-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
+
         }else{
             $data['taluk'] = $this->m_school->getTalluk();
             $data['district'] = $this->m_school->getDistrict();

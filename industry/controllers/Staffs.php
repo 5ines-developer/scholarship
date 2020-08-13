@@ -22,7 +22,7 @@ class Staffs extends CI_Controller {
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
-        // header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         
     }
 
@@ -45,7 +45,7 @@ class Staffs extends CI_Controller {
 
         $data['title'] = 'Add Verification staffs';
         $this->load->helper('string');
-        if($this->input->post()){
+        if(!empty($this->input->post())){
             $this->sc_check->limitRequests();
             $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha_numeric_spaces');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -85,16 +85,19 @@ class Staffs extends CI_Controller {
     public function emailcheck($value='')
     {
 
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
-
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $this->security->xss_clean($_POST);
-        $email = $this->input->post('email');
-        $output = $this->M_staffs->email_check($email);
-        echo  $output;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $this->input->post('email');
+            $output = $this->M_staffs->email_check($email);
+            echo  $output;
+        }else{
+            echo null;
+        }
     }
 
     /**
@@ -103,17 +106,19 @@ class Staffs extends CI_Controller {
     **/
     public function mobile_check($value='')
     {
-
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_POST);
-
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $this->security->xss_clean($_POST);
-        $mobile = $this->input->post('mobile');
-        $output = $this->M_staffs->mobile_check($mobile);
-        echo  $output;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $mobile = $this->input->post('mobile');
+            $output = $this->M_staffs->mobile_check($mobile);
+            echo  $output;
+        }else{
+            echo null;
+        }
     }
         // Send activation
     public function sendActivation($insert = null)
@@ -142,55 +147,66 @@ class Staffs extends CI_Controller {
     public function block($value='')
     {
 
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_GET);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
 
         $id = $this->input->get('id');
         $status = '2';
 
-        if($this->M_staffs->stasChange($id,$status)){
-            $this->session->set_flashdata('success', 'Staff Blocked Successfully');
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if($this->M_staffs->stasChange($id,$status)){
+                $this->session->set_flashdata('success', 'Staff Blocked Successfully');
+            }else{
+                $this->session->set_flashdata('error', 'Something went wrong please try again!');
+            }
         }else{
-            $this->session->set_flashdata('Error', 'Something went wrong please try again!');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
         }
        redirect('staffs','refresh');
     }
 
     public function unblock($value='')
     {
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_GET);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
 
         $id = $this->input->get('id');
         $status = '1';
-        if($this->M_staffs->stasChange($id,$status)){
-            $this->session->set_flashdata('success', 'Staff Unblocked Successfully');
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if($this->M_staffs->stasChange($id,$status)){
+                $this->session->set_flashdata('success', 'Staff Unblocked Successfully');
+            }else{
+                $this->session->set_flashdata('error', 'Something went wrong please try again!');
+            }
         }else{
             $this->session->set_flashdata('error', 'Something went wrong please try again!');
-        }
+        }   
         redirect('staffs','refresh');
     }
 
     public function delete($value='')
     {
-
-            $csrf = array(
-        'name' => $this->security->get_csrf_token_name(),
-        'hash' => $this->security->get_csrf_hash()
-    );
-    $this->security->xss_clean($_GET);
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_GET);
 
         $id = $this->input->get('id');
-        if($this->M_staffs->delete($id)){
-            $this->session->set_flashdata('success', 'Staff Deleted Successfully');
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if($this->M_staffs->delete($id)){
+                $this->session->set_flashdata('success', 'Staff Deleted Successfully');
+            }else{
+                $this->session->set_flashdata('error', 'Something went wrong please try again!');
+            }
         }else{
-            $this->session->set_flashdata('error', 'Something went wrong please try again!');
+            $this->session->set_flashdata('error', 'Some error occured, please try again!');
         }
         redirect('staffs','refresh');
     }
