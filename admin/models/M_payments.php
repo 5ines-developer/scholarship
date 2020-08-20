@@ -23,8 +23,11 @@ class M_payments extends CI_Model {
         }
         $paid = $this->getpaid($year);
 
+        if (!empty($paid)) {
+         $this->db->where_not_in('i.reg_id', $paid);
+        }
+
         $this->db->select('i.name, i.reg_id,i.act');
-        $this->db->where_not_in('i.reg_id', $paid);
         $this->db->where('ir.type', 1);
         $this->db->from('industry i');
         $this->db->join('industry_register ir', 'ir.industry_id = i.id', 'left');

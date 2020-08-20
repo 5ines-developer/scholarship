@@ -18,7 +18,7 @@ class Scholar extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
-        header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
+        // ////header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
         
     }
 

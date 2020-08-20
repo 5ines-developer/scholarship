@@ -9,6 +9,7 @@
     <!-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> -->
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/home/slick.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/home/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" rel="stylesheet">
     <style>
     .sticky {
   position: fixed;
@@ -201,14 +202,9 @@
                                 </div>
                                <div class="about">
                                    <h4>About Us</h4>
-                                   <p>
-                                       The main agenda of this web application portal is for the students to claim the Education assistance online and the employer to contribute his company’s fund via online.
-                                   </p>
-                                   <p>
-                                    Where student will register in the portal and submit the request for Education assistance. Post request submitted it will be sent to the next level of approvals. Likewise employer will register in the portal and will contribute his company’s fund via online and will receive an acknowledgement after the payment in return via online. </p>
-                                <p>
-                                    Each entity will have their own dashboard and use the same credentials through out there association with the Karnataka Labour Welfare Board. This web application software is developed using state of the art technology and is bundled with features.
-                                    Few of them are Automatic Remainder Systems, SMS alerts, E-Mail Alerts, Custom Reports etc. </p>
+                                   <p> The Karnataka Labour Welfare Fund is constituted for financing and conducting activities to promote welfare of contributing employees covered under the KLW Act, 1965. The employees working in various industries, their dependents and children are eligible for the following welfare schemes. </p>
+                                   <p><b> Note: </b> Every year before 15th of January the employees’, employers’ contribute in the ratio of 20 : 40   i.e. Rs. 60 /- for each employee is to be remitted by the employer to the Welfare Fund.</p>
+                                
                                </div>
                             </div>
 
@@ -222,25 +218,40 @@
                                     <ul id="marquee-vertical" style="height:280px">
                                         <li>
                                             <div class="alert-message">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod error
-                                                    veritatis deleniti, </p>
-                                                <a href="">CLICK HERE</a>
+                                                <p><b>Education assistance to children of the workers:</b> High School (8th  Std. to 10th ) Rs.3,000/- PUC /ITI/Dip./TCH  Rs. 4,000/- Degree Courses Rs. 5,000/- Post Graduation Courses.  Rs. 6,000/- &   Engineering/ Medical . Rs. 10,000/-(Eligibility for applying 50% marks for general merit and 45%  for SC/ST. </p>
                                             </div>
                                             <div class="devider"></div>
                                         </li>
                                         <li>
                                             <div class="alert-message">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod error
-                                                    veritatis deleniti, </p>
-                                                <a href="">CLICK HERE</a>
+                                                <p><b>Medical Assistance:</b> to workers in the age group 18-60 yrs, though covered under ESI  scheme  from minimum of Rs. 1,000/- to maximum of Rs. 10,000/- for treatment of major ailments viz., Heart operation, Kidney transplantation, Cancer treatment, Angioplasty, Eye, Orthopaedic, Uterus operations, Gal bladder problems, Kidney stone removal, Brain haemorrhage, and for medical check-up each case Rs. 500/- to Rs. 1000/-    </p>
                                             </div>
                                             <div class="devider"></div>
                                         </li>
                                         <li>
                                             <div class="alert-message">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod error
-                                                    veritatis deleniti, </p>
-                                                <a href="">CLICK HERE</a>
+                                                <p><b>Accident Benefit :</b> of Rs. 1,000/- to Rs. 3,000/- to workers in the age group 18-60  yrs,  application   to   be sent  within three months of accident with medical records though covered under ESI Act,   1948.  </p>
+                                            </div>
+                                            <div class="devider"></div>
+                                        </li>
+
+                                        <li>
+                                            <div class="alert-message">
+                                                <p>Funeral Expenses of Rs. 5,000/- for death of the beneficiary payable to the deceased’s dependents, to  be  applied in the prescribed  format within six months.  </p>
+                                            </div>
+                                            <div class="devider"></div>
+                                        </li>
+
+                                        <li>
+                                            <div class="alert-message">
+                                                <p>Medical Check-up Camps: Rs. 30,000/- Financial Assistance for annual medical check-up camps sponsored by Trade Union/Associations for workers contributing to the Welfare  Fund once in year. </p>
+                                            </div>
+                                            <div class="devider"></div>
+                                        </li>
+
+                                        <li>
+                                            <div class="alert-message">
+                                                <p>Annual Sports activity: Rs. 50,000/- Financial Assistance for annual Sports activity at district-level by registered Trade Unions one time in a year. </p>
                                             </div>
                                             <div class="devider"></div>
                                         </li>
@@ -268,6 +279,8 @@
                         </div>
                         <div class="col-md-12">
                             <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+                            <canvas id="myChart" width="400" height="100"></canvas>
                         </div>
                     </div>
                 </div>
@@ -388,6 +401,7 @@
     <script src="<?php echo base_url() ?>assets/js/home/jquery.marquee.js"></script>
     <script src="<?php echo base_url() ?>assets/js/home/newsticker.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/home/slick.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
 
     <script>
         $('#tx').telex({
@@ -443,6 +457,81 @@
 
 
     </script>
+
+
+    <script>
+
+        $(document).ready(function() {
+
+            var lab = [];
+            var con = [];
+            var canCon = [];
+
+            $.ajax({
+                url: '<?php echo base_url("home/getordergraph") ?>',
+                method: 'GET',
+                async: true,
+                dataType: 'json',
+                success: function(dat) {
+
+var ctx = document.getElementById('myChart').getContext('2d');
+Chart.platform.disableCSSInjection = true;
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Applications', 'Institutes', 'Industries', 'Students', 'Male', 'Female', 'SC' ,'ST'],
+        datasets: [{
+            label: 'MIS Report',
+            data: [dat.application,dat.institute,dat.industry, dat.student, dat.male,dat.female,dat.sc, dat.st],
+            backgroundColor: [
+                '#4f81bc',
+                '#c0504e',
+                '#9bbb58',
+                '#23bfaa)',
+                '#8064a1',
+                '#4aacc5',
+                '#f79647',
+                '#7f6084',
+            ],
+            borderColor: [
+                '#4f81bc',
+                '#c0504e',
+                '#9bbb58',
+                '#23bfaa)',
+                '#8064a1',
+                '#4aacc5',
+                '#f79647',
+                '#7f6084',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        animation: {
+            duration: 0 // general animation time
+        },
+        hover: {
+            animationDuration: 0 // duration of animations when hovering an item
+        },
+        legend: {
+            display: false
+        },
+    }
+});
+
+}
+
+});
+});
+</script>
+
     <script>
         window.onload = function () {
 
