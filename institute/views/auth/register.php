@@ -120,7 +120,7 @@
                                     </div>
 
                                     <div class="input-field col s12">
-                                        <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
+                                        <div class="g-recaptcha" data-sitekey="6LcFk8MZAAAAAOt1T9V-e1gfM_UMBj0eycizw9rN"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
                                     </div>
 
@@ -268,11 +268,11 @@
             },checkForm() {
                 if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '')) {
 
-                    if (grecaptcha.getResponse() == '') {
-                        this.captcha = 'Captcha is required';
-                    } else {
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {
                         this.$refs.form.submit();
-                    }
+                    // }
                 } else {}
             }
         }

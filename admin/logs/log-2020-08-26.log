@@ -1,0 +1,161 @@
+INFO - 2020-08-26 17:40:18 --> Config Class Initialized
+INFO - 2020-08-26 17:40:18 --> Hooks Class Initialized
+DEBUG - 2020-08-26 17:40:18 --> UTF-8 Support Enabled
+INFO - 2020-08-26 17:40:18 --> Utf8 Class Initialized
+INFO - 2020-08-26 17:40:18 --> URI Class Initialized
+DEBUG - 2020-08-26 17:40:18 --> No URI present. Default controller set.
+INFO - 2020-08-26 17:40:18 --> Router Class Initialized
+INFO - 2020-08-26 17:40:18 --> Output Class Initialized
+INFO - 2020-08-26 17:40:18 --> Security Class Initialized
+DEBUG - 2020-08-26 17:40:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-26 17:40:18 --> CSRF cookie sent
+INFO - 2020-08-26 17:40:18 --> Input Class Initialized
+INFO - 2020-08-26 17:40:18 --> Language Class Initialized
+INFO - 2020-08-26 17:40:18 --> Loader Class Initialized
+INFO - 2020-08-26 17:40:18 --> Helper loaded: url_helper
+INFO - 2020-08-26 17:40:18 --> Helper loaded: file_helper
+INFO - 2020-08-26 17:40:18 --> Helper loaded: text_helper
+INFO - 2020-08-26 17:40:18 --> Helper loaded: string_helper
+INFO - 2020-08-26 17:40:18 --> Database Driver Class Initialized
+INFO - 2020-08-26 17:40:18 --> Email Class Initialized
+DEBUG - 2020-08-26 17:40:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-26 17:40:18 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-26 17:40:19 --> Helper loaded: form_helper
+INFO - 2020-08-26 17:40:19 --> Form Validation Class Initialized
+INFO - 2020-08-26 17:40:19 --> Controller Class Initialized
+INFO - 2020-08-26 17:40:19 --> Model "M_auth" initialized
+DEBUG - 2020-08-26 17:40:19 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-08-26 17:40:19 --> Helper loaded: captcha_helper
+INFO - 2020-08-26 17:40:19 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/header.php
+INFO - 2020-08-26 17:40:19 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/footer.php
+INFO - 2020-08-26 17:40:19 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/msg.php
+INFO - 2020-08-26 17:40:19 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\auth/login.php
+INFO - 2020-08-26 17:40:19 --> Final output sent to browser
+DEBUG - 2020-08-26 17:40:19 --> Total execution time: 0.6325
+INFO - 2020-08-26 17:40:32 --> Config Class Initialized
+INFO - 2020-08-26 17:40:32 --> Hooks Class Initialized
+DEBUG - 2020-08-26 17:40:32 --> UTF-8 Support Enabled
+INFO - 2020-08-26 17:40:32 --> Utf8 Class Initialized
+INFO - 2020-08-26 17:40:32 --> URI Class Initialized
+INFO - 2020-08-26 17:40:32 --> Router Class Initialized
+INFO - 2020-08-26 17:40:32 --> Output Class Initialized
+INFO - 2020-08-26 17:40:32 --> Security Class Initialized
+DEBUG - 2020-08-26 17:40:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-26 17:40:32 --> CSRF cookie sent
+INFO - 2020-08-26 17:40:32 --> CSRF token verified
+INFO - 2020-08-26 17:40:32 --> Input Class Initialized
+INFO - 2020-08-26 17:40:32 --> Language Class Initialized
+INFO - 2020-08-26 17:40:32 --> Loader Class Initialized
+INFO - 2020-08-26 17:40:32 --> Helper loaded: url_helper
+INFO - 2020-08-26 17:40:32 --> Helper loaded: file_helper
+INFO - 2020-08-26 17:40:32 --> Helper loaded: text_helper
+INFO - 2020-08-26 17:40:32 --> Helper loaded: string_helper
+INFO - 2020-08-26 17:40:32 --> Database Driver Class Initialized
+INFO - 2020-08-26 17:40:32 --> Email Class Initialized
+DEBUG - 2020-08-26 17:40:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-26 17:40:32 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-26 17:40:32 --> Helper loaded: form_helper
+INFO - 2020-08-26 17:40:32 --> Form Validation Class Initialized
+INFO - 2020-08-26 17:40:32 --> Controller Class Initialized
+INFO - 2020-08-26 17:40:32 --> Model "M_auth" initialized
+DEBUG - 2020-08-26 17:40:32 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-08-26 17:40:32 --> Helper loaded: captcha_helper
+DEBUG - 2020-08-26 17:40:32 --> Form_validation class already loaded. Second attempt ignored.
+INFO - 2020-08-26 17:40:32 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-08-26 17:40:32 --> ---------------------Success -- Admin Logged in with prathwi@5ine.in and IP aaddress ::1 --------------
+INFO - 2020-08-26 17:40:32 --> Config Class Initialized
+INFO - 2020-08-26 17:40:32 --> Hooks Class Initialized
+DEBUG - 2020-08-26 17:40:32 --> UTF-8 Support Enabled
+INFO - 2020-08-26 17:40:32 --> Utf8 Class Initialized
+INFO - 2020-08-26 17:40:32 --> URI Class Initialized
+INFO - 2020-08-26 17:40:32 --> Router Class Initialized
+INFO - 2020-08-26 17:40:32 --> Output Class Initialized
+INFO - 2020-08-26 17:40:32 --> Security Class Initialized
+DEBUG - 2020-08-26 17:40:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-26 17:40:32 --> CSRF cookie sent
+INFO - 2020-08-26 17:40:32 --> Input Class Initialized
+INFO - 2020-08-26 17:40:32 --> Language Class Initialized
+INFO - 2020-08-26 17:40:32 --> Loader Class Initialized
+INFO - 2020-08-26 17:40:32 --> Helper loaded: url_helper
+INFO - 2020-08-26 17:40:32 --> Helper loaded: file_helper
+INFO - 2020-08-26 17:40:32 --> Helper loaded: text_helper
+INFO - 2020-08-26 17:40:32 --> Helper loaded: string_helper
+INFO - 2020-08-26 17:40:32 --> Database Driver Class Initialized
+INFO - 2020-08-26 17:40:32 --> Email Class Initialized
+DEBUG - 2020-08-26 17:40:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-26 17:40:32 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-26 17:40:32 --> Helper loaded: form_helper
+INFO - 2020-08-26 17:40:32 --> Form Validation Class Initialized
+INFO - 2020-08-26 17:40:32 --> Controller Class Initialized
+INFO - 2020-08-26 17:40:32 --> Model "M_dashboard" initialized
+DEBUG - 2020-08-26 17:40:32 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-08-26 17:40:33 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/header.php
+INFO - 2020-08-26 17:40:33 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/menu.php
+INFO - 2020-08-26 17:40:33 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/footer.php
+INFO - 2020-08-26 17:40:33 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/msg.php
+INFO - 2020-08-26 17:40:33 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\dashboard/index.php
+INFO - 2020-08-26 17:40:33 --> Final output sent to browser
+DEBUG - 2020-08-26 17:40:33 --> Total execution time: 0.7145
+INFO - 2020-08-26 17:40:33 --> Config Class Initialized
+INFO - 2020-08-26 17:40:33 --> Hooks Class Initialized
+DEBUG - 2020-08-26 17:40:33 --> UTF-8 Support Enabled
+INFO - 2020-08-26 17:40:33 --> Utf8 Class Initialized
+INFO - 2020-08-26 17:40:33 --> URI Class Initialized
+INFO - 2020-08-26 17:40:33 --> Router Class Initialized
+INFO - 2020-08-26 17:40:33 --> Output Class Initialized
+INFO - 2020-08-26 17:40:33 --> Security Class Initialized
+DEBUG - 2020-08-26 17:40:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-26 17:40:34 --> CSRF cookie sent
+INFO - 2020-08-26 17:40:34 --> Input Class Initialized
+INFO - 2020-08-26 17:40:34 --> Language Class Initialized
+INFO - 2020-08-26 17:40:34 --> Loader Class Initialized
+INFO - 2020-08-26 17:40:34 --> Helper loaded: url_helper
+INFO - 2020-08-26 17:40:34 --> Helper loaded: file_helper
+INFO - 2020-08-26 17:40:34 --> Helper loaded: text_helper
+INFO - 2020-08-26 17:40:34 --> Helper loaded: string_helper
+INFO - 2020-08-26 17:40:34 --> Database Driver Class Initialized
+INFO - 2020-08-26 17:40:34 --> Email Class Initialized
+DEBUG - 2020-08-26 17:40:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-26 17:40:34 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-26 17:40:34 --> Helper loaded: form_helper
+INFO - 2020-08-26 17:40:34 --> Form Validation Class Initialized
+INFO - 2020-08-26 17:40:34 --> Controller Class Initialized
+INFO - 2020-08-26 17:40:34 --> Model "M_dashboard" initialized
+DEBUG - 2020-08-26 17:40:34 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-08-26 17:40:34 --> Final output sent to browser
+DEBUG - 2020-08-26 17:40:34 --> Total execution time: 0.5185
+INFO - 2020-08-26 17:40:37 --> Config Class Initialized
+INFO - 2020-08-26 17:40:37 --> Hooks Class Initialized
+DEBUG - 2020-08-26 17:40:37 --> UTF-8 Support Enabled
+INFO - 2020-08-26 17:40:37 --> Utf8 Class Initialized
+INFO - 2020-08-26 17:40:37 --> URI Class Initialized
+INFO - 2020-08-26 17:40:37 --> Router Class Initialized
+INFO - 2020-08-26 17:40:37 --> Output Class Initialized
+INFO - 2020-08-26 17:40:37 --> Security Class Initialized
+DEBUG - 2020-08-26 17:40:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-26 17:40:37 --> CSRF cookie sent
+INFO - 2020-08-26 17:40:37 --> Input Class Initialized
+INFO - 2020-08-26 17:40:37 --> Language Class Initialized
+INFO - 2020-08-26 17:40:37 --> Loader Class Initialized
+INFO - 2020-08-26 17:40:37 --> Helper loaded: url_helper
+INFO - 2020-08-26 17:40:37 --> Helper loaded: file_helper
+INFO - 2020-08-26 17:40:37 --> Helper loaded: text_helper
+INFO - 2020-08-26 17:40:37 --> Helper loaded: string_helper
+INFO - 2020-08-26 17:40:37 --> Database Driver Class Initialized
+INFO - 2020-08-26 17:40:37 --> Email Class Initialized
+DEBUG - 2020-08-26 17:40:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-26 17:40:37 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-26 17:40:37 --> Helper loaded: form_helper
+INFO - 2020-08-26 17:40:37 --> Form Validation Class Initialized
+INFO - 2020-08-26 17:40:37 --> Controller Class Initialized
+INFO - 2020-08-26 17:40:37 --> Model "M_student" initialized
+DEBUG - 2020-08-26 17:40:37 --> Encryption: Auto-configured driver 'openssl'.
+INFO - 2020-08-26 17:40:37 --> Encryption: OpenSSL initialized with method AES-128-CBC.
+INFO - 2020-08-26 17:40:37 --> Encryption Class Initialized
+INFO - 2020-08-26 17:40:37 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/header.php
+INFO - 2020-08-26 17:40:37 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/menu.php
+INFO - 2020-08-26 17:40:37 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/footer.php
+INFO - 2020-08-26 17:40:37 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\include/msg.php
+INFO - 2020-08-26 17:40:37 --> File loaded: C:\xampp\htdocs\scholarship\admin\views\student/list.php
+INFO - 2020-08-26 17:40:37 --> Final output sent to browser
+DEBUG - 2020-08-26 17:40:37 --> Total execution time: 0.4434

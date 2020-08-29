@@ -117,6 +117,9 @@
             <div class="banner-image">
                 <img src="<?php echo base_url() ?>assets/img/banner2.jpg" alt="" class="img-fluid">
             </div>
+            <div class="banner-image">
+                <img src="<?php echo base_url() ?>assets/img/banner3.jpg" alt="" class="img-fluid">
+            </div>
         </div>
     </section>
     <section class="news-sec">
@@ -280,7 +283,7 @@
                         <div class="col-md-12">
                             <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
-                            <canvas id="myChart" width="400" height="100"></canvas>
+                            <!-- <canvas id="myChart" width="400" height="100"></canvas> -->
                         </div>
                     </div>
                 </div>
@@ -297,13 +300,13 @@
                         <div class="help-message-box">
                             <p>Candidate can contact the Help Desk for resolution of the technical problems</p>
                             <div class="dotted-devider"></div>
-                            <a href="" class="help-tel">0000-0000000</a>
+                            <a href="tel:08023570266" class="help-tel" >080 2357 0266</a>
                             <div class="dotted-devider"></div>
-                            <a href="mailto:info@klwb-kar.com" class="help-mail">info@klwb-kar.com</a>
+                            <a href="mailto:welfarecommissioner123@gmail.com" class="help-mail">welfarecommissioner123@gmail.com</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 pr-0">
+               <!--  <div class="col-md-9 pr-0">
                     <div class="e-box">
                         <h4 class="e-title">e-Initiatives</h4>
                         <div class="contents">
@@ -332,7 +335,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -350,7 +353,7 @@
                             Ph: <a href="tel:+08023570266">080 23570266</a>/ <a href="tel:+08023575130">23575130</a>       <br>
                             Fax: 080 23475188<br>
                             
-                            Email ID: <a href="mailto:info@klwb-kar.com">info@klwb-kar.com</a>
+                            Email ID: <a href="mailto:welfarecommissioner123@gmail.com">welfarecommissioner123@gmail.com</a>
                         </p>
                     </div>
                     <div class="col-md-4 ">
@@ -395,13 +398,14 @@
     <script src="<?php echo base_url() ?>assets/css/home/jquery-1.11.3.min.js"></script>
     <script src="<?php echo base_url() ?>assets/css/home/popper.min.js"></script>
     <script src="<?php echo base_url() ?>assets/css/home/bootstrap.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/css/home/canvas.js"></script>
+    <script src="//canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     <script src="<?php echo base_url() ?>assets/css/home/jquery-ui.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/home/telex.js"></script>
     <script src="<?php echo base_url() ?>assets/js/home/jquery.marquee.js"></script>
     <script src="<?php echo base_url() ?>assets/js/home/newsticker.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/home/slick.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    
 
     <script>
         $('#tx').telex({
@@ -459,7 +463,7 @@
     </script>
 
 
-    <script>
+ <!--    <script>
 
         $(document).ready(function() {
 
@@ -530,7 +534,7 @@ var myChart = new Chart(ctx, {
 
 });
 });
-</script>
+</script> -->
 
     <script>
         window.onload = function () {

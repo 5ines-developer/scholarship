@@ -8,7 +8,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
-    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
+    <link  rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/material-icons.css">
     <!-- scripts -->
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
@@ -53,7 +53,9 @@
                             <div class="under-line"></div>
                             <!-- ref="form" @submit.prevent="formSubmit"  -->
 
-                            <form action="#" method="post" enctype="multipart/form-data" id="payment">
+                            <form name="ecom" method="post" action="https://test.sbiepay.com/secure/MerchantHostedListener"> <input type="hidden" name="EncryptTrans" value="<%= EncryptTrans %>">  <input type="hidden" name="EncryptpaymentDetails" value="<%= EncryptpaymentDetails %>"> <input type="hidden" name="merchIdVal" value ="1000112"/> <input type="submit" name="submit" value="Submit"> </form>
+
+                            <!-- <form action="#" method="post" enctype="multipart/form-data" id="payment">
                                 <div class="pay-form z-depth-1">
                                     <div class="pay-ff">
                                         <p style="font-style: italic;font-weight: 700;">Payment Form</p>
@@ -155,7 +157,7 @@
                                     </div>
 
                                 </div>
-                            </form>
+                            </form> -->
                         </div>
                     </div>
                 </div>

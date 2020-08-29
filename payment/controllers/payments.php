@@ -26,17 +26,70 @@ class Payments extends CI_Controller {
     // make payment
     public function index()
     {
-        $data['title']  = 'Make Payment | Scholarship';
-        if($this->session->userdata('pyId') != ''){
-            $data['info']   = $this->M_account->getAccountDetails();
-            $data['act']    = $this->m_payments->getAct($data['info']->indId);
-            $this->load->view('payment/make-payment', $data, FALSE);
-        }else{
+
+        
+
+        // EncryptTrans = AES128EnDc.encrypt(requestparameter, 'fBc5628ybRQf88f/aqDUOQ==');
+        // $requestparameter ="1000112|DOM|IN|INR|2|Other|https://test.sbiepay.com/secure/sucess.jsp|https://test.sbiepay.com/secure/fail.jsp|SBIEPAY|2|2|NB|ONLINE|ONLINE";
+        // $aggregatorId = "SBIEPAY";
+        // $merchantId = "1000003";
+        // $refundRequestId = "eRqa7";
+        // $atrn = "4457657898141";
+        // $refundAmount = "1";
+        // $refundAmountCurrency = "INR";
+        // $merchantOrderNo = "55LYN";
+        // $requestparameter = $aggregatorId."|".$merchantId."|".$refundRequestId."|".$atrn."|".$refundAmount."|".$refundAmountCurrency."|".$merchantOrderNo;
+        // $refundRequest =$aggregatorId."|".$merchantId."|".$refundRequestId."|".$atrn."|".$refundAmount."|".$refundAmountCurrency."|".$merchantOrderNo;
+        // $post_param = "refundRequest=".$refundRequest."&aggregatorId=".$aggregatorId."&merchantId=".$merchantId;
+        // $post_param = "requestparameter=".$requestparameter;
+
+        // $service_url = "https://test.sbiepay.com/secure/AggregatorHostedListener";
+
+        // $ch = curl_init();
+        // curl_setopt($ch,CURLOPT_URL,$service_url);
+        // curl_setopt($ch, CURLOPT_POST, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS,$post_param);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // $result = curl_exec($ch);
+        // var_dump($result);
+        // curl_close($ch);
+
+        // echo "<pre>";
+        // print_r ($result);
+        // echo "</pre>";
+
+        // $aggregatorId = "SBIEPAY";
+        // $merchantId = "1000003";
+        // $refundRequestId = "eRqa7";
+        // $atrn = "4457657898141";
+        // $refundAmount = "1";
+        // $refundAmountCurrency = "INR";
+        // $merchantOrderNo = "55LYN";
+        // $refundRequest =$aggregatorId."|".$merchantId."|".$refundRequestId."|".$atrn."|".$refundAmount."|".$refundAmountCurrency."|".$merchantOrderNo;
+        // $service_url = "https://sbiepay.com/payagg/orderRefundCancellation/bookRefundCancellation";
+        // $post_param = "refundRequest=".$refundRequest."&aggregatorId=".$aggregatorId."&merchantId=".$merchantId;
+
+        // $ch = curl_init();
+        // curl_setopt($ch,CURLOPT_URL,$service_url);
+        // curl_setopt($ch, CURLOPT_POST, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS,$post_param);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // $result = curl_exec($ch);
+        // var_dump($result);
+        // curl_close($ch);
+
+
+        // $data['title']  = 'Make Payment | Scholarship';
+        // if($this->session->userdata('pyId') != ''){
+            // $data['info']   = $this->M_account->getAccountDetails();
+            // $data['act']    = $this->m_payments->getAct($data['info']->indId);
+            // $this->load->view('payment/make-payment', $data, FALSE);
+        // }else{
             $data['title'] = 'Industry Registration';
             $data['taluk'] = $this->m_auth->getTaluk();
             $data['district'] = $this->m_auth->getDistrict();            
             $this->load->view('payment/payment', $data, FALSE);
-        }
+        // }
     }
 
     public function search($var = null)
