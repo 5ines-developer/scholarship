@@ -76,47 +76,8 @@
                                 </div>
                             </div>
                             <div class="under-line"></div>
-
-                            <?php 
-
-                            $this->ci->load->library('Sbi_enc');
-
-                            $request ="1000112|DOM|IN|INR|2|Other|https://test.sbiepay.com/secure/sucess.jsp|https://test.sbiepay.com/secure/fail.jsp|SBIEPAY|2|2|NB|ONLINE|ONLINE"; 
-                            $encryptTrans = $this->ci->sbi_enc->sbiEnc($request);
-                            // $encryptTrans.replaceAll("\n","");
-
-                            $datas='Shipper|Mayuresh Enclave, Sector 20, Plat A-211, Nerul,Navi-Mumbai,403706|Mumbai|Maharastra|India|403706|+91|222|30988373|9812345678|N|4f9cf81e205f1f1f7de3c69ea81b1c7547ce90240782c0f5bc4a7244c42f9bc8c4c776c152c9d0a66309a51ae273cf5c0cb86a50d938e40da6cf453a4d0da525';
-                            $payment = $this->ci->sbi_enc->sbiEnc($datas);
-                             // $payment.replaceAll("\n","");
-
-
-         ?>
-
-<form name="ecom" method="post" action="https://test.sbiepay.sbi/secure/AggregatorHostedListener">
-    <input type="hidden" name="EncryptTrans" value="<?php echo $encryptTrans ?>">
-    <input type="hidden" name="EncryptbillingDetails" value="<%=EncryptbillingDetails %>">
-    <input type="hidden" name="EncryptshippingDetais" value="<%=EncryptshippingDetais %>">
-    <input type="hidden" name="EncryptpaymentDetails" value="<?php echo $payment ?>">
-    <input type="hidden" name="merchIdVal" value ="1000112"/>
-    <input type="hidden" name="OperatingMode" value ="DOM"/>
-    <input type="hidden" name="MerchantCountry" value ="IN"/>
-    <input type="hidden" name="MerchantCurrency" value ="INR"/>
-    <input type="hidden" name="PostingAmount" value ="100"/>
-    <input type="hidden" name="OtherDetails" value ="Xxxxxxxx"/>
-    <input type="hidden" name="SuccessURL" value ="https://klwbapps.karnataka.gov.in/payment/"/>
-    <input type="hidden" name="FailURL" value ="https://klwbapps.karnataka.gov.in/payment/login"/>
-    <input type="hidden" name="AggregatorId" value ="SBIEPAY"/>
-    <input type="hidden" name="MerchantOrderNo" value ="Xxxxxxxx"/>
-    <input type="hidden" name="MerchantCustomerID" value ="Xxxxxxxx"/>
-    <input type="hidden" name="Paymode" value ="IMPS"/>
-    <input type="hidden" name="Accesmedium" value ="ONLINE"/>
-    <input type="hidden" name="TransactionSource" value ="ONLINE"/>
-    <input type="submit" name="submit" value="Submit">
-</form>
-
-
                             
-                            <!-- <form action="#" method="post" enctype="multipart/form-data" id="payment">
+                            <form action="#" method="post" enctype="multipart/form-data" id="payment">
                                 <div class="pay-form z-depth-1">
                                     <div class="pay-ff">
                                         <p style="font-style: italic;font-weight: 700;">Payment Form</p>
@@ -224,7 +185,7 @@
                                     </div>
 
                                 </div>
-                            </form> -->
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -288,11 +249,11 @@
         </form>
         <!--   rzp_test_V8wTCHMWOy9hfl -->
             <!--   rzp_live_gzxNI1eiSwtWSH -->
-        <!-- <script type="text/javascript"> 
+        <script type="text/javascript"> 
             window.onload = function(){
                 document.getElementsByClassName('razorpay-payment-button').click();
             }
-        </script> -->
+        </script>
 <?php   }else if(empty($_POST['terms']))
     { 
         ?>

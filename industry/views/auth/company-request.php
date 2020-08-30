@@ -71,17 +71,8 @@
                                         </select>
                                         <label for="act">Industry Type</label>
                                     </div>
-                                    <div class="row m0">                                    
-                                        <div class="input-field col m6">
-                                        <input id="company" type="text" name="company" class="c_conreg validate" required="">
-                                        <label for="company">Industry Name</label>
-                                        </div>
-                                    </div>
+
                                     <div class="row m0">  
-                                        <div class="input-field col m6">
-                                            <input id="c_conreg" type="text" class="c_conreg validate" required="">
-                                            <label class="crg" for="c_conreg">Industry Reg No</label>
-                                        </div>
                                         <div class="file-field input-field col s12 m6">
                                         <div class="btn ">
                                             <span>File</span>
@@ -91,14 +82,23 @@
                                             <input class="file-path validate" placeholder="Upload Industry Reg Doc" type="text">
                                         </div>
                                     </div> 
-                                    </div>                                    
+                                    </div>
+
+                                    <div class="row m0">                                    
+                                        <div class="input-field col m12">
+                                        <input id="company" type="text" name="company" class="c_conreg validate" required="">
+                                        <label for="company">Industry Name</label>
+                                        </div>
+                                    </div>
+                                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                                                        
                                                                                                            
                                     <div class="input-field col s12 m12">
                                         <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <div class="g-recaptcha" data-sitekey="6LcFk8MZAAAAAOt1T9V-e1gfM_UMBj0eycizw9rN"></div> 
+                                        <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
                                     </div>
                                     
@@ -182,19 +182,27 @@
                 const formData = new FormData();
                 formData.append('mobile',this.mobile);
                 formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
-                axios.post('<?php echo base_url('auth/mobile_check') ?>', formData)
-                .then(response => {
-                    if (response.data == '1') {
-                        this.mobileError = 'This Mobile number already exist!';
-                    } else {
-                        this.mobileError = '';
-                    }
 
-                }).catch(error =>{
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                } )
+                if( (this.mobile.length !=10)){
+                    this.mobileError = 'Mobile number must be 10 digits';
+                }else{
+
+                    axios.post('<?php echo base_url('auth/mobile_check') ?>', formData)
+                    .then(response => {
+                        if (response.data == '1') {
+                            this.mobileError = 'This Mobile number already exist!';
+                        } else {
+                            this.mobileError = '';
+                        }
+
+                    }).catch(error =>{
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+
+                }
+                
             },
             checkForm() {
                 if ((this.mobileError == '') && (this.emailError == '')) {
@@ -204,7 +212,7 @@
                         this.captcha = 'Captcha is required';
                     } else {
                         this.$refs.form.submit();
-                    }// 
+                    }
                 } else {}
             }
 

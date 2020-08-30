@@ -111,6 +111,7 @@
                     background-blend-mode: overlay;
                     background-size: cover;
                     padding: 50px 0;
+                    width: 100%;
                     .reg-block-content {
                         background: $themcolor;
                         ;
@@ -943,6 +944,7 @@
                     .application-banner {
                         .parallax-container {
                             max-height: 220px;
+                            width: 100%;
                         }
                     }
                     .container-wrap1 {

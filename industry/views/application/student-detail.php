@@ -349,6 +349,7 @@ $this->load->model('m_application');
                                                                         </li>
 
 
+                                                                        <?php if (!empty($result->f_adharfile) || !empty($result->f_adharfile)) { ?>
                                                                         <li class="row">
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Father Aadhaar</p>
@@ -357,12 +358,14 @@ $this->load->model('m_application');
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Father Aadhaar card File</p>
                                                                                 <?php if (!empty($result->f_adharfile)) { ?>
-                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->f_adharfile))?$this->config->item('web_url').'show-image/'.$result->f_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url')?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->f_adharfile))?$this->config->item('web_url').$result->f_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
                                                                             <?php } ?>
                                                                             </div>
                                                                         </li>
+                                                                    <?php } ?>
 
-                                                                        <li class="row">
+                                                                        <?php if (!empty($result->m_adhar) || !empty($result->m_adharfile)) { ?>
+                                                                            <li class="row">
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Mother Aadhaar</p>
                                                                                 <p class="app-item-content"><?php echo (!empty($result->m_adhar))?$result->m_adhar:'---'; ?></p>
@@ -370,10 +373,27 @@ $this->load->model('m_application');
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Mother Aadhaar card File</p>
                                                                                 <?php if (!empty($result->m_adharfile)) { ?>
-                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->m_adharfile))?$this->config->item('web_url').'show-image/'.$result->m_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url')?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->m_adharfile))?$this->config->item('web_url').$result->m_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
                                                                             <?php } ?>
                                                                             </div>
                                                                         </li>
+                                                                        <?php } ?>
+
+                                                                        <?php if (!empty($result->notappli) || !empty($result->deathcertificate)) { ?>
+                                                                            <li class="row">
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Adhar NA</p>
+                                                                                <p class="app-item-content"><?php echo ($result->notappli)?$result->notappli:'---'; ?></p>
+                                                                            </div>
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Death Certificate </p>
+                                                                                <?php if (!empty($result->deathcertificate)) { ?>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url')?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->deathcertificate))?$this->config->item('web_url').$result->deathcertificate:'#'; ?>">Death Certificate</a></p>
+                                                                            <?php } ?>
+                                                                            </div>
+                                                                        </li>
+
+                                                                        <?php } ?>
 
                                                                         
                                                                     </ul>

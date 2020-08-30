@@ -10,6 +10,15 @@
     <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/vue-select.css">
 
+    <style>
+        .input-field > label {
+    -webkit-transform: translateY(-14px) scale(0.8);
+    transform: translateY(-14px) scale(0.8);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+    </style>
+
 </head>
 <body>
 <div id="app">
@@ -55,50 +64,50 @@
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="name" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ/ನಿಯ ಹೆಸರು (ಅಂಕಪಟ್ಟಿಯಲ್ಲಿರುವoತೆ)" class="validate" v-model="student.name" required="">
-                                                <label for="name"> <span class="black-text">Student name</span> </label>
+                                                <input autofocus="true" id="name" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ/ನಿಯ ಹೆಸರು (ಅಂಕಪಟ್ಟಿಯಲ್ಲಿರುವoತೆ)" class="validate" v-model="student.name" required="">
+                                                <label class="active" for="name"> <span class="black-text">Student name</span> </label>
                                             </div>
                                             
                                             <div class="input-field col s12 m5">
-                                                <input id="mobile" type="number"  maxlength="10"  placeholder="ವಿದ್ಯಾರ್ಥಿ/ಪೋಷಕರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" class="validate" v-model="student.phone" @change="phonenum()" required="">
-                                                <label for="mobile"> <span class="black-text">Mobile Number</span>  </label>
+                                                <input autofocus="true" id="mobile" type="number"  maxlength="10"  placeholder="ವಿದ್ಯಾರ್ಥಿ/ಪೋಷಕರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" class="validate" v-model="student.phone" @change="phonenum()" required="">
+                                                <label class="active" for="mobile"> <span class="black-text">Mobile Number</span>  </label>
                                                 <span class="red-text">{{phnError}}</span>
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="fname" type="text" placeholder="ತಂದೆ ಹೆಸರು" class="validate" name="s_father" required="" v-model="student.father" >
-                                                <label for="fname"> <span class="black-text">Father Name</span>   </label>
+                                                <input autofocus="true" id="fname" type="text" placeholder="ತಂದೆ ಹೆಸರು" class="validate" name="s_father" required="" v-model="student.father" >
+                                                <label class="active" for="fname"> <span class="black-text">Father Name</span>   </label>
                                             </div>
                 
                                             <div class="input-field col s12 m5">
-                                                <input id="mname" type="text" placeholder="ತಾಯಿ ಹೆಸರು" name="s_mother" class="validate" required="" v-model="student.mother">
-                                                <label for="mname"> <span class="black-text">Mother Name</span></label>
+                                                <input autofocus="true" id="mname" type="text" placeholder="ತಾಯಿ ಹೆಸರು" name="s_mother" class="validate" required="" v-model="student.mother">
+                                                <label class="active" for="mname"> <span class="black-text">Mother Name</span></label>
                                             </div>
 
                                             <div class="input-field col s12">
                                                 <p><span class="black-text">Gender</span></p>
                                                 <div class="col s6 m3 l3">
-                                                    <label>
+                                                    <label class="active">
                                                         <input class="with-gap" name="std_gender"  type="radio" value="male" v-model="student.gend" />
                                                         <span>Male (ಪುರುಷ)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s6 m3 l3">
-                                                    <label>
+                                                    <label class="active">
                                                         <input class="with-gap" name="std_gender" type="radio"  value="female"  v-model="student.gend" />
                                                         <span>Female (ಹೆಣ್ಣು)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s6 m3 l3">
-                                                    <label>
+                                                    <label class="active">
                                                         <input class="with-gap" name="std_gender" type="radio"  value="other"  v-model="student.gend" />
                                                         <span>Other (ಇತರ)</span>
                                                     </label>
                                                 </div>
                                             </div>
                                                 <div class="input-field col s12 mt10">
-                                                    <textarea id="address" class="materialize-textarea" name="s_address"  placeholder="ಪೂರ್ಣ ಅಂಚೆ ವಿಳಾಸ (ಪಿನ್ ಕೋಡ್ ಸಹಿತ)" required="" v-model="student.address"></textarea>
-                                                      <label for="address"><span class="black-text">Address</span></label>
+                                                    <textarea autofocus="true" id="address" class="materialize-textarea" name="s_address"  placeholder="ಪೂರ್ಣ ಅಂಚೆ ವಿಳಾಸ (ಪಿನ್ ಕೋಡ್ ಸಹಿತ)" required="" v-model="student.address"></textarea>
+                                                      <label class="active" for="address"><span class="black-text">Address</span></label>
                                                 </div>
                                         </div> 
                                         <!-- End Box-->
@@ -137,8 +146,8 @@
                                                     <br><span class="red-text">{{inpresentError}}</span>
                                                 </div>
                                                 <div class="input-field col s12 m5">
-                                                    <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" v-model="institute.pin">
-                                                    <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
+                                                    <input autofocus="true" id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" v-model="institute.pin">
+                                                    <label class="active" for="pspin"> <span class="black-text">Pin Code</span>   </label>
                                                 </div>
                                             </div>
 
@@ -182,13 +191,13 @@
 
                                             <div class="input-field col s12">
                                                 <div class="col s6 m3 l2">
-                                                    <label>
+                                                    <label class="active">
                                                         <input class="with-gap" name="std_cast" type="radio" @change="casteCheck()" value="0"  v-model="caste.low"/>
                                                         <span>No (ಇಲ್ಲ)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s6 m3 l2">
-                                                    <label>
+                                                    <label class="active">
                                                         <input class="with-gap" name="std_cast" type="radio"   @change="casteCheck()" value="1" checked v-model="caste.low"/>
                                                         <span>Yes (ಹೌದು)</span>
                                                     </label>
@@ -208,8 +217,8 @@
                                                 </div>
 
                                                 <div class="input-field col s6 ">
-                                                    <input id="cast_number" type="text"  placeholder="ಜಾತಿ ಸರ್ಟಿಫಿಕೇಟ್  ನಂಬರ್" class="validate" v-model="caste.number" >
-                                                    <label for="cast_number"> <span class="black-text">Caste certificate number</span>   </label>
+                                                    <input autofocus="true" id="cast_number" type="text"  placeholder="ಜಾತಿ ಸರ್ಟಿಫಿಕೇಟ್  ನಂಬರ್" class="validate" v-model="caste.number" >
+                                                    <label class="active" for="cast_number"> <span class="black-text">Caste certificate number</span>   </label>
                                                 </div>
                                             </div>
 
@@ -217,13 +226,13 @@
                                                 <div class="input-field col s12 m10" v-bind:class="{ hide: scaste }">
                                                     <p><span class="black-text">Select your category</span></p>
                                                     <div class="col s6 m3 l3">
-                                                        <label>
+                                                        <label class="active">
                                                             <input class="with-gap" name="std_cat1" type="radio" value="sc" checked v-model="trcategory"/>
                                                             <span>SC (ಪರಿಶಿಷ್ಠ ಜಾತಿ)</span>
                                                         </label>
                                                     </div>
                                                     <div class="col s6 m3 l3">
-                                                        <label>
+                                                        <label class="active">
                                                             <input class="with-gap" name="std_cat1" type="radio" value="st" v-model="trcategory"/>
                                                             <span>ST (ಪರಿಶಿಷ್ಠ ಪಂಗಡ)</span>
                                                         </label>
@@ -232,13 +241,13 @@
                                                 <div class="input-field col s12 m10" v-bind:class="{ hide: genral }">
                                                     <p><span class="black-text">Select your category</span></p>
                                                     <div class="col s6 m3 l4">
-                                                        <label>
+                                                        <label class="active">
                                                             <input class="with-gap" name="std_cat" type="radio" value="general" checked v-model="gncategory"/>
                                                             <span>General (ಸಾಮಾನ್ಯ ವರ್ಗ)</span>
                                                         </label>
                                                     </div>
                                                     <div class="col s6 m3 l4">
-                                                        <label>
+                                                        <label class="active">
                                                             <input class="with-gap" name="std_cat" type="radio" value="obc" v-model="gncategory"/>
                                                             <span>OBC (ಅಲ್ಪಸಂಖ್ಯಾತರು)</span>
                                                         </label>
@@ -257,13 +266,13 @@
 
                                             <div class="col s12 m5">
                                                 <div class="input-field col s12 ">
-                                                    <input id="pv_class" type="text"  placeholder="ಹಿಂದಿನ ತರಗತಿ ಹೆಸರು" class="validate" required="" v-model="previous.class" >
-                                                    <label for="pv_class"> <span class="black-text">Previous Standard</span>   </label>
+                                                    <input autofocus="true" id="pv_class" type="text"  placeholder="ಹಿಂದಿನ ತರಗತಿ ಹೆಸರು" class="validate" required="" v-model="previous.class" >
+                                                    <label class="active" for="pv_class"> <span class="black-text">Previous Standard</span>   </label>
                                                 </div>
 
                                                 <div class="input-field col s12 ">
-                                                    <input id="pv_marks" type="number" @change="markCheck()" placeholder="ಶೇಕಡಾವಾರು ಅಂಕಗಳು" class="validate" required="" v-model="previous.marks">
-                                                    <label for="pv_marks"> <span class="black-text">Marks in Percentage</span>   </label>
+                                                    <input autofocus="true" id="pv_marks" type="number" @change="markCheck()" placeholder="ಶೇಕಡಾವಾರು ಅಂಕಗಳು" class="validate" required="" v-model="previous.marks">
+                                                    <label class="active" for="pv_marks"> <span class="black-text">Marks in Percentage</span>   </label>
                                                     <span class="helper-text red-text">{{markError}}</span>
                                                 </div>
                                             </div>
@@ -302,77 +311,97 @@
                                                     <a target="_blank" href="'.base_url().$result->adharcard_file.'">Aadhar Card</a>
                                                     </p>':''; ?>
                                             </div>
-                                            
 
-                                            <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @change="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
-                                                <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
-                                                <span class="red-text">{{adhError}}</span>
-                                            </div>
-
-
-                                            <div class="file-field input-field col s12 m6">
-                                                <div class="btn">
-                                                    <span>File</span>
-                                                    <input type="file" name="adhar"  ref="file2" @change="adhaarXerox" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
-                                                </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
-                                                </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
-                                            </div>
-
-
-                                            <div class="input-field col s12 m5">
-                                                <input id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="fatherrequire" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
-                                                <label for="adhar_nof"> <span class="black-text">Enter Your Father Aadhar Card Number</span>   </label>
-                                                <p>
-                                                  <label>
-                                                    <input type="checkbox" name="not_applicable" v-model="not_applicable1" value="1" @change="not_applicable('father')" />
-                                                    <span>Not Applicable</span>
-                                                  </label>
-                                                </p>
-                                                <span class="red-text">{{adhErrorf}}</span>
-                                            </div>
-
-
-                                            <div class="file-field input-field col s12 m6">
-                                                <div class="btn">
-                                                    <span>File</span>
-                                                    <input type="file" name="adhar"  ref="file2f" @change="adhaarXeroxf" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
-                                                </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
-                                                </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
-                                            </div>
-
-
-                                            <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="motherrequire" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
-                                                <label for="adhar_no"> <span class="black-text">Enter Your Mother Aadhar Card Number</span>   </label>
-                                                <p>
-                                                  <label>
-                                                    <input type="checkbox" name="not_applicable" v-model="not_applicable2" value="1" @change="not_applicable('mother')"/>
-                                                    <span>Not Applicable</span>
-                                                  </label>
-                                                </p>
-                                                <span class="red-text">{{adhErrorm}}</span>
-                                            </div>
-
-
-                                            <div class="file-field input-field col s12 m6">
-                                                <div class="btn">
-                                                    <span>File</span>
-                                                    <input type="file" name="adhar"  ref="file2m" @change="adhaarXeroxm" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
-                                                </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
-                                                </div>
-                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
-                                            </div>
 
                                             
+                                                <div class="input-field col s12 m5">
+                                                    <input autofocus="true" id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @change="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
+                                                    <label class="active" for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
+                                                    <span class="red-text">{{adhError}}</span>
+                                                </div>
+
+
+                                                <div class="file-field input-field col s12 m6">
+                                                    <div class="btn">
+                                                        <span>File</span>
+                                                        <input type="file" name="adhar"  ref="file2" @change="adhaarXerox" <?php echo (!empty($result->adharcard_file))?'':"required"; ?> accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
+                                                    </div>
+                                                    <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                </div>
+
+
+                                                <div class="row m0">
+                                                    <div class="input-field col s12 m5">
+                                                        <input autofocus="true" id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="fatherrequire" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
+                                                        <label class="active" for="adhar_nof"> <span class="black-text">Enter Your Father Aadhar Card Number</span>   </label>
+                                                        <p>
+                                                          <label class="active">
+                                                            <input type="checkbox" name="not_applicable" v-model="not_applicable1" value="1" @change="not_applicable('father')" />
+                                                            <span>Not Applicable</span>
+                                                          </label>
+                                                        </p>
+                                                        <span class="red-text">{{adhErrorf}}</span>
+                                                    </div>
+                                                    <div class="file-field input-field col s12 m6" v-bind:class="{ hide: fdrader }">
+                                                        <div class="btn">
+                                                            <span>File</span>
+                                                            <input type="file" name="adhar"  ref="file2f" @change="adhaarXeroxf" :required="fatherrequire" accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text" placeholder="Upload Your Father Adhar Card">
+                                                        </div>
+                                                        <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                    </div>
+
+                                                    <div class="file-field input-field col s12 m6" v-bind:class="{ hide: fatherdeath }">
+                                                        <div class="btn">
+                                                                <span>File</span>
+                                                                <input type="file" name="death"  ref="file4d" @change="deathXeroxf" accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                            </div>
+                                                            <div class="file-path-wrapper">
+                                                                <input class="file-path validate" type="text" placeholder="Upload Father Death Certificate if father expired">
+                                                            </div>
+                                                            <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                    </div>
+                                            </div>
+
+                                            <div class="row m0">
+                                                <div class="input-field col s12 m5">
+                                                    <input autofocus="true" id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="motherrequire" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
+                                                    <label class="active" for="adhar_no"> <span class="black-text">Enter Your Mother Aadhar Card Number</span>   </label>
+                                                    <p>
+                                                      <label class="active">
+                                                        <input type="checkbox" name="not_applicable" v-model="not_applicable2" value="1" @change="not_applicable('mother')"/>
+                                                        <span>Not Applicable</span>
+                                                      </label>
+                                                    </p>
+                                                    <span class="red-text">{{adhErrorm}}</span>
+                                                </div>
+                                                <div class="file-field input-field col s12 m6" v-bind:class="{ hide: mdrader }">
+                                                    <div class="btn">
+                                                        <span>File</span>
+                                                        <input type="file" name="adhar"  ref="file2m" @change="adhaarXeroxm" :required="motherrequire" accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text" placeholder="Upload Your Mother Adhar Card">
+                                                    </div>
+                                                    <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                </div>
+
+                                                <div class="file-field input-field col s12 m6"   v-bind:class="{ hide: motherdeath }">
+                                                    <div class="btn">
+                                                            <span>File</span>
+                                                            <input type="file" name="death"  ref="file5d" @change="deathXeroxm" accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text" placeholder="Upload Mother Death Certificate if mother expired">
+                                                        </div>
+                                                        <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                </div>
+                                            </div>
                                         </div>
                                         
                                         <!-- End Box-->
@@ -390,31 +419,31 @@
                                                     <option value="1">Parent</option>
                                                     <option value="2">Student</option>
                                                 </select>
-                                                <label for="in_talluk">Account Holder</label>
+                                                <label class="active" for="in_talluk">Account Holder</label>
                                                 <span class="red-text">{{actypeError}}</span>
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_holdr" type="text" placeholder="ಖಾತೆದಾರರ ಹೆಸರು" class="validate" name="bn_branch" required=""  v-model="bank.holder">
-                                                <label for="bn_holdr"> <span class="black-text">Account Holder Name</span>   </label>
+                                                <input autofocus="true" id="bn_holdr" type="text" placeholder="ಖಾತೆದಾರರ ಹೆಸರು" class="validate" name="bn_branch" required=""  v-model="bank.holder">
+                                                <label class="active" for="bn_holdr"> <span class="black-text">Account Holder Name</span>   </label>
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_name" type="text" placeholder="ಬ್ಯಾಂಕ್ ಹೆಸರು" class="validate" name="bn_name" required="" v-model="bank.name">
-                                                <label for="bn_name"> <span class="black-text">Bank Name</span> </label>
+                                                <input autofocus="true" id="bn_name" type="text" placeholder="ಬ್ಯಾಂಕ್ ಹೆಸರು" class="validate" name="bn_name" required="" v-model="bank.name">
+                                                <label class="active" for="bn_name"> <span class="black-text">Bank Name</span> </label>
                                             </div>
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_branch" type="text" placeholder="ಶಾಖೆಯ ಹೆಸರು" class="validate" name="bn_branch" required=""  v-model="bank.branch">
-                                                <label for="bn_branch"> <span class="black-text">Branch Name</span>   </label>
+                                                <input autofocus="true" id="bn_branch" type="text" placeholder="ಶಾಖೆಯ ಹೆಸರು" class="validate" name="bn_branch" required=""  v-model="bank.branch">
+                                                <label class="active" for="bn_branch"> <span class="black-text">Branch Name</span>   </label>
                                             </div>
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_ifsc" type="text" placeholder="ಐಎಫ್‌ಎಸ್‌ಸಿ ಸಂಖ್ಯೆ" class="validate" name="bn_ifsc" required="" v-model="bank.ifsc">
-                                                <label for="bn_ifsc"> <span class="black-text">IFSC No.</span></label>
+                                                <input autofocus="true" id="bn_ifsc" type="text" placeholder="ಐಎಫ್‌ಎಸ್‌ಸಿ ಸಂಖ್ಯೆ" class="validate" name="bn_ifsc" required="" v-model="bank.ifsc">
+                                                <label class="active" for="bn_ifsc"> <span class="black-text">IFSC No.</span></label>
                                             </div>
                 
                                             <div class="input-field col s12 m5">
-                                                <input id="bn_acc" type="text" placeholder="ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ" class="validate" name="bn_acc" required="" v-model="bank.account" @change="accnochange()">
-                                                <label for="bn_acc"> <span class="black-text">Saving Account Number</span></label>
+                                                <input autofocus="true" id="bn_acc" type="text" placeholder="ಖಾತೆ ಸಂಖ್ಯೆಯನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ" class="validate" name="bn_acc" required="" v-model="bank.account" @change="accnochange()">
+                                                <label class="active" for="bn_acc"> <span class="black-text">Saving Account Number</span></label>
                                                 <span class="red-text">{{accError}}</span>
                                             </div>
 
@@ -447,13 +476,13 @@
                                                 <div class="input-field col s12 m5 l10">
                                                     <p>ಉದ್ಯೋಗಧಾರರು  ಯಾರು</p>
                                                 <div class="col s12 m4 l2">
-                                                    <label>
+                                                    <label class="active">
                                                         <input class="with-gap" v-model="industry.working" value="1" type="radio" checked="checked"  />
                                                         <span>Father (ತಂದೆ)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s12 m4 l2">
-                                                    <label>
+                                                    <label class="active">
                                                         <input class="with-gap" v-model="industry.working" value="2" type="radio"  />
                                                         <span>Mother (ತಾಯಿ)</span>
                                                     </label>
@@ -464,24 +493,24 @@
                                             
                                             
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="id_pname" type="text" placeholder="ಪೋಷಕ / ರಕ್ಷಕರ ಹೆಸರು" class="validate" v-model="industry.pname"  required="" >
-                                                <label for="id_pname"> <span class="black-text">Parent / Guardian Name</span>   </label>
+                                                <input autofocus="true" id="id_pname" type="text" placeholder="ಪೋಷಕ / ರಕ್ಷಕರ ಹೆಸರು" class="validate" v-model="industry.pname"  required="" >
+                                                <label class="active" for="id_pname"> <span class="black-text">Parent / Guardian Name</span>   </label>
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="id_msal" type="number" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" @change="salaryCheck()" v-model="industry.salary">
-                                                <label for="id_msal"> <span class="black-text">Monthly Salary</span>   </label>
+                                                <input autofocus="true" id="id_msal" type="number" placeholder="ಮಾಸಿಕ ವೇತನ" class="validate" name="id_msal" required="" @change="salaryCheck()" v-model="industry.salary">
+                                                <label class="active" for="id_msal"> <span class="black-text">Monthly Salary</span>   </label>
                                                 <span class="helper-text red-text">{{salError}}</span>
                                             </div>
 
                                             <div class="input-field col s12 m5 l5">
-                                                <input id="id_rel" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ ಮತ್ತು ಪೋಷಕರ ನಡುವಿನ ಸಂಬಂಧ" class="validate" v-model="industry.relation" required="" >
-                                                <label for="id_rel"> <span class="black-text">Relation between Student & Parent</span>   </label>
+                                                <input autofocus="true" id="id_rel" type="text" placeholder="ವಿದ್ಯಾರ್ಥಿ ಮತ್ತು ಪೋಷಕರ ನಡುವಿನ ಸಂಬಂಧ" class="validate" v-model="industry.relation" required="" >
+                                                <label class="active" for="id_rel"> <span class="black-text">Relation between Student & Parent</span>   </label>
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input id="id_pin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="id_pin" required="" v-model="industry.pin" >
-                                                <label for="id_pin"> <span class="black-text">Pin Code</span>   </label>
+                                                <input autofocus="true" id="id_pin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="id_pin" required="" v-model="industry.pin" >
+                                                <label class="active" for="id_pin"> <span class="black-text">Pin Code</span>   </label>
                                             </div>
                                             <div class="row m0">
                                                 <div class="input-field col s12 m5">
@@ -651,6 +680,10 @@
             not_applicable2:false,
             motherrequire:true,
             fatherrequire:true,
+            mdrader:false,
+            fdrader:false,
+            fatherdeath:true,
+            motherdeath:true,
 
         },
         methods:{
@@ -658,20 +691,49 @@
                 if (not_apply !='' && not_apply=='mother') {
                     this.not_applicable2 =true;
                     this.not_applicable1 =false;
+
+                    
+
+                    this.mdrader = true;
+                    this.motherdeath = false;
+
+                    this.fdrader = false;
+                    this.fatherdeath = true;
+
                     this.motherrequire = false;
                     this.fatherrequire = true;
+                    this.adhErrorm = '';
+                    
+
                 }else if(not_apply !='' && not_apply=='father'){
                     this.not_applicable1 =true;
                     this.not_applicable2 =false;
+
+                    this.fdrader = true;
+                    this.fatherdeath = false;
+
+                    this.mdrader = false;
+                    this.motherdeath = true;
+
                     this.fatherrequire = false;
                     this.motherrequire = true;
+                    this.adhErrorf = '';
+                    
                 }
 
             },
             cardNumberSpace(){
                 var cardNumber = this.$refs.creditCardNumber.value;
 
+                nud = this.adhaar.number;
+                fad = this.adhaar.fnumber;
+                mad = this.adhaar.numberm;
+
                 this.adhError = '';
+                if (nud ==fad || nud == mad) {
+                    this.adhError = 'Aadhar Card number must be Unique.';
+                }
+
                 if (cardNumber.length != 16) {
                     this.adhError = 'Aadhar Card number must be 16 digits.';
                 }else{
@@ -721,8 +783,24 @@
                 var cardNumber = this.$refs.creditCardNumberf.value;
 
                 this.adhErrorf = '';
+
+
+                nud = this.adhaar.number;
+                fad = this.adhaar.fnumber;
+                mad = this.adhaar.numberm;
+                if (fad ==nud || fad == mad) {
+                    this.adhErrorf = 'Aadhar Card number must be Unique.';
+                }
+
                 if (cardNumber.length <16) {
-                    this.adhErrorf = 'Aadhar Card number must be 16 digits.';
+
+
+                    if (this.not_applicable1 != true) {
+                        this.adhErrorf = 'Aadhar Card number must be 16 digits.';
+                    }else{
+                        this.adhErrorf = '';
+                    }
+                    
                 }else{
 
                     // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
@@ -733,6 +811,8 @@
                     .then(function (response) {
                         if(response.data !=  '0'){
                             M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+
+
                             this.adhErrorf = 'You are not eligible to apply for this scholarship';
                         }
                     })
@@ -747,8 +827,22 @@
                 var cardNumber = this.$refs.creditCardNumberm.value;
 
                 this.adhErrorm = '';
+
+                nud = this.adhaar.number;
+                fad = this.adhaar.fnumber;
+                mad = this.adhaar.numberm;
+
+                if (mad ==nud || mad == fad) {
+                    this.adhErrorm = 'Aadhar Card number must be Unique.';
+                }
+
                 if (cardNumber.length <16) {
-                    this.adhErrorm = 'Aadhar Card number must be 16 digits.';
+                    if (this.not_applicable2 != true) {
+                        this.adhErrorm = 'Aadhar Card number must be 16 digits.';
+                    }else{
+                        this.adhErrorm = '';
+                    }
+
                 }else{
 
                     // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
@@ -799,6 +893,12 @@
             bankPassbook(){
                 this.file3 = this.$refs.file3.files[0];
                 
+            },
+            deathXeroxf(){
+                this.file4 = this.$refs.file4d.files[0];
+
+            },deathXeroxm(){
+                this.file5 = this.$refs.file5d.files[0];
             },
             casteCheck(){
                 if (this.caste.low =='1') {
@@ -904,6 +1004,17 @@
                                               
                     formData.append('uniq', this.uniq);                          
                     formData.append('aid', this.aid);
+                    formData.append('not_applicable1', this.not_applicable1);
+                    formData.append('not_applicable2', this.not_applicable2);
+
+                    
+
+
+                    formData.append('death', this.file4);
+                    formData.append('death1', this.file5);
+
+
+
 
                     formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
 

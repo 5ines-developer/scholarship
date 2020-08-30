@@ -161,6 +161,9 @@ class Std_application extends CI_Controller {
     **/
     public function insertAppli($value='')
     {
+
+
+    	
     	$this->sc_check->limitRequests();
     	
     	$this->security->xss_clean($_POST);
@@ -257,7 +260,29 @@ class Std_application extends CI_Controller {
 	        $upload_data = $this->upload->data();
 	        $cast = 'student-cast/'.$upload_data['file_name'];
 		}
-		
+
+		if ($this->input->post('not_applicable1') != 'false') {
+			$config['upload_path'] = 'student-death/';
+    		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
+	        $config['max_width'] = 0;
+	        $config['encrypt_name'] = true;
+	        $this->upload->initialize($config);
+	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+	        $this->upload->do_upload('death');
+	        $upload_data = $this->upload->data();
+	        $death = 'student-death/'.$upload_data['file_name'];
+		}else if ($this->input->post('not_applicable2') != 'false') {
+			$config['upload_path'] = 'student-death/';
+    		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
+	        $config['max_width'] = 0;
+	        $config['encrypt_name'] = true;
+	        $this->upload->initialize($config);
+	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+	        $this->upload->do_upload('death1');
+	        $upload_data = $this->upload->data();
+	        $death = 'student-death/'.$upload_data['file_name'];
+		}
+
 		if (empty($_FILES['axerox']['tmp_name'])) {
 		}else{
     		$config['upload_path'] = 'student-adhar/';
@@ -281,7 +306,7 @@ class Std_application extends CI_Controller {
 	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
 	        $this->upload->do_upload('axeroxf');
 	        $upload_data = $this->upload->data();
-	        $adharm = 'father-adhar/'.$upload_data['file_name'];
+	        $adharf = 'father-adhar/'.$upload_data['file_name'];
 	    }
 
 	    if (empty($_FILES['axeroxm']['tmp_name'])) {
@@ -294,7 +319,7 @@ class Std_application extends CI_Controller {
 	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
 	        $this->upload->do_upload('axeroxm');
 	        $upload_data = $this->upload->data();
-	        $adharf = 'mother-adhar/'.$upload_data['file_name'];
+	        $adharm = 'mother-adhar/'.$upload_data['file_name'];
 	    }
 
     	$insert = array(
@@ -315,11 +340,18 @@ class Std_application extends CI_Controller {
 		if (!empty($adhar)) { $insert['adharcard_file'] = $adhar; }
 		if (!empty($adharf)) { $insert['f_adharfile'] = $adharf; }
 		if (!empty($adharm)) { $insert['m_adharfile'] = $adharm; }
+		if (!empty($death)) { $insert['deathcertificate'] = $death; }
 
 		if (!empty($insert['is_scst'])) {
 			$insert['category'] = $this->input->post('tcat');
 		}else{
 			$insert['category'] = $this->input->post('gcat');
+		}
+
+		if (!empty($this->input->post('not_applicable1') == 'true')) {
+			$insert['notappli'] = 'father';
+		}elseif (!empty($this->input->post('not_applicable2') == 'true')) {
+			$insert['notappli'] = 'mother';
 		}
 
     	$output = $this->m_stdapplication->aplliBasic($insert); 
@@ -566,7 +598,7 @@ class Std_application extends CI_Controller {
     	$id = $this->encryption_url->safe_b64decode($id);
         $data['result'] = $this->m_stdapplication->getApplication($this->sid);
         require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-        // require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
 	        'default_font' => 'tunga'

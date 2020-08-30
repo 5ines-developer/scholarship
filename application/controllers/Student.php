@@ -413,7 +413,6 @@ class Student extends CI_Controller {
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()
         );
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($this->session->userdata('stlid') == '') {
             $data['title'] = 'Forgot password';
@@ -442,10 +441,7 @@ class Student extends CI_Controller {
             redirect('student/profile','refresh');
         }
 
-        }else{
-            $this->session->set_flashdata('error', 'Some error occured, please try again!');
-            redirect('student/forgot-password','refresh');
-        }
+        
     }
 
     /**

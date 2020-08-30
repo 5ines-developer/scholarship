@@ -48,13 +48,19 @@
                                     </div>
 
                                     <div class="input-field col s12 m6">
-                                        <input type="hidden" name="district" :value="district.id">       
-                                        <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
+                                         <div>
+                                            <input type="hidden" name="district" :value="district.id">       
+                                            <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
+                                        </div>
+                                        <br>
+                                         <span class="red-text">{{inDistError}}</span>
                                     </div>
 
                                     <div class="input-field col s12 m6">
+                                        <div>
                                         <input type="hidden" name="taluk" :value="tlq.id">       
-                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk"  tagging :from="taluk" />
+                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk"  tagging :from="taluk" /></div><br>
+                                        <span class="red-text">{{indtalError}}</span>
                                     </div>
                                    
                                     <div class="input-field col s12 m6">
@@ -122,7 +128,7 @@
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <div class="g-recaptcha" data-sitekey="6LcFk8MZAAAAAOt1T9V-e1gfM_UMBj0eycizw9rN"></div> 
+                                        <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
                                     </div>
                                     
@@ -158,6 +164,11 @@
 </script>
     <script>
 $(document).ready(function() {
+
+    $(document).ready(function($) {
+            $("select").css({display: "inline", height: 0, padding: 0, width: 0});
+            // $('.modal').modal();
+        });
 
     $('#company').select2({
         placeholder: 'Select a company',
@@ -240,6 +251,8 @@ $(document).ready(function() {
                 tlq:'',
                 disabled: true,
                 disabled1: true,
+                inDistError:'',
+                indtalError:'',
 
             },
 
@@ -293,27 +306,42 @@ $(document).ready(function() {
                 const formData = new FormData();
                 formData.append('mobile',this.mobile);
                 formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
-                axios.post('<?php echo base_url('auth/mobile_check') ?>', formData)
-                .then(response => {
-                    if (response.data == '1') {
-                        this.mobileError = 'This Mobile number already exist!';
-                    } else {
-                        this.mobileError = '';
-                    }
 
-                }).catch(error =>{
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                } )
+                if( (this.mobile.length !=10)){
+                    this.mobileError = 'Mobile number must be 10 digits';
+                }else{
+                    axios.post('<?php echo base_url('auth/mobile_check') ?>', formData)
+                    .then(response => {
+                        if (response.data == '1') {
+                            this.mobileError = 'This Mobile number already exist!';
+                        } else {
+                            this.mobileError = '';
+                        }
+
+                    }).catch(error =>{
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    } )
+
+                }
+                
             },
             checkForm() {
-                if ((this.mobileError == '') && (this.emailError == '')) {
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+
+                this.inDistError = '';
+                this.indtalError = '';
+                if((this.district.id ==null) || (this.district.id== 'undefined')){ 
+                    this.inDistError = 'Please Select the District'; 
+                }
+                if((this.tlq.id ==null) || (this.tlq.id =='undefined')){ this.indtalError = 'Please Select the Talluk';  } 
+
+                if ((this.mobileError == '') && (this.emailError == '') && (this.inDistError == '') && (this.indtalError == '')) {
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // } 
+                    } 
                 } else {}
             }
 

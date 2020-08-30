@@ -1,0 +1,311 @@
+INFO - 2020-08-30 19:13:05 --> Config Class Initialized
+INFO - 2020-08-30 19:13:05 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:13:05 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:13:05 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:13:05 --> URI Class Initialized
+DEBUG - 2020-08-30 19:13:05 --> No URI present. Default controller set.
+INFO - 2020-08-30 19:13:05 --> Router Class Initialized
+INFO - 2020-08-30 19:13:05 --> Output Class Initialized
+INFO - 2020-08-30 19:13:05 --> Security Class Initialized
+DEBUG - 2020-08-30 19:13:05 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:13:05 --> Input Class Initialized
+INFO - 2020-08-30 19:13:05 --> Language Class Initialized
+INFO - 2020-08-30 19:13:06 --> Loader Class Initialized
+INFO - 2020-08-30 19:13:06 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:13:06 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:13:06 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:13:06 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:13:06 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:13:06 --> Email Class Initialized
+DEBUG - 2020-08-30 19:13:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:13:06 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:13:06 --> Controller Class Initialized
+INFO - 2020-08-30 19:13:06 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:13:06 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:13:06 --> Form Validation Class Initialized
+DEBUG - 2020-08-30 19:13:06 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-08-30 19:13:06 --> Helper loaded: captcha_helper
+INFO - 2020-08-30 19:13:06 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/header.php
+INFO - 2020-08-30 19:13:06 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/footer.php
+INFO - 2020-08-30 19:13:06 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/msg.php
+INFO - 2020-08-30 19:13:06 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\auth/login.php
+INFO - 2020-08-30 19:13:06 --> Final output sent to browser
+DEBUG - 2020-08-30 19:13:06 --> Total execution time: 0.3213
+INFO - 2020-08-30 19:13:08 --> Config Class Initialized
+INFO - 2020-08-30 19:13:08 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:13:08 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:13:08 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:13:08 --> URI Class Initialized
+INFO - 2020-08-30 19:13:08 --> Router Class Initialized
+INFO - 2020-08-30 19:13:08 --> Output Class Initialized
+INFO - 2020-08-30 19:13:08 --> Security Class Initialized
+DEBUG - 2020-08-30 19:13:08 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:13:08 --> Input Class Initialized
+INFO - 2020-08-30 19:13:08 --> Language Class Initialized
+INFO - 2020-08-30 19:13:08 --> Loader Class Initialized
+INFO - 2020-08-30 19:13:08 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:13:08 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:13:08 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:13:08 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:13:08 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:13:08 --> Email Class Initialized
+DEBUG - 2020-08-30 19:13:08 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:13:08 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:13:08 --> Controller Class Initialized
+INFO - 2020-08-30 19:13:08 --> Model "M_payments" initialized
+INFO - 2020-08-30 19:13:08 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:13:08 --> Model "M_account" initialized
+INFO - 2020-08-30 19:13:08 --> Helper loaded: text_helper
+INFO - 2020-08-30 19:13:08 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:13:08 --> Form Validation Class Initialized
+INFO - 2020-08-30 19:13:08 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/header.php
+INFO - 2020-08-30 19:13:08 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/footer.php
+INFO - 2020-08-30 19:13:08 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/msg.php
+INFO - 2020-08-30 19:13:08 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\payment/payment.php
+INFO - 2020-08-30 19:13:08 --> Final output sent to browser
+DEBUG - 2020-08-30 19:13:08 --> Total execution time: 0.5077
+INFO - 2020-08-30 19:14:48 --> Config Class Initialized
+INFO - 2020-08-30 19:14:48 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:14:48 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:14:48 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:14:48 --> URI Class Initialized
+INFO - 2020-08-30 19:14:48 --> Router Class Initialized
+INFO - 2020-08-30 19:14:48 --> Output Class Initialized
+INFO - 2020-08-30 19:14:48 --> Security Class Initialized
+DEBUG - 2020-08-30 19:14:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:14:48 --> Input Class Initialized
+INFO - 2020-08-30 19:14:48 --> Language Class Initialized
+INFO - 2020-08-30 19:14:48 --> Loader Class Initialized
+INFO - 2020-08-30 19:14:48 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:14:48 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:14:48 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:14:48 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:14:48 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:14:49 --> Email Class Initialized
+DEBUG - 2020-08-30 19:14:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:14:49 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:14:49 --> Controller Class Initialized
+INFO - 2020-08-30 19:14:49 --> Model "M_payments" initialized
+INFO - 2020-08-30 19:14:49 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:14:49 --> Model "M_account" initialized
+INFO - 2020-08-30 19:14:49 --> Helper loaded: text_helper
+INFO - 2020-08-30 19:14:49 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:14:49 --> Form Validation Class Initialized
+INFO - 2020-08-30 19:14:49 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/header.php
+INFO - 2020-08-30 19:14:49 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/footer.php
+INFO - 2020-08-30 19:14:49 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/msg.php
+INFO - 2020-08-30 19:14:49 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\payment/payment.php
+INFO - 2020-08-30 19:14:49 --> Final output sent to browser
+DEBUG - 2020-08-30 19:14:49 --> Total execution time: 0.4974
+INFO - 2020-08-30 19:14:51 --> Config Class Initialized
+INFO - 2020-08-30 19:14:51 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:14:51 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:14:51 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:14:51 --> URI Class Initialized
+INFO - 2020-08-30 19:14:51 --> Router Class Initialized
+INFO - 2020-08-30 19:14:51 --> Output Class Initialized
+INFO - 2020-08-30 19:14:51 --> Security Class Initialized
+DEBUG - 2020-08-30 19:14:51 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:14:51 --> Input Class Initialized
+INFO - 2020-08-30 19:14:51 --> Language Class Initialized
+INFO - 2020-08-30 19:14:51 --> Loader Class Initialized
+INFO - 2020-08-30 19:14:51 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:14:51 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:14:51 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:14:51 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:14:51 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:14:51 --> Email Class Initialized
+DEBUG - 2020-08-30 19:14:51 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:14:51 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:14:51 --> Controller Class Initialized
+INFO - 2020-08-30 19:14:51 --> Model "M_payments" initialized
+INFO - 2020-08-30 19:14:51 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:14:51 --> Model "M_account" initialized
+INFO - 2020-08-30 19:14:51 --> Helper loaded: text_helper
+INFO - 2020-08-30 19:14:51 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:14:51 --> Form Validation Class Initialized
+INFO - 2020-08-30 19:14:51 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/header.php
+INFO - 2020-08-30 19:14:51 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/footer.php
+INFO - 2020-08-30 19:14:51 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/msg.php
+INFO - 2020-08-30 19:14:51 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\payment/payment.php
+INFO - 2020-08-30 19:14:51 --> Final output sent to browser
+DEBUG - 2020-08-30 19:14:51 --> Total execution time: 0.5537
+INFO - 2020-08-30 19:14:55 --> Config Class Initialized
+INFO - 2020-08-30 19:14:55 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:14:55 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:14:55 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:14:55 --> URI Class Initialized
+INFO - 2020-08-30 19:14:55 --> Router Class Initialized
+INFO - 2020-08-30 19:14:55 --> Output Class Initialized
+INFO - 2020-08-30 19:14:55 --> Security Class Initialized
+DEBUG - 2020-08-30 19:14:56 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:14:56 --> Input Class Initialized
+INFO - 2020-08-30 19:14:56 --> Language Class Initialized
+INFO - 2020-08-30 19:14:56 --> Loader Class Initialized
+INFO - 2020-08-30 19:14:56 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:14:56 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:14:56 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:14:56 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:14:56 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:14:56 --> Email Class Initialized
+DEBUG - 2020-08-30 19:14:56 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:14:56 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:14:56 --> Controller Class Initialized
+INFO - 2020-08-30 19:14:56 --> Model "M_payments" initialized
+INFO - 2020-08-30 19:14:56 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:14:56 --> Model "M_account" initialized
+INFO - 2020-08-30 19:14:56 --> Helper loaded: text_helper
+INFO - 2020-08-30 19:14:56 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:14:56 --> Form Validation Class Initialized
+INFO - 2020-08-30 19:14:56 --> Final output sent to browser
+DEBUG - 2020-08-30 19:14:56 --> Total execution time: 0.6030
+INFO - 2020-08-30 19:14:57 --> Config Class Initialized
+INFO - 2020-08-30 19:14:57 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:14:57 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:14:57 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:14:57 --> URI Class Initialized
+INFO - 2020-08-30 19:14:57 --> Router Class Initialized
+INFO - 2020-08-30 19:14:57 --> Output Class Initialized
+INFO - 2020-08-30 19:14:57 --> Security Class Initialized
+DEBUG - 2020-08-30 19:14:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:14:57 --> Input Class Initialized
+INFO - 2020-08-30 19:14:57 --> Language Class Initialized
+INFO - 2020-08-30 19:14:57 --> Loader Class Initialized
+INFO - 2020-08-30 19:14:57 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:14:57 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:14:57 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:14:57 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:14:57 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:14:57 --> Email Class Initialized
+DEBUG - 2020-08-30 19:14:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:14:57 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:14:57 --> Controller Class Initialized
+INFO - 2020-08-30 19:14:57 --> Model "M_payments" initialized
+INFO - 2020-08-30 19:14:57 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:14:57 --> Model "M_account" initialized
+INFO - 2020-08-30 19:14:57 --> Helper loaded: text_helper
+INFO - 2020-08-30 19:14:57 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:14:57 --> Form Validation Class Initialized
+INFO - 2020-08-30 19:14:57 --> Final output sent to browser
+DEBUG - 2020-08-30 19:14:57 --> Total execution time: 0.5410
+INFO - 2020-08-30 19:15:01 --> Config Class Initialized
+INFO - 2020-08-30 19:15:01 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:15:01 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:15:01 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:15:01 --> URI Class Initialized
+INFO - 2020-08-30 19:15:01 --> Router Class Initialized
+INFO - 2020-08-30 19:15:01 --> Output Class Initialized
+INFO - 2020-08-30 19:15:01 --> Security Class Initialized
+DEBUG - 2020-08-30 19:15:01 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:15:01 --> Input Class Initialized
+INFO - 2020-08-30 19:15:01 --> Language Class Initialized
+INFO - 2020-08-30 19:15:01 --> Loader Class Initialized
+INFO - 2020-08-30 19:15:01 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:15:01 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:15:01 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:15:01 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:15:01 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:15:01 --> Email Class Initialized
+DEBUG - 2020-08-30 19:15:01 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:15:01 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:15:01 --> Controller Class Initialized
+INFO - 2020-08-30 19:15:01 --> Model "M_payments" initialized
+INFO - 2020-08-30 19:15:01 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:15:01 --> Model "M_account" initialized
+INFO - 2020-08-30 19:15:01 --> Helper loaded: text_helper
+INFO - 2020-08-30 19:15:01 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:15:01 --> Form Validation Class Initialized
+INFO - 2020-08-30 19:15:01 --> Final output sent to browser
+DEBUG - 2020-08-30 19:15:01 --> Total execution time: 0.5198
+INFO - 2020-08-30 19:15:18 --> Config Class Initialized
+INFO - 2020-08-30 19:15:18 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:15:19 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:15:19 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:15:19 --> URI Class Initialized
+INFO - 2020-08-30 19:15:19 --> Router Class Initialized
+INFO - 2020-08-30 19:15:19 --> Output Class Initialized
+INFO - 2020-08-30 19:15:19 --> Security Class Initialized
+DEBUG - 2020-08-30 19:15:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:15:19 --> Input Class Initialized
+INFO - 2020-08-30 19:15:19 --> Language Class Initialized
+INFO - 2020-08-30 19:15:19 --> Loader Class Initialized
+INFO - 2020-08-30 19:15:19 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:15:19 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:15:19 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:15:19 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:15:19 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:15:19 --> Email Class Initialized
+DEBUG - 2020-08-30 19:15:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:15:19 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:15:19 --> Controller Class Initialized
+INFO - 2020-08-30 19:15:19 --> Model "M_payments" initialized
+INFO - 2020-08-30 19:15:19 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:15:19 --> Model "M_account" initialized
+INFO - 2020-08-30 19:15:19 --> Helper loaded: text_helper
+INFO - 2020-08-30 19:15:19 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:15:19 --> Form Validation Class Initialized
+INFO - 2020-08-30 19:15:19 --> Final output sent to browser
+DEBUG - 2020-08-30 19:15:19 --> Total execution time: 0.4157
+INFO - 2020-08-30 19:15:22 --> Config Class Initialized
+INFO - 2020-08-30 19:15:22 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:15:22 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:15:22 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:15:22 --> URI Class Initialized
+INFO - 2020-08-30 19:15:22 --> Router Class Initialized
+INFO - 2020-08-30 19:15:22 --> Output Class Initialized
+INFO - 2020-08-30 19:15:22 --> Security Class Initialized
+DEBUG - 2020-08-30 19:15:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:15:22 --> Input Class Initialized
+INFO - 2020-08-30 19:15:22 --> Language Class Initialized
+INFO - 2020-08-30 19:15:22 --> Loader Class Initialized
+INFO - 2020-08-30 19:15:22 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:15:22 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:15:22 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:15:22 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:15:22 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:15:22 --> Email Class Initialized
+DEBUG - 2020-08-30 19:15:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:15:22 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:15:22 --> Controller Class Initialized
+INFO - 2020-08-30 19:15:22 --> Model "M_payments" initialized
+INFO - 2020-08-30 19:15:23 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:15:23 --> Model "M_account" initialized
+INFO - 2020-08-30 19:15:23 --> Helper loaded: text_helper
+INFO - 2020-08-30 19:15:23 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:15:23 --> Form Validation Class Initialized
+INFO - 2020-08-30 19:15:23 --> Final output sent to browser
+DEBUG - 2020-08-30 19:15:23 --> Total execution time: 0.4309
+INFO - 2020-08-30 19:15:25 --> Config Class Initialized
+INFO - 2020-08-30 19:15:25 --> Hooks Class Initialized
+DEBUG - 2020-08-30 19:15:25 --> UTF-8 Support Enabled
+INFO - 2020-08-30 19:15:25 --> Utf8 Class Initialized
+INFO - 2020-08-30 19:15:25 --> URI Class Initialized
+INFO - 2020-08-30 19:15:25 --> Router Class Initialized
+INFO - 2020-08-30 19:15:25 --> Output Class Initialized
+INFO - 2020-08-30 19:15:25 --> Security Class Initialized
+DEBUG - 2020-08-30 19:15:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-30 19:15:25 --> Input Class Initialized
+INFO - 2020-08-30 19:15:25 --> Language Class Initialized
+INFO - 2020-08-30 19:15:25 --> Loader Class Initialized
+INFO - 2020-08-30 19:15:25 --> Helper loaded: url_helper
+INFO - 2020-08-30 19:15:25 --> Helper loaded: file_helper
+INFO - 2020-08-30 19:15:25 --> Helper loaded: string_helper
+INFO - 2020-08-30 19:15:25 --> Helper loaded: noti_helper
+INFO - 2020-08-30 19:15:25 --> Database Driver Class Initialized
+INFO - 2020-08-30 19:15:25 --> Email Class Initialized
+DEBUG - 2020-08-30 19:15:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-30 19:15:25 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-30 19:15:25 --> Controller Class Initialized
+INFO - 2020-08-30 19:15:25 --> Model "M_payments" initialized
+INFO - 2020-08-30 19:15:25 --> Model "M_auth" initialized
+INFO - 2020-08-30 19:15:25 --> Model "M_account" initialized
+INFO - 2020-08-30 19:15:25 --> Helper loaded: text_helper
+INFO - 2020-08-30 19:15:25 --> Helper loaded: form_helper
+INFO - 2020-08-30 19:15:25 --> Form Validation Class Initialized
+INFO - 2020-08-30 19:15:25 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/header.php
+INFO - 2020-08-30 19:15:25 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/footer.php
+ERROR - 2020-08-30 19:15:25 --> Severity: Notice --> Undefined index: terms C:\xampp\htdocs\scholarship\payment\views\payment\payment.php 220
+INFO - 2020-08-30 19:15:25 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/msg.php
+INFO - 2020-08-30 19:15:25 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\payment/payment.php
+INFO - 2020-08-30 19:15:25 --> Final output sent to browser
+DEBUG - 2020-08-30 19:15:25 --> Total execution time: 0.5097

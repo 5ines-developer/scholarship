@@ -86,7 +86,7 @@ $this->load->model('m_stdapplication');
           </tr>
           <tr>
             <td colspan="2" align="left" style="border:1px solid gray;" >Class Name : <?php echo (!empty($result->prv_class))?$result->prv_class:''; ?> </td>
-            <td style="border-top: 1px solid gray;border-bottom: 1px solid gray;border-left: none;border-right: 1px solid gray;" align="left">Marks : <?php echo (!empty($result->prv_marks))?$result->prv_marks:''; ?></td>
+            <td style="border-top: 1px solid gray;border-bottom: 1px solid gray;border-left: none;border-right: 1px solid gray;" align="left">Marks : <?php echo (!empty($result->prv_marks))?$result->prv_marks.' %':''; ?></td>
           </tr>
           <tr>
             <td colspan="3" align="left" style="border:1px solid gray;" >Marks card Copy: <?php echo (!empty($result->prv_markcard))?'Submitted':'Not Submitted'; ?> </td>

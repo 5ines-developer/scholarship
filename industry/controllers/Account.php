@@ -95,7 +95,7 @@ class Account extends CI_Controller {
         $this->security->xss_clean($_POST);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $this->form_validation->set_rules('iname', 'Industry Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('iname', 'Industry Name', 'trim|required');
         $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
 
@@ -131,7 +131,8 @@ class Account extends CI_Controller {
                 $this->session->set_flashdata('error', '😕 Server error occurred. Please try again later');             
             }
         }else{
-            $this->session->set_flashdata('error', 'Something went wrong please try again later!');
+            $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
         }
 
         }else{

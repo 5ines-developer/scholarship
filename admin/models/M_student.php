@@ -18,13 +18,18 @@ class M_student extends CI_Model {
 
 	public function getscholar($id='')
     {
-        $this->db->select('m.prv_marks as mark, m.class, s.name, a.id,a.application_year');
+        $this->db->select('m.prv_marks as mark, m.class, s.name, a.id,a.application_year,crs.course as corse,cls.clss as cLass,');
         $this->db->from('application a');
         $this->db->where('a.Student_id', $id);        
         $this->db->order_by('a.id', 'desc');
         $this->db->join('student s', 's.id = a.Student_id', 'left');
-        $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left');
-        return $this->db->get()->result();     
+        $this->db->join('applicant_marks m', 'm.application_id = a.id', 'left')
+        ->join('courses crs', 'crs.id = m.course', 'left')
+        ->join('gradution grd', 'grd.id = m.graduation', 'left')
+        ->join('class cls', 'cls.id = m.class', 'left');
+        return $this->db->get()->result();  
+
+
     }
 
      public function stasChange($id='',$status='')

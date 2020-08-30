@@ -19,6 +19,7 @@ class auth extends CI_Controller {
         header("Strict-Transport-Security: max-age=31536000");
         header("Content-Security-Policy: frame-ancestors none");
         header("Referrer-Policy: no-referrer-when-downgrade");
+        $this->load->library('form_validation');
         // header("Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/v1QHzzN92WdopzN_oD7bUO2P/recaptcha__en.js https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe&co=aHR0cHM6Ly9oaXJld2l0LmNvbTo0NDM.&hl=en&v=v1QHzzN92WdopzN_oD7bUO2P&size=normal&cb=k5uv282rs3x8; connect-src 'self'; img-src 'self'; style-src 'self';");
         // header("Referrer-Policy: origin-when-cross-origin");
         // header("Expect-CT: max-age=7776000, enforce");
@@ -54,7 +55,12 @@ class auth extends CI_Controller {
                     if($result = $this->m_auth->can_login($email, $password)) 
                     {
 
-                        $school_id = $this->db->where('id', $result['school_id'])->get('school')->row('name');
+                        if (!empty($result['created_by'])) {
+                            $school_id = $result['school_id'];
+                        }else{
+                            $school_id = $this->db->where('id', $result['school_id'])->get('school')->row('name');
+                        }
+
                        
                         $session_data = array(
                             'scmail'    => $email,

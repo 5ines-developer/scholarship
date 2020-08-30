@@ -274,7 +274,7 @@ $this->load->library('encryption');
                                                                             </div>
                                                                         </li>
 
-
+                                                                        <?php if (!empty($result->f_adharfile) || !empty($result->f_adharfile)) { ?>
                                                                         <li class="row">
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Father Aadhaar</p>
@@ -287,8 +287,10 @@ $this->load->library('encryption');
                                                                             <?php } ?>
                                                                             </div>
                                                                         </li>
+                                                                    <?php } ?>
 
-                                                                        <li class="row">
+                                                                        <?php if (!empty($result->m_adhar) || !empty($result->m_adharfile)) { ?>
+                                                                            <li class="row">
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Mother Aadhaar</p>
                                                                                 <p class="app-item-content"><?php echo (!empty($result->m_adhar))?$result->m_adhar:'---'; ?></p>
@@ -300,6 +302,25 @@ $this->load->library('encryption');
                                                                             <?php } ?>
                                                                             </div>
                                                                         </li>
+                                                                        <?php } ?>
+
+                                                                        <?php if (!empty($result->notappli) || !empty($result->deathcertificate)) { ?>
+                                                                            <li class="row">
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Adhar NA</p>
+                                                                                <p class="app-item-content"><?php echo ($result->notappli)?$result->notappli:'---'; ?></p>
+                                                                            </div>
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Death Certificate </p>
+                                                                                <?php if (!empty($result->deathcertificate)) { ?>
+                                                                                <p class="app-item-content"><img src="<?php echo base_url()?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->deathcertificate))?base_url('show-image/').$result->deathcertificate:'#'; ?>">Death Certificate</a></p>
+                                                                            <?php } ?>
+                                                                            </div>
+                                                                        </li>
+
+                                                                        <?php } ?>
+
+                                                                        
 
                                                                         
                                                                     </ul>

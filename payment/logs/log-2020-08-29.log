@@ -1,0 +1,33 @@
+INFO - 2020-08-29 15:15:23 --> Config Class Initialized
+INFO - 2020-08-29 15:15:23 --> Hooks Class Initialized
+DEBUG - 2020-08-29 15:15:23 --> UTF-8 Support Enabled
+INFO - 2020-08-29 15:15:23 --> Utf8 Class Initialized
+INFO - 2020-08-29 15:15:23 --> URI Class Initialized
+DEBUG - 2020-08-29 15:15:23 --> No URI present. Default controller set.
+INFO - 2020-08-29 15:15:23 --> Router Class Initialized
+INFO - 2020-08-29 15:15:23 --> Output Class Initialized
+INFO - 2020-08-29 15:15:23 --> Security Class Initialized
+DEBUG - 2020-08-29 15:15:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-08-29 15:15:23 --> Input Class Initialized
+INFO - 2020-08-29 15:15:23 --> Language Class Initialized
+INFO - 2020-08-29 15:15:23 --> Loader Class Initialized
+INFO - 2020-08-29 15:15:23 --> Helper loaded: url_helper
+INFO - 2020-08-29 15:15:23 --> Helper loaded: file_helper
+INFO - 2020-08-29 15:15:23 --> Helper loaded: string_helper
+INFO - 2020-08-29 15:15:23 --> Helper loaded: noti_helper
+INFO - 2020-08-29 15:15:23 --> Database Driver Class Initialized
+INFO - 2020-08-29 15:15:23 --> Email Class Initialized
+DEBUG - 2020-08-29 15:15:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2020-08-29 15:15:23 --> Session: Class initialized using 'files' driver.
+INFO - 2020-08-29 15:15:23 --> Controller Class Initialized
+INFO - 2020-08-29 15:15:23 --> Model "M_auth" initialized
+INFO - 2020-08-29 15:15:23 --> Helper loaded: form_helper
+INFO - 2020-08-29 15:15:23 --> Form Validation Class Initialized
+DEBUG - 2020-08-29 15:15:23 --> Sc_check class already loaded. Second attempt ignored.
+INFO - 2020-08-29 15:15:23 --> Helper loaded: captcha_helper
+INFO - 2020-08-29 15:15:24 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/header.php
+INFO - 2020-08-29 15:15:24 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/footer.php
+INFO - 2020-08-29 15:15:24 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\include/msg.php
+INFO - 2020-08-29 15:15:24 --> File loaded: C:\xampp\htdocs\scholarship\payment\views\auth/login.php
+INFO - 2020-08-29 15:15:24 --> Final output sent to browser
+DEBUG - 2020-08-29 15:15:24 --> Total execution time: 0.8795

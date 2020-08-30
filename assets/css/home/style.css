@@ -156,11 +156,9 @@ color:white;
 }
 .comp h5 {
 
-    color: 
-
-    #0c5192;
+    color: #0c5192;
     font-weight: 800;
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
 
 }
@@ -636,6 +634,12 @@ padding: 1px 8px;
 	}
 }
 @media (max-width:767px) and (min-width:576px){
+	.top span {
+	height: 30px;
+	display: inline-block;
+	overflow: hidden;
+	font-size: 12px;
+}
 	.mid-lay {
 		min-height: 250px;
 	}
@@ -731,6 +735,21 @@ padding: 1px 8px;
 	.top .container{
 		padding: 0;
 	}
+}
+
+
+.grad-cap.white-text {
+	color: white;
+}
+
+
+@media (max-width:767px){
+	.top span {
+	height: 30px;
+	display: inline-block;
+	overflow: hidden;
+	font-size: 12px;
+}
 }
 
 

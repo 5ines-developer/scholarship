@@ -37,7 +37,7 @@
                                                 </div>
 
                                                 <div class="input-field col s12"> 
-                                                    <input id="email" name="email" type="email" readonly="" value="<?php echo (!empty($info->name))?$info->name:''; ?>">
+                                                    <input id="email" name="email" type="email" readonly="" value="<?php echo (!empty($info->email))?$info->email:''; ?>">
                                                     <label for="email">Email</label>
                                                     <span class="helper-text red-text">{{ emailError }}</span>
                                                 </div>

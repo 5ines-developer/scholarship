@@ -120,7 +120,7 @@
                                     </div>
 
                                     <div class="input-field col s12">
-                                        <div class="g-recaptcha" data-sitekey="6LcFk8MZAAAAAOt1T9V-e1gfM_UMBj0eycizw9rN"></div> 
+                                        <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
                                     </div>
 
@@ -256,15 +256,23 @@
                 const formData = new FormData();
                 formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                 formData.append('filter',this.phone);
-                axios.post('<?php echo base_url() ?>auth/checkPhoneExist',formData)
-                .then(res => {
-                    self.phoneError = '';
-                    self.type = 'submit';
-                })
-                .catch(err => {
-                    self.phoneError = err.response.data.msg;
-                    self.type = 'button';
-                })
+
+                if( (this.phone.length !=10)){
+                    this.phoneError = 'Mobile number must be 10 digits';
+                }else{
+
+                        axios.post('<?php echo base_url() ?>auth/checkPhoneExist',formData)
+                        .then(res => {
+                            self.phoneError = '';
+                            self.type = 'submit';
+                        })
+                        .catch(err => {
+                            self.phoneError = err.response.data.msg;
+                            self.type = 'button';
+                        })
+
+                }
+                
             },checkForm() {
                 if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '')) {
 

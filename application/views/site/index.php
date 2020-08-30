@@ -24,6 +24,7 @@
 <body>
     <section class="top">
         <div class="container">
+            <a href="<?php echo base_url() ?>kannada" target="_blank"><span class="grad-cap white-text">ಕನ್ನಡ</span></a>
             <span class="grad-cap"><i class="fas fa-graduation-cap"></i></span><span class="top-title">
                 SCHOLARSHIP</span>
               <a href="<?php echo base_url() ?>payment/" target="_blank" class="payment">
@@ -120,6 +121,12 @@
             <div class="banner-image">
                 <img src="<?php echo base_url() ?>assets/img/banner3.jpg" alt="" class="img-fluid">
             </div>
+            <div class="banner-image">
+                <img src="<?php echo base_url() ?>assets/img/banner5.jpg" alt="" class="img-fluid">
+            </div>
+            <!-- <div class="banner-image">
+                <img src="<?php echo base_url() ?>assets/img/banner4.jpg" alt="" class="img-fluid">
+            </div> -->
         </div>
     </section>
     <section class="news-sec">
@@ -281,9 +288,9 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                            <!-- <div id="chartContainer" style="height: 300px; width: 100%;"></div> -->
 
-                            <!-- <canvas id="myChart" width="400" height="100"></canvas> -->
+                            <canvas id="myChart" width="400" height="100"></canvas>
                         </div>
                     </div>
                 </div>
@@ -463,7 +470,7 @@
     </script>
 
 
- <!--    <script>
+    <script>
 
         $(document).ready(function() {
 
@@ -486,7 +493,8 @@ var myChart = new Chart(ctx, {
         labels: ['Applications', 'Institutes', 'Industries', 'Students', 'Male', 'Female', 'SC' ,'ST'],
         datasets: [{
             label: 'MIS Report',
-            data: [dat.application,dat.institute,dat.industry, dat.student, dat.male,dat.female,dat.sc, dat.st],
+            // data: [dat.application,dat.institute,dat.industry, dat.student, dat.male,dat.female,dat.sc, dat.st],
+            data:[10,9,8,7.8,7,6,5,4],
             backgroundColor: [
                 '#4f81bc',
                 '#c0504e',
@@ -534,9 +542,9 @@ var myChart = new Chart(ctx, {
 
 });
 });
-</script> -->
+</script>
 
-    <script>
+<!--     <script>
         window.onload = function () {
 
             var options = {
@@ -571,7 +579,7 @@ var myChart = new Chart(ctx, {
             $("#chartContainer").CanvasJSChart(options);
 
         }
-    </script>
+    </script> -->
     <script type="text/javascript">
 
         $(function () {

@@ -37,7 +37,7 @@
                                                 <tr v-for="(item , k) in tableRow" :key="k" @click="detail(urlenc(item.id))">
                                                     <td>{{k + 1}}</td>
                                                     <td>{{item.name}}</td>
-                                                    <td>{{item.mark}}</td>
+                                                    <td>{{item.mark}} %</td>
                                                     <td>{{item.course}}{{item.class}}</td>
                                                     <td :data-label="tableHeading[2].title">{{item.amount}}</td>
                                                     <td><a :href="'<?php echo base_url()?>student/'+urlenc(item.id) " class="waves-effect waves-light">view</a></td>

@@ -56,6 +56,10 @@ $route['translate_uri_dashes'] = FALSE;
 
 /************student**********************/ 
 // Registration
+
+
+$route['kannada'] 			= 'home/kannada';
+
 $route['student/register'] 			= 'student/register';
 $route['student/submit-register'] 	= 'student/registerInsert';
 $route['student/verification'] 		= 'student/email_verification';

@@ -131,6 +131,10 @@
     .mcnTextContent img {
         height: auto !important;
     }
+.mcnImage {
+	width: 100px !important;
+}
+
 
     .mcnDividerBlock {
         table-layout: fixed !important;
@@ -985,7 +989,7 @@
                                                                                         style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;"
                                                                                         valign="top">
 
-                                                                                        &copy; Karnataka Labour Welfare Board <?php echo date('Y'); ?>. All
+                                                                                        &copy; Karnataka Labour Welfare Board <?php  echo date('Y'); ?>. All
                                                                                         right reserved.
                                                                                     </td>
                                                                                 </tr>

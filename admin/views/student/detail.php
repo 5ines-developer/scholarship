@@ -111,15 +111,19 @@
                                                                         </thead>
                                                                         <tbody class="tbody-list">
                                                                             <?php if(!empty($apply)){
-                                                                            foreach ($apply as $key => $value) { $key++ ?>
+                                                                            foreach ($apply as $key => $value) { $key++;
+
+                                                                                $ids = $this->encryption_url->safe_b64encode($value->id);
+
+                                                                            ?>
                                                                             <tr role="row" class="odd">
-                                                                                <td><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value))?$key:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value->class))?$value->class:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value->mark))?$value->mark.' %':'---'; ?></a></td>
-                                                                                <td class=""><a href="<?php echo base_url('applications/detail/').$value->id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$ids ?>"><?php echo (!empty($value))?$key:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$ids ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$ids ?>"><?php echo (!empty($value->corse))?$value->corse:''; echo (!empty($value->cLass))?$value->cLass.' %':''; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$ids ?>"><?php echo (!empty($value->mark))?$value->mark.' %':'---';  ?></a></td>
+                                                                                <td class=""><a href="<?php echo base_url('applications/detail/').$ids ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
                                                                                 <td class="action-btn center-align">
-                                                                                    <a href="<?php echo base_url('applications/detail/').$value->id ?>" class="blue-text"> view</a>
+                                                                                    <a href="<?php echo base_url('applications/detail/').$ids ?>" class="blue-text"> view</a>
                                                                                 </td>
                                                                             </tr>
                                                                             <?php } } ?>

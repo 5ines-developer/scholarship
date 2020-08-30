@@ -678,7 +678,7 @@
                                                                                                     <td class="mcnTextContent"
                                                                                                         style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;"
                                                                                                         valign="top">
-                                                                                                        Karnataka Labour Welfare Board 2019. All
+                                                                                                        Karnataka Labour Welfare Board <?php echo date('Y'); ?>. All
                                                                                                         right reserved.
                                                                                                     </td>
                                                                                                 </tr>

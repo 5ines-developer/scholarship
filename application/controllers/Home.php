@@ -36,6 +36,12 @@ class Home extends CI_Controller {
 		
 	}
 
+    public function kannada($value='')
+    {
+        $data['title'] = 'Scholarship | Karnataka Labour Welfare Board';
+        $this->load->view('site/kannada', $data, FALSE);
+    }
+
     public function getordergraph()
     {
         $thisyear   = date('Y');

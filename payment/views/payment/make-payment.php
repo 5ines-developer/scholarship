@@ -51,11 +51,9 @@
                                 </div>
                             </div>
                             <div class="under-line"></div>
-                            <!-- ref="form" @submit.prevent="formSubmit"  -->
+                            
 
-                            <form name="ecom" method="post" action="https://test.sbiepay.com/secure/MerchantHostedListener"> <input type="hidden" name="EncryptTrans" value="<%= EncryptTrans %>">  <input type="hidden" name="EncryptpaymentDetails" value="<%= EncryptpaymentDetails %>"> <input type="hidden" name="merchIdVal" value ="1000112"/> <input type="submit" name="submit" value="Submit"> </form>
-
-                            <!-- <form action="#" method="post" enctype="multipart/form-data" id="payment">
+                            <form action="#" method="post" ref="form" @submit.prevent="formSubmit" enctype="multipart/form-data" id="payment">
                                 <div class="pay-form z-depth-1">
                                     <div class="pay-ff">
                                         <p style="font-style: italic;font-weight: 700;">Payment Form</p>
@@ -157,7 +155,7 @@
                                     </div>
 
                                 </div>
-                            </form> -->
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -220,11 +218,11 @@
                 ></script>
             <input type="hidden" value="Hidden Element" name="hidden">
         </form>
-        <!-- <script type="text/javascript"> 
+        <script type="text/javascript"> 
             window.onload = function(){
                 document.getElementsByClassName('razorpay-payment-button').click();
             }
-        </script> -->
+        </script>
 <?php   } ?>
 
 
@@ -369,45 +367,45 @@
                         }
                     })
                 },
-                // formSubmit(e){
-                //     e.preventDefault();
+                formSubmit(e){
+                    e.preventDefault();
 
-                //     var selDate = this.year;
-                //     var today = new Date();
-                //     var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();                  
-                //     var spl = selDate.split("-");
-                //     var selyear = spl['2'];
+                    var selDate = this.year;
+                    var today = new Date();
+                    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();                  
+                    var spl = selDate.split("-");
+                    var selyear = spl['2'];
 
-                //     if(this.category == ''){ this.cat_error='Please Select the category'; }
-                //     if(this.reg_no == ''){ this.regError='Please Enter the register number'; }
-                //     if(this.selyear == ''){this.pay_check='Please Select the year'; }
-                //     if(this.company == ''){this.comError='Please Select the company'; }
-                //     if(this.male == ''){this.maleError='Please Enter the male employees count'; }
-                //     if(this.female == ''){this.FemaleError='Please Enter the female employees count'; }
-                //     if(this.FemaleError == '' && this.maleError =='' && this.cat_error=='' && this.regError=='' && this.comError=='' && this.pay_check=='' ){
-                //         const formData = new FormData();
-                //         formData.append('category', this.category);
-                //         formData.append('reg_no', this.reg_no);
-                //         formData.append('year', this.selyear);
-                //         formData.append('male', this.male);
-                //         formData.append('female', this.female);
-                //         formData.append('company', this.company);
-                //         formData.append('total', this.total);
-                //         formData.append('interest', this.interest);
-                //         formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
-                //         axios.post('<?php echo base_url() ?>payments/submit_pay', formData,
-                //         { headers: { 'Content-Type': 'multipart/form-data' } })
-                //         .then(response => {
-                //             console.log(response);
-                //         })
-                //         .catch(error => {
-                //             this.loader=false;
-                //             if (error.response) {
-                //                 this.errormsg = error.response.data.error;
-                //             }
-                //         })
-                //     }
-                // }
+                    if(this.category == ''){ this.cat_error='Please Select the category'; }
+                    if(this.reg_no == ''){ this.regError='Please Enter the register number'; }
+                    if(this.selyear == ''){this.pay_check='Please Select the year'; }
+                    if(this.company == ''){this.comError='Please Select the company'; }
+                    if(this.male == ''){this.maleError='Please Enter the male employees count'; }
+                    if(this.female == ''){this.FemaleError='Please Enter the female employees count'; }
+                    if(this.FemaleError == '' && this.maleError =='' && this.cat_error=='' && this.regError=='' && this.comError=='' && this.pay_check=='' ){
+                        const formData = new FormData();
+                        formData.append('category', this.category);
+                        formData.append('reg_no', this.reg_no);
+                        formData.append('year', this.selyear);
+                        formData.append('male', this.male);
+                        formData.append('female', this.female);
+                        formData.append('company', this.company);
+                        formData.append('total', this.total);
+                        formData.append('interest', this.interest);
+                        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                        axios.post('<?php echo base_url() ?>payments/submit_pay', formData,
+                        { headers: { 'Content-Type': 'multipart/form-data' } })
+                        .then(response => {
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            this.loader=false;
+                            if (error.response) {
+                                this.errormsg = error.response.data.error;
+                            }
+                        })
+                    }
+                }
             }
         })
     </script>
