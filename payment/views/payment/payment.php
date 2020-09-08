@@ -99,7 +99,7 @@
                                                 <div class="input-field">
                                                     <select id="p_year" name="p_year" v-model="year" class="select" @change="checkpayment()" required="" >
                                                     <option value="" disabled>Year</option>
-                                                    <?php for ($i=2000; $i <= date('Y') ; $i++) {
+                                                    <?php for($i=date('Y'); $i>= 2000; $i--){ 
                                                         echo '<option value="15-1-'.$i.'">'.$i.'</option>';
                                                     } ?>
                                                     </select>
@@ -210,6 +210,7 @@
 
     if(isset($_POST['submit-pay']))
     {
+        
         $category  = $_POST['category'];
         $p_cfemale = $_POST['p_cfemale'];
         $p_cmale   = $_POST['p_cmale'];
@@ -217,7 +218,7 @@
         $reg_no    = $_POST['reg_no'];
         $price     = round($_POST['price']);
         $interest  = $_POST['interest'];
-        $terms  = $_POST['terms'];
+        // $terms  = $_POST['terms'];
 
         ?>
         <form action="<?php echo base_url('payments/submit_pay') ?>" method="post" enctype="multipart/form-data">
@@ -228,16 +229,16 @@
             <input name="reg_no" value=" <?php echo $reg_no?>" type="hidden">
             <input name="prices" value=" <?php echo $price?>" type="hidden">
             <input name="interests" value=" <?php echo $interest?>" type="hidden">
-            <input name="terms" value=" <?php echo $terms?>" type="hidden">
+            <!-- <input name="terms" value=" <?php echo $terms?>" type="hidden"> -->
            
             
             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             
                 <script  src="https://checkout.razorpay.com/v1/checkout.js"
-                    data-key="rzp_test_V8wTCHMWOy9hfl"
-                    data-buttontext="Pay with Razorpay"
-                    data-name="5ine Web Solutions Pvt. Ltd."
-                    data-description="Enhancing Bussiness with Pioneering Thoughts..."
+                    data-key="rzp_test_sxDgwwnBVvPNnz"
+                    data-buttontext="Pay Now"
+                    data-name="Karnataka labour welfare board"
+                    data-description="Karnataka labour welfare board contribution."
                     data-image="<?php echo base_url('assets/images/logo.png')?>"
                     data-amount="<?php echo $price.'00' ?>"
                     data-prefill.contact="9876543210"
@@ -247,7 +248,7 @@
                 ></script>
             <input type="hidden" value="Hidden Element" name="hidden">
         </form>
-        <!--   rzp_test_V8wTCHMWOy9hfl -->
+        <!--   rzp_test_sxDgwwnBVvPNnz -->
             <!--   rzp_live_gzxNI1eiSwtWSH -->
         <script type="text/javascript"> 
             window.onload = function(){

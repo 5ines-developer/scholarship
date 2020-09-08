@@ -73,12 +73,12 @@
                     
                     <p>ಜಿಲ್ಲೆ: <span class="dashed-line"> <?php echo $info->dstctName ?> </span></p> 
                     <p>ಸ್ಥಳ: <span class="dashed-line"> <?php echo $info->talqName ?> </span></p>
-                    <p>ದಿನಾಂಕ: <span class="dashed-line"> <?php echo date('Y') ?> </span></p>
-                    <p>ದೂರವಾಣಿ ಸಂಖ್ಯೆ (STD CODE ಸಹಿತ): <span class="dashed-line"> <?php echo $info->parent_phone  ?> </span></p>
+                    <p>ದಿನಾಂಕ: <span class="dashed-line"> <?php echo date('d M, Y',strtotime($info->schl_approve)); ?> </span></p>
+                    <p>ದೂರವಾಣಿ ಸಂಖ್ಯೆ (STD CODE ಸಹಿತ): <span class="dashed-line"> <?php echo $info->schoolPhone  ?> </span></p>
                 </div>
                 <div class="col s12 m5 push-m2 foo-address left">
-                    <img src="<?php echo base_url().$img->priciple_signature ?>" width="80px" class="mr30" alt="">
-                    <img src="<?php echo base_url().$img->seal ?>" width="80px" alt="">
+                    <img src="<?php echo base_url('show-images/').$img->priciple_signature ?>" width="80px" class="mr30" alt="">
+                    <img src="<?php echo base_url('show-images/').$img->seal ?>" width="80px" alt="">
                     <p class="mt10">ಮುಖ್ಯೋಪಾಧ್ಯಾರ/ಪ್ರಾಂಶುಪಾಲರ ಸಹಿ ಹಾಗು ಮೊಹರು</p>
                     <br><br>
                 </div>

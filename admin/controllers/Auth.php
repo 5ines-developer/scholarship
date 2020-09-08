@@ -29,6 +29,7 @@ class Auth extends CI_Controller {
 
     public function index()
     {
+        if($this->session->userdata('said') != ''){ redirect('dashboard','refresh'); }
         $data['title'] = 'Scholarship | Admin';
         $data['captchaImg'] = $this->sc_check->img_catcha();
         $this->load->view('auth/login', $data);
@@ -37,6 +38,7 @@ class Auth extends CI_Controller {
     public function login()
     {
 
+        if($this->session->userdata('said') != ''){ redirect('dashboard','refresh'); }
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -44,7 +46,6 @@ class Auth extends CI_Controller {
         $this->security->xss_clean($_POST);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if($this->session->userdata('said') != ''){ redirect('dashboard','refresh'); }
             $this->load->library('form_validation');
             if ($this->session->userdata('said') == '') { 
 
@@ -140,7 +141,7 @@ class Auth extends CI_Controller {
             $email = $this->input->post('email');
             if($result = $this->M_auth->checkMail($email)){
                 $this->sendForgot($result);
-                $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
+                $this->session->set_flashdata('success', 'We have sent a password reset link to your mail id, <br> Please check your mail inbox and do not forget to check your spam folder to reset your password.');
                 redirect('forgot-password','refresh');
             }else{
                 $this->session->set_flashdata('error', 'Invalid email address');

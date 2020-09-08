@@ -303,8 +303,23 @@ body {
   padding-right: 35px !important;
 }
 
+.inst-rg-block {
+  background: #00000069 url(../image/inst-bg.jpg) !important;
+  background-size: cover !important;
+}
+
+.indstry-rg-block {
+  background: #00000069 url(../image/ind-bg.jpg) !important;
+  background-size: cover !important;
+}
+
+.admin-rg-block {
+  background: #00000069 url(../image/admin-bg.png) !important;
+  background-size: cover !important;
+}
+
 .reg-block {
-  background: #000000a6 url(../image/rg-bg.jpg);
+  background: #00000069 url(../image/rg-bg.jpg);
   background-blend-mode: overlay;
   background-size: cover;
   padding: 50px 0;
@@ -345,26 +360,31 @@ body {
   width: 100%;
 }
 
-.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(1) {
+.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(2) {
   font-weight: 700;
   font-size: 18px;
 }
 
-.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(2) {
+.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(3) {
   font-weight: 700;
   font-size: 24px;
+  margin-top: 0;
 }
 
-.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(3) {
+.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(4) {
   font-weight: 600;
 }
 
-.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(3) a {
+.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(4) a {
   color: #fff;
 }
 
-.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(3) a:hover {
+.reg-block .reg-block-content .reg-left .reg-left-box .contents p:nth-child(4) a:hover {
   opacity: 0.8;
+}
+
+.reg-block .reg-block-content .reg-left .reg-left-box .logn-img {
+  width: 100px;
 }
 
 .reg-block .reg-block-content .reg-right {
@@ -603,6 +623,7 @@ input[type=number] {
 
 .application-banner .parallax-container {
   max-height: 380px;
+  width: 100%;
 }
 
 .application-form {
@@ -845,8 +866,8 @@ input[type=number] {
 }
 
 /********************************
-    INSTITUTION REGISTRATION
-********************************/
+      INSTITUTION REGISTRATION
+  ********************************/
 form .file-field .btn {
   background: #00437d;
   padding: 0 25px;
@@ -1092,8 +1113,8 @@ form .file-field .btn {
 }
 
 /********************************
-    INSTITUTION REGISTRATION
-********************************/
+      INSTITUTION REGISTRATION
+**  ******************************/
 form .file-field .btn {
   background: #00437d;
   padding: 0 25px;
@@ -1156,8 +1177,8 @@ form .file-field .btn {
 }
 
 /********************************
-    INSTITUTION REGISTRATION
-********************************/
+      INSTITUTION REGISTRATION
+ ** ******************************/
 form .file-field .btn {
   background: #00437d;
   padding: 0 25px;
@@ -1206,7 +1227,6 @@ form .file-field .btn {
   }
   .application-banner .parallax-container {
     max-height: 220px;
-    width: 100%;
   }
   .container-wrap1 {
     width: 100%;
@@ -1847,6 +1867,18 @@ table.dataTable thead td {
 }
 
 @media (max-width: 767px) {
+  .vue-data-table .thead-list th {
+    width: 100px;
+  }
+  .vue-data-table .tbody-list tr {
+    display: -webkit-inline-box !important;
+    display: -ms-inline-flexbox !important;
+    display: inline-flex !important;
+  }
+  .vue-data-table .tbody-list td {
+    padding: 5px 10px;
+    width: 104px;
+  }
   .hr-list {
     overflow-x: auto;
     float: unset;
@@ -2444,11 +2476,6 @@ table.dataTable thead td {
   }
   .board .card-content {
     padding: 10px 0px !important;
-  }
-  .hiegt-box,
-  .reg-block,
-  .board {
-    min-height: auto;
   }
 }
 
@@ -3277,6 +3304,7 @@ table.striped > tbody > tr > td {
   }
   .board .card-title {
     font-size: 12px !important;
+    display: inline;
   }
   .tbody-list.gb {
     border-bottom: 1px solid #d9d9d9 !important;
@@ -3358,5 +3386,26 @@ table.striped > tbody > tr > td {
   font-weight: 600;
   font-size: 15px;
   margin-bottom: 8px;
+}
+
+.razorpay-payment-button {
+  display: none;
+}
+
+.acnt-st-title {
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+  font-size: 16px;
+  color: #111;
+  font-weight: 600;
+  display: block;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+
+.acnt-st-title .btn-theme.btn {
+  font-size: 12px;
+  padding: 8px !important;
+  line-height: 21px;
 }
 /*# sourceMappingURL=style.css.map */

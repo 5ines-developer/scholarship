@@ -27,7 +27,7 @@
     <!-- Banner -->
     <section class="application-banner">
         <div class="parallax-container">
-            <div class="parallax"><img src="<?php echo base_url() ?>assets/image/application-bg.jpg"></div>
+            <div class="parallax"><img src="<?php echo base_url() ?>assets/img/banner1.jpg"></div>
         </div>
     </section>
     <!-- End Banner -->
@@ -88,19 +88,19 @@
                                                 <p><span class="black-text">Gender</span></p>
                                                 <div class="col s6 m3 l3">
                                                     <label class="active">
-                                                        <input class="with-gap" name="std_gender"  type="radio" value="male" v-model="student.gend" />
+                                                        <input class="with-gap" name="std_gender"  type="radio" required value="male" v-model="student.gend" />
                                                         <span>Male (ಪುರುಷ)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s6 m3 l3">
                                                     <label class="active">
-                                                        <input class="with-gap" name="std_gender" type="radio"  value="female"  v-model="student.gend" />
+                                                        <input class="with-gap" name="std_gender" type="radio"  required value="female"  v-model="student.gend" />
                                                         <span>Female (ಹೆಣ್ಣು)</span>
                                                     </label>
                                                 </div>
                                                 <div class="col s6 m3 l3">
                                                     <label class="active">
-                                                        <input class="with-gap" name="std_gender" type="radio"  value="other"  v-model="student.gend" />
+                                                        <input class="with-gap" name="std_gender" type="radio"  required value="other"  v-model="student.gend" />
                                                         <span>Other (ಇತರ)</span>
                                                     </label>
                                                 </div>
@@ -205,7 +205,7 @@
                                             </div><br>
 
                                             <div class="file-field input-field col s12 m10 " v-bind:class="{ hide: tribes }">
-                                                <div class="input-field col s6 ">
+                                                <div class="input-field col m6 s12 ">
                                                     <div class="btn">
                                                         <span>File</span>
                                                         <input type="file" name="std_castfile" ref="file1"  @change="castecertificate()" accept=".png,.jpg,.jpeg,.svg,.pdf">
@@ -216,7 +216,7 @@
                                                     <p class="helper-text" data-error="wrong" data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span> </p>
                                                 </div>
 
-                                                <div class="input-field col s6 ">
+                                                <div class="input-field col m6 s12 ">
                                                     <input autofocus="true" id="cast_number" type="text"  placeholder="ಜಾತಿ ಸರ್ಟಿಫಿಕೇಟ್  ನಂಬರ್" class="validate" v-model="caste.number" >
                                                     <label class="active" for="cast_number"> <span class="black-text">Caste certificate number</span>   </label>
                                                 </div>
@@ -335,7 +335,7 @@
 
                                                 <div class="row m0">
                                                     <div class="input-field col s12 m5">
-                                                        <input autofocus="true" id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="fatherrequire" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
+                                                        <input autofocus="true" id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="fatherrequire" v-model="adhaar.fnumber" @change="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
                                                         <label class="active" for="adhar_nof"> <span class="black-text">Enter Your Father Aadhar Card Number</span>   </label>
                                                         <p>
                                                           <label class="active">
@@ -370,7 +370,7 @@
 
                                             <div class="row m0">
                                                 <div class="input-field col s12 m5">
-                                                    <input autofocus="true" id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="motherrequire" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
+                                                    <input autofocus="true" id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" :required="motherrequire" v-model="adhaar.numberm" @change="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
                                                     <label class="active" for="adhar_no"> <span class="black-text">Enter Your Mother Aadhar Card Number</span>   </label>
                                                     <p>
                                                       <label class="active">

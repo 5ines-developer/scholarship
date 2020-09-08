@@ -907,7 +907,7 @@
                                                                                         <span
                                                                                             style="font-size:22px">Dear <?php echo $info->name ?>,</span><br>
                                                                                         <br>
-                                                                                            Congratulations!, Your Scholarship  Application hasd been  approved by government .The Scholarship amount will be credited to your account shortly. For  
+                                                                                            Congratulations!, Your Scholarship  Application hasd been  approved by Labour Welfare Board .The Scholarship amount will be credited to your account shortly. For  
                                                                                             More information <a href="<?php echo base_url() ?>student/login" target="_blank" >Click here</a> and login your account and check the Scholarship status.
                                                                                         
                                                                                     </td>

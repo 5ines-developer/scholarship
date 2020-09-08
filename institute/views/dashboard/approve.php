@@ -23,7 +23,22 @@
                     <div class="col s12 m12 l9">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
-                                <span class="card-title">Approved Scholarship  Application  ({{tableRow.length}})</span>
+
+                                <div class="title-list ">
+                                    <span class="list-title ">Approved Scholarship  Application  ({{tableRow.length}})</span>
+                                    <select class="browser-default" id="short" @change="yearChange()" v-model="year">
+                                        <option value="">Choose Year</option>
+                                        <?php $yr = $this->input->get('year');
+                                            for($i=date('Y'); $i>= 2000; $i--){ 
+                                                    $year = $i;
+                                            ?>
+                                            <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
+                                
+
                                 <div class="board-content hb">
                                     <div class="row m0">
                                         <table class="vue-data-table row-click">
@@ -35,15 +50,17 @@
                                             
                                             <tbody class="tbody-list gb">
                                                 <tr v-for="(item , k) in tableRow" :key="k" @click="detail(urlenc(item.id))">
-                                                    <td :data-label="tableHeading[0].title">{{k + 1}}</td>
-                                                    <td :data-label="tableHeading[1].title">{{item.name}}</td>
-                                                    <td :data-label="tableHeading[2].title">{{item.mark}} %</td>
-                                                    <td :data-label="tableHeading[3].title">{{item.course}} {{item.class}}</td>
-                                                    <td :data-label="tableHeading[2].title">{{item.amount}}</td>
-                                                    <td :data-label="tableHeading[4].title"><a :href="'<?php echo base_url()?>student/'+urlenc(item.id)" class="waves-effect waves-light">view</a></td>
+                                                    <td>{{k + 1}}</td>
+                                                    <td>{{item.name}}</td>
+                                                    <td>{{item.mark}} %</td>
+                                                    <td>{{item.course}} {{item.class}}</td>
+                                                    <td>{{item.amount}}</td>
+                                                    <td>{{item.application_year}}</td>
+                                                    <td>{{item.date}}</td>
+                                                    <td><a :href="'<?php echo base_url()?>student/'+urlenc(item.id)" class="waves-effect waves-light">view</a></td>
                                                 </tr>
                                                 <tr v-if="tableRow.length == 0">
-                                                    <td colspan="6">No data found</td>
+                                                    <td colspan="8">No data found</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -53,7 +70,7 @@
                                             </div>
                                             <div class="col s12 m6 ">
                                                 <ul class="pagination right">
-                                                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                                                    <li :data-label="tableHeading[4].title" class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                                                     <li class="active"><a href="#!">1</a></li>
                                                     <li class="waves-effect"><a href="#!">2</a></li>
                                                     <li class="waves-effect"><a href="#!">3</a></li>
@@ -104,16 +121,18 @@
                { title :'Marks', sorting: false },
                { title :'Present Class', sorting: false },
                { title :'Amount', sorting: false },
+               { title :'Year', sorting: false },
+               { title :'Applied Date', sorting: false },
                { title :'Action', sorting: false },
            ],
            tableRow: [],
+           year: '<?php echo $this->input->get('year') ?>',
         },  
         mounted(){
             this.getData();
         },
         methods:{
             sorting(key){
-                console.log(this.tableRow);
             },
 
             detail(id){
@@ -125,13 +144,16 @@
                 return enc;
             },getData(){
                 var self= this;
-                axios.get('<?php echo base_url() ?>student-approved')
+                axios.get('<?php echo base_url() ?>student-approved?year='+ self.year)
                 .then(function (response) {
                     self.tableRow = response.data
                 })
                 .catch(function (error) {
                 })
-            }
+            },
+            yearChange() {
+                    window.location.href = "<?php echo base_url('approve-list?year=') ?>" + this.year;
+            },
         }
     })
 </script>

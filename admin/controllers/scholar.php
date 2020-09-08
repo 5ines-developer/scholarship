@@ -258,8 +258,8 @@ class Scholar extends CI_Controller {
         $phone = $this->m_scholar->phoneGet($output['info']->Student_id);
         
         /* API URL */
-        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $data . '&priority=ndnd&stype=normal';
+        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $data . '&sender=RADTEL&to=' . $phone . '&service=T';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
@@ -274,8 +274,8 @@ class Scholar extends CI_Controller {
     {
         $id = $this->encryption_url->safe_b64decode($id);
         $data['result'] = $this->m_scholar->singleGet($id);
+        // require_once $_SERVER['DOCUMENT_ROOT'].'vendor/autoload.php';
         require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
             'default_font' => 'tunga'

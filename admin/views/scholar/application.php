@@ -35,14 +35,22 @@ $this->load->model('m_scholar');
 
                                     <a href="<?php echo base_url('applications') ?>" class="back-btn z-depth-1 waves-effect waves-ligh right">Back</a>
 
-                                    <?php if (($result->status == 2)) { ?>
+                                    <?php 
+
+                                    if ((($result->application_state == 4))&& ($result->status ==2)){ ?>
+                                        <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1)? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
+
+                                        <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
+                                        
+                                    <?php } elseif (($result->status == 2)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
                                     <?php }elseif ((($result->application_state == 4)) && ($result->status ==1)){ ?>
                                         <a class="btn-small right mr10 green darken-3 waves-effect waves-light" >Approved</a>
+                                        <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
                                     <?php }elseif ((($result->application_state == 4))&& ($result->status ==0)){ ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
                                         <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1)? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
-                                    <?php } ?>
+                                    <?php }?>
 
 
                                     
@@ -90,7 +98,7 @@ $this->load->model('m_scholar');
                                                 } ?> 
                                            </li>
                                            <li class="center status-item">
-                                               <div>Government</div>
+                                               <div>Labour Welfare Board</div>
                                                <div class="circle">4</div>
                                                <?php if (($result->status == 1) && (($result->application_state == 4))) {
                                                    echo '<div class="green-text">Approved</div>';
@@ -111,7 +119,7 @@ $this->load->model('m_scholar');
                                                     $level = 'Industry';
                                                     break;                                                
                                                 default:
-                                                    $level = 'Government';
+                                                    $level = 'Labour Welfare Board';
                                                     break;
                                             }
                                             
@@ -166,6 +174,10 @@ $this->load->model('m_scholar');
                                                                             <p class="app-item-content-head">Gender</p>
                                                                             <p class="app-item-content"><?php echo (!empty($result->gender))?$result->gender:'---'; ?></p>
                                                                         </li>
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Amount</p>
+                                                                            <p class="app-item-content"><?php echo $this->m_scholar->getamnt($result->application_year,$result->graduation); ?></p>
+                                                                        </li>
                                                                     </ul>
                                                                 </div>
 
@@ -189,6 +201,16 @@ $this->load->model('m_scholar');
                                                                             <p class="app-item-content-head">Present School Address</p>
                                                                             <p class="app-item-content"><?php echo $this->ci->m_scholar->schlAddress($result->school_id) ?></p>
                                                                         </li>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Application Year</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->application_year))?$result->application_year:'---'; ?></p>
+                                                                        </li>
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Applied On</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->date))?date('d M, Y', strtotime($result->date)):'---'; ?></p>
+                                                                        </li>
+                                                                        
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -243,7 +265,7 @@ $this->load->model('m_scholar');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Category</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->category))?$result->category:''; ?></p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->category))?ucwords($result->category):''; ?></p>
                                                                         </li>
 
                                                                         <li>

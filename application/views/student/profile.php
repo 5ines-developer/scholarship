@@ -26,7 +26,21 @@
                     <div class="col s12 m12 l8">
                         <div class="card  darken-1">
                             <div class="card-content bord-right">
-                                <span class="card-title">Account Settings</span>
+                                <!-- <span class="card-title">Account Settings</span> -->
+
+                                <div class="acnt-st-title">
+                                    <div class="row m0">
+                                        <div class="col l6 m6 s6">
+                                            Account Settings
+                                        </div>
+                                        <div class="col l6 m6 s6">
+                                            <p class="center">
+                                                <a href="<?php echo base_url('student/change-password') ?>" class="waves-effect waves-light hoverable btn-theme btn">Change password</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="board-content">
                                     <div class="row m0">
                                         <div class="col s12 m3 l3">
@@ -36,9 +50,6 @@
                                                     <a  @click="imageselect()"><i class="material-icons">edit</i></a>
                                                 </div>
                                             </div>
-                                            <p class="center">
-                                                <a href="<?php echo base_url('student/change-password') ?>" class="change-psw"  >Change password</a>
-                                            </p>
                                         </div>
                                         <div class="col s12 m8 l8">
                                             <form action="<?php echo base_url('student/updateprofile') ?>" method="post" @submit="formSubmit">

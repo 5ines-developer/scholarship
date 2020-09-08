@@ -76,6 +76,11 @@ header_remove("X-Powered-By");
                     <div class="col s12  pull-m6 pull-l6 m6 l6 reg-left height352 valign-wrapper hide-on-small-only">
                         <div class="reg-left-box ">
                             <div class="contents">
+                                    <center>
+                                        <div class="logn-img">
+                                            <img class="responsive-img" src="<?php echo base_url() ?>assets/image/logo.png" alt="">
+                                        </div>
+                                    </center>
                                 <p>Welcome To</p>
                                 <p>Karnataka Labour Welfare Board</p>
                                 <p>If You Don't  Have an Account ? <a href="<?php echo base_url('student/register') ?>">Register</a></p>

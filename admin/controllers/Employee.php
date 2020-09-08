@@ -50,8 +50,8 @@ class Employee extends CI_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<p class="red-text">', '</p>');
             $this->form_validation->set_rules('em_name', 'Name', 'trim|required|alpha_numeric_spaces');
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[admin.email]|valid_email');
-            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|is_unique[admin.phone]|numeric|max_length[10]|min_length[10]');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|numeric|max_length[10]|min_length[10]');
             if ($this->form_validation->run() == True){
                 $name   = $this->input->post('em_name', true);
                 $email  = $this->input->post('email', true);
@@ -71,8 +71,9 @@ class Employee extends CI_Controller {
                     $this->session->set_flashdata('success', 'New staff addedd successfully. <br> Activation link send to mail');
                 }
                 else{
-                    $this->session->set_flashdata('error', 'Server error occurred. <br>Please try agin later');
+                    $this->session->set_flashdata('error', 'Details of the employee already exist.');
                 }
+                    $this->load->view('employee/add', $data, false);
             }else{
                 $this->session->set_flashdata('error', 'Something went wrong. <br>Please try agin later');
                 $this->load->view('employee/add', $data, false);
@@ -168,23 +169,7 @@ class Employee extends CI_Controller {
         redirect('employee','refresh');
     }
 
-    public function mobile_check($value='')
-    {
 
-        $csrf = array(
-            'name' => $this->security->get_csrf_token_name(),
-            'hash' => $this->security->get_csrf_hash()
-        );
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->security->xss_clean($_POST);
-            $phone = $this->input->post('phone');
-            $id = $this->input->post('id');
-            $output = $this->M_employee->mobile_check($phone,$id);
-            echo  $output;
-        }else{
-            echo true;
-        }
-    }
 
 
     public function update($value='')
@@ -204,8 +189,8 @@ class Employee extends CI_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<p class="red-text">', '</p>');
             $this->form_validation->set_rules('em_name', 'Name', 'trim|required|alpha_numeric_spaces');
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[admin.email]|valid_email');
-            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|is_unique[admin.phone]|numeric|max_length[10]|min_length[10]');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|numeric|max_length[10]|min_length[10]');
             $this->form_validation->set_rules('designation', 'Designation', 'trim|alpha_numeric_spaces');
             if ($this->form_validation->run() == True){
 

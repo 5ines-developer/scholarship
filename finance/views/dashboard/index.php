@@ -27,6 +27,18 @@
                     <div class="col l9 s12 m12">
 
                         <div class="row">
+                            <select class="browser-default select-list" fname="year" id="short">
+                                <option value="">Choose Year</option>
+                                <?php $yr = $this->input->get('year');
+                                     for($i=date('Y'); $i>= 2000; $i--){ 
+                                    $year = $i;
+                                    ?>
+                                       <option value="<?php echo $year ?>" <?php if($year == $yr){ echo 'selected="true"'; } ?> ><?php echo $year ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
+                        <div class="row">
                             <div class="top-count">
                                 <div class="col s12 m3">
                                     <div class="card green hoverable">
@@ -50,7 +62,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Applied in <?php echo date('Y') ?></span>
+                                            <span class="white-text">Applied in <?php echo $years; ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +75,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Active Industries</span>
+                                            <span class="white-text">Active Industries in <?php echo $years; ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +88,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Active Institutes</span>
+                                            <span class="white-text">Active Institutes in <?php echo $years; ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +132,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Scholarship Payment Completed</span>
+                                            <span class="white-text">Scholarship Payment Processed in <?php echo $years ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +146,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Scholarship Payment Pending</span>
+                                            <span class="white-text">Scholarship Payment Pending in <?php echo $years ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -390,6 +402,51 @@
             });
 
 
+        });
+
+
+        $(document).ready(function() {
+            var yar     = '<?php echo $this->input->get('year') ?>';
+            var dist    = '<?php echo $this->input->get('district') ?>';
+            var tal     = '<?php echo $this->input->get('taluk') ?>';
+            var cas     = '<?php echo $this->input->get('caste') ?>';
+            var item     = '<?php echo $this->input->get('item') ?>';
+            
+
+            $('.select-list').change(function(){
+
+                if(window.location.href.indexOf("?") < 0){
+                    var windowUrl = window.location.href+'?';
+                } else{
+                    var windowUrl = window.location.href;
+                }
+
+                var val = $(this).val();
+                var name = '&'+$(this).attr('fname')+'=';
+                var names=$(this).attr('fname');
+                var url = windowUrl+name+val;
+                var originalURL = windowUrl+name+val;
+                var alteredURL = removeParam(names, originalURL);
+                window.location = alteredURL+name+val;
+            });
+
+            function removeParam(key, sourceURL) {
+                var rtn = sourceURL.split("?")[0],
+                    param,
+                    params_arr = [],
+                    queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+                if (queryString !== "") {
+                    params_arr = queryString.split("&");
+                    for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+                        param = params_arr[i].split("=")[0];
+                        if (param === key) {
+                            params_arr.splice(i, 1);
+                        }
+                    }
+                    rtn = rtn + "?" + params_arr.join("&");
+                }
+                return rtn;
+            }
         });
     </script>
 

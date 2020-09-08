@@ -9,9 +9,14 @@
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
     <link href="<?php echo $this->config->item('web_url') ?>assets/css/select2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/vue-select.css">
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/select2.js"></script>
+    <script type="text/javascript" src="<?php echo $this->config->item('web_url') ?>assets/js/vue-select.js"></script>
 </head>
 
 <body>
@@ -19,7 +24,7 @@
 <?php $this->load->view('include/header'); ?>
 
     <!-- form section -->
-    <section class="bg pt30 pb30 reg-block">
+    <section class="bg pt30 pb30 reg-block indstry-rg-block">
         <div class="container">
             <div class="row m0">
                 <div class="col l10 offset-l1">
@@ -41,27 +46,25 @@
                                         <label for="phone">Mobile No</label>
                                         <span class="helper-text red-text">{{mobileError}}</span>
                                     </div>
-                                    
+
+
                                     <div class="input-field col s12 m6">
-                                        <select id="taluk" name="taluk" required="" class="select2">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <?php if (!empty($taluk)) {
-                                                foreach ($taluk as $key => $value) {
-                                                    echo '<option value="'.$value->id.'">'.$value->title.'</option>';
-                                            } } ?>
-                                        </select>
-                                        <label for="taluk">Taluk</label>
+                                         <div>
+                                            <input type="hidden" name="district" :value="district.id">       
+                                            <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
+                                        </div>
+                                        <br>
+                                         <span class="red-text">{{inDistError}}</span>
                                     </div>
+
                                     <div class="input-field col s12 m6">
-                                        <select id="district" name="district" required="" class="select2">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <?php if (!empty($district)) {
-                                                foreach ($district as $key => $value) {
-                                                    echo '<option value="'.$value->id.'">'.$value->title.'</option>';
-                                            } } ?>
-                                        </select>
-                                        <label for="district">District</label>
+                                        <div>
+                                        <input type="hidden" name="taluk" :value="tlq.id">       
+                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk"  tagging :from="taluk" /></div><br>
+                                        <span class="red-text">{{indtalError}}</span>
                                     </div>
+
+
                                     <div class="input-field col s12 m6">
                                         <select id="act" name="act" required="" class="select2" v-model="act">
                                             <option value="" disabled selected>Choose Act Type</option>
@@ -71,6 +74,10 @@
                                         </select>
                                         <label for="act">Industry Type</label>
                                     </div>
+
+                                    
+                                    
+                                    
 
                                     <div class="row m0">  
                                         <div class="file-field input-field col s12 m6">
@@ -94,7 +101,7 @@
                                                                         
                                                                                                            
                                     <div class="input-field col s12 m12">
-                                        <textarea id="address" name="address" class="materialize-textarea"></textarea>
+                                        <textarea id="address" name="address" required class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="input-field col s12">
@@ -132,6 +139,12 @@
 </script>
     <script>
 
+        $(document).ready(function() {
+
+            $("select").css({display: "inline", height: 0, padding: 0, width: 0});
+
+        });
+
 
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(document.querySelectorAll('.select2'));
@@ -140,6 +153,9 @@
 
         var app = new Vue({
             el: '#app',
+            components: {
+            vSelect: VueSelect.vSelect,
+        },
             data: {
                 mobile: '',
                 email: '',
@@ -150,10 +166,38 @@
                 istrue:false,
                 act:'',
                 loader:false,
-
+                districtSelect: <?php echo json_encode($district) ?>,
+                district: '',
+                taluk: [],
+                tlq:'',
+                disabled: true,
+                disabled1: true,
+                inDistError:'',
+                indtalError:'',
             },
 
             methods: {
+
+                talukFilter(){
+                var self = this;
+                self.taluk = '';
+                self.tlq = '';
+                self.instituteSelect = '';
+                self.institute = '';
+                const formData = new FormData();
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                formData.append('filter',this.district.id);
+                axios.post('<?php echo base_url() ?>auth/talukFilter',formData)
+                .then(res => {
+                    self.disabled = false;
+                    self.taluk = res.data;
+                })
+                .catch(err => {
+                    console.error(err); 
+                    self.disabled = true;
+                })
+            },
+
 
                             //check student email already exist
             emailCheck(){
@@ -205,14 +249,20 @@
                 
             },
             checkForm() {
-                if ((this.mobileError == '') && (this.emailError == '')) {
 
+                this.inDistError = '';
+                this.indtalError = '';
+                if((this.district.id ==null) || (this.district.id== 'undefined')){ 
+                    this.inDistError = 'Please Select the District'; 
+                }
+                if((this.tlq.id ==null) || (this.tlq.id =='undefined')){ this.indtalError = 'Please Select the Talluk';  } 
 
+                if ((this.mobileError == '') && (this.emailError == '') && (this.inDistError == '') && (this.indtalError == '')) {
                     if (grecaptcha.getResponse() == '') {
                         this.captcha = 'Captcha is required';
                     } else {
                         this.$refs.form.submit();
-                    }
+                    } 
                 } else {}
             }
 

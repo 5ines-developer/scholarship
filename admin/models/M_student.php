@@ -18,7 +18,7 @@ class M_student extends CI_Model {
 
 	public function getscholar($id='')
     {
-        $this->db->select('m.prv_marks as mark, m.class, s.name, a.id,a.application_year,crs.course as corse,cls.clss as cLass,');
+        $this->db->select('m.prv_marks as mark, m.class, s.name, a.id,a.application_year,a.date,crs.course as corse,cls.clss as cLass,');
         $this->db->from('application a');
         $this->db->where('a.Student_id', $id);        
         $this->db->order_by('a.id', 'desc');

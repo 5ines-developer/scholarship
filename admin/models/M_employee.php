@@ -4,12 +4,24 @@ class M_employee extends CI_Model {
 
     public function addEmp($data = null)
     {
-        $this->db->insert('admin', $data);
-        if( $this->db->affected_rows() > 0):
-            return true;
-        else:
+
+        $this->db->where('type', $data['type']);
+        $this->db->group_start();
+            $this->db->where('email', $data['email'])
+            ->or_where('phone');
+        $this->db->group_end();
+        $result = $this->db->get('admin');
+        
+        if ($result->num_rows() > 0) {
             return false;
-        endif;
+        }else{
+            $this->db->insert('admin', $data);
+            if( $this->db->affected_rows() > 0):
+                return true;
+            else:
+                return false;
+            endif;
+        }
     }
 
     public function getEmployee( $var = null)
@@ -35,19 +47,6 @@ class M_employee extends CI_Model {
   }
 
 
-    public function mobile_check($phone='',$id='')
-    {
-        $this->db->where('phone', $phone);
-        if(!empty($id)){
-            $this->db->where('id !=', $id);
-        }
-        $result = $this->db->get('admin');
-           if($result->num_rows() > 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     public function updateEmp($data='',$id='')
     {

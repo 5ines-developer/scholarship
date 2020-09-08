@@ -151,12 +151,12 @@ class Student extends CI_Controller {
                     }else{
                         if($this->sendregister($insert))
                         {
-                            $this->session->set_flashdata('success', 'We have sent a activation link to your mail id <br> please verify and activate your account');
+                            $this->load->view('student/reg-thank', $insert);
                         }else{
                             $this->db->where('ref_id', $insert['ref_id'])->delete('student');
                             $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
+                            redirect('student/register','refresh');
                         }
-                        redirect('student/register','refresh');
                     }
                 }else{
                     $this->session->set_flashdata('error', 'Some error occurred! Please contact our support team');
@@ -209,11 +209,13 @@ class Student extends CI_Controller {
 
     public function studentOtp($data='', $apid='')
     {
+
+
         
         $msg = 'Your One time Password For Karnataka Labour Welfare Board Scholarship registration is ' . $data['otp'] . ' . Do not share with anyone';
         /* API URL */
-        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $data['phone'] . '&text=' . $msg . '&priority=ndnd&stype=normal';
+        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $msg . '&sender=RADTEL&to=' . $data['phone'] . '&service=T';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
@@ -424,7 +426,7 @@ class Student extends CI_Controller {
                 if($this->m_student->forgotPassword($insert['email'],$insert['ref_id']))
                 {
                     if ($this->sendforgot($insert)) {
-                        $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
+                        $this->session->set_flashdata('success', 'We have sent a password reset link to your mail id, <br> Please check your mail inbox and do not forget to check your spam folder to reset your password.');
                     }else{
                         $this->session->set_flashdata('error', 'Some error occured! Please contact our support team');
                     }

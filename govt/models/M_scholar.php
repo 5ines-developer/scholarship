@@ -192,14 +192,23 @@ class M_scholar extends CI_Model {
         // approve the application
     public function approval($id = null)
     {
+        $data = array('application_state' => 4);
+        $status = $this->db->select('status')->where('id', $id)->get('application')->row('status');
+        if (!empty($status) && $status =='2') {
+            $data['status'] = '0';
+        }
         $this->db->where('id', $id);
-        return $this->db->update('application', array('application_state' => 4));
+        return $this->db->update('application', $data);
     }
 
     
     // Reject application
     public function reject($data, $id)
     {
+        $state = $this->db->select('application_state')->where('id', $id)->get('application')->row('application_state');
+        if (!empty($state) && $state =='4') {
+            $data['application_state'] = '3';
+        }
         $this->db->where('id', $id);
         return $this->db->update('application', $data);
     }
@@ -258,9 +267,35 @@ class M_scholar extends CI_Model {
     	return $this->db->order_by('id', 'asc')->select('id as districtId,title as district')->get('city')->result();
     }
 
+
     public function getamnt($year='',$grd='')
     {
-       return $this->db->where('date', $year)->where('class',$grd)->get('fees')->row('amount');
+       $result =  $this->db->where('date', $year)->where('class',$grd)->get('fees')->result();
+       if (!empty($result)) {
+            foreach ($result as $key => $value) {
+                return $value->amount;
+            }
+       }else{
+
+            $stryr = strtotime($year.'-01-01 -1 year');
+            $lastYear = date('Y', $stryr);
+            $result1 = $this->db->where('date', $lastYear)->where('class',$grd)->get('fees')->result();
+            if (!empty($result1)) {
+                foreach ($result1 as $keys => $values) {
+                    return $values->amount;
+                }
+           }else{
+                $lastYears = strtotime($lastYear.'-01-01 -1 year');
+                $lastYear1 = date('Y', $lastYears);
+                $result2 = $this->db->where('date', $lastYear1)->where('class',$grd)->get('fees')->row('amount');
+                if (!empty($result2)) {
+                   return $result2;
+               }else{
+                return false;
+               }
+           }
+
+       }
     }
 
     

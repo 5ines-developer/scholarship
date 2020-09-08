@@ -17,7 +17,7 @@
     <?php $this->load->view('include/header'); ?>
 
     <!-- form section -->
-    <section class="bg pt30 pb30 ">
+    <section class="bg pt30 pb30 inst-rg-block">
         <div class="container">
             <div class="row m0">
                 <div class="col l10 offset-l1">
@@ -82,7 +82,7 @@
                                         <label for="textarea1">Address</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <div class="g-recaptcha" data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
+                                        <div class="g-recaptcha" required data-sitekey="6Le6xNYUAAAAADAt0rhHLL9xenJyAFeYn5dFb2Xe"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
                                     </div>
                                     <div class="input-field col m12 ">

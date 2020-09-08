@@ -24,7 +24,7 @@
 <?php $this->load->view('include/header'); ?>
 
     <!-- form section -->
-    <section class="bg pt30 pb30 reg-block">
+    <section class="bg pt30 pb30 reg-block indstry-rg-block">
         <div class="container">
             <div class="row m0">
                 <div class="col l10 offset-l1">
@@ -165,10 +165,7 @@
     <script>
 $(document).ready(function() {
 
-    $(document).ready(function($) {
-            $("select").css({display: "inline", height: 0, padding: 0, width: 0});
-            // $('.modal').modal();
-        });
+   
 
     $('#company').select2({
         placeholder: 'Select a company',

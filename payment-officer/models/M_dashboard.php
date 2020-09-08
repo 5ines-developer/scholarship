@@ -66,7 +66,7 @@ class M_dashboard extends CI_Model {
         }
         $vals = array_count_values($newData);
         $counts = array();
-        for ($m=2020; $m<= $cyear; $m++) {
+        for ($m=2019; $m<= $cyear; $m++) {
             if(!empty($vals[$m])){
                 $counts[]= array("values"=>$vals[$m] , "year"=>$m);
             }else{

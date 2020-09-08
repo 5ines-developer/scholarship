@@ -66,7 +66,7 @@ class M_dashboard extends CI_Model {
         }
         $vals = array_count_values($newData);
         $counts = array();
-        for ($m=2020; $m<= $cyear; $m++) {
+        for ($m=2019; $m<= $cyear; $m++) {
             if(!empty($vals[$m])){
                 $counts[]= array("values"=>$vals[$m] , "year"=>$m);
             }else{
@@ -92,16 +92,28 @@ class M_dashboard extends CI_Model {
         return $data;
     }
 
-    public function pay_pending($value='')
+    public function pay_pending($year='')
     {
+        if (!empty($year)) {
+            $this->db->where('application_year', $year);
+        }else{
+            $year = date('Y');
+            $this->db->where('application_year', $year);
+        }
        $this->db->where('pay_status', 0);
        $this->db->where('application_state', 4);
        $this->db->where('status', 1);
        return $this->db->get('application')->num_rows();
     }
 
-    public function pay_completed($value='')
+    public function pay_completed($year='')
     {
+        if (!empty($year)) {
+            $this->db->where('application_year', $year);
+        }else{
+            $year = date('Y');
+            $this->db->where('application_year', $year);
+        }
        $this->db->where('pay_status', 1);
        $this->db->where('application_state', 4);
        $this->db->where('status', 1);
@@ -113,20 +125,45 @@ class M_dashboard extends CI_Model {
         return $this->db->get('application')->num_rows();
     }
 
-    public function thisy_count($var = null)
+    public function thisy_count($year = null)
     {
-        $year = date('Y');
-        $this->db->where('application_year', $year);
+
+        if (!empty($year)) {
+            $this->db->where('application_year', $year);
+        }else{
+            $year = date('Y');
+            $this->db->where('application_year', $year);
+        }
+        
         return $this->db->get('application')->num_rows();
     }
 
-    public function active_inst($var = null)
+    public function active_inst($year = null)
     {
+        if (!empty($year)) {
+            $this->db->where('created_on >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('created_on <=', date($year.'-12-31 23:59:00'));
+        }else{
+            $year = date('Y');
+            $this->db->where('created_on >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('created_on <=', date($year.'-12-31 23:59:00'));
+        }
         return $this->db->get('school')->num_rows();
     }
 
-    public function active_indstry($var = null)
+    public function active_indstry($year = null)
     {
+        if (!empty($year)) {
+            $this->db->where('type', '1');  
+            $this->db->where('date >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('date <=', date($year.'-12-31 23:59:00'));
+        }else{
+            $year = date('Y');
+            $this->db->where('type', '1');
+            $this->db->where('date >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('date <=', date($year.'-12-31 23:59:00'));
+        }
+
         $this->db->where('type', '1');
         return $this->db->get('industry_register')->num_rows();
     }

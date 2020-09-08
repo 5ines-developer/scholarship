@@ -81,7 +81,7 @@ $this->load->model('m_scholar');
                                                 } ?> 
                                            </li>
                                            <li class="center status-item">
-                                               <div>Government</div>
+                                               <div>Labour Welfare Board</div>
                                                <div class="circle">4</div>
                                                <?php if ((($result->application_state == 4))) {
                                                    echo '<div class="green-text">Approved</div>';
@@ -102,7 +102,7 @@ $this->load->model('m_scholar');
                                                     $level = 'Industry';
                                                     break;                                                
                                                 default:
-                                                    $level = 'Government';
+                                                    $level = 'Labour Welfare Board';
                                                     break;
                                             }
                                             
@@ -157,6 +157,12 @@ $this->load->model('m_scholar');
                                                                             <p class="app-item-content-head">Gender</p>
                                                                             <p class="app-item-content"><?php echo (!empty($result->gender))?$result->gender:'---'; ?></p>
                                                                         </li>
+                                                                        
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Scholarship Amount</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->amount))?'&#8377; &nbsp;'.$result->amount:'---'; ?></p>
+                                                                        </li>
+                                                                        
                                                                     </ul>
                                                                 </div>
 
@@ -182,8 +188,12 @@ $this->load->model('m_scholar');
                                                                         </li>
 
                                                                         <li>
-                                                                            <p class="app-item-content-head">Scholarship Amount</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->amount))?'&#8377; &nbsp;'.$result->amount:'---'; ?></p>
+                                                                            <p class="app-item-content-head">Application Year</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->application_year))?$result->application_year:'---'; ?></p>
+                                                                        </li>
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Applied On</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->date))?date('d M, Y', strtotime($result->date)):'---'; ?></p>
                                                                         </li>
 
                                                                     </ul>
@@ -240,7 +250,7 @@ $this->load->model('m_scholar');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Category</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->category))?$result->category:''; ?></p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->category))?ucwords($result->category):''; ?></p>
                                                                         </li>
 
                                                                         <li>
@@ -345,6 +355,7 @@ $this->load->model('m_scholar');
                                                                         </li>
 
 
+                                                                        <?php if (!empty($result->f_adharfile) || !empty($result->f_adharfile)) { ?>
                                                                         <li class="row">
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Father Aadhaar</p>
@@ -353,12 +364,14 @@ $this->load->model('m_scholar');
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Father Aadhaar card File</p>
                                                                                 <?php if (!empty($result->f_adharfile)) { ?>
-                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->f_adharfile))?$this->config->item('web_url').'show-image/'.$result->f_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url')?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->f_adharfile))?$this->config->item('web_url').$result->f_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
                                                                             <?php } ?>
                                                                             </div>
                                                                         </li>
+                                                                    <?php } ?>
 
-                                                                        <li class="row">
+                                                                        <?php if (!empty($result->m_adhar) || !empty($result->m_adharfile)) { ?>
+                                                                            <li class="row">
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Mother Aadhaar</p>
                                                                                 <p class="app-item-content"><?php echo (!empty($result->m_adhar))?$result->m_adhar:'---'; ?></p>
@@ -366,10 +379,27 @@ $this->load->model('m_scholar');
                                                                             <div class="col s12 m6">
                                                                                 <p class="app-item-content-head">Mother Aadhaar card File</p>
                                                                                 <?php if (!empty($result->m_adharfile)) { ?>
-                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url') ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->m_adharfile))?$this->config->item('web_url').'show-image/'.$result->m_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url')?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->m_adharfile))?$this->config->item('web_url').$result->m_adharfile:'#'; ?>">Aadhaar Xerox</a></p>
                                                                             <?php } ?>
                                                                             </div>
                                                                         </li>
+                                                                        <?php } ?>
+
+                                                                        <?php if (!empty($result->notappli) || !empty($result->deathcertificate)) { ?>
+                                                                            <li class="row">
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Adhar NA</p>
+                                                                                <p class="app-item-content"><?php echo ($result->notappli)?$result->notappli:'---'; ?></p>
+                                                                            </div>
+                                                                            <div class="col s12 m6">
+                                                                                <p class="app-item-content-head">Death Certificate </p>
+                                                                                <?php if (!empty($result->deathcertificate)) { ?>
+                                                                                <p class="app-item-content"><img src="<?php echo $this->config->item('web_url')?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo (!empty($result->deathcertificate))?$this->config->item('web_url').$result->deathcertificate:'#'; ?>">Death Certificate</a></p>
+                                                                            <?php } ?>
+                                                                            </div>
+                                                                        </li>
+
+                                                                        <?php } ?>
                                                                     </ul>
                                                                 </div>
                                                             </div>

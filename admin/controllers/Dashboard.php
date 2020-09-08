@@ -36,9 +36,9 @@ class Dashboard extends CI_Controller {
             $data['years']       = date('Y');
         }
         $data['title']      = 'Dashboard | admin';
-        $data['count']      = $this->m_dashboard->dashcounts( $data['years'] );
-        $data['indcount']   = $this->m_dashboard->industry_counts( $data['years'] );
-        $data['inscount']   = $this->m_dashboard->insti_counts( $data['years'] );
+        $data['count']      = $this->m_dashboard->dashcounts($data['years'] );
+        $data['indcount']   = $this->m_dashboard->industry_counts($data['years'] );
+        $data['inscount']   = $this->m_dashboard->insti_counts($data['years'] );
         $this->load->view('dashboard/index', $data, FALSE);
     }
 
@@ -48,7 +48,7 @@ class Dashboard extends CI_Controller {
 	**/
 	public function getordergraph()
 	{
-		$startdate 	= '2020'; //start date of the year (jan first)
+		$startdate 	= '2019'; //start date of the year (jan first)
 		$result		= $this->m_dashboard->getordergraph($startdate);
 		echo json_encode($result);
 	}

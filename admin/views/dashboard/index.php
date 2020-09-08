@@ -77,7 +77,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Active Industries</span>
+                                            <span class="white-text">Active Industries in <?php echo $years ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Active Institutes</span>
+                                            <span class="white-text">Active Institutes in <?php echo $years ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Scholarship Payment Completed</span>
+                                            <span class="white-text">Scholarship Payment Processed in <?php echo $years ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Scholarship Payment Pending</span>
+                                            <span class="white-text">Scholarship Payment Pending in <?php echo $years ?></span>
                                         </div>
                                     </div>
                                 </div>

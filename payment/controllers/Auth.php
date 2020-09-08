@@ -440,7 +440,7 @@ class auth extends CI_Controller {
                 if($this->m_auth->forgotPassword($insert['email'],$insert['ref_id']))
                 {
                     if ($this->sendforgot($insert)) {
-                        $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
+                        $this->session->set_flashdata('success', 'We have sent a password reset link to your mail id, <br> Please check your mail inbox and do not forget to check your spam folder to reset your password.');
                     }else{
                         $this->session->set_flashdata('error', 'Some error occured! Please contact our support team');
                     }

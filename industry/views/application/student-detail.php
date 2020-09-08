@@ -87,7 +87,7 @@ $this->load->model('m_application');
                                                 } ?> 
                                            </li>
                                            <li class="center status-item">
-                                               <div>Government</div>
+                                               <div>Labour Welfare Board</div>
                                                <div class="circle">4</div>
                                                <?php if (($result->status == 1) && (($result->application_state == 4))) {
                                                    echo '<div class="green-text">Approved</div>';
@@ -108,7 +108,7 @@ $this->load->model('m_application');
                                                     $level = 'Industry';
                                                     break;                                                
                                                 default:
-                                                    $level = 'Government';
+                                                    $level = 'Labour Welfare Board';
                                                     break;
                                             }
                                             
@@ -167,6 +167,13 @@ $this->load->model('m_application');
                                                                             <p class="app-item-content-head">Gender</p>
                                                                             <p class="app-item-content"><?php echo (!empty($result->gender))?$result->gender:'---'; ?></p>
                                                                         </li>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Amount</p>
+                                                                            <p class="app-item-content"><?php echo $this->ci->m_application->getamnt($result->application_year,$result->graduation); ?></p>
+                                                                        </li>
+
+                                                                        
                                                                     </ul>
                                                                 </div>
 
@@ -190,6 +197,16 @@ $this->load->model('m_application');
                                                                             <p class="app-item-content-head">Present School Address</p>
                                                                             <p class="app-item-content"><?php echo $this->ci->m_application->schlAddress($result->school_id) ?></p>
                                                                         </li>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Application Year</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->application_year))?$result->application_year:'---'; ?></p>
+                                                                        </li>
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Applied On</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->date))?date('d M, Y', strtotime($result->date)):'---'; ?></p>
+                                                                        </li>
+                                                                        
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -244,7 +261,7 @@ $this->load->model('m_application');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Category</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->category))?$result->category:''; ?></p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->category))?ucwords($result->category):''; ?></p>
                                                                         </li>
 
                                                                         <li>

@@ -80,6 +80,14 @@ $this->load->model('m_stdapplication');
             <td style="border-top: 1px solid gray;border-bottom: 1px solid gray;border-left: none;border-right: 1px solid gray;" align="left">Student Present Address : <?php echo (!empty($result->saddress))?$result->saddress:''; ?></td>
           </tr>
 
+          <tr>
+            <td colspan="2" align="left" style="border:1px solid gray;" >Submitted On: <?php echo (!empty($result->date))?date('d M, Y',strtotime($result->date)):''; ?> </td>
+            <td style="border-top: 1px solid gray;border-bottom: 1px solid gray;border-left: none;border-right: 1px solid gray;" align="left">Application Year: <?php echo (!empty($result->application_year))?$result->application_year:''; ?> </td>
+          </tr>
+
+          
+
+
           <!-- student Previous Year Class Details -->
           <tr>
             <th align="left" colspan="3" style="padding:25px;padding-left:15px;border:none;" >Previous Year Class and Marks</th>
@@ -101,6 +109,10 @@ $this->load->model('m_stdapplication');
           <tr>
             <td colspan="3" align="left" style="border:1px solid gray;" >Caste Certificate File/ Number: <?php echo (!empty($result->is_scst))?'Submitted':'Not Submitted'; ?> </td>
           </tr>
+
+          
+
+
 
 
           <!-- Industry Details -->

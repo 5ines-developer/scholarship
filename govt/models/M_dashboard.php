@@ -66,7 +66,7 @@ class M_dashboard extends CI_Model {
         }
         $vals = array_count_values($newData);
         $counts = array();
-        for ($m=2010; $m<= $cyear; $m++) {
+        for ($m=2019; $m<= $cyear; $m++) {
             if(!empty($vals[$m])){
                 $counts[]= array("values"=>$vals[$m] , "year"=>$m);
             }else{
@@ -81,35 +81,89 @@ class M_dashboard extends CI_Model {
     * @url      : dashboard
     * @param    :null
     **/
-    public function dashcounts($var = null)
+    public function dashcounts($year = '')
     {
-        $data['tot_app']        = $this->tot_app();
-        $data['cr_count']       = $this->thisy_count();
-        $data['acti_inst']      = $this->active_inst();
-        $data['ac_inds']        = $this->active_indstry();
+        $data['tot_app']        = $this->tot_app($year);
+        $data['cr_count']       = $this->thisy_count($year);
+        $data['acti_inst']      = $this->active_inst($year);
+        $data['ac_inds']        = $this->active_indstry($year);
+        $data['pay_comp']       = $this->pay_completed($year);
+        $data['pay_pend']       = $this->pay_pending($year);
         return $data;
+    }
+
+    public function pay_pending($year='')
+    {
+        if (!empty($year)) {
+            $this->db->where('application_year', $year);
+        }else{
+            $year = date('Y');
+            $this->db->where('application_year', $year);
+        }
+       $this->db->where('pay_status', 0);
+       $this->db->where('application_state', 4);
+       $this->db->where('status', 1);
+       return $this->db->get('application')->num_rows();
+    }
+
+    public function pay_completed($year='')
+    {
+        if (!empty($year)) {
+            $this->db->where('application_year', $year);
+        }else{
+            $year = date('Y');
+            $this->db->where('application_year', $year);
+        }
+       $this->db->where('pay_status', 1);
+       $this->db->where('application_state', 4);
+       $this->db->where('status', 1);
+       return $this->db->get('application')->num_rows();
     }
 
     public function tot_app($var = null)
     {
-        $this->db->group_by('application_year,Student_id');
         return $this->db->get('application')->num_rows();
     }
 
-    public function thisy_count(Type $var = null)
+    public function thisy_count($year = null)
     {
-        $year = date('Y');
-        $this->db->where('application_year', $year);
+
+        if (!empty($year)) {
+            $this->db->where('application_year', $year);
+        }else{
+            $year = date('Y');
+            $this->db->where('application_year', $year);
+        }
+        
         return $this->db->get('application')->num_rows();
     }
 
-    public function active_inst(Type $var = null)
+    public function active_inst($year = null)
     {
+        if (!empty($year)) {
+            $this->db->where('created_on >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('created_on <=', date($year.'-12-31 23:59:00'));
+        }else{
+            $year = date('Y');
+            $this->db->where('created_on >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('created_on <=', date($year.'-12-31 23:59:00'));
+        }
         return $this->db->get('school')->num_rows();
     }
 
-    public function active_indstry(Type $var = null)
+    public function active_indstry($year = null)
     {
+        if (!empty($year)) {
+            $this->db->where('type', '1');  
+            $this->db->where('date >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('date <=', date($year.'-12-31 23:59:00'));
+        }else{
+            $year = date('Y');
+            $this->db->where('type', '1');
+            $this->db->where('date >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('date <=', date($year.'-12-31 23:59:00'));
+        }
+
         $this->db->where('type', '1');
         return $this->db->get('industry_register')->num_rows();
     }
@@ -134,7 +188,7 @@ class M_dashboard extends CI_Model {
         return $data;
     }
 
-    public function tot_insti(Type $var = null)
+    public function tot_insti($var = null)
     {
         return $this->db->get('reg_schools')->num_rows();        
     }

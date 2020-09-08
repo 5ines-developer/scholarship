@@ -134,15 +134,15 @@
 
             <div class="col s12 m5 foo-address left">                
                 <p>ಸ್ಥಳ: <span class="dashed-line"> <?php echo $info->talqName ?> </span></p>
-                <p>ದಿನಾಂಕ: <span class="dashed-line"> <?php echo date('d M, Y') ?> </span></p>
-                <p>ದೂರವಾಣಿ ಸಂಖ್ಯೆ/ಮೊಬೈಲ್ ಸಂಖ್ಯೆ: <span class="dashed-line"> <?php echo $info->parent_phone  ?> </span></p>
+                <p>ದಿನಾಂಕ: <span class="dashed-line"> <?php echo date('d M, Y',strtotime($info->comp_approve)) ?> </span></p>
+                <p>ದೂರವಾಣಿ ಸಂಖ್ಯೆ/ಮೊಬೈಲ್ ಸಂಖ್ಯೆ: <span class="dashed-line"> <?php echo $info->compPhone  ?> </span></p>
             </div>
             <div class="col s12 m5 push-m2 foo-address left">
                 <p>ಉದ್ಯೋಗ ಸಂಸ್ಥೆಯ ಅಧಿಕೃತ ಅಧಿಕಾರಿ ಪಧಾನಾಮ/ಸಹಿ ಮತ್ತು ಮೊಹರು </p>
                 <br>
                 <span class="dashed-line"> <?php echo $img->name  ?> </span>
-                <img src="<?php echo base_url().$img->sign  ?>" width="100px" class="mr30" alt="">
-                <img src="<?php echo base_url().$img->seal  ?>" width="100px" alt="">
+                <img src="<?php echo base_url('show-images/').$img->sign  ?>" width="100px" class="mr30" alt="">
+                <img src="<?php echo base_url('show-images/').$img->seal  ?>" width="100px" alt="">
             </div>
             <div class="clearfix"></div>
             

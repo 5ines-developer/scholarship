@@ -19,7 +19,7 @@
 <?php $this->load->view('include/header'); ?>
 
     <!-- form section -->
-    <section class="bg pt30 pb30 reg-block">
+    <section class="bg pt30 pb30 reg-block indstry-rg-block">
         <div class="container">
             <div class="row m0">
                 <div class="col l10 offset-l1">
@@ -201,13 +201,11 @@
             },
             checkForm() {
                 if ((this.mobileError == '') && (this.emailError == '')) {
-
-
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // }
+                    }
                 } else {}
             }
 

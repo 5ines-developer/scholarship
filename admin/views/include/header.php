@@ -61,10 +61,10 @@
                 <li class=""><a class="collapsible-header head-h black-text" tabindex="0">Scholarship Managemnet<i class="material-icons drop-ar right">arrow_drop_down</i></a>
                     <div class="collapsible-body" style="">
                         <ul>
-                            <li><a href="<?php echo base_url() ?>applications">All Application</a></li>
                             <li><a href="<?php echo base_url() ?>applications?item=approved">Approved Application</a></li>
                             <li><a href="<?php echo base_url() ?>applications?item=rejected">Rejected Application</a></li>
                             <li><a href="<?php echo base_url() ?>applications?item=pending">Pending Application</a></li>
+                            <li><a href="<?php echo base_url() ?>applications">All Application</a></li>
                         </ul>
                     </div>
                 </li>

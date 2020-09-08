@@ -87,6 +87,11 @@
                     <div class="col s12 pull-m6 pull-l6 m6 l6 reg-left valign-wrapper">
                         <div class="reg-left-box ">
                             <div class="contents">
+                                <center>
+                                    <div class="logn-img">
+                                        <img class="responsive-img" src="<?php echo base_url() ?>assets/image/logo.png" alt="">
+                                    </div>
+                                </center>
                                 <p>Welcome To</p>
                                 <p>Karnataka Labour Welfare Board</p>
                                 <p>If You Have an Account ? <a href="<?php echo base_url('student/login') ?>">Sign In</a></p>

@@ -246,7 +246,7 @@
                         if (response.data == '1') {
                             this.mobileError = '';
                         } else {
-                            this.mobileError = 'This Mobile number already exist!';
+                            this.mobileError = 'Mobile number Does not exist!';
                         }
 
                     }).catch(error =>{

@@ -162,8 +162,6 @@ class Std_application extends CI_Controller {
     public function insertAppli($value='')
     {
 
-
-    	
     	$this->sc_check->limitRequests();
     	
     	$this->security->xss_clean($_POST);
@@ -213,8 +211,12 @@ class Std_application extends CI_Controller {
         	$input = $this->input->post();
 			if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
 			if(($this->input->post('clow') != '') && ($this->input->post('pmarks') < 45)){ echo 'error'; die(); }
-	    	$apply = array('application_year' 	=> date('Y') , 'Student_id' => $this->sid , 'uniq' 	=> random_string('alnum',10) , 'application_state '=> '1', ); 
+
+	    	$apply = array('application_year' 	=> date('Y') , 'Student_id' => $this->sid , 'uniq' 	=> random_string('alnum',10) ,); 
+
 	    	if (!empty($this->input->post('aid'))) {$apply['status'] = '0'; }
+	    	if (empty($this->input->post('aid'))) {$apply['application_state'] = '1'; }
+
 			if ($this->input->post('iname') != 'undefined') {$apply['school_id'] =$this->input->post('iname'); }
 			if ($this->input->post('inname') != 'undefined') {$apply['company_id'] =$this->input->post('inname'); }
 			$result = $this->m_stdapplication->insertAppli($apply);
@@ -248,20 +250,23 @@ class Std_application extends CI_Controller {
 	    );
     	$this->load->library('upload');
     	$files = $_FILES;
-    	if (($this->input->post('clow') == '') &&  (empty($_FILES['cfile']['tmp_name'])) ) {
+    	if (($this->input->post('clow') == '') &&  (empty($_FILES['cfile']['tmp_name']))) {
 		}else{
-    		$config['upload_path'] = 'student-cast/';
-    		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
-	        $config['max_width'] = 0;
-	        $config['encrypt_name'] = true;
-	        $this->upload->initialize($config);
-	        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
-	        $this->upload->do_upload('cfile');
-	        $upload_data = $this->upload->data();
-	        $cast = 'student-cast/'.$upload_data['file_name'];
+
+			if (!empty($_FILES['cfile']['tmp_name'])) {
+	    		$config['upload_path'] = 'student-cast/';
+	    		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
+		        $config['max_width'] = 0;
+		        $config['encrypt_name'] = true;
+		        $this->upload->initialize($config);
+		        if (!is_dir($config['upload_path'])) {mkdir($config['upload_path'], 0777, true); }
+		        $this->upload->do_upload('cfile');
+		        $upload_data = $this->upload->data();
+		        $cast = 'student-cast/'.$upload_data['file_name']; 
+		    }
 		}
 
-		if ($this->input->post('not_applicable1') != 'false') {
+		if ($this->input->post('not_applicable1') != 'false'  &&  (!empty($_FILES['death']['tmp_name']))) {
 			$config['upload_path'] = 'student-death/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
 	        $config['max_width'] = 0;
@@ -271,7 +276,7 @@ class Std_application extends CI_Controller {
 	        $this->upload->do_upload('death');
 	        $upload_data = $this->upload->data();
 	        $death = 'student-death/'.$upload_data['file_name'];
-		}else if ($this->input->post('not_applicable2') != 'false') {
+		}else if ($this->input->post('not_applicable2') != 'false'  &&  (!empty($_FILES['death1']['tmp_name']))) {
 			$config['upload_path'] = 'student-death/';
     		$config['allowed_types'] = 'jpg|png|jpeg|pdf|doxc';
 	        $config['max_width'] = 0;
@@ -340,7 +345,16 @@ class Std_application extends CI_Controller {
 		if (!empty($adhar)) { $insert['adharcard_file'] = $adhar; }
 		if (!empty($adharf)) { $insert['f_adharfile'] = $adharf; }
 		if (!empty($adharm)) { $insert['m_adharfile'] = $adharm; }
-		if (!empty($death)) { $insert['deathcertificate'] = $death; }
+
+		if (!empty($this->input->post('not_applicable1') == 'true')) {
+			$insert['notappli'] = 'father';
+		}elseif (!empty($this->input->post('not_applicable2') == 'true')) {
+			$insert['notappli'] = 'mother';
+		}else{
+			$insert['notappli'] = '';
+		}
+
+		if (!empty($death) && !empty($insert['notappli'])) { $insert['deathcertificate'] = $death; }else{ $insert['deathcertificate'] = ''; }
 
 		if (!empty($insert['is_scst'])) {
 			$insert['category'] = $this->input->post('tcat');
@@ -348,11 +362,7 @@ class Std_application extends CI_Controller {
 			$insert['category'] = $this->input->post('gcat');
 		}
 
-		if (!empty($this->input->post('not_applicable1') == 'true')) {
-			$insert['notappli'] = 'father';
-		}elseif (!empty($this->input->post('not_applicable2') == 'true')) {
-			$insert['notappli'] = 'mother';
-		}
+		
 
     	$output = $this->m_stdapplication->aplliBasic($insert); 
 
@@ -443,7 +453,6 @@ class Std_application extends CI_Controller {
 		$insert = array(
     		'application_id'=> $apid, 
     		'ins_pin' 		=> $this->input->post('ipin'),
-    		'ins_district' 	=> $this->input->post('idistrict'), 
     		'prv_class' 	=> $this->input->post('pclass'), 
     		'prv_marks' 	=> $this->input->post('pmarks'), 
 		);
@@ -464,6 +473,10 @@ class Std_application extends CI_Controller {
 
 		if ($this->input->post('icourse') != 'undefined') {
 			$insert['course'] = $this->input->post('icourse');
+		}
+
+		if ($this->input->post('idistrict') != 'undefined') {
+			$insert['ins_district'] = $this->input->post('idistrict');
 		}
 
 
@@ -519,8 +532,9 @@ class Std_application extends CI_Controller {
 		$phone = $this->input->post('sphone');
 		$msg = 'You have been succesfully applied to the Karnataka Labour Welfare Board Scholarship, we will notify the status via sms';
         /* API URL */
-        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
+        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $msg . '&sender=RADTEL&to=' . $phone . '&service=T';
+        
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
@@ -597,8 +611,9 @@ class Std_application extends CI_Controller {
     {
     	$id = $this->encryption_url->safe_b64decode($id);
         $data['result'] = $this->m_stdapplication->getApplication($this->sid);
+
         require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        // require_once $_SERVER['DOCUMENT_ROOT'].'vendor/autoload.php';
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
 	        'default_font' => 'tunga'

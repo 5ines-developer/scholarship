@@ -19,7 +19,7 @@
 <?php $this->load->view('include/header'); ?>
 
     <!-- form section -->
-    <section class="bg pt30 pb30 reg-block">
+    <section class="bg pt30 pb30 reg-block indstry-rg-block">
         <div class="container">
             <div class="row m0">
                 <div class="col l10 offset-l1">
@@ -111,7 +111,7 @@
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <div class="g-recaptcha"data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
+                                        <div class="g-recaptcha" data-sitekey="6LfgeS8UAAAAAFzucpwQQef7KXcRi7Pzam5ZIqMX"></div> 
                                         <span class="helper-text red-text">{{ captcha }}</span>
                                     </div>
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">

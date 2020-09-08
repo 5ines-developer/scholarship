@@ -74,7 +74,9 @@ class M_payments extends CI_Model {
     public function singlepay($id='',$regId='')
     {
         $this->db->select('i.*,i.name as comp,ir.*,ir.name as Names,p.*');
-        $this->db->where('i.reg_id', $regId);
+        if (!empty($regId)) {
+            $this->db->where('i.reg_id', $regId);
+        }
         $this->db->where('p.id', $id);
         $this->db->where('ir.type', 1);
         $this->db->from('payment p');
@@ -88,6 +90,7 @@ class M_payments extends CI_Model {
         $this->db->select('i.reg_id,ir.email');
         $this->db->where('ir.type', 1);
         $this->db->from('industry_register ir');
+        $this->db->group_by('email');
         $this->db->join('industry i', 'i.reg_id = ir.industry_id', 'left');
         return $this->db->get()->result();
     }

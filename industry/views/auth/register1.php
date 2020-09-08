@@ -19,7 +19,7 @@
 <?php $this->load->view('include/header'); ?>
 
     <!-- form section -->
-    <section class="bg pt30 pb30 reg-block">
+    <section class="bg pt30 pb30 reg-block indstry-rg-block">
         <div class="container">
             <div class="row m0">
                 <div class="col l10 offset-l1">

@@ -26,7 +26,7 @@ class M_application extends CI_Model {
         ->join('gradution grd', 'grd.id = m.graduation', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
         ->join('fees fs', 'fs.class = grd.id', 'left');
-        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount,m.graduation,a.application_year');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount,m.graduation,a.application_year,a.date');
         return $this->db->get()->result();     
     }
 
@@ -37,7 +37,7 @@ class M_application extends CI_Model {
             $this->db->where('a.application_year', $year);
         }
         $sccomp = $this->session->userdata('sccomp');
-        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount,m.graduation,a.application_year');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount,m.graduation,a.application_year,a.date');
         $this->db->from('application a');
         $this->db->where('a.company_id', $sccomp);        
         $this->db->order_by('id', 'desc');
@@ -61,7 +61,7 @@ class M_application extends CI_Model {
             $this->db->where('a.application_year', $year);
         }
         $sccomp = $this->session->userdata('sccomp');
-        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount,m.graduation,a.application_year');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount,m.graduation,a.application_year,a.date');
         $this->db->from('application a');
         $this->db->where('a.company_id', $sccomp);
         $this->db->where('a.application_state !=',1);
@@ -82,15 +82,16 @@ class M_application extends CI_Model {
     public function singleStudent($id = null)
     {
         return $this->db->where('a.id', $id)            
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,,ab.f_adhar, ab.f_adharfile, ab.m_adhar, ab.m_adharfile')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,,ab.f_adhar, ab.f_adharfile, ab.m_adhar, ab.m_adharfile,a.comp_approve,ir.mobile as compPhone')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
         ->join('applicant_comapny ac', 'ac.application_id = a.id', 'left')
         ->join('applicant_marks am', 'am.application_id = a.id', 'left')
-        ->join('school schl', 'schl.id = a.school_id', 'left')
+        ->join('school schl', 'schl.name = a.school_id', 'left')
         ->join('school_address scad', 'scad.school_id = a.school_id', 'left')
         ->join('industry ind', 'ind.id = a.company_id', 'left')
+        ->join('industry_register ir', 'ir.industry_id = ind.id', 'left')
         ->join('state st', 'st.id = ind.state', 'left')
         ->join('city cty', 'cty.id = ac.district', 'left')
         ->join('taluq tq', 'tq.id = ac.talluk', 'left')
@@ -127,7 +128,7 @@ class M_application extends CI_Model {
     public function approval($id = null)
     {
         $this->db->where('id', $id);
-       return $this->db->update('application', array('application_state' => 3));
+       return $this->db->update('application', array('application_state' => 3,'comp_approve'=>date('Y-m-d')));
         // if($this->db->affected_rows() > 0){
         //     return true;
         // }else{
@@ -170,9 +171,35 @@ class M_application extends CI_Model {
         return $this->phoneGet($result);
     }
 
+
     public function getamnt($year='',$grd='')
     {
-       return $this->db->where('date', $year)->where('class',$grd)->get('fees')->row('amount');
+       $result =  $this->db->where('date', $year)->where('class',$grd)->get('fees')->result();
+       if (!empty($result)) {
+            foreach ($result as $key => $value) {
+                return $value->amount;
+            }
+       }else{
+
+            $stryr = strtotime($year.'-01-01 -1 year');
+            $lastYear = date('Y', $stryr);
+            $result1 = $this->db->where('date', $lastYear)->where('class',$grd)->get('fees')->result();
+            if (!empty($result1)) {
+                foreach ($result1 as $keys => $values) {
+                    return $values->amount;
+                }
+           }else{
+                $lastYears = strtotime($lastYear.'-01-01 -1 year');
+                $lastYear1 = date('Y', $lastYears);
+                $result2 = $this->db->where('date', $lastYear1)->where('class',$grd)->get('fees')->row('amount');
+                if (!empty($result2)) {
+                   return $result2;
+               }else{
+                return false;
+               }
+           }
+
+       }
     }
 
 }

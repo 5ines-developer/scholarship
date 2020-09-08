@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_dashboard extends CI_Model {
 
-    public function getScholarshipRequest()
+    public function getScholarshipRequest($year='')
     {
         $in = array(1,2);
         if (!empty($year)) {
@@ -25,9 +25,8 @@ class M_dashboard extends CI_Model {
         $this->db->join('courses crs', 'crs.id = m.course', 'left');
         $this->db->join('class cls', 'cls.id = m.class', 'left')
         ->join('gradution grd', 'grd.id = m.graduation', 'left')
-        ->join('fees fs', 'fs.class = grd.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left');
-        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,a.application_year,DATE_FORMAT(a.date, "%M-%d-%Y") as date,m.graduation');
         return $this->db->get()->result();  
     }
     
@@ -35,13 +34,13 @@ class M_dashboard extends CI_Model {
     public function singleStudent($id = null)
     {
         return $this->db->where('a.id', $id)        
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName, std.email as email,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,ab.f_adhar, ab.f_adharfile, ab.m_adhar, ab.m_adharfile')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName, std.email as email,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,ab.f_adhar, ab.f_adharfile, ab.m_adhar, ab.m_adharfile,a.schl_approve,schl.phone as schoolPhone,am.graduation')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
         ->join('applicant_comapny ac', 'ac.application_id = a.id', 'left')
         ->join('applicant_marks am', 'am.application_id = a.id', 'left')
-        ->join('school schl', 'schl.id = a.school_id', 'left')
+        ->join('school schl', 'schl.name = a.school_id', 'left')
         ->join('school_address scad', 'scad.school_id = a.school_id', 'left')
         ->join('industry ind', 'ind.id = a.company_id', 'left')
         ->join('state st', 'st.id = ind.state', 'left')
@@ -58,7 +57,7 @@ class M_dashboard extends CI_Model {
     public function approval($id = null)
     {
         $this->db->where('id', $id);
-        $this->db->update('application', array('application_state' => 2));
+        $this->db->update('application', array('application_state' => 2,'schl_approve' => date('Y-m-d')));
         if($this->db->affected_rows() > 0){
             return true;
         }else{
@@ -79,14 +78,14 @@ class M_dashboard extends CI_Model {
     }
 
     // rejected student list
-    public function getScholarshipRejects()
+    public function getScholarshipRejects($year='')
     {
         if (!empty($year)) {
             $this->db->where('a.application_year', $year);
         }
          $school = $this->session->userdata('school');
         $this->db->where('a.school_id', $school);
-        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,a.application_year,DATE_FORMAT(a.date, "%M-%d-%Y") as date,m.graduation');
         $this->db->from('application a');
         $this->db->where('a.application_state',1);
         $this->db->where('a.status', 2);
@@ -96,13 +95,12 @@ class M_dashboard extends CI_Model {
         $this->db->join('courses crs', 'crs.id = m.course', 'left');
         $this->db->join('class cls', 'cls.id = m.class', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
-        ->join('gradution grd', 'grd.id = m.graduation', 'left')
-        ->join('fees fs', 'fs.class = grd.id', 'left');
+        ->join('gradution grd', 'grd.id = m.graduation', 'left');
         return $this->db->get()->result();  
     }
 
     // Approved student list
-    public function getScholarshipApproved()
+    public function getScholarshipApproved($year='')
     {
         $in = array(2,3,4);
         if (!empty($year)) {
@@ -110,7 +108,7 @@ class M_dashboard extends CI_Model {
         }
          $school = $this->session->userdata('school');
         $this->db->where('a.school_id', $school);
-        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,fs.amount');
+        $this->db->select('m.prv_marks as mark, cls.clss as class, ab.name, a.id,crs.course,a.application_year,DATE_FORMAT(a.date, "%M-%d-%Y") as date,m.graduation');
         $this->db->from('application a');
         $this->db->order_by('id', 'desc');
         $this->db->group_start();
@@ -121,8 +119,7 @@ class M_dashboard extends CI_Model {
         $this->db->join('courses crs', 'crs.id = m.course', 'left');
         $this->db->join('class cls', 'cls.id = m.class', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
-        ->join('gradution grd', 'grd.id = m.graduation', 'left')
-        ->join('fees fs', 'fs.class = grd.id', 'left');
+        ->join('gradution grd', 'grd.id = m.graduation', 'left');
         return $this->db->get()->result(); 
     }
 
@@ -163,6 +160,37 @@ class M_dashboard extends CI_Model {
     {   
        return $this->db->select('name,priciple_signature,seal')->where('name', $id)->get('school')->row();
         
+    }
+
+
+    public function getamnt($year='',$grd='')
+    {
+       $result =  $this->db->where('date', $year)->where('class',$grd)->get('fees')->result();
+       if (!empty($result)) {
+            foreach ($result as $key => $value) {
+                return $value->amount;
+            }
+       }else{
+
+            $stryr = strtotime($year.'-01-01 -1 year');
+            $lastYear = date('Y', $stryr);
+            $result1 = $this->db->where('date', $lastYear)->where('class',$grd)->get('fees')->result();
+            if (!empty($result1)) {
+                foreach ($result1 as $keys => $values) {
+                    return $values->amount;
+                }
+           }else{
+                $lastYears = strtotime($lastYear.'-01-01 -1 year');
+                $lastYear1 = date('Y', $lastYears);
+                $result2 = $this->db->where('date', $lastYear1)->where('class',$grd)->get('fees')->row('amount');
+                if (!empty($result2)) {
+                   return $result2;
+               }else{
+                return false;
+               }
+           }
+
+       }
     }
     
 }

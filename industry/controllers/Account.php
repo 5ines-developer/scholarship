@@ -122,7 +122,7 @@ class Account extends CI_Controller {
             {
                 if($email != $this->session->userdata('sinmail')){
                     $this->verifyMail($email,$this->reg);
-                    $this->session->set_flashdata('success', 'Your Profile has been updated <br> Please check your mail to verify the Email Id 🙂');
+                    $this->session->set_flashdata('success', 'Please check your registered mail inbox and do not forget to check your spam folder verify your Email Id 🙂');
                 }else{
                     $this->session->set_flashdata('success', 'Profile details Updated Successfully 🙂');
                 }
@@ -266,8 +266,12 @@ class Account extends CI_Controller {
             $data = array( 'register_doc' => $key.'/'.$upload_data['file_name']);
         }elseif($key == 'pan') {
             $data = array( 'pancard' => $key.'/'.$upload_data['file_name']);
-        }else{
+        }elseif($key == 'gst') {
             $data = array( 'gst' => $key.'/'.$upload_data['file_name']);
+        }elseif($key == 'seal') {
+            $data = array( 'seal' => $key.'/'.$upload_data['file_name']);
+        }elseif($key == 'sign') {
+            $data = array( 'sign' => $key.'/'.$upload_data['file_name']);
         }
         
         

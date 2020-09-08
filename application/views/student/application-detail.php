@@ -75,6 +75,13 @@ $this->load->library('encryption');
                                                                             <p class="app-item-content"><?php echo (!empty($result->gender))?$result->gender:'---'; ?></p>
                                                                         </li>
 
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Amount</p>
+                                                                            <p class="app-item-content"><?php echo $this->ci->m_stdapplication->getamnt($result->application_year,$result->graduation) ?></p>
+                                                                        </li>
+
+                                                                        
+
                                                                     </ul>
                                                                 </div>
 
@@ -103,6 +110,14 @@ $this->load->library('encryption');
                                                                         <li>
                                                                             <p class="app-item-content-head">Student Present  Address</p>
                                                                             <p class="app-item-content"><?php echo (!empty($result->saddress))?$result->saddress:'---'; ?></p>
+                                                                        </li>
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Application Year</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->application_year))?$result->application_year:'---'; ?></p>
+                                                                        </li>
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Applied On</p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->date))?date('d M, Y', strtotime($result->date)):'---'; ?></p>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -161,7 +176,7 @@ $this->load->library('encryption');
 
                                                                         <li>
                                                                             <p class="app-item-content-head">Category</p>
-                                                                            <p class="app-item-content"><?php echo (!empty($result->category))?$result->category:''; ?></p>
+                                                                            <p class="app-item-content"><?php echo (!empty($result->category))?ucwords($result->category):''; ?></p>
                                                                         </li>
 
                                                                         <li>
@@ -384,6 +399,60 @@ $this->load->library('encryption');
                                                         </div>
                                                     </div>
                                                 </div><!-- End-->
+
+
+
+                                                <?php 
+                                                 $dis1 = '';
+
+                                            switch ($result->application_state) {
+                                                case 1:
+                                                    $display = 'none';
+                                                    break;
+                                                case 2:
+                                                    $display = 'block';
+                                                    $dis1 = 'none';
+                                                    break; 
+                                                case 3:
+                                                    $display = 'block';
+                                                    break;
+                                                case 4:
+                                                    $display = 'block';
+                                                    break;                                                 
+                                                default:
+                                                    $display = 'none';
+                                                    break;
+                                            }
+
+
+                                            ?>
+
+                                                <div class="col s12 l6" style="display: <?php echo $display ?>">
+                                                    <div class="app-detail-item">
+                                                        <div class="app-item-heading">
+                                                            <p>Confirmation Report</p>
+                                                        </div>
+                                                        <div class="app-item-body">
+                                                            <div class="row m0">
+                                                                <div class="col s12">
+                                                                    <ul>
+
+                                                                        <li>
+                                                                            <p class="app-item-content-head">Institute Confirmation Report</p>
+                                                                            <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo base_url().'institute/student/institute-certificate/'.urlencode(base64_encode($result->id)) ?>">PDF</a></p>
+                                                                        </li>
+
+                                                                        <li style="display: <?php echo  $dis1  ?>">
+                                                                            <p class="app-item-content-head">Industry Confirmation Report</p>
+                                                                            <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg"  class="pdf-icon" alt=""> <a target="_blank" href="<?php echo base_url().'industry/industry-certificate/'.urlencode(base64_encode($result->id)) ?>">PDF</a></p>
+                                                                        </li>
+                                                                        
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                         </div>
                                     </div>

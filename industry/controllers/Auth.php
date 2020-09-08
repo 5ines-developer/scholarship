@@ -450,7 +450,7 @@ class auth extends CI_Controller {
                 if($this->m_auth->forgotPassword($insert['email'],$insert['ref_id']))
                 {
                     if ($this->sendforgot($insert)) {
-                        $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
+                        $this->session->set_flashdata('success', 'We have sent a password reset link to your mail id, <br> Please check your mail inbox and do not forget to check your spam folder to reset your password.');
                     }else{
                         $this->session->set_flashdata('error', 'Something went wrong, Please try again Later!');
                     }
@@ -614,7 +614,7 @@ class auth extends CI_Controller {
 
         $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('company', 'Company', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('company', 'Company', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('act', 'Act', 'trim|required|alpha_numeric_spaces');
 
         if ($this->form_validation->run() == TRUE ) {
@@ -668,6 +668,19 @@ class auth extends CI_Controller {
         redirect('company-request');
     }
 
+
+    public function customAlpha($str) 
+    {
+        if ( !preg_match('/^[a-z 0-9~%.:_\-@\&+=,]+$/i',$str))
+        {
+            $this->form_validation->set_message('customAlpha', 'The {field} contains invalid special characters');
+            return false;
+        }else
+        {
+                return TRUE;
+        }
+    }
+
     public function sendRequest($insert = null)
     {
         $data['result'] = $insert;
@@ -698,7 +711,7 @@ class auth extends CI_Controller {
         $this->load->model('m_application');
         $data['info'] = $this->m_application->singleStudent($apid);
         $data['img'] =$this->m_application->compDocs($data['info']->company_id);
-
+        $this->load->view('account/pdf', $data);
         require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
         
         $mpdf = new \Mpdf\Mpdf([
@@ -715,7 +728,7 @@ class auth extends CI_Controller {
     function show_images($folder='',$file='') {
 
     
-if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '') {
+if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '' || $folder=='sign' || $folder=='seal') {
 $img_path = $folder.'/'.$file;
 $fp = fopen($img_path,'rb');
 header('Content-Type: image/png');

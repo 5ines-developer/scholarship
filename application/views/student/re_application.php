@@ -22,7 +22,7 @@ $this->load->model('m_stdapplication');
     <!-- Banner -->
     <section class="application-banner">
         <div class="parallax-container">
-            <div class="parallax"><img src="<?php echo base_url() ?>assets/image/application-bg.jpg"></div>
+            <div class="parallax"><img src="<?php echo base_url() ?>assets/img/banner1.jpg"></div>
         </div>
     </section>
     <!-- End Banner -->
@@ -178,7 +178,7 @@ $this->load->model('m_stdapplication');
                                                 </div>
                                             </div><br>
 
-                                            <div class="file-field input-field col s12 m10 " v-if="tribes" >
+                                            <div class="file-field input-field col s12 m10 " v-bind:class="{ hide: tribes }">
 
                                                 <div class="input-field col s6 ">
                                                     <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
@@ -298,7 +298,7 @@ $this->load->model('m_stdapplication');
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <div class="input-field col s12 m5">
-                                                    <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @keyup="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
+                                                    <input id="adhar_no" type="text" placeholder="ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.number" @change="cardNumberSpace" ref="creditCardNumber" :maxlength="max">
                                                     <label for="adhar_no"> <span class="black-text">Enter Your Aadhar Card Number</span>   </label>
                                                     <span class="red-text">{{ adhError }}</span>
                                                 </div>
@@ -319,51 +319,100 @@ $this->load->model('m_stdapplication');
                                             <!-- father aadhar -->
                                             <div class="row m0">
                                             <div class="input-field col s12 m5">
-                                                <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
+                                                <p class="app-item-content" :class="{ hide :fdrader }"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
                                                     <a target="_blank" :href="fadhrpdf">Fathers Aadhar Card</a>
                                                 </p>
+
+                                                <p class="app-item-content" :class="{ hide :fatherdeathfile }"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
+                                                    <a target="_blank" :href="fadhrpdffile">Fathers Death certifiacte</a>
+                                                </p>
+
                                             </div>
                                             <div class="clearfix"></div>
                                            <div class="input-field col s12 m5">
-                                                <input id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.fnumber" @keyup="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
+                                                <input id="adhar_nof" type="text" placeholder="ನಿಮ್ಮ ತಂದೆಯ  ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.fnumber" @change="cardNumberSpacef" ref="creditCardNumberf" :maxlength="max">
                                                 <label for="adhar_nof"> <span class="black-text">Enter Your Father Aadhar Card Number</span>   </label>
+                                                <p>
+                                                          <label class="active">
+                                                            <input type="checkbox" name="not_applicable" v-model="not_applicable1" value="1" @change="not_applicable('father')" />
+                                                            <span>Not Applicable</span>
+                                                          </label>
+                                                        </p>
                                                 <span class="red-text">{{adhErrorf}}</span>
                                             </div>
-                                            <div class="file-field input-field col s12 m6">
+
+                                            <div class="file-field input-field col s12 m6" v-bind:class="{ hide: fdrader }">
                                                 <div class="btn">
                                                     <span>File</span>
                                                     <input type="file" name="adhar"  ref="file2f" @change="adhaarXeroxf" accept=".png,.jpg,.jpeg,.svg,.pdf">
                                                 </div>
                                                 <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
+                                                    <input class="file-path validate" type="text" placeholder="Upload Your Father Adhar Card">
                                                 </div>
                                                 <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
                                             </div>
+
+                                            <div class="file-field input-field col s12 m6" v-bind:class="{ hide: fatherdeath }">
+                                                <div class="btn">
+                                                    <span>File</span>
+                                                    <input type="file" name="death"  ref="file4d" @change="deathXeroxf" accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text" placeholder="Upload Father Death Certificate if father expired">
+                                                </div>
+                                                <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                            </div>
+
                                         </div>
 
                                         <div class="row m0">
                                             <div class="input-field col s12 m5">
-                                                <p class="app-item-content"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
+                                                <p class="app-item-content" :class="{ hide :mdrader }"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
                                                     <a target="_blank" :href="madhrpdf">Mothers Aadhar Card</a>
                                                 </p>
+
+                                                <p class="app-item-content" :class="{ hide :motherdeathfile }"><img src="<?php echo base_url() ?>assets/image/pdf.svg" width="10px" class="pdf-icon" alt="">
+                                                    <a target="_blank" :href="motherpdffile">Mothers Death certifiacte</a>
+                                                </p>
+
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="input-field col s12 m5">
-                                                <input id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.numberm" @keyup="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
-                                                <label for="adhar_no"> <span class="black-text">Enter Your Mother Aadhar Card Number</span>   </label>
+                                                <input id="adhar_no" type="text" placeholder="ನಿಮ್ಮ ತಾಯಿಯ ಆಧಾರ್ ಕಾರ್ಡ್ ಸಂಖ್ಯೆ" class="validate" required="" v-model="adhaar.numberm" @change="cardNumberSpacem" ref="creditCardNumberm" :maxlength="max">
+                                                <label for="adhar_no"> <span class="black-text">Enter Your Mother Aadhar Card Number</span></label>
+                                                <p>
+                                                  <label class="active">
+                                                    <input type="checkbox" name="not_applicable" v-model="not_applicable2" value="1" @change="not_applicable('mother')"/>
+                                                    <span>Not Applicable</span>
+                                                  </label>
+                                                </p>
                                                 <span class="red-text">{{adhErrorm}}</span>
                                             </div>
-                                            <div class="file-field input-field col s12 m6">
+                                            <div class="file-field input-field col s12 m6" v-bind:class="{ hide: mdrader }">
                                                 <div class="btn">
                                                     <span>File</span>
                                                     <input type="file" name="adhar"  ref="file2m" @change="adhaarXeroxm" accept=".png,.jpg,.jpeg,.svg,.pdf">
                                                 </div>
                                                 <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text" placeholder="Upload Your Adhar Card">
+                                                    <input class="file-path validate" type="text" placeholder="Upload Your Mother Adhar Card">
                                                 </div>
                                                 <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
                                             </div>
-                                            </div>
+                                           
+
+
+                                            <div class="file-field input-field col s12 m6"   v-bind:class="{ hide: motherdeath }">
+                                                    <div class="btn">
+                                                            <span>File</span>
+                                                            <input type="file" name="death"  ref="file5d" @change="deathXeroxm" accept=".png,.jpg,.jpeg,.svg,.pdf">
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text" placeholder="Upload Mother Death Certificate if mother expired">
+                                                        </div>
+                                                        <span class="helper-text" data-error="wrong"  data-success="right"><span class="black-text">Note: File Should be in pdf / jpg / png format. Size should be not more than 512KB <a href="https://image.online-convert.com/convert-to-jpg" target="_blank">click here to reduce the image size</a></span></span>
+                                                </div>
+                                             </div>
+
                                             <!-- mother aadhar -->
                                         </div>
                                         
@@ -613,11 +662,11 @@ $this->load->model('m_stdapplication');
                 holder:'',
                 id:'',
             },
-            tribes:'',
+            tribes:true,
             markError:'',
             salError:'',
             scaste: true,
-            genral:false,
+            genral:true,
             max: 16,
             trcategory:'sc',
             gncategory:'general',
@@ -631,31 +680,177 @@ $this->load->model('m_stdapplication');
             adhErrorm:'',
             fadhrpdf:'',
             madhrpdf:'',
+            not_applicable1:'',
+            not_applicable2:'',
+            motherrequire:true,
+            fatherrequire:true,
+            mdrader:false,
+            fdrader:false,
+            fatherdeath:true,
+            motherdeath:true,
+            fatherdeathfile:false,
+            motherdeathfile:false,
+            fadhrpdffile:false,
+            motherpdffile:false,
         },
         methods:{
+
+            not_applicable(not_apply){
+
+
+
+                
+                if (not_apply !='' && not_apply=='mother' && this.not_applicable2 ==true) {
+                    this.not_applicable2 =true;
+                    this.not_applicable1 =false; 
+                    this.mdrader = true;
+                    this.motherdeath = false;
+                    this.fdrader = false;
+                    this.fatherdeath = true;
+                    this.motherrequire = false;
+                    this.fatherrequire = true;
+                    this.adhErrorm = '';
+                    this.motherdeathfile = false;
+                    this.fatherdeathfile = true;
+                    
+
+                }else if(not_apply !='' && not_apply=='father' && this.not_applicable1 ==true){
+                    this.not_applicable1 =true;
+                    this.not_applicable2 =false;
+                    this.fdrader = true;
+                    this.fatherdeath = false;
+                    this.mdrader = false;
+                    this.motherdeath = true;
+                    this.fatherrequire = false;
+                    this.motherrequire = true;
+                    this.adhErrorf = '';
+                    this.fatherdeathfile = false;
+                    this.motherdeathfile = true;
+                    
+                }else{
+
+                    this.fdrader = false;
+                    this.mdrader = false;
+                    this.motherrequire = false;
+                    this.fatherrequire = false;
+                    this.fatherdeath = true;
+                    this.motherdeath = true;
+                    this.fatherdeathfile = true;
+                    this.motherdeathfile = true;
+
+                }
+
+            },
+
             cardNumberSpace(){
                 var cardNumber = this.$refs.creditCardNumber.value;
                 // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
                 // this.adhaar.number = result;
 
+                nud = this.adhaar.number;
+                fad = this.adhaar.fnumber;
+                mad = this.adhaar.numberm;
+
                 this.adhError = '';
+                if (nud ==fad || nud == mad) {
+                    this.adhError = 'Aadhar Card number must be Unique.';
+                }
+
+
                 if (cardNumber.length != 16) {
                     this.adhError = 'Aadhar Card number must be 16 digits.';
+                }else{
+
+                    // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
+                    // this.adhaar.number = result;
+                    var self= this;
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/adharcheck?adhar='+cardNumber)
+                    .then(function (response) {
+                        if(response.data !=  '0'){
+                            M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                            this.adhError = 'You are not eligible to apply for this scholarship';
+                        }
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
                 }
             },
             cardNumberSpacef(){
                 var cardNumber = this.$refs.creditCardNumberf.value;
                 this.adhErrorf = '';
+
+                nud = this.adhaar.number;
+                fad = this.adhaar.fnumber;
+                mad = this.adhaar.numberm;
+                if (fad ==nud || fad == mad) {
+                    this.adhErrorf = 'Aadhar Card number must be Unique.';
+                }
+
                 if (cardNumber.length <16) {
-                    this.adhErrorf = 'Aadhar Card number must be 16 digits.';
+                    if (this.not_applicable1 != true) {
+                        this.adhErrorf = 'Aadhar Card number must be 16 digits.';
+                    }else{
+                        this.adhErrorf = '';
+                    }
+                    
+                }else{
+
+                    // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
+                    // this.adhaar.fnumber = result;
+                    var self= this;
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/adharcheckf?adharf='+cardNumber)
+                    .then(function (response) {
+                        if(response.data !=  '0'){
+                            M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+
+
+                            this.adhErrorf = 'You are not eligible to apply for this scholarship';
+                        }
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
                 }
             },
 
             cardNumberSpacem(){
                 var cardNumber = this.$refs.creditCardNumberm.value;
                 this.adhErrorm = '';
+
+                nud = this.adhaar.number;
+                fad = this.adhaar.fnumber;
+                mad = this.adhaar.numberm;
+
+                if (mad ==nud || mad == fad) {
+                    this.adhErrorm = 'Aadhar Card number must be Unique.';
+                }
+
                 if (cardNumber.length <16) {
-                    this.adhErrorm = 'Aadhar Card number must be 16 digits.';
+                    if (this.not_applicable2 != true) {
+                        this.adhErrorm = 'Aadhar Card number must be 16 digits.';
+                    }else{
+                        this.adhErrorm = '';
+                    }
+
+                }else{
+
+                    // var result = cardNumber.replace(/^(.{4})(.{4})(.{4})(.{4})$/, "$1 $2 $3 $4");
+                    // this.adhaar.numberm = result;
+                    var self= this;
+                    const formData = new FormData();
+                    axios.get('<?php echo base_url() ?>std_application/adharcheckm?adharm='+cardNumber)
+                    .then(function (response) {
+                        if(response.data !=  '0'){
+                            M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
+                            this.adhErrorm = 'You are not eligible to apply for this scholarship';
+                        }
+                    })
+                    .catch(function (error) {
+                        this.errormsg = error.response.data.error;
+                    })
                 }
             },
             markcard(){
@@ -692,13 +887,19 @@ $this->load->model('m_stdapplication');
                 this.file3 = this.$refs.file3.files[0];
                 
             },
+            deathXeroxf(){
+                this.file4 = this.$refs.file4d.files[0];
+
+            },deathXeroxm(){
+                this.file5 = this.$refs.file5d.files[0];
+            },
             casteCheck(){
                 if (this.caste.low =='1') {
-                    this.tribes = true;
+                    this.tribes = false;
                     this.scaste = false;
                     this.genral = true;
                 }else{
-                    this.tribes = false;
+                    this.tribes = true;
                     this.scaste = true;
                     this.genral = false;
                 }
@@ -766,6 +967,12 @@ $this->load->model('m_stdapplication');
                     formData.append('bholder', this.bank.holder);
                     formData.append('uniq', this.uniq);                          
                     formData.append('aid', this.aid);
+
+                    formData.append('not_applicable1', this.not_applicable1);
+                    formData.append('not_applicable2', this.not_applicable2);
+                    formData.append('death', this.file4);
+                    formData.append('death1', this.file5);
+
                     formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
 
                     axios.post('<?php echo base_url() ?>student/submit-application', formData,
@@ -891,7 +1098,58 @@ $this->load->model('m_stdapplication');
                     axios.get('<?php echo base_url() ?>std_application/appliGet')
                     .then(function (response) {
 
-                        console.log(response)
+                        console.log(response.data.notappli);
+                        console.log(response.data.deathcertificate);
+
+                        
+
+
+                        
+
+
+                        if (response.data.notappli =='mother') {
+                            self.not_applicable2 =true;
+                            self.not_applicable1 =false;
+                            self.mdrader = true;
+                            self.motherdeath = false;
+                            self.fdrader = false;
+                            self.fatherdeath = true;
+                            self.motherrequire = false;
+                            self.fatherrequire = true;
+                            self.adhErrorm = '';
+                            self.fatherdeathfile = true;
+
+                            if (response.data.deathcertificate !=null) {
+                                self.motherdeathfile = false;
+                                self.motherpdffile   = "<?php echo base_url() ?>"+response.data.deathcertificate;
+                            }else{
+                                self.motherpdffile = "#";
+                            }
+
+
+                        }else if(response.data.notappli =='father'){
+                            self.not_applicable1 =true;
+                            self.not_applicable2 =false;
+                            self.fdrader = true;
+                            self.fatherdeath = false;
+                            self.mdrader = false;
+                            self.motherdeath = true;
+                            self.fatherrequire = false;
+                            self.motherrequire = true;
+                            self.adhErrorf = '';
+                            self.motherdeathfile = true;
+
+                            if (response.data.deathcertificate !=null) {
+                                self.fatherdeathfile = false;
+                                self.fadhrpdffile   = "<?php echo base_url() ?>"+response.data.deathcertificate;
+                            }else{
+                                self.fadhrpdffile = "#";
+                            }
+
+
+                            
+                        }
+
                         self.aid =  response.data.aId;
                         //basic details
                         self.student.name    = response.data.name;
@@ -904,7 +1162,7 @@ $this->load->model('m_stdapplication');
                         self.institute.name     = '<?php echo (!empty($scholls->school_address))?$scholls->school_address:''; ?>';
                         self.institute.talluk   = '<?php echo (!empty($scholls->talluk))?$scholls->talluk:''; ?>';
                         self.institute.district = '<?php echo (!empty($scholls->districtname))?$scholls->districtname:''; ?>';
-                        if(response.data.course =='1'){
+                        if(response.data.course !=''){
                             self.crse = true;
                         }else{
                             self.institute.pclass   = response.data.cLass;
@@ -919,10 +1177,14 @@ $this->load->model('m_stdapplication');
                         self.institute.course.id            = response.data.course;
                         self.institute.pclass.id            = response.data.class;
                         //caste details
-                        if(response.data.is_scst != 1){
-                            this.tribes = true;
-                            this.scaste = true;
-                            this.genral = false; 
+                        if(response.data.is_scst == "1"){
+                            self.tribes = false;
+                            self.scaste = false;
+                            self.genral = true;
+                        }else{
+                            self.tribes = true;
+                            self.scaste = true;
+                            self.genral = false;
                         }
                         self.caste.low          = response.data.is_scst;
                         self.caste.number       = response.data.cast_no;

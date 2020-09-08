@@ -158,6 +158,56 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+
+
+
+                                        <div class="col s12 m6">
+                                            <div class="app-detail-item">
+                                                <div class="app-item-heading">
+                                                    <p>SEAL</p>
+                                                </div>
+                                                <div class="app-item-body">
+                                                    <div class="row m0">
+                                                        <div class="col s12">
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="app-item-content center">
+                                                                        <img class="responsive-img" :src="seal" alt="">
+                                                                        <button class="upload-btn " @click="SelectFile('seal')"><i class="material-icons ">backup </i> Upload</button>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col s12 m6">
+                                            <div class="app-detail-item">
+                                                <div class="app-item-heading">
+                                                    <p>SIGNATURE</p>
+                                                </div>
+                                                <div class="app-item-body">
+                                                    <div class="row m0">
+                                                        <div class="col s12">
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="app-item-content center">
+                                                                        <img class="responsive-img" :src="sign" alt="">
+                                                                        <button class="upload-btn " @click="SelectFile('sign')"><i class="material-icons ">backup </i> Upload</button>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -283,6 +333,8 @@
                 pan: '<?php echo (!empty($info->pancard))?base_url('show-images/').$info->pancard:''; ?>',
                 gst: '<?php echo (!empty($info->gst))?base_url('show-images/').$info->gst:''; ?>',
                 certificate: '<?php echo (!empty($info->register_doc))?base_url('show-images/').$info->register_doc:''; ?>',
+                seal: '<?php echo (!empty($info->seal))?base_url('show-images/').$info->seal:''; ?>',
+                sign: '<?php echo (!empty($info->sign))?base_url('show-images/').$info->sign:''; ?>',
                 mobile: '<?php echo (!empty($info->mobile))?$info->mobile:''; ?>',
                 email: '<?php echo (!empty($info->email))?$info->email:''; ?>',
                 emailError: '',
@@ -308,10 +360,14 @@
                     }
                     else if(this.type == 'gst'){
                         this.gst = URL.createObjectURL(file);
-                    }
-                    else{
+                    } else if(this.type == 'pan'){
                         this.pan = URL.createObjectURL(file);
+                    }else if(this.type == 'seal'){
+                        this.seal = URL.createObjectURL(file);
+                    }else if(this.type == 'sign'){
+                        this.sign = URL.createObjectURL(file);
                     }
+
                     formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
                     axios.post('<?php echo base_url() ?>industry-doc', formData,{
                             headers: {

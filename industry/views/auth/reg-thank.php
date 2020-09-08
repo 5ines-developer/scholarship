@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Scholarship</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/materialize.min.css">
-    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <link  rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/material-icons.css">
 
   
 
@@ -19,7 +19,7 @@
 <?php $this->load->view('include/header'); ?>
 
     <!-- Registration form  -->
-    <section class="reg-success valign-wrapper  row m0" id='app'>
+    <section class="reg-success valign-wrapper  row m0 indstry-rg-block" id='app'>
         <div class="container-wrap2">
             <div class="col s12 m12 l10 push-l3 p0">
                     <div class="fog-block-content ">
@@ -33,7 +33,7 @@
                                 <div class="center pt30 pb30 regsucess">
                                     <a class="btn-floating btn-large green pulse"><i class="material-icons">done</i></a>
                                     <h1 class="h1">Registration completed successfully</h1>
-                                    <p>Please check your registered email for email verification</p>
+                                    <p>Please check your registered mail inbox and don't forget to check your spam folder to Activate  your account.</p>
                                 </div>
                             </div>
                         </div>

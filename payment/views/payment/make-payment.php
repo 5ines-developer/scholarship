@@ -51,9 +51,10 @@
                                 </div>
                             </div>
                             <div class="under-line"></div>
+                            <!-- ref="form" @submit.prevent="formSubmit" -->
                             
 
-                            <form action="#" method="post" ref="form" @submit.prevent="formSubmit" enctype="multipart/form-data" id="payment">
+                            <form action="#" method="post"  enctype="multipart/form-data" id="payment">
                                 <div class="pay-form z-depth-1">
                                     <div class="pay-ff">
                                         <p style="font-style: italic;font-weight: 700;">Payment Form</p>
@@ -79,7 +80,7 @@
                                                     <select id="p_year" name="p_year" v-model="year"  @change="checkpayment()" required="" >
                                                     <option value="" disabled>Year</option>
                                                     <?php
-                                                    for ($i=2000; $i <= date('Y') ; $i++) { 
+                                                    for($i=date('Y'); $i>= 2000; $i--){ 
                                                         echo '<option value="15-1-'.$i.'">'.$i.'</option>';
                                                     }
                                                     
@@ -176,7 +177,6 @@
 
  <?php
 
-
     if(isset($_POST['submit-pay']))
     {
         $category  = $_POST['category'];
@@ -202,13 +202,13 @@
             <input name="phones" value=" <?php echo $info->mobile ?>" type="hidden">
             
             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-            <!--   rzp_test_V8wTCHMWOy9hfl -->
+            <!--   rzp_test_sxDgwwnBVvPNnz -->
             <!--   rzp_live_gzxNI1eiSwtWSH -->
                 <script  src="https://checkout.razorpay.com/v1/checkout.js"
-                    data-key="rzp_test_V8wTCHMWOy9hfl"
+                    data-key="rzp_test_sxDgwwnBVvPNnz"
                     data-buttontext="Pay with Razorpay"
-                    data-name="5ine Web Solutions Pvt. Ltd."
-                    data-description="Enhancing Bussiness with Pioneering Thoughts..."
+                    data-name="Karnataka labour welfare board"
+                    data-description="Karnataka labour welfare board contribution."
                     data-image="<?php echo base_url('assets/images/logo.png')?>"
                     data-amount="<?php echo $price.'00' ?>"
                     data-prefill.contact="<?php echo $info->mobile ?>"
@@ -231,7 +231,6 @@
     <?php if(isset($_POST['submit-pay'])) {  ?>
     <script type="text/javascript">
         $(function(){
-            alert('0k')
             $yearError = '';
             $year = $('#p_year').val();
             if ($year == '') {

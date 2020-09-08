@@ -134,7 +134,7 @@ class Scholar extends CI_Controller {
             $sub_array[] = $row->district;  
             $sub_array[] = $row->taluk;  
             $sub_array[] = $status;  
-            $sub_array[] = $this->m_scholar->getamnt($row->application_year,$row->graduation); 
+            $sub_array[] = '&#8377; &nbsp;'.$this->m_scholar->getamnt($row->application_year,$row->graduation); 
             $sub_array[] = $row->holder;
             $sub_array[] = $row->acc_no;
             $sub_array[] = $row->ifsc;
@@ -169,7 +169,7 @@ class Scholar extends CI_Controller {
     public function approve($id = null,$msg='')
     {
 
-        $msg = 'Congratulations!, Your Scholarship  Application has been  approved by government .The Scholarship amount will be credited to your account shortly!';
+        $msg = 'Congratulations!, Your Scholarship  Application has been  approved by Labour Welfare Board .The Scholarship amount will be credited to your account shortly!';
         $id = $this->input->post('id');
         if($this->m_scholar->approval($id)){
             $this->approveMail($id);
@@ -242,8 +242,8 @@ class Scholar extends CI_Controller {
         $phone = $this->m_scholar->phoneGet($output['info']->Student_id);
         
         /* API URL */
-        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $data . '&priority=ndnd&stype=normal';
+        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $data . '&sender=RADTEL&to=' . $phone . '&service=T';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
@@ -363,8 +363,10 @@ class Scholar extends CI_Controller {
                 $msg = 'Sorry!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Failed due to '.$insert['pay_freason'];
             }
             /* API URL */
-            $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-            $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $output->phone . '&text=' . $msg . '&priority=ndnd&stype=normal';
+
+            $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+            $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $msg . '&sender=RADTEL&to=' . $output->phone . '&service=T';
+
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $param);

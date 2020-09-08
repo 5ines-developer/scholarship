@@ -20,13 +20,13 @@
             </li>
             <li class="sc-m">
               <div class="collapsible-header"><i class="material-icons">file_copy</i>Scholarship Management</div>
-              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>applications" class="<?php echo(($this->uri->segment(1) == 'applications') && (empty($this->input->get('item'))) ) ? 'active' :'' ?>">All Application</a></span></div>
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>applications?item=process" class="<?php echo($this->input->get('item') == 'process') ? 'active' :'' ?>">Processing Application</a></span></div>
 
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>applications?item=approved" class="<?php echo($this->input->get('item') == 'approved') ? 'active' :'' ?>">Approved Application</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>applications?item=rejected" class="<?php echo($this->input->get('item') == 'rejected') ? 'active' :'' ?>">Rejected Application</a></span></div>
               <div class="collapsible-body"><span><a href="<?php echo base_url() ?>applications?item=pending" class="<?php echo($this->input->get('item') == 'pending') ? 'active' :'' ?>">Pending Application</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>applications" class="<?php echo(($this->uri->segment(1) == 'applications') && (empty($this->input->get('item'))) ) ? 'active' :'' ?>">All Application</a></span></div>
 
             </li>
             <li class="sid-m">

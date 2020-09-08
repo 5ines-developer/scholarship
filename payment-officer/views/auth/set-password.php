@@ -7,7 +7,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
-    <link  rel="stylesheet" href="<?php echo base_url() ?>assets/css/material-icons.css">
+    <link  rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/material-icons.css">
 
   
 
@@ -19,7 +19,7 @@
 <?php $this->load->view('include/header'); ?>
 
     <!-- Registration form  -->
-    <section class="reg-block valign-wrapper  row m0" id='app'>
+    <section class="reg-block valign-wrapper  row m0 admin-rg-block" id='app'>
         <div class="container-wrap2">
             <div class="col s12 m12 l10 push-l3 p0">
                     <div class="fog-block-content ">

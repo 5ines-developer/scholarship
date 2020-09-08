@@ -58,6 +58,8 @@ $this->load->library('encryption');
                                                 <th id="c" class="h5-para-p2">MARKS</th>
                                                 <th id="g" class="h5-para-p2">PRESENT CLASS</th>
                                                 <th id="g" class="h5-para-p2">Amount</th>
+                                                <th id="d" class="h5-para-p2" style="width: 120px;">Year</th>
+                                                <th id="e" class="h5-para-p2" style="width: 120px;">Applied Date</th>
                                                 <th id="g" class="h5-para-p2">Action</th>
                                             </thead>
                                             <tbody class="tbody-list">
@@ -76,6 +78,12 @@ $this->load->library('encryption');
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.$value->mark.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.$value->course.$value->class.'</a></td>
                                                         <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.$this->ci->m_application->getamnt($value->application_year,$value->graduation).'</a></td>
+
+                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.$value->application_year.'</a></td>
+                                                        <td class="h5-para-p2"><a class="truncate" href="'.base_url('application/').$id.'">'.date('d M, Y',strtotime($value->date)).'</a></td>
+
+
+
                                                         <td class="center-align">
                                                             <a href="'.base_url('application/').$id.'" class="blue-text waves-effect waves-light"> View</a>
                                                         </td></tr>';

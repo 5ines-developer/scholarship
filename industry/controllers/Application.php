@@ -95,7 +95,7 @@ class Application extends CI_Controller {
         $this->security->xss_clean($_POST);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to government for verification, we will notify the status via sms';
+            $msg = 'Your Karnataka Labour Welfare Board Scholarship has been succesfully moved to Labour Welfare Board for verification, we will notify the status via sms';
             $id = $this->input->post('id');
             if($this->m_application->approval($id)){
                 $this->approveMail($id);
@@ -143,8 +143,26 @@ class Application extends CI_Controller {
 
     public function approveMail($id='')
 	{
+
+        
+        $this->load->model('m_application');
         $data['info'] = $this->m_application->singleStudent($id);
+        $data['img'] =$this->m_application->compDocs($data['info']->company_id);
         $email = $this->m_application->emailGet($data['info']->Student_id);
+
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+            'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('account/pdf', $data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $content = $mpdf->Output('', 'S');
+        $filename = "Scholarship-industry-approval.pdf";
+
+
+        
 
         if (!empty($email)) {
             $this->load->config('email');
@@ -155,6 +173,7 @@ class Application extends CI_Controller {
             $this->email->from($from , 'Karnataka Labour Welfare Board');
             $this->email->to($email);
             $this->email->subject('Scholarship application Approved'); 
+            $this->email->attach($content, 'attachment', $filename, 'application/pdf');
             $this->email->message($msg);
             if($this->email->send())  
             {
@@ -175,8 +194,9 @@ class Application extends CI_Controller {
 		$phone = $this->m_application->singphoneget($apid);
 		
         /* API URL */
-        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $data . '&priority=ndnd&stype=normal';
+        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $data . '&sender=RADTEL&to=' . $phone . '&service=T';
+        
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);

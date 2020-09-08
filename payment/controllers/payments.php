@@ -79,17 +79,17 @@ class Payments extends CI_Controller {
         // curl_close($ch);
 
 
-        // $data['title']  = 'Make Payment | Scholarship';
-        // if($this->session->userdata('pyId') != ''){
-            // $data['info']   = $this->M_account->getAccountDetails();
-            // $data['act']    = $this->m_payments->getAct($data['info']->indId);
-            // $this->load->view('payment/make-payment', $data, FALSE);
-        // }else{
+        $data['title']  = 'Make Payment | Scholarship';
+        if($this->session->userdata('pyId') != ''){
+            $data['info']   = $this->M_account->getAccountDetails();
+            $data['act']    = $this->m_payments->getAct($data['info']->indId);
+            $this->load->view('payment/make-payment', $data, FALSE);
+        }else{
             $data['title'] = 'Industry Registration';
             $data['taluk'] = $this->m_auth->getTaluk();
             $data['district'] = $this->m_auth->getDistrict();            
             $this->load->view('payment/payment', $data, FALSE);
-        // }
+        }
     }
 
     public function search($var = null)
@@ -215,13 +215,13 @@ class Payments extends CI_Controller {
 
          if ($_SERVER['REQUEST_METHOD'] != 'POST') { $this->session->set_flashdata('error', 'Some error occured, please try again!');redirect('make-payment'); }
 
-        $this->form_validation->set_rules('category', 'Category', 'trim|requiredalpha_numeric_spaces');
-        $this->form_validation->set_rules('p_cfemale', 'Female Employees', 'trim|requiredalpha_numeric_spaces');
-        $this->form_validation->set_rules('p_cmale', 'Male Employees',  'trim|requiredalpha_numeric_spaces');
-        $this->form_validation->set_rules('p_year', 'Year', 'trim|requiredalpha_numeric_spaces');
-        $this->form_validation->set_rules('reg_no', 'Register Number', 'trim|requiredalpha_numeric_spaces');
-        $this->form_validation->set_rules('prices', 'Price', 'trim|requiredalpha_numeric_spaces');
-        $this->form_validation->set_rules('interests', 'Interest', 'trim|requiredalpha_numeric_spaces');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('p_cfemale', 'Female Employees', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('p_cmale', 'Male Employees',  'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('p_year', 'Year', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('reg_no', 'Register Number', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('prices', 'Price', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('interests', 'Interest', 'trim|required');
         if ($this->form_validation->run() == TRUE) {
 
            $female      =  $this->input->post('p_cfemale');
@@ -277,10 +277,15 @@ class Payments extends CI_Controller {
 
     public function sendmail($insert='',$emails='',$phone='',$company='')
     {
+        if (!empty($this->inId)) {
+            $rgid = $this->inId;
+        }else{
+            $rgid = $insert['comp_reg_id'];
+        }
 
-        $data['result'] = $this->m_payments->singlepay($insert['insert_id'],$this->inId);
-        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-        // require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+
+        $data['result'] = $this->m_payments->singlepay($insert['insert_id'],$rgid);
+        require_once $_SERVER['DOCUMENT_ROOT'].'vendor/autoload.php';
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
             'default_font' => 'tunga'

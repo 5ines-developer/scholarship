@@ -90,7 +90,7 @@
         <?php $this->load->view('include/header') ?>
 
     <!-- Registration form  -->
-    <section class="reg-block row m0" id='app'>
+    <section class="reg-block row m0 indstry-rg-block" id='app'>
         <div class="container-wrap2">
             <div class="col s12 m12 l10 push-l3 p0">
                 <div class="fog-block-content">

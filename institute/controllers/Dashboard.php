@@ -37,8 +37,14 @@ class Dashboard extends CI_Controller {
     // scholarship request
     public function scholarship_request()
     {
-        $result = $this->m_dashboard->getScholarshipRequest();
-        echo json_encode($result);
+        $year = $this->input->get('year');
+        $results = $this->m_dashboard->getScholarshipRequest($year);
+        if (!empty($results)) {
+            foreach ($results as $key => $value) {
+                $value->amount = $this->m_dashboard->getamnt($value->application_year,$value->graduation);
+            }
+        }
+        echo json_encode($results);
     }
 
     // single student data
@@ -91,8 +97,14 @@ class Dashboard extends CI_Controller {
     // rejected list
     public function student_rejects()
     {
-        $result = $this->m_dashboard->getScholarshipRejects();
-        echo json_encode($result);
+        $year = $this->input->get('year');
+        $results = $this->m_dashboard->getScholarshipRejects($year);
+        if (!empty($results)) {
+            foreach ($results as $key => $value) {
+                $value->amount = $this->m_dashboard->getamnt($value->application_year,$value->graduation);
+            }
+        }
+        echo json_encode($results);
     }
 
     // approve list
@@ -105,8 +117,14 @@ class Dashboard extends CI_Controller {
     // Approved list
     public function student_approved()
     {
-        $result = $this->m_dashboard->getScholarshipApproved();
-        echo json_encode($result);
+        $year = $this->input->get('year');
+        $results = $this->m_dashboard->getScholarshipApproved($year);
+        if (!empty($results)) {
+            foreach ($results as $key => $value) {
+                $value->amount = $this->m_dashboard->getamnt($value->application_year,$value->graduation);
+            }
+        }
+        echo json_encode($results);
     }
 
     // approve application
@@ -145,6 +163,19 @@ class Dashboard extends CI_Controller {
         $data['info'] = $this->m_dashboard->singleStudent($id);
         $data['img'] =$this->m_dashboard->compDocs($data['info']->company_id);
         $data['email'] = $data['info']->email;
+
+
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 9,
+            'default_font' => 'tunga'
+        ]);
+        $html = $this->load->view('dashboard/pdf', $data, TRUE);
+        
+        $mpdf->WriteHTML($html);
+        $content = $mpdf->Output('', 'S');
+        $filename = "Scholarship-institute-approval.pdf";
+
         $this->load->config('email');
         $this->load->library('email');
         $from = $this->config->item('smtp_user');
@@ -152,6 +183,7 @@ class Dashboard extends CI_Controller {
         $this->email->set_newline("\r\n");
         $this->email->from($from , 'Karnataka Labour Welfare Board');
         $this->email->to($data['email']);
+        $this->email->attach($content, 'attachment', $filename, 'application/pdf');
         $this->email->subject('Scholarship application Approved'); 
         $this->email->message($msg);
         if($this->email->send())  
@@ -170,8 +202,8 @@ class Dashboard extends CI_Controller {
         $phone = $this->m_dashboard->singphoneget($apid);
         
         /* API URL */
-        $url = 'http://trans.smsfresh.co/api/sendmsg.php';
-        $param = 'user=5inewebsolutions&pass=5ine5ine&sender=PROPSB&phone=' . $phone . '&text=' . $data . '&priority=ndnd&stype=normal';
+        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $data . '&sender=RADTEL&to=' . $phone . '&service=T';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);

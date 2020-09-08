@@ -8,6 +8,7 @@
     <title>Scholarship</title>
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
+    <link  rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/material-icons.css">
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
     <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js"></script>
@@ -19,7 +20,7 @@
     <?php $this->load->view('include/header') ?>
 
     <!-- Registration form  -->
-    <section class="reg-block row m0" id='app'>
+    <section class="reg-block row m0 indstry-rg-block" id='app'>
         <div class="container-wrap2">
             <div class="col s12 m12 l10 push-l1 p0">
                 <div class="reg-block-content">
@@ -66,10 +67,15 @@
                         </div>
                     </div>
 
-                    <div class="col s12 pull-m6 pull-l6 m6 l6 reg-left height352 valign-wrapper">
+                    <div class="col s12 pull-m6 pull-l6 m6 l6 reg-left height352 valign-wrapper hide-on-small-only">
                         <div class="reg-left-box ">
                             <div class="contents">
-                                <p>Welcom To</p>
+                                <center>
+                                        <div class="logn-img">
+                                            <img class="responsive-img" src="<?php echo $this->config->item('web_url') ?>assets/image/logo.png" alt="">
+                                        </div>
+                                    </center>
+                                <p>Welcome To</p>
                                 <p>Karnataka Labour Welfare Board</p>
                                 <p>If You Dont Have an Account ? <a href="<?php echo base_url('register') ?>">Register</a></p>
                             </div>

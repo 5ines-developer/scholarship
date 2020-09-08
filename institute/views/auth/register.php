@@ -22,7 +22,7 @@
     <?php $this->load->view('include/header'); ?>
 
    <!-- form section -->
-    <section class="bg pt30 pb30">
+    <section class="bg pt30 pb30 inst-rg-block">
         <div class="container mob-block">
             <div class="row m0">
                 <div class="col s12 m12 l10 push-l1">
@@ -276,11 +276,11 @@
             },checkForm() {
                 if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '')) {
 
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // }
+                    }
                 } else {}
             }
         }

@@ -129,23 +129,6 @@
                         this.mobileError = 'Mobile number must be 10 digits!';
                     }else{
                         this.mobileError='';
-                        const formData = new FormData();
-                        formData.append('phone',this.phone);
-                        formData.append('id',this.id);
-                        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
-                        axios.post('<?php echo base_url('employee/mobile_check') ?>', formData)
-                        .then(response => {
-                            if (response.data == '1') {
-                                this.mobileError = 'This Mobile number already exist!';
-                            } else {
-                                this.mobileError = '';
-                            }
-
-                        }).catch(error =>{
-                            if (error.response) {
-                                this.errormsg = error.response.data.error;
-                            }
-                        } )
                     }
                 },
                 checkForm() {

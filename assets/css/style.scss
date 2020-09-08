@@ -105,9 +105,24 @@
                     }
                 }
                 
+                .inst-rg-block {
+                    background: #00000069 url(../image/inst-bg.jpg) !important;
+                    background-size: cover !important;
+                }
+                
+                .indstry-rg-block {
+                    background: #00000069 url(../image/ind-bg.jpg) !important;
+                    background-size: cover !important;
+                }
+                
+                .admin-rg-block {
+                    background: #00000069 url(../image/admin-bg.png) !important;
+                    background-size: cover !important;
+                }
+                
                 // registration form
                 .reg-block {
-                    background: #000000a6 url(../image/rg-bg.jpg);
+                    background: #00000069 url(../image/rg-bg.jpg);
                     background-blend-mode: overlay;
                     background-size: cover;
                     padding: 50px 0;
@@ -138,15 +153,16 @@
                                 text-align: center;
                                 padding: 15px;
                                 width: 100%;
-                                .contents p:nth-child(1) {
+                                .contents p:nth-child(2) {
                                     font-weight: 700;
                                     font-size: 18px;
                                 }
-                                .contents p:nth-child(2) {
+                                .contents p:nth-child(3) {
                                     font-weight: 700;
                                     font-size: 24px;
+                                    margin-top: 0;
                                 }
-                                .contents p:nth-child(3) {
+                                .contents p:nth-child(4) {
                                     font-weight: 600;
                                     a {
                                         color: #fff;
@@ -154,6 +170,9 @@
                                             opacity: 0.8;
                                         }
                                     }
+                                }
+                                .logn-img {
+                                    width: 100px;
                                 }
                             }
                         }
@@ -362,6 +381,7 @@
                     }
                     .parallax-container {
                         max-height: 380px;
+                        width: 100%;
                     }
                 }
                 
@@ -593,8 +613,8 @@
                     }
                 }
                 /********************************
-    INSTITUTION REGISTRATION
-********************************/
+      INSTITUTION REGISTRATION
+  ********************************/
                 
                 form .file-field .btn {
                     background: #00437d;
@@ -826,8 +846,8 @@
                     }
                 }
                 /********************************
-    INSTITUTION REGISTRATION
-********************************/
+      INSTITUTION REGISTRATION
+**  ******************************/
                 
                 form .file-field .btn {
                     background: #00437d;
@@ -887,8 +907,8 @@
                     }
                 }
                 /********************************
-    INSTITUTION REGISTRATION
-********************************/
+      INSTITUTION REGISTRATION
+ ** ******************************/
                 
                 form .file-field .btn {
                     background: #00437d;
@@ -944,7 +964,6 @@
                     .application-banner {
                         .parallax-container {
                             max-height: 220px;
-                            width: 100%;
                         }
                     }
                     .container-wrap1 {
@@ -1701,6 +1720,20 @@
                 }
                 
                 @media(max-width:767px) {
+                    .vue-data-table {
+                        .thead-list th {
+                            width: 100px;
+                        }
+                        .tbody-list {
+                            tr {
+                                display: inline-flex !important;
+                            }
+                            td {
+                                padding: 5px 10px;
+                                width: 104px;
+                            }
+                        }
+                    }
                     .hr-list {
                         overflow-x: auto;
                         float: unset;
@@ -2304,11 +2337,11 @@
                             padding: 10px 0px !important;
                         }
                     }
-                    .hiegt-box,
-                    .reg-block,
-                    .board {
-                        min-height: auto;
-                    }
+                    // .hiegt-box,
+                    // .reg-block,
+                    // .board {
+                    //     min-height: auto;
+                    // }
                 }
                 
                 .frgotPass {
@@ -3127,6 +3160,7 @@
                     }
                     .board .card-title {
                         font-size: 12px !important;
+                        display: inline;
                     }
                     .tbody-list.gb {
                         border-bottom: 1px solid #d9d9d9 !important;
@@ -3211,4 +3245,24 @@
                     font-weight: 600;
                     font-size: 15px;
                     margin-bottom: 8px;
+                }
+                
+                .razorpay-payment-button {
+                    display: none;
+                }
+                
+                .acnt-st-title {
+                    border-bottom: 1px solid #eaeaea;
+                    padding-bottom: 10px;
+                    font-size: 16px;
+                    color: #111;
+                    font-weight: 600;
+                    display: block;
+                    line-height: 32px;
+                    margin-bottom: 8px;
+                    .btn-theme.btn {
+                        font-size: 12px;
+                        padding: 8px !important;
+                        line-height: 21px;
+                    }
                 }

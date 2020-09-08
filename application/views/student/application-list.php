@@ -163,8 +163,7 @@ $this->load->library('encryption');
             el: '#app',
             data: {
                 loader: false,
-                year: '<?php echo $this->input->get('
-                year ') ?>',
+                year: '<?php echo $this->input->get('year ') ?>',
             },
             methods: {
                 yearChange() {

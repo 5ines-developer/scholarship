@@ -337,7 +337,7 @@ class auth extends CI_Controller {
                 $email = $this->input->post('email');
                 if($result = $this->m_auth->checkMail($email)){
                     $this->sendForgot($result);
-                    $this->session->set_flashdata('success', 'We have sent A password reset link to your mail id, <br> Please check your mail to reset your password');
+                    $this->session->set_flashdata('We have sent a password reset link to your mail id, <br> Please check your mail inbox and do not forget to check your spam folder to reset your password.');
                     redirect('forgot-password','refresh');
                 }else{
                     $this->session->set_flashdata('error', 'Invalid email address');
@@ -568,7 +568,7 @@ class auth extends CI_Controller {
                 'hash' => $this->security->get_csrf_hash()
             );
             $this->security->xss_clean($_POST);
-        $this->form_validation->set_rules('name', 'principal Name', 'trim|required|alpha_numeric_spaces');
+        // $this->form_validation->set_rules('name', 'principal Name', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('number', 'Phone number', 'trim|required|numeric|exact_length[10]');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
@@ -656,14 +656,17 @@ class auth extends CI_Controller {
 
 
         function show_images($folder='',$file='') {
-        if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '') {
-        $img_path = $folder.'/'.$file;
-        $fp = fopen($img_path,'rb');
-        header('Content-Type: image/png');
-        header('Content-length: ' . filesize($img_path));
-        fpassthru($fp);
+
+
+
+        if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '' || $folder=='signature' || $folder=='seal') {
+            $img_path = $folder.'/'.$file;
+            $fp = fopen($img_path,'rb');
+            header('Content-Type: image/png');
+            header('Content-length: ' . filesize($img_path));
+            fpassthru($fp);
         }else{
-        redirect('/','refresh');
+            redirect('/','refresh');
         }
 
         }

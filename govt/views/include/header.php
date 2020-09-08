@@ -41,14 +41,31 @@
             </nav>
 
             <ul class="sidenav" id="mobile-demo">
-                <li><a href=" ">Home</a></li>
-                <li><a href=" ">Hr List</a></li>
-                <li><a href=" ">Scholarship Request List</a></li>
-                <li><a href=" ">Scholarship Approval List</a></li>
-                <li><a href=" ">Scholarship Reject List</a></li>
-                <li><a href="<?php echo base_url() ?>profile"  class="<?php echo($this->uri->segment(1) == 'profile') ? 'active' :'' ?>">Account Settings</a></li>
-                <li><a href="<?php echo base_url() ?>change-password"  class="<?php echo($this->uri->segment(1) == 'change-password') ? 'active' :'' ?>">Change Password</a></li>
-                <li><a href="<?php echo base_url('student/logout')?>">Logout</a></li>
+                <li>
+                                    <a href="<?php echo base_url() ?>dashboard"  class="<?php echo($this->uri->segment(1) == 'dashboard') ? 'active' :'' ?>">Dashboard</a>
+                                </li>
+                                <li>
+                                <a href="<?php echo base_url() ?>applications?item=pending" class="<?php echo($this->input->get('item') == 'pending') ? 'active' :'' ?>">Pending Application</a>
+                                </li>
+                                <li>
+                                <a href="<?php echo base_url() ?>applications?item=approved" class="<?php echo($this->input->get('item') == 'approved') ? 'active' :'' ?>">Approved Application</a>
+                                </li>
+                                <li>
+                                <a href="<?php echo base_url() ?>applications?item=rejected" class="<?php echo($this->input->get('item') == 'rejected') ? 'active' :'' ?>">Rejected Application</a>
+                                </li>
+                                <ul class="collapsible men-lft">
+                                    <li class="rpt-m">
+              <div class="collapsible-header">Reports</div>
+
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports" class="<?php echo($this->uri->segment(1) == 'reports' && (empty($this->input->get('item'))) ) ? 'active' :'' ?>">Total Scholarship Request</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports?item=pending" class="<?php echo($this->input->get('item') == 'pending') ? 'active' :'' ?>">Total Pending Scholarship</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports?item=approved" class="<?php echo($this->input->get('item') == 'approved') ? 'active' :'' ?>">Total Approved Scholarship</a></span></div>
+              <div class="collapsible-body"><span><a href="<?php echo base_url() ?>reports?item=rejected" class="<?php echo($this->input->get('item') == 'rejected') ? 'active' :'' ?>">Total Rejected Scholarship</a></span></div>
+            </li>
+            <li><a href="<?php echo base_url('profile')?>">Account Settings</a></li>
+              <li><a href="<?php echo base_url('change-password')?>">Change Password</a></li>
+              <li><a href="<?php echo base_url('logout')?>">Logout</a></li>
+
             </ul>
 
             <ul id='dropdown1' class='dropdown-content'>

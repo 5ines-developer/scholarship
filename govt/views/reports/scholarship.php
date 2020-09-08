@@ -52,7 +52,7 @@
                                     <div class="row m0">
                                     <div class="table-detail">
                                         <select name="dist" fname="district" id="dis-drp" class="select-list">
-                                                <option value="" disabled selected>District</option>
+                                                <option value="" selected>District</option>
                                                 <?php if (!empty($district)) {
                                                     $ds = $this->input->get('district');
                                                    foreach ($district as $key => $value) { ?> 
@@ -61,7 +61,7 @@
                                                
                                         </select>
                                         <select name="dist" fname="taluk" id="dis-drp" class="select-list">
-                                                <option value="" disabled selected>Taluk</option>
+                                                <option value="" selected>Taluk</option>
                                                 <?php
                                                 if (!empty($taluk)) {
                                                     $tl = $this->input->get('taluk');
@@ -70,7 +70,7 @@
                                                 <?php } } ?>
                                         </select>
                                         <select name="dist" fname="caste" id="dis-drp" class="select-list">
-                                            <option value="" disabled >Caste</option>
+                                            <option value="" selected>Caste</option>
                                             <option value="sc" <?php if($this->input->get('caste') == 'sc'){ echo 'selected="true"'; } ?>>SC</option>
                                             <option value="st" <?php if($this->input->get('caste') == 'st'){ echo 'selected="true"'; } ?>>ST</option>
                                             <option value="general" <?php if($this->input->get('caste') == 'general'){ echo 'selected="true"'; } ?>>General</option>
