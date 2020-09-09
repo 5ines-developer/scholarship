@@ -26,6 +26,7 @@ class M_industry extends CI_Model {
         $this->db->join('industry ind', 'ind.id = ireg.industry_id', 'left');
         $this->db->join('taluq tq', 'tq.id = ireg.talluk', 'left');
         $this->db->join('city cty', 'cty.id = ireg.district', 'left');
+        $this->db->group_by('ind.id');
 
         if(isset($_POST["search"]["value"])){
         	$this->db->group_start();
@@ -342,6 +343,52 @@ class M_industry extends CI_Model {
         }else{
             return false;
         }
+    }
+
+    public function csv_industry($value='')
+    {
+        $select_column = array('id','reg_id','name','taluq','act','created_on');
+        $this->db->order_by('id', 'ASC');  
+        return $this->db->get('industry')->result();
+    }
+
+    public function csv_regInd($value='')
+    {
+        $this->db->where('ireg.status', '1');
+        $select_column = array('ind.name','ind.id as industryId','ind.act','ind.reg_id','ireg.email','ireg.mobile','ireg.name as director','ireg.pancard','ireg.status','ireg.gst','ireg.date','ireg.address','ireg.pan_no','ireg.gst_no','ireg.seal','ireg.sign','tq.title','cty.title as district');
+        $this->db->select($select_column);
+        $this->db->where('ireg.type',1);
+        $this->db->from('industry_register ireg');
+        $this->db->join('industry ind', 'ind.id = ireg.industry_id', 'left');
+        $this->db->join('taluq tq', 'tq.id = ireg.talluk', 'left');
+        $this->db->join('city cty', 'cty.id = ireg.district', 'left');
+        $this->db->order_by('ind.id', 'ASC'); 
+        $this->db->group_by('ind.id');
+        $query = $this->db->get(); 
+        return $query->result(); 
+    }
+
+
+    public function csv_nonreg($value='')
+    {
+        $this->db->group_start();
+            $this->db->where('type', 1);
+        $this->db->group_end();
+        $this->db->select('industry_id');
+        $query = $this->db->get('industry_register')->result();
+
+        if (!empty($query)) {
+            foreach ($query as $key => $value) {
+                $industry_id[] = $value->industry_id;
+            }
+        }
+        $select = array("id","created_on","name","reg_id", "act");
+        $this->db->where_not_in('id', $industry_id);
+        $this->db->from('industry');
+        $this->db->select($select);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get(); 
+        return $query->result();
     }
 
 

@@ -39,7 +39,17 @@
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
-                                    <span class="list-title ">Reports - All Scholarship List</span>
+                                    <span class="list-title ">Reports -
+
+                                        <?php if ($this->input->get('item') == 'approved') {
+                                            echo "Total Approved Request";
+                                        }elseif ($this->input->get('item') == 'pending') {
+                                            echo "Total Pending Scholarship";
+                                        }elseif ($this->input->get('item') == 'rejected') {
+                                            echo "Total Rejected Scholarship";
+                                        }else{
+                                            echo "Total Scholarship Request";
+                                        } ?></span>
                                     <select class="browser-default select-list" fname="year" id="short">
                                         <option value="">Choose Year</option>
                                         <?php $yr = $this->input->get('year');

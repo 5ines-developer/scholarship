@@ -568,7 +568,7 @@ class auth extends CI_Controller {
                 'hash' => $this->security->get_csrf_hash()
             );
             $this->security->xss_clean($_POST);
-        // $this->form_validation->set_rules('name', 'principal Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('name', 'Institute Name', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('number', 'Phone number', 'trim|required|numeric|exact_length[10]');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');

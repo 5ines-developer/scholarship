@@ -143,6 +143,8 @@
                                 <div class="title-list ">
                                     <span class="list-title ">Scholarship List</span>
 
+                                    <a href="<?php echo base_url('scholar/csv?item='.$this->input->get('item')) ?>" class="z-depth-1 excel-downbtn">Excel</a>
+
                                     <a href="#import"  class="bulk-btn z-depth-1 white-text green darken-3 waves-effect waves-ligh modal-trigger">Payment Status Bulk Upload</a>
 
                                     <select class="browser-default select-list" fname="year" id="short">
@@ -318,7 +320,7 @@
                 'serverSide': true,
                 'dom': 'Bfrtip',
                 'buttons': [
-                    'excel', 'pdf',
+                    'pdf',
                 ],
                 'order': [],
                 'ajax': {

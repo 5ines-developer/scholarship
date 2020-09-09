@@ -87,6 +87,15 @@ $route['fees/delete/(:any)']            = 'fees/delete/$1';
 $route['reports']                  		= 'reports/index';
 $route['contribution-report']           = 'reports/contribution';
 $route['contribution-dashboard']        = 'reports/dashboard';
+$route['application-date']        		= 'appli_date/index';
+$route['application-date/add']        	= 'appli_date/add';
+$route['application-date/delete/(:any)'] = 'appli_date/delete/$1';
+
+
+
+
+
+
 
 
 

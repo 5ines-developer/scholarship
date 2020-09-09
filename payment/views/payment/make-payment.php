@@ -52,6 +52,9 @@
                             </div>
                             <div class="under-line"></div>
                             <!-- ref="form" @submit.prevent="formSubmit" -->
+
+
+                            <form name="ecom" method="post" action="https://test.sbiepay.com/secure/MerchantHostedListener"> <input type="hidden" name="EncryptTrans" value="<%= EncryptTrans %>">  <input type="hidden" name="EncryptpaymentDetails" value="<%= EncryptpaymentDetails %>"> <input type="hidden" name="merchIdVal" value ="1000112"/> <input type="submit" name="submit" value="Submit"> </form>
                             
 
                             <form action="#" method="post"  enctype="multipart/form-data" id="payment">

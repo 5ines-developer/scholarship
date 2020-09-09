@@ -573,6 +573,98 @@ class Industry extends CI_Controller {
 
 
 
+    public function csv()
+    {
+
+     $item = $this->input->get('item');
+
+     if ($item == 'all') {
+        $query = $this->m_industry->csv_industry($item);  // fetch Data from table
+     }else if($item == 'non'){
+        $query = $this->m_industry->csv_nonreg($item);
+     }
+
+
+       // this will return all data into array
+        $dataToExports = [];
+        foreach ($query as $row) {
+
+            $verify = '';
+
+             if($row->act == '1'){
+                $verify = 'Shops and Commercial Act';
+            }else if($row->act == '2'){
+                $verify = 'Factory Act';
+            }else if($row->act == '3'){
+                $verify = 'Others';
+            }
+            $arrangeData['SL NO.'] = $row->id;
+            $arrangeData['Industry Name'] = $row->name;
+            $arrangeData['Register Number'] = $row->reg_id;
+            $arrangeData['Act'] = $verify;
+            $arrangeData['Created On'] = date('d M, Y',strtotime($row->created_on));
+          $dataToExports[] = $arrangeData;
+         }
+         // set header
+         $filename = date('Ymdhis-')."industry-list.xls";
+                header("Content-Type: application/vnd.ms-excel");
+                header("Content-Disposition: attachment; filename=\"$filename\"");
+         $this->exportExcelData($dataToExports);
+    }
+
+
+    public function exportExcelData($records)
+    {
+            $heading = false;
+           if (!empty($records))
+               foreach ($records as $row) {
+                   if (!$heading) {
+                       // display field/column names as a first row
+                       echo implode("\t", array_keys($row)) . "\n";
+                       $heading = true;
+                   }
+                   echo implode("\t", ($row)) . "\n";
+               }
+    }
+
+    public function csv1($value='')
+    {
+        $item = $this->input->get('item');
+
+     if ($item == 'reg') {
+        $query = $this->m_industry->csv_regInd($item);  // fetch Data from table
+     }
+
+       // this will return all data into array
+        $dataToExports = [];
+        foreach ($query as $row) {
+
+            $verify = '';
+
+             if($row->act == '1'){
+                $verify = 'Shops and Commercial Act';
+            }else if($row->act == '2'){
+                $verify = 'Factory Act';
+            }else if($row->act == '3'){
+                $verify = 'Others';
+            }
+            $arrangeData['SL NO.']          = $row->industryId;
+            $arrangeData['Industry Name']   = $row->name;
+            $arrangeData['Register Number'] = $row->reg_id;
+            $arrangeData['Act']             = $verify;
+            $arrangeData['District']        = $row->district;
+            $arrangeData['Taluk']           = $row->title;
+            $dataToExports[] = $arrangeData;
+         }
+         // set header
+         $filename = date('Ymdhis-')."industry-list.xls";
+                header("Content-Type: application/vnd.ms-excel");
+                header("Content-Disposition: attachment; filename=\"$filename\"");
+         $this->exportExcelData($dataToExports);
+    }
+
+
+
 
 
 

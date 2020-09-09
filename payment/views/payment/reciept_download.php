@@ -41,59 +41,47 @@ $this->load->library('Encryption_url');
                                     <li>Recieved From <span style="text-decoration:underline;font-weight: 400;"><?php echo (!empty($result->comp))?$result->comp:''; ?></span> </li>
                                     <li>Karnataka Labour Welfare Board scholarship contribution fund for the Calender year  <span style="text-decoration:underline;font-weight: 400;"><?php echo (!empty($result->year))?$result->year:''; ?></span></li>
                                     <li>Amount Rs: <span style="text-decoration:underline;font-weight: 400;"> <?php echo (!empty($result->price))?$result->price:''; ?> </span> </li>
-                                    <li>Rs in Words <span style="text-decoration:underline;font-weight: 400;">  <?php $num = $result->price;
-                                              $num    = ( string ) ( ( int ) $num );
-                                              if( ( int ) ( $num ) && ctype_digit( $num ) )
-                                              {
-                                                  $words  = array( );
-                                                  $num    = str_replace( array( ',' , ' ' ) , '' , trim( $num ) );
-                                                  $list1  = array('','one','two','three','four','five','six','seven',
-                                                      'eight','nine','ten','eleven','twelve','thirteen','fourteen',
-                                                      'fifteen','sixteen','seventeen','eighteen','nineteen');
-                                                  $list2  = array('','ten','twenty','thirty','forty','fifty','sixty',
-                                                      'seventy','eighty','ninety','hundred');
-                                                  $list3  = array('','thousand','million','billion','trillion',
-                                                      'quadrillion','quintillion','sextillion','septillion',
-                                                      'octillion','nonillion','decillion','undecillion',
-                                                      'duodecillion','tredecillion','quattuordecillion',
-                                                      'quindecillion','sexdecillion','septendecillion',
-                                                      'octodecillion','novemdecillion','vigintillion');
-                                                  $num_length = strlen( $num );
-                                                  $levels = ( int ) ( ( $num_length + 2 ) / 3 );
-                                                  $max_length = $levels * 3;
-                                                  $num    = substr( '00'.$num , -$max_length );
-                                                  $num_levels = str_split( $num , 3 );
-                                                  foreach( $num_levels as $num_part )
-                                                  {
-                                                      $levels--;
-                                                      $hundreds   = ( int ) ( $num_part / 100 );
-                                                      $hundreds   = ( $hundreds ? ' ' . $list1[$hundreds] . ' Hundred' . ( $hundreds == 1 ? '' : 's' ) . ' ' : '' );
-                                                      $tens       = ( int ) ( $num_part % 100 );
-                                                      $singles    = '';
-                                                      if( $tens < 20 ) { $tens = ( $tens ? ' ' . $list1[$tens] . ' ' : '' ); } else { $tens = ( int ) ( $tens / 10 ); $tens = ' ' . $list2[$tens] . ' '; $singles = ( int ) ( $num_part % 10 ); $singles = ' ' . $list1[$singles] . ' '; } $words[] = $hundreds . $tens . $singles . ( ( $levels && ( int ) ( $num_part ) ) ? ' ' . $list3[$levels] . ' ' : '' ); 
-                                                  }
-                                                      $commas = count( $words ); 
-                                                      if( $commas > 1 )
-                                                  {
-                                                      $commas = $commas - 1;
-                                                  }
-                                                  $words  = implode( ', ' , $words );
-                                                  //Some Finishing Touch
-                                                  //Replacing multiples of spaces with one space
-                                                  $words  = trim( str_replace( ' ,' , ',' , trim( ucwords( $words ) ) ) , ', ' );
-                                                  if( $commas )
-                                                  {
-                                                      $words  = str_replace( ',' , ' and' , $words );
-                                                  } }
-                                              else if( ! ( ( int ) $num ) )
-                                              {
-                                                  $words ='';
-                                              }
+                                    <li>Rs in Words <span style="text-decoration:underline;font-weight: 400;">                                         
 
-                                              echo $words;
-
-
-                                               ?> </span> </li>
+  <?php $number = $result->price;
+   $no = floor($number);
+   $point = round($number - $no, 2) * 100;
+   $hundred = null;
+   $digits_1 = strlen($no);
+   $i = 0;
+   $str = array();
+   $words = array('0' => '', '1' => 'one', '2' => 'two',
+    '3' => 'three', '4' => 'four', '5' => 'five', '6' => 'six',
+    '7' => 'seven', '8' => 'eight', '9' => 'nine',
+    '10' => 'ten', '11' => 'eleven', '12' => 'twelve',
+    '13' => 'thirteen', '14' => 'fourteen',
+    '15' => 'fifteen', '16' => 'sixteen', '17' => 'seventeen',
+    '18' => 'eighteen', '19' =>'nineteen', '20' => 'twenty',
+    '30' => 'thirty', '40' => 'forty', '50' => 'fifty',
+    '60' => 'sixty', '70' => 'seventy',
+    '80' => 'eighty', '90' => 'ninety');
+   $digits = array('', 'hundred', 'thousand', 'lakh', 'crore');
+   while ($i < $digits_1) {
+     $divider = ($i == 2) ? 10 : 100;
+     $number = floor($no % $divider);
+     $no = floor($no / $divider);
+     $i += ($divider == 10) ? 1 : 2;
+     if ($number) {
+        $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
+        $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
+        $str [] = ($number < 21) ? $words[$number] .
+            " " . $digits[$counter] . $plural . " " . $hundred
+            :
+            $words[floor($number / 10) * 10]
+            . " " . $words[$number % 10] . " "
+            . $digits[$counter] . $plural . " " . $hundred;
+     } else $str[] = null;
+  }
+  $str = array_reverse($str);
+  $result = implode('', $str);
+  $points = ($point) ? "." . $words[$point / 10] . " " . $words[$point = $point % 10] : '';
+  echo $result . "Rupees  " ;
+ ?> </span> </li>
 
                                     <li><small>This is computer generated Reciept signature is not required.</small></li>
                                 </ul>

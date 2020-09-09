@@ -95,6 +95,8 @@
                                     <div class="title-list ">
                                         <span class="list-title">Scholarship List</span>
 
+                                        <a href="<?php echo base_url('scholar/csv?item='.$this->input->get('item')) ?>" class="z-depth-1 excel-downbtn">Excel</a>
+
                                         <?php if (!empty($this->input->get('item')) && $this->input->get('item')=='pending') { ?>
 
                                             <a id="approve_all" class="bulk-btn z-depth-1 white-text green darken-3 waves-effect waves-ligh">Approve All</a>
@@ -280,7 +282,7 @@
                   'serverSide' : true,
                   'dom': 'Bfrtip',
                   'buttons': [
-                    'excel', 'pdf',
+                    'pdf',
                 ], 
                 'language': {
                         'search': '<i class="material-icons dp48">search</i>',

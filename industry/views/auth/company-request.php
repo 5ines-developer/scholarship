@@ -64,7 +64,6 @@
                                         <span class="red-text">{{indtalError}}</span>
                                     </div>
 
-
                                     <div class="input-field col s12 m6">
                                         <select id="act" name="act" required="" class="select2" v-model="act">
                                             <option value="" disabled selected>Choose Act Type</option>
@@ -74,11 +73,6 @@
                                         </select>
                                         <label for="act">Industry Type</label>
                                     </div>
-
-                                    
-                                    
-                                    
-
                                     <div class="row m0">  
                                         <div class="file-field input-field col s12 m6">
                                         <div class="btn ">
@@ -93,7 +87,7 @@
 
                                     <div class="row m0">                                    
                                         <div class="input-field col m12">
-                                        <input id="company" type="text" name="company" class="c_conreg validate" required="">
+                                        <input id="company" type="text" name="company" class="c_conreg validate" pattern="[a-zA-Z0-9-]+" required="">
                                         <label for="company">Industry Name</label>
                                         </div>
                                     </div>
@@ -101,7 +95,7 @@
                                                                         
                                                                                                            
                                     <div class="input-field col s12 m12">
-                                        <textarea id="address" name="address" required class="materialize-textarea"></textarea>
+                                        <textarea id="address" name="address" required class="materialize-textarea" pattern="[a-zA-Z0-9-]+"></textarea>
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="input-field col s12">

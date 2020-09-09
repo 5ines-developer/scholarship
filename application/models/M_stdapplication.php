@@ -102,22 +102,26 @@ class M_stdapplication extends CI_Model {
     **/
     public function insertAppli($apply='')
     {
-        $query = $this->db->where('Student_id', $this->session->userdata('stlid'))
-        ->where('application_year',date('Y'))
-        ->where('status','2')
-        ->get('application');
 
-        if ($query->num_rows() > 0) {
-            $this->db->where('Student_id', $this->session->userdata('stlid'))
+        $check = $this->applidate();
+        $applidate = $this->checkApply($this->session->userdata('stlid'));
+
+        if (empty($check) && empty($applidate)) {
+            $query = $this->db->where('Student_id', $this->session->userdata('stlid'))
             ->where('application_year',date('Y'))
-            ->where('status','2')->update('application',$apply);
-            return $query->row('id');
-        }else{
-            $this->db->insert('application',$apply);
-            return $this->db->insert_id();
+            ->where('status','2')
+            ->get('application');
+
+            if ($query->num_rows() > 0) {
+                $this->db->where('Student_id', $this->session->userdata('stlid'))
+                ->where('application_year',date('Y'))
+                ->where('status','2')->update('application',$apply);
+                return $query->row('id');
+            }else{
+                $this->db->insert('application',$apply);
+                return $this->db->insert_id();
+            }
         }
-    	
-    	
     }
 
     public function aplliBasic($insert='')
@@ -230,6 +234,23 @@ class M_stdapplication extends CI_Model {
     public function checkApply($id = null)
     {
        return $this->db->where('Student_id', $id)->where('application_year',date('Y'))->get('application')->row(); 
+    }
+
+    public function applidate($id='')
+    {
+        $date = date('Y-m-d');
+        $this->db->where('fromdate <=', $date);
+        $this->db->where('todate >=', $date);
+        $query = $this->db->get('application_date');
+        if ($query->num_rows() > 0) {
+                foreach ($query->result() as $key => $value) {
+                   if ($date >= $value->fromdate && $date <= $value->todate) {
+                       return false;
+                   }
+                }
+        }else{
+            return true;
+        }
     }
 
 

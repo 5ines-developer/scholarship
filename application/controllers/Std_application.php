@@ -12,6 +12,7 @@ class Std_application extends CI_Controller {
 		$this->sid = $this->session->userdata('stlid');
 		$this->slmail = $this->session->userdata('slmail');
 		$this->check = $this->m_stdapplication->checkApply($this->sid);
+		$this->applidate = $this->m_stdapplication->applidate($this->sid);
 		$this->load->library('sc_check'); 
 		header_remove("X-Powered-By"); 
         header("X-Frame-Options: DENY");
@@ -35,6 +36,7 @@ class Std_application extends CI_Controller {
     **/
 	public function index()
 	{
+
 		$data['title']  	= 'Student Application';
 		$item = $this->input->get('item');	
 		$this->security->xss_clean($_GET);
@@ -46,8 +48,11 @@ class Std_application extends CI_Controller {
 		if (!empty($this->check) && (!empty($item)) ) {
 			$data['scholls'] = $this->m_stdapplication->getscholls($item); //get current institution details
 			$this->load->view('student/re_application', $data, FALSE);
-		}else if(!empty($this->check)  ){
+		}else if(!empty($this->check)){
 			$this->session->set_flashdata('error', 'You have already applied to the scholarship this year.');			
+			redirect('student/application-status','refresh');
+		}elseif (!empty($this->applidate)) {
+			$this->session->set_flashdata('error', 'You cannot apply for the scholarship,<br>Application dates for current year has been expired');			
 			redirect('student/application-status','refresh');
 		}else{
 			$this->load->view('student/application', $data, FALSE);
