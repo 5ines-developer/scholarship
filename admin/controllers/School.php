@@ -119,7 +119,7 @@ class School extends CI_Controller {
 
 
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('reg_no', 'Reg No.', 'required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('rno', 'Reg No.', 'required|alpha_numeric_spaces');
             $this->form_validation->set_rules('school_address', 'Address', 'trim|alpha_numeric_spaces');
             $this->form_validation->set_rules('management_type', 'Management Type', 'trim|alpha_numeric_spaces');
             $this->form_validation->set_rules('school_category', 'school category', 'trim|alpha_numeric_spaces');
@@ -150,16 +150,26 @@ class School extends CI_Controller {
                 $this->form_validation->set_error_delimiters('', '<br>');
                 $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
                 redirect('institute-add','refresh');
-
             }
-
-
-            
         }else{
-            $data['taluk'] = $this->m_school->getTalluk();
-            $data['district'] = $this->m_school->getDistrict();
+            
+            $data['districts'] = $this->m_school->getDistricts();
             $this->load->view('school/add', $data, FALSE);
         }
+    }
+
+    public function talukFilter($id='')
+    {
+       $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->security->xss_clean($_POST);
+
+        $district = $this->input->post('filter');
+        $result = $this->m_school->talukFilter($district);
+        echo json_encode($result);
+
     }
 
 
@@ -299,8 +309,10 @@ class School extends CI_Controller {
         if(!empty($this->input->post())){
             $this->sc_check->limitRequests();
 
+            
+
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('reg_no', 'Reg No.', 'required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('rno', 'Reg No.', 'required|alpha_numeric_spaces');
             $this->form_validation->set_rules('school_address', 'Address', 'trim|alpha_numeric_spaces');
             $this->form_validation->set_rules('management_type', 'Management Type', 'trim|alpha_numeric_spaces');
             $this->form_validation->set_rules('school_category', 'school category', 'trim|alpha_numeric_spaces');
@@ -317,9 +329,13 @@ class School extends CI_Controller {
                     'school_category'   => $this->input->post('sccat'), 
                     'school_type'       => $this->input->post('sctype'), 
                     'urban_rural'       => $this->input->post('rural'), 
-                    'taluk'             => $this->input->post('taluk'), 
                     'status'            => '1' , 
                 );
+
+                if (!empty($this->input->post('taluk'))) {
+                    $insert = ['taluk' => $this->input->post('taluk')];
+                }
+
                 if($this->m_school->update($id,$insert))
                 {
                     $this->session->set_flashdata('success','institute updated Successfully');
@@ -336,11 +352,17 @@ class School extends CI_Controller {
             redirect('institute-edit/'.$this->encryption_url->safe_b64encode($id),'refresh');
 
         }else{
-            $data['taluk'] = $this->m_school->getTalluk();
-            $data['district'] = $this->m_school->getDistrict();
+            $data['districts'] = $this->m_school->getDistricts();
             $data['result'] = $this->m_school->getedit($id);
             $this->load->view('school/edit', $data, FALSE);
         }
+    }
+
+    public function getedit($id='')
+    {
+        $id = $this->encryption_url->safe_b64decode($id);
+        $output = $this->m_school->getedit($id);
+        echo json_encode($output);
     }
 
 
@@ -440,5 +462,54 @@ class School extends CI_Controller {
             }
         redirect('institute','refresh');
     }
+
+
+    public function csv()
+    {
+
+     $item = $this->input->get('item');
+
+     if ($item == 'all') {
+        $query = $this->m_school->csv_school($item);  // fetch Data from table
+     }else if($item == 'non'){
+        $query = $this->m_school->csv_nonreg($item);
+     }
+
+       // this will return all data into array
+        $dataToExports = [];
+        foreach ($query as $row) {
+            $arrangeData['SL NO.'] = $row->id;
+            $arrangeData['Institiute Name'] = $row->school_address;
+            $arrangeData['Register Number'] = $row->reg_no;
+            $arrangeData['Management Type'] = $row->management_type;
+            $arrangeData['School Category'] = $row->school_category;
+            $arrangeData['School Type'] = $row->school_type;
+            $arrangeData['District'] = $row->district;
+            $arrangeData['Taluk'] = $row->title;
+          $dataToExports[] = $arrangeData;
+         }
+
+         // set header
+         $filename = date('Ymdhis-')."school-list.xls";
+                header("Content-Type: application/vnd.ms-excel");
+                header("Content-Disposition: attachment; filename=\"$filename\"");
+         $this->exportExcelData($dataToExports);
+    }
+
+
+    public function exportExcelData($records)
+    {
+        $heading = false;
+        if (!empty($records))
+        foreach ($records as $row) {
+            if (!$heading) {
+                // display field/column names as a first row
+                echo implode("\t", array_keys($row)) . "\n";
+                $heading = true;
+            }
+            echo implode("\t", ($row)) . "\n";
+        }
+    }
+
 
 }

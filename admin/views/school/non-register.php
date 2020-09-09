@@ -89,6 +89,7 @@
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Institute  List</span>
+                                    <a href="<?php echo base_url() ?>school/csv?item=non" class="z-depth-1 excel-downbtn">Excel</a>
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">
@@ -98,7 +99,7 @@
                                                 <th class="h5-para-p2">SL No.</th>
                                                 <th class="h5-para-p2" style="width: 200px;">Name</th>
                                                 <th class="h5-para-p2">Reg No.</th>
-                                                <th class="h5-para-p2">Mangement Type</th>
+                                                <th class="h5-para-p2">Management Type</th>
                                                 <th class="h5-para-p2">School Category</th>
                                                 <th class="h5-para-p2">District</th>
                                                 <th class="h5-para-p2">Taluk</th>
@@ -166,7 +167,7 @@
                   'serverSide' : true,
                   'dom': 'Bfrtip',
                   'buttons': [
-                    'excel', 'pdf',
+                    'pdf',
                 ],
                   // "order": [[ 0, "asc" ]],
                   'language': {

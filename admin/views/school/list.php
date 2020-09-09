@@ -131,7 +131,7 @@ $this->load->library('encryption');
                                                 <th class="h5-para-p2">SL No.</th>
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Reg No.</th>
-                                                <th class="h5-para-p2">Mangement Type</th>
+                                                <th class="h5-para-p2">Management Type</th>
                                                 <th class="h5-para-p2">Taluk</th>
                                                 <th class="h5-para-p2">District</th>
                                                 <th class="h5-para-p2">Status</th>

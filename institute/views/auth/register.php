@@ -36,13 +36,19 @@
                                 <form ref="form" @submit.prevent="checkForm" action="<?php echo base_url() ?>register" method="post" enctype="multipart/form-data">
 
                                     <div class="input-field col s12 m6">
-                                        <input type="hidden" name="district" :value="district.id">       
-                                        <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
+                                        <div>
+                                            <input type="hidden" name="district" :value="district.id">       
+                                            <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
+                                        </div>
+                                        <br><span class="red-text">{{intdstError}}</span>
                                     </div>
 
                                     <div class="input-field col s12 m6">
-                                        <input type="hidden" name="taluk" :value="tlq.id">       
-                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk" @input="instituteFilter"  tagging :from="taluk" />
+                                        <div>
+                                            <input type="hidden" name="taluk" :value="tlq.id">       
+                                            <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk" @input="instituteFilter"  tagging :from="taluk" />
+                                        </div>
+                                        <br><span class="red-text">{{intalError}}</span>
                                     </div>
                                     <div class="input-field col m6">
                                         <div>
@@ -182,6 +188,8 @@
             phone:'',
             type: 'submit',
             captcha:'',
+            intdstError:'',
+            intalError:'',
         },
 
         methods:{
@@ -200,7 +208,6 @@
                     self.taluk = res.data;
                 })
                 .catch(err => {
-                    console.error(err); 
                     self.disabled = true;
                 })
             },
@@ -274,8 +281,25 @@
                 }
                 
             },checkForm() {
-                if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '')) {
 
+                this.intdstError='';
+                this.intalError='';
+                this.instituteError='';
+
+                if((this.district.id ==null) || (this.district.id == 'undefined')){ 
+                        this.intdstError = 'Please Select the District'; 
+                }
+
+                if((this.tlq.id ==null) || (this.tlq.id == 'undefined')){ 
+                        this.intalError = 'Please Select the Taluk'; 
+                }
+
+                if((this.instituteSelect.id ==null) || (this.instituteSelect.id == 'undefined')){ 
+                        this.instituteError = 'Please Select the Institute'; 
+                }
+
+
+                if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '') && (this.intdstError == '') && (this.intalError == '')) {
                     if (grecaptcha.getResponse() == '') {
                         this.captcha = 'Captcha is required';
                     } else {

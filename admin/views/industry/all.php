@@ -88,7 +88,10 @@
                         <div class="card darken-1 ">
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
-                                    <span class="list-title ">Institute  List</span>
+                                    <span class="list-title ">Industry  List</span>
+
+                                    <a href="<?php echo base_url() ?>industry/csv?item=all" class="z-depth-1 excel-downbtn">Excel</a>
+
                                     <a href="<?php echo base_url('industry-add') ?>" class="back-btn z-depth-1 waves-effect waves-ligh add-btn"> <i class="material-icons add-icon ">add</i><span>Add</span></a>
                                 </div>
                                 <div class="board-content ">
@@ -171,7 +174,7 @@
                         'searchPlaceholder': 'Search Items'
                     },
                   'buttons': [
-                    'excel', 'pdf',
+                    'pdf',
                 ],
                   'order' : [],
                   'ajax':{

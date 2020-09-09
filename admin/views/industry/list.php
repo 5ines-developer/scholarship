@@ -89,37 +89,10 @@
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Industry  List</span>
+
+                                    <a href="<?php echo base_url() ?>industry/csv1?item=reg" class="z-depth-1 excel-downbtn">Excel</a>
                                 </div>
                                 <div class="board-content ">
-                                    <div class="row m0">
-
-                                    <div class="table-detail">
-                                        <select name="dist" fname="district" id="dis-drp" class="select-list">
-                                                <option value="" disabled selected>District</option>
-                                                <?php
-                                                if (!empty($district)) {
-                                                     $ds = $this->input->get('district');
-                                                   foreach ($district as $key => $value) { ?>
-                                                    <option value="<?php echo $value->districtId ?>" <?php if($value->districtId == $ds){ echo 'selected="true"'; } ?>><?php echo $value->district ?></option>
-                                                <?php } } ?>
-                                        </select>
-                                        <select name="dist" fname="taluk" id="dis-drp" class="select-list">
-                                                <option value="" disabled selected>Taluk</option>
-                                                <?php if (!empty($taluk)) {
-                                                    $tl = $this->input->get('taluk');
-                                                   foreach ($taluk as $key => $value) { ?> 
-                                                       <option value="<?php echo $value->tallukId ?>" <?php if($value->tallukId == $tl){ echo 'selected="true"'; } ?>><?php echo $value->talluk ?></option>
-                                                <?php } } ?>
-                                        </select>
-
-
-                                        <?php if ((isset($_GET["district"]) || isset($_GET["taluk"]))) {
-                                            $item = $this->input->get('item');
-                                            ?>
-                                            <a href="<?php echo base_url('industry?item='.$item)?>" class="p5 grey white-text  waves-effect waves-light clear-filter">Clear All <i class="material-icons"> close </i></a> 
-                                        <?php } ?>
-                                    </div>
-                                    </div>
 
                                     <div class="hr-list">
                                         <table id="dynamic" class="striped ">
@@ -198,12 +171,12 @@
                         'searchPlaceholder': 'Search Items'
                     },
                   'buttons': [
-                    'excel', 'pdf',
+                    'pdf',
                 ],
                   'order' : [],
                   'ajax':{
                     'url' : "<?php echo base_url(). 'industry/getIndustry' ?>",
-                     'type' :'POST',
+                     'type' :'post',
                      'data': { [csrfName]: csrfHash },
                   },
                   'columnDefs':[

@@ -6,6 +6,8 @@
 
         <li><a href="<?php echo base_url() ?>fees/manage" class="<?php echo($this->uri->segment(1) == 'fees') ? 'active' :'' ?>"><span class="cust-icon">&#8377; </span>Scholarship Amount</a></li>
 
+        <li><a href="<?php echo base_url() ?>application-date" class="<?php echo($this->uri->segment(1) == 'application-date') ? 'active' :'' ?>"><i class="material-icons"> date_range </i>Application Date</a></li>
+
 
         <ul class="collapsible men-lft">
             <li class="si-m">

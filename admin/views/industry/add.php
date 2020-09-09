@@ -39,12 +39,12 @@
                                         <div class="col s12 m12 l12">
                                             <form ref="form" @submit.prevent="formSubmit" action="<?php echo base_url('industry-add') ?>" method="post">
                                                 <div class="input-field col m10">
-                                                    <input id="name" name="name" type="text" placeholder="Enter full name with adress & Pincode" class="validate" v-model="name" @change="namecheck()" required="" required="">
+                                                    <input id="name" name="name" type="text" pattern="[a-zA-Z0-9-]+" placeholder="Enter full name with adress & Pincode" class="validate" v-model="name" @change="namecheck()" required="" required="">
                                                     <label for="name">Industry Name</label>
                                                     <span class="helper-text red-text">{{nameError}}</span>
                                                 </div>
                                                 <div class="input-field col m6">
-                                                    <input id="rno" name="rno" type="text" class="validate" v-model="regno" @change="regnocheck()" required="">
+                                                    <input id="rno" name="rno" type="number" class="validate" v-model="regno" @change="regnocheck()" required="">
                                                     <label for="rno">Register Number</label>
                                                      <span class="helper-text red-text">{{noError}}</span>
                                                 </div>
@@ -145,6 +145,7 @@
             $('.sid-m >.collapsible-body').css({
                 display: 'block',
             });
+             $("select[required]").css({display: "inline", height: 0, padding: 0, width: 0});
         });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(document.querySelectorAll('select'));

@@ -290,6 +290,52 @@ class M_scholar extends CI_Model {
        }
     }
 
+
+
+    public function csv_scholar($item='')
+    {
+        $select_column = array('ab.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','m.graduation');
+        $this->db->select($select_column);
+
+        if (!empty($item)) {
+            if($item =='approved'){
+                $stss = '1';
+            }else if($item =='rejected'){
+                $stss = '2';
+            }else if($item =='pending'){
+                $stss = '0';
+                 $this->db->where('a.application_state', 4);
+            }else{
+                $stss = '0';
+            }
+            $this->db->group_start();
+             $this->db->where('a.status', $stss);
+            $this->db->group_end();
+        }
+        $this->db->group_by('a.application_year,a.Student_id');
+        $this->db->order_by('a.id', 'asc')
+        ->from('application a')
+        ->join('applicant_marks m', 'm.application_id = a.id', 'left')
+        ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
+        ->join('applicant_comapny ac', 'ac.application_id = a.id', 'left')
+        ->join('applicant_marks am', 'am.application_id = a.id', 'left')
+        ->join('student s', 's.id = a.Student_id', 'left')
+        ->join('school schl', 'schl.id = a.school_id', 'left')
+        ->join('school_address scad', 'scad.school_id = a.school_id', 'left')
+        ->join('reg_schools rs', 'rs.id = a.school_id', 'left')
+        ->join('industry ind', 'ind.id = a.company_id', 'left')
+        ->join('state st', 'st.id = ind.state', 'left')
+        ->join('city cty', 'cty.id = am.ins_district', 'left')
+        ->join('taluq tq', 'tq.id = am.ins_talluk', 'left')
+        ->join('courses crs', 'crs.id = m.course', 'left')
+        ->join('class cls', 'cls.id = m.class', 'left')
+        ->join('gradution grd', 'grd.id = am.graduation', 'left')
+        ->join('fees fs', 'fs.class = grd.id', 'left');
+        $this->db->order_by('a.id', 'DESC');
+        $query = $this->db->get(); 
+        return $query->result();  
+    }
+
     
 
 }

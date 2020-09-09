@@ -203,6 +203,17 @@ class M_school extends CI_Model {
     	return $this->db->order_by('id', 'asc')->select('id as districtId,title as district')->get('city')->result();
     }
 
+    public function getDistricts($var = null)
+   {
+      return $this->db->get('city')->result();
+   }
+
+   public function talukFilter($dist='')
+    {
+        if(!empty($dist)){ $this->db->where('city_id', $dist); }
+        return $this->db->get('taluq')->result();
+    }
+
     public function add($insert='')
     {
     	return $this->db->where('reg_no !=', $insert['reg_no'])->insert('reg_schools',$insert);
@@ -215,7 +226,7 @@ class M_school extends CI_Model {
 
     public function getedit($id='')
     {
-        $this->db->select('reg.id,reg.reg_no,reg.school_address,reg.management_type,reg.school_category,reg.school_type,reg.urban_rural,reg.taluk,reg.status,cty.id as district');
+        $this->db->select('reg.id,reg.reg_no,reg.school_address,reg.management_type,reg.school_category,reg.school_type,reg.urban_rural,reg.taluk,reg.status,cty.id as district,tq.title,cty.title as dist');
          $this->db->where('reg.id', $id);
         $this->db->from('reg_schools reg');
         $this->db->join('taluq tq', 'tq.id = reg.taluk', 'left');
@@ -304,6 +315,42 @@ class M_school extends CI_Model {
         }else{
             return false;
         }
+    }
+
+
+    public function csv_school($value='')
+    {
+        $select_column = array('reg.id','reg.reg_no','reg.school_address','reg.management_type','reg.school_category','reg.school_type','reg.urban_rural','reg.taluk','reg.status','tq.title','cty.title as district');
+
+        $this->db->select($select_column);
+        $this->db->from('reg_schools reg');
+        $this->db->join('taluq tq', 'tq.id = reg.taluk', 'left');
+        $this->db->join('city cty', 'cty.id = tq.city_id', 'left');
+        $this->db->order_by('reg.id', 'ASC');
+        $query = $this->db->get(); 
+        return $query->result();  
+    }
+
+    public function csv_nonreg($value='')
+    {
+        $reg_no = array();
+        $this->db->select('reg_no');
+        $query = $this->db->get('school')->result();
+        if (!empty($query)) {
+            foreach ($query as $key => $value) {
+                $reg_no[] = $value->reg_no;
+            }
+        }
+        $this->db->where_not_in('reg.reg_no', $reg_no);
+
+        $select_column = array('reg.id','reg.reg_no','reg.school_address','reg.management_type','reg.school_category','reg.school_type','reg.urban_rural','reg.taluk','reg.status','tq.title','cty.title as district');
+        $this->db->select($select_column);
+        $this->db->from('reg_schools reg');
+        $this->db->join('taluq tq', 'tq.id = reg.taluk', 'left');
+        $this->db->join('city cty', 'cty.id = tq.city_id', 'left');
+        $this->db->order_by('reg.id', 'ASC');  
+        $query = $this->db->get(); 
+        return $query->result();
     }
 
 

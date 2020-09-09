@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/materialize.min.css">
     <link  rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/material-icons.css">
+    <link rel="stylesheet" href="<?php echo $this->config->item('web_url') ?>assets/css/vue-select.css">
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue-select.js"></script>
+    <script src="<?php echo $this->config->item('web_url') ?>assets/js/script.js"></script>
 </head>
 
 <body>
@@ -71,28 +78,21 @@
                                                         </select>
                                                     <label>Region Type</label>
                                                 </div>
-                                                <div class="input-field col sel-hr s12 m6">
-                                                    <select name="district" class="" required="">
-                                                            <option value="" disabled selected>Choose your option</option>
-                                                            <?php
-                                                            if (!empty($district)) {
-                                                               foreach ($district as $key => $value) { ?> 
-                                                                   <option value="<?php echo  $value->districtId ?>" <?php if($value->districtId == $result->district){ echo 'selected';
-                                                                   } ?> ><?php echo $value->district ?></option>';
-                                                              <?php } } ?>
-                                                        </select>
-                                                    <label>District</label>
+
+                                                 <div class="input-field col s12 m6">
+                                                    <div>
+                                                        <input type="hidden" name="district" :value="district.id">       
+                                                        <v-select  v-model="district"  as="title::id" placeholder="Select District" @input="talukFilter" tagging :from="districtSelect" />
+                                                    </div>
+                                                    <br><span class="red-text">{{intdstError}}</span>
                                                 </div>
-                                                <div class="input-field col sel-hr s12 m6">
-                                                    <select name="taluk" class="" required="">
-                                                            <option value="" disabled selected>Choose your option</option>
-                                                            <?php if (!empty($taluk)) {
-                                                               foreach ($taluk as $key => $value) { ?> 
-                                                                   <option value="<?php echo $value->tallukId ?>" <?php if($value->tallukId == $result->taluk){ echo 'selected';
-                                                                   } ?> ><?php echo $value->talluk ?></option>
-                                                            <?php } } ?>
-                                                        </select>
-                                                    <label>Taluk</label>
+
+                                                <div class="input-field col s12 m6">
+                                                    <div>
+                                                        <input type="hidden" name="taluk" :value="tlq.id">       
+                                                        <v-select v-model="tlq"  as="title::id" :disabled='disabled' placeholder="Select Taluk"  tagging :from="taluk" />
+                                                    </div>
+                                                    <br><span class="red-text">{{intalError}}</span>
                                                 </div>
                                                 <div class="input-field col s12">
                                                     <button class="waves-effect waves-light hoverable btn-theme btn">Submit</button>
@@ -125,16 +125,14 @@
 
 
     <!-- scripts -->
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/jquery-3.4.1.min.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/vue.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/materialize.min.js"></script>
-    <script src="<?php echo $this->config->item('web_url') ?>assets/js/axios.min.js "></script>
+   
     <?php $this->load->view('include/msg'); ?>
     <script>
         $(document).ready(function() {
             $('.si-m >.collapsible-body').css({
                 display: 'block',
             });
+             $("select[required]").css({display: "inline", height: 0, padding: 0, width: 0});
         });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(document.querySelectorAll('select'));
@@ -150,15 +148,45 @@
 
         var app = new Vue({
             el: '#app',
+            components: {
+                vSelect: VueSelect.vSelect,
+            },
             data: {
                 name:'<?php echo (!empty($result->school_address))?$result->school_address:''; ?>',
                 nameError:'',
                 regno:'<?php echo (!empty($result->reg_no))?$result->reg_no:''; ?>',
                 noError:'',
+                disabled: false,
+                districtSelect: <?php echo json_encode($districts) ?>,
+                district: '',
+                taluk: [],
+                tlq:'',
+                intdstError:'',
+                intalError:'',
+                id:'<?php echo $this->uri->segment(2) ?>'
 
             },
 
             methods: {
+                talukFilter(){
+                    var self = this;
+                    self.taluk = '';
+                    self.tlq = '';
+                    self.instituteSelect = '';
+                    self.institute = '';
+                    const formData = new FormData();
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                    formData.append('filter',self.district.id);
+                    axios.post('<?php echo base_url() ?>school/talukFilter',formData)
+                    .then(res => {
+                        self.disabled = false;
+                        self.taluk = res.data;
+                    })
+                    .catch(err => {
+                        console.error(err); 
+                        self.disabled = true;
+                    })
+                },
                 namecheck(){
                     this.nameError='';
                     const formData = new FormData();
@@ -195,12 +223,30 @@
 
                 },
                 formSubmit() {
-                if ((this.noError == '') && (this.nameError == '')) {
-                    this.$refs.form.submit();
-                }
-            }
+                    if ((this.noError == '') && (this.nameError == '')) {
+                        this.$refs.form.submit();
+                    }
+                },
+                getdata(){
+
+                    var self= this;
+                    const formData = new FormData();
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                    axios.get('<?php echo base_url() ?>school/getedit/'+self.id)
+                    .then(function (response) {
+                        self.district = response.data.dist;
+                        self.tlq = response.data.title;
+
+                    })
+                    .catch(function (error) {
+
+                    })
+                },
                 
-            }
+            },
+            mounted:function(){
+                this.getdata();
+            },
         })
     </script>
 </body>

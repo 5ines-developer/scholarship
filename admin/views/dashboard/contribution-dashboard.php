@@ -93,7 +93,7 @@
 
                         <div class="row">
 
-                            <div class="col m12 s12 l12">
+                            <div class="col m9 s12 l9">
 
                                 <div class="card  darken-1">
                                     <div class="card-content ">
@@ -118,6 +118,21 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col s12 m3 l3">
+                                    <div class="card blue-grey    hoverable">
+                                        <div class="card-content white-text center-align p20">
+                                            <span class="card-title center-align"><i class="material-icons">school</i></span>
+                                            <p>
+                                            <?php echo $count['pay_comp'] ?>
+                                            </p>
+                                        </div>
+                                        <div class="card-action center-align">
+                                            <span class="white-text">Scholarship Payment Processed in <?php echo $years ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                         </div>
                     </div>
                     <!-- End right board -->
@@ -150,6 +165,11 @@
 
     <?php $this->load->view('include/msg') ?>
     <script>
+        $(document).ready(function() {
+            $('.cpay-m >.collapsible-body').css({
+                display: 'block',
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(document.querySelectorAll('select'));
         });

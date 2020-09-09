@@ -200,4 +200,71 @@ class Scholar extends CI_Controller {
         $mpdf->Output();
         exit;    
     }
+
+
+        public function csv()
+    {
+
+        $item = $this->input->get('item');
+        $query = $this->m_scholar->csv_scholar($item);
+
+       // this will return all data into array
+        $dataToExports = [];
+        foreach ($query as $row) {
+            if($row->application_state == 3){
+                $state = 'Verification Officer';
+            }else if ($row->application_state == 2) {
+                $state = 'Industry';
+            }else if ($row->application_state == 1) {
+                $state = 'Institute';
+            }else{
+                $state = 'Admin';
+            }
+
+            if ($row->status == 2) {
+                $sttus = 'Rejected By';
+            }else if ($row->status == 1) {
+                $sttus = 'Approved By';
+            }else{
+                $sttus = 'Pending From';
+            }
+            $status =  $sttus.' '.$state;
+
+            $arrangeData['SL NO.'] = $row->id;
+            $arrangeData['Name'] = $row->name;
+            $arrangeData['Institute'] = $row->school;
+            $arrangeData['Industry'] = $row->industry;
+            $arrangeData['Present Class'] = $row->course.$row->clss;
+            $arrangeData['Year'] = $row->application_year;
+            $arrangeData['Adhaar No'] = $row->adharcard_no;
+            $arrangeData['Amount'] = $this->m_scholar->getamnt($row->application_year,$row->graduation);
+            $arrangeData['Applied Date'] = date('d M, Y',strtotime($row->date));
+            $arrangeData['District'] = $row->district;
+            $arrangeData['Taluk'] = $row->taluk;
+            $arrangeData['Status'] = $status;
+          $dataToExports[] = $arrangeData;
+         }
+
+         // set header
+         $filename = date('Ymdhis-')."scholarship ".$item."-list.xls";
+                header("Content-Type: application/vnd.ms-excel");
+                header("Content-Disposition: attachment; filename=\"$filename\"");
+         $this->exportExcelData($dataToExports);
+    }
+
+
+    public function exportExcelData($records)
+    {
+        $heading = false;
+        if (!empty($records))
+        foreach ($records as $row) {
+            if (!$heading) {
+                // display field/column names as a first row
+                echo implode("\t", array_keys($row)) . "\n";
+                $heading = true;
+            }
+            echo implode("\t", ($row)) . "\n";
+        }
+    }
+    
 }
