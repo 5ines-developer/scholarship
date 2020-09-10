@@ -16,7 +16,7 @@ class M_payments extends CI_Model {
 
     public function search($term = null)
     {
-        return $this->db->like('name',$term,'both')->select('name,id')->get('industry')->result_array();
+        return $this->db->like('name',$term,'both')->select('name,id')->limit(200)->get('industry')->result_array();
     }
 
     public function companyChange($id = null)
@@ -127,6 +127,12 @@ class M_payments extends CI_Model {
     {
         $this->db->where('reg_id', $regid);
         return $this->db->update('reminder_noti', array('seen' => 1));
+    }
+
+    public function getPy($pay_id='')
+    {
+        $this->db->where('pay_id', $pay_id);
+        return $this->db->get('payment')->row();
     }
     
 

@@ -12,7 +12,7 @@ class Sbi_enc {
     }
 
     public  function sbiEnc($data='') {
-    	require_once APPPATH .'AES128_php.php'; 
+    	require_once APPPATH .'AESEncDec.php'; 
     	$AESobj=new AESEncDec();
     	$key='fBc5628ybRQf88f/aqDUOQ==';
     	$cipherText = $AESobj->encrypt($data,$key);
@@ -20,7 +20,7 @@ class Sbi_enc {
     }
 
     public  function sbiDec($data='') {
-    	require_once APPPATH .'AES128_php.php'; 
+    	require_once APPPATH .'AESEncDec.php'; 
     	$AESobj=new AESEncDec();
     	$key='fBc5628ybRQf88f/aqDUOQ==';
     	$plaintext = $AESobj->decrypt($cipherText,$key);

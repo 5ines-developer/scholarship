@@ -26,59 +26,6 @@ class Payments extends CI_Controller {
     // make payment
     public function index()
     {
-
-        
-
-        // EncryptTrans = AES128EnDc.encrypt(requestparameter, 'fBc5628ybRQf88f/aqDUOQ==');
-        // $requestparameter ="1000112|DOM|IN|INR|2|Other|https://test.sbiepay.com/secure/sucess.jsp|https://test.sbiepay.com/secure/fail.jsp|SBIEPAY|2|2|NB|ONLINE|ONLINE";
-        // $aggregatorId = "SBIEPAY";
-        // $merchantId = "1000003";
-        // $refundRequestId = "eRqa7";
-        // $atrn = "4457657898141";
-        // $refundAmount = "1";
-        // $refundAmountCurrency = "INR";
-        // $merchantOrderNo = "55LYN";
-        // $requestparameter = $aggregatorId."|".$merchantId."|".$refundRequestId."|".$atrn."|".$refundAmount."|".$refundAmountCurrency."|".$merchantOrderNo;
-        // $refundRequest =$aggregatorId."|".$merchantId."|".$refundRequestId."|".$atrn."|".$refundAmount."|".$refundAmountCurrency."|".$merchantOrderNo;
-        // $post_param = "refundRequest=".$refundRequest."&aggregatorId=".$aggregatorId."&merchantId=".$merchantId;
-        // $post_param = "requestparameter=".$requestparameter;
-
-        // $service_url = "https://test.sbiepay.com/secure/AggregatorHostedListener";
-
-        // $ch = curl_init();
-        // curl_setopt($ch,CURLOPT_URL,$service_url);
-        // curl_setopt($ch, CURLOPT_POST, true);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS,$post_param);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // $result = curl_exec($ch);
-        // var_dump($result);
-        // curl_close($ch);
-
-        // echo "<pre>";
-        // print_r ($result);
-        // echo "</pre>";
-
-        // $aggregatorId = "SBIEPAY";
-        // $merchantId = "1000003";
-        // $refundRequestId = "eRqa7";
-        // $atrn = "4457657898141";
-        // $refundAmount = "1";
-        // $refundAmountCurrency = "INR";
-        // $merchantOrderNo = "55LYN";
-        // $refundRequest =$aggregatorId."|".$merchantId."|".$refundRequestId."|".$atrn."|".$refundAmount."|".$refundAmountCurrency."|".$merchantOrderNo;
-        // $service_url = "https://sbiepay.com/payagg/orderRefundCancellation/bookRefundCancellation";
-        // $post_param = "refundRequest=".$refundRequest."&aggregatorId=".$aggregatorId."&merchantId=".$merchantId;
-
-        // $ch = curl_init();
-        // curl_setopt($ch,CURLOPT_URL,$service_url);
-        // curl_setopt($ch, CURLOPT_POST, true);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS,$post_param);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // $result = curl_exec($ch);
-        // var_dump($result);
-        // curl_close($ch);
-
-
         $data['title']  = 'Make Payment | Scholarship';
         if($this->session->userdata('pyId') != ''){
             $data['info']   = $this->M_account->getAccountDetails();
@@ -206,7 +153,7 @@ class Payments extends CI_Controller {
     public function submit_pay($value='')
     {
 
-        
+
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -218,52 +165,44 @@ class Payments extends CI_Controller {
         $this->form_validation->set_rules('category', 'Category', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('p_cfemale', 'Female Employees', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('p_cmale', 'Male Employees',  'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('p_year', 'Year', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('p_year', 'Year', 'trim|required');
         $this->form_validation->set_rules('reg_no', 'Register Number', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('prices', 'Price', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('interests', 'Interest', 'trim|required');
+        $this->form_validation->set_rules('price', 'Price', 'trim|required');
+        $this->form_validation->set_rules('interest', 'Interest', 'trim|required');
         if ($this->form_validation->run() == TRUE) {
 
            $female      =  $this->input->post('p_cfemale');
            $male        =  $this->input->post('p_cmale');
            $reg_no      =  $this->input->post('reg_no');
-           $year        =  $this->input->post('p_year');
-           $pay_id      =  $this->input->post('razorpay_payment_id');
-           $price       =  $this->input->post('prices');
-           $interest    =  $this->input->post('interests');
+           $p_year        =  $this->input->post('p_year');
+           if (!empty($p_year)) {
+                $orderdate = explode('-', $p_year);
+                $year  = $orderdate[2];
+           }
+           $price       =  $this->input->post('price');
+           $interest    =  $this->input->post('interest');
            $emails      =  $this->input->post('emails');
            $phones      =  $this->input->post('phones');
            $company     =  $this->input->post('company');
+           $ordId       = 'KLWB-'.date('Ydmhis');
 
            $insert = array(
                 'female'        => $female, 
                 'male'          => $male, 
                 'comp_reg_id'   => $reg_no, 
                 'year'          => $year, 
-                'pay_id'        => $pay_id, 
+                'pay_id'        => $ordId, 
                 'price'         => $price, 
                 'interest'      => $interest,  
             );
 
+
+
            $result = $this->m_payments->submit_pay($insert);
-
-
-           if (!empty($result)) {
-            $insert['insert_id'] = $result;
-            $emails='';
-            $phones='';
-            $company='';
-                $ind = $this->m_payments->getind($reg_no);
-               if (!empty($ind)) {
-                   $emails = $ind->email;
-                   $phones = $ind->mobile;
-                   $company = $ind->name;
-               }
-
-                $this->sendmail($insert,$emails,$phones,$company);
-                $this->sendadmin($insert,$emails,$phones,$company);
-                $this->session->set_flashdata('success', 'Your contribution has been paid successfully');
-                redirect('make-payment','refresh');
+            if (!empty($result)) {
+                $data['insert_id'] = $result;
+                $data['res']    = $insert;
+                $this->load->view('payment/sbiroute', $data, FALSE);
             }else{
                 $this->session->set_flashdata('error', 'Something Went wrong, please try again later!');
                 redirect('make-payment','refresh');
@@ -275,6 +214,47 @@ class Payments extends CI_Controller {
         }
     }
 
+
+
+     public function success($value='')
+    {
+
+        $key = "A7C9F96EEE0602A61F184F4F1B92F0566B9E61D98059729EAD3229F882E81C3A";
+        require_once APPPATH .'AES128_php.php'; 
+        $AESobj = new AESEncDec();
+        if (!empty($_REQUEST['encData']))
+        {
+            $encData = $AESobj->decrypt($_REQUEST['encData'],$key);
+            $str = explode("|",$encData);
+            if (!empty($str[0])) {
+                $pays = $this->m_payments->getPy($str[0]);
+                if (!empty($pays)) {
+                    $emails='';
+                    $phones='';
+                    $company='';
+                    $ind = $this->m_payments->getind($pays->comp_reg_id);
+                    if (!empty($ind)) {
+                        $emails = $ind->email;
+                        $phones = $ind->mobile;
+                        $company = $ind->name;
+                    }
+                    $data['insert_id'] = $pays->id;
+                    $data['comp_reg_id'] = $pays->comp_reg_id;
+                    $this->sendmail($data,$emails,$phones,$company);
+                    $this->sendadmin($data,$emails,$phones,$company);
+                     $this->session->set_flashdata('success', 'Your contribution has been paid successfully');
+                    redirect('make-payment','refresh');
+                }
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Something Went wrong, please try again later!');
+                redirect('make-payment','refresh');
+        }
+    }
+
+
     public function sendmail($insert='',$emails='',$phone='',$company='')
     {
         if (!empty($this->inId)) {
@@ -283,29 +263,25 @@ class Payments extends CI_Controller {
             $rgid = $insert['comp_reg_id'];
         }
 
-
+        $data['company'] = $company;
         $data['result'] = $this->m_payments->singlepay($insert['insert_id'],$rgid);
-        require_once $_SERVER['DOCUMENT_ROOT'].'vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
             'default_font' => 'tunga'
         ]);
         $html = $this->load->view('payment/reciept_download.php',$data, TRUE);
-        
         $mpdf->WriteHTML($html);
         $content = $mpdf->Output('', 'S');
         $filename = "Contribution-reciept.pdf";
-
-        
-        $data['result'] = $insert;
-        $data['company'] = $company;
         $this->load->config('email');
         $this->load->library('email');
         $from = $this->config->item('smtp_user');
         $msg = $this->load->view('mail/payment', $data, true);
         $this->email->set_newline("\r\n");
         $this->email->from($from , 'Karnataka Labour Welfare Board');
-        $this->email->to($emails);
+        // $this->email->to($emails);
+        $this->email->to('prathwi@5ine.in');
         $this->email->subject('Contribution Success');
         $this->email->attach($content, 'attachment', $filename, 'application/pdf'); 
         $this->email->message($msg);
@@ -321,8 +297,14 @@ class Payments extends CI_Controller {
 
     public function sendadmin($insert='',$emails='',$phone='',$company='')
     {
-        
-        $data['result'] = $insert;
+
+        if (!empty($this->inId)) {
+            $rgid = $this->inId;
+        }else{
+            $rgid = $insert['comp_reg_id'];
+        }
+
+        $data['result'] = $this->m_payments->singlepay($insert['insert_id'],$rgid);
         $data['company'] = $company;
         $this->load->config('email');
         $this->load->library('email');
@@ -428,6 +410,8 @@ class Payments extends CI_Controller {
         $data['result'] = $this->m_payments->pay_reminders($this->inId);
         $this->load->view('payment/notification', $data, FALSE);
     }
+
+
 
 
 

@@ -348,7 +348,7 @@ class M_industry extends CI_Model {
     public function csv_industry($value='')
     {
         $select_column = array('id','reg_id','name','taluq','act','created_on');
-        $this->db->order_by('id', 'ASC');  
+        $this->db->order_by('id', 'ASC'); 
         return $this->db->get('industry')->result();
     }
 

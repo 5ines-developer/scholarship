@@ -639,7 +639,7 @@ New contribution for the karnataka labour welfare board has been paid successful
         <td valign="top" width="640" style="width:640px;">
         <![endif]-->
         
-                <table style="max-width:100%; min-width:100%;" class="mcnTextContentContainer" width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
+               <table style="max-width:100%; min-width:100%;" class="mcnTextContentContainer" width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
                     <tbody>
                       <tr>
                         <th class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top">Industry Name</th>
@@ -647,27 +647,27 @@ New contribution for the karnataka labour welfare board has been paid successful
                       </tr>
                       <tr>
                         <th class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top">Registered Id</th>
-                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result['comp_reg_id']))?': &nbsp;'.$result['comp_reg_id']:''; ?> </td>
+                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result->comp_reg_id))?': &nbsp;'.$result->comp_reg_id:''; ?> </td>
                       </tr>
                       <tr>
                         <th class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top">Year</th>
-                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result['year']))?': &nbsp;'.$result['year']:''; ?> </td>
+                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result->year))?': &nbsp;'.$result->year:''; ?> </td>
                       </tr>
                       <tr>
                         <th class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top">Male Employees</th>
-                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result['male']))?': &nbsp;'.$result['male']:''; ?> </td>
+                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result->male))?': &nbsp;'.$result->male:''; ?> </td>
                       </tr>
                       <tr>
                         <th class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top">FeMale Employees</th>
-                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result['female']))?': &nbsp;'.$result['female']:''; ?> </td>
+                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result->female))?': &nbsp;'.$result->female:''; ?> </td>
                       </tr>
                       <tr>
                         <th class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top">Interest</th>
-                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result['interest']))?': &nbsp;'.$result['interest']:''; ?> </td>
+                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result->interest))?': &nbsp;'.$result->interest:''; ?> </td>
                       </tr>
                       <tr>
                         <th class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top">Amount</th>
-                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result['price']))?': &nbsp;'.$result['price']:''; ?> </td>
+                        <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:10px;" valign="top"><?php echo (!empty($result->price))?': &nbsp;'.$result->price:''; ?> </td>
                       </tr>
                 </tbody></table>
         <!--[if mso]>

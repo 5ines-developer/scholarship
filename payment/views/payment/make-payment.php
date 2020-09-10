@@ -51,13 +51,10 @@
                                 </div>
                             </div>
                             <div class="under-line"></div>
-                            <!-- ref="form" @submit.prevent="formSubmit" -->
-
-
-                            <form name="ecom" method="post" action="https://test.sbiepay.com/secure/MerchantHostedListener"> <input type="hidden" name="EncryptTrans" value="<%= EncryptTrans %>">  <input type="hidden" name="EncryptpaymentDetails" value="<%= EncryptpaymentDetails %>"> <input type="hidden" name="merchIdVal" value ="1000112"/> <input type="submit" name="submit" value="Submit"> </form>
+                           
                             
 
-                            <form action="#" method="post"  enctype="multipart/form-data" id="payment">
+                             <form action="<?php echo base_url('payments/submit_pay') ?>" method="post" enctype="multipart/form-data">
                                 <div class="pay-form z-depth-1">
                                     <div class="pay-ff">
                                         <p style="font-style: italic;font-weight: 700;">Payment Form</p>
@@ -177,73 +174,6 @@
     </div>
 
 
-
- <?php
-
-    if(isset($_POST['submit-pay']))
-    {
-        $category  = $_POST['category'];
-        $p_cfemale = $_POST['p_cfemale'];
-        $p_cmale   = $_POST['p_cmale'];
-        $company   = $_POST['company'];
-        $pyear    = $_POST['pyear'];
-        $reg_no    = $_POST['reg_no'];
-        $price     = round($_POST['price']);
-        $interest  = $_POST['interest'];
-
-        ?>
-        <form action="<?php echo base_url('payments/submit_pay') ?>" method="post" enctype="multipart/form-data">
-            <input name="category"  type="hidden"  value=" <?php echo $category?>">
-            <input name="p_cfemale" type="hidden"  value=" <?php echo $p_cfemale?>">
-            <input name="p_cmale" type="hidden" value=" <?php echo $p_cmale?>">
-            <input name="company"  type="hidden" value=" <?php echo $company?>">
-            <input name="p_year" type="hidden" value=" <?php echo $pyear?>">
-            <input name="reg_no" value=" <?php echo $reg_no?>" type="hidden">
-            <input name="prices" value=" <?php echo $price?>" type="hidden">
-            <input name="interests" value=" <?php echo $interest?>" type="hidden">
-            <input name="emails" value=" <?php echo $info->email ?>" type="hidden">
-            <input name="phones" value=" <?php echo $info->mobile ?>" type="hidden">
-            
-            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-            <!--   rzp_test_sxDgwwnBVvPNnz -->
-            <!--   rzp_live_gzxNI1eiSwtWSH -->
-                <script  src="https://checkout.razorpay.com/v1/checkout.js"
-                    data-key="rzp_test_sxDgwwnBVvPNnz"
-                    data-buttontext="Pay with Razorpay"
-                    data-name="Karnataka labour welfare board"
-                    data-description="Karnataka labour welfare board contribution."
-                    data-image="<?php echo base_url('assets/images/logo.png')?>"
-                    data-amount="<?php echo $price.'00' ?>"
-                    data-prefill.contact="<?php echo $info->mobile ?>"
-                    data-prefill.name=" <?php echo $company ?>"
-                    data-prefill.email=" <?php echo $info->email ?>"
-                    data-theme.color="#ef7920"
-                ></script>
-            <input type="hidden" value="Hidden Element" name="hidden">
-        </form>
-        <script type="text/javascript"> 
-            window.onload = function(){
-                document.getElementsByClassName('razorpay-payment-button').click();
-            }
-        </script>
-<?php   } ?>
-
-
-    
-
-    <?php if(isset($_POST['submit-pay'])) {  ?>
-    <script type="text/javascript">
-        $(function(){
-            $yearError = '';
-            $year = $('#p_year').val();
-            if ($year == '') {
-                $('.yearError').append('<span>Please Select the Year</span>');
-            }
-            $('.razorpay-payment-button').attr('name','razorpay-payment-button');
-            $('.razorpay-payment-button').click();
-        });
-    </script>
-     <?php } ?>
 
     <script>
         <?php $this->load->view('include/msg'); ?>

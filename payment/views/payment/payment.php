@@ -76,49 +76,7 @@
                                 </div>
                             </div>
                             <div class="under-line"></div>
-
-                                                        <?php 
-
-                            $this->ci->load->library('Sbi_enc');
-
-                            $request ="1000112|DOM|IN|INR|2|Other|https://test.sbiepay.com/secure/sucess.jsp|https://test.sbiepay.com/secure/fail.jsp|SBIEPAY|2|2|NB|ONLINE|ONLINE"; 
-                            $encryptTrans = $this->ci->sbi_enc->sbiEnc($request);
-                            // $encryptTrans.replaceAll("\n","");
-
-                            $datas='Shipper|Mayuresh Enclave, Sector 20, Plat A-211, Nerul,Navi-Mumbai,403706|Mumbai|Maharastra|India|403706|+91|222|30988373|9812345678|N|4f9cf81e205f1f1f7de3c69ea81b1c7547ce90240782c0f5bc4a7244c42f9bc8c4c776c152c9d0a66309a51ae273cf5c0cb86a50d938e40da6cf453a4d0da525';
-                            $payment = $this->ci->sbi_enc->sbiEnc($datas);
-                             // $payment.replaceAll("\n","");
-
-
-         ?>
-
-                            <form name="ecom" method="post" action="https://test.sbiepay.com/secure/AggregatorHostedListener">
-<input type="hidden" name="EncryptTrans" value="<?php echo $encryptTrans ?>">
-<input type="hidden" name="EncryptbillingDetails" value="<%=
-EncryptbillingDetails %>">
-<input type="hidden" name="EncryptshippingDetais" value="<%=
-EncryptshippingDetais %>">
-<input type="hidden" name="EncryptpaymentDetails" value="<?php echo $payment ?>">
-<input type="hidden" name="merchIdVal" value ="1000112"/>
-<input type="hidden" name="OperatingMode" value ="DOM"/>
-<input type="hidden" name="MerchantCountry" value ="IN"/>
-<input type="hidden" name="MerchantCurrency" value ="INR"/>
-<input type="hidden" name="PostingAmount" value ="100"/>
-<input type="hidden" name="OtherDetails" value ="Xxxxxxxx"/>
-<input type="hidden" name="SuccessURL" value ="https://klwbapps.karnataka.gov.in/payment/"/>
-<input type="hidden" name="FailURL" value ="https://klwbapps.karnataka.gov.in/payment/login"/>
-<input type="hidden" name="AggregatorId" value ="SBIEPAY"/>
-<input type="hidden" name="MerchantOrderNo" value ="Xxxxxxxx"/>
-<input type="hidden" name="MerchantCustomerID" value ="Xxxxxxxx"/>
-<input type="hidden" name="Paymode" value ="IMPS"/>
-<input type="hidden" name="Accesmedium" value ="ONLINE"/>
-<input type="hidden" name="TransactionSource" value ="ONLINE"/>
-<input type="submit" name="submit" value="Submit">
-</form>
-
-
-                            
-                           <!--  <form action="#" method="post" enctype="multipart/form-data" id="payment">
+                            <form id="payment" action="<?php echo base_url('payments/submit_pay') ?>" method="post" enctype="multipart/form-data">
                                 <div class="pay-form z-depth-1">
                                     <div class="pay-ff">
                                         <p style="font-style: italic;font-weight: 700;">Payment Form</p>
@@ -226,7 +184,7 @@ EncryptshippingDetais %>">
                                     </div>
 
                                 </div>
-                            </form> -->
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -245,86 +203,18 @@ EncryptshippingDetais %>">
     </div>
 
 
- <?php
-    
 
 
-    if(isset($_POST['submit-pay']))
-    {
-        
-        $category  = $_POST['category'];
-        $p_cfemale = $_POST['p_cfemale'];
-        $p_cmale   = $_POST['p_cmale'];
-        $pyear    = $_POST['pyear'];
-        $reg_no    = $_POST['reg_no'];
-        $price     = round($_POST['price']);
-        $interest  = $_POST['interest'];
-        // $terms  = $_POST['terms'];
-
-        ?>
-        <form action="<?php echo base_url('payments/submit_pay') ?>" method="post" enctype="multipart/form-data">
-            <input name="category"  type="hidden"  value=" <?php echo $category?>">
-            <input name="p_cfemale" type="hidden"  value=" <?php echo $p_cfemale?>">
-            <input name="p_cmale" type="hidden" value=" <?php echo $p_cmale?>">
-            <input name="p_year" type="hidden" value=" <?php echo $pyear?>">
-            <input name="reg_no" value=" <?php echo $reg_no?>" type="hidden">
-            <input name="prices" value=" <?php echo $price?>" type="hidden">
-            <input name="interests" value=" <?php echo $interest?>" type="hidden">
-            <!-- <input name="terms" value=" <?php echo $terms?>" type="hidden"> -->
-           
-            
-            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-            
-                <script  src="https://checkout.razorpay.com/v1/checkout.js"
-                    data-key="rzp_test_sxDgwwnBVvPNnz"
-                    data-buttontext="Pay Now"
-                    data-name="Karnataka labour welfare board"
-                    data-description="Karnataka labour welfare board contribution."
-                    data-image="<?php echo base_url('assets/images/logo.png')?>"
-                    data-amount="<?php echo $price.'00' ?>"
-                    data-prefill.contact="9876543210"
-                    data-prefill.name="testing"
-                    data-prefill.email="prathwi@5ine.in"
-                    data-theme.color="#ef7920"
-                ></script>
-            <input type="hidden" value="Hidden Element" name="hidden">
-        </form>
-        <!--   rzp_test_sxDgwwnBVvPNnz -->
-            <!--   rzp_live_gzxNI1eiSwtWSH -->
-        <script type="text/javascript"> 
-            window.onload = function(){
-                document.getElementsByClassName('razorpay-payment-button').click();
-            }
-        </script>
-<?php   }else if(empty($_POST['terms']))
-    { 
-        ?>
+    <?php if(empty($_POST['terms'])) { ?>
         <script>
-
-        $(window).on('load', function () {
-            var Modalelem = document.querySelector('.modal');
-            var instance = M.Modal.init(Modalelem,{ dismissible: false });
-            instance.open();
-       });
+            $(window).on('load', function () {
+                var Modalelem = document.querySelector('.modal');
+                var instance = M.Modal.init(Modalelem,{ dismissible: false });
+                instance.open();
+           });
         </script>
-
-  <?php  }
-
-   ?>
-
-
-<?php if(isset($_POST['submit-pay'])) {  ?>
-<script type="text/javascript">
-    $(function(){
-                $('.razorpay-payment-button').attr('name','razorpay-payment-button');
-        $('.razorpay-payment-button').click();
-    });
-</script>
-<?php } ?>
+  <?php } ?>
      <script>
-
-
-       
 
         $(document).ready(function($) {
             $(".select").css({display: "inline", height: 0, padding: 0, width: 0});
@@ -343,7 +233,7 @@ EncryptshippingDetais %>">
         ajax: {
             url: "<?php echo base_url('payments/search') ?>",
             dataType: 'json',
-            quietMillis: 250,
+            quietMillis: 100,
             data: function (term, page) {
                 return {
                     q: term,[csrfName]: csrfHash // search term
@@ -388,7 +278,6 @@ EncryptshippingDetais %>">
     });
 });
 </script>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
