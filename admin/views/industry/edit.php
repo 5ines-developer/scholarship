@@ -36,7 +36,7 @@
                                         <div class="col s12 m12 l12">
                                             <form ref="form" @submit.prevent="formSubmit" action="<?php echo base_url('industry-edit/').$this->uri->segment(2); ?>" method="post">
                                                 <div class="input-field col m10">
-                                                    <input id="name" name="name" type="text" pattern="[a-zA-Z0-9-]+" class="validate" v-model="name" @change="namecheck()" required="">
+                                                    <input id="name" name="name" type="text" pattern="[a-zA-Z0-9\s]+" class="validate" v-model="name" @change="namecheck()" required="">
                                                     <label for="name">Industry Name</label>
                                                     <span class="helper-text red-text">{{nameError}}</span>
                                                 </div>

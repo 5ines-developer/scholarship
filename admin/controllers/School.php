@@ -475,40 +475,36 @@ class School extends CI_Controller {
         $query = $this->m_school->csv_nonreg($item);
      }
 
-       // this will return all data into array
-        $dataToExports = [];
-        foreach ($query as $row) {
-            $arrangeData['SL NO.'] = $row->id;
-            $arrangeData['Institiute Name'] = $row->school_address;
-            $arrangeData['Register Number'] = $row->reg_no;
-            $arrangeData['Management Type'] = $row->management_type;
-            $arrangeData['School Category'] = $row->school_category;
-            $arrangeData['School Type'] = $row->school_type;
-            $arrangeData['District'] = $row->district;
-            $arrangeData['Taluk'] = $row->title;
-          $dataToExports[] = $arrangeData;
-         }
-
-         // set header
-         $filename = date('Ymdhis-')."school-list.xls";
-                header("Content-Type: application/vnd.ms-excel");
-                header("Content-Disposition: attachment; filename=\"$filename\"");
-         $this->exportExcelData($dataToExports);
-    }
-
-
-    public function exportExcelData($records)
-    {
-        $heading = false;
-        if (!empty($records))
-        foreach ($records as $row) {
-            if (!$heading) {
-                // display field/column names as a first row
-                echo implode("\t", array_keys($row)) . "\n";
-                $heading = true;
-            }
-            echo implode("\t", ($row)) . "\n";
+        require_once( APPPATH . 'libraries/PHPExcel/IOFactory.php');
+        $object = new PHPExcel();
+        $object->setActiveSheetIndex(0);
+        $table_columns = array("SL NO.","Institiute Name","Register Number","Management Type","School Category","School Type","District","Taluk");
+        $column = 0;
+        foreach($table_columns as $field)
+        {
+            $object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+            $column++;
         }
+        $excel_row = 2;
+        foreach($query as $row)
+        {
+
+            $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row->id);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row->school_address);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row->reg_no);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row->management_type);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row->school_category);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, $row->school_type);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row->district);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $row->title);
+            $excel_row++;
+        }
+
+        $filename = date('Ymdhis-')."school-list.xlsx";
+        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        $objWriter = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+        $objWriter->save('php://output');
     }
 
 

@@ -124,11 +124,11 @@
                                         <div class="card-content white-text center-align p20">
                                             <span class="card-title center-align"><i class="material-icons">school</i></span>
                                             <p>
-                                            <?php echo $count['pay_comp'] ?>
+                                            <?php echo $nonreg ?>
                                             </p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <span class="white-text">Scholarship Payment Processed in <?php echo $years ?></span>
+                                            <span class="white-text">Non Registered Industry <?php echo $years ?></span>
                                         </div>
                                     </div>
                                 </div>

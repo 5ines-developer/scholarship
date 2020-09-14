@@ -13,12 +13,14 @@ class M_stdapplication extends CI_Model {
         if (!empty($id)) {           
             $this->db->where('rs.taluk', $id);           
         }
-        return $this->db->select('sc.name as sId,rs.school_address as sName')
+         $this->db->select('sc.name as sId,rs.school_address as sName')
         ->order_by('sc.id', 'desc')
         ->distinct()
         ->from('school sc')
-        ->join('reg_schools rs', 'rs.reg_no = sc.reg_no', 'inner')
-        ->get()->result();
+        ->join('reg_schools rs', 'rs.id = sc.name', 'left');
+        return $query = $this->db->get()->result();
+
+        
     }
 
     public function adharcheckf($adhar='')
@@ -104,14 +106,11 @@ class M_stdapplication extends CI_Model {
     {
 
         $check = $this->applidate();
-        $applidate = $this->checkApply($this->session->userdata('stlid'));
-
-        if (empty($check) && empty($applidate)) {
+        if (empty($check)) {
             $query = $this->db->where('Student_id', $this->session->userdata('stlid'))
             ->where('application_year',date('Y'))
             ->where('status','2')
             ->get('application');
-
             if ($query->num_rows() > 0) {
                 $this->db->where('Student_id', $this->session->userdata('stlid'))
                 ->where('application_year',date('Y'))

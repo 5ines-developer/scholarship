@@ -301,7 +301,7 @@ class auth extends CI_Controller {
                 $this->upload->do_upload('seal');
                 $upload_data = $this->upload->data();
                 $seal = 'seal-doc/'.$upload_data['file_name'];
-                $insert['seal'] = $reg;
+                $insert['seal'] = $seal;
             }
 
         }else{
@@ -325,7 +325,7 @@ class auth extends CI_Controller {
                 $this->upload->do_upload('sign');
                 $upload_data = $this->upload->data();
                 $sign = 'sign-doc/'.$upload_data['file_name'];
-                $insert['sign'] = $reg;
+                $insert['sign'] = $sign;
             }
         }else{
             $this->session->set_flashdata('error', 'Server error  occurred😢.<br>  Please try agin later.');
@@ -710,6 +710,7 @@ class auth extends CI_Controller {
         $apid = base64_decode($ids);
         $this->load->model('m_application');
         $data['info'] = $this->m_application->singleStudent($apid);
+        $data['pays'] = $this->m_application->getPay($data['info']->company_id,$data['info']->application_year);
         $data['img'] =$this->m_application->compDocs($data['info']->company_id);
         $this->load->view('account/pdf', $data);
         require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';

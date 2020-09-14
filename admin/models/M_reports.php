@@ -289,6 +289,43 @@ class M_reports extends CI_Model {
         return $counts;
     }
 
+
+    public function nonreg($year = null)
+    {
+    	$companyId  = array();
+        if (!empty($year)) {
+            $this->db->where('type', '1');  
+            $this->db->where('date >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('date <=', date($year.'-12-31 23:59:00'));
+        }else{
+            $year = date('Y');
+            $this->db->where('type', '1');
+            $this->db->where('date >=', date($year.'-01-01 00:01:00'));
+            $this->db->where('date <=', date($year.'-12-31 23:59:00'));
+        }
+        $this->db->select('industry_id');
+        $this->db->where('type', '1');
+        $result =  $this->db->get('industry_register')->result();
+
+		if (!empty($result)) {
+			foreach ($result as $key => $value) {
+				$companyId[] = $value->industry_id;
+			}
+		}
+
+		$data = $this->getNon($companyId);
+		return $data;
+		
+    }
+
+    public function getNon($companyId='')
+    {
+    	if (!empty($companyId)) {
+			$this->db->where_not_in('id', $companyId);
+		}
+		return $this->db->get('industry')->num_rows();
+    }
+
 	
 
 

@@ -202,6 +202,13 @@ class M_application extends CI_Model {
        }
     }
 
+    public function getPay($cmpid='',$apyear='')
+    {
+      $this->db->where('year', $apyear)->where('comp_reg_id',$cmpid);
+      return $this->db->get('payment')->row();
+    }
+
+
 }
 
 /* End of file ModelName.php */

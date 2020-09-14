@@ -123,12 +123,11 @@
 
                     <p>ಕುಮಾರ/ಕುಮಾರಿ <span class="dotted-line"> &nbsp; <?php echo (!empty($info->name))?$info->name:''; ?> &nbsp; </span> ವಿದ್ಯಾರ್ಥಿಯ  ತಂದೆ/ತಾಯಿ/ಪೋಷಕರು ಆದ
                                   ಶ್ರೀ/ ಶ್ರೀಮತಿ <span class="dotted-line">  &nbsp; <?php echo (!empty($info->par))?$info->par:''; ?> &nbsp; </span> ಇವರು <span class="dotted-line">&nbsp;  <?php echo (!empty($info->indName))?$info->indName:''; ?> &nbsp; </span>
-                                ಸಂಸ್ಥೆಯಲ್ಲಿ  ಕೆಲಸಮಾಡುತಿದ್ದು, ಇವರ ತಿಂಗಳ ಸಂಬಳ (ಎಲ್ಲಾ ಭತ್ಯೆಗಳು ಸೇರಿದಂತೆ)  ರೂ<span class="dotted-line"> &nbsp; <?php echo (!empty($info->msalary))?$info->msalary:''; ?> &nbsp; </span> (ಅಕ್ಷರಗಳಲ್ಲಿ) <span class="dotted-line">&nbsp;  <?php echo (!empty($words))?$words:''; ?> &nbsp;</span> ಇರುತ್ತದೆ.
-                            2018  ನೇ ಡಿಸೆಂಬರ್ ತಿಂಗಳ ವೇತನದಲ್ಲಿ ವಂತಿಕೆ ಕಡಿತ ಮಾಡಿ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿಗೆ ಪಾವತಿಸಲಾಗಿದೆಯೆಂದು ದೃಡೀಕರಿಸಲಾಗಿದೆ.</p><br>
+                                ಸಂಸ್ಥೆಯಲ್ಲಿ  ಕೆಲಸಮಾಡುತಿದ್ದು, ಇವರ ತಿಂಗಳ ಸಂಬಳ (ಎಲ್ಲಾ ಭತ್ಯೆಗಳು ಸೇರಿದಂತೆ)  ರೂ<span class="dotted-line"> &nbsp; <?php echo (!empty($info->msalary))?$info->msalary:''; ?> &nbsp; </span> (ಅಕ್ಷರಗಳಲ್ಲಿ) <span class="dotted-line">&nbsp;  <?php echo (!empty($words))?$words:''; ?> &nbsp;</span> ಇರುತ್ತದೆ. <?php echo (!empty($year))?$year:''; ?>  ನೇ ಡಿಸೆಂಬರ್ ತಿಂಗಳ ವೇತನದಲ್ಲಿ ವಂತಿಕೆ ಕಡಿತ ಮಾಡಿ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ಮಂಡಳಿಗೆ ಪಾವತಿಸಲಾಗಿದೆಯೆಂದು ದೃಡೀಕರಿಸಲಾಗಿದೆ.</p><br>
                 </div>
-                <p class="bold center"><?php echo date('Y') ?>ನೇ,ಕ್ಯಾಲೆಂಡರ್ ವರ್ಷಕ್ಕೆ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ನಿಧಿಗೆ ವಂತಿಕೆ ಪಾವತಿಸಿರುವ ವಿವರ.</p><br>
+                <p class="bold center"><?php echo (!empty($year))?$year:''; ?>ನೇ,ಕ್ಯಾಲೆಂಡರ್ ವರ್ಷಕ್ಕೆ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ನಿಧಿಗೆ ವಂತಿಕೆ ಪಾವತಿಸಿರುವ ವಿವರ.</p><br>
                         <div>
-                            <p>ವಂತಿಕೆ ಪಾವತಿಸಿದ ಮೊತ್ತ:  <span class="dotted-line"> <?php echo (!empty($words))?$words:''; ?>  </span> ದಿನಾಂಕ:  <span class="dotted-line">  <?php echo (!empty($words))?$words:''; ?> </span> ಚೆಕ್/ಡಿಡಿ/ಚಲನ್ ಸಂಖ್ಯೆ  <span class="dotted-line">  <?php echo (!empty($words))?$words:''; ?> </span> </p>
+                            <p>ವಂತಿಕೆ ಪಾವತಿಸಿದ ಮೊತ್ತ:  <span class="dotted-line"> <?php echo (!empty($words))?$words:''; ?>  </span>&nbsp;&nbsp;&nbsp; ದಿನಾಂಕ:  <span class="dotted-line">  <?php echo (!empty($pays->payed_on))?date('d M, Y',strtotime($pays->payed_on)):''; ?> </span>&nbsp;&nbsp;&nbsp; ಚೆಕ್/ಡಿಡಿ/ಚಲನ್ ಸಂಖ್ಯೆ  <span class="dotted-line">  <?php echo (!empty($pays->pay_id))?$pays->pay_id:''; ?> </span> </p>
                         </div>
             </div><br>
 

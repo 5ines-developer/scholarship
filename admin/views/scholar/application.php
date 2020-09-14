@@ -46,8 +46,10 @@ $this->load->model('m_scholar');
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
                                     <?php }elseif ((($result->application_state == 4)) && ($result->status ==1)){ ?>
                                         <a class="btn-small right mr10 green darken-3 waves-effect waves-light" >Approved</a>
+                                        <?php if ($result->pay_status != '1') { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
-                                    <?php }elseif ((($result->application_state == 4))&& ($result->status ==0)){ ?>
+
+                                    <?php } }elseif ((($result->application_state == 4))&& ($result->status ==0)){ ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger <?php echo($result->status == 2)? 'disabled' : ''  ?>" href="#modal1">Reject</a>
                                         <a class="btn-small right mr10 green darken-3 waves-effect waves-light <?php echo($result->status == 1)? 'disabled' : ''  ?>" :class="{'disabled': disabled }" @click="approve(<?php echo $result->aid ?>)">Approve</a>
                                     <?php }?>

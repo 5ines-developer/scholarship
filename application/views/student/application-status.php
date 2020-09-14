@@ -43,7 +43,8 @@
                                            <li class="center status-item">
                                                <div>Institution</div>
                                                <div class="circle">2</div> 
-                                               <?php if ((($result->application_state == 2) || ($result->application_state == 3) || (($result->application_state == 4)))) {
+                                               <?php
+                                               if ((($result->application_state == 2) || ($result->application_state == 3) || (($result->application_state == 4)))) {
                                                    echo '<div class="green-text">Approved</div>';
                                                 }else if (($result->status == 2) && ($result->application_state == 1) ){
                                                     echo '<div class="red-text">Rejected</div>';                                                    
@@ -54,7 +55,7 @@
                                            <li class="center status-item">
                                                <div>Industry</div>
                                                <div class="circle">3</div>
-                                               <?php if (($result->status != 2) && (($result->application_state == 3) || (($result->application_state == 4)))) {
+                                               <?php if ((($result->application_state == 3) || (($result->application_state == 4)))) {
                                                    echo '<div class="green-text">Approved</div>';
                                                 }else if (($result->status == 2) && ($result->application_state == 2) ){
                                                     echo '<div class="red-text">Rejected</div>';                                                    
@@ -65,7 +66,7 @@
                                            <li class="center status-item">
                                                <div>Labour Welfare Board</div>
                                                <div class="circle">4</div>
-                                               <?php if ( ($result->status == 1) && ($result->application_state == 4) ) {
+                                               <?php if (($result->status == 1) && (($result->application_state == 4))) {
                                                    echo '<div class="green-text">Approved</div>';
                                                 }else if (($result->status == 2) && ($result->application_state == 4)){
                                                     echo '<div class="red-text">Rejected</div>';                                                    

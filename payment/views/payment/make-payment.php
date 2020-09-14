@@ -80,7 +80,7 @@
                                                     <select id="p_year" name="p_year" v-model="year"  @change="checkpayment()" required="" >
                                                     <option value="" disabled>Year</option>
                                                     <?php
-                                                    for($i=date('Y'); $i>= 2000; $i--){ 
+                                                    for($i=date('Y'); $i>= 2020; $i--){ 
                                                         echo '<option value="15-1-'.$i.'">'.$i.'</option>';
                                                     }
                                                     

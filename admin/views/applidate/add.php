@@ -180,7 +180,7 @@ $this->load->library('encryption');
         var table = $('table').DataTable({
         dom: 'Bfrtip',
         buttons: [
-        'excel', 'pdf',
+        'excel',
         ],
         language: {
         search: '<i class="material-icons dp48">search</i>',
