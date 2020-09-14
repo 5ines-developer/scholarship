@@ -109,6 +109,7 @@ class Reports extends CI_Controller {
         $data['pending']    = $this->m_reports->cont_pending($data['years']);
         $data['amount']     = $this->m_reports->cont_amount($data['years']);
         $data['total']      = $this->m_reports->tot_amount();
+        $data['nonreg']    = $this->m_reports->nonreg($data['years']);
         $this->load->view('dashboard/contribution-dashboard.php', $data, FALSE);
     }
 

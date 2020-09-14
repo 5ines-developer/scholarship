@@ -198,7 +198,7 @@
                         'searchPlaceholder': 'Search Items'
                     },
                   'buttons': [
-                    'excel', 'pdf',
+                    'excel',
                 ],
                   'order' : [],
                   'ajax':{

@@ -205,8 +205,8 @@ class M_scholar extends CI_Model {
     // Reject application
     public function reject($data, $id)
     {
-        $state = $this->db->select('application_state')->where('id', $id)->get('application')->row('application_state');
-        if (!empty($state) && $state =='4') {
+        $state = $this->db->select('application_state,pay_status')->where('id', $id)->get('application')->row();
+        if (!empty($state->application_state) && $state->application_state =='4' && $state->pay_status!=1) {
             $data['application_state'] = '3';
         }
         $this->db->where('id', $id);
@@ -225,7 +225,7 @@ class M_scholar extends CI_Model {
 
     public function approved()
     {
-        $this->db->where('status', 1);
+        // $this->db->where('status', 1);
         $this->db->where('application_state', 4);
         return $this->db->get('application')->num_rows();
     }
@@ -233,6 +233,7 @@ class M_scholar extends CI_Model {
     public function rejected($year='')
     {
         $this->db->where('status', 2);
+        $this->db->where('application_state', 3);
         return $this->db->get('application')->num_rows();
     }
 

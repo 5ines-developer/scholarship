@@ -295,9 +295,20 @@ class Scholar extends CI_Controller {
         $item = $this->input->get('item');
         $query = $this->m_scholar->csv_scholar($item);
 
-       // this will return all data into array
-        $dataToExports = [];
-        foreach ($query as $row) {
+        require_once( APPPATH . 'libraries/PHPExcel/IOFactory.php');
+        $object = new PHPExcel();
+        $object->setActiveSheetIndex(0);
+        $table_columns = array("SL NO.","Name","Institute","Industry","Present Class","Year","Adhaar No","Amount","Applied Date","District","Taluk","Status");
+        $column = 0;
+        foreach($table_columns as $field)
+        {
+            $object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+            $column++;
+        }
+        $excel_row = 2;
+        foreach($query as $row)
+        {
+
             if($row->application_state == 3){
                 $state = 'Verification Officer';
             }else if ($row->application_state == 2) {
@@ -317,41 +328,29 @@ class Scholar extends CI_Controller {
             }
             $status =  $sttus.' '.$state;
 
-            $arrangeData['SL NO.'] = $row->id;
-            $arrangeData['Name'] = $row->name;
-            $arrangeData['Institute'] = $row->school;
-            $arrangeData['Industry'] = $row->industry;
-            $arrangeData['Present Class'] = $row->course.$row->clss;
-            $arrangeData['Year'] = $row->application_year;
-            $arrangeData['Adhaar No'] = $row->adharcard_no;
-            $arrangeData['Amount'] = $this->m_scholar->getamnt($row->application_year,$row->graduation);
-            $arrangeData['Applied Date'] = date('d M, Y',strtotime($row->date));
-            $arrangeData['District'] = $row->district;
-            $arrangeData['Taluk'] = $row->taluk;
-            $arrangeData['Status'] = $status;
-          $dataToExports[] = $arrangeData;
-         }
+            $amount = $this->m_scholar->getamnt($row->application_year,$row->graduation);
 
-         // set header
-         $filename = date('Ymdhis-')."scholarship ".$item."-list.xls";
-                header("Content-Type: application/vnd.ms-excel");
-                header("Content-Disposition: attachment; filename=\"$filename\"");
-         $this->exportExcelData($dataToExports);
-    }
+            $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row->id);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row->name);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row->school);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row->industry);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row->course.$row->clss);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, $row->application_year);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row->adharcard_no);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $amount);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, date('d M, Y',strtotime($row->date)));
+            $object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row->district);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row->taluk);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, $status);
+            $excel_row++;
 
-
-    public function exportExcelData($records)
-    {
-        $heading = false;
-        if (!empty($records))
-        foreach ($records as $row) {
-            if (!$heading) {
-                // display field/column names as a first row
-                echo implode("\t", array_keys($row)) . "\n";
-                $heading = true;
-            }
-            echo implode("\t", ($row)) . "\n";
         }
+
+        $filename = date('Ymdhis-')."scholarship ".$item."-list.xlsx";
+        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        $objWriter = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+        $objWriter->save('php://output'); 
     }
 
 

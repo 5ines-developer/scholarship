@@ -54,13 +54,11 @@
 
            <a href="<?php echo base_url() ?>student" target="_blank"> <span class="grad-cap"><i class="fas fa-graduation-cap"></i></span><span class="top-title">
 
-                SCHOLARSHIP</span></a>
+                EDUCATION ASSISTANCE</span></a>
 
               <a href="<?php echo base_url() ?>payment/" target="_blank" class="payment">
 
-                <span class="grad-cap"><i class="fas fa-credit-card"></i></span><span class="top-title">
-
-                    Make Payment</span>
+                <span class="grad-cap"><i class="fas fa-credit-card"></i></span><span class="top-title">Payment Of Labour Welfare Fund</span>
 
               </a>  
 
@@ -90,7 +88,8 @@
 
                     <div class="comp">
 
-                        <h5>Employer Fund Contribution  and  Student Scholarship Application System</h5>
+                        <!-- <h5>Employer Fund Contribution  and  Student Scholarship Application System</h5> -->
+                        <h5>Education assistance to children of the Organised workers those who pay welfare fund</h5>
 
                         <p>Karnataka Labour Welfare Board</p>
 
@@ -272,7 +271,7 @@
 
                         <div class="news-title">
 
-                            <h4>Flash News</h4>
+                            <h4>Welfare Schemes</h4>
 
                         </div>
 
@@ -426,7 +425,7 @@
 
                                    <h4>About Us</h4>
 
-                                   <p> The Karnataka Labour Welfare Fund is constituted for financing and conducting activities to promote welfare of contributing employees covered under the KLW Act, 1965. The employees working in various industries, their dependents and children are eligible for the following welfare schemes. </p>
+                                   <p> The Karnataka Labour Welfare Fund is constituted for financing and conducting activities to promote welfare of contributing employees covered under the Karnataka Labour Welfare Act, 1965. The employees working in various industries, their dependents and children are eligible for the following welfare schemes. </p>
 
                                    <p><b> Note: </b> Every year before 15th of January the employees’, employers’ contribute in the ratio of 20 : 40   i.e. Rs. 60 /- for each employee is to be remitted by the employer to the Welfare Fund.</p>
 
@@ -444,93 +443,24 @@
 
                             <div class="alert-box">
 
-                                <h4 class="alert-title">
-
-                                    important alerts
-
-                                </h4>
+                                <h4 class="alert-title"> For Applicant </h4>
 
                                 <div class="alert-message-box z-depth-2">
 
                                     <ul id="marquee-vertical" style="height:280px">
 
-                                        <li>
-
-                                            <div class="alert-message">
-
-                                                <p><b>Education assistance to children of the workers:</b> High School (8th  Std. to 10th ) Rs.3,000/- PUC /ITI/Dip./TCH  Rs. 4,000/- Degree Courses Rs. 5,000/- Post Graduation Courses.  Rs. 6,000/- &   Engineering/ Medical . Rs. 10,000/-(Eligibility for applying 50% marks for general merit and 45%  for SC/ST. </p>
-
-                                            </div>
-
-                                            <div class="devider"></div>
-
-                                        </li>
-
-                                        <li>
-
-                                            <div class="alert-message">
-
-                                                <p><b>Medical Assistance:</b> to workers in the age group 18-60 yrs, though covered under ESI  scheme  from minimum of Rs. 1,000/- to maximum of Rs. 10,000/- for treatment of major ailments viz., Heart operation, Kidney transplantation, Cancer treatment, Angioplasty, Eye, Orthopaedic, Uterus operations, Gal bladder problems, Kidney stone removal, Brain haemorrhage, and for medical check-up each case Rs. 500/- to Rs. 1000/-    </p>
-
-                                            </div>
-
-                                            <div class="devider"></div>
-
-                                        </li>
-
-                                        <li>
-
-                                            <div class="alert-message">
-
-                                                <p><b>Accident Benefit :</b> of Rs. 1,000/- to Rs. 3,000/- to workers in the age group 18-60  yrs,  application   to   be sent  within three months of accident with medical records though covered under ESI Act,   1948.  </p>
-
-                                            </div>
-
-                                            <div class="devider"></div>
-
-                                        </li>
-
-
-
-                                        <li>
-
-                                            <div class="alert-message">
-
-                                                <p>Funeral Expenses of Rs. 5,000/- for death of the beneficiary payable to the deceased’s dependents, to  be  applied in the prescribed  format within six months.  </p>
-
-                                            </div>
-
-                                            <div class="devider"></div>
-
-                                        </li>
-
-
-
-                                        <li>
-
-                                            <div class="alert-message">
-
-                                                <p>Medical Check-up Camps: Rs. 30,000/- Financial Assistance for annual medical check-up camps sponsored by Trade Union/Associations for workers contributing to the Welfare  Fund once in year. </p>
-
-                                            </div>
-
-                                            <div class="devider"></div>
-
-                                        </li>
-
-
-
-                                        <li>
-
-                                            <div class="alert-message">
-
-                                                <p>Annual Sports activity: Rs. 50,000/- Financial Assistance for annual Sports activity at district-level by registered Trade Unions one time in a year. </p>
-
-                                            </div>
-
-                                            <div class="devider"></div>
-
-                                        </li>
+                                         <li>
+                                        <div class="alert-message">
+                                            <p>Guidelines to Apply Online <a href="<?php echo base_url('student/login') ?>">CLICK HERE</a></p>
+                                        </div>
+                                        <div class="devider"></div>
+                                    </li>
+                                    <li>
+                                        <div class="alert-message">
+                                            <p>Notification issued to Public for guidelines to Apply Online <a href="<?php echo base_url('student/login') ?>">CLICK HERE</a></p>
+                                        </div>
+                                        <div class="devider"></div>
+                                    </li>
 
                                     </ul>
 
@@ -612,7 +542,7 @@
 
                         <div class="help-message-box">
 
-                            <p>Candidate can contact the Help Desk for resolution of the technical problems</p>
+                            <p>For any technical issues please call</p>
 
                             <div class="dotted-devider"></div>
 
@@ -743,9 +673,7 @@
 
                                     </a></li>
 
-                            <li><a class=" js-scroll-trigger" href="#">Karnataka State Labour Institute
-
-                                    </a></li>
+                            
 
 
 
@@ -868,7 +796,7 @@ $(document).ready(function(){
 
                     id: 'msg1',
 
-                    content: '  <h6> <span>Guidelines to Apply Online</span> <a href="">CLICK HERE</a><span class="brd"></span> <span>Notification issued to Public for guidelines    to Apply Online</span> <a href="">CLICK HERE</a>  <h6>   <h6> <span>Guidelines to Apply Online</span> <a href="">CLICK HERE</a>  <h6> <span>Guidelines to Apply Online</span> <a href="">CLICK HERE</a></h6>'
+                    content: '  <h6> <span><b>BENEFITS AVAILABLE TO WORKERS DRAWING  RS 15,000/- MONTHLY, AGE LIMIT 18-60 YEARS</b></span> <span class="brd"></span> <span><b>Education assistance to children of the workers: </b> High School (8th  Std. to 10th ) Rs.3,000/- PUC /ITI/Dip./TCH  Rs. 4,000/- Degree Courses Rs. 5,000/- Post Graduation Courses.  Rs. 6,000/- &   Engineering/ Medical . Rs. 10,000/-(Eligibility for applying 50% marks for general merit and 45%  for SC/ST.</span> <span class="brd"></span> <span><b>Medical Assistance: </b> to workers in the age group 18-60 yrs, though covered under ESI  scheme  from minimum of Rs. 1,000/- to maximum of Rs. 10,000/- for treatment of major ailments viz., Heart operation, Kidney transplantation, Cancer treatment, Angioplasty, Eye, Orthopaedic, Uterus operations, Gal bladder problems, Kidney stone removal, Brain haemorrhage, and for medical check-up each case Rs. 500/- to Rs. 1000/-    </span> <span class="brd"></span><span><b>Accident Benefit : </b> of Rs. 1,000/- to Rs. 3,000/- to workers in the age group 18-60  yrs,  application   to   be sent  within three months of accident with medical records though covered under ESI Act,   1948.    </span></h6>'
 
                 },
 
@@ -876,8 +804,7 @@ $(document).ready(function(){
 
                     id: 'msg2',
 
-                    content: ' <h6> <span>Guidelines to Apply Online</span> <a href="">CLICK HERE</a><span class="brd"></span> <span>Notification issued to Public for guidelines    to Apply Online</span> <a href="">CLICK HERE</a>  <h6>   <h6> <span>Guidelines to Apply Online</span> <a href="">CLICK HERE</a>  <h6> <span>Guidelines to Apply Online</span> <a href="">CLICK HERE</a></h6>',
-
+                    content: ' <h6> <span><b>BENEFITS AVAILABLE TO WORKERS WITHOUT WAGE LIMIT,  AGE 18-60 YEARS</b></span><span class="brd"></span> <span>Funeral Expenses of Rs. 5,000/- for death of the beneficiary payable to the deceased’s dependents, to  be  applied in the prescribed  format within six months</span><span class="brd"></span><span><b>Medical Check-up Camps:</b> Rs. 30,000/- Financial Assistance for annual medical check-up   camps sponsored by Trade Union/Associations for workers contributing to the Welfare  Fund once in year. </span><span class="brd"></span><span><b>Annual Sports activity: Rs. 50,000/- Financial Assistance for annual Sports activity at district-level by registered Trade Unions one time in a year.</b> </span><span class="brd"></span><span><b>Financial assistance for the beneficieres Wil  be  direct  deposited to their shavings account through  rtgs</b></span></h6>',
                     class: 'cls-second'
 
                 }
@@ -986,17 +913,17 @@ $(document).ready(function(){
 
 
 
-            $.ajax({
+            // $.ajax({
 
-                url: '<?php echo base_url("home/getordergraph") ?>',
+            //     url: '<?php echo base_url("home/getordergraph") ?>',
 
-                method: 'GET',
+            //     method: 'GET',
 
-                async: true,
+            //     async: true,
 
-                dataType: 'json',
+            //     dataType: 'json',
 
-                success: function(dat) {
+            //     success: function(dat) {
 
 
 
@@ -1106,11 +1033,11 @@ var myChart = new Chart(ctx, {
 
 
 
-}
+// }
 
 
 
-});
+// });
 
 });
 

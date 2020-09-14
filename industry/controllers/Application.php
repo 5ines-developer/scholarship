@@ -148,6 +148,7 @@ class Application extends CI_Controller {
         $this->load->model('m_application');
         $data['info'] = $this->m_application->singleStudent($id);
         $data['img'] =$this->m_application->compDocs($data['info']->company_id);
+        $data['pays'] = $this->m_application->getPay($data['info']->company_id,$data['info']->application_year);
         $email = $this->m_application->emailGet($data['info']->Student_id);
 
         require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';

@@ -888,10 +888,10 @@ $this->load->model('m_stdapplication');
                 
             },
             deathXeroxf(){
-                this.file4 = this.$refs.file4d.files[0];
+                this.file4d = this.$refs.file4d.files[0];
 
             },deathXeroxm(){
-                this.file5 = this.$refs.file5d.files[0];
+                this.file5d = this.$refs.file5d.files[0];
             },
             casteCheck(){
                 if (this.caste.low =='1') {
@@ -970,14 +970,18 @@ $this->load->model('m_stdapplication');
 
                     formData.append('not_applicable1', this.not_applicable1);
                     formData.append('not_applicable2', this.not_applicable2);
-                    formData.append('death', this.file4);
-                    formData.append('death1', this.file5);
+                    formData.append('death', this.file4d);
+                    formData.append('death1', this.file5d);
 
                     formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
 
                     axios.post('<?php echo base_url() ?>student/submit-application', formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } })
                     .then(response => {
+
+                        console.log(response)
+
+
                         this.loader=false;
                         if(response.data == 'error'){
                             M.toast({html: 'You are not eligible to apply for this scholarship', classes: 'red', displayLength : 5000 });
@@ -1098,15 +1102,6 @@ $this->load->model('m_stdapplication');
                     axios.get('<?php echo base_url() ?>std_application/appliGet')
                     .then(function (response) {
 
-                        console.log(response.data.notappli);
-                        console.log(response.data.deathcertificate);
-
-                        
-
-
-                        
-
-
                         if (response.data.notappli =='mother') {
                             self.not_applicable2 =true;
                             self.not_applicable1 =false;
@@ -1159,9 +1154,9 @@ $this->load->model('m_stdapplication');
                         self.student.address = response.data.saddress;
                         self.student.gend    = response.data.gender;
                         //insttitute details
-                        self.institute.name     = '<?php echo (!empty($scholls->school_address))?$scholls->school_address:''; ?>';
+                        self.institute.name     = '<?php echo (!empty($scholls->school_address))?str_replace(array("\n", "\r"),'',$scholls->school_address):''; ?>';
                         self.institute.talluk   = '<?php echo (!empty($scholls->talluk))?$scholls->talluk:''; ?>';
-                        self.institute.district = '<?php echo (!empty($scholls->districtname))?$scholls->districtname:''; ?>';
+                        self.institute.district = '<?php echo (!empty($scholls->districtname))?str_replace(array("\n", "\r"),'',$scholls->districtname):''; ?>';
                         if(response.data.course !=''){
                             self.crse = true;
                         }else{

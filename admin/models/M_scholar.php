@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_scholar extends CI_Model {
 
+
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->database();
+        $this->db->reconnect();
+    }
+
+
     // get student Detail
     public function singleGet($id = null)
     {
@@ -50,6 +59,10 @@ class M_scholar extends CI_Model {
 
     public function make_datatables($filter='')
     {
+
+        $this->load->database();
+        $this->db->reconnect();
+
         $this->make_query($filter);  
         if($_POST["length"] != -1)  
         {  
@@ -61,6 +74,8 @@ class M_scholar extends CI_Model {
 
     public function make_query($filter='')
     {
+        $this->load->database();
+        $this->db->reconnect();
 
         $select_column = array('ab.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','m.graduation');
         $order_column = array("ab.name","a.school_id", "ind.name",null,"crs.course","a.application_year","a.application_state","a.status"); 
@@ -294,6 +309,8 @@ class M_scholar extends CI_Model {
 
     public function csv_scholar($item='')
     {
+        $this->load->database();
+        $this->db->reconnect();
         $select_column = array('ab.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','m.graduation');
         $this->db->select($select_column);
 
