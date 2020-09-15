@@ -21,7 +21,7 @@
         $pyear     = $res['year'];
         $ordId     = $res['pay_id'];
 
-        $sucurl = base_url('payments/success');
+        $sucurl = base_url('payments/success?item=').$ordId;
         $failurl = base_url('make-payment?item=').$ordId;
         $key = "A7C9F96EEE0602A61F184F4F1B92F0566B9E61D98059729EAD3229F882E81C3A";
         
