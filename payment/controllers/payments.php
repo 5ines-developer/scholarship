@@ -219,7 +219,6 @@ class Payments extends CI_Controller {
      public function success($value='')
     {
 
-
         $key = "A7C9F96EEE0602A61F184F4F1B92F0566B9E61D98059729EAD3229F882E81C3A";
         require_once APPPATH .'AES128_php.php'; 
         $AESobj = new AESEncDec();
@@ -250,10 +249,12 @@ class Payments extends CI_Controller {
         }
         else
         {
-            $atrn = "";
-            $order_id = $this->input->get('item');
+
+
+            $atrn = "3672299817241";
+            $order_id = "xBlZm";
             $aggregatorId = "SBIEPAY";
-            $merchantId = "1000112";
+            $merchantId = "1000003";
             $queryRequest = $atrn."|".$merchantId."|".$order_id;
             $service_url =
             "https://test.sbiepay.com/payagg/orderStatusQuery/getOrderStatusQuery";
@@ -269,6 +270,11 @@ class Payments extends CI_Controller {
             $result = curl_exec($ch);
             $err = curl_error($curl);
             curl_close($ch);
+<<<<<<< HEAD
+            // $this->session->set_flashdata('error', 'Something Went wrong, please try again later!');
+            //     redirect('make-payment','refresh');
+        }
+=======
 
             if ($err) {
               echo "cURL Error #:" . $err;
@@ -293,6 +299,7 @@ class Payments extends CI_Controller {
                 }
             }
 
+<<<<<<< HEAD
         }
     }
 
@@ -310,6 +317,10 @@ class Payments extends CI_Controller {
             print_r ($encData);
             echo "</pre>";exit();
         }
+=======
+        // }
+>>>>>>> e7df948021f8ff5bd8a0526a5b8423dd3f4a88e8
+>>>>>>> 2db7a9015fe879936c3dc4994f6a370cf93f7533
     }
 
 
