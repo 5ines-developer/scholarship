@@ -129,10 +129,17 @@ class M_payments extends CI_Model {
         return $this->db->update('reminder_noti', array('seen' => 1));
     }
 
-    public function getPy($pay_id='')
+    public function getPy($pay_id='',$atrn='')
     {
         $this->db->where('pay_id', $pay_id);
-        return $this->db->get('payment')->row();
+        $query =  $this->db->get('payment');
+        if($query->num_rows() > 0){
+            $this->db->where('pay_id', $pay_id)->update('payment',array('atrn' => $atrn,'status' =>'1'));
+            return $query->row();
+        }else{
+            return false;
+        }
+
     }
     
 
