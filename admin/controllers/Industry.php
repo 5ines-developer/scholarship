@@ -87,6 +87,7 @@ class Industry extends CI_Controller {
             $sub_array[] = $row->industryId;  
             $sub_array[] = character_limiter($row->name, 9);
             $sub_array[] = $row->reg_id;  
+            $sub_array[] = $row->email;
             $sub_array[] = $act;
             $sub_array[] = $row->district;  
             $sub_array[] = $row->title;  

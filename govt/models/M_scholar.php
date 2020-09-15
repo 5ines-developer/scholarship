@@ -77,6 +77,11 @@ class M_scholar extends CI_Model {
                  $this->db->where('a.status', 2);
                  $this->db->where('a.application_state', 3);
                 $this->db->group_end();
+            }else if($filter['item'] =='payments'){
+                $this->db->group_start();
+                    $this->db->where('a.pay_status', 1);
+                    $this->db->where('a.application_state', 4);
+                $this->db->group_end();
             }else{
                 $this->db->group_start();
                  $this->db->where('a.status', 0);

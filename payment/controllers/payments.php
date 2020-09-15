@@ -219,39 +219,62 @@ class Payments extends CI_Controller {
      public function success($value='')
     {
 
-        $key = "A7C9F96EEE0602A61F184F4F1B92F0566B9E61D98059729EAD3229F882E81C3A";
-        require_once APPPATH .'AES128_php.php'; 
-        $AESobj = new AESEncDec();
-        if (!empty($_REQUEST['encData']))
-        {
-            $encData = $AESobj->decrypt($_REQUEST['encData'],$key);
-            $str = explode("|",$encData);
-            if (!empty($str[0])) {
-                $pays = $this->m_payments->getPy($str[0]);
-                if (!empty($pays)) {
-                    $emails='';
-                    $phones='';
-                    $company='';
-                    $ind = $this->m_payments->getind($pays->comp_reg_id);
-                    if (!empty($ind)) {
-                        $emails = $ind->email;
-                        $phones = $ind->mobile;
-                        $company = $ind->name;
-                    }
-                    $data['insert_id'] = $pays->id;
-                    $data['comp_reg_id'] = $pays->comp_reg_id;
-                    $this->sendmail($data,$emails,$phones,$company);
-                    $this->sendadmin($data,$emails,$phones,$company);
-                     $this->session->set_flashdata('success', 'Your contribution has been paid successfully');
-                    redirect('make-payment','refresh');
-                }
-            }
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'Something Went wrong, please try again later!');
-                redirect('make-payment','refresh');
-        }
+
+        // $key = "A7C9F96EEE0602A61F184F4F1B92F0566B9E61D98059729EAD3229F882E81C3A";
+        // require_once APPPATH .'AES128_php.php'; 
+        // $AESobj = new AESEncDec();
+        // if (!empty($_REQUEST['encData']))
+        // {
+        //     $encData = $AESobj->decrypt($_REQUEST['encData'],$key);
+        //     $str = explode("|",$encData);
+        //     if (!empty($str[0])) {
+        //         $pays = $this->m_payments->getPy($str[0]);
+        //         if (!empty($pays)) {
+        //             $emails='';
+        //             $phones='';
+        //             $company='';
+        //             $ind = $this->m_payments->getind($pays->comp_reg_id);
+        //             if (!empty($ind)) {
+        //                 $emails = $ind->email;
+        //                 $phones = $ind->mobile;
+        //                 $company = $ind->name;
+        //             }
+        //             $data['insert_id'] = $pays->id;
+        //             $data['comp_reg_id'] = $pays->comp_reg_id;
+        //             $this->sendmail($data,$emails,$phones,$company);
+        //             $this->sendadmin($data,$emails,$phones,$company);
+        //              $this->session->set_flashdata('success', 'Your contribution has been paid successfully');
+        //             redirect('make-payment','refresh');
+        //         }
+        //     }
+        // }
+        // else
+        // {
+            // $this->session->set_flashdata('error', 'Something Went wrong, please try again later!');
+                // redirect('make-payment','refresh');
+
+            $atrn = "";
+            $order_id = $this->input->get('item');
+            $aggregatorId = "SBIEPAY";
+            $merchantId = "1000112";
+            $queryRequest = $atrn."|".$merchantId."|".$order_id;
+            $service_url =
+            "https://test.sbiepay.com/payagg/orderStatusQuery/getOrderStatusQuery";
+            $post_param =
+            "queryRequest=".$queryRequest."&aggregatorId=".$aggregatorId."&merchantId=".
+            $merchantId;
+
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$service_url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS,$post_param);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $result = curl_exec($ch);
+            var_dump($result);
+            curl_close($ch);
+
+
+        // }
     }
 
 

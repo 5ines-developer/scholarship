@@ -100,6 +100,7 @@
                                                 <th class="h5-para-p2">SL NO.</th>
                                                 <th class="h5-para-p2">Name</th>
                                                 <th class="h5-para-p2">Reg No.</th>
+                                                <th class="h5-para-p2">Email</th>
                                                 <th class="h5-para-p2">Act</th>
                                                 <th class="h5-para-p2">District</th>
                                                 <th class="h5-para-p2">Taluk</th>

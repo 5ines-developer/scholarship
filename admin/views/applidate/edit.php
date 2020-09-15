@@ -40,17 +40,18 @@ $this->load->library('encryption');
                                     <div class="board-content">
                                         <div class="row m0">
                                             <div class="col s12 m12 l12">
-                                                <form id="appliform" action="<?php echo base_url() ?>application-date/submit" method="post">
+                                                <form id="appliform" action="<?php echo base_url() ?>application-date/update" method="post">
                                                     <div class="input-field col s12 m8 l5 ad-selt2">
-                                                        <input id="start_date" name="start_date" required type="text" class="datepicker" >
+                                                        <input id="start_date" name="start_date" required type="text"  class="datepicker" value="<?php echo (!empty($result->fromdate))?$result->fromdate:''; ?>">
                                                         <label for="start_date">Start Date</label>
                                                         <p class="serror"></p>
                                                     </div>
                                                     <div class="input-field col s12 m8 l5 ad-selt2">
-                                                        <input id="end_date" name="end_date" required type="text" class="datepicker">
+                                                        <input id="end_date" name="end_date" required type="text" class="datepicker" value="<?php echo (!empty($result->todate))?$result->todate:''; ?>">
                                                         <label for="end_date">End Date</label>
                                                         <p class="enerror"></p>
                                                     </div>
+                                                    <input type="hidden" name="id" value="<?php echo (!empty($result->id))?$result->id:''; ?>">
                                                     <input type="hidden" name="ser">
                                                     <input type="hidden" name="ener">
                                                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
@@ -121,13 +122,14 @@ $this->load->library('encryption');
         $(document).on('change', 'input[name=start_date]', function() {
             event.preventDefault();
             var syear = $(this).val();
+            var id = $('input[name=id]').val();
             $('.serror > span').remove();
             $('input[name=ser]').val('');
             $.ajax({
                 url: '<?php echo base_url('appli_date/checkyear') ?>',
                 type: 'get',
                 dataType: 'html',
-                data: {syear: syear},
+                data: {syear: syear,id:id},
                 success:function(response){
                     if (response !='') {
                         $('.serror').append('<span class="red-text error">The application Start date   for the year has been already added.</span>');
@@ -143,13 +145,14 @@ $this->load->library('encryption');
          $(document).on('change', 'input[name=end_date]', function() {
             event.preventDefault();
             var eyear = $(this).val();
+            var id = $('input[name=id]').val();
             $('.enerror > span').remove();
             $('input[name=ener]').val('');
             $.ajax({
                 url: '<?php echo base_url('appli_date/checkendyear') ?>',
                 type: 'get',
                 dataType: 'html',
-                data: {eyear: eyear},
+                data: {eyear: eyear,id:id},
                 success:function(response){
 
                     if (response !='') {

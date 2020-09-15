@@ -91,6 +91,10 @@ class M_scholar extends CI_Model {
             }else if($filter['item'] =='pending'){
                 $stss = '0';
                  $this->db->where('a.application_state', 4);
+            }else if($filter['item'] =='payments'){
+                $stss = '1';
+                 $this->db->where('a.pay_status', 1);
+                 $this->db->where('a.application_state', 4);
             }else{
                 $stss = '0';
             }
@@ -322,8 +326,12 @@ class M_scholar extends CI_Model {
             }else if($item =='pending'){
                 $stss = '0';
                  $this->db->where('a.application_state', 4);
+            }else if($item =='payments'){
+                $stss = '1';
+                 $this->db->where('a.pay_status', 1);
+                 $this->db->where('a.application_state', 4);
             }else{
-                $stss = '0';
+                 $stss = '0';
             }
             $this->db->group_start();
              $this->db->where('a.status', $stss);

@@ -89,7 +89,11 @@ $route['contribution-report']           = 'reports/contribution';
 $route['contribution-dashboard']        = 'reports/dashboard';
 $route['application-date']        		= 'appli_date/index';
 $route['application-date/add']        	= 'appli_date/add';
+$route['application-date/submit']       = 'appli_date/submit';
 $route['application-date/delete/(:any)'] = 'appli_date/delete/$1';
+$route['application-date/edit/(:any)']	 = 'appli_date/edit/$1';
+$route['application-date/update']       = 'appli_date/update';
+
 
 
 
