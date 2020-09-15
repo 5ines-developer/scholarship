@@ -39,8 +39,7 @@ $this->load->library('encryption');
                             <div class="card-content bord-right ">
                                 <div class="title-list ">
                                     <span class="list-title ">Employee  List</span>
-                                    <a href="<?php echo base_url() ?>employee/add" class="back-btn z-depth-1 waves-effect waves-ligh hoverable add-btn">
-                                        <i class="material-icons add-icon ">add</i><span>Add New Employee</span></a>
+                                    <a href="<?php echo base_url() ?>employee/add" class="back-btn z-depth-1 waves-effect waves-ligh hoverable add-btn"> <i class="material-icons add-icon ">add</i><span>Add New Employee</span></a>
                                 </div>
                                 <div class="board-content ">
                                     <div class="hr-list">

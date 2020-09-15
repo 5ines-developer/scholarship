@@ -191,7 +191,7 @@
                         if (error.response) {
                             this.errormsg = error.response.data.error;
                         }
-                    } )
+                    })
                 }
             },
 

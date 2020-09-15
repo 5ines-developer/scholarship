@@ -68,6 +68,32 @@ class Home extends CI_Controller {
                
         }
 
+    public function studentOtp($data='', $apid='')
+    {
+        ini_set('default_socket_timeout', 6000);
+
+        $msg = 'Your One time Password For Karnataka Labour Welfare Board Scholarship registration is 1234 Do not share with anyone';
+        /* API URL */
+        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $msg . '&sender=RADTEL&to=8951411732&service=T';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch,CURLOPT_HTTPHEADER,false );
+        $server_output = curl_exec($ch);
+        $err = curl_error($ch);
+        curl_close($ch);
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            $dec =  json_decode($response);
+        }
+        print_r($server_output);exit;
+
+    }
+
+
 }
 
 /* End of file Home.php */

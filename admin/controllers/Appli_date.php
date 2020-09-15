@@ -22,17 +22,21 @@ class Appli_date extends CI_Controller {
         // header("Expect-CT: max-age=7776000, enforce");
         // header('Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; max-age=604800; includeSubDomains; report-uri="https://example.net/pkp-report"');
         ////header("Set-Cookie: key=value; path=/; domain=www.hirewit.com; HttpOnly; Secure; SameSite=Strict");
-        
     }
 
 	public function index()
 	{
         $data['result'] = $this->m_applidate->getDate();
-        $this->load->view('applidate/add', $data, FALSE);
+        $this->load->view('applidate/list', $data, FALSE);
 	}
 
+    public function add($value='')
+    {
+        $this->load->view('applidate/add');
+    }
 
-	public function add($value='')
+
+	public function submit($value='')
 	{
 		if(!empty($this->input->post())){
             $this->load->library('form_validation');
@@ -76,6 +80,65 @@ class Appli_date extends CI_Controller {
         }
         redirect('application-date','refresh');
 	}
+
+    public function checkyear($value='')
+    {
+        $syear  = $this->input->get('syear');
+        $id     = $this->input->get('id');
+        $output = $this->m_applidate->checkyear($syear,$id);
+        echo $output;
+    }
+
+    public function checkendyear($value='')
+    {
+        $id     = $this->input->get('id');
+        $eyear = $this->input->get('eyear');
+        $output = $this->m_applidate->checkendyear($eyear,$id);
+        echo $output;
+    }
+
+
+    public function edit($id='')
+    {
+        $data['result'] = $this->m_applidate->edit($id);
+        $this->load->view('applidate/edit', $data, FALSE);
+    }
+
+
+    public function update($value='')
+    {
+        if(!empty($this->input->post())){
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('start_date', 'Start Date', 'trim|required');
+            $this->form_validation->set_rules('end_date', 'End Date', 'trim|required');
+            if ($this->form_validation->run() == True){
+
+
+                $start_date = $this->input->post('start_date');
+                $end_date   = $this->input->post('end_date');
+                $id   = $this->input->post('id');
+                $data   = array(
+                    'fromdate' => $this->input->post('start_date'), 
+                    'todate'   => $this->input->post('end_date'),
+                    'status'   => 1,
+                );
+                if($this->m_applidate->update($data,$id)){
+                    $this->session->set_flashdata('success', 'Application Date updated Successfully');
+                }
+                else{
+                    $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+                }
+                redirect('application-date/edit/'.$id,'refresh');
+            }else{
+                $this->form_validation->set_error_delimiters('', '<br>');
+                $this->session->set_flashdata('error', str_replace(array("\n", "\r"), '', validation_errors()));
+                redirect('application-date/edit/'.$id,'refresh');
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Some error occured. <br>Please try agin later');
+            redirect('application-date/edit/'.$id,'refresh');
+        }
+    }
 
 }
 

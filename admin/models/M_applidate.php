@@ -36,6 +36,55 @@ class M_applidate extends CI_Model {
 		$this->db->where('id', $id);
 		return $this->db->delete('application_date');
 	}
+
+	public function checkyear($syear='',$id='')
+	{
+		
+		if (!empty($id)) {
+			$this->db->where('id !=', $id);
+		}
+		$syear 	= 	date("Y", strtotime($syear));
+		$this->db->where('fromdate >=', $syear.'-01-01');
+		$this->db->where('todate <=', 	$syear.'-12-31');
+		$query = $this->db->get('application_date');
+		if ($query->num_rows() > 0 ) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function checkendyear($syear='',$id='')
+	{
+		if (!empty($id)) {
+			$this->db->where('id !=', $id);
+		}
+		$syear 	= 	date("Y", strtotime($syear));
+		$this->db->where('fromdate >=', $syear.'-01-01');
+		$this->db->where('todate <=', 	$syear.'-12-31');
+		$query = $this->db->get('application_date');
+		if ($query->num_rows() > 0 ) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function edit($id='')
+	{
+		return $this->db->where('id', $id)->get('application_date')->row();
+	}
+
+	public function update($data='',$id='')
+	{
+		$query = $this->db->where('id', $id)->get('application_date');
+		if ($query->num_rows() > 0 ) {
+			$this->db->where('id', $id);
+			return $this->db->update('application_date', $data);
+		}else{
+			return false;
+		}
+	}
 	
 
 }
