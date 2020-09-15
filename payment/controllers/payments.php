@@ -270,11 +270,8 @@ class Payments extends CI_Controller {
             $result = curl_exec($ch);
             $err = curl_error($curl);
             curl_close($ch);
-<<<<<<< HEAD
-            // $this->session->set_flashdata('error', 'Something Went wrong, please try again later!');
-            //     redirect('make-payment','refresh');
-        }
-=======
+
+        
 
             if ($err) {
               echo "cURL Error #:" . $err;
@@ -299,7 +296,6 @@ class Payments extends CI_Controller {
                 }
             }
 
-<<<<<<< HEAD
         }
     }
 
@@ -317,10 +313,7 @@ class Payments extends CI_Controller {
             print_r ($encData);
             echo "</pre>";exit();
         }
-=======
-        // }
->>>>>>> e7df948021f8ff5bd8a0526a5b8423dd3f4a88e8
->>>>>>> 2db7a9015fe879936c3dc4994f6a370cf93f7533
+
     }
 
 
