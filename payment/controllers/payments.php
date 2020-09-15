@@ -257,7 +257,7 @@ class Payments extends CI_Controller {
             $merchantId = "1000003";
             $queryRequest = $atrn."|".$merchantId."|".$order_id;
             $service_url =
-            "https://test.sbiepay.com/payagg/orderStatusQuery/getOrderStatusQuery";
+            "https://test.sbiepay.sbi/payagg/orderStatusQuery/getOrderStatusQuery";
             $post_param =
             "queryRequest=".$queryRequest."&aggregatorId=".$aggregatorId."&merchantId=".
             $merchantId;
