@@ -327,7 +327,7 @@ class Payments extends CI_Controller {
 
         $data['company'] = $company;
         $data['result'] = $this->m_payments->singlepay($insert['insert_id'],$rgid);
-        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
             'default_font' => 'tunga'
