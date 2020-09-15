@@ -249,8 +249,29 @@ class Payments extends CI_Controller {
         }
         else
         {
-            $this->session->set_flashdata('error', 'Something Went wrong, please try again later!');
-                redirect('make-payment','refresh');
+
+
+            $atrn = "3672299817241";
+            $order_id = "xBlZm";
+            $aggregatorId = "SBIEPAY";
+            $merchantId = "1000003";
+            $queryRequest = $atrn."|".$merchantId."|".$order_id;
+            $service_url =
+            "https://test.sbiepay.com/payagg/orderStatusQuery/getOrderStatusQuery";
+            $post_param =
+            "queryRequest=".$queryRequest."&aggregatorId=".$aggregatorId."&merchantId=".
+            $merchantId;
+
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$service_url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS,$post_param);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $result = curl_exec($ch);
+            var_dump($result);
+            curl_close($ch);
+            // $this->session->set_flashdata('error', 'Something Went wrong, please try again later!');
+            //     redirect('make-payment','refresh');
         }
     }
 
