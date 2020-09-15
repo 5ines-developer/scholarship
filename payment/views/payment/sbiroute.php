@@ -28,15 +28,7 @@
         // https://test.sbiepay.sbi/secure/fail.jsp
         
 
-<<<<<<< HEAD
         $request ="1000112|DOM|IN|INR|".$tot."|".$pyear."|".$sucurl."|".$failurl."|SBIEPAY|".$ordId."|".$reg_no."|NB|ONLINE|ONLINE";
-=======
-<<<<<<< HEAD
-        $request ="1000112|DOM|IN|INR|".$tot."|".$pyear."|".$sucurl."|".$failurl."|https://test.sbiepay.sbi/secure/fail.jsp|SBIEPAY|".$reg_no."|NB|ONLINE|ONLINE";
-=======
-        $request ="1000112|DOM|IN|INR|".$tot."|".$pyear."|".$sucurl."|https://test.sbiepay.sbi/secure/fail.jsp|SBIEPAY|".$ordId."|".$reg_no."|NB|ONLINE|ONLINE";
->>>>>>> f0fd04a842700b273b27a60c243bb6645f710cdb
->>>>>>> b67e72b8630ed7fb200d9d80d6917e86f8de9802
 
         // //requestparameter = MerchantId | OperatingMode | MerchantCountry | MerchantCurrency | PostingAmount | OtherDetails | SuccessURL | FailURL | AggregatorId | MerchantOrderNo | MerchantCustomerID | Paymode | Accesmedium | TransactionSource
 
