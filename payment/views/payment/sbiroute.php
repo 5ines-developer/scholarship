@@ -22,11 +22,13 @@
         $ordId     = $res['pay_id'];
 
         $sucurl = base_url('payments/success?item=').$ordId;
-        $failurl = base_url('make-payment?item=').$ordId;
+        $failurl = base_url('payments/failed?item=').$ordId;
         $key = "A7C9F96EEE0602A61F184F4F1B92F0566B9E61D98059729EAD3229F882E81C3A";
+
+        // https://test.sbiepay.sbi/secure/fail.jsp
         
 
-        $request ="1000112|DOM|IN|INR|".$tot."|".$pyear."|".$sucurl."|https://test.sbiepay.sbi/secure/fail.jsp|SBIEPAY|".$ordId."|".$reg_no."|NB|ONLINE|ONLINE";
+        $request ="1000112|DOM|IN|INR|".$tot."|".$pyear."|".$sucurl."|".$failurl."|SBIEPAY|".$ordId."|".$reg_no."|NB|ONLINE|ONLINE";
 
         // //requestparameter = MerchantId | OperatingMode | MerchantCountry | MerchantCurrency | PostingAmount | OtherDetails | SuccessURL | FailURL | AggregatorId | MerchantOrderNo | MerchantCustomerID | Paymode | Accesmedium | TransactionSource
 
