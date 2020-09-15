@@ -300,21 +300,7 @@ class Payments extends CI_Controller {
     }
 
 
-    public function failed($value='')
-    {
-        $key = "A7C9F96EEE0602A61F184F4F1B92F0566B9E61D98059729EAD3229F882E81C3A";
-        require_once APPPATH .'AES128_php.php'; 
-        $AESobj = new AESEncDec();
-        if (!empty($_REQUEST['encData']))
-        {
-            $encData = $AESobj->decrypt($_REQUEST['encData'],$key);
 
-            echo "<pre>";
-            print_r ($encData);
-            echo "</pre>";exit();
-        }
-
-    }
 
 
     public function sendmail($insert='',$emails='',$phone='',$company='')
