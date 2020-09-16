@@ -59,8 +59,9 @@
                                                 </div>
                                                 
                                                 <div class="input-field col s12">
-                                                    <input id="email" autofocus="" type="email"  v-model="student.email" class="validate">
+                                                    <input id="email" autofocus="" type="email" @change="emailCheck()"  v-model="student.email" class="validate">
                                                     <label for="email">Email Id</label>
+                                                    <span class="helper-text red-text">{{ emailError }}</span>
                                                 </div>
                                                 
                                                 <div class="input-field col s12">
@@ -122,6 +123,7 @@
             profilePic: '',
             fileInput:'',
             loader:false,
+            emailError: '',
 
         },  
 
@@ -163,6 +165,7 @@
                 },
                 formSubmit(e){
                     e.preventDefault();
+                    if (this.emailError =='') {
                     this.loader=true;
                     const formData = new FormData();
                     formData.append('name', this.student.name);
@@ -183,37 +186,63 @@
                         this.errormsg = error.response.data.error;
                     }
                     })
+                }
 
                 },
             getData(){
-                const formData = new FormData();
-                this.loader=true;
-                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
-                axios.post('<?php echo base_url() ?>std_account/getProfile',formData)
-                .then(response => {
-                    this.loader=false;
 
-                    if(response.data != ''){
+                
 
-                        this.student.email      = response.data.email;
-                        this.student.name       = response.data.name;
-                        this.student.mobile     = response.data.phone;                       
+                    const formData = new FormData();
+                    this.loader=true;
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                    axios.post('<?php echo base_url() ?>std_account/getProfile',formData)
+                    .then(response => {
+                        this.loader=false;
 
-                        if(response.data.profile != ''){
-                            this.student.profile    = response.data.profile;
-                        }else{
-                            this.student.profile  = 'https://img.icons8.com/pastel-glyph/2x/person-male.png';
+                        if(response.data != ''){
+
+                            this.student.email      = response.data.email;
+                            this.student.name       = response.data.name;
+                            this.student.mobile     = response.data.phone;                       
+
+                            if(response.data.profile != ''){
+                                this.student.profile    = response.data.profile;
+                            }else{
+                                this.student.profile  = 'https://img.icons8.com/pastel-glyph/2x/person-male.png';
+                            }
                         }
+                    })
+                    .catch(error => {
+                        this.loader=false;
+                        
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+            },
+            //check student email already exist
+            emailCheck(){
+                this.emailError='';
+                const formData = new FormData();
+                formData.append('email',this.student.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                axios.post('<?php echo base_url('std_account/emailcheck') ?>',formData)
+                .then(response =>{
+                    if (response.data == '1') {
+                        this.emailError = 'This Email id already exist!';
+                    } else {
+                        this.emailError = '';
                     }
-                })
-                .catch(error => {
-                    this.loader=false;
-                    
+
+                }).catch(error => {
                     if (error.response) {
                         this.errormsg = error.response.data.error;
                     }
                 })
             },
+
+
         },
         mounted: function() {
             this.getData();

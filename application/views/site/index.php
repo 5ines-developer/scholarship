@@ -56,7 +56,7 @@
 
                 EDUCATION ASSISTANCE</span></a>
 
-              <a href="<?php echo base_url() ?>payment/" target="_blank" class="payment">
+              <a href="<?php echo base_url() ?>contribution/" target="_blank" class="payment">
 
                 <span class="grad-cap"><i class="fas fa-credit-card"></i></span><span class="top-title">Payment Of Labour Welfare Fund</span>
 

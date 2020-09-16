@@ -116,6 +116,7 @@
         </section>
 
         <!-- footer -->
+        <div v-if="loader" class="loading">Loading&#8230;</div>
 
         <?php $this->load->view('include/footer'); ?>
         
@@ -163,13 +164,15 @@
                 tlq:'',
                 intdstError:'',
                 intalError:'',
-                id:'<?php echo $this->uri->segment(2) ?>'
+                id:'<?php echo $this->uri->segment(2) ?>',
+                loader:false,
 
             },
 
             methods: {
                 talukFilter(){
                     var self = this;
+                    self.loader=true;
                     self.taluk = '';
                     self.tlq = '';
                     self.instituteSelect = '';
@@ -179,11 +182,12 @@
                     formData.append('filter',self.district.id);
                     axios.post('<?php echo base_url() ?>school/talukFilter',formData)
                     .then(res => {
+                        self.loader=false;
                         self.disabled = false;
                         self.taluk = res.data;
                     })
                     .catch(err => {
-                        console.error(err); 
+                        self.loader=false; 
                         self.disabled = true;
                     })
                 },

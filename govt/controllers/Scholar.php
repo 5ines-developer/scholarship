@@ -170,6 +170,7 @@ class Scholar extends CI_Controller {
                    'status' => 2,
                 );
                 if($this->m_scholar->reject($data, $id)){
+                    $this->sendReject($id);
                     $this->session->set_flashdata('success', 'Application rejected Successfully');
                     redirect('applications?item=rejected','refresh');
                 }else{
@@ -181,6 +182,54 @@ class Scholar extends CI_Controller {
             redirect('applications/detail/'.$id,'refresh');
         }
     }
+
+
+            // Send a application pdf file
+    public function sendReject($id='')
+    {
+        $data['info'] = $this->m_scholar->singleGet($id);
+        $email = $this->m_scholar->emailGet($data['info']->Student_id);
+        $msg = 'Dear '. $data['info']->name.',
+        Your Karnataka Labour Welfare Board Scholarship has been rejected from Govt Verification Officer due to '.$data['info']->reject_reason.', More information login to your account and check the Scholarship status';
+        $this->studentSms($msg,$id);
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/reject', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($email);
+        $this->email->subject('Scholarship application Rejected from Govt Verification Officer'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            
+            return false;
+        }
+    }
+
+    public function studentSms($data='', $apid='')
+    {
+         $output['info'] = $this->m_scholar->singleGet($apid);
+        $phone = $this->m_scholar->phoneGet($output['info']->Student_id);
+        
+        /* API URL */
+        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $data . '&sender=RADTEL&to=' . $phone . '&service=T';
+        
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return $server_output;
+    }
+
 
 
              // application generate

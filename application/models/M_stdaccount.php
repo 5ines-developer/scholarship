@@ -78,6 +78,18 @@ class M_stdaccount extends CI_Model {
             } 
         }
     }
+
+    public function email_check($email='')
+    {
+        $this->db->where('id !=', $this->session->userdata('stlid'));
+       $this->db->where('email', $email);
+            $result = $this->db->get('student');
+               if($result->num_rows() > 0){
+                return true;
+            }else{
+                return false;
+            }
+    }
 	
 
 }

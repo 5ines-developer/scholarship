@@ -131,7 +131,7 @@
                                                 <div class="input-field col s12 m5">
                                                     <div>
                                                         <input type="hidden" name="in_talluk" :value="institute.talluk.tallukId">       
-                                                        <v-select  v-model="institute.talluk"  as="talluk::tallukId" placeholder="Select Taluk" @input="schoolget" tagging :from="tallukSelect" />
+                                                        <v-select  v-model="institute.talluk"  as="talluk::tallukId" placeholder="Select Taluk" @input="schoolget" tagging :from="tallukSelect" :disabled='disabledtal' />
                                                     </div>
                                                     <br><span class="red-text">{{intalError}}</span>
                                                 </div>
@@ -141,7 +141,7 @@
                                                 <div class="input-field col s12 m5">
                                                     <div>
                                                         <input type="hidden" name="in_school" :value="institute.name.sId">       
-                                                        <v-select  v-model="institute.name"  as="sName::sId" placeholder="Select Present Institution"  tagging :from="schoolSelect" />
+                                                        <v-select  v-model="institute.name"  as="sName::sId" placeholder="Select Present Institution"  tagging :from="schoolSelect" :disabled='disabledscl'/>
                                                     </div>
                                                     <br><span class="red-text">{{inpresentError}}</span>
                                                 </div>
@@ -155,7 +155,7 @@
                                                 <div class="input-field col s12 m5">
                                                     <div>
                                                         <input type="hidden" name="in_grad" :value="institute.grad.id">       
-                                                        <v-select  v-model="institute.grad"  as="title::id" placeholder="Select Your graduation" @input="courseGet"  tagging :from="gardSelect" />
+                                                        <v-select  v-model="institute.grad"  as="title::id" placeholder="Select Your graduation" @input="courseGet"  tagging :from="gardSelect"/>
                                                     </div>
                                                     <br><span class="red-text">{{gradError}}</span>
                                                 </div>
@@ -163,16 +163,18 @@
                                                 <div class="input-field col s12 m5">
                                                     <div>
                                                         <input type="hidden" name="in_course" :value="institute.course.id">       
-                                                        <v-select  v-model="institute.course"  as="course::id" placeholder="Select Your Course" @input="classGet"  tagging :from="courseSelect" />
+                                                        <v-select  v-model="institute.course"  as="course::id" placeholder="Select Your Course" @input="classGet"  tagging :from="courseSelect" :disabled='disabledcrs'/>
                                                     </div>
                                                     <br><span class="red-text">{{courseError}}</span>
                                                 </div>
                                             </div>
 
                                             <div class="input-field col s12 m5" v-bind:class="{ hide: crse }">
-                                                <input type="hidden" name="in_sem" :value="institute.pclass.id" >       
-                                                <v-select  v-model="institute.pclass"  as="clss::id" placeholder="Select Your Present Class"tagging :from="classSelect" />
-                                            <span class="red-text">{{classError}}</span>
+                                                <div>
+                                                    <input type="hidden" name="in_sem" :value="institute.pclass.id" >       
+                                                    <v-select  v-model="institute.pclass"  as="clss::id" placeholder="Select Your Present Class"tagging :from="classSelect" :disabled='disabledcls'/>
+                                                </div>
+                                                <br><span class="red-text">{{classError}}</span>
                                             </div>
 
                                         </div>
@@ -523,7 +525,7 @@
 
                                                 <div class="input-field col s12 m5">
                                                     <div>
-                                                        <input type="hidden" name="id_talluk" :value="industry.talluk.tallukId"> <v-select  v-model="industry.talluk"  as="talluk::tallukId" placeholder="Select Taluk" tagging :from="tallukSelects" />
+                                                        <input type="hidden" name="id_talluk" :value="industry.talluk.tallukId"> <v-select  v-model="industry.talluk"  as="talluk::tallukId" placeholder="Select Taluk" tagging :from="tallukSelects" :disabled='disabled1' />
                                                     </div><br>
                                                     <span class="red-text">{{indtalError}}</span>
                                                 </div>
@@ -684,6 +686,11 @@
             fdrader:false,
             fatherdeath:true,
             motherdeath:true,
+            disabled1:true,
+            disabledtal:true,
+            disabledscl:true,
+            disabledcrs:true,
+            disabledcls:true,
 
         },
         methods:{
@@ -691,34 +698,23 @@
                 if (not_apply !='' && not_apply=='mother') {
                     this.not_applicable2 =true;
                     this.not_applicable1 =false;
-
-                    
-
                     this.mdrader = true;
                     this.motherdeath = false;
-
                     this.fdrader = false;
                     this.fatherdeath = true;
-
                     this.motherrequire = false;
                     this.fatherrequire = true;
                     this.adhErrorm = '';
-                    
-
                 }else if(not_apply !='' && not_apply=='father'){
                     this.not_applicable1 =true;
                     this.not_applicable2 =false;
-
                     this.fdrader = true;
                     this.fatherdeath = false;
-
                     this.mdrader = false;
                     this.motherdeath = true;
-
                     this.fatherrequire = false;
                     this.motherrequire = true;
                     this.adhErrorf = '';
-                    
                 }
 
             },
@@ -1066,54 +1062,80 @@
                 },  
                 tallukget(){
                     var self= this;
+                    self.loader=true;
+                    self.institute.talluk='';
+                    self.institute.name='';
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/tallukget?id='+self.institute.district.districtId)
                     .then(function (response) {
+                        self.loader=false;
+                        self.disabledtal=false;
                         self.tallukSelect = response.data;
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 tallukgets(){
-                     var self= this;
+                    var self= this;
+                    self.loader=true;
+                    self.industry.talluk = '';
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/tallukget?id='+self.industry.district.districtId)
                     .then(function (response) {
+                        self.loader=false;
+                        self.disabled1=false;
                         self.tallukSelects = response.data;
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 schoolget(type){
+                    this.loader=true;
                     var self= this; 
+                    self.institute.name='';
                     const formData = new FormData();
                     formData.append('id', self.institute.talluk.tallukId);
                     axios.get('<?php echo base_url() ?>std_application/schoolget?id='+self.institute.talluk.tallukId)
-                    .then(function (response) {  
+                    .then(function (response) { 
+                        self.loader=false; 
+                        self.disabledscl = false;
                         self.schoolSelect = response.data;
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 garduation(){
+                    this.loader=true;
                     var self= this; 
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/garduation')
                     .then(function (response) {  
+                        self.loader=false;
                         self.gardSelect = response.data;
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 courseGet(){
-                    var self= this; 
+                    var self= this;
+                    self.loader=true;
+                    self.institute.course ='';
+                    self.institute.pclass ='';
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/courseGet?id='+self.institute.grad.id)
-                    .then(function (response) { 
+                    .then(function (response) {
+                        self.loader=false; 
+                         self.disabledcrs=false;
+
+
                         self.courseSelect = response.data;
                         if (self.institute.grad.id == 1 || self.institute.grad.id == 6) {
                             self.crse = true;
@@ -1122,20 +1144,25 @@
                         }
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 classGet(){
+                    this.loader=true;
                     var self= this; 
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/classGet?id='+self.institute.course.id)
                     .then(function (response) {
+                        self.loader=false;
+                        self.disabledcls=false;
                         if (self.institute.grad.id != 1) {
                             self.classSelect = response.data;
                         }
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 getdata(){

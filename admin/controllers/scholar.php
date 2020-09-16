@@ -179,6 +179,7 @@ class Scholar extends CI_Controller {
            'status' => 2,
         );
         if($this->m_scholar->reject($data, $id)){
+            $this->sendReject($id);
             $this->session->set_flashdata('success', 'Application rejected Successfully');
             redirect('applications?item=rejected','refresh');
         }else{
@@ -189,6 +190,34 @@ class Scholar extends CI_Controller {
         }else{
             $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('applications?item=rejected','refresh');
+        }
+    }
+
+                // Send a application pdf file
+    public function sendReject($id='')
+    {
+        $data['info'] = $this->m_scholar->singleGet($id);
+        $email = $this->m_scholar->emailGet($data['info']->Student_id);
+        $msg = 'Dear '. $data['info']->name.',
+        Your Karnataka Labour Welfare Board Scholarship has been rejected from Labour Welfare Board due to '.$data['info']->reject_reason.', More information login to your account and check the Scholarship status';
+        $this->studentSms($msg,$id);
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/reject', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($email);
+        $this->email->subject('Scholarship application Rejected from Labour Welfare Board'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            
+            return false;
         }
     }
 

@@ -115,17 +115,25 @@ $this->load->model('m_stdapplication');
 
                                             
                                             <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_district" :value="institute.district.districtId"> <v-select  v-model="institute.district"  as="district::districtId" placeholder="Select District" @input="tallukget" tagging :from="districtSelect" />
+                                                    <input type="hidden" name="in_district" :value="institute.district.districtId"> <v-select  v-model="institute.district"  as="district::districtId" placeholder="Select District" @input="tallukget" tagging :from="districtSelect" />
                                             </div>
 
                                             <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_talluk" :value="institute.talluk.tallukId">       
-                                                <v-select  v-model="institute.talluk"  as="talluk::tallukId" placeholder="Select Taluk" @input="schoolget" tagging :from="tallukSelect" />
+                                                <div>
+                                                    <input type="hidden" name="in_talluk" :value="institute.talluk.tallukId">       
+                                                    <v-select  v-model="institute.talluk"  as="talluk::tallukId" placeholder="Select Taluk" @input="schoolget" tagging :from="tallukSelect" :disabled='disabledtal'/>
+                                                </div>
+                                                <br><span class="red-text">{{intalError}}</span>
                                             </div>
 
+                                            <div class="row">
+
                                             <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_school" :value="institute.name.sId">       
-                                                <v-select  v-model="institute.name"  as="sName::sId" placeholder="Select Present Institution"  tagging :from="schoolSelect" />
+                                                <div>
+                                                    <input type="hidden" name="in_school" :value="institute.name.sId">       
+                                                    <v-select  v-model="institute.name"  as="sName::sId" placeholder="Select Present Institution"  tagging :from="schoolSelect" :disabled='disabledscl'/>
+                                                </div>
+                                                <br><span class="red-text">{{inpresentError}}</span>
                                             </div>
                                             
                                             
@@ -133,20 +141,31 @@ $this->load->model('m_stdapplication');
                                                 <input id="pspin" type="number" maxlength="6" placeholder="ಪಿನ್ ಕೋಡ್" class="validate" name="ins_pin" required="" v-model="institute.pin">
                                                 <label for="pspin"> <span class="black-text">Pin Code</span>   </label>
                                             </div>
-
-                                            <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_grad" :value="institute.grad.id">       
-                                                <v-select  v-model="institute.grad"  as="title::id" placeholder="Select Your graduation" @input="courseGet"  tagging :from="gardSelect" />
                                             </div>
+                                            <div class="row">
+                                                <div class="input-field col s12 m5">
+                                                    <div>
+                                                        <input type="hidden" name="in_grad" :value="institute.grad.id">       
+                                                        <v-select  v-model="institute.grad"  as="title::id" placeholder="Select Your graduation" @input="courseGet"  tagging :from="gardSelect" /> 
+                                                    </div>
+                                                    <br><span class="red-text">{{gradError}}</span>
+                                                </div>
 
-                                            <div class="input-field col s12 m5">
-                                                <input type="hidden" name="in_course" :value="institute.course.id">       
-                                                <v-select  v-model="institute.course"  as="course::id" placeholder="Select Your Course" @input="classGet"  tagging :from="courseSelect" />
+                                                <div class="input-field col s12 m5">
+                                                    <div>
+                                                        <input type="hidden" name="in_course" :value="institute.course.id">       
+                                                        <v-select  v-model="institute.course"  as="course::id" placeholder="Select Your Course" @input="classGet"  tagging :from="courseSelect" :disabled='disabledcrs'/>
+                                                    </div>
+                                                    <br><span class="red-text">{{courseError}}</span>
+                                                </div>
                                             </div>
 
                                             <div class="input-field col s12 m5" v-bind:class="{ hide: crse }">
-                                                <input type="hidden" name="in_sem" :value="institute.pclass.id" >       
-                                                <v-select  v-model="institute.pclass"  as="clss::id" placeholder="Select Your Present Class"tagging :from="classSelect" />
+                                                <div>
+                                                    <input type="hidden" name="in_sem" :value="institute.pclass.id" >       
+                                                    <v-select  v-model="institute.pclass"  as="clss::id" placeholder="Select Your Present Class"tagging :from="classSelect" :disabled='disabledcls'/>
+                                                </div>
+                                                <br><span class="red-text">{{classError}}</span>
                                             </div>
 
                                         </div>
@@ -534,11 +553,16 @@ $this->load->model('m_stdapplication');
                                                 <label for="id_pin"> <span class="black-text">Pin Code</span>   </label>
                                             </div>
                                             <div class="input-field col s12 m5">
+                                                <div>
                                                 <input type="hidden" name="id_district" :value="industry.district.districtId"> <v-select  v-model="industry.district"  as="district::districtId" placeholder="Select District" @input="tallukgets" tagging :from="districtSelect" />
+                                                </div><br><span class="red-text">{{inddistError}}</span>
                                             </div>
 
                                             <div class="input-field col s12 m5">
+                                                <div>
                                                 <input type="hidden" name="id_talluk" :value="industry.talluk.tallukId"> <v-select  v-model="industry.talluk"  as="talluk::tallukId" placeholder="Select Taluk" tagging :from="tallukSelects" />
+                                                </div><br>
+                                                    <span class="red-text">{{indtalError}}</span>
                                             </div>
 
                                             <div class="input-field col s12 m12">
@@ -692,6 +716,18 @@ $this->load->model('m_stdapplication');
             motherdeathfile:false,
             fadhrpdffile:false,
             motherpdffile:false,
+            intalError:'',
+            inpresentError:'',
+            gradError:'',
+            courseError:'',
+            classError:'',
+            inddistError:'',
+            indtalError:'',
+            disabled1:false,
+            disabledtal:false,
+            disabledscl:false,
+            disabledcrs:false,
+            disabledcls:false,
         },
         methods:{
 
@@ -1024,36 +1060,54 @@ $this->load->model('m_stdapplication');
                 },  
                 tallukget(){
                     var self= this;
+                    self.loader=true;
+                    self.institute.talluk='';
+                    self.institute.name='';
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/tallukget?id='+self.institute.district.districtId)
                     .then(function (response) {
+                        self.loader=false;
+                        self.disabledtal=false;
                         self.tallukSelect = response.data;
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 tallukgets(){
-                     var self= this;
+                    var self= this;
+                    self.loader=true;
+                    self.industry.talluk = '';
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/tallukget?id='+self.industry.district.districtId)
                     .then(function (response) {
+                        self.loader=false;
+                        self.disabled1=false;
                         self.tallukSelects = response.data;
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 schoolget(type){
                     var self= this; 
+
+                    self.loader=true;
+                    self.institute.name='';
+
                     const formData = new FormData();
                     formData.append('id', self.institute.talluk.tallukId);
                     axios.get('<?php echo base_url() ?>std_application/schoolget?id='+self.institute.talluk.tallukId)
                     .then(function (response) {  
+                        self.loader=false; 
+                        self.disabledscl = false;
                         self.schoolSelect = response.data;
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 garduation(){
@@ -1064,14 +1118,20 @@ $this->load->model('m_stdapplication');
                         self.gardSelect = response.data;
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 courseGet(){
                     var self= this; 
+                    self.loader=true;
+                    self.institute.course ='';
+                    self.institute.pclass ='';
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/courseGet?id='+self.institute.grad.id)
                     .then(function (response) { 
+                        self.loader=false; 
+                         self.disabledcrs=false;
+
                         self.courseSelect = response.data;
                         if (self.institute.grad.id == 1) {
                             self.crse = true;
@@ -1080,20 +1140,26 @@ $this->load->model('m_stdapplication');
                         }
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 classGet(){
                     var self= this; 
+                    self.loader=true;
                     const formData = new FormData();
                     axios.get('<?php echo base_url() ?>std_application/classGet?id='+self.institute.course.id)
                     .then(function (response) {
+                        self.loader=false;
+                        self.disabledcls=false;
+
                         if (self.institute.grad.id != 1) {
                             self.classSelect = response.data;
                         }
                     })
                     .catch(function (error) {
-                        this.errormsg = error.response.data.error;
+                        self.loader=false;
+                        self.errormsg = error.response.data.error;
                     })
                 },
                 getdata(){

@@ -152,6 +152,7 @@
             </div>
         </div>
     </section>
+       <div v-if="loader" class="loading">Loading&#8230;</div>
 
     <!-- footer -->
     <?php $this->load->view('include/footer'); ?>
@@ -173,6 +174,7 @@
             vSelect: VueSelect.vSelect,
         },
         data: {
+            loader:false,
             district: '',
             taluk: [],
             disabled: true,
@@ -195,6 +197,7 @@
         methods:{
             talukFilter(){
                 var self = this;
+                self.loader=true;
                 self.taluk = '';
                 self.tlq = '';
                 self.instituteSelect = '';
@@ -204,15 +207,18 @@
                 formData.append('filter',self.district.id);
                 axios.post('<?php echo base_url() ?>auth/talukFilter',formData)
                 .then(res => {
+                    self.loader=false;
                     self.disabled = false;
                     self.taluk = res.data;
                 })
                 .catch(err => {
+                    self.loader=false;
                     self.disabled = true;
                 })
             },
             instituteFilter(){
                 var self = this;
+                self.loader=true;
                 self.instituteSelect = '';
                 self.institute = '';
                 const formData = new FormData();
@@ -220,11 +226,12 @@
                 formData.append('filter',self.tlq.id);
                 axios.post('<?php echo base_url() ?>auth/instituteFilter',formData)
                 .then(res => {
+                    self.loader=false;
                     self.disabled1 = false;
                     self.institute = res.data;
                 })
                 .catch(err => {
-                    console.error(err); 
+                    self.loader=false;
                     self.disabled1 = true;
                 })
             },

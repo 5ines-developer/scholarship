@@ -58,6 +58,23 @@ class Std_account extends CI_Controller {
 
 	}
 
+
+    public function emailcheck($value='')
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->security->xss_clean($_POST);
+            $email = $this->input->post('email');
+            $output = $this->m_stdaccount->email_check($email);
+            echo  $output;
+        }else{
+            echo true;
+        }
+    }
+
     public function updateprofile($output='')
     {
 

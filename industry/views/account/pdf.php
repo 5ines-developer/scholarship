@@ -115,6 +115,9 @@
             {
                 $words ='';
             }
+
+
+           
                     
 
                     
@@ -127,7 +130,7 @@
                 </div>
                 <p class="bold center"><?php echo (!empty($year))?$year:''; ?>ನೇ,ಕ್ಯಾಲೆಂಡರ್ ವರ್ಷಕ್ಕೆ ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ನಿಧಿಗೆ ವಂತಿಕೆ ಪಾವತಿಸಿರುವ ವಿವರ.</p><br>
                         <div>
-                            <p>ವಂತಿಕೆ ಪಾವತಿಸಿದ ಮೊತ್ತ:  <span class="dotted-line"> <?php echo (!empty($words))?$words:''; ?>  </span>&nbsp;&nbsp;&nbsp; ದಿನಾಂಕ:  <span class="dotted-line">  <?php echo (!empty($pays->payed_on))?date('d M, Y',strtotime($pays->payed_on)):''; ?> </span>&nbsp;&nbsp;&nbsp; ಚೆಕ್/ಡಿಡಿ/ಚಲನ್ ಸಂಖ್ಯೆ  <span class="dotted-line">  <?php echo (!empty($pays->pay_id))?$pays->pay_id:''; ?> </span> </p>
+                            <p>ವಂತಿಕೆ ಪಾವತಿಸಿದ ಮೊತ್ತ:  <span class="dotted-line"> <?php echo (!empty($pays->price))?$pays->price:''; ?>  </span>&nbsp;&nbsp;&nbsp; ದಿನಾಂಕ:  <span class="dotted-line">  <?php echo (!empty($pays->payed_on))?date('d M, Y',strtotime($pays->payed_on)):''; ?> </span>&nbsp;&nbsp;&nbsp; ಚೆಕ್/ಡಿಡಿ/ಚಲನ್ ಸಂಖ್ಯೆ  <span class="dotted-line">  <?php echo (!empty($pays->pay_id))?$pays->pay_id:''; ?> </span> </p>
                         </div>
             </div><br>
 

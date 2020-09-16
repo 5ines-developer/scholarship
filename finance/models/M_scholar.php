@@ -324,7 +324,7 @@ class M_scholar extends CI_Model {
 
         public function csv_scholar($item='')
     {
-        $select_column = array('ab.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','m.graduation');
+        $select_column = array('ab.name','rs.school_address as school', 'ind.name as industry','a.id','crs.course','a.application_year','ab.adharcard_no','a.application_state','a.status','cls.clss','a.date','tq.title as taluk','cty.title as district','fs.amount','acnt.name as bank','acnt.branch','acnt.acc_no','acnt.ifsc','acnt.holder','m.graduation','a.pay_status');
         $this->db->select($select_column);
 
         if (!empty($item)) {
@@ -345,13 +345,15 @@ class M_scholar extends CI_Model {
 
            
         }
-        $this->db->group_by('a.application_year,a.Student_id');
+
+        $this->db->group_by('a.application_year,Student_id');
         $this->db->order_by('a.id', 'asc')
         ->from('application a')
         ->join('applicant_marks m', 'm.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
         ->join('applicant_comapny ac', 'ac.application_id = a.id', 'left')
         ->join('applicant_marks am', 'am.application_id = a.id', 'left')
+        ->join('applicant_account acnt', 'acnt.application_id = a.id', 'left')
         ->join('student s', 's.id = a.Student_id', 'left')
         ->join('school schl', 'schl.id = a.school_id', 'left')
         ->join('school_address scad', 'scad.school_id = a.school_id', 'left')
@@ -364,6 +366,8 @@ class M_scholar extends CI_Model {
         ->join('class cls', 'cls.id = m.class', 'left')
         ->join('gradution grd', 'grd.id = am.graduation', 'left')
         ->join('fees fs', 'fs.class = grd.id', 'left');
+        
+        
         $this->db->order_by('a.id', 'DESC');
         $query = $this->db->get(); 
         return $query->result();  

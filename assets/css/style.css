@@ -2709,6 +2709,11 @@ table.dataTable thead td {
   border: transparent !important;
 }
 
+.v-select .v-select-bar {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 .v-select-inp-group {
   margin: 0px !important;
 }

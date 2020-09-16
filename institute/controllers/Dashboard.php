@@ -61,13 +61,11 @@ class Dashboard extends CI_Controller {
     public function reject()
     {
         $this->sc_check->limitRequests();
-
         $csrf = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
         $this->security->xss_clean($_POST);
-
         $id = $this->input->post('id');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            $data = array(
@@ -75,6 +73,7 @@ class Dashboard extends CI_Controller {
                'status' => 2,
             );
             if($this->m_dashboard->reject($data, $id)){
+                $this->sendReject($id);
                 $this->session->set_flashdata('success', 'Application rejected');
                 redirect('reject-list','refresh');
             }else{
@@ -86,6 +85,36 @@ class Dashboard extends CI_Controller {
             redirect('student/'.$id,'refresh');
         }
     }
+
+
+
+    // Send a application pdf file
+    public function sendReject($id='')
+    {
+        $data['info'] = $this->m_dashboard->singleStudent($id);
+        $data['email'] = $data['info']->email;
+        $msg = 'Dear '. $data['info']->name.',
+        Your Karnataka Labour Welfare Board Scholarship has been rejected from institute due to '.$data['info']->reject_reason.', More information login to your account and check the Scholarship status';
+        $this->studentSms($msg,$id);
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/reject', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($data['email']);
+        $this->email->subject('Scholarship application Rejected from institute'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+    }
+
 
     // rejected list
     public function reject_list()
@@ -200,7 +229,6 @@ class Dashboard extends CI_Controller {
     public function studentSms($data='', $apid='')
     {
         $phone = $this->m_dashboard->singphoneget($apid);
-        
         /* API URL */
         $url = 'https://portal.mobtexting.com/api/v2/sms/send';
         $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $data . '&sender=RADTEL&to=' . $phone . '&service=T';

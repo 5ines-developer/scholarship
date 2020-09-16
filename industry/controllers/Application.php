@@ -75,13 +75,11 @@ class Application extends CI_Controller {
         public function singleStudent($id = null)
         {
 
-            // $id = urldecode($id);
-            // $id = base64_decode($id);
-
             $id = $this->encryption_url->safe_b64decode($id);
 
             $data['title'] = 'Scholarship | Request list';
             $data['result'] = $this->m_application->singleStudent($id);
+            $data['paySte'] = $this->m_application->getPay($data['result']->company_id,$data['result']->application_year);
             $this->load->view('application/student-detail', $data, FALSE);
         }
         
@@ -129,6 +127,7 @@ class Application extends CI_Controller {
         );
        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if($this->m_application->reject($data, $id)){
+                $this->sendReject($id);
                 $this->session->set_flashdata('success', 'Application rejected Successfully');
                 redirect('application-rejected','refresh');
             }else{
@@ -141,10 +140,37 @@ class Application extends CI_Controller {
         }
     }
 
+        // Send a application pdf file
+    public function sendReject($id='')
+    {
+        $data['info'] = $this->m_application->singleStudent($id);
+        $email = $this->m_application->emailGet($data['info']->Student_id);
+        $msg = 'Dear '. $data['info']->name.',
+        Your Karnataka Labour Welfare Board Scholarship has been rejected from Industry due to '.$data['info']->reject_reason.', More information login to your account and check the Scholarship status';
+        $this->studentSms($msg,$id);
+        $this->load->config('email');
+        $this->load->library('email');
+        $from = $this->config->item('smtp_user');
+        $msg = $this->load->view('mail/reject', $data, true);
+        $this->email->set_newline("\r\n");
+        $this->email->from($from , 'Karnataka Labour Welfare Board');
+        $this->email->to($email);
+        $this->email->subject('Scholarship application Rejected from industry'); 
+        $this->email->message($msg);
+        if($this->email->send())  
+        {
+            return true;
+        } 
+        else
+        {
+            
+            return false;
+        }
+    }
+
+
     public function approveMail($id='')
 	{
-
-        
         $this->load->model('m_application');
         $data['info'] = $this->m_application->singleStudent($id);
         $data['img'] =$this->m_application->compDocs($data['info']->company_id);

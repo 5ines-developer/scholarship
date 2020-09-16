@@ -23,7 +23,7 @@
             <div class="container">
                 <a href="<?php echo base_url() ?>" target="_blank"><span class="grad-cap white-text">ENGLISH</span></a>
                 <a href="<?php echo base_url() ?>student" target="_blank"><span class="grad-cap"><i class="fas fa-graduation-cap"></i></span><span class="top-title"> ಶೈಕ್ಷಣಿಕ ಪ್ರೋತ್ಸಾಹ ಧನ</span></a>
-            <a href="<?php echo base_url() ?>payment/" target="_blank" class="payment">
+            <a href="<?php echo base_url() ?>contribution/" target="_blank" class="payment">
                 <span class="grad-cap"><i class="fas fa-credit-card"></i></span><span class="top-title"> ಕಾರ್ಮಿಕ ಕಲ್ಯಾಣ ನಿಧಿ ವಂತಿಕೆ ಪಾವತಿ</span>
         </a>
     </div>

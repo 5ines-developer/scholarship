@@ -416,12 +416,71 @@ class Scholar extends CI_Controller {
     {
 
         $item = $this->input->get('item');
+        
         $query = $this->m_scholar->csv_scholar($item);
+        if ($item == 'pending') {
+            $this->pencsv($query);
+        }else{
+            $this->comcsv($query);
+        }
+    }
+
+    public function pencsv($query='')
+    {
 
         require_once( APPPATH . 'libraries/PHPExcel/IOFactory.php');
         $object = new PHPExcel();
         $object->setActiveSheetIndex(0);
-        $table_columns = array("SL NO.","Name","Institute","Industry","Present Class","Year","Adhaar No","Amount","Applied Date","District","Taluk","Status");
+
+
+        $table_columns = array("SL NO.","IFSC CODE","Transaction Amount","Commission Amount","Remitter's Account Number","Remitter's Name ","Remitter's Address ","Beneficiary A/C No. ","Benificiary Name ","Beneficiary Address ","Payment Details ","Sender to Receiver Information ","Email ID ");
+
+        $column = 0; foreach($table_columns as $field)
+        {
+            $object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+            $column++;
+        }
+        $excel_row = 2;
+        foreach($query as $row)
+        {
+            
+            $amount = $this->m_scholar->getamnt($row->application_year,$row->graduation);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row->id);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row->ifsc);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $amount);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, '0.00');
+            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, '30428018817');
+            $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, 'WELFARECOME');
+            $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, 'BLORE');
+            $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $row->acc_no);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, $row->holder);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row->branch);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, 'SCHOL');
+            $object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, 'NEFT');
+            $object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, 'welfarecommissioner123@gmail.com');
+            $excel_row++;
+        }
+
+        $filename = date('Ymdhis-')."scholarship-payment-list.xlsx";
+
+        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+       
+        $objWriter = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+
+        // ob_end_clean();
+        $objWriter->save('php://output');
+        
+    }
+
+    public function comcsv($query='')
+    {
+
+        require_once( APPPATH . 'libraries/PHPExcel/IOFactory.php');
+        $object = new PHPExcel();
+        $object->setActiveSheetIndex(0);
+
+        $table_columns = array("SL NO.","Name","Institute","Industry","Present Class","Year","Adhaar No","Amount","Applied Date","District","Taluk","Status","Account Holder","Account No.","IFSC Code","Bank Name","Branch");
         $column = 0;
         foreach($table_columns as $field)
         {
@@ -431,28 +490,15 @@ class Scholar extends CI_Controller {
         $excel_row = 2;
         foreach($query as $row)
         {
-
-             if($row->application_state == 3){
-                $state = 'Verification Officer';
-            }else if ($row->application_state == 2) {
-                $state = 'Industry';
-            }else if ($row->application_state == 1) {
-                $state = 'Institute';
+           if ($row->pay_status == '1') {
+                $pay_status = 'Payment Success';
+            }else if ($row->pay_status == '2'){
+                $pay_status = 'Payment Rejected';
             }else{
-                $state = 'Admin';
+                $pay_status = 'Payment Pending';
             }
-
-            if ($row->status == 2) {
-                $sttus = 'Rejected By';
-            }else if ($row->status == 1) {
-                $sttus = 'Approved By';
-            }else{
-                $sttus = 'Pending From';
-            }
-            $status =  $sttus.' '.$state;
 
             $amount = $this->m_scholar->getamnt($row->application_year,$row->graduation);
-
             $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row->id);
             $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row->name);
             $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row->school);
@@ -464,16 +510,22 @@ class Scholar extends CI_Controller {
             $object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, date('d M, Y',strtotime($row->date)));
             $object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row->district);
             $object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row->taluk);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, $status);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, $pay_status);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, $row->holder);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, $row->acc_no);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(14, $excel_row, $row->ifsc);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, $row->bank);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $row->branch);
             $excel_row++;
-
         }
-
-        $filename = date('Ymdhis-')."scholarship ".$item."-list.xlsx";
+        $filename = date('Ymdhis-')."scholarship-completed-list.xlsx";
         header("Content-Type: application/vnd.ms-excel");
         header("Content-Disposition: attachment; filename=\"$filename\"");
+       
         $objWriter = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
-        $objWriter->save('php://output'); 
+
+        // ob_end_clean();
+        $objWriter->save('php://output');
     }
 
 

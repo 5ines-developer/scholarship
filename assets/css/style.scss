@@ -2574,6 +2574,10 @@
                 .v-select {
                     padding: 0 !important;
                     border: transparent !important;
+                    .v-select-bar {
+                        overflow-x: hidden;
+                        overflow-y: hidden;
+                    }
                 }
                 
                 .v-select-inp-group {
