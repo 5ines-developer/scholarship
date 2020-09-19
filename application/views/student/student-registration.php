@@ -215,11 +215,12 @@
             },
             checkForm() {
                 if ((this.confError == '') && (this.mobileError == '') && (this.emailError == '')) {
-                    // if (grecaptcha.getResponse() == '') {
-                    //     this.captcha = 'Captcha is required';
-                    // } else {
+                    if (grecaptcha.getResponse() == '') {
+                        this.captcha = 'Captcha is required';
+                    } else {
                         this.$refs.form.submit();
-                    // } 
+                    } 
+                    
                 } else {}
             }
 

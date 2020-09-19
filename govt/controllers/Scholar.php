@@ -218,8 +218,11 @@ class Scholar extends CI_Controller {
         $phone = $this->m_scholar->phoneGet($output['info']->Student_id);
         
         /* API URL */
-        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
-        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $data . '&sender=RADTEL&to=' . $phone . '&service=T';
+        // $url = 'https://portal.mobtexting.com/api/v2/sms/send';
+        // $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $data . '&sender=RADTEL&to=' . $phone . '&service=T';
+
+        $url = 'http://txt.bdsent.co.in/api/v2/sms/send';
+        $param = 'message=' . $data . '&sender=KLWBAP&to=91'.$phone.'&service=T&access_token=1d53d3c2e26408ccd824dd264b642239';
         
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
