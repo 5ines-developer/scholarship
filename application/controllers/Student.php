@@ -214,8 +214,10 @@ class Student extends CI_Controller {
         
         $msg = 'Your One time Password For Karnataka Labour Welfare Board Scholarship registration is ' . $data['otp'] . ' . Do not share with anyone';
         /* API URL */
-        $url = 'https://portal.mobtexting.com/api/v2/sms/send';
-        $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $msg . '&sender=RADTEL&to=' . $data['phone'] . '&service=T';
+        
+
+        $url = 'http://txt.bdsent.co.in/api/v2/sms/send';
+        $param = 'message=' . $msg . '&sender=KLWBAP&to=91'.$data['phone'].'&service=T&access_token=1d53d3c2e26408ccd824dd264b642239';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
