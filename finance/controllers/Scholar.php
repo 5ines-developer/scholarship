@@ -363,10 +363,8 @@ class Scholar extends CI_Controller {
                 $msg = 'Sorry!, Your Karnataka Labour Welfare Board Scholarship  Amount has been Failed due to '.$insert['pay_freason'];
             }
             /* API URL */
-
-            $url = 'https://portal.mobtexting.com/api/v2/sms/send';
-            $param = 'access_token=b341e9c84701f1b2df503c78135b9d36&message=' . $msg . '&sender=RADTEL&to=' . $output->phone . '&service=T';
-
+            $url = 'http://txt.bdsent.co.in/api/v2/sms/send';
+            $param = 'message=' . $msg . '&sender=KLWBAP&to=91'.$output->phone.'&service=T&access_token=1d53d3c2e26408ccd824dd264b642239';
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $param);

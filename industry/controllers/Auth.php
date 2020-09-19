@@ -713,7 +713,7 @@ class auth extends CI_Controller {
         $data['pays'] = $this->m_application->getPay($data['info']->company_id,$data['info']->application_year);
         $data['img'] =$this->m_application->compDocs($data['info']->company_id);
         $this->load->view('account/pdf', $data);
-        require_once $_SERVER['DOCUMENT_ROOT'].'/scholarship/vendor/autoload.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
         
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 9,
