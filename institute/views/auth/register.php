@@ -307,11 +307,12 @@
 
 
                 if ((this.phoneError == '') && (this.emailError == '') && (this.instituteError == '') && (this.intdstError == '') && (this.intalError == '')) {
-                    if (grecaptcha.getResponse() == '') {
-                        this.captcha = 'Captcha is required';
-                    } else {
-                        this.$refs.form.submit();
-                    }
+                    // if (grecaptcha.getResponse() == '') {
+                    //     this.captcha = 'Captcha is required';
+                    // } else {
+                    //     this.$refs.form.submit();
+                    // }
+                    this.$refs.form.submit();
                 } else {}
             }
         }
