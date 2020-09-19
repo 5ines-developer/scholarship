@@ -163,8 +163,47 @@
                         }
                     }) 
                 },
+                //check student email already exist
+            emailCheck(){
+                this.emailError='';
+                const formData = new FormData();
+                formData.append('email',this.student.email);
+                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                axios.post('<?php echo base_url('std_account/emailcheck') ?>',formData)
+                .then(response =>{
+                    if (response.data == '1') {
+                        this.emailError = 'This Email id already exist!';
+                    } else {
+                        this.emailError = '';
+                    }
+
+                }).catch(error => {
+                    if (error.response) {
+                        this.errormsg = error.response.data.error;
+                    }
+                })
+            },
                 formSubmit(e){
                     e.preventDefault();
+
+                     this.emailError='';
+                    const formData = new FormData();
+                    formData.append('email',this.student.email);
+                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                    axios.post('<?php echo base_url('std_account/emailcheck') ?>',formData)
+                    .then(response =>{
+                        if (response.data == '1') {
+                            this.emailError = 'This Email id already exist!';
+                        } else {
+                            this.emailError = '';
+                        }
+
+                    }).catch(error => {
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                    })
+                
                     if (this.emailError =='') {
                         this.loader=true;
                         const formData = new FormData();
@@ -220,26 +259,7 @@
                         }
                     })
             },
-            //check student email already exist
-            emailCheck(){
-                this.emailError='';
-                const formData = new FormData();
-                formData.append('email',this.student.email);
-                formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
-                axios.post('<?php echo base_url('std_account/emailcheck') ?>',formData)
-                .then(response =>{
-                    if (response.data == '1') {
-                        this.emailError = 'This Email id already exist!';
-                    } else {
-                        this.emailError = '';
-                    }
-
-                }).catch(error => {
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
-                    }
-                })
-            },
+            
 
 
         },
