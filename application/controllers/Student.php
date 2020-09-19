@@ -209,8 +209,6 @@ class Student extends CI_Controller {
 
     public function studentOtp($data='', $apid='')
     {
-
-
         
         $msg = 'Your One time Password For Karnataka Labour Welfare Board Scholarship registration is ' . $data['otp'] . ' . Do not share with anyone';
         /* API URL */
