@@ -34,7 +34,7 @@ class M_dashboard extends CI_Model {
     public function singleStudent($id = null)
     {
         return $this->db->where('a.id', $id)        
-        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName, std.email as email,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,ab.f_adhar, ab.f_adharfile, ab.m_adhar, ab.m_adharfile,a.schl_approve,schl.phone as schoolPhone,am.graduation')
+        ->select('a.*,aa.*,am.*,ac.*,ab.*,a.id as aid, aa.name as bnkName,schl.name as schoolName,ind.name as indName,ac.pincode as indPincode, scad.address as sclAddrss,ac.name as pName,tq.title as talqName,cty.title as dstctName,st.title as stName, std.email as email,grd.title as gradutions,crs.course as corse,cls.clss as cLass,ind.name as indName,ab.f_adhar, ab.f_adharfile, ab.m_adhar, ab.m_adharfile,a.schl_approve,schl.phone as schoolPhone,am.graduation,tk.title as tlk,ct.title as dst')
         ->from('application a')        
         ->join('applicant_account aa', 'aa.application_id = a.id', 'left')
         ->join('applicant_basic_detail ab', 'ab.application_id = a.id', 'left')
@@ -50,7 +50,9 @@ class M_dashboard extends CI_Model {
         ->join('courses crs', 'crs.id = am.course', 'left')
         ->join('gradution grd', 'grd.id = am.graduation', 'left')
         ->join('class cls', 'cls.id = am.class', 'left')
-        ->get()->row(); 
+        ->join('taluq tk', 'tk.id = am.ins_talluk', 'left')
+        ->join('city ct', 'ct.id = am.ins_district', 'left')
+        ->get()->row();  
     }
 
     // approve the application
@@ -157,7 +159,7 @@ class M_dashboard extends CI_Model {
     }
 
      public function compDocs($id = null)
-    {   
+    {  
        return $this->db->select('name,priciple_signature,seal')->where('name', $id)->get('school')->row();
         
     }
@@ -186,7 +188,7 @@ class M_dashboard extends CI_Model {
                 if (!empty($result2)) {
                    return $result2;
                }else{
-                return false;
+                return 0;
                }
            }
 

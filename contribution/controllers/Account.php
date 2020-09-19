@@ -51,11 +51,11 @@ class Account extends CI_Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->form_validation->set_rules('taluk', 'Taluk', 'required|alpha_numeric_spaces');
             $this->form_validation->set_rules('district', 'District', 'required|alpha_numeric_spaces');
-            $this->form_validation->set_rules('director', 'Director', 'required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('director', 'Director', 'required|callback_customAlpha');
             $this->form_validation->set_rules('panno', 'Pan No', 'required|alpha_numeric_spaces');
             $this->form_validation->set_rules('gstno', 'Gst No', 'required|alpha_numeric_spaces');
             $this->form_validation->set_rules('number', 'Phone Number', 'trim|required|numeric|exact_length[10]');
-            $this->form_validation->set_rules('address', 'address', 'alpha_numeric_spaces');
+            $this->form_validation->set_rules('address', 'address', 'callback_customAlpha');
 
             if ($this->form_validation->run() == True){
 
@@ -194,6 +194,18 @@ class Account extends CI_Controller {
         }else{
             $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('change-password','refresh');
+        }
+    }
+
+    public function customAlpha($str) 
+    {
+        if (!preg_match('/^[a-z 0-9~%.:_\-@\&+=,]+$/i',$str))
+        {
+            $this->form_validation->set_message('customAlpha', 'The {field} contains invalid special characters');
+            return false;
+        }else
+        {
+                return TRUE;
         }
     }
 

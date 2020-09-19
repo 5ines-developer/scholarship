@@ -93,7 +93,7 @@ $this->load->model('m_scholar');
                                                <div class="circle">4</div>
                                                <?php if ( ($result->status == 1) && ($result->application_state == 4) ) {
                                                    echo '<div class="green-text">Approved</div>';
-                                                }else if (($result->status == 2) && ($result->application_state == 4)){
+                                                }else if (($result->status == 2) && ($result->application_state == 4 || $result->application_state == 3)){
                                                     echo '<div class="red-text">Rejected</div>';                                                    
                                                 }else{
                                                     echo '<div class="blue-text">Pending</div>';

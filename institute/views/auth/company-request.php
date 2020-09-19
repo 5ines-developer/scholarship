@@ -56,7 +56,7 @@
                                             
                                             
                                             <div class="input-field col m6 s12">
-                                                    <input required id="name" name="name" pattern="[a-zA-Z0-9\s]+"  v-model="institute" @change="checkInstituteExist" type="text" class="validate">
+                                                    <input required id="name" name="name" pattern="^[a-zA-Z0-9,._-!?@ ]*$"  v-model="institute" @change="checkInstituteExist" type="text" class="validate">
                                                     <label for="name">Institute Name</label>
                                                 <span class="red-text helper-text"> {{instituteError}}</span>
                                             </div>
@@ -75,7 +75,7 @@
                                                 </div>
                                             </div>
                                             <div class="input-field col s12 m12">
-                                                <textarea id="textarea1" name="c_address" required class="materialize-textarea" pattern="[a-zA-Z0-9-\s]+"></textarea>
+                                                <textarea id="textarea1" name="c_address" required class="materialize-textarea" pattern="^[a-zA-Z0-9,._-!?@ ]*$" ></textarea>
                                                 <label for="textarea1">Address</label>
                                             </div>
                                             <div class="input-field col s12">

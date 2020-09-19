@@ -48,7 +48,9 @@ $this->load->library('encryption');
                                                             <div class="col s12 l4 border-right">
                                                                 <div class="profile-img">
                                                                     <?php 
-                                                                    if((!empty($result[0]->reg_certification))){
+
+                                                                    
+                                                                    if((!empty($result[0]->register_doc))){
                                                                         $img = $this->config->item('web_url').'industry/show-images/'.$result[0]->register_doc;
                                                                     }else{
                                                                          $img = 'https://via.placeholder.com/150';
@@ -169,11 +171,17 @@ $this->load->library('encryption');
                                                                             <?php if(!empty($apply)){
                                                                             foreach ($apply as $key => $value) { $key++;
                                                                             $id = $this->ci->encryption_url->safe_b64encode($value->id);
+
+                                                                            $gradutions = (!empty($value->gradutions))?$value->gradutions:'';
+                                                                            $corse = (!empty($value->corse))?$value->corse:'';
+                                                                            $cLass = (!empty($value->cLass))?$value->cLass:'';
+
+                                                                           
                                                                             ?>
                                                                             <tr role="row" class="odd">
                                                                                 <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value))?$key:'---'; ?></a></td>
                                                                                 <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->name))?$value->name:'---'; ?></a></td>
-                                                                                <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->class))?$value->class:'---'; ?></a></td>
+                                                                                <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo $gradutions.' '.$corse.' '.$cLass ?></a></td>
                                                                                 <td><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->mark))?$value->mark.' %':'---'; ?></a></td>
                                                                                 <td class=""><a href="<?php echo base_url('applications/detail/').$id ?>"><?php echo (!empty($value->application_year))?$value->application_year:'---'; ?></a></td>
                                                                                 <td class="action-btn center-align">
@@ -302,7 +310,7 @@ $this->load->library('encryption');
             var table = $('table').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'excel', 'pdf', 'csv'
+                    'excel'
                 ]
 
             });

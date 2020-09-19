@@ -118,7 +118,7 @@
 
 
                                     <div class="input-field col s12 m12">
-                                        <textarea id="address" name="address" class="materialize-textarea"></textarea>
+                                        <textarea id="address" name="address" class="materialize-textarea" pattern="^[a-zA-Z0-9,._-!?@ ]*$"></textarea>
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="input-field col s12">

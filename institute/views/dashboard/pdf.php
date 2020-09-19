@@ -64,15 +64,15 @@
                         </li>
                         <li>
                             <div>
-                                <p><?php echo date('Y', strtotime('-1 years')).'-'.date('Y')?>ನೇ ಶೈಕ್ಷಣಿಕ ಸಾಲಿನಲ್ಲಿ <span class="dotted-line"> <?php echo $info->class ?> </span> ತರಗತಿಯಲ್ಲಿ ವ್ಯಾಸಂಗ ಮಾಡುತ್ತಿದ್ದಾರೆಂದು ದೃಡೀಕರಿಸಲಾಗಿದೆ.</p>
+                                <p><?php echo date('Y', strtotime('-1 years')).'-'.date('Y')?>ನೇ ಶೈಕ್ಷಣಿಕ ಸಾಲಿನಲ್ಲಿ <span class="dotted-line"> <?php echo (!empty($info->gradutions))?$info->gradutions.'&nbsp;&nbsp;':'';  echo (!empty($info->corse))?$info->corse.'&nbsp;&nbsp;':'';  echo (!empty($info->cLass))?$info->cLass.'&nbsp;&nbsp;':''; ?> </span> ತರಗತಿಯಲ್ಲಿ ವ್ಯಾಸಂಗ ಮಾಡುತ್ತಿದ್ದಾರೆಂದು ದೃಡೀಕರಿಸಲಾಗಿದೆ.</p>
                             </div>
                         </li>
                     </ol>
                 </div>
                 <div class="col s12 m5 foo-address left">
                     
-                    <p>ಜಿಲ್ಲೆ: <span class="dashed-line"> <?php echo $info->dstctName ?> </span></p> 
-                    <p>ಸ್ಥಳ: <span class="dashed-line"> <?php echo $info->talqName ?> </span></p>
+                    <p>ಜಿಲ್ಲೆ: <span class="dashed-line"> <?php echo $info->dst ?> </span></p> 
+                    <p>ಸ್ಥಳ: <span class="dashed-line"> <?php echo $info->tlk ?> </span></p>
                     <p>ದಿನಾಂಕ: <span class="dashed-line"> <?php echo date('d M, Y',strtotime($info->schl_approve)); ?> </span></p>
                     <p>ದೂರವಾಣಿ ಸಂಖ್ಯೆ (STD CODE ಸಹಿತ): <span class="dashed-line"> <?php echo $info->schoolPhone  ?> </span></p>
                 </div>

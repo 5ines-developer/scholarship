@@ -60,7 +60,7 @@ $this->load->library('encryption');
                                                 <th class="h5-para-p2">SL No.</th>
                                                 <th class="h5-para-p2">Industry Name</th>
                                                 <th class="h5-para-p2">Act</th>
-                                                <th class="h5-para-p2">Register id</th>
+                                                <th class="h5-para-p2" style="text-align: center;">Register id</th>
                                                 <th class="h5-para-p2">Year</th>
                                                 <th class="h5-para-p2">Payment Id</th>
                                                 <th class="h5-para-p2">Male Employees</th>
@@ -83,7 +83,7 @@ $this->load->library('encryption');
 
                                                     <td><?php echo (!empty($value->name))?$value->name:'---'; ?></td>
                                                     <td><?php if($value->act == '1'){echo "Shops and Commercial Act"; }else if($value->act == '2'){echo "Factory Act"; }else{echo "others"; } ?></td> 
-                                                    <td class="truncate"><?php echo (!empty($value->reg_id))?$value->reg_id:'---'; ?></td>
+                                                    <td class="truncate" style="text-align: center;"><?php echo (!empty($value->reg_id))?$value->reg_id:'---'; ?></td>
                                                     <td><?php echo (!empty($value->year))?$value->year:'---'; ?></td>
                                                     <td><?php echo (!empty($value->pay_id))?$value->pay_id:'---'; ?></td>
                                                     <td><?php echo (!empty($value->male))?$value->male:'---'; ?></td>

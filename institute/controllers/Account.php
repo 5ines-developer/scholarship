@@ -47,13 +47,13 @@ class Account extends CI_Controller {
         $this->security->xss_clean($_POST);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->form_validation->set_rules('prname', 'Name', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('prname', 'Name', 'trim|required|callback_customAlpha');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
             $this->form_validation->set_rules('number', 'Phone Number', 'trim|required|numeric|max_length[10]|min_length[10]');
-            $this->form_validation->set_rules('address', 'Address', 'trim|required|alpha_numeric_spaces');
+            $this->form_validation->set_rules('address', 'Address', 'trim|required|callback_customAlpha');
 
             $this->form_validation->set_rules('regno', 'Register no', 'alpha_numeric_spaces');
-            $this->form_validation->set_rules('iname', 'Institute Name', 'alpha_numeric_spaces');
+            $this->form_validation->set_rules('iname', 'Institute Name', 'callback_customAlpha');
             $this->form_validation->set_rules('taluk', 'Taluk', 'alpha_numeric_spaces');
             $this->form_validation->set_rules('district', 'District', 'alpha_numeric_spaces');
             $this->form_validation->set_rules('pin', 'Pincode', 'alpha_numeric_spaces');
@@ -184,6 +184,19 @@ class Account extends CI_Controller {
         }else{
             $this->session->set_flashdata('error', 'Some error occured, please try again!');
             redirect('change-password','refresh');
+        }
+    }
+
+
+    public function customAlpha($str) 
+    {
+        if (!preg_match('/^[a-z 0-9~%.:_\-@\&+=,]+$/i',$str))
+        {
+            $this->form_validation->set_message('customAlpha', 'The {field} contains invalid special characters');
+            return false;
+        }else
+        {
+                return TRUE;
         }
     }
 

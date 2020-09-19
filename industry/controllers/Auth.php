@@ -238,11 +238,11 @@ class auth extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('phone', 'Phone number', 'trim|required|numeric');
-        $this->form_validation->set_rules('address', 'Address', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required|callback_customAlpha');
 
         $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('company', 'Company', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('company', 'Company', 'trim|required|callback_customAlpha');
 
         if ($this->form_validation->run() == TRUE ) {
 
@@ -610,7 +610,7 @@ class auth extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('phone', 'Phone number', 'trim|required|numeric');
-        $this->form_validation->set_rules('address', 'Address', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required|callback_customAlpha');
 
         $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
@@ -729,7 +729,7 @@ class auth extends CI_Controller {
     function show_images($folder='',$file='') {
 
     
-if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '' || $folder=='sign' || $folder=='seal') {
+if ($this->session->userdata('stlid') != '' || $this->session->userdata('scinst') != '' || $this->session->userdata('scinds')!='' || $this->session->userdata('sgt_id') != '' || $this->session->userdata('sfn_id') != '' || $this->session->userdata('said') != '' || $folder=='sign' || $folder=='seal' || $folder=='sign-doc' || $folder=='seal-doc') {
 $img_path = $folder.'/'.$file;
 $fp = fopen($img_path,'rb');
 header('Content-Type: image/png');

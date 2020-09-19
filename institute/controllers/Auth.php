@@ -141,12 +141,12 @@ class auth extends CI_Controller {
         }
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('iname', 'Institute', 'trim|required|is_unique[school.name]|alpha_numeric_spaces', array( 'is_unique'=> 'Institute already exists.' ));
+        $this->form_validation->set_rules('iname', 'Institute', 'trim|required|is_unique[school.name]|callback_customAlpha', array( 'is_unique'=> 'Institute already exists.' ));
         $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[school.email]|valid_email', array( 'is_unique'=> 'This %s already exists.' ));
         $this->form_validation->set_rules('number', 'Phone number', 'trim|required|is_unique[school.phone]|numeric|exact_length[10]', array( 'is_unique'=> 'This %s already exists.' ));
 
         $this->form_validation->set_rules('regno', 'Register no', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('prname', 'principal Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('prname', 'principal Name', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('pin', 'Pincode', 'trim|required|alpha_numeric_spaces');
@@ -568,13 +568,13 @@ class auth extends CI_Controller {
                 'hash' => $this->security->get_csrf_hash()
             );
             $this->security->xss_clean($_POST);
-        $this->form_validation->set_rules('name', 'Institute Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('name', 'Institute Name', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('number', 'Phone number', 'trim|required|numeric|exact_length[10]');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('district', 'District', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('c_pincode', 'Pincode', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('c_address', 'Address', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('c_address', 'Address', 'trim|required|callback_customAlpha');
         if ($this->form_validation->run() == true) {
             $insert = array(
                 'name'          => $this->input->post('name'),
@@ -674,6 +674,19 @@ class auth extends CI_Controller {
     public function refresh(){
         $captcha['image'] = $this->sc_check->cap_refresh();
         echo $captcha['image'];
+    }
+
+
+    public function customAlpha($str) 
+    {
+        if (!preg_match('/^[a-z 0-9~%.:_\-@\&+=,]+$/i',$str))
+        {
+            $this->form_validation->set_message('customAlpha', 'The {field} contains invalid special characters');
+            return false;
+        }else
+        {
+                return TRUE;
+        }
     }
 
 

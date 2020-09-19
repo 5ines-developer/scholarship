@@ -96,34 +96,22 @@
                                                 <div class="col l6 m6 s12">
                                                     <div class="place-date">
                                                         <p><b>Place :</b> Banglore</p>
-                                                        <p><b>Date :</b> <?php echo (!empty($result->pay_id))?$result->pay_id:''; ?></p>
+                                                        <p><b>Date :</b> <?php echo (!empty($result->payed_on))?date('d M, Y',strtotime($result->payed_on)) :''; ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col l6 m6 s12">
                                                     <div class="sign-emp">
                                                         <?php
-
-                                                       $img =  base_url('show-images/').$result->seal;
-
-                                                        if (!empty($img)) {
-                                                            $img = $img;
-                                                        }else{
-                                                            $img = $this->config->item('web_url').'show-images/'.$result->seal;
-                                                        }
-
+                                                        $img =  base_url('show-images/').$result->seal;
+                                                        $img1 = $this->config->item('web_url').'/industry/show-images/'.$result->seal;
 
                                                         $img2 =  base_url('show-images/').$result->sign;
-
-                                                        if (!empty($img2)) {
-                                                            $img2 = $img2;
-                                                        }else{
-                                                            $img2 = $this->config->item('web_url').'show-images/'.$result->sign;
-                                                        }
-
-
+                                                        $img3 = $this->config->item('web_url').'/industry/show-images/'.$result->sign;
                                                         ?>
                                                         <img src="<?php echo $img; ?>" class="img-responsive sign-w " alt="">
-                                                        <img src="<?php echo $img; ?>" class="img-responsive sign-w " alt="">
+                                                        <img src="<?php echo $img1; ?>" class="img-responsive sign-w " alt="">
+                                                        <img src="<?php echo $img2; ?>" class="img-responsive sign-w " alt="">
+                                                        <img src="<?php echo $img3; ?>" class="img-responsive sign-w " alt="">
                                                         <h2>Signature of Employer And seal</h2>
                                                     </div>
                                                 </div>

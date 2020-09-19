@@ -185,33 +185,33 @@ class Std_application extends CI_Controller {
                 die();
            }
         }
-        $this->form_validation->set_rules('sname', 'Student Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('sname', 'Student Name', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('sphone', 'Student Phone', 'trim|numeric|max_length[10]|min_length[10]');
-        $this->form_validation->set_rules('sfather', 'Father Name', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('smother', 'Mother Name', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('saddress', 'Student Address', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('sfather', 'Father Name', 'trim|required|callback_customAlpha');
+        $this->form_validation->set_rules('smother', 'Mother Name', 'trim|required|callback_customAlpha');
+        $this->form_validation->set_rules('saddress', 'Student Address', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('gender', 'Gender', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('ipclass', 'Present Class', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('ipclass', 'Present Class', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('ipin', 'Institute Pin Code', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('iname', 'Institute Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('iname', 'Institute Name', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('italluk', 'Institute Talluk', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('idistrict', 'Institute district', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('cnumber', 'Caste Certificate Number', 'trim|alpha_numeric');
-        $this->form_validation->set_rules('pclass', 'Previous Class', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('pclass', 'Previous Class', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('pmarks', 'Previous ClassMarks', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('anumber', 'Student adhaar number', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('anumberm', 'Mother adhaar number', 'trim|alpha_numeric_spaces');
         $this->form_validation->set_rules('anumberf', 'Father adhaar number', 'trim|alpha_numeric_spaces');
-        $this->form_validation->set_rules('bname', 'Bank Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('bname', 'Bank Name', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('branch', 'Branch', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('bifsc', 'IFSC Code', 'trim|required|alpha_numeric_spaces');
         $this->form_validation->set_rules('baccount', 'Account Number', 'trim|required|numeric');
         $this->form_validation->set_rules('btype', 'Account Holder Type', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('bholder', 'Account Holder Name', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('inpname', 'Parent Name', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('bholder', 'Account Holder Name', 'trim|required|callback_customAlpha');
+        $this->form_validation->set_rules('inpname', 'Parent Name', 'trim|required|callback_customAlpha');
         $this->form_validation->set_rules('insalary', 'Parent Salary', 'trim|required|numeric');
-        $this->form_validation->set_rules('inrelation', 'Parent Student Relation', 'trim|required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('inpin', 'Industry Pin Code', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('inrelation', 'Parent Student Relation', 'trim|required|callback_customAlpha');
+        $this->form_validation->set_rules('inpin', 'Industry Pin Code', 'trim|required|callback_customAlpha');
         if ($this->form_validation->run() == true) {
         	$input = $this->input->post();
 			if(($this->input->post('clow') == '') && ($this->input->post('pmarks') < 50)){ echo 'error'; die(); }
@@ -628,6 +628,18 @@ class Std_application extends CI_Controller {
         $mpdf->WriteHTML($html);
         $mpdf->Output();
         exit;    
+    }
+
+
+    public function customAlpha($str) 
+    {
+        if (!preg_match('/^[a-z 0-9~%.:_\-@\&+=,]+$/i',$str))
+        {
+        	$this->form_validation->set_message('customAlpha', 'The {field} contains invalid special characters');
+            return false;
+        }else {
+            return TRUE;
+        }
     }
 
 

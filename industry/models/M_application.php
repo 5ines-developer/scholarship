@@ -195,7 +195,7 @@ class M_application extends CI_Model {
                 if (!empty($result2)) {
                    return $result2;
                }else{
-                return false;
+                return 0;
                }
            }
 

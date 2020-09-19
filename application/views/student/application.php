@@ -11,12 +11,12 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/vue-select.css">
 
     <style>
-        .input-field > label {
-    -webkit-transform: translateY(-14px) scale(0.8);
-    transform: translateY(-14px) scale(0.8);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-}
+    .input-field > label {
+        -webkit-transform: translateY(-14px) scale(0.8);
+        transform: translateY(-14px) scale(0.8);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
     </style>
 
 </head>
@@ -695,7 +695,8 @@
         },
         methods:{
             not_applicable(not_apply){
-                if (not_apply !='' && not_apply=='mother') {
+
+                if (not_apply !='' && not_apply=='mother' && this.not_applicable2==true) {
                     this.not_applicable2 =true;
                     this.not_applicable1 =false;
                     this.mdrader = true;
@@ -705,7 +706,8 @@
                     this.motherrequire = false;
                     this.fatherrequire = true;
                     this.adhErrorm = '';
-                }else if(not_apply !='' && not_apply=='father'){
+                    this.adhaar.numberm='';
+                }else if(not_apply !='' && not_apply=='father' && this.not_applicable1==true){
                     this.not_applicable1 =true;
                     this.not_applicable2 =false;
                     this.fdrader = true;
@@ -715,8 +717,16 @@
                     this.fatherrequire = false;
                     this.motherrequire = true;
                     this.adhErrorf = '';
-                }
+                    this.adhaar.fnumber='';
+                }else{
+                    this.fatherrequire = true;
+                    this.motherrequire = true;
+                    this.fatherdeath = true;
+                    this.motherdeath = true;
+                    this.mdrader = false;
+                    this.fdrader = false;
 
+                }
             },
             cardNumberSpace(){
                 var cardNumber = this.$refs.creditCardNumber.value;

@@ -208,7 +208,7 @@
                             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         </div>
                         <div class="input-field col m6">
-                            <input id="director" value="<?php echo (!empty($info->director))?$info->director:''; ?>" type="text" name="director" class="validate">
+                            <input id="director" value="<?php echo (!empty($info->director))?$info->director:''; ?>" type="text" name="director" class="validate" pattern="^[a-zA-Z0-9,._-!?@ ]*$">
                             <label for="director">Director Name</label>
                         </div>
 
@@ -237,7 +237,7 @@
                         </div>
 
                         <div class="input-field col s12 m12">
-                            <textarea id="address" required name="address" class="materialize-textarea"><?php echo (!empty($info->address))?$info->address:''; ?></textarea>
+                            <textarea id="address" required name="address" class="materialize-textarea" pattern="^[a-zA-Z0-9,._-!?@ ]*$"><?php echo (!empty($info->address))?$info->address:''; ?></textarea>
                             <label for="address">Full Address</label>
                         </div>
 

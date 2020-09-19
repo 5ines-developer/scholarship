@@ -224,34 +224,25 @@ class Payments extends CI_Controller {
         $AESobj = new AESEncDec();
         if (!empty($_REQUEST['encData']))
         {
+
+            /********* Success with encdata***********/
             $encData = $AESobj->decrypt($_REQUEST['encData'],$key);
             $str = explode("|",$encData);
-            
-            if (!empty($str[0])) {
-                $pays = $this->m_payments->getPy($str[0],$str[1]);
-                if (!empty($pays)) {
-                    $emails='';
-                    $phones='';
-                    $company='';
-                    $ind = $this->m_payments->getind($pays->comp_reg_id);
-                    if (!empty($ind)) {
-                        $emails = $ind->email;
-                        $phones = $ind->mobile;
-                        $company = $ind->name;
-                    }
-                    $data['insert_id'] = $pays->id;
-                    $data['comp_reg_id'] = $pays->comp_reg_id;
-                    $this->sendmail($data,$emails,$phones,$company);
-                    $this->sendadmin($data,$emails,$phones,$company);
-
-                     $this->session->set_flashdata('success', 'Your contribution has been paid successfully');
-                    redirect('make-payment','refresh');
-                }
+            if (!empty($strs[0])) {
+                $this->paysucmail($str);
             }
-        }
-        else
+        }elseif (!empty($_REQUEST['pushRespData']))
         {
+            /********* Success pushresponse ***********/
+            $resdata = $AESobj->decrypt($_REQUEST['pushRespData'],$key);
+            $strs = explode("|",$resdata);
+            
+            if (!empty($strs[0])) {
+                $this->paysucmail($strs);
+            }
+        } else {
 
+            /********* success double verifcation with status query ***********/
             $item = $this->input->get('item');
             $atrn = "";
             $order_id = $item;
@@ -298,6 +289,32 @@ class Payments extends CI_Controller {
     }
 
 
+    public function paysucmail($str='')
+    {
+        if (!empty($str[0])) {
+            $pays = $this->m_payments->getPy($str[0],$str[1]);
+            if (!empty($pays)) {
+                $emails='';
+                $phones='';
+                $company='';
+                $ind = $this->m_payments->getind($pays->comp_reg_id);
+                if (!empty($ind)) {
+                    $emails = $ind->email;
+                    $phones = $ind->mobile;
+                    $company = $ind->name;
+                }
+                $data['insert_id'] = $pays->id;
+                $data['comp_reg_id'] = $pays->comp_reg_id;
+                $this->sendmail($data,$emails,$phones,$company);
+                $this->sendadmin($data,$emails,$phones,$company);
+
+                 $this->session->set_flashdata('success', 'Your contribution has been paid successfully');
+                redirect('make-payment','refresh');
+            }
+        }
+    }
+
+
     public function failed($value='')
     {
         $key = "A7C9F96EEE0602A61F184F4F1B92F0566B9E61D98059729EAD3229F882E81C3A";
@@ -305,15 +322,26 @@ class Payments extends CI_Controller {
         $AESobj = new AESEncDec();
         if (!empty($_REQUEST['encData']))
         {
+            /********* failed with encdata***********/
             $encData = $AESobj->decrypt($_REQUEST['encData'],$key);
-
             $str = explode("|",$encData);
             if (!empty($str[0]) && $str[2] == 'FAIL') {
                 $this->db->where('pay_id', $str[0])->delete('payment');
                 $this->session->set_flashdata('error', 'Your Transaction Failed, please try again later');
                 redirect('make-payment','refresh');
             }
+        }elseif (!empty($_REQUEST['pushRespData']))
+        {
+            /********* failed pushresponse ***********/
+            $resdata = $AESobj->decrypt($_REQUEST['pushRespData'],$key);
+            $strs = explode("|",$resdata);
+            if (!empty($strs[0]) && $strs[2] == 'FAIL') {
+                $this->db->where('pay_id', $strs[0])->delete('payment');
+                $this->session->set_flashdata('error', 'Your Transaction Failed, please try again later');
+                redirect('make-payment','refresh');
+            }
         }else{
+            /********* failed double verifcation with status query ***********/
 
              $item = $this->input->get('item');
             $atrn = "";

@@ -85,7 +85,7 @@ color: #fff;
                                 <div class="card-content bord-right">
                                     <div class="card-title">
                                         Scholarship
-                                        <?php if (!empty($paySte->pay_id) && !empty($paySte->status)) {
+                                        <?php if (!empty($paySte->pay_id)) {
                                         if (($result->application_state == 2) && ($result->status == 2)) { ?>
                                         <a class="btn-small right red darken-3 waves-effect waves-light modal-trigger" >Rejected</a>
                                         <?php }elseif ((($result->application_state != 2) && ($result->application_state != 1)) && ($result->status !=2)){ ?>
@@ -162,7 +162,7 @@ color: #fff;
                                                     <div class="circle">4</div>
                                                     <?php if (($result->status == 1) && (($result->application_state == 4))) {
                                                     echo '<div class="green-text">Approved</div>';
-                                                    }else if (($result->status == 2) && ($result->application_state == 4)){
+                                                    }else if (($result->status == 2) && ($result->application_state == 4 || $result->application_state == 3)){
                                                     echo '<div class="red-text">Rejected</div>';
                                                     }else{
                                                     echo '<div class="blue-text">Pending</div>';

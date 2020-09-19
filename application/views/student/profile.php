@@ -59,7 +59,7 @@
                                                 </div>
                                                 
                                                 <div class="input-field col s12">
-                                                    <input id="email" autofocus="" type="email" @change="emailCheck()"  v-model="student.email" class="validate">
+                                                    <input id="email" autofocus="" type="email" @change="emailCheck()" @keyup="emailCheck()"  v-model="student.email" class="validate">
                                                     <label for="email">Email Id</label>
                                                     <span class="helper-text red-text">{{ emailError }}</span>
                                                 </div>
@@ -166,33 +166,32 @@
                 formSubmit(e){
                     e.preventDefault();
                     if (this.emailError =='') {
-                    this.loader=true;
-                    const formData = new FormData();
-                    formData.append('name', this.student.name);
-                    formData.append('email', this.student.email);
-                    formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
-                    axios.post('<?php echo base_url() ?>std_account/updateprofile', formData)
-                    .then(response => {
-                    this.loader=false;
-                    if(response.data == '1'){
-                        M.toast({html: 'Your profile has been updated successfully.', classes: 'green', displayLength : 5000 });
-                    }else{
-                        M.toast({html: 'Something went wrong!, please try again Later', classes: 'red', displayLength : 5000 });
-                    }
+                        this.loader=true;
+                        const formData = new FormData();
+                        formData.append('name', this.student.name);
+                        formData.append('email', this.student.email);
+                        formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');
+                        axios.post('<?php echo base_url() ?>std_account/updateprofile', formData)
+                        .then(response => {
+                        this.loader=false;
+                        if(response.data == '1'){
+                            M.toast({html: 'Your profile has been updated successfully.', classes: 'green', displayLength : 5000 });
+                        }else{
+                            M.toast({html: 'Something went wrong!, please try again Later', classes: 'red', displayLength : 5000 });
+                        }
 
-                    }).catch(error => {
-                         this.loader=false;
-                    if (error.response) {
-                        this.errormsg = error.response.data.error;
+                        }).catch(error => {
+                             this.loader=false;
+                        if (error.response) {
+                            this.errormsg = error.response.data.error;
+                        }
+                        })
+                    }else{
+                        e.preventDefault();
                     }
-                    })
-                }
 
                 },
             getData(){
-
-                
-
                     const formData = new FormData();
                     this.loader=true;
                     formData.append('<?php echo $this->security->get_csrf_token_name() ?>','<?php echo $this->security->get_csrf_hash() ?>');

@@ -185,8 +185,8 @@
                             <label for="number">Phone Number</label>
                         </div>
 
-                        <div class="input-field col m6">
-                            <input id="prname" value="<?php echo $info->principal ?>" type="text" name="prname" required class="validate">
+                        <div class="input-field col m6"> 
+                            <input id="prname" value="<?php echo $info->principal ?>" type="text" name="prname" required class="validate" pattern="^[a-zA-Z0-9,._-!?@ ]*$">
                             <label for="prname">Principal Name</label>
                         </div>
 
@@ -207,7 +207,7 @@
 
 
                         <div class="input-field col s12 m12">
-                            <textarea id="address" required name="address" class="materialize-textarea"><?php echo $info->address ?></textarea>
+                            <textarea id="address" required name="address" class="materialize-textarea" pattern="^[a-zA-Z0-9,._-!?@ ]*$"><?php echo $info->address ?></textarea>
                             <label for="address">Full Address</label>
                         </div>
                         

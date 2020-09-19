@@ -87,7 +87,7 @@
 
                                     <div class="row m0">                                    
                                         <div class="input-field col m12">
-                                        <input id="company" type="text" name="company" class="c_conreg validate" pattern="[a-zA-Z0-9\s]+" required="">
+                                        <input id="company" type="text" name="company" class="c_conreg validate" pattern="^[a-zA-Z0-9,._-!?@ ]*$" required="">
                                         <label for="company">Industry Name</label>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
                                                                         
                                                                                                            
                                     <div class="input-field col s12 m12">
-                                        <textarea id="address" name="address" required class="materialize-textarea" pattern="[a-zA-Z0-9\s]+"></textarea>
+                                        <textarea id="address" name="address" required class="materialize-textarea" pattern="^[a-zA-Z0-9,._-!?@ ]*$"></textarea>
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="input-field col s12">

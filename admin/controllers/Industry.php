@@ -457,7 +457,7 @@ class Industry extends CI_Controller {
         }else{
             $this->session->set_flashdata('error','🙂 Server error occurred. Please try again later');
         }
-       redirect('industry/detail/'.$ind,'refresh');
+       redirect('industry/detail/'.$this->encryption_url->safe_b64encode($ind),'refresh');
     }
 
     public function empunblock($value='')
@@ -481,7 +481,7 @@ class Industry extends CI_Controller {
         }else{
             $this->session->set_flashdata('error','🙂 Server error occurred. Please try again later');
         }
-       redirect('industry/detail/'.$ind,'refresh');
+       redirect('industry/detail/'.$this->encryption_url->safe_b64encode($ind),'refresh');
     }
 
 

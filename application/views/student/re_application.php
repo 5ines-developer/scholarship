@@ -228,7 +228,7 @@ $this->load->model('m_stdapplication');
                                                     <p><span class="black-text">Select your category</span></p>
                                                     <div class="col s6 m3 l3">
                                                         <label>
-                                                            <input class="with-gap" name="std_cat1" type="radio" value="sc" checked v-model="trcategory"/>
+                                                            <input class="with-gap" name="std_cat1" type="radio" value="sc" v-model="trcategory"/>
                                                             <span>SC (ಪರಿಶಿಷ್ಠ ಜಾತಿ)</span>
                                                         </label>
                                                     </div>
@@ -748,6 +748,8 @@ $this->load->model('m_stdapplication');
                     this.adhErrorm = '';
                     this.motherdeathfile = false;
                     this.fatherdeathfile = true;
+                    this.adhErrorm = '';
+                    this.adhaar.numberm='';
                     
 
                 }else if(not_apply !='' && not_apply=='father' && this.not_applicable1 ==true){
@@ -762,6 +764,8 @@ $this->load->model('m_stdapplication');
                     this.adhErrorf = '';
                     this.fatherdeathfile = false;
                     this.motherdeathfile = true;
+                    this.adhErrorf = '';
+                    this.adhaar.fnumber='';
                     
                 }else{
 
@@ -1168,6 +1172,8 @@ $this->load->model('m_stdapplication');
                     axios.get('<?php echo base_url() ?>std_application/appliGet')
                     .then(function (response) {
 
+                        console.log(response);
+
                         if (response.data.notappli =='mother') {
                             self.not_applicable2 =true;
                             self.not_applicable1 =false;
@@ -1180,7 +1186,7 @@ $this->load->model('m_stdapplication');
                             self.adhErrorm = '';
                             self.fatherdeathfile = true;
 
-                            if (response.data.deathcertificate !=null) {
+                            if (response.data.deathcertificate !=null && response.data.notappli == 'mother') {
                                 self.motherdeathfile = false;
                                 self.motherpdffile   = "<?php echo base_url() ?>"+response.data.deathcertificate;
                             }else{
@@ -1200,15 +1206,24 @@ $this->load->model('m_stdapplication');
                             self.adhErrorf = '';
                             self.motherdeathfile = true;
 
-                            if (response.data.deathcertificate !=null) {
+                            if (response.data.deathcertificate !=null && response.data.notappli == 'father') {
                                 self.fatherdeathfile = false;
                                 self.fadhrpdffile   = "<?php echo base_url() ?>"+response.data.deathcertificate;
                             }else{
                                 self.fadhrpdffile = "#";
                             }
+                        }else{
+                            self.not_applicable1 =false;
+                            self.not_applicable2 =false;
+                            self.fdrader = false;
+                            self.mdrader = false;
+                            self.fatherdeath = true;
+                            self.motherdeath = true;
+                            self.fatherrequire = false;
+                            self.motherrequire = false;
+                            self.motherdeathfile = true;
+                            self.fatherdeathfile = true;
 
-
-                            
                         }
 
                         self.aid =  response.data.aId;
@@ -1224,9 +1239,16 @@ $this->load->model('m_stdapplication');
                         self.institute.talluk   = '<?php echo (!empty($scholls->talluk))?$scholls->talluk:''; ?>';
                         self.institute.district = '<?php echo (!empty($scholls->districtname))?str_replace(array("\n", "\r"),'',$scholls->districtname):''; ?>';
                         if(response.data.course !=''){
-                            self.crse = true;
+                            if (response.data.cLass !='' && response.data.cLass != null) {
+                                self.crse = false;
+                                self.institute.pclass.id   = response.data.class;
+                                self.institute.pclass   = response.data.cLass;
+                            }else{
+                                self.crse = true;
+                            }
                         }else{
-                            self.institute.pclass   = response.data.cLass;
+                            self.crse = true;
+                            // self.institute.pclass.id   = response.data.class;
                         }
                         self.institute.pin      = response.data.ins_pin;
                         self.institute.grad     = response.data.gradutions;
@@ -1236,7 +1258,7 @@ $this->load->model('m_stdapplication');
                         self.institute.name.sId             = response.data.school_id;
                         self.institute.grad.id              = response.data.graduation;
                         self.institute.course.id            = response.data.course;
-                        self.institute.pclass.id            = response.data.class;
+                        // self.institute.pclass.id            = response.data.cLass;
                         //caste details
                         if(response.data.is_scst == "1"){
                             self.tribes = false;
@@ -1249,8 +1271,10 @@ $this->load->model('m_stdapplication');
                         }
                         self.caste.low          = response.data.is_scst;
                         self.caste.number       = response.data.cast_no;
-                        self.caste.trcategory   = response.data.category;
-                        self.caste.gncategory   = response.data.category;
+                        self.trcategory   = response.data.category;
+                        self.gncategory   = response.data.category;
+
+
                         if (response.data.cast_certificate !=null) {
                             self.castpdf   = "<?php echo base_url() ?>"+response.data.cast_certificate;
                         }else{
@@ -1274,14 +1298,14 @@ $this->load->model('m_stdapplication');
                         }
 
                         self.adhaar.numberm      = response.data.m_adhar;
-                        if (response.data.m_adharfile !=null) {
+                        if (response.data.m_adharfile !=null && response.data.notappli != 'mother') {
                             self.madhrpdf  = "<?php echo base_url() ?>"+response.data.m_adharfile;
                         }else{
                             self.madhrpdf = "#";
                         }
 
                         self.adhaar.fnumber      = response.data.f_adhar;
-                        if (response.data.f_adharfile !=null) {
+                        if (response.data.f_adharfile !=null && response.data.notappli != 'father') {
                             self.fadhrpdf  = "<?php echo base_url() ?>"+response.data.f_adharfile;
                         }else{
                             self.fadhrpdf = "#";

@@ -621,6 +621,67 @@ class Student extends CI_Controller {
         echo $captcha['image'];
     }
 
+    public function regRemove($value='')
+    {
+        $this->stdregdel();
+        $this->indregdel();
+        $this->instregdel();
+
+    }
+
+    public function stdregdel($value='')
+    {
+        $result = $this->db->select('id,date')->where('status', 0)->get('student');
+        if ($result->num_rows() > 0) {
+            $diffr ='';
+            foreach ($result->result() as $key => $value) {
+                $today      = date('Y-m-d h:i:s');
+                $your_date  = strtotime($value->date);
+                $datediff   = strtotime($today) - $your_date;
+                $diffr      = round($datediff / (60 * 60));
+                if ($diffr > 24) {
+                    $this->db->where('id', $value->id)->delete('student');
+                }
+            }
+        }
+    }
+
+
+    public function indregdel($value='')
+    {
+        $result = $this->db->select('id,date')->where('status', 0)->get('industry_register');
+        if ($result->num_rows() > 0) {
+            $diffr ='';
+            foreach ($result->result() as $key => $value) {
+                $today      = date('Y-m-d h:i:s');
+                $your_date  = strtotime($value->date);
+                $datediff   = strtotime($today) - $your_date;
+                $diffr      = round($datediff / (60 * 60));
+                if ($diffr > 24) {
+                    $this->db->where('id', $value->id)->delete('industry_register');
+                }
+            }
+        }
+    }
+
+    public function instregdel($value='')
+    {
+        $result = $this->db->select('id,created_on,email')->where('status', 0)->get('school_auth');
+        if ($result->num_rows() > 0) {
+            $diffr ='';
+            foreach ($result->result() as $key => $value) {
+                $today      = date('Y-m-d h:i:s');
+                $your_date  = strtotime($value->created_on);
+                $datediff   = strtotime($today) - $your_date;
+                $diffr      = round($datediff / (60 * 60));
+                if ($diffr > 24) {
+                    $this->db->where('id', $value->id)->delete('school_auth');
+                    $this->db->where('email', $value->email)->delete('school');
+                }
+            }
+        }
+    }
+
 
 
 
